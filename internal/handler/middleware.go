@@ -2,7 +2,10 @@ package handler
 
 import (
 	"context"
+	"crypto/rand"
+	"encoding/base64"
 	"net/http"
+	"time"
 
 	"esperanto-kurso-gae/internal/model"
 	"esperanto-kurso-gae/internal/store"
@@ -58,12 +61,38 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 				token = c.Value
 			}
 		}
+
 		if token != "" {
 			u, err := us.GetByToken(ctx, token)
 			if err == nil && u != nil {
 				ctx = context.WithValue(ctx, UserContextKey, u)
 				r = r.WithContext(ctx)
 				go func() { _ = us.UpdateLastSeen(context.Background(), u.ID) }()
+				next.ServeHTTP(w, r)
+				return
+			}
+		}
+
+		// No valid token — auto-create an anonymous user and set the cookie.
+		// This ensures the cookie is ready before the user reaches /admin/initial.
+		// If never used and no ensalutŝlosilo registered, the account is
+		// functionally equivalent to a new one on the next visit.
+		newToken, err := autoCreateUser(ctx, us)
+		if err == nil {
+			http.SetCookie(w, &http.Cookie{
+				Name:     "token",
+				Value:    newToken,
+				Path:     "/",
+				HttpOnly: true,
+				SameSite: http.SameSiteLaxMode,
+				Expires:  time.Now().Add(365 * 24 * time.Hour),
+			})
+			// Also expose it for HTMX-based JS pickup.
+			w.Header().Set("X-New-Token", newToken)
+			u, _ := us.GetByToken(ctx, newToken)
+			if u != nil {
+				ctx = context.WithValue(ctx, UserContextKey, u)
+				r = r.WithContext(ctx)
 			}
 		}
 		next.ServeHTTP(w, r)
@@ -95,4 +124,25 @@ func RequireMod(next http.Handler) http.Handler {
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+// autoCreateUser creates a new anonymous user, stores it, and returns the token.
+func autoCreateUser(ctx context.Context, us *store.UserStore) (string, error) {
+	idB := make([]byte, 16)
+	if _, err := rand.Read(idB); err != nil {
+		return "", err
+	}
+	id := base64.URLEncoding.EncodeToString(idB)
+
+	tokB := make([]byte, 32)
+	if _, err := rand.Read(tokB); err != nil {
+		return "", err
+	}
+	token := base64.URLEncoding.EncodeToString(tokB)
+
+	u := model.NewUser(id, token)
+	if err := us.Create(ctx, u); err != nil {
+		return "", err
+	}
+	return token, nil
 }

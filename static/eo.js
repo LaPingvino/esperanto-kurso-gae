@@ -17,27 +17,11 @@
     if (token) localStorage.setItem(TOKEN_KEY, token);
   }
 
-  // Ensure the user has a token; create one if missing.
-  async function ensureToken() {
-    let token = getToken();
-    if (!token) {
-      try {
-        const res = await fetch('/auth/token', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' }
-        });
-        if (res.ok) {
-          const data = await res.json();
-          if (data.token) {
-            setToken(data.token);
-            token = data.token;
-          }
-        }
-      } catch (e) {
-        console.warn('Could not obtain auth token:', e);
-      }
-    }
-    return token;
+  // Token is now created server-side on first page load (via AuthMiddleware).
+  // This function checks if we already have it in localStorage; if not,
+  // pick it up from the X-New-Token response header sent by the server.
+  function ensureToken() {
+    return getToken();
   }
 
   // Attach token to every HTMX request.
@@ -56,9 +40,13 @@
     }
   });
 
-  // Initialise on load.
-  document.addEventListener('DOMContentLoaded', async function () {
-    await ensureToken();
+  // On load, pick up the token from the cookie if localStorage is empty.
+  // The server sets a "token" cookie; read it so HTMX requests also carry it.
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!getToken()) {
+      const match = document.cookie.match(/(?:^|;\s*)token=([^;]+)/);
+      if (match) setToken(decodeURIComponent(match[1]));
+    }
   });
 
   // Expose ensureToken globally for use by WebAuthn flows.
