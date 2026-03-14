@@ -9,7 +9,7 @@ import (
 // rpOrigin should be the full origin (e.g. "https://esperanto-kurso.net").
 func NewWebAuthn(rpID, rpOrigin string) (*webauthn.WebAuthn, error) {
 	cfg := &webauthn.Config{
-		RPDisplayName: "Esperanto-Kurso",
+		RPDisplayName: "Esperanto-kurso",
 		RPID:          rpID,
 		RPOrigins:     []string{rpOrigin},
 	}

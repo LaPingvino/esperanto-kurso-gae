@@ -2,10 +2,10 @@
 {{template "base" .}}
 {{end}}
 
-{{define "title"}}Administra Panelo — Esperanto-Kurso{{end}}
+{{define "title"}}Administra panelo — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>Administra Panelo</h1>
+<h1>Administra panelo</h1>
 
 <div class="grid">
   <article>
@@ -29,9 +29,21 @@
 
 <nav>
   <ul>
-    <li><a href="/admin/enhavo" role="button">Administri Enhavon</a></li>
-    <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova Enhavo</a></li>
+    <li><a href="/admin/enhavo" role="button">Administri enhavon</a></li>
+    <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova enhavo</a></li>
     <li><a href="/admin/moderigo" role="button" class="outline">Moderado</a></li>
   </ul>
 </nav>
+
+<hr>
+<section>
+  <h2>Semado</h2>
+  <p>Ŝarĝu la enkonstruitajn bazazajn ekzercojn (idempotenta — preterlasas jam ekzistantajn).</p>
+  <form method="POST" action="/admin/seed">
+    <button type="submit">Semi bazajn ekzercojn</button>
+  </form>
+  {{if .SeedResult}}
+  <p><strong>{{.SeedResult}}</strong></p>
+  {{end}}
+</section>
 {{end}}

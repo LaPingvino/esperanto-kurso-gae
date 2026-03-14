@@ -3,6 +3,7 @@ package handler
 import (
 	"fmt"
 	"net/http"
+	"net/url"
 	"strconv"
 	"strings"
 	"time"
@@ -46,6 +47,7 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 		"ApprovedCount":   len(approved),
 		"PendingCount":    len(pending),
 		"CommentCount":    len(pendingComments),
+		"SeedResult":      r.URL.Query().Get("seed"),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "admin_dashboard.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -280,7 +282,7 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 }
 
 // SeedContent handles POST /admin/seed — loads embedded seed data into Datastore.
-// Only callable by admins. Idempotent: skips items that already exist.
+// Idempotent: skips items that already exist. Redirects back to dashboard with result.
 func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
 	loaded, skipped, failed := 0, 0, 0
 	for _, item := range seedItems() {
@@ -295,8 +297,8 @@ func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
 		}
 		loaded++
 	}
-	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
-	fmt.Fprintf(w, "Semo: %d ŝargitaj, %d preterlasitaj, %d malsukcesaj\n", loaded, skipped, failed)
+	msg := fmt.Sprintf("Semo: %d ŝargitaj, %d preterlasitaj, %d malsukcesaj", loaded, skipped, failed)
+	http.Redirect(w, r, "/admin?seed="+url.QueryEscape(msg), http.StatusSeeOther)
 }
 
 // seedItems returns the built-in bootstrap dataset of approved exercises.
@@ -439,8 +441,8 @@ func (h *AdminHandler) InitialSetup(w http.ResponseWriter, r *http.Request) {
 	if err != nil || cookie.Value == "" {
 		w.Header().Set("Content-Type", "text/html; charset=utf-8")
 		fmt.Fprint(w, `<!DOCTYPE html><html lang="eo"><head><meta charset="UTF-8">
-<title>Komenca Agordo</title></head><body>
-<h1>Komenca Agordo de Administranto</h1>
+<title>Komenca agordo</title></head><body>
+<h1>Komenca agordo de administranto</h1>
 <p>Vi estas aŭtentikigita kiel GAE-administranto.</p>
 <p>Por fariĝi administranto de la platformo, vi bezonas:</p>
 <ol>

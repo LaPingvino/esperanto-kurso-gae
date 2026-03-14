@@ -1,7 +1,7 @@
 package eo
 
 const (
-	SiteTitle        = "Esperanto-Kurso"
+	SiteTitle        = "Esperanto-kurso"
 	NavHome          = "Hejmo"
 	NavSave          = "Konservu progreson"
 	NavAdmin         = "Administrado"
@@ -15,10 +15,10 @@ const (
 	MagicLinkLabel   = "Via sekreta ligo"
 	PasskeyRegister  = "Registri ensalutŝlosilon"
 	PasskeyLogin     = "Ensaluti per ensalutŝlosilo"
-	AdminDashboard   = "Administra Panelo"
+	AdminDashboard   = "Administra panelo"
 	AdminContent     = "Enhavo"
 	AdminModeration  = "Moderado"
-	AdminNewContent  = "Nova Enhavo"
+	AdminNewContent  = "Nova enhavo"
 	ContentApprove   = "Aprobi"
 	ContentReject    = "Malakcepti"
 	VoteUp           = "Voĉdoni supren"

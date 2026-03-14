@@ -1,5 +1,5 @@
 /**
- * eo.js — Client-side logic for Esperanto-Kurso
+ * eo.js — Client-side logic for Esperanto-kurso
  */
 
 // ---- Token Management ----

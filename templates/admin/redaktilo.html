@@ -2,10 +2,10 @@
 {{template "base" .}}
 {{end}}
 
-{{define "title"}}{{if .IsNew}}Nova Enhavo{{else}}Redakti Enhavon{{end}} — Esperanto-Kurso{{end}}
+{{define "title"}}{{if .IsNew}}Nova enhavo{{else}}Redakti enhavon{{end}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>{{if .IsNew}}Nova Enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
+<h1>{{if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
 
 <form method="POST" action="{{if .IsNew}}/admin/enhavo{{else}}/admin/enhavo/{{.Item.Slug}}{{end}}">
   <div class="grid">
