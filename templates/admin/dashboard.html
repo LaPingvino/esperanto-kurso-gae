@@ -1,0 +1,37 @@
+{{define "admin_dashboard.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Administra Panelo — Esperanto-Kurso{{end}}
+
+{{define "content"}}
+<h1>Administra Panelo</h1>
+
+<div class="grid">
+  <article>
+    <h2>{{.ApprovedCount}}</h2>
+    <p>Aprobitaj ekzercoj</p>
+    <a href="/admin/enhavo?status=approved">Vidi</a>
+  </article>
+
+  <article>
+    <h2>{{.PendingCount}}</h2>
+    <p>Atendantaj ekzercoj</p>
+    <a href="/admin/enhavo?status=pending">Vidi</a>
+  </article>
+
+  <article>
+    <h2>{{.CommentCount}}</h2>
+    <p>Komentoj atendantaj moderaton</p>
+    <a href="/admin/moderigo">Moderigi</a>
+  </article>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="/admin/enhavo" role="button">Administri Enhavon</a></li>
+    <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova Enhavo</a></li>
+    <li><a href="/admin/moderigo" role="button" class="outline">Moderado</a></li>
+  </ul>
+</nav>
+{{end}}

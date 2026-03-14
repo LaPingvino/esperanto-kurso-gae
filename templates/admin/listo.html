@@ -1,0 +1,65 @@
+{{define "listo.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Enhavo — Administrado{{end}}
+
+{{define "content"}}
+<h1>Enhavo</h1>
+
+<div class="admin-toolbar">
+  <a href="/admin/enhavo/nova" role="button">+ Nova Enhavo</a>
+  <form method="GET" action="/admin/enhavo" class="filter-form">
+    <select name="status" onchange="this.form.submit()">
+      <option value="">Ĉiuj statoj</option>
+      <option value="draft" {{if eq .StatusFilter "draft"}}selected{{end}}>Malneto</option>
+      <option value="pending" {{if eq .StatusFilter "pending"}}selected{{end}}>Atendanta</option>
+      <option value="approved" {{if eq .StatusFilter "approved"}}selected{{end}}>Aprobita</option>
+      <option value="rejected" {{if eq .StatusFilter "rejected"}}selected{{end}}>Malakceptita</option>
+    </select>
+  </form>
+</div>
+
+{{if .Items}}
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th>Identigilo</th>
+        <th>Tipo</th>
+        <th>Stato</th>
+        <th>Nivelo</th>
+        <th>Voĉoj</th>
+        <th>Agoj</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Items}}
+      <tr>
+        <td><code>{{.Slug}}</code></td>
+        <td><span class="type-badge type-{{.Type}}">{{.Type}}</span></td>
+        <td>
+          <span class="status-badge status-{{.Status}}">
+            {{if eq .Status "draft"}}Malneto
+            {{else if eq .Status "pending"}}Atendanta
+            {{else if eq .Status "approved"}}Aprobita
+            {{else if eq .Status "rejected"}}Malakceptita
+            {{else}}{{.Status}}{{end}}
+          </span>
+        </td>
+        <td>{{printf "%.0f" .Rating}} &plusmn;{{printf "%.0f" .RD}}</td>
+        <td>{{.VoteScore}}</td>
+        <td>
+          <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
+          &middot;
+          <a href="/ekzerco/{{.Slug}}">Vidi</a>
+        </td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
+{{else}}
+<p>Neniu enhavo trovita{{if .StatusFilter}} por la stato "{{.StatusFilter}}"{{end}}.</p>
+{{end}}
+{{end}}

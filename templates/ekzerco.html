@@ -1,0 +1,84 @@
+{{template "base" .}}
+
+{{define "title"}}Ekzerco — Esperanto-Kurso{{end}}
+
+{{define "content"}}
+<article>
+  <header>
+    <span class="type-badge type-{{.Item.Type}}">{{.Item.Type}}</span>
+    <span class="rating-badge">{{printf "%.0f" .Item.Rating}}</span>
+    {{if .Item.Tags}}
+      {{range .Item.Tags}}<small class="tag">{{.}}</small> {{end}}
+    {{end}}
+  </header>
+
+  <form hx-post="/ekzerco/{{.Item.Slug}}/provo"
+        hx-target="#rezulto"
+        hx-swap="innerHTML"
+        hx-indicator="#loading">
+
+    {{if eq .Item.Type "multiplechoice"}}
+    <fieldset>
+      <legend>Elektu la ĝustan respondon:</legend>
+      {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
+      {{range $i, $opt := .Item.Options}}
+      <label>
+        <input type="radio" name="answer" value="{{$opt}}" required>
+        {{$opt}}
+      </label>
+      {{end}}
+    </fieldset>
+
+    {{else if eq .Item.Type "fillin"}}
+    <p><strong>{{.Item.Question}}</strong></p>
+    {{if .Item.Hint}}<small>Indiko: {{.Item.Hint}}</small>{{end}}
+    <input type="text" name="answer" placeholder="Via respondo…" required autofocus>
+
+    {{else if eq .Item.Type "listening"}}
+    <p>Aŭskultu kaj respondu:</p>
+    {{if .Item.AudioURL}}
+    <audio controls src="{{.Item.AudioURL}}">Via retumilo ne subtenas aŭdion.</audio>
+    {{end}}
+    {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
+    <input type="text" name="answer" placeholder="Via respondo…" required>
+
+    {{else if eq .Item.Type "vocab"}}
+    <p>Kion signifas tiu ĉi vorto?</p>
+    <h2 class="vocab-word">{{.Item.Word}}</h2>
+    <input type="text" name="answer" placeholder="La difino…" required autofocus>
+
+    {{else if eq .Item.Type "reading"}}
+    <article class="reading-text">
+      {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
+      <p>{{.Item.Text}}</p>
+    </article>
+    {{if .Item.Question}}<p><strong>{{.Item.Question}}</strong></p>{{end}}
+    <input type="text" name="answer" placeholder="Via respondo…" required>
+
+    {{else if eq .Item.Type "phrasebook"}}
+    <p>Kiel oni diras tion ĉi esperante?</p>
+    <h2 class="phrase">{{.Item.Question}}</h2>
+    <input type="text" name="answer" placeholder="La frazo esperante…" required autofocus>
+
+    {{else if eq .Item.Type "image"}}
+    <p>Kion vidas vi?</p>
+    {{if .Item.ImageURL}}<img src="{{.Item.ImageURL}}" alt="Ekzerco-bildo" class="exercise-image">{{end}}
+    {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
+    <input type="text" name="answer" placeholder="Via respondo…" required>
+
+    {{else}}
+    {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
+    <input type="text" name="answer" placeholder="Via respondo…" required autofocus>
+    {{end}}
+
+    <button type="submit">Sendi</button>
+    <span id="loading" class="htmx-indicator">Ŝarĝas…</span>
+  </form>
+
+  <div id="rezulto"></div>
+</article>
+
+{{template "vochdonado.html" map "ContentID" .Item.Slug "VoteScore" .Item.VoteScore "CurrentVote" .CurrentVote "User" .User}}
+
+{{template "komentoj.html" map "ContentID" .Item.Slug "Comments" .Comments "User" .User}}
+{{end}}

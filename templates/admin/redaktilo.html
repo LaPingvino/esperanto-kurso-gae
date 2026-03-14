@@ -1,0 +1,140 @@
+{{define "redaktilo.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}{{if .IsNew}}Nova Enhavo{{else}}Redakti Enhavon{{end}} — Esperanto-Kurso{{end}}
+
+{{define "content"}}
+<h1>{{if .IsNew}}Nova Enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
+
+<form method="POST" action="{{if .IsNew}}/admin/enhavo{{else}}/admin/enhavo/{{.Item.Slug}}{{end}}">
+  <div class="grid">
+    <label>
+      Identigilo (slug):
+      <input type="text" name="slug" value="{{.Item.Slug}}"
+             {{if not .IsNew}}readonly{{end}}
+             placeholder="ekz-saluton-mondo" required
+             pattern="[a-z0-9\-]+"
+             title="Nur minusklaj literoj, ciferoj kaj streketo">
+    </label>
+
+    <label>
+      Tipo:
+      <select name="type" id="type-select" onchange="showContentFields(this.value)" required>
+        <option value="">— Elektu tipon —</option>
+        <option value="multiplechoice" {{if eq .Item.Type "multiplechoice"}}selected{{end}}>Plurelekta</option>
+        <option value="fillin" {{if eq .Item.Type "fillin"}}selected{{end}}>Plenigi blankon</option>
+        <option value="listening" {{if eq .Item.Type "listening"}}selected{{end}}>Aŭskulti</option>
+        <option value="vocab" {{if eq .Item.Type "vocab"}}selected{{end}}>Vortaro</option>
+        <option value="reading" {{if eq .Item.Type "reading"}}selected{{end}}>Legado</option>
+        <option value="phrasebook" {{if eq .Item.Type "phrasebook"}}selected{{end}}>Frazaro</option>
+        <option value="image" {{if eq .Item.Type "image"}}selected{{end}}>Bildo</option>
+      </select>
+    </label>
+  </div>
+
+  <!-- Common fields -->
+  <div id="field-question" class="content-field">
+    <label>
+      Demando:
+      <input type="text" name="question" value="{{.Item.Question}}" placeholder="La demando al la lernanto">
+    </label>
+  </div>
+
+  <div id="field-answer" class="content-field">
+    <label>
+      Respondo:
+      <input type="text" name="answer" value="{{.Item.Answer}}" placeholder="La ĝusta respondo">
+    </label>
+  </div>
+
+  <!-- Multiple choice options -->
+  <div id="field-options" class="content-field" style="display:none">
+    <label>
+      Ebloj (unu per linio):
+      <textarea name="options" rows="4" placeholder="Opcio A&#10;Opcio B&#10;Opcio C&#10;Opcio D">{{range .Item.Options}}{{.}}
+{{end}}</textarea>
+    </label>
+    <label>
+      Ĝusta indekso (0-bazita):
+      <input type="number" name="correct_index" value="{{.Item.CorrectIndex}}" min="0" max="9">
+    </label>
+  </div>
+
+  <!-- Vocab fields -->
+  <div id="field-vocab" class="content-field" style="display:none">
+    <label>
+      Vorto:
+      <input type="text" name="word" value="{{.Item.Word}}" placeholder="La vorto">
+    </label>
+    <label>
+      Difino:
+      <textarea name="definition" rows="2" placeholder="La difino de la vorto">{{.Item.Definition}}</textarea>
+    </label>
+  </div>
+
+  <!-- Reading fields -->
+  <div id="field-reading" class="content-field" style="display:none">
+    <label>
+      Titolo:
+      <input type="text" name="title" value="{{.Item.Title}}" placeholder="Titolo de la teksto">
+    </label>
+    <label>
+      Teksto:
+      <textarea name="text" rows="6" placeholder="La legoteksto">{{.Item.Text}}</textarea>
+    </label>
+  </div>
+
+  <!-- Listening/audio -->
+  <div id="field-audio" class="content-field" style="display:none">
+    <label>
+      Aŭdio-URL:
+      <input type="url" name="audio_url" value="{{.Item.AudioURL}}" placeholder="https://…/audio.mp3">
+    </label>
+  </div>
+
+  <label>
+    Indiko (nedeviga):
+    <input type="text" name="hint" value="{{.Item.Hint}}" placeholder="Helpeta indiko">
+  </label>
+
+  <label>
+    Bildo-URL (nedeviga):
+    <input type="url" name="image_url" value="{{.Item.ImageURL}}" placeholder="https://…/image.jpg">
+  </label>
+
+  <div class="grid">
+    <label>
+      Etikedoj (komposigitaj):
+      <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
+    </label>
+
+    <label>
+      Fonto:
+      <input type="text" name="source" value="{{.Item.Source}}" placeholder="Libro, TTT-ejo, ktp.">
+    </label>
+  </div>
+
+  <label>
+    Stato:
+    <select name="status">
+      <option value="draft" {{if eq .Item.Status "draft"}}selected{{end}}>Malneto</option>
+      <option value="pending" {{if eq .Item.Status "pending"}}selected{{end}}>Atendanta</option>
+      <option value="approved" {{if eq .Item.Status "approved"}}selected{{end}}>Aprobita</option>
+      <option value="rejected" {{if eq .Item.Status "rejected"}}selected{{end}}>Malakceptita</option>
+    </select>
+  </label>
+
+  <div class="form-actions">
+    <button type="submit">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
+    <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+  </div>
+</form>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var sel = document.getElementById('type-select');
+  if (sel && sel.value) showContentFields(sel.value);
+});
+</script>
+{{end}}

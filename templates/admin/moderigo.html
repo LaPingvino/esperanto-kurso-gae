@@ -1,0 +1,38 @@
+{{define "moderigo.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Moderado — Administrado{{end}}
+
+{{define "content"}}
+<h1>Moderado</h1>
+
+{{if .Comments}}
+<p>{{len .Comments}} komentoj atendas modera&#x74;ion.</p>
+<div class="moderation-list">
+  {{range .Comments}}
+  <article class="moderation-item" id="comment-{{.ID}}">
+    <header>
+      <small>
+        Uzanto: <code>{{truncate .UserID 8}}</code>
+        &middot;
+        Enhavo: <a href="/ekzerco/{{.ContentItemID}}"><code>{{.ContentItemID}}</code></a>
+      </small>
+    </header>
+    <p>{{.Text}}</p>
+    <footer>
+      <form method="POST" action="/admin/moderigo/{{.ID}}" style="display:inline"
+            hx-post="/admin/moderigo/{{.ID}}"
+            hx-target="#comment-{{.ID}}"
+            hx-swap="outerHTML">
+        <button type="submit" name="action" value="aprobi" class="approve-btn">Aprobi</button>
+        <button type="submit" name="action" value="malakcepti" class="reject-btn outline">Malakcepti</button>
+      </form>
+    </footer>
+  </article>
+  {{end}}
+</div>
+{{else}}
+<p>Neniu komento atendas moderaton.</p>
+{{end}}
+{{end}}

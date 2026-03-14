@@ -1,0 +1,63 @@
+// Package recommend selects content items suited to a learner's current level.
+package recommend
+
+import (
+	"context"
+	"sort"
+
+	"esperanto-kurso-gae/internal/model"
+	"esperanto-kurso-gae/internal/store"
+)
+
+// GetForUser returns up to limit content items appropriate for the user's rating.
+// Items are sourced within ±200 rating points of the user's rating, then ranked
+// by RD descending so that poorly-calibrated items are prioritised (more info gained).
+// For beginners (rating < 1200) items that have images are preferred.
+func GetForUser(
+	ctx context.Context,
+	userRating float64,
+	userRD float64,
+	cs *store.ContentStore,
+	limit int,
+) ([]*model.ContentItem, error) {
+
+	minR := userRating - 200
+	maxR := userRating + 200
+
+	items, err := cs.ListByRatingRange(ctx, minR, maxR, limit*3)
+	if err != nil {
+		return nil, err
+	}
+
+	if len(items) == 0 {
+		// Fall back to all approved items if no items in range.
+		items, err = cs.ListApproved(ctx, limit)
+		if err != nil {
+			return nil, err
+		}
+	}
+
+	beginner := userRating < 1200
+
+	// Score each item: lower is better.
+	// Primary sort: prefer high RD (less certain difficulty → more rating info).
+	// Secondary: for beginners prefer items with images.
+	sort.Slice(items, func(i, j int) bool {
+		a, b := items[i], items[j]
+		// Beginners: bump items with images up.
+		if beginner {
+			aHasImg := a.ImageURL != ""
+			bHasImg := b.ImageURL != ""
+			if aHasImg != bHasImg {
+				return aHasImg
+			}
+		}
+		// Prefer higher RD (more to learn from).
+		return a.RD > b.RD
+	})
+
+	if len(items) > limit {
+		items = items[:limit]
+	}
+	return items, nil
+}

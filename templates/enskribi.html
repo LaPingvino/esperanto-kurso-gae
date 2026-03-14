@@ -1,0 +1,47 @@
+{{template "base" .}}
+
+{{define "title"}}Konservu Progreson — Esperanto-Kurso{{end}}
+
+{{define "content"}}
+<h1>Konservu Vian Progreson</h1>
+<p>Elektu metodon por konservi vian lernadon.</p>
+
+<section>
+  <h2>Sekreta Ligo</h2>
+  <p>Kopiu tiun ĉi limon kaj konservu ĝin sekure. Vi povas uzi ĝin por reensaluti de iu ajn aparato.</p>
+  {{if .MagicURL}}
+  <div class="magic-link-container">
+    <input type="text" id="magic-link" value="{{.MagicURL}}" readonly aria-label="Via sekreta ligo">
+    <button onclick="copyMagicLink()" class="outline">Kopii</button>
+  </div>
+  <small id="copy-confirm" aria-live="polite"></small>
+  {{else}}
+  <p><em>Vi devas havi uzantan ĵetonon por generi sekurlimon. Bonvolu unue fari ekzercon.</em></p>
+  {{end}}
+</section>
+
+<hr>
+
+<section>
+  <h2>Ensalutŝlosilo</h2>
+  <p>Registru ensalutŝlosilon por sekura, senpasvorta ensaluto.</p>
+  {{if .User}}
+  <button onclick="registerPasskey()">Registri ensalutŝlosilon</button>
+  <button class="outline" onclick="loginPasskey()">Ensaluti per ensalutŝlosilo</button>
+  <p id="passkey-status" aria-live="polite"></p>
+  {{else}}
+  <p><em>Vi devas esti ensalutinta por registri ensalutŝlosilon.</em></p>
+  {{end}}
+</section>
+
+<hr>
+
+<section>
+  <h2>Kiel Ĝi Funkcias</h2>
+  <ol>
+    <li>Faru ekzercojn &mdash; via progreso estas aŭtomate konservata.</li>
+    <li>Konservu vian sekreta ligilon aŭ registru ensalutŝlosilon por ne perdi ĝin.</li>
+    <li>Reensaluti per la ligo aŭ ensalutŝlosilo de iu ajn aparato.</li>
+  </ol>
+</section>
+{{end}}

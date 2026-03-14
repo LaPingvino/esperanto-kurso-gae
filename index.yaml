@@ -1,0 +1,27 @@
+indexes:
+  # Content: approved items by rating (for recommendations)
+  - kind: ContentItem
+    properties:
+      - name: status
+      - name: rating
+
+  # Attempts: by user, newest first
+  - kind: Attempt
+    properties:
+      - name: user_id
+      - name: timestamp
+        direction: desc
+
+  # Attempts: by content item, newest first
+  - kind: Attempt
+    properties:
+      - name: content_item_id
+      - name: timestamp
+        direction: desc
+
+  # Comments: approved, by content, oldest first
+  - kind: Comment
+    properties:
+      - name: content_item_id
+      - name: approved
+      - name: created_at

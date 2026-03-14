@@ -1,0 +1,32 @@
+{{define "komentoj.html"}}
+<section class="komentoj" aria-label="Komentoj">
+  <h3>Komentoj</h3>
+
+  {{if .Comments}}
+  <div class="comment-list">
+    {{range .Comments}}
+    <article class="comment">
+      <small class="comment-author">Uzanto {{truncate .UserID 8}}</small>
+      <p>{{.Text}}</p>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Ankoraŭ ne estas komentoj.</em></p>
+  {{end}}
+
+  {{if .User}}
+  <form hx-post="/komentoj/{{.ContentID}}"
+        hx-target="closest .komentoj"
+        hx-swap="outerHTML">
+    <label>
+      Aldoni komenton:
+      <textarea name="text" rows="3" placeholder="Via komento…" required></textarea>
+    </label>
+    <button type="submit">Sendi</button>
+  </form>
+  {{else}}
+  <p><small><a href="/enskribi">Ensalitu</a> por aldoni komenton.</small></p>
+  {{end}}
+</section>
+{{end}}

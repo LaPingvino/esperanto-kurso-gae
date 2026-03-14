@@ -1,0 +1,37 @@
+{{define "traduko.html"}}
+<section class="tradukoj" aria-label="Tradukoj">
+  <h3>Tradukoj</h3>
+
+  {{if .Translations}}
+  <div class="translation-list">
+    {{range .Translations}}
+    <article class="translation">
+      <small class="lang-badge">{{.Language}}</small>
+      <p>{{.Text}}</p>
+      <small>de Uzanto {{truncate .AuthorID 8}} &mdash; {{.VoteScore}} poentoj</small>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Ankoraŭ ne estas tradukoj.</em></p>
+  {{end}}
+
+  {{if .User}}
+  <details>
+    <summary>Aldoni tradukon</summary>
+    <form method="POST" action="/tradukoj/{{.TargetID}}">
+      <input type="hidden" name="target_type" value="{{.TargetType}}">
+      <label>
+        Lingvo:
+        <input type="text" name="language" placeholder="eo, en, de…" required>
+      </label>
+      <label>
+        Traduko:
+        <textarea name="text" rows="3" required></textarea>
+      </label>
+      <button type="submit">Sendi</button>
+    </form>
+  </details>
+  {{end}}
+</section>
+{{end}}

@@ -1,0 +1,41 @@
+{{template "base" .}}
+
+{{define "title"}}Hejmo — Esperanto-Kurso{{end}}
+
+{{define "content"}}
+<h1>Bonvenon al Esperanto-Kurso!</h1>
+<p>Lernu Esperanton per interagaj ekzercoj. Ĉiu ekzerco adaptiĝas al via nivelo.</p>
+
+{{if .Items}}
+<section>
+  <h2>Rekomendataj Ekzercoj</h2>
+  <div class="exercise-grid">
+    {{range .Items}}
+    <article class="exercise-card">
+      {{if .ImageURL}}
+      <img src="{{.ImageURL}}" alt="{{.Title}}" loading="lazy">
+      {{end}}
+      <header>
+        <span class="type-badge type-{{.Type}}">{{.Type}}</span>
+        <span class="rating-badge">{{printf "%.0f" .Rating}}</span>
+      </header>
+      <h3>{{if .Title}}{{.Title}}{{else if .Question}}{{.Question}}{{else if .Word}}{{.Word}}{{else}}Ekzerco{{end}}</h3>
+      {{if .Tags}}
+      <footer>
+        {{range .Tags}}<small class="tag">{{.}}</small> {{end}}
+      </footer>
+      {{end}}
+      <a href="/ekzerco/{{.Slug}}" role="button">Ekzerci</a>
+    </article>
+    {{end}}
+  </div>
+</section>
+{{else}}
+<article>
+  <p>Ankoraŭ ne estas ekzercoj. Bonvolu reveni baldaŭ!</p>
+  {{if .User}}{{if eq .User.Role "admin"}}
+  <a href="/admin/enhavo/nova" role="button">Aldoni ekzercon</a>
+  {{end}}{{end}}
+</article>
+{{end}}
+{{end}}

@@ -1,0 +1,17 @@
+# Binaries
+seed
+*.test
+
+# Credentials / secrets
+*.json.key
+service-account*.json
+
+# Editor artifacts
+.idea/
+.vscode/
+*.swp
+*~
+
+# Go build cache
+/vendor/
+.claude/

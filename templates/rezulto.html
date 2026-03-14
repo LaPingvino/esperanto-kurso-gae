@@ -1,0 +1,26 @@
+{{define "rezulto.html"}}
+<div class="rezulto {{if .Correct}}correct{{else}}incorrect{{end}}">
+  {{if .Correct}}
+  <p class="rezulto-ikono">&#10003; Ĝuste!</p>
+  {{else}}
+  <p class="rezulto-ikono">&#10007; Malĝuste.</p>
+  <p>Ĝusta respondo: <strong>{{.CorrectAnswer}}</strong></p>
+  <p>Via respondo: <em>{{.YourAnswer}}</em></p>
+  {{end}}
+
+  <p class="rating-change">
+    Nivelo: <span class="rating-badge">{{printf "%.0f" .UserRating}}</span>
+    {{if gt .RatingDelta 0.0}}
+    <span class="delta-pos">(+{{printf "%.1f" .RatingDelta}})</span>
+    {{else if lt .RatingDelta 0.0}}
+    <span class="delta-neg">({{printf "%.1f" .RatingDelta}})</span>
+    {{end}}
+  </p>
+
+  {{if .NextSlug}}
+  <a href="/ekzerco/{{.NextSlug}}" role="button">Sekva ekzerco &rarr;</a>
+  {{else}}
+  <a href="/" role="button">Reveni al hejmo</a>
+  {{end}}
+</div>
+{{end}}

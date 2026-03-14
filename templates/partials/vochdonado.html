@@ -1,0 +1,23 @@
+{{define "vochdonado.html"}}
+<section class="vochdonado" aria-label="Voĉdonado">
+  <form hx-post="/vochdonado/{{.ContentID}}"
+        hx-target="closest .vochdonado"
+        hx-swap="outerHTML">
+    <div class="vote-buttons">
+      <button type="submit" name="value" value="1"
+              class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
+              title="Voĉdoni supren"
+              {{if not .User}}disabled{{end}}>
+        &#9650;
+      </button>
+      <span class="vote-score">{{.VoteScore}}</span>
+      <button type="submit" name="value" value="-1"
+              class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
+              title="Voĉdoni malsupren"
+              {{if not .User}}disabled{{end}}>
+        &#9660;
+      </button>
+    </div>
+  </form>
+</section>
+{{end}}

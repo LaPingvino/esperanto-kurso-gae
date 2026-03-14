@@ -1,0 +1,44 @@
+{{define "base"}}<!DOCTYPE html>
+<html lang="eo">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{block "title" .}}Esperanto-Kurso{{end}}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/static/stilo.css">
+  <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+  <script src="/static/eo.js" defer></script>
+</head>
+<body>
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong><a href="/" class="site-title">Esperanto-Kurso</a></strong></li>
+      </ul>
+      <ul>
+        <li><a href="/">Hejmo</a></li>
+        <li><a href="/enskribi">Konservu progreson</a></li>
+        {{if .User}}{{if eq .User.Role "admin"}}
+        <li><a href="/admin">Administrado</a></li>
+        {{end}}{{end}}
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    {{block "content" .}}{{end}}
+  </main>
+
+  <footer class="container">
+    <small>
+      {{if .User}}
+        Nivelo: <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
+        &plusmn;{{printf "%.0f" .User.RD}}
+      {{else}}
+        <em>Ensaluti por konservi progreson.</em>
+      {{end}}
+      &mdash; Esperanto-Kurso &copy; 2026
+    </small>
+  </footer>
+</body>
+</html>{{end}}

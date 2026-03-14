@@ -1,0 +1,316 @@
+/* Esperanto-Kurso — Pico CSS overrides */
+/* Esperanto flag colours: green (#009900) and white, with a gold star */
+
+:root {
+  --eo-green: #008000;
+  --eo-green-light: #00a000;
+  --eo-green-dark: #006000;
+  --eo-gold: #f5c400;
+  --correct-bg: #d4edda;
+  --correct-border: #28a745;
+  --incorrect-bg: #f8d7da;
+  --incorrect-border: #dc3545;
+  --delta-pos: #28a745;
+  --delta-neg: #dc3545;
+}
+
+/* ---- Typography ---- */
+.site-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--eo-green) !important;
+  text-decoration: none;
+}
+
+/* ---- Navigation ---- */
+header nav {
+  border-bottom: 3px solid var(--eo-green);
+}
+
+/* ---- Rating badge ---- */
+.rating-badge {
+  display: inline-block;
+  background: var(--eo-green);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  padding: 0.1em 0.5em;
+  border-radius: 1em;
+}
+
+/* ---- Type badges ---- */
+.type-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0.1em 0.4em;
+  border-radius: 0.25em;
+  color: white;
+}
+.type-multiplechoice { background: #6f42c1; }
+.type-fillin         { background: #007bff; }
+.type-listening      { background: #e83e8c; }
+.type-vocab          { background: #20c997; }
+.type-reading        { background: #fd7e14; }
+.type-phrasebook     { background: #17a2b8; }
+.type-image          { background: #6c757d; }
+
+/* ---- Tags ---- */
+.tag {
+  display: inline-block;
+  background: #e9ecef;
+  color: #495057;
+  padding: 0.1em 0.4em;
+  border-radius: 0.2em;
+  font-size: 0.7rem;
+  margin-right: 0.2em;
+}
+
+/* ---- Exercise grid (home page) ---- */
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.exercise-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.exercise-card img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.exercise-card a[role="button"] {
+  margin-top: auto;
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+}
+
+.exercise-card a[role="button"]:hover {
+  background: var(--eo-green-dark);
+  border-color: var(--eo-green-dark);
+}
+
+/* ---- Exercise image ---- */
+.exercise-image {
+  max-width: 100%;
+  max-height: 300px;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+/* ---- Vocab word ---- */
+.vocab-word {
+  font-size: 3rem;
+  text-align: center;
+  color: var(--eo-green);
+  border: 2px solid var(--eo-green);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+/* ---- Phrase display ---- */
+.phrase {
+  font-size: 2rem;
+  text-align: center;
+  color: #333;
+  margin: 1rem 0;
+  font-style: italic;
+}
+
+/* ---- Reading text ---- */
+.reading-text {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-left: 4px solid var(--eo-green);
+  border-radius: 0 0.5rem 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+/* ---- Result panel ---- */
+.rezulto {
+  margin-top: 1.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 0.5rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.rezulto.correct {
+  background: var(--correct-bg);
+  border-left: 4px solid var(--correct-border);
+}
+
+.rezulto.incorrect {
+  background: var(--incorrect-bg);
+  border-left: 4px solid var(--incorrect-border);
+}
+
+.rezulto-ikono {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.delta-pos { color: var(--delta-pos); font-weight: bold; }
+.delta-neg { color: var(--delta-neg); font-weight: bold; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Voting ---- */
+.vochdonado {
+  margin-top: 1rem;
+}
+
+.vote-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.vote-btn {
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  padding: 0.2em 0.6em;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s;
+}
+
+.vote-btn.active {
+  background: var(--eo-green);
+  color: white;
+  border-color: var(--eo-green);
+}
+
+.vote-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.vote-score {
+  font-weight: bold;
+  min-width: 2rem;
+  text-align: center;
+}
+
+/* ---- Comments ---- */
+.komentoj {
+  margin-top: 2rem;
+  border-top: 1px solid #dee2e6;
+  padding-top: 1rem;
+}
+
+.comment {
+  background: #f8f9fa;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.comment-author {
+  color: #6c757d;
+  font-size: 0.8rem;
+}
+
+/* ---- Magic link ---- */
+.magic-link-container {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.magic-link-container input {
+  flex: 1;
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+/* ---- Admin ---- */
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.filter-form {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0;
+}
+
+.filter-form select {
+  margin: 0;
+  width: auto;
+}
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+table td, table th {
+  padding: 0.5rem 0.75rem;
+}
+
+/* Status badges */
+.status-badge {
+  display: inline-block;
+  padding: 0.1em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+.status-draft    { background: #e9ecef; color: #6c757d; }
+.status-pending  { background: #fff3cd; color: #856404; }
+.status-approved { background: #d4edda; color: #155724; }
+.status-rejected { background: #f8d7da; color: #721c24; }
+
+/* Moderation */
+.moderation-item {
+  border-left: 4px solid #ffc107;
+}
+
+.approve-btn {
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+  color: white;
+  margin-right: 0.5rem;
+}
+
+.reject-btn {
+  border-color: #dc3545;
+  color: #dc3545;
+}
+
+/* ---- HTMX loading indicator ---- */
+.htmx-indicator { display: none; }
+.htmx-request .htmx-indicator { display: inline; }
+
+/* ---- Footer ---- */
+footer {
+  border-top: 1px solid #dee2e6;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  color: #6c757d;
+}
+
+/* ---- Form actions ---- */
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  margin-top: 1rem;
+}
