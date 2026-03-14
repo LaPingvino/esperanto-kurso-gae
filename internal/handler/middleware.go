@@ -70,18 +70,15 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 	})
 }
 
-// RequireAdmin returns 403 if the authenticated user does not have the "admin" role.
+// RequireAdmin checks the user has "admin" role.
+// For /admin/* routes, GAE already enforces Google Account admin login via app.yaml
+// (login: admin). This middleware provides an extra check for the role field,
+// and also allows tokens with role=admin (e.g., for mod tooling).
 func RequireAdmin(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		u := UserFromContext(r.Context())
 		if u == nil || u.Role != "admin" {
-			// Offer GAE login for admins who haven't authenticated yet.
-			loginURL, err := gaeuser.LoginURL(r.Context(), r.URL.String())
-			if err != nil {
-				http.Error(w, "Forbidden", http.StatusForbidden)
-				return
-			}
-			http.Redirect(w, r, loginURL, http.StatusFound)
+			http.Error(w, "Forbidden", http.StatusForbidden)
 			return
 		}
 		next.ServeHTTP(w, r)
