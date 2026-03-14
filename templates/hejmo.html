@@ -16,7 +16,7 @@
       <img src="{{.ImageURL}}" alt="{{.Title}}" loading="lazy">
       {{end}}
       <header>
-        <span class="type-badge type-{{.Type}}">{{.Type}}</span>
+        <span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span>
         <span class="rating-badge">{{printf "%.0f" .Rating}}</span>
       </header>
       <h3>{{if .Title}}{{.Title}}{{else if .Question}}{{.Question}}{{else if .Word}}{{.Word}}{{else}}Ekzerco{{end}}</h3>

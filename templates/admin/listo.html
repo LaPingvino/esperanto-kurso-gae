@@ -37,7 +37,7 @@
       {{range .Items}}
       <tr>
         <td><code>{{.Slug}}</code></td>
-        <td><span class="type-badge type-{{.Type}}">{{.Type}}</span></td>
+        <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
         <td>
           <span class="status-badge status-{{.Status}}">
             {{if eq .Status "draft"}}Malneto
@@ -53,6 +53,11 @@
           <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
           &middot;
           <a href="/ekzerco/{{.Slug}}">Vidi</a>
+          &middot;
+          <form method="POST" action="/admin/enhavo/{{.Slug}}/forigi" style="display:inline"
+                onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Slug}}»?')">
+            <button type="submit" class="outline danger-btn" style="padding:0.1em 0.4em;font-size:0.85em">Forigi</button>
+          </form>
         </td>
       </tr>
       {{end}}

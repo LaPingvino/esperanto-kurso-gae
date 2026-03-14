@@ -37,6 +37,26 @@ func GetForUser(
 		}
 	}
 
+	// For new/uncertain users (high RD means little is known about their level),
+	// always include at least one very easy item so true beginners have somewhere
+	// to start regardless of where their rating currently sits.
+	if userRD > 200 && minR > 1100 {
+		easyItems, _ := cs.ListByRatingRange(ctx, 0, 1300, 3)
+		if len(easyItems) > 0 {
+			// Add easy items not already present.
+			seen := make(map[string]bool, len(items))
+			for _, it := range items {
+				seen[it.Slug] = true
+			}
+			for _, ei := range easyItems {
+				if !seen[ei.Slug] {
+					items = append(items, ei)
+					break
+				}
+			}
+		}
+	}
+
 	beginner := userRating < 1200
 
 	// Score each item: lower is better.

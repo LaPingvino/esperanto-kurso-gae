@@ -17,6 +17,7 @@
       </ul>
       <ul>
         <li><a href="/">Hejmo</a></li>
+        <li><a href="/vortaro">Vortaro</a></li>
         <li><a href="/enskribi">Konservu progreson</a></li>
         {{if .User}}{{if eq .User.Role "admin"}}
         <li><a href="/admin">Administrado</a></li>
@@ -35,8 +36,20 @@
         Nivelo: <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
         &plusmn;{{printf "%.0f" .User.RD}}
       {{else}}
-        <em>Ensaluti por konservi progreson.</em>
+        <em><a href="/enskribi">Ensalitu</a> por konservi progreson.</em>
       {{end}}
+      &mdash;
+      <form method="POST" action="/lingvo" style="display:inline" aria-label="Traduklingvo">
+        <select name="lang" onchange="this.form.submit()" title="Elektu lingvon por vortaro-difinoj">
+          <option value="en" {{if .User}}{{if eq .User.Lang "en"}}selected{{end}}{{end}}>EN</option>
+          <option value="nl" {{if .User}}{{if eq .User.Lang "nl"}}selected{{end}}{{end}}>NL</option>
+          <option value="de" {{if .User}}{{if eq .User.Lang "de"}}selected{{end}}{{end}}>DE</option>
+          <option value="fr" {{if .User}}{{if eq .User.Lang "fr"}}selected{{end}}{{end}}>FR</option>
+          <option value="es" {{if .User}}{{if eq .User.Lang "es"}}selected{{end}}{{end}}>ES</option>
+          <option value="pt" {{if .User}}{{if eq .User.Lang "pt"}}selected{{end}}{{end}}>PT</option>
+          <option value="eo" {{if .User}}{{if eq .User.Lang "eo"}}selected{{end}}{{end}}>EO</option>
+        </select>
+      </form>
       &mdash; Esperanto-kurso &copy; 2026
     </small>
   </footer>

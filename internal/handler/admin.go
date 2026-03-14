@@ -96,7 +96,7 @@ func (h *AdminHandler) NewContentForm(w http.ResponseWriter, r *http.Request) {
 // CreateContent handles POST /admin/enhavo.
 func (h *AdminHandler) CreateContent(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad form", http.StatusBadRequest)
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
 		return
 	}
 
@@ -108,7 +108,7 @@ func (h *AdminHandler) CreateContent(w http.ResponseWriter, r *http.Request) {
 
 	item := buildContentItem(r, authorID)
 	if item.Slug == "" {
-		http.Error(w, "slug is required", http.StatusBadRequest)
+		http.Error(w, "Identigilo estas deviga", http.StatusBadRequest)
 		return
 	}
 
@@ -143,7 +143,7 @@ func (h *AdminHandler) EditContentForm(w http.ResponseWriter, r *http.Request) {
 // UpdateContent handles POST /admin/enhavo/{slug}.
 func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad form", http.StatusBadRequest)
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
 		return
 	}
 
@@ -216,7 +216,7 @@ func (h *AdminHandler) ModerateComment(w http.ResponseWriter, r *http.Request) {
 	case "malakcepti":
 		err = h.comments.Reject(r.Context(), id)
 	default:
-		http.Error(w, "unknown action", http.StatusBadRequest)
+		http.Error(w, "Nekonata ago", http.StatusBadRequest)
 		return
 	}
 	if err != nil {
@@ -265,20 +265,37 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	correctIndex, _ := strconv.Atoi(r.FormValue("correct_index"))
 	contentMap["correct_index"] = correctIndex
 
+	seriesOrder, _ := strconv.Atoi(r.FormValue("series_order"))
 	return &model.ContentItem{
-		Slug:       r.FormValue("slug"),
-		Type:       r.FormValue("type"),
-		Content:    contentMap,
-		Tags:       tags,
-		Source:     r.FormValue("source"),
-		AuthorID:   authorID,
-		Status:     r.FormValue("status"),
-		Rating:     1500,
-		RD:         350,
-		Volatility: 0.06,
-		ImageURL:   r.FormValue("image_url"),
-		UpdatedAt:  time.Now(),
+		Slug:        r.FormValue("slug"),
+		Type:        r.FormValue("type"),
+		Content:     contentMap,
+		Tags:        tags,
+		Source:      r.FormValue("source"),
+		AuthorID:    authorID,
+		Status:      r.FormValue("status"),
+		Rating:      1500,
+		RD:          350,
+		Volatility:  0.06,
+		ImageURL:    r.FormValue("image_url"),
+		SeriesSlug:  r.FormValue("series_slug"),
+		SeriesOrder: seriesOrder,
+		UpdatedAt:   time.Now(),
 	}
+}
+
+// DeleteContent handles POST /admin/enhavo/{slug}/forigi.
+func (h *AdminHandler) DeleteContent(w http.ResponseWriter, r *http.Request) {
+	slug := r.PathValue("slug")
+	if slug == "" {
+		http.NotFound(w, r)
+		return
+	}
+	if err := h.content.Delete(r.Context(), slug); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/admin/enhavo", http.StatusSeeOther)
 }
 
 // SeedContent handles POST /admin/seed — loads embedded seed data into Datastore.
@@ -335,7 +352,7 @@ func seedItems() []*model.ContentItem {
 			content: map[string]interface{}{
 				"question": "Plenigi la blankon: Mi ___ Esperanton.",
 				"answer":   "parolas",
-				"hint":     "La verbo por 'speak'",
+				"hint":     "La verbo por paroli",
 			},
 			tags: []string{"gramatiko", "verbo", "baza"}, source: "Baza Esperanto-kurso", rating: 1300, rd: 200,
 		},
@@ -352,7 +369,16 @@ func seedItems() []*model.ContentItem {
 			slug: "vorto-akvo", typ: "vocab",
 			content: map[string]interface{}{
 				"word":       "akvo",
-				"definition": "water (the liquid)",
+				"definition": "likvaĵo, kiu konsistas el H₂O; baza trinkaĵo",
+				"definitions": map[string]interface{}{
+					"en": "water",
+					"nl": "water",
+					"de": "Wasser",
+					"fr": "eau",
+					"es": "agua",
+					"pt": "água",
+					"eo": "likvaĵo H₂O",
+				},
 			},
 			tags: []string{"vortaro", "baza", "substantivo"}, source: "PIV", rating: 1200, rd: 200,
 		},
@@ -360,14 +386,23 @@ func seedItems() []*model.ContentItem {
 			slug: "vorto-lerni", typ: "vocab",
 			content: map[string]interface{}{
 				"word":       "lerni",
-				"definition": "to learn (acquire knowledge or skill)",
+				"definition": "akiri scion aŭ kapablon per studo aŭ praktiko",
+				"definitions": map[string]interface{}{
+					"en": "to learn",
+					"nl": "leren",
+					"de": "lernen",
+					"fr": "apprendre",
+					"es": "aprender",
+					"pt": "aprender",
+					"eo": "akiri scion per studo",
+				},
 			},
 			tags: []string{"vortaro", "verbo", "baza"}, source: "PIV", rating: 1250, rd: 200,
 		},
 		{
 			slug: "frazo-bonvolu", typ: "phrasebook",
 			content: map[string]interface{}{
-				"question": "Kiel oni diras 'please' en Esperanto?",
+				"question": "Kiel oni diras «please» en Esperanto?",
 				"answer":   "bonvolu",
 				"hint":     "Uzata por gentila peto",
 			},
@@ -376,7 +411,7 @@ func seedItems() []*model.ContentItem {
 		{
 			slug: "frazo-dankon", typ: "phrasebook",
 			content: map[string]interface{}{
-				"question": "Kiel oni diras 'thank you' en Esperanto?",
+				"question": "Kiel oni diras «thank you» en Esperanto?",
 				"answer":   "dankon",
 				"hint":     "Uzata por esprimi dankemon",
 			},

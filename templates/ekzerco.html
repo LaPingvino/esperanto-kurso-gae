@@ -5,7 +5,7 @@
 {{define "content"}}
 <article>
   <header>
-    <span class="type-badge type-{{.Item.Type}}">{{.Item.Type}}</span>
+    <span class="type-badge type-{{.Item.Type}}">{{tipNomo .Item.Type}}</span>
     <span class="rating-badge">{{printf "%.0f" .Item.Rating}}</span>
     {{if .Item.Tags}}
       {{range .Item.Tags}}<small class="tag">{{.}}</small> {{end}}
@@ -43,9 +43,16 @@
     <input type="text" name="answer" placeholder="Via respondo…" required>
 
     {{else if eq .Item.Type "vocab"}}
+    {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
+    {{$def := defForLang .Item.Content $lang}}
+    {{if $def}}
+    <p>Kiel oni diras esperante?</p>
+    <h2 class="vocab-word">{{$def}}</h2>
+    {{else}}
     <p>Kion signifas tiu ĉi vorto?</p>
     <h2 class="vocab-word">{{.Item.Word}}</h2>
-    <input type="text" name="answer" placeholder="La difino…" required autofocus>
+    {{end}}
+    <input type="text" name="answer" placeholder="La vorto esperante…" required autofocus>
 
     {{else if eq .Item.Type "reading"}}
     <article class="reading-text">

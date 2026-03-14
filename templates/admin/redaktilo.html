@@ -105,13 +105,24 @@
 
   <div class="grid">
     <label>
-      Etikedoj (komposigitaj):
+      Etikedoj (komosigitaj per komo):
       <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
     </label>
 
     <label>
       Fonto:
       <input type="text" name="source" value="{{.Item.Source}}" placeholder="Libro, TTT-ejo, ktp.">
+    </label>
+  </div>
+
+  <div class="grid">
+    <label>
+      Serio (nedeviga):
+      <input type="text" name="series_slug" value="{{.Item.SeriesSlug}}" placeholder="ekz. zagreba-metodo-1">
+    </label>
+    <label>
+      Ordo en serio:
+      <input type="number" name="series_order" value="{{.Item.SeriesOrder}}" min="0">
     </label>
   </div>
 

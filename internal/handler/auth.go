@@ -64,17 +64,17 @@ func (h *AuthHandler) GetOrCreateUser(w http.ResponseWriter, r *http.Request) {
 	// Create a new anonymous user.
 	id, err := generateUserID()
 	if err != nil {
-		http.Error(w, "internal error", http.StatusInternalServerError)
+		http.Error(w, "Interna eraro", http.StatusInternalServerError)
 		return
 	}
 	token, err := localauth.GenerateToken()
 	if err != nil {
-		http.Error(w, "internal error", http.StatusInternalServerError)
+		http.Error(w, "Interna eraro", http.StatusInternalServerError)
 		return
 	}
 	u := model.NewUser(id, token)
 	if err := h.users.Create(r.Context(), u); err != nil {
-		http.Error(w, "could not create user", http.StatusInternalServerError)
+		http.Error(w, "Ne eblis krei uzanton", http.StatusInternalServerError)
 		return
 	}
 
@@ -133,7 +133,7 @@ func (h *AuthHandler) VerifyToken(w http.ResponseWriter, r *http.Request) {
 func (h *AuthHandler) BeginPasskeyRegistration(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	if u == nil {
-		http.Error(w, "not authenticated", http.StatusUnauthorized)
+		http.Error(w, "Ne aŭtentikigita", http.StatusUnauthorized)
 		return
 	}
 
@@ -152,13 +152,13 @@ func (h *AuthHandler) BeginPasskeyRegistration(w http.ResponseWriter, r *http.Re
 func (h *AuthHandler) FinishPasskeyRegistration(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	if u == nil {
-		http.Error(w, "not authenticated", http.StatusUnauthorized)
+		http.Error(w, "Ne aŭtentikigita", http.StatusUnauthorized)
 		return
 	}
 
 	sessionData, ok := h.sessions.Get("reg:" + u.ID)
 	if !ok {
-		http.Error(w, "session expired", http.StatusBadRequest)
+		http.Error(w, "Sesio eksvalidiĝis", http.StatusBadRequest)
 		return
 	}
 	h.sessions.Delete("reg:" + u.ID)
@@ -169,7 +169,7 @@ func (h *AuthHandler) FinishPasskeyRegistration(w http.ResponseWriter, r *http.R
 		return
 	}
 	if err := h.users.AddPasskey(r.Context(), u.ID, *cred); err != nil {
-		http.Error(w, "could not save passkey", http.StatusInternalServerError)
+		http.Error(w, "Ne eblis konservi la ensalutŝlosilon", http.StatusInternalServerError)
 		return
 	}
 
@@ -197,7 +197,7 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 	bodyBytes, err := io.ReadAll(r.Body)
 	r.Body.Close()
 	if err != nil {
-		http.Error(w, "bad request", http.StatusBadRequest)
+		http.Error(w, "Malĝusta peto", http.StatusBadRequest)
 		return
 	}
 
@@ -208,7 +208,7 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 		} `json:"response"`
 	}
 	if err := json.Unmarshal(bodyBytes, &parsed); err != nil {
-		http.Error(w, "bad request", http.StatusBadRequest)
+		http.Error(w, "Malĝusta peto", http.StatusBadRequest)
 		return
 	}
 
@@ -224,7 +224,7 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 
 	sessionData, ok := h.sessions.Get("login:" + clientData.Challenge)
 	if !ok {
-		http.Error(w, "session not found or expired", http.StatusBadRequest)
+		http.Error(w, "Sesio ne trovita aŭ eksvalidiĝis", http.StatusBadRequest)
 		return
 	}
 	h.sessions.Delete("login:" + clientData.Challenge)
@@ -247,7 +247,7 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 
 	_, err = h.wa.FinishDiscoverableLogin(userHandler, *sessionData, r)
 	if err != nil {
-		http.Error(w, "authentication failed: "+err.Error(), http.StatusUnauthorized)
+		http.Error(w, "Aŭtentikigo malsukcesis: "+err.Error(), http.StatusUnauthorized)
 		return
 	}
 
@@ -268,13 +268,13 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 	}
 
 	if userID == "" {
-		http.Error(w, "could not determine user", http.StatusInternalServerError)
+		http.Error(w, "Ne eblis identigi uzanton", http.StatusInternalServerError)
 		return
 	}
 
 	u, err := h.users.GetByID(r.Context(), userID)
 	if err != nil || u == nil {
-		http.Error(w, "user not found", http.StatusInternalServerError)
+		http.Error(w, "Uzanto ne trovita", http.StatusInternalServerError)
 		return
 	}
 
@@ -283,6 +283,42 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 		"token":  u.Token,
 		"userID": u.ID,
 	})
+}
+
+// SetLang handles POST /lingvo — sets the user's preferred language cookie and updates the user record.
+func (h *AuthHandler) SetLang(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta peto", http.StatusBadRequest)
+		return
+	}
+	lang := r.FormValue("lang")
+	if lang == "" {
+		lang = "en"
+	}
+	// Sanitise: only allow short alphanumeric lang codes.
+	if len(lang) > 8 {
+		lang = lang[:8]
+	}
+	// Set lang cookie (works for anonymous users too).
+	http.SetCookie(w, &http.Cookie{
+		Name:     "lang",
+		Value:    lang,
+		Path:     "/",
+		HttpOnly: true,
+		SameSite: http.SameSiteLaxMode,
+		Expires:  time.Now().Add(365 * 24 * time.Hour),
+	})
+	// Persist to user record if logged in.
+	u := UserFromContext(r.Context())
+	if u != nil {
+		_ = h.users.UpdateLang(r.Context(), u.ID, lang)
+	}
+	// Redirect back to referrer or home.
+	ref := r.Header.Get("Referer")
+	if ref == "" {
+		ref = "/"
+	}
+	http.Redirect(w, r, ref, http.StatusSeeOther)
 }
 
 // scheme returns "https" or "http" based on request headers.

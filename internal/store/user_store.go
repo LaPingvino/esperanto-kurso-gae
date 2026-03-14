@@ -19,6 +19,7 @@ type userEntity struct {
 	RD           float64   `datastore:"rd"`
 	Volatility   float64   `datastore:"volatility"`
 	Role         string    `datastore:"role"`
+	Lang         string    `datastore:"lang"`
 	PasskeysJSON []byte    `datastore:"passkeys_json,noindex"`
 	ProgressJSON []byte    `datastore:"progress_json,noindex"`
 	CreatedAt    time.Time `datastore:"created_at"`
@@ -34,12 +35,17 @@ func userToEntity(u *model.User) (*userEntity, error) {
 	if err != nil {
 		return nil, err
 	}
+	lang := u.Lang
+	if lang == "" {
+		lang = "en"
+	}
 	return &userEntity{
 		Token:        u.Token,
 		Rating:       u.Rating,
 		RD:           u.RD,
 		Volatility:   u.Volatility,
 		Role:         u.Role,
+		Lang:         lang,
 		PasskeysJSON: pkJSON,
 		ProgressJSON: prJSON,
 		CreatedAt:    u.CreatedAt,
@@ -48,6 +54,10 @@ func userToEntity(u *model.User) (*userEntity, error) {
 }
 
 func entityToUser(id string, e *userEntity) (*model.User, error) {
+	lang := e.Lang
+	if lang == "" {
+		lang = "en"
+	}
 	u := &model.User{
 		ID:         id,
 		Token:      e.Token,
@@ -55,6 +65,7 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		RD:         e.RD,
 		Volatility: e.Volatility,
 		Role:       e.Role,
+		Lang:       lang,
 		CreatedAt:  e.CreatedAt,
 		LastSeenAt: e.LastSeenAt,
 		Progress:   make(map[string]bool),
@@ -162,6 +173,20 @@ func (s *UserStore) AddPasskey(ctx context.Context, userID string, cred webauthn
 		}
 		e.PasskeysJSON = b
 		_, err = tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
+func (s *UserStore) UpdateLang(ctx context.Context, userID, lang string) error {
+	key := s.userKey(userID)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		e.Lang = lang
+		_, err := tx.Put(key, &e)
 		return err
 	})
 	return err

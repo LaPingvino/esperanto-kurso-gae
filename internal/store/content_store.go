@@ -25,6 +25,8 @@ type contentEntity struct {
 	VoteScore   int       `datastore:"vote_score"`
 	Version     int       `datastore:"version"`
 	ImageURL    string    `datastore:"image_url,noindex"`
+	SeriesSlug  string    `datastore:"series_slug"`
+	SeriesOrder int       `datastore:"series_order"`
 	CreatedAt   time.Time `datastore:"created_at"`
 	UpdatedAt   time.Time `datastore:"updated_at"`
 }
@@ -47,6 +49,8 @@ func contentToEntity(item *model.ContentItem) (*contentEntity, error) {
 		VoteScore:   item.VoteScore,
 		Version:     item.Version,
 		ImageURL:    item.ImageURL,
+		SeriesSlug:  item.SeriesSlug,
+		SeriesOrder: item.SeriesOrder,
 		CreatedAt:   item.CreatedAt,
 		UpdatedAt:   item.UpdatedAt,
 	}, nil
@@ -54,20 +58,22 @@ func contentToEntity(item *model.ContentItem) (*contentEntity, error) {
 
 func entityToContent(slug string, e *contentEntity) (*model.ContentItem, error) {
 	item := &model.ContentItem{
-		Slug:       slug,
-		Type:       e.Type,
-		Tags:       e.Tags,
-		Source:     e.Source,
-		AuthorID:   e.AuthorID,
-		Status:     e.Status,
-		Rating:     e.Rating,
-		RD:         e.RD,
-		Volatility: e.Volatility,
-		VoteScore:  e.VoteScore,
-		Version:    e.Version,
-		ImageURL:   e.ImageURL,
-		CreatedAt:  e.CreatedAt,
-		UpdatedAt:  e.UpdatedAt,
+		Slug:        slug,
+		Type:        e.Type,
+		Tags:        e.Tags,
+		Source:      e.Source,
+		AuthorID:    e.AuthorID,
+		Status:      e.Status,
+		Rating:      e.Rating,
+		RD:          e.RD,
+		Volatility:  e.Volatility,
+		VoteScore:   e.VoteScore,
+		Version:     e.Version,
+		ImageURL:    e.ImageURL,
+		SeriesSlug:  e.SeriesSlug,
+		SeriesOrder: e.SeriesOrder,
+		CreatedAt:   e.CreatedAt,
+		UpdatedAt:   e.UpdatedAt,
 	}
 	if len(e.ContentJSON) > 0 {
 		if err := json.Unmarshal(e.ContentJSON, &item.Content); err != nil {
@@ -120,6 +126,18 @@ func (s *ContentStore) Update(ctx context.Context, item *model.ContentItem) erro
 	}
 	_, err = s.db.Put(ctx, s.contentKey(item.Slug), e)
 	return err
+}
+
+func (s *ContentStore) ListByType(ctx context.Context, typ string, limit int) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("status", "=", "approved").
+		FilterField("type", "=", typ).
+		Limit(limit)
+	return s.runContentQuery(ctx, q)
+}
+
+func (s *ContentStore) Delete(ctx context.Context, slug string) error {
+	return s.db.Delete(ctx, s.contentKey(slug))
 }
 
 func (s *ContentStore) ListApproved(ctx context.Context, limit int) ([]*model.ContentItem, error) {

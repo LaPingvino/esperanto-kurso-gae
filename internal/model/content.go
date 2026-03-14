@@ -14,11 +14,13 @@ type ContentItem struct {
 	Rating     float64                `firestore:"rating"`
 	RD         float64                `firestore:"rd"`
 	Volatility float64                `firestore:"volatility"`
-	VoteScore  int                    `firestore:"vote_score"`
-	Version    int                    `firestore:"version"`
-	ImageURL   string                 `firestore:"image_url"`
-	CreatedAt  time.Time              `firestore:"created_at"`
-	UpdatedAt  time.Time              `firestore:"updated_at"`
+	VoteScore   int                    `firestore:"vote_score"`
+	Version     int                    `firestore:"version"`
+	ImageURL    string                 `firestore:"image_url"`
+	SeriesSlug  string                 `firestore:"series_slug"`
+	SeriesOrder int                    `firestore:"series_order"`
+	CreatedAt   time.Time              `firestore:"created_at"`
+	UpdatedAt   time.Time              `firestore:"updated_at"`
 }
 
 func (c *ContentItem) strField(key string) string {

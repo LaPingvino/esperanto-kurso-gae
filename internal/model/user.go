@@ -15,6 +15,7 @@ type User struct {
 	RD         float64              `firestore:"rd"`
 	Volatility float64              `firestore:"volatility"`
 	Role       string               `firestore:"role"` // "user"|"mod"|"admin"
+	Lang       string               `firestore:"lang"` // preferred language for definitions, e.g. "en"
 	// Passkeys are serialized as JSON bytes in Firestore.
 	PasskeysJSON []byte             `firestore:"passkeys_json"`
 	Passkeys     []webauthn.Credential `firestore:"-"`
@@ -32,6 +33,7 @@ func NewUser(id, token string) *User {
 		RD:         350,
 		Volatility: 0.06,
 		Role:       "user",
+		Lang:       "en",
 		Progress:   make(map[string]bool),
 		CreatedAt:  time.Now(),
 		LastSeenAt: time.Now(),

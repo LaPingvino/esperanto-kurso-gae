@@ -6,18 +6,21 @@
     <div class="vote-buttons">
       <button type="submit" name="value" value="1"
               class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
-              title="Voĉdoni supren"
+              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}Nuligi voĉon{{else}}Voĉdoni supren{{end}}{{else}}Voĉdoni supren{{end}}"
+              aria-label="Voĉdoni supren"
               {{if not .User}}disabled{{end}}>
-        &#9650;
+        &#9650; Utila
       </button>
-      <span class="vote-score">{{.VoteScore}}</span>
+      <span class="vote-score" aria-label="{{.VoteScore}} voĉoj">{{.VoteScore}}</span>
       <button type="submit" name="value" value="-1"
               class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
-              title="Voĉdoni malsupren"
+              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}Nuligi voĉon{{else}}Voĉdoni malsupren{{end}}{{else}}Voĉdoni malsupren{{end}}"
+              aria-label="Voĉdoni malsupren"
               {{if not .User}}disabled{{end}}>
-        &#9660;
+        &#9660; Senutila
       </button>
     </div>
+    {{if not .User}}<small><a href="/enskribi">Ensalitu</a> por voĉdoni.</small>{{end}}
   </form>
 </section>
 {{end}}

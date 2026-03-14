@@ -1,0 +1,34 @@
+{{template "base" .}}
+
+{{define "title"}}Vortaro — Esperanto-kurso{{end}}
+
+{{define "content"}}
+<h1>Vortaro</h1>
+{{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
+<p>Difino-lingvo: <strong>{{$lang}}</strong> — ŝanĝu ĝin per la elektilo en la piedpaĝo.</p>
+
+{{if .Items}}
+<table>
+  <thead>
+    <tr>
+      <th>Esperante</th>
+      <th>Difino ({{$lang}})</th>
+      <th>Etikedoj</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Items}}
+    <tr>
+      <td><strong>{{.Word}}</strong></td>
+      <td>{{defForLang .Content $lang}}</td>
+      <td>{{range .Tags}}<small class="tag">{{.}}</small> {{end}}</td>
+      <td><a href="/ekzerco/{{.Slug}}">Ekzerci</a></td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{else}}
+<p>Ankoraŭ ne estas vortaro-eroj.</p>
+{{end}}
+{{end}}

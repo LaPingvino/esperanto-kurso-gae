@@ -47,7 +47,7 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	}
 
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad form data", http.StatusBadRequest)
+		http.Error(w, "Malĝustaj formularaj datumoj", http.StatusBadRequest)
 		return
 	}
 
@@ -63,7 +63,7 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	if u == nil {
 		u, newToken, err = h.createAnonymousUser(r.Context())
 		if err != nil {
-			http.Error(w, "could not create user", http.StatusInternalServerError)
+			http.Error(w, "Ne eblis krei uzanton", http.StatusInternalServerError)
 			return
 		}
 	}

@@ -100,7 +100,7 @@ async function registerPasskey() {
     });
     if (!finishRes.ok) throw new Error(await finishRes.text());
 
-    status('Paŝklavo sukcese registrita!');
+    status('Ensalutŝlosilo sukcese registrita!');
   } catch (err) {
     console.error('Passkey registration failed:', err);
     const statusEl = document.getElementById('passkey-status');

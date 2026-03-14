@@ -46,7 +46,7 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad form", http.StatusBadRequest)
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
 		return
 	}
 
@@ -58,26 +58,34 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 	case "-1":
 		newValue = -1
 	default:
-		http.Error(w, "invalid vote value", http.StatusBadRequest)
+		http.Error(w, "Nevalida voĉo", http.StatusBadRequest)
 		return
 	}
 
 	// Determine delta from existing vote.
+	// Clicking the same button again removes the vote (toggle to 0).
 	existing, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, contentID)
 	var delta int
-	if existing != nil {
+	var effectiveValue int
+	if existing != nil && existing.Value == newValue {
+		// Toggle off: remove existing vote.
+		effectiveValue = 0
+		delta = -existing.Value
+	} else if existing != nil {
+		effectiveValue = newValue
 		delta = newValue - existing.Value
 	} else {
+		effectiveValue = newValue
 		delta = newValue
 	}
 
 	vote := &model.Vote{
 		UserID:        u.ID,
 		ContentItemID: contentID,
-		Value:         newValue,
+		Value:         effectiveValue,
 	}
 	if err := h.votes.Upsert(r.Context(), vote); err != nil {
-		http.Error(w, "could not save vote", http.StatusInternalServerError)
+		http.Error(w, "Ne eblis konservi voĉon", http.StatusInternalServerError)
 		return
 	}
 
@@ -91,10 +99,15 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 		voteScore = item.VoteScore + delta
 	}
 
+	var currentVote *model.Vote
+	if effectiveValue != 0 {
+		currentVote = vote
+	}
+
 	data := map[string]interface{}{
 		"ContentID":   contentID,
 		"VoteScore":   voteScore,
-		"CurrentVote": vote,
+		"CurrentVote": currentVote,
 		"User":        u,
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "vochdonado.html", data); err != nil {
@@ -117,13 +130,13 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err := r.ParseForm(); err != nil {
-		http.Error(w, "bad form", http.StatusBadRequest)
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
 		return
 	}
 
 	text := r.FormValue("text")
 	if text == "" {
-		http.Error(w, "empty comment", http.StatusBadRequest)
+		http.Error(w, "Malplena komento", http.StatusBadRequest)
 		return
 	}
 
@@ -142,7 +155,7 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 		AutoApproved:  autoApprove,
 	}
 	if err := h.comments.Create(r.Context(), comment); err != nil {
-		http.Error(w, "could not save comment", http.StatusInternalServerError)
+		http.Error(w, "Ne eblis konservi komenton", http.StatusInternalServerError)
 		return
 	}
 

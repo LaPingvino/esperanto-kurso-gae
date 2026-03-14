@@ -5,6 +5,12 @@ indexes:
       - name: status
       - name: rating
 
+  # Content: approved items by type (for dictionary/vortaro)
+  - kind: ContentItem
+    properties:
+      - name: status
+      - name: type
+
   # Attempts: by user, newest first
   - kind: Attempt
     properties:

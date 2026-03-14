@@ -65,6 +65,10 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 		if token != "" {
 			u, err := us.GetByToken(ctx, token)
 			if err == nil && u != nil {
+				// Override lang from cookie if present (allows anonymous lang switching).
+				if c, err2 := r.Cookie("lang"); err2 == nil && c.Value != "" {
+					u.Lang = c.Value
+				}
 				ctx = context.WithValue(ctx, UserContextKey, u)
 				r = r.WithContext(ctx)
 				go func() { _ = us.UpdateLastSeen(context.Background(), u.ID) }()
@@ -107,7 +111,7 @@ func RequireAdmin(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		u := UserFromContext(r.Context())
 		if u == nil || u.Role != "admin" {
-			http.Error(w, "Forbidden", http.StatusForbidden)
+			http.Error(w, "Aliro malpermesita", http.StatusForbidden)
 			return
 		}
 		next.ServeHTTP(w, r)
@@ -119,7 +123,7 @@ func RequireMod(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		u := UserFromContext(r.Context())
 		if u == nil || (u.Role != "mod" && u.Role != "admin") {
-			http.Error(w, "Forbidden", http.StatusForbidden)
+			http.Error(w, "Aliro malpermesita", http.StatusForbidden)
 			return
 		}
 		next.ServeHTTP(w, r)

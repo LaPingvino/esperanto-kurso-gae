@@ -58,6 +58,7 @@ func main() {
 	// Public routes.
 	mux.HandleFunc("GET /", contentH.ShowHome)
 	mux.HandleFunc("GET /ekzerco/{slug}", contentH.ShowExercise)
+	mux.HandleFunc("GET /vortaro", contentH.ShowVortaro)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("GET /enskribi", authH.ShowEnskribi)
 
@@ -69,6 +70,7 @@ func main() {
 	mux.HandleFunc("POST /auth/passkey/login/begin", authH.BeginPasskeyLogin)
 	mux.HandleFunc("POST /auth/passkey/login/finish", authH.FinishPasskeyLogin)
 	mux.HandleFunc("POST /auth/magic", authH.ShowEnskribi) // alias
+	mux.HandleFunc("POST /lingvo", authH.SetLang)
 
 	// Community routes.
 	mux.HandleFunc("POST /vochdonado/{contentID}", communityH.Vote)
@@ -83,6 +85,7 @@ func main() {
 	mux.Handle("POST /admin/enhavo", ra(adminH.CreateContent))
 	mux.Handle("GET /admin/enhavo/{slug}/redakti", ra(adminH.EditContentForm))
 	mux.Handle("POST /admin/enhavo/{slug}", ra(adminH.UpdateContent))
+	mux.Handle("POST /admin/enhavo/{slug}/forigi", ra(adminH.DeleteContent))
 	mux.Handle("GET /admin/moderigo", ra(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", ra(adminH.ModerateComment))
 	mux.Handle("POST /admin/seed", ra(adminH.SeedContent))
@@ -124,6 +127,7 @@ func parseTemplates() (*pageTemplates, error) {
 	pages := map[string]string{
 		"hejmo.html":            "templates/hejmo.html",
 		"ekzerco.html":          "templates/ekzerco.html",
+		"vortaro.html":          "templates/vortaro.html",
 		"enskribi.html":         "templates/enskribi.html",
 		"admin_dashboard.html":  "templates/admin/dashboard.html",
 		"listo.html":            "templates/admin/listo.html",
@@ -167,7 +171,44 @@ func parseTemplates() (*pageTemplates, error) {
 }
 
 func templateFuncs() template.FuncMap {
+	typeNames := map[string]string{
+		"multiplechoice": "Plurelekta",
+		"fillin":         "Plenigi blankon",
+		"listening":      "Aŭskulti",
+		"vocab":          "Vortaro",
+		"reading":        "Legado",
+		"phrasebook":     "Frazaro",
+		"image":          "Bildo",
+	}
 	return template.FuncMap{
+		"tipNomo": func(t string) string {
+			if name, ok := typeNames[t]; ok {
+				return name
+			}
+			return t
+		},
+		// defForLang returns a vocab definition in the requested language.
+		// It looks for content["definitions"][lang], falls back to content["definitions"]["en"],
+		// then content["definition"].
+		"defForLang": func(content map[string]interface{}, lang string) string {
+			if content == nil {
+				return ""
+			}
+			if defsRaw, ok := content["definitions"]; ok {
+				if defs, ok := defsRaw.(map[string]interface{}); ok {
+					if v, ok := defs[lang].(string); ok && v != "" {
+						return v
+					}
+					if v, ok := defs["en"].(string); ok && v != "" {
+						return v
+					}
+				}
+			}
+			if v, ok := content["definition"].(string); ok {
+				return v
+			}
+			return ""
+		},
 		"seq": func(n int) []int {
 			s := make([]int, n)
 			for i := range s {

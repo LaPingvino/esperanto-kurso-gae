@@ -60,6 +60,29 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// ShowVortaro handles GET /vortaro — lists all vocab items as a dictionary.
+func (h *ContentHandler) ShowVortaro(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	items, err := h.content.ListByType(r.Context(), "vocab", 500)
+	if err != nil {
+		items, _ = h.content.ListApproved(r.Context(), 500)
+		var vocabOnly []*model.ContentItem
+		for _, it := range items {
+			if it.Type == "vocab" {
+				vocabOnly = append(vocabOnly, it)
+			}
+		}
+		items = vocabOnly
+	}
+	data := map[string]interface{}{
+		"User":  u,
+		"Items": items,
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "vortaro.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 // ShowExercise handles GET /ekzerco/{slug}.
 func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
