@@ -10,7 +10,50 @@
     {{if .Item.Tags}}
       {{range .Item.Tags}}<small class="tag">{{.}}</small> {{end}}
     {{end}}
+    {{if .Item.SeriesSlug}}
+    <small class="series-badge">&#128196; {{.Item.SeriesSlug}} #{{.Item.SeriesOrder}}</small>
+    {{end}}
   </header>
+
+  {{if or .PrevInSeries .NextInSeries}}
+  <nav class="series-nav" aria-label="Serio-navigado">
+    {{if .PrevInSeries}}
+    <a href="/ekzerco/{{.PrevInSeries.Slug}}" class="series-link prev">&larr; {{if .PrevInSeries.Word}}{{.PrevInSeries.Word}}{{else if .PrevInSeries.Question}}{{truncate .PrevInSeries.Question 30}}{{else}}Antaŭa{{end}}</a>
+    {{end}}
+    {{if .NextInSeries}}
+    <a href="/ekzerco/{{.NextInSeries.Slug}}" class="series-link next">{{if .NextInSeries.Word}}{{.NextInSeries.Word}}{{else if .NextInSeries.Question}}{{truncate .NextInSeries.Question 30}}{{else}}Sekva{{end}} &rarr;</a>
+    {{end}}
+  </nav>
+  {{end}}
+
+  {{/* ── Passive types: Anki judgment buttons, no text input ── */}}
+  {{if or (eq .Item.Type "reading") (eq .Item.Type "phrasebook")}}
+
+  {{if eq .Item.Type "reading"}}
+  <article class="reading-text">
+    {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
+    <p>{{.Item.Text}}</p>
+  </article>
+  {{else}}
+  <p>Kiel oni diras tion ĉi esperante?</p>
+  <h2 class="phrase">{{.Item.Question}}</h2>
+  {{end}}
+
+  <form hx-post="/ekzerco/{{.Item.Slug}}/jugo"
+        hx-target="#rezulto"
+        hx-swap="innerHTML">
+    <nav class="anki-buttons">
+      <ul>
+        <li><button type="submit" name="judgment" value="ne-sciis" class="reject-btn">&#10007; Ne sciis</button></li>
+        <li><button type="submit" name="judgment" value="malfacile" class="outline">&#9888; Malfacile</button></li>
+        <li><button type="submit" name="judgment" value="bone" class="outline">&#10003; Bone</button></li>
+        <li><button type="submit" name="judgment" value="facile">&#9733; Facile</button></li>
+      </ul>
+    </nav>
+  </form>
+
+  {{/* ── Interactive types: answer input + Mi ne scias ── */}}
+  {{else}}
 
   <form hx-post="/ekzerco/{{.Item.Slug}}/provo"
         hx-target="#rezulto"
@@ -69,19 +112,6 @@
     {{end}}
     <input type="text" name="answer" placeholder="La vorto esperante…" required autofocus>
 
-    {{else if eq .Item.Type "reading"}}
-    <article class="reading-text">
-      {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
-      <p>{{.Item.Text}}</p>
-    </article>
-    {{if .Item.Question}}<p><strong>{{.Item.Question}}</strong></p>{{end}}
-    <input type="text" name="answer" placeholder="Via respondo…" required>
-
-    {{else if eq .Item.Type "phrasebook"}}
-    <p>Kiel oni diras tion ĉi esperante?</p>
-    <h2 class="phrase">{{.Item.Question}}</h2>
-    <input type="text" name="answer" placeholder="La frazo esperante…" required autofocus>
-
     {{else if eq .Item.Type "image"}}
     <p>Kion vidas vi?</p>
     {{if .Item.ImageURL}}<img src="{{.Item.ImageURL}}" alt="Ekzerco-bildo" class="exercise-image">{{end}}
@@ -93,9 +123,28 @@
     <input type="text" name="answer" placeholder="Via respondo…" required autofocus>
     {{end}}
 
-    <button type="submit">Sendi</button>
+    <nav class="submit-row">
+      <ul>
+        <li><button type="submit">Sendi</button></li>
+        <li>
+          <button type="submit" form="jugo-form" class="reject-btn outline" title="Transsaltu kaj registru kiel malsukceson">
+            &#10007; Mi ne scias
+          </button>
+        </li>
+      </ul>
+    </nav>
     <span id="loading" class="htmx-indicator">Ŝarĝas…</span>
   </form>
+
+  {{/* Hidden form for "Mi ne scias" — posts to jugo endpoint */}}
+  <form id="jugo-form"
+        hx-post="/ekzerco/{{.Item.Slug}}/jugo"
+        hx-target="#rezulto"
+        hx-swap="innerHTML">
+    <input type="hidden" name="judgment" value="ne-sciis">
+  </form>
+
+  {{end}}
 
   <div id="rezulto"></div>
 </article>

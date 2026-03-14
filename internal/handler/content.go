@@ -34,7 +34,7 @@ func NewContentHandler(
 	}
 }
 
-// ShowHome handles GET /.
+// ShowHome handles GET /. Redirects immediately to the top recommended exercise.
 func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 
@@ -45,14 +45,16 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	items, err := recommend.GetForUser(r.Context(), rating, rd, h.content, 10)
-	if err != nil {
-		items, err = h.content.ListApproved(r.Context(), 10)
-		if err != nil {
-			http.Error(w, "Eraro ĉe ŝarĝado de ekzercoj", http.StatusInternalServerError)
-			return
-		}
+	if err != nil || len(items) == 0 {
+		items, _ = h.content.ListApproved(r.Context(), 10)
 	}
 
+	if len(items) > 0 {
+		http.Redirect(w, r, "/ekzerco/"+items[0].Slug, http.StatusSeeOther)
+		return
+	}
+
+	// Fallback: no exercises yet.
 	data := map[string]interface{}{
 		"User":  u,
 		"Items": items,
@@ -119,12 +121,31 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	tradukData := buildTradukData(slug, userLang, userID, translations, votes)
 	tradukData["User"] = u
 
+	// Series navigation.
+	var prevInSeries, nextInSeries *model.ContentItem
+	if item.SeriesSlug != "" {
+		seriesItems, _ := h.content.ListBySeries(r.Context(), item.SeriesSlug)
+		for i, si := range seriesItems {
+			if si.Slug == slug {
+				if i > 0 {
+					prevInSeries = seriesItems[i-1]
+				}
+				if i < len(seriesItems)-1 {
+					nextInSeries = seriesItems[i+1]
+				}
+				break
+			}
+		}
+	}
+
 	data := map[string]interface{}{
-		"User":        u,
-		"Item":        item,
-		"Comments":    comments,
-		"CurrentVote": currentVote,
-		"TradukData":  tradukData,
+		"User":          u,
+		"Item":          item,
+		"Comments":      comments,
+		"CurrentVote":   currentVote,
+		"TradukData":    tradukData,
+		"PrevInSeries":  prevInSeries,
+		"NextInSeries":  nextInSeries,
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

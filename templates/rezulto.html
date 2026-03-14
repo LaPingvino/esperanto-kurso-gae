@@ -1,6 +1,15 @@
 {{define "rezulto.html"}}
 <div class="rezulto {{if .Correct}}correct{{else}}incorrect{{end}}">
-  {{if .Correct}}
+  {{if .Judgment}}
+  {{/* Judgment-only result (passive content / mi-ne-scias) */}}
+  {{if or (eq .Judgment "bone") (eq .Judgment "facile")}}
+  <p class="rezulto-ikono">&#10003; Bone!</p>
+  {{else if eq .Judgment "malfacile"}}
+  <p class="rezulto-ikono">&#9888; Malfacile…</p>
+  {{else}}
+  <p class="rezulto-ikono">&#10007; Ne sciis.</p>
+  {{end}}
+  {{else if .Correct}}
   <p class="rezulto-ikono">&#10003; Ĝuste!</p>
   {{else}}
   <p class="rezulto-ikono">&#10007; Malĝuste.</p>
@@ -17,10 +26,25 @@
     {{end}}
   </p>
 
-  {{if .NextSlug}}
-  <a href="/ekzerco/{{.NextSlug}}" role="button">Sekva ekzerco &rarr;</a>
-  {{else}}
-  <a href="/" role="button">Reveni al hejmo</a>
-  {{end}}
+  <nav class="next-buttons">
+    <ul>
+      {{if .EasierSlug}}
+      <li><a href="/ekzerco/{{.EasierSlug}}" role="button" class="outline secondary">&#8595; Pli facila</a></li>
+      {{end}}
+      {{if .NextInSeries}}
+      <li><a href="/ekzerco/{{.NextInSeries.Slug}}" role="button" class="series-next">&#128196; Sekva en serio</a></li>
+      {{else if .NextSlug}}
+      <li><a href="/ekzerco/{{.NextSlug}}" role="button">Mia nuna nivelo &rarr;</a></li>
+      {{else}}
+      <li><a href="/" role="button">Reveni al hejmo</a></li>
+      {{end}}
+      {{if .HarderSlug}}
+      <li><a href="/ekzerco/{{.HarderSlug}}" role="button" class="outline">&#8593; Pli malfacila</a></li>
+      {{end}}
+    </ul>
+    {{if .NextInSeries}}{{if .NextSlug}}
+    <p><small><a href="/ekzerco/{{.NextSlug}}">Mia nuna nivelo &rarr;</a></small></p>
+    {{end}}{{end}}
+  </nav>
 </div>
 {{end}}

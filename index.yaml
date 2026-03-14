@@ -1,4 +1,11 @@
 indexes:
+  # Content: approved items in a series, ordered
+  - kind: ContentItem
+    properties:
+      - name: status
+      - name: series_slug
+      - name: series_order
+
   # Content: approved items by rating (for recommendations)
   - kind: ContentItem
     properties:

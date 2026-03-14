@@ -81,3 +81,42 @@ func GetForUser(
 	}
 	return items, nil
 }
+
+// GetHarder returns items rated +200 to +600 above the user's rating.
+func GetHarder(ctx context.Context, userRating float64, cs *store.ContentStore, limit int, exclude string) ([]*model.ContentItem, error) {
+	items, err := cs.ListByRatingRange(ctx, userRating+200, userRating+600, limit*2)
+	if err != nil || len(items) == 0 {
+		items, err = cs.ListByRatingRange(ctx, userRating+50, userRating+1000, limit*2)
+	}
+	if err != nil {
+		return nil, err
+	}
+	sort.Slice(items, func(i, j int) bool { return items[i].RD > items[j].RD })
+	return firstExcluding(items, exclude, limit), nil
+}
+
+// GetEasier returns items rated -600 to -200 below the user's rating.
+func GetEasier(ctx context.Context, userRating float64, cs *store.ContentStore, limit int, exclude string) ([]*model.ContentItem, error) {
+	items, err := cs.ListByRatingRange(ctx, userRating-600, userRating-200, limit*2)
+	if err != nil || len(items) == 0 {
+		items, err = cs.ListByRatingRange(ctx, userRating-1000, userRating-50, limit*2)
+	}
+	if err != nil {
+		return nil, err
+	}
+	sort.Slice(items, func(i, j int) bool { return items[i].RD > items[j].RD })
+	return firstExcluding(items, exclude, limit), nil
+}
+
+func firstExcluding(items []*model.ContentItem, exclude string, limit int) []*model.ContentItem {
+	var out []*model.ContentItem
+	for _, it := range items {
+		if it.Slug != exclude {
+			out = append(out, it)
+		}
+		if len(out) >= limit {
+			break
+		}
+	}
+	return out
+}

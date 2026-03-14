@@ -136,6 +136,15 @@ func (s *ContentStore) ListByType(ctx context.Context, typ string, limit int) ([
 	return s.runContentQuery(ctx, q)
 }
 
+// ListBySeries returns all approved items in a series, sorted by series_order.
+func (s *ContentStore) ListBySeries(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("status", "=", "approved").
+		FilterField("series_slug", "=", seriesSlug).
+		Order("series_order")
+	return s.runContentQuery(ctx, q)
+}
+
 func (s *ContentStore) Delete(ctx context.Context, slug string) error {
 	return s.db.Delete(ctx, s.contentKey(slug))
 }

@@ -61,6 +61,7 @@ func main() {
 	mux.HandleFunc("GET /ekzerco/{slug}", contentH.ShowExercise)
 	mux.HandleFunc("GET /vortaro", contentH.ShowVortaro)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
+	mux.HandleFunc("POST /ekzerco/{slug}/jugo", exerciseH.JudgeExercise)
 	mux.HandleFunc("GET /enskribi", authH.ShowEnskribi)
 
 	// Auth routes.
