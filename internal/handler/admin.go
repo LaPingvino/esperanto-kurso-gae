@@ -420,3 +420,54 @@ func seedItems() []*model.ContentItem {
 	}
 	return out
 }
+
+// InitialSetup handles GET /admin/initial.
+// This route is protected by GAE's "login: admin" handler in app.yaml,
+// so only the Google Account owner/admins of the GAE project can reach it.
+//
+// Flow:
+//  1. User visits the site normally → anonymous token stored in localStorage.
+//  2. User visits /enskribi → copies magic link → browser follows it → token cookie is set.
+//  3. User visits /admin/initial → GAE redirects to Google login → returns here.
+//  4. Handler reads token from cookie → promotes that user to admin.
+//  5. Redirects to /admin.
+func (h *AdminHandler) InitialSetup(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	// Extract the token from the cookie.
+	cookie, err := r.Cookie("token")
+	if err != nil || cookie.Value == "" {
+		w.Header().Set("Content-Type", "text/html; charset=utf-8")
+		fmt.Fprint(w, `<!DOCTYPE html><html lang="eo"><head><meta charset="UTF-8">
+<title>Komenca Agordo</title></head><body>
+<h1>Komenca Agordo de Administranto</h1>
+<p>Vi estas aŭtentikigita kiel GAE-administranto.</p>
+<p>Por fariĝi administranto de la platformo, vi bezonas:</p>
+<ol>
+  <li>Iru al <a href="/">la hejmpaĝo</a> — via token estos kreita aŭtomate.</li>
+  <li>Iru al <a href="/enskribi">/enskribi</a> — kopiu vian sekretligilon kaj sekvu ĝin en la retumilo por fiksi la kuketojn.</li>
+  <li>Revenu al <a href="/admin/initial">/admin/initial</a>.</li>
+</ol>
+</body></html>`)
+		return
+	}
+
+	u, err := h.users.GetByToken(ctx, cookie.Value)
+	if err != nil || u == nil {
+		http.Error(w, "Token nevalida — bonvolu sekvi la sekretligilon unue.", http.StatusBadRequest)
+		return
+	}
+
+	if u.Role == "admin" {
+		http.Redirect(w, r, "/admin", http.StatusSeeOther)
+		return
+	}
+
+	u.Role = "admin"
+	if err := h.users.Update(ctx, u); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+}

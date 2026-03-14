@@ -76,6 +76,7 @@ func main() {
 
 	// Admin routes — registered directly with method+path to avoid ServeMux conflicts.
 	ra := func(h http.HandlerFunc) http.Handler { return handler.RequireAdmin(h) }
+	mux.HandleFunc("GET /admin/initial", adminH.InitialSetup)
 	mux.Handle("GET /admin", ra(adminH.Dashboard))
 	mux.Handle("GET /admin/enhavo", ra(adminH.ListContent))
 	mux.Handle("GET /admin/enhavo/nova", ra(adminH.NewContentForm))

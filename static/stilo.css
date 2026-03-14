@@ -314,3 +314,16 @@ footer {
   align-items: center;
   margin-top: 1rem;
 }
+
+/* Hidden admin link — blends with nav background, visible on hover */
+#admin-link {
+  color: var(--pico-background-color, #1b1b32);
+  text-decoration: none;
+  font-size: 0.5rem;
+  opacity: 0.15;
+  transition: opacity 0.3s;
+}
+#admin-link:hover {
+  opacity: 1;
+  color: var(--pico-primary);
+}

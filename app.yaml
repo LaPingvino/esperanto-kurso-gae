@@ -10,7 +10,7 @@ env_variables:
 handlers:
   - url: /static
     static_dir: static
-  - url: /admin.*
+  - url: /admin/initial
     script: auto
     login: admin
   - url: /.*
