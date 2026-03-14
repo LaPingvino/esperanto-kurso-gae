@@ -89,6 +89,9 @@ func main() {
 	mux.Handle("GET /admin/moderigo", ra(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", ra(adminH.ModerateComment))
 	mux.Handle("POST /admin/seed", ra(adminH.SeedContent))
+	mux.Handle("GET /admin/eksporti", ra(adminH.ExportContent))
+	mux.Handle("POST /admin/importi", ra(adminH.ImportContent))
+	mux.Handle("POST /admin/forigi-cion", ra(adminH.NukeContent))
 
 	// Apply auth middleware to all routes.
 	root := handler.AuthMiddleware(userStore, mux)

@@ -5,7 +5,7 @@
 {{define "content"}}
 <h1>Vortaro</h1>
 {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
-<p>Difino-lingvo: <strong>{{$lang}}</strong> — ŝanĝu ĝin per la elektilo en la piedpaĝo.</p>
+<p>Difino-lingvo: <strong>{{$lang}}</strong> — ŝanĝu ĝin per la elektilo en la malsupro de la paĝo.</p>
 
 {{if .Items}}
 <table>
@@ -29,6 +29,6 @@
   </tbody>
 </table>
 {{else}}
-<p>Ankoraŭ ne estas vortaro-eroj.</p>
+<p>Ankoraŭ ne estas vortoj en la vortaro.</p>
 {{end}}
 {{end}}

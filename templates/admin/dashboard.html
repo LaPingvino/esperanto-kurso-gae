@@ -46,4 +46,38 @@
   <p><strong>{{.SeedResult}}</strong></p>
   {{end}}
 </section>
+
+<hr>
+<section>
+  <h2>Eksporto / Importo</h2>
+  <p>Elŝutu ĉiujn ekzercojn kiel JSON por redakti eksterrete, poste reimportu.</p>
+  <nav>
+    <ul>
+      <li><a href="/admin/eksporti" role="button" class="outline">Eksporti kiel JSON</a></li>
+      <li>
+        <form method="POST" action="/admin/importi" enctype="multipart/form-data" style="display:inline">
+          <label for="import-file" style="display:inline">
+            <input type="file" id="import-file" name="file" accept=".json" required style="display:inline;width:auto">
+          </label>
+          <button type="submit">Importi JSON</button>
+        </form>
+      </li>
+    </ul>
+  </nav>
+  {{if .ImportResult}}
+  <p><strong>{{.ImportResult}}</strong></p>
+  {{end}}
+</section>
+
+<hr>
+<section>
+  <h2>Danĝeraj agoj</h2>
+  <form method="POST" action="/admin/forigi-cion"
+        onsubmit="return confirm('Ĉu vi certas? Ĉi tio forigas ĈIUJN ekzercojn!')">
+    <button type="submit" class="reject-btn">Forigi ĉiujn ekzercojn</button>
+  </form>
+  {{if .NukeResult}}
+  <p><strong>{{.NukeResult}}</strong></p>
+  {{end}}
+</section>
 {{end}}

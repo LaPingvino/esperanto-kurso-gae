@@ -25,6 +25,12 @@ indexes:
       - name: timestamp
         direction: desc
 
+  # Comments: pending moderation queue (approved=false, oldest first)
+  - kind: Comment
+    properties:
+      - name: approved
+      - name: created_at
+
   # Comments: approved, by content, oldest first
   - kind: Comment
     properties:
