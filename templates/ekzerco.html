@@ -45,10 +45,25 @@
     {{else if eq .Item.Type "vocab"}}
     {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
     {{$def := defForLang .Item.Content $lang}}
+    {{$communityDef := ""}}
+    {{with .TradukData}}
+      {{range .MyLangTranslations}}{{if eq $communityDef ""}}{{$communityDef = .Text}}{{end}}{{end}}
+    {{end}}
     {{if $def}}
     <p>Kiel oni diras esperante?</p>
     <h2 class="vocab-word">{{$def}}</h2>
+    {{else if $communityDef}}
+    <p>Kiel oni diras esperante? <small>(komunuma traduko en {{$lang}})</small></p>
+    <h2 class="vocab-word">{{$communityDef}}</h2>
     {{else}}
+    <p class="missing-def">Ankoraŭ ne estas difino en <strong>{{$lang}}</strong> por ĉi tiu vorto.</p>
+    {{$allDefs := allDefs .Item.Content}}
+    {{if $allDefs}}
+    <details>
+      <summary>Vidi difinoj en aliaj lingvoj</summary>
+      <dl>{{range $k, $v := $allDefs}}<dt>{{$k}}</dt><dd>{{$v}}</dd>{{end}}</dl>
+    </details>
+    {{end}}
     <p>Kion signifas tiu ĉi vorto?</p>
     <h2 class="vocab-word">{{.Item.Word}}</h2>
     {{end}}
@@ -88,4 +103,6 @@
 {{template "vochdonado.html" map "ContentID" .Item.Slug "VoteScore" .Item.VoteScore "CurrentVote" .CurrentVote "User" .User}}
 
 {{template "komentoj.html" map "ContentID" .Item.Slug "Comments" .Comments "User" .User}}
+
+{{template "traduko.html" .TradukData}}
 {{end}}

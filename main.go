@@ -31,6 +31,7 @@ func main() {
 	attemptStore := store.NewAttemptStore(db)
 	voteStore := store.NewVoteStore(db)
 	commentStore := store.NewCommentStore(db)
+	translationStore := store.NewTranslationStore(db)
 
 	// --- Templates ---
 	tmpl, err := parseTemplates()
@@ -47,9 +48,9 @@ func main() {
 
 	// --- Handlers ---
 	authH := handler.NewAuthHandler(tmpl, userStore, sessionStore, wa)
-	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore)
+	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore)
 	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore)
-	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore)
+	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore)
 
 	// --- Router ---
@@ -75,6 +76,8 @@ func main() {
 	// Community routes.
 	mux.HandleFunc("POST /vochdonado/{contentID}", communityH.Vote)
 	mux.HandleFunc("POST /komentoj/{contentID}", communityH.AddComment)
+	mux.HandleFunc("POST /tradukoj/{contentID}", communityH.AddTranslation)
+	mux.HandleFunc("POST /tradukoj/{contentID}/vochdoni/{id}", communityH.VoteTranslation)
 
 	// Admin routes — registered directly with method+path to avoid ServeMux conflicts.
 	ra := func(h http.HandlerFunc) http.Handler { return handler.RequireAdmin(h) }
@@ -190,9 +193,8 @@ func templateFuncs() template.FuncMap {
 			}
 			return t
 		},
-		// defForLang returns a vocab definition in the requested language.
-		// It looks for content["definitions"][lang], falls back to content["definitions"]["en"],
-		// then content["definition"].
+		// defForLang returns a vocab definition in the requested language only.
+		// No fallback to other languages — missing translations are handled in the template.
 		"defForLang": func(content map[string]interface{}, lang string) string {
 			if content == nil {
 				return ""
@@ -202,15 +204,21 @@ func templateFuncs() template.FuncMap {
 					if v, ok := defs[lang].(string); ok && v != "" {
 						return v
 					}
-					if v, ok := defs["en"].(string); ok && v != "" {
-						return v
-					}
 				}
 			}
-			if v, ok := content["definition"].(string); ok {
-				return v
-			}
 			return ""
+		},
+		// allDefs returns all available definitions from content["definitions"] as a map.
+		"allDefs": func(content map[string]interface{}) map[string]interface{} {
+			if content == nil {
+				return nil
+			}
+			if defsRaw, ok := content["definitions"]; ok {
+				if defs, ok := defsRaw.(map[string]interface{}); ok {
+					return defs
+				}
+			}
+			return nil
 		},
 		"seq": func(n int) []int {
 			s := make([]int, n)

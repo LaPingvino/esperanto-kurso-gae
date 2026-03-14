@@ -10,10 +10,11 @@ import (
 
 // ContentHandler handles exercise display and the home page.
 type ContentHandler struct {
-	tmpl     Renderer
-	content  *store.ContentStore
-	comments *store.CommentStore
-	votes    *store.VoteStore
+	tmpl         Renderer
+	content      *store.ContentStore
+	comments     *store.CommentStore
+	votes        *store.VoteStore
+	translations *store.TranslationStore
 }
 
 // NewContentHandler creates a ContentHandler.
@@ -22,12 +23,14 @@ func NewContentHandler(
 	content *store.ContentStore,
 	comments *store.CommentStore,
 	votes *store.VoteStore,
+	translations *store.TranslationStore,
 ) *ContentHandler {
 	return &ContentHandler{
-		tmpl:     tmpl,
-		content:  content,
-		comments: comments,
-		votes:    votes,
+		tmpl:         tmpl,
+		content:      content,
+		comments:     comments,
+		votes:        votes,
+		translations: translations,
 	}
 }
 
@@ -43,7 +46,6 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 
 	items, err := recommend.GetForUser(r.Context(), rating, rd, h.content, 10)
 	if err != nil {
-		// Fall back to any approved items.
 		items, err = h.content.ListApproved(r.Context(), 10)
 		if err != nil {
 			http.Error(w, "Eraro ĉe ŝarĝado de ekzercoj", http.StatusInternalServerError)
@@ -100,17 +102,29 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 
 	comments, _ := h.comments.ListApprovedByContent(r.Context(), slug)
+	translations, _ := h.translations.ListByTarget(r.Context(), slug)
 
 	var currentVote *model.Vote
+	userLang := "en"
 	if u != nil {
 		currentVote, _ = h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
+		userLang = u.Lang
 	}
+
+	userID := ""
+	if u != nil {
+		userID = u.ID
+	}
+	votes := buildVoteMap(r.Context(), h.translations, userID, translations)
+	tradukData := buildTradukData(slug, userLang, userID, translations, votes)
+	tradukData["User"] = u
 
 	data := map[string]interface{}{
 		"User":        u,
 		"Item":        item,
 		"Comments":    comments,
 		"CurrentVote": currentVote,
+		"TradukData":  tradukData,
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

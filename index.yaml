@@ -25,6 +25,19 @@ indexes:
       - name: timestamp
         direction: desc
 
+  # Translations: by content item, best voted first
+  - kind: Translation
+    properties:
+      - name: target_id
+      - name: vote_score
+        direction: desc
+
+  # TranslationVote: by user (for lookup)
+  - kind: TranslationVote
+    properties:
+      - name: user_id
+      - name: translation_id
+
   # Comments: pending moderation queue (approved=false, oldest first)
   - kind: Comment
     properties:

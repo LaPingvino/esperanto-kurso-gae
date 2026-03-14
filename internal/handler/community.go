@@ -1,19 +1,22 @@
 package handler
 
 import (
+	"context"
 	"math"
 	"net/http"
+	"strings"
 
 	"esperanto-kurso-gae/internal/model"
 	"esperanto-kurso-gae/internal/store"
 )
 
-// CommunityHandler handles voting and commenting.
+// CommunityHandler handles voting, commenting, and translations.
 type CommunityHandler struct {
-	tmpl     Renderer
-	content  *store.ContentStore
-	votes    *store.VoteStore
-	comments *store.CommentStore
+	tmpl         Renderer
+	content      *store.ContentStore
+	votes        *store.VoteStore
+	comments     *store.CommentStore
+	translations *store.TranslationStore
 }
 
 // NewCommunityHandler creates a CommunityHandler.
@@ -22,12 +25,14 @@ func NewCommunityHandler(
 	content *store.ContentStore,
 	votes *store.VoteStore,
 	comments *store.CommentStore,
+	translations *store.TranslationStore,
 ) *CommunityHandler {
 	return &CommunityHandler{
-		tmpl:     tmpl,
-		content:  content,
-		votes:    votes,
-		comments: comments,
+		tmpl:         tmpl,
+		content:      content,
+		votes:        votes,
+		comments:     comments,
+		translations: translations,
 	}
 }
 
@@ -170,6 +175,136 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 		"User":      u,
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "komentoj.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// buildVoteMap returns a map of translationID → current user vote value.
+func buildVoteMap(ctx context.Context, ts *store.TranslationStore, userID string, translations []*model.Translation) map[string]int {
+	votes := map[string]int{}
+	for _, t := range translations {
+		if v, _ := ts.GetVote(ctx, userID, t.ID); v != 0 {
+			votes[t.ID] = v
+		}
+	}
+	return votes
+}
+
+// buildTradukData builds the data map for the traduko.html partial.
+func buildTradukData(contentID, userLang, userID string, translations []*model.Translation, votes map[string]int) map[string]interface{} {
+	var mine, other []*model.Translation
+	for _, t := range translations {
+		if t.Language == userLang {
+			mine = append(mine, t)
+		} else {
+			other = append(other, t)
+		}
+	}
+	return map[string]interface{}{
+		"ContentID":            contentID,
+		"UserLang":             userLang,
+		"MyLangTranslations":   mine,
+		"OtherTranslations":    other,
+		"TranslationVotes":     votes,
+	}
+}
+
+// AddTranslation handles POST /tradukoj/{contentID}.
+func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request) {
+	contentID := r.PathValue("contentID")
+	if contentID == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Bonvolu ensaluti", http.StatusUnauthorized)
+		return
+	}
+
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	lang := strings.TrimSpace(r.FormValue("language"))
+	text := strings.TrimSpace(r.FormValue("text"))
+	if lang == "" || text == "" {
+		http.Error(w, "Mankas lingvo aŭ teksto", http.StatusBadRequest)
+		return
+	}
+
+	t := &model.Translation{
+		TargetID: contentID,
+		Language: lang,
+		Text:     text,
+		AuthorID: u.ID,
+	}
+	if err := h.translations.Create(r.Context(), t); err != nil {
+		http.Error(w, "Ne eblis konservi tradukon", http.StatusInternalServerError)
+		return
+	}
+
+	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
+	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
+	userLang := "en"
+	if u != nil {
+		userLang = u.Lang
+	}
+	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
+	data["User"] = u
+	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// VoteTranslation handles POST /tradukoj/{contentID}/vochdoni/{id}.
+func (h *CommunityHandler) VoteTranslation(w http.ResponseWriter, r *http.Request) {
+	contentID := r.PathValue("contentID")
+	translationID := r.PathValue("id")
+	if contentID == "" || translationID == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Bonvolu ensaluti", http.StatusUnauthorized)
+		return
+	}
+
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	valueStr := r.FormValue("value")
+	var newValue int
+	switch valueStr {
+	case "1":
+		newValue = 1
+	case "-1":
+		newValue = -1
+	default:
+		http.Error(w, "Nevalida voĉo", http.StatusBadRequest)
+		return
+	}
+
+	if _, err := h.translations.Vote(r.Context(), u.ID, translationID, newValue); err != nil {
+		http.Error(w, "Ne eblis voĉdoni", http.StatusInternalServerError)
+		return
+	}
+
+	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
+	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
+	userLang := "en"
+	if u != nil {
+		userLang = u.Lang
+	}
+	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
+	data["User"] = u
+	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

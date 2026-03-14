@@ -1,37 +1,69 @@
 {{define "traduko.html"}}
-<section class="tradukoj" aria-label="Tradukoj">
-  <h3>Tradukoj</h3>
+{{if .}}
+<section class="tradukoj" id="tradukoj-{{.ContentID}}" aria-label="Komunumaj tradukoj">
+  {{$lang := .UserLang}}
+  {{$votes := .TranslationVotes}}
+  {{$contentID := .ContentID}}
 
-  {{if .Translations}}
+  {{if .MyLangTranslations}}
+  <h3>Komunumaj tradukoj ({{$lang}})</h3>
   <div class="translation-list">
-    {{range .Translations}}
-    <article class="translation">
-      <small class="lang-badge">{{.Language}}</small>
+    {{range .MyLangTranslations}}
+    <article class="translation" id="traduko-{{.ID}}">
       <p>{{.Text}}</p>
-      <small>de Uzanto {{truncate .AuthorID 8}} &mdash; {{.VoteScore}} poentoj</small>
+      <footer>
+        {{if $.User}}
+        <form style="display:inline"
+              hx-post="/tradukoj/{{$contentID}}/vochdoni/{{.ID}}"
+              hx-target="#tradukoj-{{$contentID}}"
+              hx-swap="outerHTML">
+          {{$myVote := index $votes .ID}}
+          <button type="submit" name="value" value="1"
+                  class="vote-btn{{if eq $myVote 1}} active{{end}}"
+                  title="{{if eq $myVote 1}}Nuligi voĉon{{else}}Utila traduko{{end}}">▲</button>
+          <span class="vote-score">{{.VoteScore}}</span>
+          <button type="submit" name="value" value="-1"
+                  class="vote-btn{{if eq $myVote -1}} active{{end}}"
+                  title="{{if eq $myVote -1}}Nuligi voĉon{{else}}Malbona traduko{{end}}">▼</button>
+        </form>
+        {{else}}
+        <span class="vote-score">{{.VoteScore}}</span>
+        {{end}}
+        <small>&mdash; uzanto <code>{{truncate .AuthorID 8}}</code></small>
+      </footer>
     </article>
     {{end}}
   </div>
-  {{else}}
-  <p><em>Ankoraŭ ne estas tradukoj.</em></p>
+  {{end}}
+
+  {{if .OtherTranslations}}
+  <details class="other-langs">
+    <summary>Tradukoj en aliaj lingvoj (referenco)</summary>
+    <div class="translation-list compact">
+      {{range .OtherTranslations}}
+      <p><span class="lang-badge">{{.Language}}</span> {{.Text}}
+        <small>({{.VoteScore}} ▲)</small></p>
+      {{end}}
+    </div>
+  </details>
   {{end}}
 
   {{if .User}}
-  <details>
-    <summary>Aldoni tradukon</summary>
-    <form method="POST" action="/tradukoj/{{.TargetID}}">
-      <input type="hidden" name="target_type" value="{{.TargetType}}">
-      <label>
-        Lingvo:
-        <input type="text" name="language" placeholder="eo, en, de…" required>
-      </label>
-      <label>
-        Traduko:
-        <textarea name="text" rows="3" required></textarea>
+  <details class="add-translation">
+    <summary>{{if .MyLangTranslations}}+ Aldoni alian tradukon en {{$lang}}{{else}}+ Aldoni tradukon en {{$lang}}{{end}}</summary>
+    <form hx-post="/tradukoj/{{$contentID}}"
+          hx-target="#tradukoj-{{$contentID}}"
+          hx-swap="outerHTML">
+      <input type="hidden" name="language" value="{{$lang}}">
+      <label>Via traduko (<strong>{{$lang}}</strong>):
+        <textarea name="text" rows="2" required placeholder="Traduku ĉi tien…"></textarea>
       </label>
       <button type="submit">Sendi</button>
     </form>
   </details>
+  {{else}}
+  <p><small><a href="/enskribi">Ensalitu</a> por aldoni tradukon en {{$lang}}.</small></p>
   {{end}}
 </section>
+{{end}}
 {{end}}
