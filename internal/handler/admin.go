@@ -112,9 +112,17 @@ func (h *AdminHandler) NewContentForm(w http.ResponseWriter, r *http.Request) {
 }
 
 // CreateContent handles POST /admin/enhavo.
+// If the form contains item_question[] values (series mode), delegates to series creation.
+// Otherwise creates a single content item.
 func (h *AdminHandler) CreateContent(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	// Series mode: item_question[] present.
+	if questions := r.Form["item_question"]; len(questions) > 0 {
+		h.CreateSeries(w, r)
 		return
 	}
 
@@ -135,7 +143,7 @@ func (h *AdminHandler) CreateContent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, "/admin/enhavo", http.StatusSeeOther)
+	http.Redirect(w, r, "/admin/enhavo/"+item.Slug+"/redakti", http.StatusSeeOther)
 }
 
 // EditContentForm handles GET /admin/enhavo/{slug}/redakti.
@@ -180,7 +188,10 @@ func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	updated := buildContentItem(r, authorID)
-	updated.Slug = slug // keep original slug
+	newSlug := updated.Slug
+	if newSlug == "" {
+		newSlug = slug
+	}
 	updated.Rating = existing.Rating
 	updated.RD = existing.RD
 	updated.Volatility = existing.Volatility
@@ -188,12 +199,23 @@ func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 	updated.CreatedAt = existing.CreatedAt
 	updated.Version = existing.Version + 1
 
-	if err := h.content.Update(r.Context(), updated); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+	if newSlug != slug {
+		// Rename: create under new slug, delete old.
+		updated.Slug = newSlug
+		if err := h.content.Create(r.Context(), updated); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
+		_ = h.content.Delete(r.Context(), slug)
+	} else {
+		updated.Slug = slug
+		if err := h.content.Update(r.Context(), updated); err != nil {
+			http.Error(w, err.Error(), http.StatusInternalServerError)
+			return
+		}
 	}
 
-	http.Redirect(w, r, "/admin/enhavo", http.StatusSeeOther)
+	http.Redirect(w, r, "/admin/enhavo/"+newSlug+"/redakti", http.StatusSeeOther)
 }
 
 // VocabFromReading handles GET /admin/enhavo/{slug}/vortaro.
@@ -547,6 +569,94 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 		SeriesOrder: seriesOrder,
 		UpdatedAt:   time.Now(),
 	}
+}
+
+// CreateSeries handles series creation (called from CreateContent when item_question[] present).
+// Items come as parallel arrays: item_type[], item_question[], item_answer[].
+// Slugs are auto-generated as {series_slug}-01, -02, etc.
+func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	seriesSlug := strings.TrimSpace(r.FormValue("series_slug"))
+	if seriesSlug == "" {
+		http.Error(w, "Mankas serio-identigilo", http.StatusBadRequest)
+		return
+	}
+
+	tagsRaw := r.FormValue("tags")
+	var tags []string
+	for _, t := range strings.Split(tagsRaw, ",") {
+		t = strings.TrimSpace(t)
+		if t != "" {
+			tags = append(tags, t)
+		}
+	}
+	source := r.FormValue("source")
+	status := r.FormValue("status")
+	if status == "" {
+		status = "draft"
+	}
+
+	u := UserFromContext(r.Context())
+	authorID := ""
+	if u != nil {
+		authorID = u.ID
+	}
+
+	types := r.Form["item_type"]
+	questions := r.Form["item_question"]
+	answers := r.Form["item_answer"]
+
+	// Pad slices to the same length.
+	n := len(questions)
+	for len(types) < n {
+		types = append(types, "fillin")
+	}
+	for len(answers) < n {
+		answers = append(answers, "")
+	}
+
+	created := 0
+	order := 1
+	for i := 0; i < n; i++ {
+		q := strings.TrimSpace(questions[i])
+		if q == "" {
+			continue // skip blank rows
+		}
+		typ := strings.TrimSpace(types[i])
+		if typ == "" {
+			typ = "fillin"
+		}
+		slug := fmt.Sprintf("%s-%02d", seriesSlug, order)
+		item := &model.ContentItem{
+			Slug:        slug,
+			Type:        typ,
+			Tags:        tags,
+			Source:      source,
+			AuthorID:    authorID,
+			Status:      status,
+			Rating:      1500,
+			RD:          350,
+			Volatility:  0.06,
+			SeriesSlug:  seriesSlug,
+			SeriesOrder: order,
+			Content: map[string]interface{}{
+				"question": q,
+				"answer":   strings.TrimSpace(answers[i]),
+			},
+		}
+		if err := h.content.Create(r.Context(), item); err != nil {
+			http.Error(w, fmt.Sprintf("Eraro ĉe %s: %v", slug, err), http.StatusInternalServerError)
+			return
+		}
+		created++
+		order++
+	}
+
+	http.Redirect(w, r, fmt.Sprintf("/admin/enhavo?series=%s&created=%d", seriesSlug, created), http.StatusSeeOther)
 }
 
 // DeleteContent handles POST /admin/enhavo/{slug}/forigi.

@@ -239,28 +239,29 @@ async function addVocabDef(slug, lang, prefix) {
 // ---- Admin: Show/Hide Content Fields ----
 
 function showContentFields(type) {
-  // All toggleable field groups.
   const allFields = [
     'field-question',
     'field-answer',
+    'field-hint',
+    'field-image-url',
     'field-fillin',
     'field-options',
     'field-vocab',
     'field-reading',
     'field-audio',
     'field-video',
+    'field-title',
   ];
 
-  // Which fields are visible for each type.
   const fieldMap = {
-    multiplechoice: ['field-question', 'field-options'],
-    fillin:         ['field-question', 'field-fillin'],
-    listening:      ['field-question', 'field-answer', 'field-audio'],
-    vocab:          ['field-vocab'],
-    reading:        ['field-reading', 'field-question', 'field-answer'],
-    phrasebook:     ['field-question', 'field-answer'],
-    image:          ['field-question', 'field-answer'],
-    video:          ['field-question', 'field-answer', 'field-video'],
+    multiplechoice: ['field-question', 'field-options', 'field-hint'],
+    fillin:         ['field-question', 'field-fillin', 'field-hint'],
+    listening:      ['field-audio', 'field-question', 'field-answer', 'field-hint'],
+    vocab:          ['field-vocab', 'field-image-url'],
+    reading:        ['field-reading'],
+    phrasebook:     ['field-question', 'field-image-url'],
+    image:          ['field-image-url', 'field-question', 'field-answer', 'field-hint'],
+    video:          ['field-title', 'field-video'],
   };
 
   const visible = fieldMap[type] || ['field-question', 'field-answer'];

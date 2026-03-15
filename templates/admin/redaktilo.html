@@ -2,176 +2,325 @@
 {{template "base" .}}
 {{end}}
 
-{{define "title"}}{{if .IsNew}}Nova enhavo{{else}}Redakti enhavon{{end}} — Esperanto-kurso{{end}}
+{{define "title"}}{{if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
 <h1>{{if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
 
-<form method="POST" action="{{if .IsNew}}/admin/enhavo{{else}}/admin/enhavo/{{.Item.Slug}}{{end}}">
-  <div class="grid">
+<form method="POST" action="{{if .IsNew}}/admin/enhavo{{else}}/admin/enhavo/{{.Item.Slug}}{{end}}" id="content-form">
+
+  {{/* ══ SINGLE ITEM MODE ══ */}}
+  <div id="single-mode">
+    <div class="grid">
+      <label>
+        Identigilo (slug):
+        <input type="text" name="slug" id="slug-field" value="{{.Item.Slug}}"
+               placeholder="ekz-saluton-mondo"
+               pattern="[a-z0-9\-]+"
+               title="Nur minusklaj literoj, ciferoj kaj streketo">
+      </label>
+
+      <label>
+        Tipo:
+        <select name="type" id="type-select" onchange="showContentFields(this.value)" required>
+          <option value="">— Elektu tipon —</option>
+          <option value="multiplechoice" {{if eq .Item.Type "multiplechoice"}}selected{{end}}>Plurelekta</option>
+          <option value="fillin"         {{if eq .Item.Type "fillin"}}selected{{end}}>Plenigi blankon</option>
+          <option value="listening"      {{if eq .Item.Type "listening"}}selected{{end}}>Aŭskulti</option>
+          <option value="vocab"          {{if eq .Item.Type "vocab"}}selected{{end}}>Vortaro</option>
+          <option value="reading"        {{if eq .Item.Type "reading"}}selected{{end}}>Legado</option>
+          <option value="phrasebook"     {{if eq .Item.Type "phrasebook"}}selected{{end}}>Frazaro</option>
+          <option value="image"          {{if eq .Item.Type "image"}}selected{{end}}>Bildo</option>
+          <option value="video"          {{if eq .Item.Type "video"}}selected{{end}}>Video</option>
+        </select>
+      </label>
+    </div>
+
+    {{/* Type-specific content fields */}}
+    <div id="field-title" class="content-field" style="display:none">
+      <label>Titolo:
+        <input type="text" name="title" value="{{.Item.Title}}" placeholder="Titolo">
+      </label>
+    </div>
+
+    <div id="field-question" class="content-field" style="display:none">
+      <label>Demando:
+        <input type="text" name="question" value="{{.Item.Question}}" placeholder="La demando al la lernanto">
+      </label>
+    </div>
+
+    <div id="field-answer" class="content-field" style="display:none">
+      <label>Respondo:
+        <input type="text" name="answer" value="{{.Item.Answer}}" placeholder="La ĝusta respondo">
+      </label>
+    </div>
+
+    <div id="field-fillin" class="content-field" style="display:none">
+      <label>Respondoj por ĉiu blanko (unu per linio):
+        <textarea name="gap_answers" rows="3" placeholder="respondo1&#10;respondo2">{{range .Item.GapAnswers}}{{.}}
+{{end}}</textarea>
+      </label>
+      <small>Uzu <code>___</code> en la demando por marki blankojn.</small>
+    </div>
+
+    <div id="field-options" class="content-field" style="display:none">
+      <div class="grid">
+        <label>Ebloj (unu per linio):
+          <textarea name="options" rows="4" placeholder="Opcio A&#10;Opcio B&#10;Opcio C&#10;Opcio D">{{range .Item.Options}}{{.}}
+{{end}}</textarea>
+        </label>
+        <label>Ĝusta indekso (0-bazita):
+          <input type="number" name="correct_index" value="{{.Item.CorrectIndex}}" min="0" max="9">
+        </label>
+      </div>
+    </div>
+
+    <div id="field-vocab" class="content-field" style="display:none">
+      <label>Vorto:
+        <input type="text" name="word" value="{{.Item.Word}}" placeholder="La vorto">
+      </label>
+      <label>Difinoj (unu per linio: <code>en: definition</code>, <code>nl: definitie</code> …):
+        <textarea name="definitions" rows="5"
+                  placeholder="en: the definition&#10;nl: de definitie&#10;de: die Bedeutung&#10;fr: la définition&#10;es: la definición">{{range $k, $v := allDefs .Item.Content}}{{$k}}: {{$v}}
+{{end}}</textarea>
+      </label>
+      <label style="margin-top:0.5rem">Esperanta difino <small>(nedeviga)</small>:
+        <textarea name="definition" rows="2" placeholder="Difino en Esperanto…">{{.Item.Definition}}</textarea>
+      </label>
+    </div>
+
+    <div id="field-reading" class="content-field" style="display:none">
+      <label>Titolo:
+        <input type="text" name="title" value="{{.Item.Title}}" placeholder="Titolo de la teksto">
+      </label>
+      <label>Teksto:
+        <textarea name="text" rows="8" placeholder="La legoteksto">{{.Item.Text}}</textarea>
+      </label>
+    </div>
+
+    <div id="field-audio" class="content-field" style="display:none">
+      <label>Aŭdio-URL:
+        <input type="url" name="audio_url" value="{{.Item.AudioURL}}" placeholder="https://…/audio.mp3">
+      </label>
+    </div>
+
+    <div id="field-video" class="content-field" style="display:none">
+      <label>Video-URL:
+        <input type="url" name="video_url" value="{{.Item.VideoURL}}" placeholder="https://youtube.com/embed/…">
+      </label>
+    </div>
+
+    <div id="field-hint" class="content-field" style="display:none">
+      <label>Indiko <small>(nedeviga)</small>:
+        <input type="text" name="hint" value="{{.Item.Hint}}" placeholder="Helpeta indiko">
+      </label>
+    </div>
+
+    <div id="field-image-url" class="content-field" style="display:none">
+      <label>Bildo-URL <small>(nedeviga)</small>:
+        <input type="url" name="image_url" value="{{.Item.ImageURL}}" placeholder="https://…/image.jpg">
+      </label>
+    </div>
+  </div>
+
+  {{/* ══ SERIES MODE ══ */}}
+  <div id="series-mode" style="display:none">
+    <style>
+    .series-item {
+      display: grid;
+      grid-template-columns: 2rem 9rem 1fr 1fr auto;
+      gap: 0.4rem;
+      align-items: center;
+      margin-bottom: 0.4rem;
+    }
+    .series-item input, .series-item select { margin-bottom: 0; }
+    .series-item .item-num { text-align:right; color:var(--pico-muted-color); font-size:0.85rem; }
+    .series-header {
+      display: grid;
+      grid-template-columns: 2rem 9rem 1fr 1fr auto;
+      gap: 0.4rem;
+      font-size: 0.8rem; color: var(--pico-muted-color); font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    </style>
+
     <label>
-      Identigilo (slug):
-      <input type="text" name="slug" value="{{.Item.Slug}}"
-             {{if not .IsNew}}readonly{{end}}
-             placeholder="ekz-saluton-mondo" required
-             pattern="[a-z0-9\-]+"
+      Serio-identigilo:
+      <input type="text" name="series_slug" id="series_slug_field"
+             pattern="[a-z0-9\-]+" placeholder="ekz. zagr-lekcio-1"
              title="Nur minusklaj literoj, ciferoj kaj streketo">
+      <small>Slugoj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
+    </label>
+
+    <div class="series-header">
+      <span></span><span>Tipo</span><span>Demando / teksto</span><span>Respondo <small>(nedeviga)</small></span><span></span>
+    </div>
+    <div id="series-items-list"></div>
+    <button type="button" onclick="seriesAddItem()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni</button>
+  </div>
+
+  {{/* ══ Common metadata ══ */}}
+  <hr style="margin-top:1rem">
+
+  <div class="grid">
+    <label>Defaŭlta tipo <small id="default-type-label" style="display:none">(por serio)</small>:
+      <select name="default_type" id="default_type_select" onchange="syncDefaultType(this.value)" style="display:none">
+        <option value="fillin">Plenigi blankon</option>
+        <option value="multiplechoice">Plurelekta</option>
+        <option value="reading">Legado</option>
+        <option value="vocab">Vortaro</option>
+        <option value="phrasebook">Frazaro</option>
+        <option value="image">Bildo</option>
+        <option value="listening">Aŭskulti</option>
+        <option value="video">Video</option>
+      </select>
+    </label>
+
+    <label>Etikedoj (dividitaj per komo):
+      <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
+    </label>
+  </div>
+
+  <div class="grid">
+    <label>Fonto:
+      <input type="text" name="source" value="{{.Item.Source}}" placeholder="Libro, TTT-ejo, ktp.">
     </label>
 
     <label>
-      Tipo:
-      <select name="type" id="type-select" onchange="showContentFields(this.value)" required>
-        <option value="">— Elektu tipon —</option>
-        <option value="multiplechoice" {{if eq .Item.Type "multiplechoice"}}selected{{end}}>Plurelekta</option>
-        <option value="fillin" {{if eq .Item.Type "fillin"}}selected{{end}}>Plenigi blankon</option>
-        <option value="listening" {{if eq .Item.Type "listening"}}selected{{end}}>Aŭskulti</option>
-        <option value="vocab" {{if eq .Item.Type "vocab"}}selected{{end}}>Vortaro</option>
-        <option value="reading" {{if eq .Item.Type "reading"}}selected{{end}}>Legado</option>
-        <option value="phrasebook" {{if eq .Item.Type "phrasebook"}}selected{{end}}>Frazaro</option>
-        <option value="image" {{if eq .Item.Type "image"}}selected{{end}}>Bildo</option>
-        <option value="video" {{if eq .Item.Type "video"}}selected{{end}}>Video</option>
+      Stato:
+      <select name="status">
+        <option value="draft"    {{if eq .Item.Status "draft"}}selected{{end}}>Malneto</option>
+        <option value="pending"  {{if eq .Item.Status "pending"}}selected{{end}}>Atendanta</option>
+        <option value="approved" {{if eq .Item.Status "approved"}}selected{{end}}>Aprobita</option>
+        <option value="rejected" {{if eq .Item.Status "rejected"}}selected{{end}}>Malakceptita</option>
       </select>
     </label>
   </div>
 
-  <!-- Common fields -->
-  <div id="field-question" class="content-field">
-    <label>
-      Demando:
-      <input type="text" name="question" value="{{.Item.Question}}" placeholder="La demando al la lernanto">
-    </label>
+  {{/* Series fields only shown when not in series-mode (single item can still be part of a series) */}}
+  <div id="single-series-fields">
+    <div class="grid">
+      <label>Serio (nedeviga):
+        <input type="text" name="series_slug" value="{{.Item.SeriesSlug}}" placeholder="ekz. zagreba-metodo-1">
+      </label>
+      <label>Ordo en serio:
+        <input type="number" name="series_order" value="{{.Item.SeriesOrder}}" min="0">
+      </label>
+    </div>
   </div>
 
-  <div id="field-answer" class="content-field">
-    <label>
-      Respondo:
-      <input type="text" name="answer" value="{{.Item.Answer}}" placeholder="La ĝusta respondo">
-    </label>
-  </div>
-
-  <!-- Fill-in: one answer per gap (one per line) -->
-  <div id="field-fillin" class="content-field" style="display:none">
-    <label>
-      Respondoj por ĉiu blanko (unu per linio, en ordo):
-      <textarea name="gap_answers" rows="4" placeholder="respondo1&#10;respondo2&#10;respondo3">{{range .Item.GapAnswers}}{{.}}
-{{end}}</textarea>
-    </label>
-    <small>Uzu <code>___</code> en la demando por marki ĉiun blankon. Unu linio = unu blanko.</small>
-  </div>
-
-  <!-- Multiple choice options -->
-  <div id="field-options" class="content-field" style="display:none">
-    <label>
-      Ebloj (unu per linio):
-      <textarea name="options" rows="4" placeholder="Opcio A&#10;Opcio B&#10;Opcio C&#10;Opcio D">{{range .Item.Options}}{{.}}
-{{end}}</textarea>
-    </label>
-    <label>
-      Ĝusta indekso (0-bazita):
-      <input type="number" name="correct_index" value="{{.Item.CorrectIndex}}" min="0" max="9">
-    </label>
-  </div>
-
-  <!-- Vocab fields -->
-  <div id="field-vocab" class="content-field" style="display:none">
-    <label>
-      Vorto:
-      <input type="text" name="word" value="{{.Item.Word}}" placeholder="La vorto">
-    </label>
-    <label>
-      Difinoj (unu per linio: <code>en: definition</code>, <code>nl: definitie</code>, <code>pt: definição</code> …):
-      <textarea name="definitions" rows="6"
-                placeholder="en: the definition&#10;nl: de definitie&#10;de: die Bedeutung&#10;fr: la définition&#10;es: la definición&#10;pt: a definição">{{range $k, $v := allDefs .Item.Content}}{{$k}}: {{$v}}
-{{end}}</textarea>
-    </label>
-    <small>Ĉiu lingvo en sia linio. Uzu ISO 639-1 lingvokodojn (en, nl, de, fr, es, pt, ru, zh, ja…).</small>
-    <label style="margin-top:0.75rem">
-      Esperanta difino <small>(nedeviga — aŭtomate alportata el Komputeko/Reta Vortaro se malplena)</small>:
-      <textarea name="definition" rows="2" placeholder="Difino en Esperanto…">{{.Item.Definition}}</textarea>
-    </label>
-  </div>
-
-  <!-- Reading fields -->
-  <div id="field-reading" class="content-field" style="display:none">
-    <label>
-      Titolo:
-      <input type="text" name="title" value="{{.Item.Title}}" placeholder="Titolo de la teksto">
-    </label>
-    <label>
-      Teksto:
-      <textarea name="text" rows="6" placeholder="La legoteksto">{{.Item.Text}}</textarea>
-    </label>
-  </div>
-
-  <!-- Listening/audio -->
-  <div id="field-audio" class="content-field" style="display:none">
-    <label>
-      Aŭdio-URL:
-      <input type="url" name="audio_url" value="{{.Item.AudioURL}}" placeholder="https://…/audio.mp3">
-    </label>
-  </div>
-
-  <!-- Video -->
-  <div id="field-video" class="content-field" style="display:none">
-    <label>
-      Video-URL:
-      <input type="url" name="video_url" value="{{.Item.VideoURL}}" placeholder="https://youtube.com/watch?v=…">
-    </label>
-  </div>
-
-  <label>
-    Indiko (nedeviga):
-    <input type="text" name="hint" value="{{.Item.Hint}}" placeholder="Helpeta indiko">
-  </label>
-
-  <label>
-    Bildo-URL (nedeviga):
-    <input type="url" name="image_url" value="{{.Item.ImageURL}}" placeholder="https://…/image.jpg">
-  </label>
-
-  <div class="grid">
-    <label>
-      Etikedoj (dividitaj per komo):
-      <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
-    </label>
-
-    <label>
-      Fonto:
-      <input type="text" name="source" value="{{.Item.Source}}" placeholder="Libro, TTT-ejo, ktp.">
-    </label>
-  </div>
-
-  <div class="grid">
-    <label>
-      Serio (nedeviga):
-      <input type="text" name="series_slug" value="{{.Item.SeriesSlug}}" placeholder="ekz. zagreba-metodo-1">
-    </label>
-    <label>
-      Ordo en serio:
-      <input type="number" name="series_order" value="{{.Item.SeriesOrder}}" min="0">
-    </label>
-  </div>
-
-  <label>
-    Stato:
-    <select name="status">
-      <option value="draft" {{if eq .Item.Status "draft"}}selected{{end}}>Malneto</option>
-      <option value="pending" {{if eq .Item.Status "pending"}}selected{{end}}>Atendanta</option>
-      <option value="approved" {{if eq .Item.Status "approved"}}selected{{end}}>Aprobita</option>
-      <option value="rejected" {{if eq .Item.Status "rejected"}}selected{{end}}>Malakceptita</option>
-    </select>
-  </label>
-
-  <div class="form-actions">
-    <button type="submit">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
+  <div class="form-actions" style="display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem">
+    <button type="submit" id="submit-btn">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
     <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
     {{if and (not .IsNew) (eq .Item.Type "reading")}}
     <a href="/admin/enhavo/{{.Item.Slug}}/vortaro" role="button" class="outline">Krei vortaron</a>
+    {{end}}
+    {{if .IsNew}}
+    <button type="button" id="series-toggle-btn" onclick="toggleSeriesMode()"
+            class="outline secondary" style="margin-left:auto">
+      &#128196; Aldoni kiel serion
+    </button>
+    {{end}}
+    {{if not .IsNew}}
+    <form method="POST" action="/admin/enhavo/{{.Item.Slug}}/forigi" style="display:inline;margin-left:auto"
+          onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Item.Slug}}»?')">
+      <button type="submit" class="outline contrast">&#10007; Forigi</button>
+    </form>
     {{end}}
   </div>
 </form>
 
 <script>
+var _seriesMode = false;
+
+function toggleSeriesMode() {
+  _seriesMode = !_seriesMode;
+  document.getElementById('single-mode').style.display = _seriesMode ? 'none' : '';
+  document.getElementById('series-mode').style.display = _seriesMode ? '' : 'none';
+  document.getElementById('single-series-fields').style.display = _seriesMode ? 'none' : '';
+  document.getElementById('default-type-label').style.display = _seriesMode ? '' : 'none';
+  document.getElementById('default_type_select').style.display = _seriesMode ? '' : 'none';
+
+  var btn = document.getElementById('series-toggle-btn');
+  var submitBtn = document.getElementById('submit-btn');
+  if (_seriesMode) {
+    btn.textContent = '✕ Reen al unu ekzerco';
+    submitBtn.textContent = 'Krei serion';
+    // Make slug field not required in series mode
+    var slugField = document.getElementById('slug-field');
+    if (slugField) slugField.removeAttribute('required');
+    // Ensure type-select not required in series mode
+    document.getElementById('type-select').removeAttribute('required');
+    // Add initial rows if empty
+    if (document.getElementById('series-items-list').children.length === 0) {
+      seriesAddItem(); seriesAddItem(); seriesAddItem();
+    }
+  } else {
+    btn.textContent = '📄 Aldoni kiel serion';
+    submitBtn.textContent = 'Krei';
+    var slugField = document.getElementById('slug-field');
+    if (slugField) slugField.setAttribute('required', '');
+    document.getElementById('type-select').setAttribute('required', '');
+  }
+}
+
+const SERIES_TYPES = [
+  ['fillin','Plenigi blankon'],['multiplechoice','Plurelekta'],['reading','Legado'],
+  ['vocab','Vortaro'],['phrasebook','Frazaro'],['image','Bildo'],['listening','Aŭskulti'],['video','Video'],
+];
+
+function seriesTypeOptions(selected) {
+  return SERIES_TYPES.map(([v,l]) =>
+    '<option value="'+v+'"'+(v===selected?' selected':'')+'>'+l+'</option>'
+  ).join('');
+}
+
+function syncDefaultType(val) {
+  document.querySelectorAll('#series-items-list select[name="item_type"]').forEach(function(sel) {
+    if (!sel.dataset.userChanged) sel.value = val;
+  });
+}
+
+function seriesAddItem(q, a, typ) {
+  var list = document.getElementById('series-items-list');
+  var idx = list.children.length;
+  var defType = typ || document.getElementById('default_type_select').value || 'fillin';
+  var row = document.createElement('div');
+  row.className = 'series-item';
+  row.innerHTML =
+    '<span class="item-num">'+(idx+1)+'.</span>'+
+    '<select name="item_type" onchange="this.dataset.userChanged=1">'+seriesTypeOptions(defType)+'</select>'+
+    '<input type="text" name="item_question" value="'+(q?escHtml(q):'')+'" placeholder="Demando / teksto">'+
+    '<input type="text" name="item_answer"   value="'+(a?escHtml(a):'')+'" placeholder="Respondo (nedeviga)">'+
+    '<button type="button" class="outline contrast" style="padding:0.2em 0.5em" onclick="seriesRemoveItem(this)" title="Forigi">✕</button>';
+  list.appendChild(row);
+  seriesRenumber();
+}
+
+function seriesRemoveItem(btn) {
+  btn.closest('.series-item').remove();
+  seriesRenumber();
+}
+
+function seriesRenumber() {
+  document.querySelectorAll('#series-items-list .item-num').forEach(function(el, i) {
+    el.textContent = (i+1)+'.';
+  });
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Update slug preview from series slug input
+var seriesSlugField = document.getElementById('series_slug_field');
+if (seriesSlugField) {
+  seriesSlugField.addEventListener('input', function() {
+    document.getElementById('slug-preview').textContent = (this.value||'{serio}')+'-01';
+  });
+}
+
+// Init type fields on load
 document.addEventListener('DOMContentLoaded', function() {
   var sel = document.getElementById('type-select');
   if (sel && sel.value) showContentFields(sel.value);
