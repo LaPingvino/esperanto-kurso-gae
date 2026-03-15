@@ -386,7 +386,23 @@ func templateFuncs() template.FuncMap {
 						def = v
 					}
 				}
-				lookup[word] = vocabEntry{slug: item.Slug, def: def}
+				entry := vocabEntry{slug: item.Slug, def: def}
+				lookup[word] = entry
+				// If the word is a root (ends in consonant, not a vowel), also
+				// register the common grammatical forms so that full words in
+				// texts (akvo, amiko, bela…) match the zagr root entries.
+				lastRune := []rune(word)
+				if len(lastRune) > 0 {
+					last := lastRune[len(lastRune)-1]
+					if last != 'o' && last != 'i' && last != 'a' && last != 'e' && last != 'ŭ' {
+						for _, ending := range []string{"o", "i", "a", "e"} {
+							form := word + ending
+							if _, exists := lookup[form]; !exists {
+								lookup[form] = entry
+							}
+						}
+					}
+				}
 			}
 
 			// Tokenize text preserving whitespace and punctuation.

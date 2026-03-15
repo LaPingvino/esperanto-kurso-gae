@@ -241,7 +241,19 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	var vocabItems []*model.ContentItem
 	if item.Type == "reading" {
 		vocabTag = item.Slug
-		vocabItems, _ = h.content.ListByTag(r.Context(), item.Slug, 500)
+		// Combine reading-specific vocab (tagged with slug) and global zagr roots.
+		specific, _ := h.content.ListByTag(r.Context(), item.Slug, 500)
+		zagr, _ := h.content.ListByTag(r.Context(), "zagr", 700)
+		seen := make(map[string]bool)
+		for _, v := range specific {
+			seen[v.Slug] = true
+			vocabItems = append(vocabItems, v)
+		}
+		for _, v := range zagr {
+			if !seen[v.Slug] {
+				vocabItems = append(vocabItems, v)
+			}
+		}
 	}
 
 	vocabModo := r.URL.Query().Get("modo")
