@@ -30,7 +30,7 @@
         {{else}}
         <span class="vote-score">{{.VoteScore}}</span>
         {{end}}
-        <small>&mdash; {{t $uiLang "translate.author_label"}} <code>{{truncate .AuthorID 8}}</code></small>
+        <small>&mdash; {{t $uiLang "translate.author_label"}} {{if .AuthorUsername}}<strong>@{{.AuthorUsername}}</strong>{{else}}<code>{{truncate .AuthorID 8}}</code>{{end}}</small>
       </footer>
     </article>
     {{end}}
@@ -61,7 +61,7 @@
       <div class="dolt-suggestions">
         {{range .DoltSuggestions}}
         <button type="button" class="outline secondary dolt-suggestion-btn"
-                onclick="this.closest('form').querySelector('textarea').value='{{.}}'">{{.}}</button>
+                onclick="this.closest('form').querySelector('textarea').value='{{.Text}}'">{{.Text}} <small class="def-source">— {{.Source}}</small></button>
         {{end}}
       </div>
       {{end}}

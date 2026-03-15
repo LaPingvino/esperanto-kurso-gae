@@ -242,10 +242,11 @@ func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request
 	}
 
 	t := &model.Translation{
-		TargetID: contentID,
-		Language: lang,
-		Text:     text,
-		AuthorID: u.ID,
+		TargetID:       contentID,
+		Language:       lang,
+		Text:           text,
+		AuthorID:       u.ID,
+		AuthorUsername: u.DisplayName(),
 	}
 	if err := h.translations.Create(r.Context(), t); err != nil {
 		http.Error(w, "Ne eblis konservi tradukon", http.StatusInternalServerError)

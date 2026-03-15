@@ -31,13 +31,19 @@ type apiResponse struct {
 	Rows []map[string]json.RawMessage `json:"rows"`
 }
 
+// Suggestion is a single translation suggestion with its source.
+type Suggestion struct {
+	Text   string
+	Source string // "Komputeko" or "Reta Vortaro"
+}
+
 // VocabResult holds the result of a single DoltHub vocab lookup.
 type VocabResult struct {
-	// Suggestions are translation strings in the requested user language.
-	Suggestions []string
+	// Suggestions are translation suggestions in the requested user language.
+	Suggestions []Suggestion
 	// EoDefinition is the Esperanto-language definition of the word.
 	EoDefinition string
-	// Source is the human-readable source name ("Komputeko" or "Reta Vortaro").
+	// Source is the source of the Esperanto definition.
 	Source string
 }
 
@@ -95,7 +101,11 @@ func LookupVocab(word, userLang string) (*VocabResult, error) {
 			out.EoDefinition = traduko
 			out.Source = "Reta Vortaro"
 		} else if lingvo == dbLang && len(out.Suggestions) < 5 {
-			out.Suggestions = append(out.Suggestions, traduko)
+			sourceName := fonto
+			if name, ok := sourceNames[fonto]; ok {
+				sourceName = name
+			}
+			out.Suggestions = append(out.Suggestions, Suggestion{Text: traduko, Source: sourceName})
 		}
 	}
 
