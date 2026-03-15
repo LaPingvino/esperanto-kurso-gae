@@ -54,18 +54,16 @@
       {{end}}
       {{if .NextInSeries}}
       <li><a href="/ekzerco/{{.NextInSeries.Slug}}" role="button" class="series-next">&#128196; {{t .UILang "result.next_in_series"}}</a></li>
-      {{else if .NextSlug}}
-      <li><a href="/ekzerco/{{.NextSlug}}" role="button">{{t .UILang "result.next_level"}}</a></li>
-      {{else}}
+      {{end}}
+      {{if .NextSlug}}
+      <li><a href="/ekzerco/{{.NextSlug}}" role="button" {{if .NextInSeries}}class="outline"{{end}}>{{t .UILang "result.next_level"}}</a></li>
+      {{else if not .NextInSeries}}
       <li><a href="/" role="button">{{t .UILang "result.back_home"}}</a></li>
       {{end}}
       {{if .HarderSlug}}
       <li><a href="/ekzerco/{{.HarderSlug}}" role="button" class="outline">&#8593; {{t .UILang "result.harder"}}</a></li>
       {{end}}
     </ul>
-    {{if .NextInSeries}}{{if .NextSlug}}
-    <p><small><a href="/ekzerco/{{.NextSlug}}">{{t .UILang "result.next_level"}}</a></small></p>
-    {{end}}{{end}}
   </nav>
 </div>
 {{end}}
