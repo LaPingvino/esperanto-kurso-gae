@@ -335,6 +335,17 @@ func (h *AdminHandler) CreateVocabFromReading(w http.ResponseWriter, r *http.Req
 	words := r.Form["word"]
 	created := 0
 	skipped := 0
+	// Auto-vocab items form a series named "voc-auto-{reading-slug}" parented to the reading.
+	vocSeriesSlug := "voc-auto-" + slug
+	vocSeriesLabel := "Vortaro: " + item.Title()
+	if vocSeriesLabel == "Vortaro: " {
+		vocSeriesLabel = "Vortaro de " + slug
+	}
+	order := 1
+	// Start order after any existing items in this series.
+	if existing, _ := h.content.ListBySeriesForAdmin(r.Context(), vocSeriesSlug); len(existing) > 0 {
+		order = existing[len(existing)-1].SeriesOrder + 1
+	}
 	for _, word := range words {
 		word = strings.TrimSpace(word)
 		if word == "" {
@@ -357,18 +368,23 @@ func (h *AdminHandler) CreateVocabFromReading(w http.ResponseWriter, r *http.Req
 			}
 		}
 		voc := &model.ContentItem{
-			Slug:     vocSlug,
-			Type:     "vocab",
-			Content:  map[string]interface{}{"word": word},
-			Tags:     uniqueTags,
-			Source:   item.Source,
-			AuthorID: authorID,
-			Status:   "approved",
-			Rating:   item.Rating,
-			RD:       200,
+			Slug:         vocSlug,
+			Type:         "vocab",
+			Content:      map[string]interface{}{"word": word},
+			Tags:         uniqueTags,
+			Source:       item.Source,
+			AuthorID:     authorID,
+			Status:       "approved",
+			Rating:       item.Rating,
+			RD:           200,
+			SeriesSlug:   vocSeriesSlug,
+			SeriesOrder:  order,
+			SeriesLabel:  vocSeriesLabel,
+			SeriesParent: slug,
 		}
 		if err := h.content.Create(r.Context(), voc); err == nil {
 			created++
+			order++
 		}
 	}
 
