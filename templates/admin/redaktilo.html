@@ -126,23 +126,16 @@
   {{/* ══ SERIES MODE ══ */}}
   <div id="series-mode" style="display:none">
     <style>
-    .series-item {
-      display: grid;
-      grid-template-columns: 2rem 9rem 1fr 1fr auto;
-      gap: 0.4rem;
-      align-items: center;
-      margin-bottom: 0.4rem;
-    }
-    .series-item input, .series-item select { margin-bottom: 0; }
-    .series-item .item-num { text-align:right; color:var(--pico-muted-color); font-size:0.85rem; }
-    .series-header {
-      display: grid;
-      grid-template-columns: 2rem 9rem 1fr 1fr auto;
-      gap: 0.4rem;
-      font-size: 0.8rem; color: var(--pico-muted-color); font-weight: bold;
-      margin-bottom: 0.25rem;
-    }
+    .sc-header { display:flex; gap:0.5rem; align-items:center; margin-bottom:0.4rem; }
+    .sc-header .item-num { font-weight:bold; color:var(--pico-muted-color); min-width:1.5rem; }
+    .sc-header select { flex:0 0 11rem; margin-bottom:0; }
+    .sc-header button { margin-bottom:0; }
+    .series-card { border:1px solid var(--pico-muted-border-color); border-radius:6px; padding:0.75rem; margin-bottom:0.6rem; }
+    .sc-body label { margin-bottom:0.4rem; }
+    .sc-body textarea { min-height:4rem; }
     </style>
+
+    <input type="hidden" id="item_count" name="item_count" value="0">
 
     <label>
       Serio-identigilo:
@@ -152,19 +145,16 @@
       <small>Slugoj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
     </label>
 
-    <div class="series-header">
-      <span></span><span>Tipo</span><span>Demando / teksto</span><span>Respondo <small>(nedeviga)</small></span><span></span>
-    </div>
     <div id="series-items-list"></div>
-    <button type="button" onclick="seriesAddItem()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni</button>
+    <button type="button" onclick="siAdd()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni ekzercon</button>
   </div>
 
   {{/* ══ Common metadata ══ */}}
   <hr style="margin-top:1rem">
 
   <div class="grid">
-    <label>Defaŭlta tipo <small id="default-type-label" style="display:none">(por serio)</small>:
-      <select name="default_type" id="default_type_select" onchange="syncDefaultType(this.value)" style="display:none">
+    <label id="default-type-wrap" style="display:none">Defaŭlta tipo <small>(por serio)</small>:
+      <select name="default_type" id="default_type_select" onchange="syncDefaultType(this.value)">
         <option value="fillin">Plenigi blankon</option>
         <option value="multiplechoice">Plurelekta</option>
         <option value="reading">Legado</option>
@@ -231,96 +221,168 @@
 </form>
 
 <script>
+// ── Single-item mode ──────────────────────────────────────────────
 var _seriesMode = false;
 
 function toggleSeriesMode() {
   _seriesMode = !_seriesMode;
-  document.getElementById('single-mode').style.display = _seriesMode ? 'none' : '';
-  document.getElementById('series-mode').style.display = _seriesMode ? '' : 'none';
+  document.getElementById('single-mode').style.display        = _seriesMode ? 'none' : '';
+  document.getElementById('series-mode').style.display        = _seriesMode ? '' : 'none';
   document.getElementById('single-series-fields').style.display = _seriesMode ? 'none' : '';
-  document.getElementById('default-type-label').style.display = _seriesMode ? '' : 'none';
-  document.getElementById('default_type_select').style.display = _seriesMode ? '' : 'none';
+  document.getElementById('default-type-wrap').style.display  = _seriesMode ? '' : 'none';
 
-  var btn = document.getElementById('series-toggle-btn');
+  var btn       = document.getElementById('series-toggle-btn');
   var submitBtn = document.getElementById('submit-btn');
+  var slugField = document.getElementById('slug-field');
+  var typeSelect= document.getElementById('type-select');
+
   if (_seriesMode) {
     btn.textContent = '✕ Reen al unu ekzerco';
     submitBtn.textContent = 'Krei serion';
-    // Make slug field not required in series mode
-    var slugField = document.getElementById('slug-field');
-    if (slugField) slugField.removeAttribute('required');
-    // Ensure type-select not required in series mode
-    document.getElementById('type-select').removeAttribute('required');
-    // Add initial rows if empty
+    if (slugField)  slugField.removeAttribute('required');
+    if (typeSelect) typeSelect.removeAttribute('required');
     if (document.getElementById('series-items-list').children.length === 0) {
-      seriesAddItem(); seriesAddItem(); seriesAddItem();
+      siAdd(); siAdd(); siAdd();
     }
   } else {
     btn.textContent = '📄 Aldoni kiel serion';
     submitBtn.textContent = 'Krei';
-    var slugField = document.getElementById('slug-field');
-    if (slugField) slugField.setAttribute('required', '');
-    document.getElementById('type-select').setAttribute('required', '');
+    if (slugField)  slugField.setAttribute('required', '');
+    if (typeSelect) typeSelect.setAttribute('required', '');
   }
 }
 
-const SERIES_TYPES = [
-  ['fillin','Plenigi blankon'],['multiplechoice','Plurelekta'],['reading','Legado'],
-  ['vocab','Vortaro'],['phrasebook','Frazaro'],['image','Bildo'],['listening','Aŭskulti'],['video','Video'],
-];
-
-function seriesTypeOptions(selected) {
-  return SERIES_TYPES.map(([v,l]) =>
-    '<option value="'+v+'"'+(v===selected?' selected':'')+'>'+l+'</option>'
-  ).join('');
-}
-
 function syncDefaultType(val) {
-  document.querySelectorAll('#series-items-list select[name="item_type"]').forEach(function(sel) {
-    if (!sel.dataset.userChanged) sel.value = val;
+  document.querySelectorAll('#series-items-list .sc-type').forEach(function(sel) {
+    if (!sel.dataset.userChanged) { sel.value = val; siTypeChange(sel); }
   });
 }
 
-function seriesAddItem(q, a, typ) {
+// ── Series item cards ─────────────────────────────────────────────
+const SI_TYPES = [
+  ['fillin','Plenigi blankon'],['multiplechoice','Plurelekta'],
+  ['reading','Legado'],['vocab','Vortaro'],['phrasebook','Frazaro'],
+  ['image','Bildo'],['listening','Aŭskulti'],['video','Video'],
+];
+
+const SI_FIELD_MAP = {
+  multiplechoice: ['sc-question','sc-options','sc-hint'],
+  fillin:         ['sc-question','sc-fillin','sc-hint'],
+  listening:      ['sc-audio','sc-question','sc-answer','sc-hint'],
+  vocab:          ['sc-vocab','sc-image-url'],
+  reading:        ['sc-reading'],
+  phrasebook:     ['sc-question','sc-image-url'],
+  image:          ['sc-image-url','sc-question','sc-answer','sc-hint'],
+  video:          ['sc-title','sc-video'],
+};
+
+function siTypeOptions(sel) {
+  return SI_TYPES.map(function(t) {
+    return '<option value="'+t[0]+'"'+(t[0]===sel?' selected':'')+'>'+t[1]+'</option>';
+  }).join('');
+}
+
+function esc(s) {
+  return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function siCardHTML(idx, typ) {
+  var p = 'item_'+idx+'_';
+  return '<div class="series-card">'
+    +'<div class="sc-header">'
+    +'<span class="item-num">'+(idx+1)+'.</span>'
+    +'<select name="'+p+'type" class="sc-type" onchange="this.dataset.userChanged=1;siTypeChange(this)">'+siTypeOptions(typ)+'</select>'
+    +'<button type="button" class="outline contrast" style="padding:0.2em 0.5em;margin-left:auto" onclick="siRemove(this)" title="Forigi">✕</button>'
+    +'</div>'
+    +'<div class="sc-body">'
+    // Title (video)
+    +'<div class="sc-f sc-title" style="display:none"><label>Titolo:<input type="text" name="'+p+'title" placeholder="Titolo"></label></div>'
+    // Question
+    +'<div class="sc-f sc-question" style="display:none"><label>Demando:<input type="text" name="'+p+'question" placeholder="Demando / frazo"></label></div>'
+    // Answer
+    +'<div class="sc-f sc-answer" style="display:none"><label>Respondo:<input type="text" name="'+p+'answer" placeholder="Ĝusta respondo"></label></div>'
+    // Fill-in
+    +'<div class="sc-f sc-fillin" style="display:none">'
+    +'<label>Respondoj por blankojn (unu per linio):<textarea name="'+p+'gap_answers" rows="2" placeholder="respondo1&#10;respondo2"></textarea></label>'
+    +'<small>Uzu <code>___</code> en la demando.</small></div>'
+    // Multiple choice
+    +'<div class="sc-f sc-options" style="display:none">'
+    +'<div style="display:grid;grid-template-columns:1fr 5rem;gap:0.5rem">'
+    +'<label>Ebloj (unu per linio):<textarea name="'+p+'options" rows="4" placeholder="Opcio A&#10;Opcio B&#10;Opcio C&#10;Opcio D"></textarea></label>'
+    +'<label>Ĝusta (0-baz.):<input type="number" name="'+p+'correct_index" value="0" min="0" max="9"></label>'
+    +'</div></div>'
+    // Vocab
+    +'<div class="sc-f sc-vocab" style="display:none">'
+    +'<label>Vorto:<input type="text" name="'+p+'word" placeholder="vorto"></label>'
+    +'<label>Difinoj (<code>en: text</code>, unu per linio):<textarea name="'+p+'definitions" rows="3" placeholder="en: the word&#10;nl: het woord"></textarea></label>'
+    +'<label>Esperanta difino (nedeviga):<textarea name="'+p+'definition" rows="2" placeholder="Difino en Esperanto…"></textarea></label>'
+    +'</div>'
+    // Reading
+    +'<div class="sc-f sc-reading" style="display:none">'
+    +'<label>Titolo:<input type="text" name="'+p+'title" placeholder="Titolo de la teksto"></label>'
+    +'<label>Teksto:<textarea name="'+p+'text" rows="6" placeholder="La legoteksto…"></textarea></label>'
+    +'</div>'
+    // Audio
+    +'<div class="sc-f sc-audio" style="display:none"><label>Aŭdio-URL:<input type="url" name="'+p+'audio_url" placeholder="https://…/audio.mp3"></label></div>'
+    // Video
+    +'<div class="sc-f sc-video" style="display:none"><label>Video-URL:<input type="url" name="'+p+'video_url" placeholder="https://youtube.com/embed/…"></label></div>'
+    // Hint
+    +'<div class="sc-f sc-hint" style="display:none"><label>Indiko (nedeviga):<input type="text" name="'+p+'hint" placeholder="Helpeta indiko"></label></div>'
+    // Image URL
+    +'<div class="sc-f sc-image-url" style="display:none"><label>Bildo-URL (nedeviga):<input type="url" name="'+p+'image_url" placeholder="https://…/image.jpg"></label></div>'
+    +'</div>'// sc-body
+    +'</div>';// series-card
+}
+
+function siTypeChange(sel) {
+  var card    = sel.closest('.series-card');
+  var typ     = sel.value;
+  var visible = SI_FIELD_MAP[typ] || ['sc-question','sc-answer'];
+  card.querySelectorAll('.sc-f').forEach(function(f) {
+    var show = Array.from(f.classList).some(function(c){ return visible.indexOf(c) >= 0; });
+    f.style.display = show ? '' : 'none';
+  });
+}
+
+function siAdd(typ) {
   var list = document.getElementById('series-items-list');
-  var idx = list.children.length;
-  var defType = typ || document.getElementById('default_type_select').value || 'fillin';
-  var row = document.createElement('div');
-  row.className = 'series-item';
-  row.innerHTML =
-    '<span class="item-num">'+(idx+1)+'.</span>'+
-    '<select name="item_type" onchange="this.dataset.userChanged=1">'+seriesTypeOptions(defType)+'</select>'+
-    '<input type="text" name="item_question" value="'+(q?escHtml(q):'')+'" placeholder="Demando / teksto">'+
-    '<input type="text" name="item_answer"   value="'+(a?escHtml(a):'')+'" placeholder="Respondo (nedeviga)">'+
-    '<button type="button" class="outline contrast" style="padding:0.2em 0.5em" onclick="seriesRemoveItem(this)" title="Forigi">✕</button>';
-  list.appendChild(row);
-  seriesRenumber();
+  var idx  = list.children.length;
+  var t    = typ || document.getElementById('default_type_select').value || 'fillin';
+  var div  = document.createElement('div');
+  div.innerHTML = siCardHTML(idx, t);
+  list.appendChild(div.firstChild);
+  siTypeChange(list.lastElementChild.querySelector('.sc-type'));
+  document.getElementById('item_count').value = list.children.length;
+  siRenumber();
 }
 
-function seriesRemoveItem(btn) {
-  btn.closest('.series-item').remove();
-  seriesRenumber();
+function siRemove(btn) {
+  var card = btn.closest('.series-card');
+  card.remove();
+  // Re-index all remaining cards so field names stay sequential.
+  var list = document.getElementById('series-items-list');
+  list.children && Array.from(list.children).forEach(function(card, idx) {
+    card.querySelector('.item-num').textContent = (idx+1)+'.';
+    card.querySelectorAll('[name]').forEach(function(el) {
+      el.name = el.name.replace(/^item_\d+_/, 'item_'+idx+'_');
+    });
+  });
+  document.getElementById('item_count').value = list.children.length;
 }
 
-function seriesRenumber() {
-  document.querySelectorAll('#series-items-list .item-num').forEach(function(el, i) {
+function siRenumber() {
+  Array.from(document.querySelectorAll('#series-items-list .item-num')).forEach(function(el,i){
     el.textContent = (i+1)+'.';
   });
 }
 
-function escHtml(s) {
-  return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-}
+// Series slug preview
+var ssf = document.getElementById('series_slug_field');
+if (ssf) ssf.addEventListener('input', function() {
+  document.getElementById('slug-preview').textContent = (this.value||'{serio}')+'-01';
+});
 
-// Update slug preview from series slug input
-var seriesSlugField = document.getElementById('series_slug_field');
-if (seriesSlugField) {
-  seriesSlugField.addEventListener('input', function() {
-    document.getElementById('slug-preview').textContent = (this.value||'{serio}')+'-01';
-  });
-}
-
-// Init type fields on load
+// Init single-item type fields on load
 document.addEventListener('DOMContentLoaded', function() {
   var sel = document.getElementById('type-select');
   if (sel && sel.value) showContentFields(sel.value);

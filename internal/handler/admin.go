@@ -120,10 +120,12 @@ func (h *AdminHandler) CreateContent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Series mode: item_question[] present.
-	if questions := r.Form["item_question"]; len(questions) > 0 {
-		h.CreateSeries(w, r)
-		return
+	// Series mode: item_count field present and > 0.
+	if countStr := r.FormValue("item_count"); countStr != "" {
+		if count, _ := strconv.Atoi(countStr); count > 0 {
+			h.CreateSeries(w, r)
+			return
+		}
 	}
 
 	u := UserFromContext(r.Context())
@@ -571,8 +573,8 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	}
 }
 
-// CreateSeries handles series creation (called from CreateContent when item_question[] present).
-// Items come as parallel arrays: item_type[], item_question[], item_answer[].
+// CreateSeries handles series creation (called from CreateContent when item_count > 0).
+// Items use indexed fields: item_N_type, item_N_question, item_N_answer, etc.
 // Slugs are auto-generated as {series_slug}-01, -02, etc.
 func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
@@ -606,30 +608,121 @@ func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 		authorID = u.ID
 	}
 
-	types := r.Form["item_type"]
-	questions := r.Form["item_question"]
-	answers := r.Form["item_answer"]
-
-	// Pad slices to the same length.
-	n := len(questions)
-	for len(types) < n {
-		types = append(types, "fillin")
-	}
-	for len(answers) < n {
-		answers = append(answers, "")
-	}
-
+	count, _ := strconv.Atoi(r.FormValue("item_count"))
 	created := 0
 	order := 1
-	for i := 0; i < n; i++ {
-		q := strings.TrimSpace(questions[i])
-		if q == "" {
-			continue // skip blank rows
-		}
-		typ := strings.TrimSpace(types[i])
+
+	for i := 0; i < count; i++ {
+		pre := fmt.Sprintf("item_%d_", i)
+		typ := strings.TrimSpace(r.FormValue(pre + "type"))
 		if typ == "" {
-			typ = "fillin"
+			continue
 		}
+
+		contentMap := map[string]interface{}{}
+		imageURL := ""
+
+		switch typ {
+		case "reading":
+			contentMap["title"] = r.FormValue(pre + "title")
+			contentMap["text"] = r.FormValue(pre + "text")
+			if contentMap["title"] == "" && contentMap["text"] == "" {
+				continue
+			}
+		case "video":
+			contentMap["title"] = r.FormValue(pre + "title")
+			contentMap["video_url"] = r.FormValue(pre + "video_url")
+			if contentMap["video_url"] == "" {
+				continue
+			}
+		case "vocab":
+			word := strings.TrimSpace(r.FormValue(pre + "word"))
+			if word == "" {
+				continue
+			}
+			contentMap["word"] = word
+			contentMap["definition"] = r.FormValue(pre + "definition")
+			if rawDefs := r.FormValue(pre + "definitions"); rawDefs != "" {
+				defs := map[string]interface{}{}
+				for _, line := range strings.Split(rawDefs, "\n") {
+					line = strings.TrimSpace(line)
+					if idx := strings.Index(line, ":"); idx > 0 {
+						lang := strings.TrimSpace(line[:idx])
+						text := strings.TrimSpace(line[idx+1:])
+						if lang != "" && text != "" {
+							defs[lang] = text
+						}
+					}
+				}
+				if len(defs) > 0 {
+					contentMap["definitions"] = defs
+				}
+			}
+			imageURL = r.FormValue(pre + "image_url")
+		case "multiplechoice":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["hint"] = r.FormValue(pre + "hint")
+			var options []string
+			for _, o := range strings.Split(r.FormValue(pre+"options"), "\n") {
+				if o = strings.TrimSpace(o); o != "" {
+					options = append(options, o)
+				}
+			}
+			contentMap["options"] = options
+			ci, _ := strconv.Atoi(r.FormValue(pre + "correct_index"))
+			contentMap["correct_index"] = ci
+		case "fillin":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["hint"] = r.FormValue(pre + "hint")
+			var gaps []string
+			for _, a := range strings.Split(r.FormValue(pre+"gap_answers"), "\n") {
+				if a = strings.TrimSpace(a); a != "" {
+					gaps = append(gaps, a)
+				}
+			}
+			if len(gaps) == 1 {
+				contentMap["answer"] = gaps[0]
+			} else if len(gaps) > 1 {
+				contentMap["answers"] = gaps
+			}
+		case "listening":
+			contentMap["audio_url"] = r.FormValue(pre + "audio_url")
+			contentMap["question"] = r.FormValue(pre + "question")
+			contentMap["answer"] = r.FormValue(pre + "answer")
+			contentMap["hint"] = r.FormValue(pre + "hint")
+		case "image":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			imageURL = r.FormValue(pre + "image_url")
+			contentMap["question"] = q
+			contentMap["answer"] = r.FormValue(pre + "answer")
+			contentMap["hint"] = r.FormValue(pre + "hint")
+		case "phrasebook":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			imageURL = r.FormValue(pre + "image_url")
+		default:
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["answer"] = r.FormValue(pre + "answer")
+		}
+
 		slug := fmt.Sprintf("%s-%02d", seriesSlug, order)
 		item := &model.ContentItem{
 			Slug:        slug,
@@ -643,10 +736,8 @@ func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 			Volatility:  0.06,
 			SeriesSlug:  seriesSlug,
 			SeriesOrder: order,
-			Content: map[string]interface{}{
-				"question": q,
-				"answer":   strings.TrimSpace(answers[i]),
-			},
+			ImageURL:    imageURL,
+			Content:     contentMap,
 		}
 		if err := h.content.Create(r.Context(), item); err != nil {
 			http.Error(w, fmt.Sprintf("Eraro ĉe %s: %v", slug, err), http.StatusInternalServerError)
