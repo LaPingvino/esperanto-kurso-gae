@@ -16,16 +16,16 @@
         <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong> <a href="/admin/initial" id="admin-link" aria-hidden="true">&#9651;</a></li>
       </ul>
       <ul>
-        <li><a href="/" title="Hejmo">🏠</a></li>
+        <li><a href="/" title="{{t .UILang "nav.home"}}">🏠</a></li>
         <li>
           <form method="GET" action="/vortaro" class="nav-search-form">
-            <input type="search" name="s" placeholder="🔍" class="nav-search" aria-label="Serĉi en vortaro">
+            <input type="search" name="s" placeholder="🔍" class="nav-search" aria-label="{{t .UILang "nav.vortaro"}}">
           </form>
         </li>
-        {{if .User}}<li><a href="/steloj" title="Stelitaj ekzercoj">★</a></li>{{end}}
-        <li><a href="/etikedoj" title="Etikedoj">🏷️</a></li>
-        <li><a href="/honorlisto" title="Honora Listo">🏆</a></li>
-        <li><a href="/enskribi" class="nav-profile" title="Profilo">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
+        {{if .User}}<li><a href="/steloj" title="{{t .UILang "nav.favorites"}}">★</a></li>{{end}}
+        <li><a href="/etikedoj" title="{{t .UILang "tags.title"}}">🏷️</a></li>
+        <li><a href="/honorlisto" title="{{t .UILang "nav.honorlisto"}}">🏆</a></li>
+        <li><a href="/enskribi" class="nav-profile" title="{{t .UILang "nav.profile"}}">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
         {{- /* ── Language switchers ── */}}
         {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
         <li class="lang-switchers">
@@ -60,6 +60,7 @@
               <option value="uk"  {{if eq .UILang "uk" }}selected{{end}}>Українська</option>
               <option value="ur"  {{if eq .UILang "ur" }}selected{{end}}>اردو</option>
               <option value="vi"  {{if eq .UILang "vi" }}selected{{end}}>Tiếng Việt</option>
+              <option value="tok" {{if eq .UILang "tok"}}selected{{end}}>Toki Pona</option>
               <option value="zh"  {{if eq .UILang "zh" }}selected{{end}}>中文</option>
             </select></label>
           </form>

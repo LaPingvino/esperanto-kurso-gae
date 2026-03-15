@@ -98,10 +98,11 @@ func (h *AuthHandler) ShowEnskribi(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]interface{}{
-		"User":     u,
-		"MagicURL": magicURL,
-		"SentMsg":  r.URL.Query().Get("sendita") == "1",
-		"UILang":   UILangFor(u),
+		"User":        u,
+		"MagicURL":    magicURL,
+		"SentMsg":     r.URL.Query().Get("sendita") == "1",
+		"NomForigita": r.URL.Query().Get("nomo-forigita") == "1",
+		"UILang":      UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "enskribi.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -415,6 +416,20 @@ func (h *AuthHandler) SetUsername(w http.ResponseWriter, r *http.Request) {
 		ref = "/enskribi"
 	}
 	http.Redirect(w, r, ref, http.StatusSeeOther)
+}
+
+// ClearUsername handles POST /profilo/nomo/forigi — removes the username, making the account anonymous.
+func (h *AuthHandler) ClearUsername(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	if err := h.users.ClearUsername(r.Context(), u.ID); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/enskribi?nomo-forigita=1", http.StatusSeeOther)
 }
 
 // UpdateKeepDataDays handles POST /profilo/konservado — updates data retention preference.

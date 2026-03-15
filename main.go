@@ -125,6 +125,7 @@ func main() {
 
 	// Profile routes (logged-in users).
 	mux.HandleFunc("POST /profilo/nomo", authH.SetUsername)
+	mux.HandleFunc("POST /profilo/nomo/forigi", authH.ClearUsername)
 	mux.HandleFunc("POST /profilo/konservado", authH.UpdateKeepDataDays)
 	mux.HandleFunc("POST /kontaktu", communityH.SendModMessage)
 

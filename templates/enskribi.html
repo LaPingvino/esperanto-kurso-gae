@@ -50,6 +50,9 @@
   {{if .User.Username}}
   <p>{{t .UILang "enskribi.current_username"}} <strong>{{.User.Username}}</strong></p>
   {{end}}
+  {{if eq (index . "NomForigita") true}}
+  <p class="warning">{{t .UILang "enskribi.username_removed_msg"}}</p>
+  {{end}}
   <form method="POST" action="/profilo/nomo">
     <fieldset role="group">
       <input type="text" name="username" placeholder="{{t .UILang "enskribi.username_placeholder"}}" minlength="3" maxlength="30"
@@ -58,17 +61,28 @@
       <button type="submit">{{if .User.Username}}{{t .UILang "enskribi.change_btn"}}{{else}}{{t .UILang "enskribi.set_btn"}}{{end}}</button>
     </fieldset>
     <small>{{t .UILang "enskribi.username_hint"}}</small>
+    {{if .User.Username}}
+    <details style="margin-top:0.75rem">
+      <summary class="outline secondary" style="cursor:pointer;display:inline-block;padding:0.3rem 0.75rem;border-radius:var(--pico-border-radius)">{{t .UILang "enskribi.remove_username_summary"}}</summary>
+      <div style="margin-top:0.5rem;padding:0.75rem;border:1px solid var(--pico-muted-border-color);border-radius:var(--pico-border-radius)">
+        <p>{{t .UILang "enskribi.remove_username_warning"}}</p>
+        <form method="POST" action="/profilo/nomo/forigi">
+          <button type="submit" class="outline contrast">{{t .UILang "enskribi.remove_username_btn"}}</button>
+        </form>
+      </div>
+    </details>
+    {{end}}
     <label style="margin-top:0.5rem;display:block">
-      Forigi datumojn post
+      {{t .UILang "enskribi.keep_data_label"}}
       <select name="keep_days">
-        <option value="7"   {{if eq .User.KeepDataDays 7  }}selected{{end}}>1 semajno</option>
-        <option value="30"  {{if eq .User.KeepDataDays 30 }}selected{{end}}>1 monato</option>
-        <option value="90"  {{if eq .User.KeepDataDays 90 }}selected{{end}}>3 monatoj</option>
-        <option value="180" {{if eq .User.KeepDataDays 180}}selected{{end}}>6 monatoj</option>
-        <option value="365" {{if or (eq .User.KeepDataDays 365) (eq .User.KeepDataDays 0)}}selected{{end}}>1 jaro (defaŭlto)</option>
-        <option value="-1"  {{if eq .User.KeepDataDays -1 }}selected{{end}}>Neniam</option>
+        <option value="7"   {{if eq .User.KeepDataDays 7  }}selected{{end}}>{{t .UILang "enskribi.keep_1week"}}</option>
+        <option value="30"  {{if eq .User.KeepDataDays 30 }}selected{{end}}>{{t .UILang "enskribi.keep_1month"}}</option>
+        <option value="90"  {{if eq .User.KeepDataDays 90 }}selected{{end}}>{{t .UILang "enskribi.keep_3months"}}</option>
+        <option value="180" {{if eq .User.KeepDataDays 180}}selected{{end}}>{{t .UILang "enskribi.keep_6months"}}</option>
+        <option value="365" {{if or (eq .User.KeepDataDays 365) (eq .User.KeepDataDays 0)}}selected{{end}}>{{t .UILang "enskribi.keep_1year"}}</option>
+        <option value="-1"  {{if eq .User.KeepDataDays -1 }}selected{{end}}>{{t .UILang "enskribi.keep_never"}}</option>
       </select>
-      da neaktiveco
+      {{t .UILang "enskribi.keep_data_suffix"}}
     </label>
   </form>
 

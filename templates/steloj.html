@@ -1,17 +1,17 @@
 {{template "base" .}}
 
-{{define "title"}}Stelitaj ekzercoj — Esperanto-kurso{{end}}
+{{define "title"}}{{t .UILang "steloj.title"}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>★ Stelitaj ekzercoj</h1>
+<h1>★ {{t .UILang "steloj.title"}}</h1>
 
 {{if .Items}}
 <table>
   <thead>
     <tr>
-      <th>Ekzerco</th>
-      <th>Tipo</th>
-      <th>Nivelo</th>
+      <th>{{t .UILang "steloj.col_exercise"}}</th>
+      <th>{{t .UILang "steloj.col_type"}}</th>
+      <th>{{t .UILang "steloj.col_level"}}</th>
       <th></th>
     </tr>
   </thead>
@@ -27,7 +27,7 @@
       <td><span class="cefr-badge cefr-{{cefr .Rating}}">{{cefr .Rating}}</span></td>
       <td>
         <form method="POST" action="/ekzerco/{{.Slug}}/steli" style="display:inline">
-          <button type="submit" class="icon-btn" title="Malfavori">★</button>
+          <button type="submit" class="icon-btn" title="{{t $.UILang "steloj.unstar_title"}}">★</button>
         </form>
       </td>
     </tr>
@@ -35,7 +35,7 @@
   </tbody>
 </table>
 {{else}}
-<p><em>Vi ankoraŭ ne stelumis ekzercojn. Klaku ☆ sur ekzerco por aldoni ĝin ĉi tien.</em></p>
-<p><a href="/" role="button">Komenci lerni</a></p>
+<p><em>{{t .UILang "steloj.empty"}}</em></p>
+<p><a href="/" role="button">{{t .UILang "steloj.start_btn"}}</a></p>
 {{end}}
 {{end}}

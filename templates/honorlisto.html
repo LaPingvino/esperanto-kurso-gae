@@ -1,20 +1,20 @@
 {{template "base" .}}
 
-{{define "title"}}Honora Listo — Esperanto-kurso{{end}}
+{{define "title"}}{{t .UILang "honorlisto.title"}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>🏆 Honora Listo</h1>
-<p><small>Uzantoj kun uzantnomo, ordigitaj laŭ poentaro.</small></p>
+<h1>🏆 {{t .UILang "honorlisto.title"}}</h1>
+<p><small>{{t .UILang "honorlisto.subtitle"}}</small></p>
 
 {{if .Top}}
 <table>
   <thead>
     <tr>
-      <th>#</th>
-      <th>Uzanto</th>
-      <th>Nivelo</th>
-      <th>Poentaro</th>
-      <th>🔥 Sinsekvo</th>
+      <th>{{t .UILang "honorlisto.rank_col"}}</th>
+      <th>{{t .UILang "honorlisto.user_col"}}</th>
+      <th>{{t .UILang "honorlisto.level_col"}}</th>
+      <th>{{t .UILang "honorlisto.score_col"}}</th>
+      <th>🔥 {{t .UILang "honorlisto.streak_col"}}</th>
     </tr>
   </thead>
   <tbody>
@@ -30,9 +30,9 @@
   </tbody>
 </table>
 {{if .User}}{{if not .User.Username}}
-<p><em>Vi ne estas sur la listo. <a href="/enskribi">Agordu uzantnomon</a> por aperi ĉi tie.</em></p>
+<p><em>{{t .UILang "honorlisto.not_listed"}}</em></p>
 {{end}}{{end}}
 {{else}}
-<p><em>Ankoraŭ neniu agordi uzantnomon. <a href="/enskribi">Estu la unua!</a></em></p>
+<p><em>{{t .UILang "honorlisto.empty"}}</em></p>
 {{end}}
 {{end}}
