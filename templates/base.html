@@ -130,6 +130,7 @@
         <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
         <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
         {{if .User.StreakDays}}<span class="streak-badge" title="{{t .UILang "footer.streak_title"}}">&#128293; {{.User.StreakDays}}d</span>{{end}}
+        <span class="user-id-badge" title="via uzant-ID"><a href="/enskribi">{{if .User.Username}}@{{.User.Username}}{{else}}<code>{{.User.ID}}</code>{{end}}</a></span>
       {{else}}
         <em><a href="/enskribi">{{t .UILang "footer.login_link"}}</a> {{t .UILang "footer.login_prompt"}}</em>
       {{end}}
