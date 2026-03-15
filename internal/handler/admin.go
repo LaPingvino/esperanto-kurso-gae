@@ -593,20 +593,22 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 
 	seriesOrder, _ := strconv.Atoi(r.FormValue("series_order"))
 	return &model.ContentItem{
-		Slug:        r.FormValue("slug"),
-		Type:        r.FormValue("type"),
-		Content:     contentMap,
-		Tags:        tags,
-		Source:      r.FormValue("source"),
-		AuthorID:    authorID,
-		Status:      r.FormValue("status"),
-		Rating:      1500,
-		RD:          350,
-		Volatility:  0.06,
-		ImageURL:    r.FormValue("image_url"),
-		SeriesSlug:  r.FormValue("series_slug"),
-		SeriesOrder: seriesOrder,
-		UpdatedAt:   time.Now(),
+		Slug:         r.FormValue("slug"),
+		Type:         r.FormValue("type"),
+		Content:      contentMap,
+		Tags:         tags,
+		Source:       r.FormValue("source"),
+		AuthorID:     authorID,
+		Status:       r.FormValue("status"),
+		Rating:       1500,
+		RD:           350,
+		Volatility:   0.06,
+		ImageURL:     r.FormValue("image_url"),
+		SeriesSlug:   r.FormValue("series_slug"),
+		SeriesOrder:  seriesOrder,
+		SeriesLabel:  r.FormValue("series_label"),
+		SeriesParent: r.FormValue("series_parent"),
+		UpdatedAt:    time.Now(),
 	}
 }
 

@@ -18,7 +18,7 @@
       <input type="text" name="series_label" value="{{.SeriesLabel}}" placeholder="ekz. Ekzercoj pri Leciono 1">
     </label>
   </div>
-  <label>Gepatra ekzerco <small>(slug de la teksto/leciono kiun ĉi tiu serio servas)</small>:
+  <label>Gepatra ekzerco <small>(identigilo de la teksto/leciono kiun ĉi tiu serio servas)</small>:
     <input type="text" name="series_parent" value="{{.SeriesParent}}" placeholder="ekz. zagr-l01-teksto">
   </label>
 
@@ -67,18 +67,18 @@
 <details style="margin-top:1.5rem">
   <summary>&#9998; Renomi serion</summary>
   <form method="POST" action="/admin/serio/{{.SeriesSlug}}/renomi" style="margin-top:0.5rem"
-        onsubmit="return confirm('Ĉu vi certas? Ĉi tio ĝisdatigos la series_slug sur ĉiuj ekzercoj kaj la stelumoj de uzantoj.')">
+        onsubmit="return confirm('Ĉu vi certas? Ĉi tio ĝisdatigos la serio-identigilon sur ĉiuj ekzercoj kaj la stelumoj de uzantoj.')">
     <div class="grid">
       <label>Nova serio-identigilo:
         <input type="text" name="new_slug" required pattern="[a-z0-9\-]+"
-               placeholder="nova-serio-slug"
+               placeholder="nova-serio-identigilo"
                title="Nur minusklaj literoj, ciferoj kaj streketo">
       </label>
       <div style="display:flex;align-items:flex-end">
         <button type="submit" class="outline">Renomi</button>
       </div>
     </div>
-    <small>&#9888; Ĉi tio ĝisdatigas la <code>series_slug</code>-kampon sur ĉiuj ekzercoj en la serio kaj ĝisdatigas stelumojn de uzantoj. La propraj slug-oj de la ekzercoj ne ŝanĝiĝas.</small>
+    <small>&#9888; Ĉi tio ĝisdatigas la serio-identigilon sur ĉiuj ekzercoj en la serio kaj ĝisdatigas stelumojn de uzantoj. La propraj identigiloj de la ekzercoj ne ŝanĝiĝas.</small>
   </form>
 </details>
 
@@ -90,7 +90,7 @@
   <div id="single-mode">
     <div class="grid">
       <label>
-        Identigilo (slug):
+        Identigilo:
         <input type="text" name="slug" id="slug-field" value="{{.Item.Slug}}"
                placeholder="ekz-saluton-mondo"
                pattern="[a-z0-9\-]+"
@@ -219,7 +219,7 @@
       <input type="text" name="series_slug" id="series_slug_field"
              pattern="[a-z0-9\-]+" placeholder="ekz. zagr-lekcio-1"
              title="Nur minusklaj literoj, ciferoj kaj streketo">
-      <small>Slugoj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
+      <small>Identigiloj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
     </label>
 
     <div id="series-items-list"></div>
@@ -267,11 +267,19 @@
   {{/* Series fields only shown when not in series-mode (single item can still be part of a series) */}}
   <div id="single-series-fields">
     <div class="grid">
-      <label>Serio (nedeviga):
+      <label>Serio-identigilo <small>(nedeviga)</small>:
         <input type="text" name="series_slug" value="{{.Item.SeriesSlug}}" placeholder="ekz. zagreba-metodo-1">
       </label>
       <label>Ordo en serio:
         <input type="number" name="series_order" value="{{.Item.SeriesOrder}}" min="0">
+      </label>
+    </div>
+    <div class="grid">
+      <label>Etikedo por butono <small>(videbla nomo de la serio)</small>:
+        <input type="text" name="series_label" value="{{.Item.SeriesLabel}}" placeholder="ekz. Ekzercoj pri Leciono 1">
+      </label>
+      <label>Gepatra ekzerco <small>(identigilo de la teksto/leciono)</small>:
+        <input type="text" name="series_parent" value="{{.Item.SeriesParent}}" placeholder="ekz. zagr-l01-teksto">
       </label>
     </div>
   </div>
