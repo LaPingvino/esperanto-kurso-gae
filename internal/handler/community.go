@@ -4,6 +4,7 @@ import (
 	"context"
 	"math"
 	"net/http"
+	"net/url"
 	"strings"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
@@ -252,10 +253,14 @@ func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request
 	}
 
 	// When submitted from the exercise page, redirect so the full page reloads
-	// with the new definition visible (including in the vocab prompt).
+	// with the new definition visible. Pass lang+text as query params so the
+	// handler can inject the translation immediately (Datastore queries are
+	// eventually consistent and may not return the new entry right away).
 	if r.FormValue("from") == "ekzerco" {
-		w.Header().Set("HX-Redirect", "/ekzerco/"+contentID)
-		w.WriteHeader(http.StatusNoContent)
+		u2 := url.Values{}
+		u2.Set("added_lang", lang)
+		u2.Set("added_def", text)
+		http.Redirect(w, r, "/ekzerco/"+contentID+"?"+u2.Encode(), http.StatusSeeOther)
 		return
 	}
 

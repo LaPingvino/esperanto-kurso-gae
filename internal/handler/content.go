@@ -195,6 +195,26 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	tradukData["User"] = u
 	tradukData["UILang"] = UILangFor(u)
 
+	// Inject a just-added community translation passed via query params (avoids
+	// eventual-consistency gap where the Datastore query misses the new entry).
+	if addedLang := r.URL.Query().Get("added_lang"); addedLang == userLang {
+		if addedDef := r.URL.Query().Get("added_def"); addedDef != "" {
+			existing, _ := tradukData["MyLangTranslations"].([]*model.Translation)
+			// Prepend only if not already present (idempotent on refresh).
+			already := false
+			for _, tr := range existing {
+				if tr.Text == addedDef {
+					already = true
+					break
+				}
+			}
+			if !already {
+				synthetic := &model.Translation{Language: addedLang, Text: addedDef}
+				tradukData["MyLangTranslations"] = append([]*model.Translation{synthetic}, existing...)
+			}
+		}
+	}
+
 	// Series navigation.
 	var prevInSeries, nextInSeries *model.ContentItem
 	seriesTotal := 0

@@ -202,7 +202,9 @@ async function addVocabDef(slug, lang) {
 
   const body = new URLSearchParams({ text: text, language: lang, from: 'ekzerco' });
   try {
-    await fetch('/tradukoj/' + slug, { method: 'POST', headers: headers, body: body });
+    const resp = await fetch('/tradukoj/' + slug, { method: 'POST', headers: headers, body: body, redirect: 'follow' });
+    // Server responds with a redirect to /ekzerco/{slug}?added_lang=...&added_def=...
+    if (resp.redirected) { window.location.href = resp.url; return; }
   } catch (e) {
     console.error('addVocabDef failed:', e);
   }
