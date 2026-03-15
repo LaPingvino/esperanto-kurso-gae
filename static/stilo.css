@@ -852,3 +852,59 @@ nav a[href="/admin/enhavo/nova"] {
 .user-id-badge a:hover {
   color: var(--eo-green);
 }
+
+/* ---- Vortaro tag filter pills ---- */
+.tag-filter-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin: 0.5rem 0 0.75rem;
+}
+.tag-filter-nav a {
+  display: inline-block;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  border: 1px solid var(--pico-muted-border-color);
+  font-size: 0.8em;
+  text-decoration: none;
+  color: var(--pico-muted-color);
+}
+.tag-filter-nav a:hover {
+  border-color: var(--eo-green);
+  color: var(--eo-green);
+}
+.tag-filter-nav a[aria-current="page"] {
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+  color: #fff;
+}
+
+/* ---- Pagination ---- */
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 1rem 0;
+  align-items: center;
+}
+.pagination a {
+  display: inline-block;
+  padding: 0.25em 0.6em;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.85em;
+  color: var(--pico-color);
+  min-width: 2em;
+  text-align: center;
+}
+.pagination a:hover {
+  border-color: var(--eo-green);
+  color: var(--eo-green);
+}
+.pagination a[aria-current="page"] {
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+  color: #fff;
+  font-weight: bold;
+}

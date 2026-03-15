@@ -142,5 +142,9 @@
   "vote.login_link": "Увійти",
   "vote.login_prompt": "щоб проголосувати.",
   "vote.useful": "Корисно",
-  "vote.useless": "Некорисно"
+  "vote.useless": "Некорисно",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

@@ -142,5 +142,9 @@
   "vote.login_link": "Conectează-te",
   "vote.login_prompt": "pentru a vota.",
   "vote.useful": "Util",
-  "vote.useless": "Inutil"
+  "vote.useless": "Inutil",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

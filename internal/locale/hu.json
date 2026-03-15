@@ -142,5 +142,9 @@
   "vote.login_link": "Bejelentkezés",
   "vote.login_prompt": "a szavazáshoz.",
   "vote.useful": "Hasznos",
-  "vote.useless": "Nem hasznos"
+  "vote.useless": "Nem hasznos",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

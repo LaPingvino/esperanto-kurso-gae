@@ -142,5 +142,9 @@
   "vote.login_link": "התחבר",
   "vote.login_prompt": "כדי להצביע.",
   "vote.useful": "שימושי",
-  "vote.useless": "לא שימושי"
+  "vote.useless": "לא שימושי",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

@@ -142,5 +142,9 @@
   "vote.login_link": "Masuk",
   "vote.login_prompt": "untuk memilih.",
   "vote.useful": "Berguna",
-  "vote.useless": "Tidak berguna"
+  "vote.useless": "Tidak berguna",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

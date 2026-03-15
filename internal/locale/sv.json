@@ -142,5 +142,9 @@
   "vote.login_link": "Logga in",
   "vote.login_prompt": "för att rösta.",
   "vote.useful": "Användbart",
-  "vote.useless": "Inte användbart"
+  "vote.useless": "Inte användbart",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

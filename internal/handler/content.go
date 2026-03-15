@@ -3,6 +3,8 @@ package handler
 import (
 	"math/rand"
 	"net/http"
+	"sort"
+	"strconv"
 	"strings"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
@@ -69,93 +71,158 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// ShowVortaro handles GET /vortaro — lists vocab items as a dictionary, optionally filtered by tag.
+const vortaroPageSize = 50
+
+// ShowVortaro handles GET /vortaro — searchable, tag-filtered, paginated vocab list.
 func (h *ContentHandler) ShowVortaro(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
-	tag := r.URL.Query().Get("tag")
-
-	var items []*model.ContentItem
-	var err error
-	if tag != "" {
-		items, err = h.content.ListByTag(r.Context(), tag, 500)
-		if err != nil {
-			items = nil
-		}
-		// Filter to vocab only when tag-filtered.
-		var vocabOnly []*model.ContentItem
-		for _, it := range items {
-			if it.Type == "vocab" {
-				vocabOnly = append(vocabOnly, it)
-			}
-		}
-		items = vocabOnly
-	} else {
-		items, err = h.content.ListByType(r.Context(), "vocab", 500)
-		if err != nil {
-			items = nil
-		}
+	q := r.URL.Query()
+	tag := q.Get("tag")
+	search := strings.ToLower(strings.TrimSpace(q.Get("s")))
+	page, _ := strconv.Atoi(q.Get("p"))
+	if page < 1 {
+		page = 1
 	}
+
+	// Fetch all vocab items in one pass — used for both the tag-filter UI and
+	// the filtered result set.
+	allVocab, _ := h.content.ListByType(r.Context(), "vocab", 2000)
 
 	// Auto-generate vocab items when the tag is a reading slug and nothing exists yet.
-	if tag != "" && len(items) == 0 {
-		if reading, _ := h.content.GetBySlug(r.Context(), tag); reading != nil && reading.Type == "reading" {
-			text := reading.Text()
-			if text != "" {
-				// Check existing vocab words so we don't re-create them.
-				allVocab, _ := h.content.ListByType(r.Context(), "vocab", 2000)
-				existing := make(map[string]bool)
-				for _, v := range allVocab {
-					if w, ok := v.Content["word"].(string); ok {
-						existing[strings.ToLower(strings.TrimSpace(w))] = true
-					}
+	if tag != "" {
+		var taggedVocab []*model.ContentItem
+		for _, it := range allVocab {
+			for _, t := range it.Tags {
+				if t == tag {
+					taggedVocab = append(taggedVocab, it)
+					break
 				}
-				for _, word := range eo.ExtractWords(text) {
-					if existing[word] {
-						continue
-					}
-					vocSlug := "voc-auto-" + eo.WordToSlug(word)
-					if ex, _ := h.content.GetBySlug(r.Context(), vocSlug); ex != nil {
-						continue
-					}
-					tags := append([]string{"vortaro", reading.Slug}, reading.Tags...)
-					seen := make(map[string]bool)
-					var uniqueTags []string
-					for _, t := range tags {
-						if !seen[t] {
-							seen[t] = true
-							uniqueTags = append(uniqueTags, t)
+			}
+		}
+		if len(taggedVocab) == 0 {
+			if reading, _ := h.content.GetBySlug(r.Context(), tag); reading != nil && reading.Type == "reading" {
+				text := reading.Text()
+				if text != "" {
+					existing := make(map[string]bool)
+					for _, v := range allVocab {
+						if w, ok := v.Content["word"].(string); ok {
+							existing[strings.ToLower(strings.TrimSpace(w))] = true
 						}
 					}
-					voc := &model.ContentItem{
-						Slug:    vocSlug,
-						Type:    "vocab",
-						Content: map[string]interface{}{"word": word},
-						Tags:    uniqueTags,
-						Source:  reading.Source,
-						Status:  "approved",
-						Rating:  reading.Rating,
-						RD:      200,
+					for _, word := range eo.ExtractWords(text) {
+						if existing[word] {
+							continue
+						}
+						vocSlug := "voc-auto-" + eo.WordToSlug(word)
+						if ex, _ := h.content.GetBySlug(r.Context(), vocSlug); ex != nil {
+							continue
+						}
+						iTags := append([]string{"vortaro", reading.Slug}, reading.Tags...)
+						seen := make(map[string]bool)
+						var uniqueTags []string
+						for _, t := range iTags {
+							if !seen[t] {
+								seen[t] = true
+								uniqueTags = append(uniqueTags, t)
+							}
+						}
+						voc := &model.ContentItem{
+							Slug:    vocSlug,
+							Type:    "vocab",
+							Content: map[string]interface{}{"word": word},
+							Tags:    uniqueTags,
+							Source:  reading.Source,
+							Status:  "approved",
+							Rating:  reading.Rating,
+							RD:      200,
+						}
+						_ = h.content.Create(r.Context(), voc)
 					}
-					_ = h.content.Create(r.Context(), voc)
+					// Refresh after generation.
+					allVocab, _ = h.content.ListByType(r.Context(), "vocab", 2000)
 				}
-				// Re-query after generation.
-				items, _ = h.content.ListByTag(r.Context(), tag, 500)
-				var vocabOnly []*model.ContentItem
-				for _, it := range items {
-					if it.Type == "vocab" {
-						vocabOnly = append(vocabOnly, it)
-					}
-				}
-				items = vocabOnly
 			}
 		}
 	}
 
+	// Build tag counts from full vocab set for the filter UI.
+	tagCounts := make(map[string]int)
+	for _, it := range allVocab {
+		for _, t := range it.Tags {
+			tagCounts[t]++
+		}
+	}
+	// Sort tags by count descending for the UI pills.
+	type tagCount struct {
+		Tag   string
+		Count int
+	}
+	var tagList []tagCount
+	for t, c := range tagCounts {
+		tagList = append(tagList, tagCount{t, c})
+	}
+	sort.Slice(tagList, func(i, j int) bool {
+		if tagList[i].Count != tagList[j].Count {
+			return tagList[i].Count > tagList[j].Count
+		}
+		return tagList[i].Tag < tagList[j].Tag
+	})
+
+	// Apply tag and search filters.
+	var filtered []*model.ContentItem
+	for _, it := range allVocab {
+		if tag != "" {
+			hasTag := false
+			for _, t := range it.Tags {
+				if t == tag {
+					hasTag = true
+					break
+				}
+			}
+			if !hasTag {
+				continue
+			}
+		}
+		if search != "" {
+			word := strings.ToLower(it.Word())
+			if !strings.Contains(word, search) {
+				continue
+			}
+		}
+		filtered = append(filtered, it)
+	}
+
+	// Sort filtered results alphabetically by word.
+	sort.Slice(filtered, func(i, j int) bool {
+		return strings.ToLower(filtered[i].Word()) < strings.ToLower(filtered[j].Word())
+	})
+
+	// Paginate.
+	total := len(filtered)
+	totalPages := (total + vortaroPageSize - 1) / vortaroPageSize
+	if totalPages == 0 {
+		totalPages = 1
+	}
+	if page > totalPages {
+		page = totalPages
+	}
+	start := (page - 1) * vortaroPageSize
+	end := start + vortaroPageSize
+	if end > total {
+		end = total
+	}
+	pageItems := filtered[start:end]
+
 	data := map[string]interface{}{
-		"User":   u,
-		"Items":  items,
-		"Tag":    tag,
-		"UILang": UILangFor(u),
+		"User":       u,
+		"Items":      pageItems,
+		"Tag":        tag,
+		"Search":     q.Get("s"),
+		"Page":       page,
+		"TotalPages": totalPages,
+		"Total":      total,
+		"Tags":       tagList,
+		"UILang":     UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "vortaro.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

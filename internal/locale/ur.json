@@ -142,5 +142,9 @@
   "vote.login_link": "لاگ ان کریں",
   "vote.login_prompt": "ووٹ دینے کے لیے۔",
   "vote.useful": "مفید",
-  "vote.useless": "غیر مفید"
+  "vote.useless": "غیر مفید",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

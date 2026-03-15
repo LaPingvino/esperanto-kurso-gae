@@ -142,5 +142,9 @@
   "vote.login_link": "Ensalitu",
   "vote.login_prompt": "por voĉdoni.",
   "vote.useful": "Utila",
-  "vote.useless": "Senutila"
+  "vote.useless": "Senutila",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

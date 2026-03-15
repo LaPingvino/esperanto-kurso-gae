@@ -1,12 +1,41 @@
 {{template "base" .}}
 
-{{define "title"}}Vortaro — Esperanto-kurso{{end}}
+{{define "title"}}Vortaro{{if .Tag}} — {{.Tag}}{{end}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
 <h1>Vortaro{{if .Tag}} — {{.Tag}}{{end}}</h1>
 {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
 <p>{{t .UILang "vortaro.def_lang_note_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "vortaro.def_lang_note_suffix"}}</p>
-{{if .Tag}}<p><a href="/vortaro">&larr; {{t .UILang "vortaro.all_words_link"}}</a>{{if .Items}} &nbsp; <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button">&#9654; {{t .UILang "vortaro.start_practice"}}</a>{{end}}</p>{{end}}
+
+{{/* ── Search + tag filter bar ── */}}
+<form method="GET" action="/vortaro" style="margin-bottom:0.5rem">
+  {{if .Tag}}<input type="hidden" name="tag" value="{{.Tag}}">{{end}}
+  <fieldset role="group">
+    <input type="search" name="s" value="{{.Search}}" placeholder="{{t .UILang "vortaro.search_placeholder"}}" aria-label="{{t .UILang "vortaro.search_placeholder"}}">
+    <button type="submit">{{t .UILang "vortaro.search_btn"}}</button>
+    {{if or .Tag .Search}}<a href="/vortaro" role="button" class="outline secondary">✕</a>{{end}}
+  </fieldset>
+</form>
+
+{{/* Tag filter pills — show top tags */}}
+{{if .Tags}}
+<nav class="tag-filter-nav" aria-label="Filtri laŭ etikedo">
+  <a href="/vortaro{{if .Search}}?s={{.Search}}{{end}}"
+     {{if not .Tag}}aria-current="page"{{end}}>{{t .UILang "vortaro.all_tag"}}</a>
+  {{range .Tags}}
+  {{if gt .Count 2}}
+  <a href="/vortaro?tag={{.Tag}}{{if $.Search}}&amp;s={{$.Search}}{{end}}"
+     {{if eq $.Tag .Tag}}aria-current="page"{{end}}>{{.Tag}} <small>({{.Count}})</small></a>
+  {{end}}
+  {{end}}
+</nav>
+{{end}}
+
+{{/* Result count + practice button */}}
+<p style="margin:0.5rem 0">
+  <small>{{.Total}} {{t .UILang "vortaro.results_count"}}</small>
+  {{if and .Tag .Items}}&nbsp;<a href="/ekzerco/{{(index .Items 0).Slug}}" role="button" class="outline" style="font-size:0.85em">&#9654; {{t .UILang "vortaro.start_practice"}}</a>{{end}}
+</p>
 
 {{if .Items}}
 <table>
@@ -21,7 +50,7 @@
   <tbody>
     {{range .Items}}
     <tr>
-      <td><strong>{{.Word}}</strong></td>
+      <td><strong><a href="/ekzerco/{{.Slug}}">{{.Word}}</a></strong></td>
       <td>{{defForLang .Content $lang}}</td>
       <td>{{range .Tags}}<small class="tag">{{.}}</small> {{end}}</td>
       <td>
@@ -32,6 +61,24 @@
     {{end}}
   </tbody>
 </table>
+
+{{/* Pagination */}}
+{{if gt .TotalPages 1}}
+<nav class="pagination" aria-label="Paĝoj">
+  {{if gt .Page 1}}
+  <a href="/vortaro?p={{sub .Page 1}}{{if .Tag}}&amp;tag={{.Tag}}{{end}}{{if .Search}}&amp;s={{.Search}}{{end}}" class="outline">&larr;</a>
+  {{end}}
+  {{range seq .TotalPages}}
+  {{$pg := add . 1}}
+  <a href="/vortaro?p={{$pg}}{{if $.Tag}}&amp;tag={{$.Tag}}{{end}}{{if $.Search}}&amp;s={{$.Search}}{{end}}"
+     {{if eq $pg $.Page}}aria-current="page"{{end}}>{{$pg}}</a>
+  {{end}}
+  {{if lt .Page .TotalPages}}
+  <a href="/vortaro?p={{add .Page 1}}{{if .Tag}}&amp;tag={{.Tag}}{{end}}{{if .Search}}&amp;s={{.Search}}{{end}}" class="outline">&rarr;</a>
+  {{end}}
+</nav>
+{{end}}
+
 {{else}}
 <p>{{t .UILang "vortaro.empty"}}</p>
 {{end}}

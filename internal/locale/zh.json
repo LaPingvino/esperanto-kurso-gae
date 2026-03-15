@@ -142,5 +142,9 @@
   "vote.login_link": "登录",
   "vote.login_prompt": "以投票。",
   "vote.useful": "有用",
-  "vote.useless": "无用"
+  "vote.useless": "无用",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

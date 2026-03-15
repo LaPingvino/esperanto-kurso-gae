@@ -142,5 +142,9 @@
   "vote.login_link": "로그인",
   "vote.login_prompt": "하여 투표하세요.",
   "vote.useful": "유용함",
-  "vote.useless": "유용하지 않음"
+  "vote.useless": "유용하지 않음",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

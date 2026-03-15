@@ -142,5 +142,9 @@
   "vote.login_link": "تسجيل الدخول",
   "vote.login_prompt": "للتصويت.",
   "vote.useful": "مفيد",
-  "vote.useless": "غير مفيد"
+  "vote.useless": "غير مفيد",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

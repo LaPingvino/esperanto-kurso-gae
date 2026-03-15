@@ -142,5 +142,9 @@
   "vote.login_link": "ログイン",
   "vote.login_prompt": "して投票しましょう。",
   "vote.useful": "役立つ",
-  "vote.useless": "役立たない"
+  "vote.useless": "役立たない",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

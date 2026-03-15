@@ -142,5 +142,9 @@
   "vote.login_link": "Anmelden",
   "vote.login_prompt": "um abzustimmen.",
   "vote.useful": "Nützlich",
-  "vote.useless": "Nicht nützlich"
+  "vote.useless": "Nicht nützlich",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }

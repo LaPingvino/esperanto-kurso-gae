@@ -142,5 +142,9 @@
   "vote.login_link": "Log in",
   "vote.login_prompt": "om te stemmen.",
   "vote.useful": "Nuttig",
-  "vote.useless": "Niet nuttig"
+  "vote.useless": "Niet nuttig",
+  "vortaro.search_placeholder": "Search words…",
+  "vortaro.search_btn": "Search",
+  "vortaro.all_tag": "All",
+  "vortaro.results_count": "results"
 }
