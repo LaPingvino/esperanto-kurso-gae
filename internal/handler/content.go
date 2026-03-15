@@ -359,8 +359,15 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	}
 
 	isFavorite := false
+	isRadiko := false
 	if u != nil {
 		isFavorite = u.IsFavorite(slug)
+	}
+	for _, t := range item.Tags {
+		if t == "radiko" {
+			isRadiko = true
+			break
+		}
 	}
 
 	data := map[string]interface{}{
@@ -376,6 +383,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"SeriesTotal":   seriesTotal,
 		"VocabModo":     vocabModo,
 		"IsFavorite":    isFavorite,
+		"IsRadiko":      isRadiko,
 		"UILang":        UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {

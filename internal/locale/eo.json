@@ -146,5 +146,7 @@
   "vortaro.search_placeholder": "Search words…",
   "vortaro.search_btn": "Search",
   "vortaro.all_tag": "All",
-  "vortaro.results_count": "results"
+  "vortaro.results_count": "results",
+  "exercise.radiko_prompt": "Kia estas la Esperanta radiko por:",
+  "exercise.radiko_placeholder": "radiko…"
 }

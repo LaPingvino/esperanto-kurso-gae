@@ -207,10 +207,12 @@
       <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
     </nav>
     {{if $def}}
-    <p>{{t .UILang "exercise.vocab_prompt"}}</p>
+    {{if $.IsRadiko}}<p>{{t .UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span></p>
+    {{else}}<p>{{t .UILang "exercise.vocab_prompt"}}</p>{{end}}
     <h2 class="vocab-word">{{$def}}</h2>
     {{else if $communityDef}}
-    <p>{{t .UILang "exercise.vocab_prompt"}} <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
+    {{if $.IsRadiko}}<p>{{t .UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
+    {{else}}<p>{{t .UILang "exercise.vocab_prompt"}} <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
     <h2 class="vocab-word">{{$communityDef}}</h2>
     {{else}}
     <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
@@ -237,7 +239,7 @@
     </div>
     {{end}}
     {{end}}
-    <input type="text" name="answer" placeholder="{{t .UILang "exercise.esperanto_placeholder"}}" required autofocus>
+    <input type="text" name="answer" placeholder="{{if .IsRadiko}}{{t .UILang "exercise.radiko_placeholder"}}{{else}}{{t .UILang "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
 
     {{else if eq .Item.Type "image"}}
     <p>{{t .UILang "exercise.image_prompt"}}</p>
