@@ -956,3 +956,11 @@ nav a[href="/admin/enhavo/nova"] {
   font-style: normal;
   opacity: 0.7;
 }
+
+.series-skip-nav {
+  margin-top: 1rem;
+  text-align: right;
+}
+.series-skip-nav a {
+  font-size: 0.9rem;
+}

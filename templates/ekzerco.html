@@ -283,6 +283,16 @@
   {{end}}
 
   <div id="rezulto"></div>
+
+  {{if .NextInSeries}}
+  <nav class="series-skip-nav">
+    <a href="/ekzerco/{{.NextInSeries.Slug}}" class="outline secondary">
+      &#128196; {{t .UILang "result.next_in_series"}} &rarr;
+      {{if .NextInSeries.Word}}<strong>{{.NextInSeries.Word}}</strong>
+      {{else if .NextInSeries.Question}}<em>{{truncate .NextInSeries.Question 40}}</em>{{end}}
+    </a>
+  </nav>
+  {{end}}
 </article>
 
 <div id="post-answer" class="post-answer-hidden">

@@ -28,6 +28,7 @@ func GetForUser(
 	if err != nil {
 		return nil, err
 	}
+	items = excludeVocab(items)
 
 	if len(items) == 0 {
 		// Fall back to all approved items if no items in range.
@@ -35,6 +36,7 @@ func GetForUser(
 		if err != nil {
 			return nil, err
 		}
+		items = excludeVocab(items)
 	}
 
 	// For new/uncertain users (high RD means little is known about their level),
@@ -92,7 +94,7 @@ func GetHarder(ctx context.Context, userRating float64, cs *store.ContentStore, 
 		return nil, err
 	}
 	sort.Slice(items, func(i, j int) bool { return items[i].RD > items[j].RD })
-	return firstExcluding(items, exclude, limit), nil
+	return firstExcluding(excludeVocab(items), exclude, limit), nil
 }
 
 // GetEasier returns items rated -600 to -200 below the user's rating.
@@ -105,7 +107,18 @@ func GetEasier(ctx context.Context, userRating float64, cs *store.ContentStore, 
 		return nil, err
 	}
 	sort.Slice(items, func(i, j int) bool { return items[i].RD > items[j].RD })
-	return firstExcluding(items, exclude, limit), nil
+	return firstExcluding(excludeVocab(items), exclude, limit), nil
+}
+
+// excludeVocab filters out vocab-type items from a slice.
+func excludeVocab(items []*model.ContentItem) []*model.ContentItem {
+	out := items[:0]
+	for _, it := range items {
+		if it.Type != "vocab" {
+			out = append(out, it)
+		}
+	}
+	return out
 }
 
 func firstExcluding(items []*model.ContentItem, exclude string, limit int) []*model.ContentItem {
