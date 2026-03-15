@@ -1,0 +1,153 @@
+[
+  {
+    "slug": "saluton-mondo",
+    "type": "multiplechoice",
+    "content": {
+      "question": "Kiel oni diras 'Hello' en Esperanto?",
+      "options": ["Saluton", "Dankon", "Bonvolu", "Ĝis"],
+      "correct_index": 0
+    },
+    "tags": ["saluto", "baza"],
+    "source": "Baza Esperanto-kurso",
+    "status": "approved",
+    "rating": 1200,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "kiel-vi-fartas",
+    "type": "multiplechoice",
+    "content": {
+      "question": "Kion signifas 'Kiel vi fartas?'",
+      "options": ["Kiel vi fartas?", "Kie vi loĝas?", "Kiam vi venas?", "Kion vi volas?"],
+      "correct_index": 0,
+      "answer": "Kiel vi fartas?"
+    },
+    "tags": ["saluto", "demando", "baza"],
+    "source": "Baza Esperanto-kurso",
+    "status": "approved",
+    "rating": 1250,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "mi-parolas-esperante",
+    "type": "fillin",
+    "content": {
+      "question": "Plenigi la blankon: Mi ___ Esperanton.",
+      "answer": "parolas",
+      "hint": "La verbo por 'speak'"
+    },
+    "tags": ["gramatiko", "verbo", "baza"],
+    "source": "Baza Esperanto-kurso",
+    "status": "approved",
+    "rating": 1300,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "la-domo-estas-granda",
+    "type": "fillin",
+    "content": {
+      "question": "Plenigi la blankon: La domo estas ___.",
+      "answer": "granda",
+      "hint": "La kontraŭo de 'malgranda'"
+    },
+    "tags": ["adjektivo", "baza"],
+    "source": "Baza Esperanto-kurso",
+    "status": "approved",
+    "rating": 1350,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "vorto-akvo",
+    "type": "vocab",
+    "content": {
+      "word": "akvo",
+      "definition": "water (the liquid)"
+    },
+    "tags": ["vortaro", "baza", "substantivo"],
+    "source": "PIV",
+    "status": "approved",
+    "rating": 1200,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "vorto-lerni",
+    "type": "vocab",
+    "content": {
+      "word": "lerni",
+      "definition": "to learn (acquire knowledge or skill)"
+    },
+    "tags": ["vortaro", "verbo", "baza"],
+    "source": "PIV",
+    "status": "approved",
+    "rating": 1250,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "frazo-bonvolu",
+    "type": "phrasebook",
+    "content": {
+      "question": "How do you say 'please' in Esperanto?",
+      "answer": "bonvolu",
+      "hint": "Used when making a polite request"
+    },
+    "tags": ["frazaro", "etiketo", "baza"],
+    "source": "Praktika Esperanto",
+    "status": "approved",
+    "rating": 1200,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "frazo-dankon",
+    "type": "phrasebook",
+    "content": {
+      "question": "How do you say 'thank you' in Esperanto?",
+      "answer": "dankon",
+      "hint": "Used to express gratitude"
+    },
+    "tags": ["frazaro", "etiketo", "baza"],
+    "source": "Praktika Esperanto",
+    "status": "approved",
+    "rating": 1200,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "legado-la-stelo",
+    "type": "reading",
+    "content": {
+      "title": "La Verda Stelo",
+      "text": "Esperanto estas internacia lingvo. Ĝia simbolo estas verda stelo. La stelo havas kvin pintojn. Ĉiu pinto reprezentas unu kontinenton. La lingvo celas unuigi la homojn de la tuta mondo.",
+      "question": "Kiom da pintojn havas la Esperanto-stelo?",
+      "answer": "kvin"
+    },
+    "tags": ["legado", "historio", "baza"],
+    "source": "Enkonduko en Esperanton",
+    "status": "approved",
+    "rating": 1400,
+    "rd": 200,
+    "volatility": 0.06
+  },
+  {
+    "slug": "legado-zamenhof",
+    "type": "reading",
+    "content": {
+      "title": "Ludoviko Zamenhof",
+      "text": "Ludoviko Lazaro Zamenhof naskiĝis en 1859 en Bjalistoko. Li estis okulisto kaj lingvisto. En 1887 li publikigis la unuan libron de Esperanto sub la pseŭdonimo 'Doktoro Esperanto', kiu signifas 'unu kiu esperas'.",
+      "question": "En kiu jaro Zamenhof publikigis la unuan Esperanto-libron?",
+      "answer": "1887"
+    },
+    "tags": ["legado", "historio", "meznivelulo"],
+    "source": "Historio de Esperanto",
+    "status": "approved",
+    "rating": 1500,
+    "rd": 200,
+    "volatility": 0.06
+  }
+]
