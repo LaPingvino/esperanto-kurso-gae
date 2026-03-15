@@ -269,7 +269,12 @@ function showContentFields(type) {
   allFields.forEach(function (id) {
     const el = document.getElementById(id);
     if (!el) return;
-    el.style.display = visible.includes(id) ? '' : 'none';
+    const show = visible.includes(id);
+    el.style.display = show ? '' : 'none';
+    el.querySelectorAll('input, textarea, select').forEach(function(f) {
+      if (show) { f.removeAttribute('disabled'); }
+      else       { f.setAttribute('disabled', ''); }
+    });
   });
 }
 
