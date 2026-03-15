@@ -461,8 +461,7 @@ function siAdd(typ, existingSlug) {
   div.innerHTML = siCardHTML(idx, t, existingSlug || '');
   list.appendChild(div.firstChild);
   siTypeChange(list.lastElementChild.querySelector('.sc-type'));
-  document.getElementById('item_count').value = list.children.length;
-  siRenumber();
+  siReindex();
 }
 
 // siAddWithData creates a card and populates field values from a data object.
@@ -473,11 +472,11 @@ function siAddWithData(idx, typ, existingSlug, vals) {
   var card = div.firstChild;
   list.appendChild(card);
   siTypeChange(card.querySelector('.sc-type'));
-  document.getElementById('item_count').value = list.children.length;
-  siRenumber();
+  siReindex();
 
-  // Populate field values.
-  var p = 'item_'+idx+'_';
+  // Populate field values using the re-indexed name prefix for this card.
+  var realIdx = list.children.length - 1;
+  var p = 'item_' + realIdx + '_';
   function setVal(name, val) {
     if (val === undefined || val === null) return;
     var el = card.querySelector('[name="'+p+name+'"]');
@@ -500,29 +499,37 @@ function siAddWithData(idx, typ, existingSlug, vals) {
 }
 
 function siRemove(btn) {
-  var card = btn.closest('.series-card');
-  card.remove();
-  // Re-index all remaining cards so field names stay sequential.
+  btn.closest('.series-card').remove();
+  siReindex();
+}
+
+// siReindex renumbers all cards sequentially (both field names and visible labels)
+// and updates item_count. Call after every add or remove.
+function siReindex() {
   var list = document.getElementById('series-items-list');
-  list.children && Array.from(list.children).forEach(function(card, idx) {
-    card.querySelector('.item-num').textContent = (idx+1)+'.';
+  Array.from(list.children).forEach(function(card, idx) {
+    var numEl = card.querySelector('.item-num');
+    if (numEl) numEl.textContent = (idx + 1) + '.';
     card.querySelectorAll('[name]').forEach(function(el) {
-      el.name = el.name.replace(/^item_\d+_/, 'item_'+idx+'_');
+      el.name = el.name.replace(/^item_\d+_/, 'item_' + idx + '_');
     });
   });
   document.getElementById('item_count').value = list.children.length;
 }
 
-function siRenumber() {
-  Array.from(document.querySelectorAll('#series-items-list .item-num')).forEach(function(el,i){
-    el.textContent = (i+1)+'.';
-  });
-}
+function siRenumber() { siReindex(); }
 
 // Series slug preview
 var ssf = document.getElementById('series_slug_field');
 if (ssf) ssf.addEventListener('input', function() {
   document.getElementById('slug-preview').textContent = (this.value||'{serio}')+'-01';
+});
+
+// Always sync item_count from DOM right before submit.
+var contentForm = document.getElementById('content-form');
+if (contentForm) contentForm.addEventListener('submit', function() {
+  var list = document.getElementById('series-items-list');
+  if (list) document.getElementById('item_count').value = list.children.length;
 });
 
 // Init single-item type fields on load
