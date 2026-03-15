@@ -134,8 +134,8 @@ func (s *ContentStore) Update(ctx context.Context, item *model.ContentItem) erro
 	return err
 }
 
-// PatchContentFields updates only the content JSON, tags, source, image URL, and
-// series fields of an existing item, preserving rating/RD/volatility/votes.
+// PatchContentFields updates content JSON, tags, source, status, type, image URL,
+// and series fields of an existing item, preserving rating/RD/volatility/votes.
 // If the item does not exist yet, it is created with the provided defaults.
 func (s *ContentStore) PatchContentFields(ctx context.Context, item *model.ContentItem) error {
 	key := s.contentKey(item.Slug)
@@ -149,15 +149,19 @@ func (s *ContentStore) PatchContentFields(ctx context.Context, item *model.Conte
 	if err != nil {
 		return fmt.Errorf("content_store: patch marshal: %w", err)
 	}
-	existing.ContentJSON = b
-	existing.Tags = item.Tags
-	existing.Source = item.Source
-	existing.ImageURL = item.ImageURL
+	existing.ContentJSON  = b
+	existing.Tags         = item.Tags
+	existing.Source       = item.Source
+	existing.Type         = item.Type
+	if item.Status != "" {
+		existing.Status = item.Status
+	}
+	existing.ImageURL     = item.ImageURL
 	existing.SeriesSlug   = item.SeriesSlug
 	existing.SeriesOrder  = item.SeriesOrder
 	existing.SeriesLabel  = item.SeriesLabel
 	existing.SeriesParent = item.SeriesParent
-	existing.UpdatedAt = time.Now()
+	existing.UpdatedAt    = time.Now()
 	_, err = s.db.Put(ctx, key, &existing)
 	return err
 }
