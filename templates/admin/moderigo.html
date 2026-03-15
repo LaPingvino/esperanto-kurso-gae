@@ -7,85 +7,129 @@
 {{define "content"}}
 <h1>Moderado</h1>
 
-{{if .ModMessages}}
-<h2>Mesaĝoj (sugestoj kaj raportoj)</h2>
-<div class="moderation-list">
-  {{range .ModMessages}}
-  <article class="moderation-item">
-    <header>
-      <strong>{{.Username}}</strong>
-      <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
-    </header>
-    <p>{{.Text}}</p>
-    <footer>
-      <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
-        <button type="submit" class="outline">&#10003; Markita kiel legita</button>
-      </form>
-    </footer>
-  </article>
+{{/* ── Contact messages from users ── */}}
+<section>
+  <h2>Mesaĝoj de uzantoj ({{len .ContactMessages}})</h2>
+  {{if .ContactMessages}}
+  <div class="moderation-list">
+    {{range .ContactMessages}}
+    <article class="moderation-item">
+      <header>
+        <strong>{{if .Username}}{{.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
+        <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
+      </header>
+      <p style="white-space:pre-wrap">{{.Text}}</p>
+      <footer>
+        <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+          <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+        </form>
+      </footer>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Neniu mesaĝo.</em></p>
   {{end}}
-</div>
-<hr>
-{{end}}
+</section>
 
-{{if .Translations}}
-<h2>Komunumaj tradukoj ({{len .Translations}})</h2>
-<div class="moderation-list">
-  {{range .Translations}}
-  <article class="moderation-item">
-    <header>
-      <small>
-        Vorto: <a href="/ekzerco/{{.TargetID}}"><code>{{.TargetID}}</code></a>
-        &middot;
-        Lingvo: <strong>{{.Language}}</strong>
-        &middot;
-        Voĉoj: {{.VoteScore}}
-        &middot;
-        {{.CreatedAt.Format "2006-01-02"}}
-      </small>
-    </header>
-    <p>{{.Text}}</p>
-    <footer style="display:flex;gap:0.5rem;flex-wrap:wrap">
-      <form method="POST" action="/admin/tradukoj/{{.ID}}/aprobi" style="display:inline">
-        <button type="submit" class="approve-btn">&#10003; Aldoni kiel oficialan difinon</button>
-      </form>
-      <form method="POST" action="/admin/tradukoj/{{.ID}}/forigi" style="display:inline"
-            onsubmit="return confirm('Forigi tiun ĉi tradukon?')">
-        <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
-      </form>
-    </footer>
-  </article>
-  {{end}}
-</div>
 <hr>
-{{end}}
 
-{{if .Comments}}
-<h2>Komentoj ({{len .Comments}} atendas)</h2>
-<div class="moderation-list">
-  {{range .Comments}}
-  <article class="moderation-item" id="comment-{{.ID}}">
-    <header>
-      <small>
-        Uzanto: <code>{{truncate .UserID 8}}</code>
-        &middot;
-        Enhavo: <a href="/ekzerco/{{.ContentItemID}}"><code>{{.ContentItemID}}</code></a>
-      </small>
-    </header>
-    <p>{{.Text}}</p>
-    <footer>
-      <form method="POST" action="/admin/moderigo/{{.ID}}" style="display:inline"
-            hx-post="/admin/moderigo/{{.ID}}"
-            hx-target="#comment-{{.ID}}"
-            hx-swap="outerHTML">
-        <button type="submit" name="action" value="aprobi" class="approve-btn">Aprobi</button>
-        <button type="submit" name="action" value="malakcepti" class="reject-btn outline">Malakcepti</button>
-      </form>
-    </footer>
-  </article>
+{{/* ── Alternative answer suggestions + error reports ── */}}
+<section>
+  <h2>Sugestoj kaj erarraportoj ({{len .ReportMessages}})</h2>
+  {{if .ReportMessages}}
+  <div class="moderation-list">
+    {{range .ReportMessages}}
+    <article class="moderation-item">
+      <header>
+        <strong>{{if .Username}}{{.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
+        <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
+      </header>
+      <p style="white-space:pre-wrap">{{.Text}}</p>
+      <footer>
+        <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+          <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+        </form>
+      </footer>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Neniu sugesto aŭ raporto.</em></p>
   {{end}}
-</div>
-{{else}}
-<p>Neniu komento atendas moderiĝon.</p>
-{{end}}
+</section>
+
+<hr>
+
+{{/* ── Community translations ── */}}
+<section>
+  <h2>Komunumaj tradukoj ({{len .Translations}})</h2>
+  {{if .Translations}}
+  <div class="moderation-list">
+    {{range .Translations}}
+    <article class="moderation-item">
+      <header>
+        <small>
+          Vorto: <a href="/ekzerco/{{.TargetID}}"><code>{{.TargetID}}</code></a>
+          &middot;
+          Lingvo: <strong>{{.Language}}</strong>
+          &middot;
+          Voĉoj: {{.VoteScore}}
+          &middot;
+          {{.CreatedAt.Format "2006-01-02"}}
+        </small>
+      </header>
+      <p>{{.Text}}</p>
+      <footer style="display:flex;gap:0.5rem;flex-wrap:wrap">
+        <form method="POST" action="/admin/tradukoj/{{.ID}}/aprobi" style="display:inline">
+          <button type="submit" class="approve-btn">&#10003; Aldoni kiel oficialan difinon</button>
+        </form>
+        <form method="POST" action="/admin/tradukoj/{{.ID}}/forigi" style="display:inline"
+              onsubmit="return confirm('Forigi tiun ĉi tradukon?')">
+          <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
+        </form>
+      </footer>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Neniu traduko atendas revizion.</em></p>
+  {{end}}
+</section>
+
+<hr>
+
+{{/* ── Pending comments ── */}}
+<section>
+  <h2>Komentoj ({{len .Comments}} atendas)</h2>
+  {{if .Comments}}
+  <div class="moderation-list">
+    {{range .Comments}}
+    <article class="moderation-item" id="comment-{{.ID}}">
+      <header>
+        <small>
+          Uzanto: <code>{{truncate .UserID 8}}</code>
+          &middot;
+          Enhavo: <a href="/ekzerco/{{.ContentItemID}}"><code>{{.ContentItemID}}</code></a>
+        </small>
+      </header>
+      <p>{{.Text}}</p>
+      <footer>
+        <form method="POST" action="/admin/moderigo/{{.ID}}" style="display:inline"
+              hx-post="/admin/moderigo/{{.ID}}"
+              hx-target="#comment-{{.ID}}"
+              hx-swap="outerHTML">
+          <button type="submit" name="action" value="aprobi" class="approve-btn">Aprobi</button>
+          <button type="submit" name="action" value="malakcepti" class="reject-btn outline">Malakcepti</button>
+        </form>
+      </footer>
+    </article>
+    {{end}}
+  </div>
+  {{else}}
+  <p><em>Neniu komento atendas moderiĝon.</em></p>
+  {{end}}
+</section>
+
+<p><a href="/admin">&larr; Reen al panelo</a></p>
 {{end}}

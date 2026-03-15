@@ -51,17 +51,19 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 	pending, _ := h.content.ListForAdmin(r.Context(), "pending", 1000)
 	pendingComments, _ := h.comments.ListPending(r.Context(), 100)
 	unreadMessages, _ := h.modMessages.ListUnread(r.Context(), 50)
+	pendingTranslations, _ := h.translations.ListAll(r.Context(), 200)
 
 	data := map[string]interface{}{
-		"User":           u,
-		"ApprovedCount":  len(approved),
-		"PendingCount":   len(pending),
-		"CommentCount":   len(pendingComments),
-		"ModMessages":    unreadMessages,
-		"SeedResult":     r.URL.Query().Get("seed"),
-		"ImportResult":   r.URL.Query().Get("import"),
-		"NukeResult":     r.URL.Query().Get("nuke"),
-		"UILang":         UILangFor(u),
+		"User":               u,
+		"ApprovedCount":      len(approved),
+		"PendingCount":       len(pending),
+		"CommentCount":       len(pendingComments),
+		"ModMessageCount":    len(unreadMessages),
+		"TranslationCount":   len(pendingTranslations),
+		"SeedResult":         r.URL.Query().Get("seed"),
+		"ImportResult":       r.URL.Query().Get("import"),
+		"NukeResult":         r.URL.Query().Get("nuke"),
+		"UILang":             UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "admin_dashboard.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -321,15 +323,26 @@ func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	messages, _ := h.modMessages.ListUnread(r.Context(), 100)
+	allMessages, _ := h.modMessages.ListUnread(r.Context(), 100)
 	translations, _ := h.translations.ListAll(r.Context(), 200)
 
+	// Split mod messages into contact messages vs. automated reports.
+	var contactMessages, reportMessages []*model.ModMessage
+	for _, m := range allMessages {
+		if strings.HasPrefix(m.Text, "[alternativo]") || strings.HasPrefix(m.Text, "[eraro-raporto]") {
+			reportMessages = append(reportMessages, m)
+		} else {
+			contactMessages = append(contactMessages, m)
+		}
+	}
+
 	data := map[string]interface{}{
-		"User":         u,
-		"Comments":     comments,
-		"ModMessages":  messages,
-		"Translations": translations,
-		"UILang":       UILangFor(u),
+		"User":            u,
+		"Comments":        comments,
+		"ContactMessages": contactMessages,
+		"ReportMessages":  reportMessages,
+		"Translations":    translations,
+		"UILang":          UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "moderigo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

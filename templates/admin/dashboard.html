@@ -25,28 +25,17 @@
   </article>
 
   <article>
-    <h2>{{len .ModMessages}}</h2>
-    <p>Nelegitaj uzant-mesaĝoj</p>
+    <h2>{{.TranslationCount}}</h2>
+    <p>Komunumaj tradukoj</p>
+    <a href="/admin/moderigo">Vidi</a>
+  </article>
+
+  <article>
+    <h2>{{.ModMessageCount}}</h2>
+    <p>Nelegitaj mesaĝoj kaj raportoj</p>
+    <a href="/admin/moderigo">Vidi</a>
   </article>
 </div>
-
-{{if .ModMessages}}
-<section>
-  <h2>Mesaĝoj de uzantoj</h2>
-  {{range .ModMessages}}
-  <article>
-    <header><strong>{{.Username}}</strong> <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small></header>
-    <p>{{.Text}}</p>
-    <footer>
-      <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
-        <button type="submit" class="outline">&#10003; Markita kiel legita</button>
-      </form>
-    </footer>
-  </article>
-  {{end}}
-</section>
-<hr>
-{{end}}
 
 <nav>
   <ul>
