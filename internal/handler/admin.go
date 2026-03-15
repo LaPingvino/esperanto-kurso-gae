@@ -7963,7 +7963,7 @@ func seedExtraItems() []*model.ContentItem {
 		{
 			slug:  "artikolo-sveda-vortaro",
 			title: "Sveda vortaro migras reten – ĉu aliaj sekvos?",
-			text:  "Post preskaŭ naŭ jardekojn da silento, la Esperanta-sveda vortaro denove vekiĝas. La Sveda Esperanto-Federacio anoncis la digitigon de sia fundamenta vortaro, kiu laste aperis en la 1930-aj jaroj.\n\nDr. Anders Löfgren, ĉefredaktoro de la projekto, klarigas: \"Ni ne simple digitalas malnovan libron. Ni rekonstruas tutan lingvan rilaton por la 21-a jarcento.\"\n\nLa digitiga procezo alfrontas plurajn obstakojn: kodprava konservado, semantika ĝisdatigo, kaj teknologia integrado. La nova vortaro devos funkcii en modernaj retaj platformoj.\n\nMalpleje tradicie, la nova sveda vortaro estos komunumo-redaktata. Uzantoj povos proponi novajn terminojn, korekti erarojn, kaj diskuti nuancojn. \"Lingvoj vivas tra siaj parolantoj\", komentas Löfgren.",
+			text:  "Post preskaŭ naŭ jardekoj da silento, la Esperanto-sveda vortaro denove vekiĝas. La Sveda Esperanto-Federacio anoncis la ciferecigon de sia fundamenta vortaro, kiu laste aperis en la 1930-aj jaroj.\n\nDr. Anders Löfgren, ĉefredaktoro de la projekto, klarigas: \"Ni ne simple ciferecigas malnovan libron. Ni rekonstruas tutan lingvan rilaton por la 21-a jarcento.\"\n\nLa cifereciga procezo alfrontas plurajn obstakojn: fidela konservado, semantika ĝisdatigo, kaj teknologia integrado. La nova vortaro devos funkcii en modernaj retaj platformoj.\n\nMalpli tradicie, la nova sveda vortaro estos komunumo-redaktata. Uzantoj povos proponi novajn terminojn, korekti erarojn, kaj diskuti nuancojn. \"Lingvoj vivas tra siaj parolantoj\", komentas Löfgren.",
 			order: 2,
 		},
 	}

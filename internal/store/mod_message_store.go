@@ -31,19 +31,27 @@ func (s *ModMessageStore) Create(ctx context.Context, m *model.ModMessage) error
 }
 
 func (s *ModMessageStore) ListUnread(ctx context.Context, limit int) ([]*model.ModMessage, error) {
+	// Avoid querying on boolean false (zero-value Datastore issue); fetch recent
+	// messages and filter in Go instead.
 	q := datastore.NewQuery(modMsgKind).
-		FilterField("read", "=", false).
-		Order("created_at").
-		Limit(limit)
+		Order("-created_at").
+		Limit(limit * 10)
 	var msgs []*model.ModMessage
 	keys, err := s.db.GetAll(ctx, q, &msgs)
 	if err != nil {
 		return nil, fmt.Errorf("mod_message_store: ListUnread: %w", err)
 	}
+	var unread []*model.ModMessage
 	for i, k := range keys {
 		msgs[i].ID = fmt.Sprintf("%d", k.ID)
+		if !msgs[i].Read {
+			unread = append(unread, msgs[i])
+			if len(unread) >= limit {
+				break
+			}
+		}
 	}
-	return msgs, nil
+	return unread, nil
 }
 
 func (s *ModMessageStore) MarkRead(ctx context.Context, id string) error {
