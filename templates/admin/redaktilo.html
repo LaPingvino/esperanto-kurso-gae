@@ -21,6 +21,18 @@
   <label>Gepatra ekzerco <small>(identigilo de la teksto/leciono kiun ĉi tiu serio servas)</small>:
     <input type="text" name="series_parent" value="{{.SeriesParent}}" placeholder="ekz. zagr-l01-teksto">
   </label>
+  <label>Defaŭlta tipo por novaj eroj:
+    <select name="default_type" id="default_type_select" onchange="syncDefaultType(this.value)">
+      <option value="fillin">Plenigi blankon</option>
+      <option value="multiplechoice">Plurelekta</option>
+      <option value="reading">Legado</option>
+      <option value="vocab">Vortaro</option>
+      <option value="phrasebook">Frazaro</option>
+      <option value="image">Bildo</option>
+      <option value="listening">Aŭskulti</option>
+      <option value="video">Video</option>
+    </select>
+  </label>
 
   <style>
   .sc-header { display:flex; gap:0.5rem; align-items:center; margin-bottom:0.4rem; }
@@ -222,15 +234,16 @@
       <small>Identigiloj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
     </label>
 
-    <div id="series-items-list"></div>
-    <button type="button" onclick="siAdd()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni ekzercon</button>
-  </div>
+    <div class="grid">
+      <label>Etikedo por butono <small>(videbla nomo)</small>:
+        <input type="text" name="series_label" placeholder="ekz. Ekzercoj pri Leciono 1">
+      </label>
+      <label>Gepatra ekzerco <small>(identigilo de la teksto/leciono)</small>:
+        <input type="text" name="series_parent" placeholder="ekz. zagr-l01-teksto">
+      </label>
+    </div>
 
-  {{/* ══ Common metadata ══ */}}
-  <hr style="margin-top:1rem">
-
-  <div class="grid">
-    <label id="default-type-wrap" style="display:none">Defaŭlta tipo <small>(por serio)</small>:
+    <label>Defaŭlta tipo por novaj eroj:
       <select name="default_type" id="default_type_select" onchange="syncDefaultType(this.value)">
         <option value="fillin">Plenigi blankon</option>
         <option value="multiplechoice">Plurelekta</option>
@@ -243,6 +256,14 @@
       </select>
     </label>
 
+    <div id="series-items-list"></div>
+    <button type="button" onclick="siAdd()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni ekzercon</button>
+  </div>
+
+  {{/* ══ Common metadata ══ */}}
+  <hr style="margin-top:1rem">
+
+  <div class="grid">
     <label>Etikedoj (dividitaj per komo):
       <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
     </label>
@@ -312,10 +333,9 @@ var _seriesMode = false;
 
 function toggleSeriesMode() {
   _seriesMode = !_seriesMode;
-  document.getElementById('single-mode').style.display        = _seriesMode ? 'none' : '';
-  document.getElementById('series-mode').style.display        = _seriesMode ? '' : 'none';
+  document.getElementById('single-mode').style.display          = _seriesMode ? 'none' : '';
+  document.getElementById('series-mode').style.display          = _seriesMode ? '' : 'none';
   document.getElementById('single-series-fields').style.display = _seriesMode ? 'none' : '';
-  document.getElementById('default-type-wrap').style.display  = _seriesMode ? '' : 'none';
 
   var btn       = document.getElementById('series-toggle-btn');
   var submitBtn = document.getElementById('submit-btn');
