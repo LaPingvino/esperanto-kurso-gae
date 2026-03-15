@@ -55,7 +55,7 @@ func main() {
 
 	// --- Handlers ---
 	authH := handler.NewAuthHandler(tmpl, userStore, sessionStore, wa)
-	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore)
+	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore, userStore)
 	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore)
 	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
@@ -69,6 +69,8 @@ func main() {
 	mux.HandleFunc("GET /vortaro", contentH.ShowVortaro)
 	mux.HandleFunc("GET /sercxi", contentH.Browse)
 	mux.HandleFunc("GET /etikedoj", contentH.ShowEtikedoj)
+	mux.HandleFunc("GET /steloj", contentH.ShowFavorites)
+	mux.HandleFunc("POST /ekzerco/{slug}/steli", contentH.ToggleFavorite)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
 	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)
@@ -173,6 +175,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"admin_vortaro_gen.html": "templates/admin/vortaro-gen.html",
 		"sercxi.html":           "templates/sercxi.html",
 		"etikedoj.html":         "templates/etikedoj.html",
+		"steloj.html":           "templates/steloj.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).

@@ -22,9 +22,20 @@ type User struct {
 	PasskeysJSON []byte             `firestore:"passkeys_json"`
 	Passkeys     []webauthn.Credential `firestore:"-"`
 	Progress     map[string]bool    `firestore:"progress"`
+	Favorites    []string           `firestore:"favorites"`
 	StreakDays   int                `firestore:"streak_days"`
 	CreatedAt    time.Time          `firestore:"created_at"`
 	LastSeenAt   time.Time          `firestore:"last_seen_at"`
+}
+
+// IsFavorite returns true if the given slug is in the user's favorites.
+func (u *User) IsFavorite(slug string) bool {
+	for _, s := range u.Favorites {
+		if s == slug {
+			return true
+		}
+	}
+	return false
 }
 
 // UILangOrDefault returns UILang if non-empty, else "eo".

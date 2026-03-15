@@ -13,6 +13,16 @@
     {{if .Item.Tags}}
       {{range .Item.Tags}}<a href="/sercxi?etikedo={{.}}" class="tag" title="Filtri laŭ etikedo">{{.}}</a> {{end}}
     {{end}}
+    <span class="exercise-actions">
+      {{if .User}}
+      <form method="POST" action="/ekzerco/{{.Item.Slug}}/steli" style="display:inline">
+        <button type="submit" class="icon-btn" title="{{if .IsFavorite}}Malfavori{{else}}Steli ĉi tiun ekzercon{{end}}">{{if .IsFavorite}}★{{else}}☆{{end}}</button>
+      </form>
+      {{end}}
+      {{if .User}}{{if eq .User.Role "admin"}}
+      <a href="/admin/enhavo/{{.Item.Slug}}/redakti" class="icon-btn" title="Redakti ekzercon">✏️</a>
+      {{end}}{{end}}
+    </span>
     {{if .Item.SeriesSlug}}
     <small class="series-badge">&#128196; {{.Item.SeriesSlug}} #{{.Item.SeriesOrder}}</small>
     {{end}}

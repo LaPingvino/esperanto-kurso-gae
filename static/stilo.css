@@ -908,3 +908,27 @@ nav a[href="/admin/enhavo/nova"] {
   color: #fff;
   font-weight: bold;
 }
+
+/* ── Favorites star + admin edit buttons on exercises ── */
+.exercise-actions {
+  margin-left: auto;
+  display: inline-flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+.icon-btn {
+  background: none;
+  border: none;
+  padding: 0.1rem 0.3rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--pico-muted-color);
+  line-height: 1;
+  text-decoration: none;
+  border-radius: 4px;
+}
+.icon-btn:hover {
+  color: var(--pico-primary);
+  background: var(--pico-primary-background);
+}
+

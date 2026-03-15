@@ -1,0 +1,41 @@
+{{template "base" .}}
+
+{{define "title"}}Stelitaj ekzercoj — Esperanto-kurso{{end}}
+
+{{define "content"}}
+<h1>★ Stelitaj ekzercoj</h1>
+
+{{if .Items}}
+<table>
+  <thead>
+    <tr>
+      <th>Ekzerco</th>
+      <th>Tipo</th>
+      <th>Nivelo</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Items}}
+    <tr>
+      <td>
+        <a href="/ekzerco/{{.Slug}}">
+          {{if .Word}}<strong>{{.Word}}</strong>{{else if .Title}}<strong>{{.Title}}</strong>{{else if .Question}}{{truncate .Question 50}}{{else}}<code>{{.Slug}}</code>{{end}}
+        </a>
+      </td>
+      <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+      <td><span class="cefr-badge cefr-{{cefr .Rating}}">{{cefr .Rating}}</span></td>
+      <td>
+        <form method="POST" action="/ekzerco/{{.Slug}}/steli" style="display:inline">
+          <button type="submit" class="icon-btn" title="Malfavori">★</button>
+        </form>
+      </td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{else}}
+<p><em>Vi ankoraŭ ne stelumis ekzercojn. Klaku ☆ sur ekzerco por aldoni ĝin ĉi tien.</em></p>
+<p><a href="/" role="button">Komenci lerni</a></p>
+{{end}}
+{{end}}

@@ -19,6 +19,7 @@
         <li><a href="/">{{t .UILang "nav.home"}}</a></li>
         <li><a href="/vortaro">{{t .UILang "nav.vortaro"}}</a></li>
         <li><a href="/etikedoj">{{t .UILang "tags.title"}}</a></li>
+        {{if .User}}<li><a href="/steloj" title="Viaj stelitaj ekzercoj">★</a></li>{{end}}
         <li><a href="/enskribi">{{t .UILang "nav.save_progress"}}</a></li>
         {{if .User}}{{if eq .User.Role "admin"}}
         <li><a href="/admin">{{t .UILang "nav.admin"}}</a></li>

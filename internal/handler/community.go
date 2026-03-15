@@ -349,9 +349,10 @@ func (h *CommunityHandler) SuggestAlternative(w http.ResponseWriter, r *http.Req
 		return
 	}
 	msg := &model.ModMessage{
-		UserID:   u.ID,
-		Username: u.DisplayName(),
-		Text:     "[alternativo] ekzerco: " + slug + "\nSuggestita respondo: " + answer,
+		UserID:        u.ID,
+		Username:      u.DisplayName(),
+		ContentItemID: slug,
+		Text:          "[alternativo] ekzerco: " + slug + "\nSuggestita respondo: " + answer,
 	}
 	if err := h.modMessages.Create(r.Context(), msg); err != nil {
 		http.Error(w, "Eraro", http.StatusInternalServerError)
@@ -374,9 +375,10 @@ func (h *CommunityHandler) FlagExercise(w http.ResponseWriter, r *http.Request) 
 		return
 	}
 	msg := &model.ModMessage{
-		UserID:   u.ID,
-		Username: u.DisplayName(),
-		Text:     "[eraro-raporto] ekzerco: " + slug + "\nUzanto raportis problemon en ĉi tiu ekzerco.",
+		UserID:        u.ID,
+		Username:      u.DisplayName(),
+		ContentItemID: slug,
+		Text:          "[eraro-raporto] ekzerco: " + slug + "\nUzanto raportis problemon en ĉi tiu ekzerco.",
 	}
 	if err := h.modMessages.Create(r.Context(), msg); err != nil {
 		http.Error(w, "Eraro", http.StatusInternalServerError)

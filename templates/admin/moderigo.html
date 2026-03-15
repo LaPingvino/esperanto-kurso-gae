@@ -16,6 +16,7 @@
     <article class="moderation-item">
       <header>
         <strong>{{if .Username}}{{.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
+        {{if .UserID}}<small><code>{{.UserID}}</code></small>{{end}}
         <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
       </header>
       <p style="white-space:pre-wrap">{{.Text}}</p>
@@ -41,13 +42,33 @@
   <div class="moderation-list">
     {{range .ReportMessages}}
     <article class="moderation-item">
-      <header>
-        <strong>{{if .Username}}{{.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
-        <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
+      <header style="display:flex;gap:1rem;flex-wrap:wrap;align-items:baseline">
+        <strong>{{if .Msg.Username}}{{.Msg.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
+        {{if .Msg.UserID}}<small><code>{{.Msg.UserID}}</code></small>{{end}}
+        <small>{{.Msg.CreatedAt.Format "2006-01-02 15:04"}}</small>
+        {{if .IsAlternative}}<span class="tag">sugesto</span>{{else}}<span class="tag">eraro-raporto</span>{{end}}
+        {{if .Slug}}
+        &middot;
+        <a href="/ekzerco/{{.Slug}}">&#128065; Vidi ekzercon</a>
+        &middot;
+        <a href="/admin/enhavo/{{.Slug}}/redakti">&#9998; Redakti</a>
+        {{end}}
       </header>
-      <p style="white-space:pre-wrap">{{.Text}}</p>
+      {{if .Item}}
+      <details open>
+        <summary><strong>{{if .Item.Title}}{{.Item.Title}}{{else}}{{.Slug}}{{end}}</strong></summary>
+        <blockquote style="margin:0.5rem 0;font-size:0.9em">
+          {{if .Item.Question}}<p>&#10067; {{.Item.Question}}</p>{{end}}
+          {{if .Item.Answer}}<p>&#10003; Ĝusta respondo: <code>{{.Item.Answer}}</code></p>{{end}}
+          {{if .Item.Text}}<p style="white-space:pre-wrap;max-height:6em;overflow:auto">{{.Item.Text}}</p>{{end}}
+        </blockquote>
+      </details>
+      {{end}}
+      {{if .Answer}}
+      <p>&#128161; Sugesto: <strong><code>{{.Answer}}</code></strong></p>
+      {{end}}
       <footer>
-        <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+        <form method="POST" action="/admin/mesagxoj/{{.Msg.ID}}/legita" style="display:inline">
           <button type="submit" class="outline">&#10003; Markita kiel legita</button>
         </form>
       </footer>

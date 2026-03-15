@@ -22,9 +22,10 @@ type userEntity struct {
 	Role         string    `datastore:"role"`
 	Lang         string    `datastore:"lang"`
 	UILang       string    `datastore:"ui_lang"`
-	PasskeysJSON []byte    `datastore:"passkeys_json,noindex"`
-	ProgressJSON []byte    `datastore:"progress_json,noindex"`
-	StreakDays   int       `datastore:"streak_days"`
+	PasskeysJSON  []byte    `datastore:"passkeys_json,noindex"`
+	ProgressJSON  []byte    `datastore:"progress_json,noindex"`
+	FavoritesJSON []byte    `datastore:"favorites_json,noindex"`
+	StreakDays    int       `datastore:"streak_days"`
 	CreatedAt    time.Time `datastore:"created_at"`
 	LastSeenAt   time.Time `datastore:"last_seen_at"`
 }
@@ -35,6 +36,10 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		return nil, err
 	}
 	prJSON, err := json.Marshal(u.Progress)
+	if err != nil {
+		return nil, err
+	}
+	favJSON, err := json.Marshal(u.Favorites)
 	if err != nil {
 		return nil, err
 	}
@@ -55,9 +60,10 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		Role:         u.Role,
 		Lang:         lang,
 		UILang:       uiLang,
-		PasskeysJSON: pkJSON,
-		ProgressJSON: prJSON,
-		StreakDays:   u.StreakDays,
+		PasskeysJSON:  pkJSON,
+		ProgressJSON:  prJSON,
+		FavoritesJSON: favJSON,
+		StreakDays:    u.StreakDays,
 		CreatedAt:    u.CreatedAt,
 		LastSeenAt:   u.LastSeenAt,
 	}, nil
@@ -105,6 +111,11 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 	}
 	if len(e.ProgressJSON) > 0 {
 		if err := json.Unmarshal(e.ProgressJSON, &u.Progress); err != nil {
+			return nil, err
+		}
+	}
+	if len(e.FavoritesJSON) > 0 {
+		if err := json.Unmarshal(e.FavoritesJSON, &u.Favorites); err != nil {
 			return nil, err
 		}
 	}
@@ -405,4 +416,45 @@ func (s *UserStore) UpdateLastSeen(ctx context.Context, userID string) error {
 		return err
 	})
 	return err
+}
+
+// ToggleFavorite adds slug to the user's favorites if absent, removes it if
+// present. Returns true if the slug is now a favorite (was added).
+func (s *UserStore) ToggleFavorite(ctx context.Context, userID, slug string) (bool, error) {
+	key := s.userKey(userID)
+	var added bool
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		var favs []string
+		if len(e.FavoritesJSON) > 0 {
+			_ = json.Unmarshal(e.FavoritesJSON, &favs)
+		}
+		found := false
+		var next []string
+		for _, s := range favs {
+			if s == slug {
+				found = true
+			} else {
+				next = append(next, s)
+			}
+		}
+		if found {
+			added = false
+			favs = next
+		} else {
+			added = true
+			favs = append([]string{slug}, favs...) // prepend so newest first
+		}
+		b, err := json.Marshal(favs)
+		if err != nil {
+			return err
+		}
+		e.FavoritesJSON = b
+		_, err = tx.Put(key, &e)
+		return err
+	})
+	return added, err
 }

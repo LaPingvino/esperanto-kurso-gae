@@ -20,6 +20,7 @@ type ContentHandler struct {
 	comments     *store.CommentStore
 	votes        *store.VoteStore
 	translations *store.TranslationStore
+	users        *store.UserStore
 }
 
 // NewContentHandler creates a ContentHandler.
@@ -29,6 +30,7 @@ func NewContentHandler(
 	comments *store.CommentStore,
 	votes *store.VoteStore,
 	translations *store.TranslationStore,
+	users *store.UserStore,
 ) *ContentHandler {
 	return &ContentHandler{
 		tmpl:         tmpl,
@@ -36,6 +38,7 @@ func NewContentHandler(
 		comments:     comments,
 		votes:        votes,
 		translations: translations,
+		users:        users,
 	}
 }
 
@@ -355,6 +358,11 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	isFavorite := false
+	if u != nil {
+		isFavorite = u.IsFavorite(slug)
+	}
+
 	data := map[string]interface{}{
 		"User":          u,
 		"Item":          item,
@@ -367,6 +375,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"VocabItems":    vocabItems,
 		"SeriesTotal":   seriesTotal,
 		"VocabModo":     vocabModo,
+		"IsFavorite":    isFavorite,
 		"UILang":        UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
@@ -451,4 +460,48 @@ func cefrToRatingRange(cefr string) (float64, float64) {
 		return r[0], r[1]
 	}
 	return 0, 9999
+}
+
+// ToggleFavorite handles POST /ekzerco/{slug}/steli — adds/removes a favorite.
+func (h *ContentHandler) ToggleFavorite(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
+		return
+	}
+	slug := r.PathValue("slug")
+	if slug == "" {
+		http.NotFound(w, r)
+		return
+	}
+	_, err := h.users.ToggleFavorite(r.Context(), u.ID, slug)
+	if err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/ekzerco/"+slug, http.StatusSeeOther)
+}
+
+// ShowFavorites handles GET /steloj — lists the user's starred exercises.
+func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
+		return
+	}
+	var items []*model.ContentItem
+	for _, slug := range u.Favorites {
+		item, err := h.content.GetBySlug(r.Context(), slug)
+		if err == nil && item != nil {
+			items = append(items, item)
+		}
+	}
+	data := map[string]interface{}{
+		"User":   u,
+		"Items":  items,
+		"UILang": UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "steloj.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }

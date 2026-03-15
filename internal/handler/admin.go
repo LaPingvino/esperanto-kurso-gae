@@ -315,6 +315,30 @@ func (h *AdminHandler) CreateVocabFromReading(w http.ResponseWriter, r *http.Req
 	http.Redirect(w, r, redir, http.StatusSeeOther)
 }
 
+// EnrichedReport wraps a ModMessage with the looked-up exercise content.
+type EnrichedReport struct {
+	Msg          *model.ModMessage
+	Item         *model.ContentItem
+	Slug         string
+	Answer       string // suggested alternative answer, if any
+	IsAlternative bool
+}
+
+// reportSlug extracts the exercise slug from a report message text, falling
+// back to the stored ContentItemID for newer messages.
+func reportSlug(m *model.ModMessage) string {
+	if m.ContentItemID != "" {
+		return m.ContentItemID
+	}
+	// Legacy: parse from text "[alternativo] ekzerco: slug\n..."
+	for _, line := range strings.SplitN(m.Text, "\n", 2) {
+		if idx := strings.Index(line, "ekzerco: "); idx != -1 {
+			return strings.TrimSpace(line[idx+9:])
+		}
+	}
+	return ""
+}
+
 // ModerationQueue handles GET /admin/moderigo.
 func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
@@ -326,11 +350,30 @@ func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 	allMessages, _ := h.modMessages.ListUnread(r.Context(), 100)
 	translations, _ := h.translations.ListAll(r.Context(), 200)
 
-	// Split mod messages into contact messages vs. automated reports.
-	var contactMessages, reportMessages []*model.ModMessage
+	// Split and enrich mod messages.
+	var contactMessages []*model.ModMessage
+	var reportMessages []EnrichedReport
 	for _, m := range allMessages {
 		if strings.HasPrefix(m.Text, "[alternativo]") || strings.HasPrefix(m.Text, "[eraro-raporto]") {
-			reportMessages = append(reportMessages, m)
+			slug := reportSlug(m)
+			var item *model.ContentItem
+			if slug != "" {
+				item, _ = h.content.GetBySlug(r.Context(), slug)
+			}
+			answer := ""
+			isAlt := strings.HasPrefix(m.Text, "[alternativo]")
+			if isAlt {
+				if parts := strings.SplitN(m.Text, "\nSuggestita respondo: ", 2); len(parts) == 2 {
+					answer = strings.TrimSpace(parts[1])
+				}
+			}
+			reportMessages = append(reportMessages, EnrichedReport{
+				Msg:           m,
+				Item:          item,
+				Slug:          slug,
+				Answer:        answer,
+				IsAlternative: isAlt,
+			})
 		} else {
 			contactMessages = append(contactMessages, m)
 		}
