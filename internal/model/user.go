@@ -39,6 +39,16 @@ func (u *User) IsFavorite(slug string) bool {
 	return false
 }
 
+// IsFavoriteSeries returns true if the given series slug is in the user's favorites.
+func (u *User) IsFavoriteSeries(seriesSlug string) bool {
+	return u.IsFavorite("series:" + seriesSlug)
+}
+
+// IsFavoriteTag returns true if the given tag is in the user's favorites.
+func (u *User) IsFavoriteTag(tag string) bool {
+	return u.IsFavorite("tag:" + tag)
+}
+
 // UILangOrDefault returns UILang if non-empty, else "eo".
 func (u *User) UILangOrDefault() string {
 	if u.UILang == "" {

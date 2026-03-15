@@ -5,7 +5,13 @@
 {{define "content"}}
 <h1>★ {{t .UILang "steloj.title"}}</h1>
 
-{{if .Items}}
+{{if and (not .Exercises) (not .SeriesSlugs) (not .Tags)}}
+<p><em>{{t .UILang "steloj.empty"}}</em></p>
+<p><a href="/" role="button">{{t .UILang "steloj.start_btn"}}</a></p>
+{{else}}
+
+{{if .Exercises}}
+<h2>{{t .UILang "steloj.col_exercise"}}</h2>
 <table>
   <thead>
     <tr>
@@ -16,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    {{range .Items}}
+    {{range .Exercises}}
     <tr>
       <td>
         <a href="/ekzerco/{{.Slug}}">
@@ -34,8 +40,37 @@
     {{end}}
   </tbody>
 </table>
-{{else}}
-<p><em>{{t .UILang "steloj.empty"}}</em></p>
-<p><a href="/" role="button">{{t .UILang "steloj.start_btn"}}</a></p>
+{{end}}
+
+{{if .SeriesSlugs}}
+<h2>Stelitaj serioj</h2>
+<ul>
+  {{range .SeriesSlugs}}
+  <li>
+    <a href="/sercxi?etikedo={{.}}">&#128196; {{.}}</a>
+    &nbsp;
+    <form method="POST" action="/serio/{{.}}/steli" style="display:inline">
+      <button type="submit" class="icon-btn" title="Malfavori serion">★</button>
+    </form>
+  </li>
+  {{end}}
+</ul>
+{{end}}
+
+{{if .Tags}}
+<h2>Stelitaj etikedoj</h2>
+<ul>
+  {{range .Tags}}
+  <li>
+    <a href="/sercxi?etikedo={{.}}" class="tag">{{.}}</a>
+    &nbsp;
+    <form method="POST" action="/etikedo/{{.}}/steli" style="display:inline">
+      <button type="submit" class="icon-btn" title="Malfavori etikedon">★</button>
+    </form>
+  </li>
+  {{end}}
+</ul>
+{{end}}
+
 {{end}}
 {{end}}

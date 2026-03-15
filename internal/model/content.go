@@ -20,8 +20,10 @@ type ContentItem struct {
 	VoteScore   int                    `firestore:"vote_score"`
 	Version     int                    `firestore:"version"`
 	ImageURL    string                 `firestore:"image_url"`
-	SeriesSlug  string                 `firestore:"series_slug"`
-	SeriesOrder int                    `firestore:"series_order"`
+	SeriesSlug   string                 `firestore:"series_slug"`
+	SeriesOrder  int                    `firestore:"series_order"`
+	SeriesLabel  string                 `firestore:"series_label"`  // display name for series button
+	SeriesParent string                 `firestore:"series_parent"` // slug of parent item (e.g. reading text)
 	CreatedAt   time.Time              `firestore:"created_at"`
 	UpdatedAt   time.Time              `firestore:"updated_at"`
 }

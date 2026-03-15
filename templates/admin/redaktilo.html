@@ -2,11 +2,88 @@
 {{template "base" .}}
 {{end}}
 
-{{define "title"}}{{if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}} — Esperanto-kurso{{end}}
+{{define "title"}}{{if .IsSeries}}Redakti serion: {{.SeriesSlug}}{{else if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>{{if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
+<h1>{{if .IsSeries}}Redakti serion: {{.SeriesSlug}}{{else if .IsNew}}Nova enhavo{{else}}Redakti: {{.Item.Slug}}{{end}}</h1>
 
+{{if .IsSeries}}
+{{/* ══ SERIES EDIT MODE ══ */}}
+<form method="POST" action="/admin/serio/{{.SeriesSlug}}" id="content-form">
+  <div class="grid">
+    <label><strong>Serio-identigilo:</strong>
+      <input type="text" value="{{.SeriesSlug}}" readonly style="background:var(--pico-form-element-disabled-background-color)">
+    </label>
+    <label>Etikedo por butono <small>(videbla nomo de la serio)</small>:
+      <input type="text" name="series_label" value="{{.SeriesLabel}}" placeholder="ekz. Ekzercoj pri Leciono 1">
+    </label>
+  </div>
+  <label>Gepatra ekzerco <small>(slug de la teksto/leciono kiun ĉi tiu serio servas)</small>:
+    <input type="text" name="series_parent" value="{{.SeriesParent}}" placeholder="ekz. zagr-l01-teksto">
+  </label>
+
+  <style>
+  .sc-header { display:flex; gap:0.5rem; align-items:center; margin-bottom:0.4rem; }
+  .sc-header .item-num { font-weight:bold; color:var(--pico-muted-color); min-width:1.5rem; }
+  .sc-header select { flex:0 0 11rem; margin-bottom:0; }
+  .sc-header button { margin-bottom:0; }
+  .series-card { border:1px solid var(--pico-muted-border-color); border-radius:6px; padding:0.75rem; margin-bottom:0.6rem; }
+  .sc-body label { margin-bottom:0.4rem; }
+  .sc-body textarea { min-height:4rem; }
+  </style>
+
+  <input type="hidden" id="item_count" name="item_count" value="0">
+
+  <div id="series-items-list"></div>
+  <button type="button" onclick="siAdd()" class="outline" style="margin-top:0.25rem;width:auto">+ Aldoni ekzercon</button>
+
+  <hr style="margin-top:1rem">
+
+  <div class="grid">
+    <label>Etikedoj (dividitaj per komo):
+      <input type="text" name="tags" value="{{.SeriesTags}}" placeholder="saluto, baza, gramatiko">
+    </label>
+    <label>Fonto:
+      <input type="text" name="source" value="{{.SeriesSource}}" placeholder="Libro, TTT-ejo, ktp.">
+    </label>
+  </div>
+
+  <label>
+    Stato:
+    <select name="status">
+      <option value="draft"    {{if eq .SeriesStatus "draft"}}selected{{end}}>Malneto</option>
+      <option value="pending"  {{if eq .SeriesStatus "pending"}}selected{{end}}>Atendanta</option>
+      <option value="approved" {{if eq .SeriesStatus "approved"}}selected{{end}}>Aprobita</option>
+      <option value="rejected" {{if eq .SeriesStatus "rejected"}}selected{{end}}>Malakceptita</option>
+    </select>
+  </label>
+
+  <div class="form-actions" style="display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem">
+    <button type="submit" id="submit-btn">Konservi serion</button>
+    <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+  </div>
+</form>
+
+<details style="margin-top:1.5rem">
+  <summary>&#9998; Renomi serion</summary>
+  <form method="POST" action="/admin/serio/{{.SeriesSlug}}/renomi" style="margin-top:0.5rem"
+        onsubmit="return confirm('Ĉu vi certas? Ĉi tio ĝisdatigos la series_slug sur ĉiuj ekzercoj kaj la stelumoj de uzantoj.')">
+    <div class="grid">
+      <label>Nova serio-identigilo:
+        <input type="text" name="new_slug" required pattern="[a-z0-9\-]+"
+               placeholder="nova-serio-slug"
+               title="Nur minusklaj literoj, ciferoj kaj streketo">
+      </label>
+      <div style="display:flex;align-items:flex-end">
+        <button type="submit" class="outline">Renomi</button>
+      </div>
+    </div>
+    <small>&#9888; Ĉi tio ĝisdatigas la <code>series_slug</code>-kampon sur ĉiuj ekzercoj en la serio kaj ĝisdatigas stelumojn de uzantoj. La propraj slug-oj de la ekzercoj ne ŝanĝiĝas.</small>
+  </form>
+</details>
+
+{{else}}
+{{/* ══ SINGLE ITEM / NEW ITEM MODE ══ */}}
 <form method="POST" action="{{if .IsNew}}/admin/enhavo{{else}}/admin/enhavo/{{.Item.Slug}}{{end}}" id="content-form">
 
   {{/* ══ SINGLE ITEM MODE ══ */}}
@@ -219,6 +296,7 @@
     {{end}}
   </div>
 </form>
+{{end}}
 
 <script>
 // ── Single-item mode ──────────────────────────────────────────────
@@ -286,16 +364,18 @@ function esc(s) {
   return String(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function siCardHTML(idx, typ) {
+function siCardHTML(idx, typ, existingSlug) {
   var p = 'item_'+idx+'_';
+  var esSlug = existingSlug || '';
   return '<div class="series-card">'
+    +'<input type="hidden" name="'+p+'existing_slug" value="'+esc(esSlug)+'">'
     +'<div class="sc-header">'
     +'<span class="item-num">'+(idx+1)+'.</span>'
     +'<select name="'+p+'type" class="sc-type" onchange="this.dataset.userChanged=1;siTypeChange(this)">'+siTypeOptions(typ)+'</select>'
     +'<button type="button" class="outline contrast" style="padding:0.2em 0.5em;margin-left:auto" onclick="siRemove(this)" title="Forigi">✕</button>'
     +'</div>'
     +'<div class="sc-body">'
-    // Title (video)
+    // Title (video/reading)
     +'<div class="sc-f sc-title" style="display:none"><label>Titolo:<input type="text" name="'+p+'title" placeholder="Titolo"></label></div>'
     // Question
     +'<div class="sc-f sc-question" style="display:none"><label>Demando:<input type="text" name="'+p+'question" placeholder="Demando / frazo"></label></div>'
@@ -344,16 +424,51 @@ function siTypeChange(sel) {
   });
 }
 
-function siAdd(typ) {
+function siAdd(typ, existingSlug) {
   var list = document.getElementById('series-items-list');
   var idx  = list.children.length;
-  var t    = typ || document.getElementById('default_type_select').value || 'fillin';
+  var defaultTypeEl = document.getElementById('default_type_select');
+  var t    = typ || (defaultTypeEl ? defaultTypeEl.value : null) || 'fillin';
   var div  = document.createElement('div');
-  div.innerHTML = siCardHTML(idx, t);
+  div.innerHTML = siCardHTML(idx, t, existingSlug || '');
   list.appendChild(div.firstChild);
   siTypeChange(list.lastElementChild.querySelector('.sc-type'));
   document.getElementById('item_count').value = list.children.length;
   siRenumber();
+}
+
+// siAddWithData creates a card and populates field values from a data object.
+function siAddWithData(idx, typ, existingSlug, vals) {
+  var list = document.getElementById('series-items-list');
+  var div  = document.createElement('div');
+  div.innerHTML = siCardHTML(idx, typ, existingSlug || '');
+  var card = div.firstChild;
+  list.appendChild(card);
+  siTypeChange(card.querySelector('.sc-type'));
+  document.getElementById('item_count').value = list.children.length;
+  siRenumber();
+
+  // Populate field values.
+  var p = 'item_'+idx+'_';
+  function setVal(name, val) {
+    if (val === undefined || val === null) return;
+    var el = card.querySelector('[name="'+p+name+'"]');
+    if (el) el.value = val;
+  }
+  setVal('title',         vals.title);
+  setVal('question',      vals.question);
+  setVal('answer',        vals.answer);
+  setVal('text',          vals.text);
+  setVal('word',          vals.word);
+  setVal('definitions',   vals.definitions);
+  setVal('definition',    vals.definition);
+  setVal('options',       vals.options);
+  setVal('correct_index', vals.correct_index);
+  setVal('audio_url',     vals.audio_url);
+  setVal('video_url',     vals.video_url);
+  setVal('image_url',     vals.image_url);
+  setVal('hint',          vals.hint);
+  setVal('gap_answers',   vals.gap_answers);
 }
 
 function siRemove(btn) {
@@ -388,4 +503,32 @@ document.addEventListener('DOMContentLoaded', function() {
   if (sel && sel.value) showContentFields(sel.value);
 });
 </script>
+
+{{if .IsSeries}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Show series-mode panel (reuse same list element).
+  var sm = document.getElementById('series-items-list');
+  if (!sm) return;
+  {{range $i, $si := .SeriesItems}}
+  siAddWithData({{$i}}, {{jsStr $si.Type}}, {{jsStr $si.ExistingSlug}}, {
+    title:         {{jsStr $si.Title}},
+    question:      {{jsStr $si.Question}},
+    answer:        {{jsStr $si.Answer}},
+    text:          {{jsStr $si.Text}},
+    word:          {{jsStr $si.Word}},
+    definitions:   {{jsStr $si.Definitions}},
+    definition:    {{jsStr $si.Definition}},
+    options:       {{jsStr $si.Options}},
+    correct_index: {{$si.CorrectIndex}},
+    audio_url:     {{jsStr $si.AudioURL}},
+    video_url:     {{jsStr $si.VideoURL}},
+    image_url:     {{jsStr $si.ImageURL}},
+    hint:          {{jsStr $si.Hint}},
+    gap_answers:   {{jsStr $si.GapAnswers}},
+  });
+  {{end}}
+});
+</script>
+{{end}}
 {{end}}

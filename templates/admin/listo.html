@@ -18,9 +18,67 @@
       <option value="rejected" {{if eq .StatusFilter "rejected"}}selected{{end}}>Malakceptita</option>
     </select>
   </form>
+  <input type="search" id="content-search" placeholder="Serĉi laŭ identigilo, tipo…" style="max-width:20rem" oninput="filterContent(this.value)">
 </div>
 
-{{if .Items}}
+{{if or .Groups .Standalone}}
+
+{{range .Groups}}
+<details class="series-group" style="margin-bottom:0.75rem">
+  <summary style="cursor:pointer;font-weight:bold">
+    &#128196; {{.SeriesSlug}}
+    <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj)</small>
+    &nbsp;
+    <a href="/admin/serio/{{.SeriesSlug}}/redakti" style="font-size:0.85em" onclick="event.stopPropagation()">Redakti serion</a>
+  </summary>
+  <div class="table-responsive">
+    <table>
+      <thead>
+        <tr>
+          <th>Identigilo</th>
+          <th>Tipo</th>
+          <th>Stato</th>
+          <th>Nivelo</th>
+          <th>Voĉoj</th>
+          <th>Agoj</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .Items}}
+        <tr data-search="{{.Slug}} {{.Type}} {{.Status}}">
+          <td><code>{{.Slug}}</code></td>
+          <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+          <td>
+            <span class="status-badge status-{{.Status}}">
+              {{if eq .Status "draft"}}Malneto
+              {{else if eq .Status "pending"}}Atendanta
+              {{else if eq .Status "approved"}}Aprobita
+              {{else if eq .Status "rejected"}}Malakceptita
+              {{else}}{{.Status}}{{end}}
+            </span>
+          </td>
+          <td>{{printf "%.0f" .Rating}} &plusmn;{{printf "%.0f" .RD}}</td>
+          <td>{{.VoteScore}}</td>
+          <td>
+            <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
+            &middot;
+            <a href="/ekzerco/{{.Slug}}">Vidi</a>
+            &middot;
+            <form method="POST" action="/admin/enhavo/{{.Slug}}/forigi" style="display:inline"
+                  onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Slug}}»?')">
+              <button type="submit" class="outline danger-btn" style="padding:0.1em 0.4em;font-size:0.85em">Forigi</button>
+            </form>
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </div>
+</details>
+{{end}}
+
+{{if .Standalone}}
+<h2 style="margin-top:1.5rem">Solaj eroj</h2>
 <div class="table-responsive">
   <table>
     <thead>
@@ -34,8 +92,8 @@
       </tr>
     </thead>
     <tbody>
-      {{range .Items}}
-      <tr>
+      {{range .Standalone}}
+      <tr data-search="{{.Slug}} {{.Type}} {{.Status}}">
         <td><code>{{.Slug}}</code></td>
         <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
         <td>
@@ -66,7 +124,28 @@
     </tbody>
   </table>
 </div>
+{{end}}
+
 {{else}}
 <p>Neniu enhavo trovita{{if .StatusFilter}} por la stato "{{.StatusFilter}}"{{end}}.</p>
 {{end}}
+
+<script>
+function filterContent(q) {
+  q = q.toLowerCase();
+  // Filter table rows.
+  document.querySelectorAll('tr[data-search]').forEach(function(row) {
+    var match = !q || row.dataset.search.toLowerCase().indexOf(q) >= 0;
+    row.style.display = match ? '' : 'none';
+  });
+  // Open details groups that have visible rows; close empty ones.
+  document.querySelectorAll('details.series-group').forEach(function(det) {
+    var visible = Array.from(det.querySelectorAll('tr[data-search]')).some(function(r){ return r.style.display !== 'none'; });
+    if (q) {
+      det.open = visible;
+    }
+    det.style.display = visible || !q ? '' : 'none';
+  });
+}
+</script>
 {{end}}

@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"net/url"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -70,20 +71,56 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// SeriesGroup holds the items belonging to a single series.
+type SeriesGroup struct {
+	SeriesSlug string
+	Items      []*model.ContentItem
+}
+
 // ListContent handles GET /admin/enhavo.
 func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	statusFilter := r.URL.Query().Get("status")
 
-	items, err := h.content.ListForAdmin(r.Context(), statusFilter, 100)
+	items, err := h.content.ListForAdmin(r.Context(), statusFilter, 1000)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
+	// Group items by SeriesSlug; preserve first-appearance order.
+	groupMap := make(map[string]*SeriesGroup)
+	var groupOrder []string
+	var standalone []*model.ContentItem
+
+	for _, item := range items {
+		if item.SeriesSlug == "" {
+			standalone = append(standalone, item)
+			continue
+		}
+		if _, exists := groupMap[item.SeriesSlug]; !exists {
+			groupMap[item.SeriesSlug] = &SeriesGroup{SeriesSlug: item.SeriesSlug}
+			groupOrder = append(groupOrder, item.SeriesSlug)
+		}
+		groupMap[item.SeriesSlug].Items = append(groupMap[item.SeriesSlug].Items, item)
+	}
+
+	// Sort items within each group by SeriesOrder.
+	for _, g := range groupMap {
+		sort.Slice(g.Items, func(i, j int) bool {
+			return g.Items[i].SeriesOrder < g.Items[j].SeriesOrder
+		})
+	}
+
+	groups := make([]SeriesGroup, 0, len(groupOrder))
+	for _, slug := range groupOrder {
+		groups = append(groups, *groupMap[slug])
+	}
+
 	data := map[string]interface{}{
 		"User":         u,
-		"Items":        items,
+		"Groups":       groups,
+		"Standalone":   standalone,
 		"StatusFilter": statusFilter,
 		"UILang":       UILangFor(u),
 	}
@@ -750,6 +787,378 @@ func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, fmt.Sprintf("/admin/enhavo?series=%s&created=%d", seriesSlug, created), http.StatusSeeOther)
 }
 
+// SeriesItemForEdit holds the editable fields for a single item in a series.
+type SeriesItemForEdit struct {
+	ExistingSlug string
+	Type         string
+	Title        string
+	Question     string
+	Answer       string
+	Text         string
+	Word         string
+	Definitions  string // "lang: text\n" format
+	Definition   string
+	Options      string // newline-separated
+	CorrectIndex int
+	AudioURL     string
+	VideoURL     string
+	ImageURL     string
+	Hint         string
+	GapAnswers   string // newline-separated
+	SeriesLabel  string
+	SeriesParent string
+}
+
+// SeriesEditForm handles GET /admin/serio/{series_slug}/redakti.
+func (h *AdminHandler) SeriesEditForm(w http.ResponseWriter, r *http.Request) {
+	seriesSlug := r.PathValue("series_slug")
+	if seriesSlug == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	items, err := h.content.ListBySeriesForAdmin(r.Context(), seriesSlug)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Derive series-wide defaults from first item.
+	var seriesLabel, seriesParent, seriesTags, seriesSource, seriesStatus string
+	if len(items) > 0 {
+		first := items[0]
+		seriesLabel  = first.SeriesLabel
+		seriesParent = first.SeriesParent
+		seriesTags   = strings.Join(first.Tags, ", ")
+		seriesSource = first.Source
+		seriesStatus = first.Status
+	}
+
+	seriesItems := make([]SeriesItemForEdit, 0, len(items))
+	for _, item := range items {
+		si := SeriesItemForEdit{
+			ExistingSlug: item.Slug,
+			Type:         item.Type,
+			ImageURL:     item.ImageURL,
+			SeriesLabel:  item.SeriesLabel,
+			SeriesParent: item.SeriesParent,
+		}
+		if item.Content != nil {
+			if v, _ := item.Content["title"].(string); v != "" {
+				si.Title = v
+			}
+			if v, _ := item.Content["question"].(string); v != "" {
+				si.Question = v
+			}
+			if v, _ := item.Content["answer"].(string); v != "" {
+				si.Answer = v
+			}
+			if v, _ := item.Content["text"].(string); v != "" {
+				si.Text = v
+			}
+			if v, _ := item.Content["word"].(string); v != "" {
+				si.Word = v
+			}
+			if v, _ := item.Content["definition"].(string); v != "" {
+				si.Definition = v
+			}
+			if v, _ := item.Content["hint"].(string); v != "" {
+				si.Hint = v
+			}
+			if v, _ := item.Content["audio_url"].(string); v != "" {
+				si.AudioURL = v
+			}
+			if v, _ := item.Content["video_url"].(string); v != "" {
+				si.VideoURL = v
+			}
+			// Definitions map → "lang: text\n" format.
+			if defsRaw, ok := item.Content["definitions"]; ok {
+				if defs, ok := defsRaw.(map[string]interface{}); ok {
+					var sb strings.Builder
+					for lang, text := range defs {
+						if t, ok := text.(string); ok && t != "" {
+							sb.WriteString(lang + ": " + t + "\n")
+						}
+					}
+					si.Definitions = sb.String()
+				}
+			}
+			// Options.
+			switch v := item.Content["options"].(type) {
+			case []string:
+				si.Options = strings.Join(v, "\n")
+			case []interface{}:
+				var opts []string
+				for _, o := range v {
+					if s, ok := o.(string); ok {
+						opts = append(opts, s)
+					}
+				}
+				si.Options = strings.Join(opts, "\n")
+			}
+			// CorrectIndex.
+			switch v := item.Content["correct_index"].(type) {
+			case int:
+				si.CorrectIndex = v
+			case int64:
+				si.CorrectIndex = int(v)
+			case float64:
+				si.CorrectIndex = int(v)
+			}
+			// GapAnswers.
+			if answers, ok := item.Content["answers"]; ok {
+				switch v := answers.(type) {
+				case []string:
+					si.GapAnswers = strings.Join(v, "\n")
+				case []interface{}:
+					var gaps []string
+					for _, a := range v {
+						if s, ok := a.(string); ok {
+							gaps = append(gaps, s)
+						}
+					}
+					si.GapAnswers = strings.Join(gaps, "\n")
+				}
+			} else if v, _ := item.Content["answer"].(string); v != "" && item.Type == "fillin" {
+				si.GapAnswers = v
+			}
+		}
+		seriesItems = append(seriesItems, si)
+	}
+
+	u := UserFromContext(r.Context())
+	data := map[string]interface{}{
+		"IsNew":        false,
+		"IsSeries":     true,
+		"SeriesSlug":   seriesSlug,
+		"SeriesLabel":  seriesLabel,
+		"SeriesParent": seriesParent,
+		"SeriesItems":  seriesItems,
+		"User":         u,
+		"UILang":       UILangFor(u),
+		"Item": &model.ContentItem{
+			SeriesSlug:   seriesSlug,
+			SeriesLabel:  seriesLabel,
+			SeriesParent: seriesParent,
+			Source:       seriesSource,
+			Status:       seriesStatus,
+		},
+		"SeriesTags":   seriesTags,
+		"SeriesSource": seriesSource,
+		"SeriesStatus": seriesStatus,
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "redaktilo.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// UpdateSeries handles POST /admin/serio/{series_slug}.
+func (h *AdminHandler) UpdateSeries(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	seriesSlug := r.PathValue("series_slug")
+	if seriesSlug == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	// Parse series-wide metadata.
+	tagsRaw := r.FormValue("tags")
+	var tags []string
+	for _, t := range strings.Split(tagsRaw, ",") {
+		t = strings.TrimSpace(t)
+		if t != "" {
+			tags = append(tags, t)
+		}
+	}
+	source       := r.FormValue("source")
+	status       := r.FormValue("status")
+	seriesLabel  := r.FormValue("series_label")
+	seriesParent := r.FormValue("series_parent")
+	if status == "" {
+		status = "approved"
+	}
+
+	u := UserFromContext(r.Context())
+	authorID := ""
+	if u != nil {
+		authorID = u.ID
+	}
+
+	count, _ := strconv.Atoi(r.FormValue("item_count"))
+	var submittedSlugs []string
+	order := 1
+
+	for i := 0; i < count; i++ {
+		pre := fmt.Sprintf("item_%d_", i)
+		typ := strings.TrimSpace(r.FormValue(pre + "type"))
+		if typ == "" {
+			continue
+		}
+
+		existingSlug := strings.TrimSpace(r.FormValue(pre + "existing_slug"))
+		contentMap := map[string]interface{}{}
+		imageURL := ""
+
+		switch typ {
+		case "reading":
+			contentMap["title"] = r.FormValue(pre + "title")
+			contentMap["text"] = r.FormValue(pre + "text")
+			if contentMap["title"] == "" && contentMap["text"] == "" {
+				continue
+			}
+		case "video":
+			contentMap["title"] = r.FormValue(pre + "title")
+			contentMap["video_url"] = r.FormValue(pre + "video_url")
+			if contentMap["video_url"] == "" {
+				continue
+			}
+		case "vocab":
+			word := strings.TrimSpace(r.FormValue(pre + "word"))
+			if word == "" {
+				continue
+			}
+			contentMap["word"] = word
+			contentMap["definition"] = r.FormValue(pre + "definition")
+			if rawDefs := r.FormValue(pre + "definitions"); rawDefs != "" {
+				defs := map[string]interface{}{}
+				for _, line := range strings.Split(rawDefs, "\n") {
+					line = strings.TrimSpace(line)
+					if idx := strings.Index(line, ":"); idx > 0 {
+						lang := strings.TrimSpace(line[:idx])
+						text := strings.TrimSpace(line[idx+1:])
+						if lang != "" && text != "" {
+							defs[lang] = text
+						}
+					}
+				}
+				if len(defs) > 0 {
+					contentMap["definitions"] = defs
+				}
+			}
+			imageURL = r.FormValue(pre + "image_url")
+		case "multiplechoice":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["hint"] = r.FormValue(pre + "hint")
+			var options []string
+			for _, o := range strings.Split(r.FormValue(pre+"options"), "\n") {
+				if o = strings.TrimSpace(o); o != "" {
+					options = append(options, o)
+				}
+			}
+			contentMap["options"] = options
+			ci, _ := strconv.Atoi(r.FormValue(pre + "correct_index"))
+			contentMap["correct_index"] = ci
+		case "fillin":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["hint"] = r.FormValue(pre + "hint")
+			var gaps []string
+			for _, a := range strings.Split(r.FormValue(pre+"gap_answers"), "\n") {
+				if a = strings.TrimSpace(a); a != "" {
+					gaps = append(gaps, a)
+				}
+			}
+			if len(gaps) == 1 {
+				contentMap["answer"] = gaps[0]
+			} else if len(gaps) > 1 {
+				contentMap["answers"] = gaps
+			}
+		case "listening":
+			contentMap["audio_url"] = r.FormValue(pre + "audio_url")
+			contentMap["question"] = r.FormValue(pre + "question")
+			contentMap["answer"] = r.FormValue(pre + "answer")
+			contentMap["hint"] = r.FormValue(pre + "hint")
+		case "image":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			imageURL = r.FormValue(pre + "image_url")
+			contentMap["question"] = q
+			contentMap["answer"] = r.FormValue(pre + "answer")
+			contentMap["hint"] = r.FormValue(pre + "hint")
+		case "phrasebook":
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			imageURL = r.FormValue(pre + "image_url")
+		default:
+			q := strings.TrimSpace(r.FormValue(pre + "question"))
+			if q == "" {
+				continue
+			}
+			contentMap["question"] = q
+			contentMap["answer"] = r.FormValue(pre + "answer")
+		}
+
+		var itemSlug string
+		if existingSlug != "" {
+			itemSlug = existingSlug
+		} else {
+			itemSlug = fmt.Sprintf("%s-%02d", seriesSlug, order)
+		}
+		submittedSlugs = append(submittedSlugs, itemSlug)
+
+		item := &model.ContentItem{
+			Slug:        itemSlug,
+			Type:        typ,
+			Tags:        tags,
+			Source:      source,
+			AuthorID:    authorID,
+			Status:      status,
+			Rating:      1500,
+			RD:          350,
+			Volatility:  0.06,
+			SeriesSlug:   seriesSlug,
+			SeriesOrder:  order,
+			SeriesLabel:  seriesLabel,
+			SeriesParent: seriesParent,
+			ImageURL:     imageURL,
+			Content:      contentMap,
+		}
+
+		if existingSlug != "" {
+			if err := h.content.PatchContentFields(r.Context(), item); err != nil {
+				http.Error(w, fmt.Sprintf("Eraro ĉe %s: %v", itemSlug, err), http.StatusInternalServerError)
+				return
+			}
+		} else {
+			if err := h.content.Create(r.Context(), item); err != nil {
+				http.Error(w, fmt.Sprintf("Eraro ĉe %s: %v", itemSlug, err), http.StatusInternalServerError)
+				return
+			}
+		}
+		order++
+	}
+
+	// Delete items that are no longer in the submitted list.
+	currentItems, _ := h.content.ListBySeries(r.Context(), seriesSlug)
+	submittedSet := make(map[string]bool)
+	for _, s := range submittedSlugs {
+		submittedSet[s] = true
+	}
+	for _, ci := range currentItems {
+		if !submittedSet[ci.Slug] {
+			_ = h.content.Delete(r.Context(), ci.Slug)
+		}
+	}
+
+	http.Redirect(w, r, "/admin/serio/"+seriesSlug+"/redakti", http.StatusSeeOther)
+}
+
 // DeleteContent handles POST /admin/enhavo/{slug}/forigi.
 func (h *AdminHandler) DeleteContent(w http.ResponseWriter, r *http.Request) {
 	slug := r.PathValue("slug")
@@ -1031,6 +1440,39 @@ func (h *AdminHandler) CleanupInactiveUsers(w http.ResponseWriter, r *http.Reque
 	}
 	w.Header().Set("Content-Type", "text/plain")
 	fmt.Fprintf(w, "forigitaj: %d el %d elektitaj\n", deleted, len(due))
+}
+
+// RenameSeries handles POST /admin/serio/{series_slug}/renomi.
+// Renames the series_slug across all items and updates user favorites.
+func (h *AdminHandler) RenameSeries(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+	oldSlug := r.PathValue("series_slug")
+	newSlug := strings.TrimSpace(r.FormValue("new_slug"))
+	if oldSlug == "" || newSlug == "" || oldSlug == newSlug {
+		http.Error(w, "Bezonas malan kaj novan slug-on", http.StatusBadRequest)
+		return
+	}
+
+	items, err := h.content.ListBySeriesForAdmin(r.Context(), oldSlug)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	for _, item := range items {
+		item.SeriesSlug = newSlug
+		if err := h.content.PatchContentFields(r.Context(), item); err != nil {
+			http.Error(w, fmt.Sprintf("Eraro ĉe %s: %v", item.Slug, err), http.StatusInternalServerError)
+			return
+		}
+	}
+
+	// Update user favorites: "series:oldSlug" → "series:newSlug"
+	_, _ = h.users.RenameFavorite(r.Context(), "series:"+oldSlug, "series:"+newSlug)
+
+	http.Redirect(w, r, "/admin/serio/"+newSlug+"/redakti", http.StatusSeeOther)
 }
 
 // seedItems returns the built-in bootstrap dataset (Zagreba Metodo vortaro).

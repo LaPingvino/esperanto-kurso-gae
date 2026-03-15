@@ -6,6 +6,12 @@ indexes:
       - name: series_slug
       - name: series_order
 
+  # Content: all items in a series (admin), ordered
+  - kind: ContentItem
+    properties:
+      - name: series_slug
+      - name: series_order
+
   # Content: approved items by rating (for recommendations)
   - kind: ContentItem
     properties:
@@ -17,6 +23,12 @@ indexes:
     properties:
       - name: status
       - name: type
+
+  # Content: approved items by series_parent (for child series buttons)
+  - kind: ContentItem
+    properties:
+      - name: status
+      - name: series_parent
 
   # Content: approved items by tag (for tag-filtered vortaro)
   - kind: ContentItem

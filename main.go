@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"context"
+	"encoding/json"
 	"html"
 	"html/template"
 	"io"
@@ -71,6 +72,8 @@ func main() {
 	mux.HandleFunc("GET /etikedoj", contentH.ShowEtikedoj)
 	mux.HandleFunc("GET /steloj", contentH.ShowFavorites)
 	mux.HandleFunc("POST /ekzerco/{slug}/steli", contentH.ToggleFavorite)
+	mux.HandleFunc("POST /serio/{series_slug}/steli", contentH.ToggleFavoriteSeries)
+	mux.HandleFunc("POST /etikedo/{tag}/steli", contentH.ToggleFavoriteTag)
 	mux.HandleFunc("GET /honorlisto", contentH.ShowHonorListo)
 	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
@@ -108,6 +111,10 @@ func main() {
 	mux.Handle("GET /admin/enhavo/{slug}/redakti", rm(adminH.EditContentForm))
 	mux.Handle("POST /admin/enhavo/{slug}", rm(adminH.UpdateContent))
 	mux.Handle("POST /admin/enhavo/{slug}/forigi", ra(adminH.DeleteContent))
+	// Series edit routes: mods and admins
+	mux.Handle("GET /admin/serio/{series_slug}/redakti", rm(adminH.SeriesEditForm))
+	mux.Handle("POST /admin/serio/{series_slug}", rm(adminH.UpdateSeries))
+	mux.Handle("POST /admin/serio/{series_slug}/renomi", rm(adminH.RenameSeries))
 	// Moderation queue: mods and admins
 	mux.Handle("GET /admin/moderigo", rm(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", rm(adminH.ModerateComment))
@@ -476,6 +483,10 @@ func templateFuncs() template.FuncMap {
 				}
 			}
 			return template.HTML(out.String())
+		},
+		"jsStr": func(s string) template.JS {
+			b, _ := json.Marshal(s)
+			return template.JS(b)
 		},
 		"not": func(v interface{}) bool {
 			if v == nil {

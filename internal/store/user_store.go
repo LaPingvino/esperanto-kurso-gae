@@ -560,3 +560,58 @@ func (s *UserStore) ListTopUsers(ctx context.Context, limit int) ([]*model.User,
 	}
 	return users, nil
 }
+
+// RenameFavorite scans all users and replaces oldFav with newFav in their Favorites.
+// Returns the number of users updated. Used when renaming series/tag slugs.
+func (s *UserStore) RenameFavorite(ctx context.Context, oldFav, newFav string) (int, error) {
+	// Keys-only scan to find all users.
+	q := datastore.NewQuery(userKind).KeysOnly()
+	keys, err := s.db.GetAll(ctx, q, nil)
+	if err != nil {
+		return 0, fmt.Errorf("user_store: RenameFavorite scan: %w", err)
+	}
+
+	updated := 0
+	// Process in batches of 100.
+	for i := 0; i < len(keys); i += 100 {
+		end := i + 100
+		if end > len(keys) {
+			end = len(keys)
+		}
+		batch := keys[i:end]
+		entities := make([]userEntity, len(batch))
+		if err := s.db.GetMulti(ctx, batch, entities); err != nil {
+			// Partial errors are ok — skip missing entities.
+			if me, ok := err.(datastore.MultiError); ok {
+				for j, e := range me {
+					if e != nil && e != datastore.ErrNoSuchEntity {
+						_ = e
+						_ = j
+					}
+				}
+			}
+		}
+		for j, key := range batch {
+			var favs []string
+			if len(entities[j].FavoritesJSON) > 0 {
+				_ = json.Unmarshal(entities[j].FavoritesJSON, &favs)
+			}
+			changed := false
+			for k, f := range favs {
+				if f == oldFav {
+					favs[k] = newFav
+					changed = true
+				}
+			}
+			if !changed {
+				continue
+			}
+			b, _ := json.Marshal(favs)
+			entities[j].FavoritesJSON = b
+			if _, err := s.db.Put(ctx, key, &entities[j]); err == nil {
+				updated++
+			}
+		}
+	}
+	return updated, nil
+}

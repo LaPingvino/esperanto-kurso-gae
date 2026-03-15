@@ -38,6 +38,11 @@
     {{if .PrevInSeries}}
     <a href="/ekzerco/{{.PrevInSeries.Slug}}" class="series-link prev">&larr; {{if .PrevInSeries.Word}}{{.PrevInSeries.Word}}{{else if .PrevInSeries.Question}}{{truncate .PrevInSeries.Question 30}}{{else}}{{t .UILang "exercise.series_prev_fallback"}}{{end}}</a>
     {{end}}
+    {{if .User}}{{if .Item.SeriesSlug}}
+    <form method="POST" action="/serio/{{.Item.SeriesSlug}}/steli" style="display:inline">
+      <button type="submit" class="icon-btn" title="{{if .User.IsFavoriteSeries .Item.SeriesSlug}}Malfavori serion{{else}}Steli serion{{end}}">{{if .User.IsFavoriteSeries .Item.SeriesSlug}}★{{else}}☆{{end}}</button>
+    </form>
+    {{end}}{{end}}
     {{if .NextInSeries}}
     <a href="/ekzerco/{{.NextInSeries.Slug}}" class="series-link next">{{if .NextInSeries.Word}}{{.NextInSeries.Word}}{{else if .NextInSeries.Question}}{{truncate .NextInSeries.Question 30}}{{else}}{{t .UILang "exercise.series_next_fallback"}}{{end}} &rarr;</a>
     {{end}}
@@ -53,6 +58,15 @@
     {{$uiLang := "en"}}{{if .User}}{{$uiLang = .User.Lang}}{{end}}
     <p>{{linkifyText .Item.Text .VocabItems $uiLang}}</p>
   </article>
+  {{if .ChildSeries}}
+  <nav class="child-series-nav">
+    {{range .ChildSeries}}
+    <a href="/ekzerco/{{.Slug}}" role="button" class="outline">
+      &#128196; {{if .SeriesLabel}}{{.SeriesLabel}}{{else}}{{.SeriesSlug}}{{end}}
+    </a>
+    {{end}}
+  </nav>
+  {{end}}
   {{if .VocabTag}}
   <p><a href="/vortaro?tag={{.VocabTag}}" role="button" class="outline">&#128218; {{t .UILang "exercise.vocab_practice_link"}}</a></p>
   {{end}}
@@ -280,6 +294,16 @@
     <input type="hidden" name="judgment" value="ne-sciis">
   </form>
 
+  {{end}}
+
+  {{if and .ChildSeries (ne .Item.Type "reading")}}
+  <nav class="child-series-nav">
+    {{range .ChildSeries}}
+    <a href="/ekzerco/{{.Slug}}" role="button" class="outline">
+      &#128196; {{if .SeriesLabel}}{{.SeriesLabel}}{{else}}{{.SeriesSlug}}{{end}}
+    </a>
+    {{end}}
+  </nav>
   {{end}}
 
   <div id="rezulto"></div>

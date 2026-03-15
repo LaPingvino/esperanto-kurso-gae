@@ -25,8 +25,10 @@ type contentEntity struct {
 	VoteScore   int       `datastore:"vote_score"`
 	Version     int       `datastore:"version"`
 	ImageURL    string    `datastore:"image_url,noindex"`
-	SeriesSlug  string    `datastore:"series_slug"`
-	SeriesOrder int       `datastore:"series_order"`
+	SeriesSlug   string    `datastore:"series_slug"`
+	SeriesOrder  int       `datastore:"series_order"`
+	SeriesLabel  string    `datastore:"series_label,noindex"`
+	SeriesParent string    `datastore:"series_parent"`
 	CreatedAt   time.Time `datastore:"created_at"`
 	UpdatedAt   time.Time `datastore:"updated_at"`
 }
@@ -49,8 +51,10 @@ func contentToEntity(item *model.ContentItem) (*contentEntity, error) {
 		VoteScore:   item.VoteScore,
 		Version:     item.Version,
 		ImageURL:    item.ImageURL,
-		SeriesSlug:  item.SeriesSlug,
-		SeriesOrder: item.SeriesOrder,
+		SeriesSlug:   item.SeriesSlug,
+		SeriesOrder:  item.SeriesOrder,
+		SeriesLabel:  item.SeriesLabel,
+		SeriesParent: item.SeriesParent,
 		CreatedAt:   item.CreatedAt,
 		UpdatedAt:   item.UpdatedAt,
 	}, nil
@@ -70,8 +74,10 @@ func entityToContent(slug string, e *contentEntity) (*model.ContentItem, error) 
 		VoteScore:   e.VoteScore,
 		Version:     e.Version,
 		ImageURL:    e.ImageURL,
-		SeriesSlug:  e.SeriesSlug,
-		SeriesOrder: e.SeriesOrder,
+		SeriesSlug:   e.SeriesSlug,
+		SeriesOrder:  e.SeriesOrder,
+		SeriesLabel:  e.SeriesLabel,
+		SeriesParent: e.SeriesParent,
 		CreatedAt:   e.CreatedAt,
 		UpdatedAt:   e.UpdatedAt,
 	}
@@ -147,8 +153,10 @@ func (s *ContentStore) PatchContentFields(ctx context.Context, item *model.Conte
 	existing.Tags = item.Tags
 	existing.Source = item.Source
 	existing.ImageURL = item.ImageURL
-	existing.SeriesSlug = item.SeriesSlug
-	existing.SeriesOrder = item.SeriesOrder
+	existing.SeriesSlug   = item.SeriesSlug
+	existing.SeriesOrder  = item.SeriesOrder
+	existing.SeriesLabel  = item.SeriesLabel
+	existing.SeriesParent = item.SeriesParent
 	existing.UpdatedAt = time.Now()
 	_, err = s.db.Put(ctx, key, &existing)
 	return err
@@ -213,6 +221,23 @@ func (s *ContentStore) ListBySeries(ctx context.Context, seriesSlug string) ([]*
 		FilterField("status", "=", "approved").
 		FilterField("series_slug", "=", seriesSlug).
 		Order("series_order")
+	return s.runContentQuery(ctx, q)
+}
+
+// ListBySeriesForAdmin returns all items (any status) in a series, sorted by series_order.
+func (s *ContentStore) ListBySeriesForAdmin(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("series_slug", "=", seriesSlug).
+		Order("series_order")
+	return s.runContentQuery(ctx, q)
+}
+
+// ListBySeriesParent returns approved items whose series_parent equals parentSlug.
+// Used to show related series buttons on an exercise page.
+func (s *ContentStore) ListBySeriesParent(ctx context.Context, parentSlug string) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("status", "=", "approved").
+		FilterField("series_parent", "=", parentSlug)
 	return s.runContentQuery(ctx, q)
 }
 

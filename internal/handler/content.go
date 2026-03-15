@@ -394,8 +394,12 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 
 	isFavorite := false
 	isRadiko := false
+	isFavoriteSeries := false
 	if u != nil {
 		isFavorite = u.IsFavorite(slug)
+		if item.SeriesSlug != "" {
+			isFavoriteSeries = u.IsFavoriteSeries(item.SeriesSlug)
+		}
 	}
 	for _, t := range item.Tags {
 		if t == "radiko" {
@@ -404,23 +408,37 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Child series: series whose SeriesParent == this item's slug (e.g. vocab/quiz series for a reading).
+	childSeries, _ := h.content.ListBySeriesParent(r.Context(), slug)
+	// Deduplicate to one entry per series slug (the first item of each series).
+	seenChildSeries := map[string]bool{}
+	var uniqueChildSeries []*model.ContentItem
+	for _, cs := range childSeries {
+		if !seenChildSeries[cs.SeriesSlug] {
+			seenChildSeries[cs.SeriesSlug] = true
+			uniqueChildSeries = append(uniqueChildSeries, cs)
+		}
+	}
+
 	data := map[string]interface{}{
-		"User":          u,
-		"Item":          item,
-		"Comments":      comments,
-		"CurrentVote":   currentVote,
-		"TradukData":    tradukData,
-		"PrevInSeries":  prevInSeries,
-		"NextInSeries":  nextInSeries,
-		"VocabTag":      vocabTag,
-		"VocabItems":    vocabItems,
-		"SeriesTotal":   seriesTotal,
-		"VocabModo":     vocabModo,
-		"IsFavorite":    isFavorite,
-		"IsRadiko":      isRadiko,
-		"DoltEoDef":     doltEoDef,
-		"DoltSource":    doltSource,
-		"UILang":        UILangFor(u),
+		"User":             u,
+		"Item":             item,
+		"Comments":         comments,
+		"CurrentVote":      currentVote,
+		"TradukData":       tradukData,
+		"PrevInSeries":     prevInSeries,
+		"NextInSeries":     nextInSeries,
+		"VocabTag":         vocabTag,
+		"VocabItems":       vocabItems,
+		"SeriesTotal":      seriesTotal,
+		"VocabModo":        vocabModo,
+		"IsFavorite":       isFavorite,
+		"IsFavoriteSeries": isFavoriteSeries,
+		"IsRadiko":         isRadiko,
+		"DoltEoDef":        doltEoDef,
+		"DoltSource":       doltSource,
+		"ChildSeries":      uniqueChildSeries,
+		"UILang":           UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -526,24 +544,74 @@ func (h *ContentHandler) ToggleFavorite(w http.ResponseWriter, r *http.Request) 
 	http.Redirect(w, r, "/ekzerco/"+slug, http.StatusSeeOther)
 }
 
-// ShowFavorites handles GET /steloj — lists the user's starred exercises.
+// ToggleFavoriteSeries handles POST /serio/{series_slug}/steli — adds/removes a series favorite.
+func (h *ContentHandler) ToggleFavoriteSeries(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
+		return
+	}
+	seriesSlug := r.PathValue("series_slug")
+	if seriesSlug == "" {
+		http.NotFound(w, r)
+		return
+	}
+	_, err := h.users.ToggleFavorite(r.Context(), u.ID, "series:"+seriesSlug)
+	if err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, r.Referer(), http.StatusSeeOther)
+}
+
+// ToggleFavoriteTag handles POST /etikedo/{tag}/steli — adds/removes a tag favorite.
+func (h *ContentHandler) ToggleFavoriteTag(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
+		return
+	}
+	tag := r.PathValue("tag")
+	if tag == "" {
+		http.NotFound(w, r)
+		return
+	}
+	_, err := h.users.ToggleFavorite(r.Context(), u.ID, "tag:"+tag)
+	if err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, r.Referer(), http.StatusSeeOther)
+}
+
+// ShowFavorites handles GET /steloj — lists the user's starred exercises, series, and tags.
 func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	if u == nil {
 		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
 		return
 	}
-	var items []*model.ContentItem
-	for _, slug := range u.Favorites {
-		item, err := h.content.GetBySlug(r.Context(), slug)
-		if err == nil && item != nil {
-			items = append(items, item)
+	var exercises []*model.ContentItem
+	var seriesSlugs []string
+	var tags []string
+	for _, fav := range u.Favorites {
+		if strings.HasPrefix(fav, "series:") {
+			seriesSlugs = append(seriesSlugs, strings.TrimPrefix(fav, "series:"))
+		} else if strings.HasPrefix(fav, "tag:") {
+			tags = append(tags, strings.TrimPrefix(fav, "tag:"))
+		} else {
+			item, _ := h.content.GetBySlug(r.Context(), fav)
+			if item != nil {
+				exercises = append(exercises, item)
+			}
 		}
 	}
 	data := map[string]interface{}{
-		"User":   u,
-		"Items":  items,
-		"UILang": UILangFor(u),
+		"User":        u,
+		"Exercises":   exercises,
+		"SeriesSlugs": seriesSlugs,
+		"Tags":        tags,
+		"UILang":      UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "steloj.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

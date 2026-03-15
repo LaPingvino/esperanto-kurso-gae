@@ -10,10 +10,15 @@
 {{if .Tags}}
 <div class="tag-cloud">
   {{range $tag, $count := .Tags}}
-  <a href="/sercxi?etikedo={{$tag}}" class="tag-item">
-    <span class="tag">{{$tag}}</span>
+  <span class="tag-item">
+    <a href="/sercxi?etikedo={{$tag}}" class="tag">{{$tag}}</a>
     <small class="tag-count">{{$count}}</small>
-  </a>
+    {{if $.User}}
+    <form method="POST" action="/etikedo/{{$tag}}/steli" style="display:inline">
+      <button type="submit" class="icon-btn" title="{{if $.User.IsFavoriteTag $tag}}Malfavori etikedon{{else}}Steli etikedon{{end}}">{{if $.User.IsFavoriteTag $tag}}★{{else}}☆{{end}}</button>
+    </form>
+    {{end}}
+  </span>
   {{end}}
 </div>
 {{else}}
