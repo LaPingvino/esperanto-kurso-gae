@@ -33,6 +33,12 @@
           </select>
           <button type="submit" class="outline">Ŝanĝi rolon</button>
         </form>
+        {{if .Username}}
+        <form method="POST" action="/admin/uzantoj/{{.ID}}/nomo-forigi" style="display:inline"
+              onsubmit="return confirm('Ĉu malkonekti uzantnomon «{{.Username}}»?')">
+          <button type="submit" class="outline secondary">Malkonekti nomon</button>
+        </form>
+        {{end}}
       </td>
     </tr>
     {{end}}
@@ -47,10 +53,10 @@
 
 <section>
   <h2>Kunfandi uzantojn</h2>
-  <p>Kunfandas la progreson de la <em>fonta</em> uzanto en la <em>celan</em> uzanton, poste forigas la fontan konton.</p>
+  <p>Kunfandas la progreson de la <em>fonta</em> uzanto en la <em>celan</em> uzanton, poste forigas la fontan konton. Eblas uzi uzantnomon aŭ internan ID.</p>
   <form method="POST" action="/admin/uzantoj/kunfandi">
-    <label>Cela ID (konservota): <input type="text" name="dst" placeholder="dst-user-id" required></label>
-    <label>Fonta ID (forigota): <input type="text" name="src" placeholder="src-user-id" required></label>
+    <label>Cela (konservota): <input type="text" name="dst" placeholder="uzantnomo aŭ ID" required></label>
+    <label>Fonta (forigota): <input type="text" name="src" placeholder="uzantnomo aŭ ID" required></label>
     <button type="submit" class="secondary" onclick="return confirm('Ĉu vi certas? Tio estas neregebla!')">Kunfandi</button>
   </form>
 </section>

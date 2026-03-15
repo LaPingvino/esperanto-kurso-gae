@@ -116,6 +116,7 @@ func main() {
 	mux.Handle("GET /admin/uzantoj", ra(adminH.ListUsers))
 	mux.Handle("POST /admin/uzantoj/kunfandi", ra(adminH.MergeUsers))
 	mux.Handle("POST /admin/uzantoj/{id}/rolo", ra(adminH.SetUserRole))
+	mux.Handle("POST /admin/uzantoj/{id}/nomo-forigi", ra(adminH.UnlinkUsername))
 	mux.Handle("POST /admin/mesagxoj/{id}/legita", ra(adminH.MarkModMessageRead))
 
 	// Profile routes (logged-in users).

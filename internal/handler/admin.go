@@ -701,22 +701,51 @@ func (h *AdminHandler) ListUsers(w http.ResponseWriter, r *http.Request) {
 }
 
 // MergeUsers handles POST /admin/uzantoj/kunfandi — merges src into dst.
+// dst and src may be user IDs or usernames; usernames are resolved automatically.
 func (h *AdminHandler) MergeUsers(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
 		return
 	}
-	dstID := r.FormValue("dst")
-	srcID := r.FormValue("src")
-	if dstID == "" || srcID == "" || dstID == srcID {
-		http.Error(w, "Bezonatas du malsamaj uzant-IDoj", http.StatusBadRequest)
+	dstRef := strings.TrimSpace(r.FormValue("dst"))
+	srcRef := strings.TrimSpace(r.FormValue("src"))
+	if dstRef == "" || srcRef == "" {
+		http.Error(w, "Bezonatas du uzant-referencoj", http.StatusBadRequest)
 		return
 	}
-	if err := h.users.MergeUsers(r.Context(), dstID, srcID); err != nil {
+	dst, err := h.users.ResolveUserRef(r.Context(), dstRef)
+	if err != nil {
+		http.Error(w, "Eraro (cela uzanto): "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	src, err := h.users.ResolveUserRef(r.Context(), srcRef)
+	if err != nil {
+		http.Error(w, "Eraro (fonta uzanto): "+err.Error(), http.StatusBadRequest)
+		return
+	}
+	if dst.ID == src.ID {
+		http.Error(w, "La du uzantoj estas la sama konto", http.StatusBadRequest)
+		return
+	}
+	if err := h.users.MergeUsers(r.Context(), dst.ID, src.ID); err != nil {
 		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
 		return
 	}
 	http.Redirect(w, r, "/admin/uzantoj?msg=kunfandita", http.StatusSeeOther)
+}
+
+// UnlinkUsername handles POST /admin/uzantoj/{id}/nomo-forigi — clears a user's username.
+func (h *AdminHandler) UnlinkUsername(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if id == "" {
+		http.NotFound(w, r)
+		return
+	}
+	if err := h.users.ClearUsername(r.Context(), id); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/admin/uzantoj?msg=nomo-forigita", http.StatusSeeOther)
 }
 
 // seedItems returns the built-in bootstrap dataset (Zagreba Metodo vortaro).

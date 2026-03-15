@@ -192,6 +192,33 @@ func (s *UserStore) SetUsername(ctx context.Context, userID, username string) er
 	return err
 }
 
+// ClearUsername removes the username from a user account.
+func (s *UserStore) ClearUsername(ctx context.Context, userID string) error {
+	key := s.userKey(userID)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		e.Username = ""
+		_, err := tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
+// ResolveUserRef looks up a user by ID first, then by username.
+// Returns the user and its ID, or an error if not found.
+func (s *UserStore) ResolveUserRef(ctx context.Context, ref string) (*model.User, error) {
+	if u, err := s.GetByID(ctx, ref); err == nil && u != nil {
+		return u, nil
+	}
+	if u, err := s.GetByUsername(ctx, ref); err == nil && u != nil {
+		return u, nil
+	}
+	return nil, fmt.Errorf("uzanto ne trovita: %s", ref)
+}
+
 // MergeUsers merges srcID into dstID: copies progress, keeps dst ratings, deletes src.
 func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 	dst, err := s.GetByID(ctx, dstID)
