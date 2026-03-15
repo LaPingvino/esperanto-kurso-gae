@@ -75,6 +75,24 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// RandomVocab handles GET /vorto — redirects to a random vocab exercise near the user's level.
+func (h *ContentHandler) RandomVocab(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	var rating float64 = 1500
+	if u != nil {
+		rating = u.Rating
+	}
+	items, _ := h.content.ListByTypeAndRatingRange(r.Context(), "vocab", rating-300, rating+300, 20)
+	if len(items) == 0 {
+		items, _ = h.content.ListByType(r.Context(), "vocab", 20)
+	}
+	if len(items) > 0 {
+		http.Redirect(w, r, "/ekzerco/"+items[rand.Intn(len(items))].Slug, http.StatusSeeOther)
+		return
+	}
+	http.Redirect(w, r, "/vortaro", http.StatusSeeOther)
+}
+
 const vortaroPageSize = 50
 
 // ShowVortaro handles GET /vortaro — searchable, tag-filtered, paginated vocab list.

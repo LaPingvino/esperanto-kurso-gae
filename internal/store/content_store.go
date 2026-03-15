@@ -196,6 +196,17 @@ func (s *ContentStore) ListByType(ctx context.Context, typ string, limit int) ([
 	return s.runContentQuery(ctx, q)
 }
 
+// ListByTypeAndRatingRange returns approved items of a given type within a rating range.
+func (s *ContentStore) ListByTypeAndRatingRange(ctx context.Context, typ string, minR, maxR float64, limit int) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("status", "=", "approved").
+		FilterField("type", "=", typ).
+		FilterField("rating", ">=", minR).
+		FilterField("rating", "<=", maxR).
+		Limit(limit)
+	return s.runContentQuery(ctx, q)
+}
+
 // ListBySeries returns all approved items in a series, sorted by series_order.
 func (s *ContentStore) ListBySeries(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error) {
 	q := datastore.NewQuery(contentKind).

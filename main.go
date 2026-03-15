@@ -72,6 +72,7 @@ func main() {
 	mux.HandleFunc("GET /steloj", contentH.ShowFavorites)
 	mux.HandleFunc("POST /ekzerco/{slug}/steli", contentH.ToggleFavorite)
 	mux.HandleFunc("GET /honorlisto", contentH.ShowHonorListo)
+	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
 	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)
