@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
-	"esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
 const translationKind = "Translation"
@@ -128,6 +128,45 @@ func (s *TranslationStore) Vote(ctx context.Context, userID, translationID strin
 	}
 
 	return effectiveValue, nil
+}
+
+// GetByID returns a single translation by its numeric string ID.
+func (s *TranslationStore) GetByID(ctx context.Context, id string) (*model.Translation, error) {
+	n, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return nil, fmt.Errorf("translation_store: bad id %q: %w", id, err)
+	}
+	key := datastore.IDKey(translationKind, n, nil)
+	var e translationEntity
+	if err := s.db.Get(ctx, key, &e); err != nil {
+		return nil, err
+	}
+	return &model.Translation{
+		ID:        id,
+		TargetID:  e.TargetID,
+		Language:  e.Language,
+		Text:      e.Text,
+		AuthorID:  e.AuthorID,
+		VoteScore: e.VoteScore,
+		CreatedAt: e.CreatedAt,
+	}, nil
+}
+
+// Delete removes a translation by ID.
+func (s *TranslationStore) Delete(ctx context.Context, id string) error {
+	n, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return fmt.Errorf("translation_store: bad id %q: %w", id, err)
+	}
+	return s.db.Delete(ctx, datastore.IDKey(translationKind, n, nil))
+}
+
+// ListAll returns the most-recently-added translations up to limit.
+func (s *TranslationStore) ListAll(ctx context.Context, limit int) ([]*model.Translation, error) {
+	q := datastore.NewQuery(translationKind).
+		Order("-created_at").
+		Limit(limit)
+	return s.runQuery(ctx, q)
 }
 
 func (s *TranslationStore) runQuery(ctx context.Context, q *datastore.Query) ([]*model.Translation, error) {

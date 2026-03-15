@@ -7,8 +7,61 @@
 {{define "content"}}
 <h1>Moderado</h1>
 
+{{if .ModMessages}}
+<h2>Mesaĝoj (sugestoj kaj raportoj)</h2>
+<div class="moderation-list">
+  {{range .ModMessages}}
+  <article class="moderation-item">
+    <header>
+      <strong>{{.Username}}</strong>
+      <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small>
+    </header>
+    <p>{{.Text}}</p>
+    <footer>
+      <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+        <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+      </form>
+    </footer>
+  </article>
+  {{end}}
+</div>
+<hr>
+{{end}}
+
+{{if .Translations}}
+<h2>Komunumaj tradukoj ({{len .Translations}})</h2>
+<div class="moderation-list">
+  {{range .Translations}}
+  <article class="moderation-item">
+    <header>
+      <small>
+        Vorto: <a href="/ekzerco/{{.TargetID}}"><code>{{.TargetID}}</code></a>
+        &middot;
+        Lingvo: <strong>{{.Language}}</strong>
+        &middot;
+        Voĉoj: {{.VoteScore}}
+        &middot;
+        {{.CreatedAt.Format "2006-01-02"}}
+      </small>
+    </header>
+    <p>{{.Text}}</p>
+    <footer style="display:flex;gap:0.5rem;flex-wrap:wrap">
+      <form method="POST" action="/admin/tradukoj/{{.ID}}/aprobi" style="display:inline">
+        <button type="submit" class="approve-btn">&#10003; Aldoni kiel oficialan difinon</button>
+      </form>
+      <form method="POST" action="/admin/tradukoj/{{.ID}}/forigi" style="display:inline"
+            onsubmit="return confirm('Forigi tiun ĉi tradukon?')">
+        <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
+      </form>
+    </footer>
+  </article>
+  {{end}}
+</div>
+<hr>
+{{end}}
+
 {{if .Comments}}
-<p>{{len .Comments}} komentoj atendas modera&#x74;ion.</p>
+<h2>Komentoj ({{len .Comments}} atendas)</h2>
 <div class="moderation-list">
   {{range .Comments}}
   <article class="moderation-item" id="comment-{{.ID}}">
@@ -33,6 +86,6 @@
   {{end}}
 </div>
 {{else}}
-<p>Neniu komento atendas moderaton.</p>
+<p>Neniu komento atendas moderiĝon.</p>
 {{end}}
 {{end}}

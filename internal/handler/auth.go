@@ -8,11 +8,12 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"time"
 
-	localauth "esperanto-kurso-gae/internal/auth"
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/store"
+	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 
 	"github.com/go-webauthn/webauthn/webauthn"
 )
@@ -98,6 +99,8 @@ func (h *AuthHandler) ShowEnskribi(w http.ResponseWriter, r *http.Request) {
 	data := map[string]interface{}{
 		"User":     u,
 		"MagicURL": magicURL,
+		"SentMsg":  r.URL.Query().Get("sendita") == "1",
+		"UILang":   UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "enskribi.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -278,6 +281,17 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 		return
 	}
 
+	// Set the token cookie so that full-page loads (GET requests) also use the
+	// passkey account — not just HTMX requests that carry X-Auth-Token.
+	http.SetCookie(w, &http.Cookie{
+		Name:     "token",
+		Value:    u.Token,
+		Path:     "/",
+		HttpOnly: true,
+		SameSite: http.SameSiteLaxMode,
+		Expires:  time.Now().Add(365 * 24 * time.Hour),
+	})
+
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{
 		"token":  u.Token,
@@ -321,10 +335,74 @@ func (h *AuthHandler) SetLang(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, ref, http.StatusSeeOther)
 }
 
+// SetUILang handles POST /uilingvo — sets the user's preferred interface language.
+func (h *AuthHandler) SetUILang(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta peto", http.StatusBadRequest)
+		return
+	}
+	lang := r.FormValue("ui_lang")
+	if lang == "" || len(lang) > 8 {
+		http.Redirect(w, r, r.Header.Get("Referer"), http.StatusSeeOther)
+		return
+	}
+	http.SetCookie(w, &http.Cookie{
+		Name:     "ui_lang",
+		Value:    lang,
+		Path:     "/",
+		HttpOnly: true,
+		SameSite: http.SameSiteLaxMode,
+		Expires:  time.Now().Add(365 * 24 * time.Hour),
+	})
+	u := UserFromContext(r.Context())
+	if u != nil {
+		_ = h.users.UpdateUILang(r.Context(), u.ID, lang)
+	}
+	ref := r.Header.Get("Referer")
+	if ref == "" {
+		ref = "/"
+	}
+	http.Redirect(w, r, ref, http.StatusSeeOther)
+}
+
 // scheme returns "https" or "http" based on request headers.
 func scheme(r *http.Request) string {
 	if r.Header.Get("X-Forwarded-Proto") == "https" || r.TLS != nil {
 		return "https"
 	}
 	return "http"
+}
+
+// SetUsername handles POST /profilo/nomo — sets a unique display name.
+func (h *AuthHandler) SetUsername(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	username := strings.TrimSpace(r.FormValue("username"))
+	if username == "" || len(username) < 3 || len(username) > 30 {
+		http.Error(w, "Uzantnomo devas havi 3–30 signojn", http.StatusBadRequest)
+		return
+	}
+	// Allow letters, digits, hyphens, underscores only.
+	for _, c := range username {
+		if !((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9') || c == '-' || c == '_') {
+			http.Error(w, "Uzantnomo povas enhavi nur literojn, ciferojn, streketon, substrekon", http.StatusBadRequest)
+			return
+		}
+	}
+	if err := h.users.SetUsername(r.Context(), u.ID, username); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusConflict)
+		return
+	}
+	ref := r.Header.Get("Referer")
+	if ref == "" {
+		ref = "/enskribi"
+	}
+	http.Redirect(w, r, ref, http.StatusSeeOther)
 }

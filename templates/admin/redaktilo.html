@@ -29,6 +29,7 @@
         <option value="reading" {{if eq .Item.Type "reading"}}selected{{end}}>Legado</option>
         <option value="phrasebook" {{if eq .Item.Type "phrasebook"}}selected{{end}}>Frazaro</option>
         <option value="image" {{if eq .Item.Type "image"}}selected{{end}}>Bildo</option>
+        <option value="video" {{if eq .Item.Type "video"}}selected{{end}}>Video</option>
       </select>
     </label>
   </div>
@@ -46,6 +47,16 @@
       Respondo:
       <input type="text" name="answer" value="{{.Item.Answer}}" placeholder="La ĝusta respondo">
     </label>
+  </div>
+
+  <!-- Fill-in: one answer per gap (one per line) -->
+  <div id="field-fillin" class="content-field" style="display:none">
+    <label>
+      Respondoj por ĉiu blanko (unu per linio, en ordo):
+      <textarea name="gap_answers" rows="4" placeholder="respondo1&#10;respondo2&#10;respondo3">{{range .Item.GapAnswers}}{{.}}
+{{end}}</textarea>
+    </label>
+    <small>Uzu <code>___</code> en la demando por marki ĉiun blankon. Unu linio = unu blanko.</small>
   </div>
 
   <!-- Multiple choice options -->
@@ -93,6 +104,14 @@
     </label>
   </div>
 
+  <!-- Video -->
+  <div id="field-video" class="content-field" style="display:none">
+    <label>
+      Video-URL:
+      <input type="url" name="video_url" value="{{.Item.VideoURL}}" placeholder="https://youtube.com/watch?v=…">
+    </label>
+  </div>
+
   <label>
     Indiko (nedeviga):
     <input type="text" name="hint" value="{{.Item.Hint}}" placeholder="Helpeta indiko">
@@ -105,7 +124,7 @@
 
   <div class="grid">
     <label>
-      Etikedoj (komosigitaj per komo):
+      Etikedoj (dividitaj per komo):
       <input type="text" name="tags" value="{{range $i, $t := .Item.Tags}}{{if $i}}, {{end}}{{$t}}{{end}}" placeholder="saluto, baza, gramatiko">
     </label>
 
@@ -139,6 +158,9 @@
   <div class="form-actions">
     <button type="submit">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
     <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+    {{if and (not .IsNew) (eq .Item.Type "reading")}}
+    <a href="/admin/enhavo/{{.Item.Slug}}/vortaro" role="button" class="outline">Krei vortaron</a>
+    {{end}}
   </div>
 </form>
 

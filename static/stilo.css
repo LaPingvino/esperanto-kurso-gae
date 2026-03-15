@@ -12,6 +12,24 @@
   --incorrect-border: #dc3545;
   --delta-pos: #28a745;
   --delta-neg: #dc3545;
+  --reading-bg: #f8f9fa;
+  --reading-color: inherit;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --eo-green: #00c000;
+    --eo-green-light: #00e000;
+    --eo-green-dark: #00a000;
+    --correct-bg: rgba(40, 167, 69, 0.2);
+    --correct-border: #5cb85c;
+    --incorrect-bg: rgba(220, 53, 69, 0.2);
+    --incorrect-border: #e05a6a;
+    --delta-pos: #5cb85c;
+    --delta-neg: #e05a6a;
+    --reading-bg: rgba(255, 255, 255, 0.05);
+    --reading-color: inherit;
+  }
 }
 
 /* ---- Typography ---- */
@@ -67,6 +85,98 @@ header nav {
   margin-right: 0.2em;
 }
 
+/* ---- Inline vocab language switcher (inside translation box) ---- */
+.traduko-lang-switch {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.inline-lang-form {
+  display: inline;
+  margin: 0;
+}
+
+.inline-lang-form label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.lang-select-inline {
+  font-size: 0.8rem;
+  padding: 0.1em 0.3em;
+  border-radius: 0.2em;
+  display: inline-block;
+  width: auto;
+  margin: 0;
+}
+
+/* ---- Vocab generation word grid ---- */
+.word-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 1rem 0;
+}
+.word-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  background: var(--pico-card-background-color, #f8f9fa);
+  border: 1px solid var(--pico-muted-border-color, #dee2e6);
+  border-radius: 0.3em;
+  padding: 0.25em 0.6em;
+  cursor: pointer;
+}
+.word-exists {
+  opacity: 0.45;
+  cursor: default;
+}
+
+/* ---- Tag cloud (/etikedoj) ---- */
+.tag-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  text-decoration: none;
+  background: #e9ecef;
+  border-radius: 0.3em;
+  padding: 0.25em 0.6em;
+  color: #495057;
+  transition: background 0.15s;
+}
+
+.tag-item:hover {
+  background: var(--eo-green);
+  color: white;
+}
+
+.tag-item .tag {
+  background: none;
+  padding: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  color: inherit;
+}
+
+.tag-count {
+  background: rgba(0,0,0,0.15);
+  border-radius: 1em;
+  padding: 0 0.4em;
+  font-size: 0.75rem;
+}
+
 /* ---- Exercise grid (home page) ---- */
 .exercise-grid {
   display: grid;
@@ -92,11 +202,18 @@ header nav {
   margin-top: auto;
   background: var(--eo-green);
   border-color: var(--eo-green);
+  color: white;
 }
 
 .exercise-card a[role="button"]:hover {
   background: var(--eo-green-dark);
   border-color: var(--eo-green-dark);
+  color: white;
+}
+
+/* Vortaro start-practice button and any other standalone primary role=button */
+a[role="button"]:not(.outline):not([class*="secondary"]) {
+  color: white;
 }
 
 /* ---- Exercise image ---- */
@@ -105,6 +222,36 @@ header nav {
   max-height: 300px;
   border-radius: 0.5rem;
   margin: 1rem 0;
+}
+
+/* ---- Fill-in gap inputs ---- */
+.fillin-question {
+  font-size: 1.1rem;
+  line-height: 2.6;
+}
+
+.gap-input {
+  display: inline-block !important;
+  width: 4ch !important;
+  min-width: 2ch;
+  max-width: 24ch;
+  padding: 0.05em 0.2em !important;
+  margin: 0 0.1em;
+  vertical-align: baseline;
+  border-bottom: 2px solid var(--eo-green) !important;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: 0.95em;
+  box-sizing: content-box !important;
+}
+
+.gap-input:focus {
+  outline: none;
+  border-bottom-color: var(--eo-green-dark);
+  background: rgba(0, 128, 0, 0.05);
 }
 
 /* ---- Vocab word ---- */
@@ -129,7 +276,8 @@ header nav {
 
 /* ---- Reading text ---- */
 .reading-text {
-  background: #f8f9fa;
+  background: var(--reading-bg);
+  color: var(--reading-color);
   padding: 1.5rem;
   border-left: 4px solid var(--eo-green);
   border-radius: 0 0.5rem 0.5rem 0;
@@ -291,8 +439,73 @@ table td, table th {
 }
 
 .reject-btn {
+  background: #dc3545;
   border-color: #dc3545;
-  color: #dc3545;
+  color: white;
+}
+
+/* ---- Judgment buttons (Anki-style) ---- */
+/* "malfacile" = orange outline */
+button[value="malfacile"] {
+  background: transparent;
+  border-color: #e07000;
+  color: #b85c00;
+}
+button[value="malfacile"]:hover {
+  background: #e07000;
+  color: white;
+}
+/* "bone" = green outline */
+button[value="bone"] {
+  background: transparent;
+  border-color: var(--eo-green);
+  color: var(--eo-green-dark);
+}
+@media (prefers-color-scheme: dark) {
+  button[value="bone"] {
+    color: var(--eo-green-light);
+    border-color: var(--eo-green-light);
+  }
+  button[value="malfacile"] {
+    color: #e07000;
+    border-color: #e07000;
+  }
+}
+button[value="bone"]:hover {
+  background: var(--eo-green);
+  color: white;
+}
+/* "facile" = filled green */
+button[value="facile"] {
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+  color: white;
+}
+
+/* ---- Easier / harder navigation buttons ---- */
+a[href].outline, a[role="button"].outline {
+  border-width: 2px;
+}
+/* easier = muted blue-gray, readable */
+.next-buttons a.outline.secondary,
+.next-buttons a[class*="outline secondary"] {
+  border-color: #5f6b7a;
+  color: #3d4a56;
+  background: transparent;
+}
+.next-buttons a.outline.secondary:hover {
+  background: #5f6b7a;
+  color: white;
+}
+/* harder = amber */
+.next-buttons a.outline:not(.secondary) {
+  border-color: #b07a00;
+  color: #7a5400;
+  background: transparent;
+}
+.next-buttons a.outline:not(.secondary):hover {
+  background: #b07a00;
+  color: white;
 }
 
 /* ---- HTMX loading indicator ---- */
@@ -326,4 +539,274 @@ footer {
 #admin-link:hover {
   opacity: 1;
   color: var(--pico-primary);
+}
+
+/* Responsive video embed */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  margin: 1rem 0;
+}
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+/* ---- CEFR level badges ---- */
+.cefr-badge {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border-radius: 0.25em;
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #fff;
+  vertical-align: middle;
+  letter-spacing: 0.05em;
+}
+.cefr-A0 { background: #9e9e9e; }
+.cefr-A1 { background: #4caf50; }
+.cefr-A2 { background: #2196f3; }
+.cefr-B1 { background: #ff9800; }
+.cefr-B2 { background: #f44336; }
+.cefr-C1 { background: #9c27b0; }
+.cefr-C2 { background: #212121; }
+
+/* ---- Streak badge ---- */
+.streak-badge {
+  display: inline-block;
+  padding: 0.15em 0.5em;
+  border-radius: 0.25em;
+  font-size: 0.8rem;
+  background: #fff3cd;
+  color: #856404;
+  border: 1px solid #ffc107;
+  vertical-align: middle;
+}
+
+/* ---- Level-up banner ---- */
+.level-up-banner {
+  background: linear-gradient(135deg, var(--eo-green), #00c853);
+  color: #fff;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  animation: level-up-pop 0.5s ease-out;
+}
+@keyframes level-up-pop {
+  0%   { transform: scale(0.8); opacity: 0; }
+  60%  { transform: scale(1.05); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---- Exercise result card ---- */
+.rezulto {
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  margin-top: 1rem;
+}
+.rezulto.correct {
+  border-left: 4px solid var(--correct-border);
+  background: var(--correct-bg);
+}
+.rezulto.incorrect {
+  border-left: 4px solid var(--incorrect-border);
+  background: var(--incorrect-bg);
+}
+.rezulto-ikono {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+/* ---- Series progress bar ---- */
+.series-progress {
+  font-size: 0.85rem;
+  color: var(--pico-muted-color, #666);
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.1em;
+}
+
+/* ---- Next buttons ---- */
+.next-buttons ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.next-buttons li { margin: 0; }
+
+/* ---- Difficulty-colored left border on exercise article ---- */
+article.exercise-card {
+  border-left: 4px solid transparent;
+  border-radius: 0 0.25rem 0.25rem 0;
+  padding-left: 1rem;
+}
+article.difficulty-easy   { border-left-color: #4caf50; }
+article.difficulty-medium { border-left-color: #ff9800; }
+article.difficulty-hard   { border-left-color: #f44336; }
+
+/* ---- HTMX transition fade ---- */
+.htmx-swapping { opacity: 0; transition: opacity 0.15s ease-out; }
+.htmx-settling  { opacity: 1; transition: opacity 0.2s ease-in; }
+
+/* ---- Hide community sections until answered ---- */
+.post-answer-hidden {
+  display: none;
+}
+.post-answer-visible {
+  display: block;
+}
+
+/* ---- Contribute link in nav ---- */
+nav a[href="/admin/enhavo/nova"] {
+  color: var(--eo-green);
+  font-weight: bold;
+}
+
+/* ---- Language switchers in nav ---- */
+.lang-switchers {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.lang-form {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+.lang-form label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.15rem;
+  margin: 0;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.lang-select {
+  font-size: 0.75rem;
+  padding: 0.1em 0.2em;
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+  max-width: 7rem;
+  margin: 0;
+  /* collapse to just the selected value width */
+  width: auto;
+}
+.lang-select:hover, .lang-select:focus {
+  border-color: var(--pico-muted-border-color, #ccc);
+  background: var(--pico-background-color, #fff);
+}
+
+/* ---- RTL overrides ---- */
+/* When dir="rtl" is set on <html>, the browser and Pico CSS handle most
+   mirroring automatically. We only need to fix explicit left/right properties. */
+
+[dir="rtl"] .reading-text {
+  border-left: none;
+  border-right: 4px solid var(--eo-green);
+  border-radius: 0.5rem 0 0 0.5rem;
+}
+
+[dir="rtl"] .rezulto.correct {
+  border-left: none;
+  border-right: 4px solid var(--correct-border);
+}
+
+[dir="rtl"] .rezulto.incorrect {
+  border-left: none;
+  border-right: 4px solid var(--incorrect-border);
+}
+
+[dir="rtl"] article.exercise-card {
+  border-left: none;
+  border-right: 4px solid transparent;
+  border-radius: 0.25rem 0 0 0.25rem;
+  padding-left: 0;
+  padding-right: 1rem;
+}
+[dir="rtl"] article.difficulty-easy   { border-right-color: #4caf50; }
+[dir="rtl"] article.difficulty-medium { border-right-color: #ff9800; }
+[dir="rtl"] article.difficulty-hard   { border-right-color: #f44336; }
+
+[dir="rtl"] .moderation-item {
+  border-left: none;
+  border-right: 4px solid #ffc107;
+}
+
+[dir="rtl"] .approve-btn {
+  margin-right: 0;
+  margin-left: 0.5rem;
+}
+
+/* Input fields and textareas keep LTR for Esperanto answers */
+[dir="rtl"] input[type="text"],
+[dir="rtl"] input[type="search"],
+[dir="rtl"] textarea {
+  direction: ltr;
+  text-align: left;
+}
+
+/* Vocab and phrase displays are Esperanto — keep LTR */
+[dir="rtl"] .vocab-word,
+[dir="rtl"] .phrase {
+  direction: ltr;
+}
+
+/* ---- Vocab mode switcher ---- */
+.vocab-mode-switch {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.8rem;
+}
+.vocab-mode-switch a {
+  font-size: 0.8rem;
+  padding: 0.2em 0.6em;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 1em;
+  text-decoration: none;
+  color: var(--pico-muted-color);
+}
+.vocab-mode-switch a[aria-current="page"] {
+  background: var(--eo-green);
+  border-color: var(--eo-green);
+  color: #fff;
+  font-weight: bold;
+}
+.vocab-mode-switch a:hover:not([aria-current="page"]) {
+  border-color: var(--eo-green);
+  color: var(--eo-green);
+}
+
+/* ---- Flashcard ---- */
+.flashcard {
+  margin: 0.5rem 0;
+}
+.flashcard-front,
+.flashcard-back {
+  padding: 1rem;
+  border: 2px solid var(--pico-muted-border-color);
+  border-radius: 0.5rem;
+  text-align: center;
+  background: var(--pico-card-background-color);
+}
+.flashcard-back {
+  border-color: var(--eo-green);
+}
+.flashcard-front button,
+.flashcard-back button {
+  margin-top: 0.8rem;
 }

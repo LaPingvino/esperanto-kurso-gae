@@ -4,9 +4,10 @@
   {{$lang := .UserLang}}
   {{$votes := .TranslationVotes}}
   {{$contentID := .ContentID}}
+  {{$uiLang := .UILang}}
 
   {{if .MyLangTranslations}}
-  <h3>Komunumaj tradukoj ({{$lang}})</h3>
+  <h3>{{t $uiLang "translate.community_header"}} ({{langName $lang}})</h3>
   <div class="translation-list">
     {{range .MyLangTranslations}}
     <article class="translation" id="traduko-{{.ID}}">
@@ -20,16 +21,16 @@
           {{$myVote := index $votes .ID}}
           <button type="submit" name="value" value="1"
                   class="vote-btn{{if eq $myVote 1}} active{{end}}"
-                  title="{{if eq $myVote 1}}Nuligi voĉon{{else}}Utila traduko{{end}}">▲</button>
+                  title="{{if eq $myVote 1}}{{t $uiLang "vote.aria_cancel"}}{{else}}{{t $uiLang "vote.useful"}}{{end}}">▲</button>
           <span class="vote-score">{{.VoteScore}}</span>
           <button type="submit" name="value" value="-1"
                   class="vote-btn{{if eq $myVote -1}} active{{end}}"
-                  title="{{if eq $myVote -1}}Nuligi voĉon{{else}}Malbona traduko{{end}}">▼</button>
+                  title="{{if eq $myVote -1}}{{t $uiLang "vote.aria_cancel"}}{{else}}{{t $uiLang "vote.useless"}}{{end}}">▼</button>
         </form>
         {{else}}
         <span class="vote-score">{{.VoteScore}}</span>
         {{end}}
-        <small>&mdash; uzanto <code>{{truncate .AuthorID 8}}</code></small>
+        <small>&mdash; {{t $uiLang "translate.author_label"}} <code>{{truncate .AuthorID 8}}</code></small>
       </footer>
     </article>
     {{end}}
@@ -38,7 +39,7 @@
 
   {{if .OtherTranslations}}
   <details class="other-langs">
-    <summary>Tradukoj en aliaj lingvoj (referenco)</summary>
+    <summary>{{t $uiLang "translate.other_langs_summary"}}</summary>
     <div class="translation-list compact">
       {{range .OtherTranslations}}
       <p><span class="lang-badge">{{.Language}}</span> {{.Text}}
@@ -50,20 +51,67 @@
 
   {{if .User}}
   <details class="add-translation">
-    <summary>{{if .MyLangTranslations}}+ Aldoni alian tradukon en {{$lang}}{{else}}+ Aldoni tradukon en {{$lang}}{{end}}</summary>
+    <summary>{{if .MyLangTranslations}}{{t $uiLang "translate.add_another_prefix"}} {{langName $lang}}{{else}}{{t $uiLang "translate.add_prefix"}} {{langName $lang}}{{end}}</summary>
     <form hx-post="/tradukoj/{{$contentID}}"
           hx-target="#tradukoj-{{$contentID}}"
           hx-swap="outerHTML">
       <input type="hidden" name="language" value="{{$lang}}">
-      <label>Via traduko (<strong>{{$lang}}</strong>):
-        <textarea name="text" rows="2" required placeholder="Traduku ĉi tien…"></textarea>
+      <label>{{t $uiLang "translate.your_label_prefix"}}<strong>{{langName $lang}}</strong>{{t $uiLang "translate.your_label_suffix"}}
+        <textarea name="text" rows="2" required placeholder="{{t $uiLang "translate.placeholder"}}"></textarea>
       </label>
-      <button type="submit">Sendi</button>
+      <button type="submit">{{t $uiLang "translate.send"}}</button>
     </form>
   </details>
   {{else}}
-  <p><small><a href="/enskribi">Ensalitu</a> por aldoni tradukon en {{$lang}}.</small></p>
+  <p><small><a href="/enskribi">{{t $uiLang "translate.login_link"}}</a> {{t $uiLang "translate.login_prompt_prefix"}} {{langName $lang}}.</small></p>
   {{end}}
+
+  <div class="traduko-lang-switch">
+    <form method="POST" action="/lingvo" class="inline-lang-form">
+      <label>&#128172;
+        <select name="lang" onchange="this.form.submit()" class="lang-select-inline">
+          <option value="ar"    {{if eq $lang "ar"   }}selected{{end}}>العربية</option>
+          <option value="be"    {{if eq $lang "be"   }}selected{{end}}>Беларуская</option>
+          <option value="bn"    {{if eq $lang "bn"   }}selected{{end}}>বাংলা</option>
+          <option value="ca"    {{if eq $lang "ca"   }}selected{{end}}>Català</option>
+          <option value="cs"    {{if eq $lang "cs"   }}selected{{end}}>Čeština</option>
+          <option value="da"    {{if eq $lang "da"   }}selected{{end}}>Dansk</option>
+          <option value="de"    {{if eq $lang "de"   }}selected{{end}}>Deutsch</option>
+          <option value="el"    {{if eq $lang "el"   }}selected{{end}}>Ελληνικά</option>
+          <option value="en"    {{if eq $lang "en"   }}selected{{end}}>English</option>
+          <option value="eo"    {{if eq $lang "eo"   }}selected{{end}}>Esperanto</option>
+          <option value="es"    {{if eq $lang "es"   }}selected{{end}}>Español</option>
+          <option value="fa"    {{if eq $lang "fa"   }}selected{{end}}>فارسی</option>
+          <option value="fr"    {{if eq $lang "fr"   }}selected{{end}}>Français</option>
+          <option value="frp"   {{if eq $lang "frp"  }}selected{{end}}>Arpitan</option>
+          <option value="ga"    {{if eq $lang "ga"   }}selected{{end}}>Gaeilge</option>
+          <option value="he"    {{if eq $lang "he"   }}selected{{end}}>עברית</option>
+          <option value="hi"    {{if eq $lang "hi"   }}selected{{end}}>हिन्दी</option>
+          <option value="hr"    {{if eq $lang "hr"   }}selected{{end}}>Hrvatski</option>
+          <option value="hu"    {{if eq $lang "hu"   }}selected{{end}}>Magyar</option>
+          <option value="id"    {{if eq $lang "id"   }}selected{{end}}>Bahasa Indonesia</option>
+          <option value="it"    {{if eq $lang "it"   }}selected{{end}}>Italiano</option>
+          <option value="ja"    {{if eq $lang "ja"   }}selected{{end}}>日本語</option>
+          <option value="kk"    {{if eq $lang "kk"   }}selected{{end}}>Қазақша</option>
+          <option value="ko"    {{if eq $lang "ko"   }}selected{{end}}>한국어</option>
+          <option value="ms"    {{if eq $lang "ms"   }}selected{{end}}>Bahasa Melayu</option>
+          <option value="nl"    {{if eq $lang "nl"   }}selected{{end}}>Nederlands</option>
+          <option value="pl"    {{if eq $lang "pl"   }}selected{{end}}>Polski</option>
+          <option value="pt"    {{if eq $lang "pt"   }}selected{{end}}>Português</option>
+          <option value="ro"    {{if eq $lang "ro"   }}selected{{end}}>Română</option>
+          <option value="ru"    {{if eq $lang "ru"   }}selected{{end}}>Русский</option>
+          <option value="sv"    {{if eq $lang "sv"   }}selected{{end}}>Svenska</option>
+          <option value="sw"    {{if eq $lang "sw"   }}selected{{end}}>Kiswahili</option>
+          <option value="tr"    {{if eq $lang "tr"   }}selected{{end}}>Türkçe</option>
+          <option value="uk"    {{if eq $lang "uk"   }}selected{{end}}>Українська</option>
+          <option value="ur"    {{if eq $lang "ur"   }}selected{{end}}>اردو</option>
+          <option value="vi"    {{if eq $lang "vi"   }}selected{{end}}>Tiếng Việt</option>
+          <option value="zh"    {{if eq $lang "zh"   }}selected{{end}}>中文</option>
+          <option value="zh-tw" {{if eq $lang "zh-tw"}}selected{{end}}>繁體中文</option>
+        </select>
+      </label>
+    </form>
+  </div>
 </section>
 {{end}}
 {{end}}

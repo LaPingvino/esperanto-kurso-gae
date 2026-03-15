@@ -3,47 +3,68 @@
   {{if .Judgment}}
   {{/* Judgment-only result (passive content / mi-ne-scias) */}}
   {{if or (eq .Judgment "bone") (eq .Judgment "facile")}}
-  <p class="rezulto-ikono">&#10003; Bone!</p>
+  <p class="rezulto-ikono">&#10003; {{t .UILang "result.judgment_good"}}</p>
   {{else if eq .Judgment "malfacile"}}
-  <p class="rezulto-ikono">&#9888; Malfacile…</p>
+  <p class="rezulto-ikono">&#9888; {{t .UILang "result.judgment_hard"}}</p>
   {{else}}
-  <p class="rezulto-ikono">&#10007; Ne sciis.</p>
+  <p class="rezulto-ikono">&#10007; {{t .UILang "result.judgment_unknown"}}</p>
+  {{if .CorrectAnswer}}<p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>{{end}}
   {{end}}
   {{else if .Correct}}
-  <p class="rezulto-ikono">&#10003; Ĝuste!</p>
+  <p class="rezulto-ikono">&#10003; {{t .UILang "result.correct"}}</p>
   {{else}}
-  <p class="rezulto-ikono">&#10007; Malĝuste.</p>
-  <p>Ĝusta respondo: <strong>{{.CorrectAnswer}}</strong></p>
-  <p>Via respondo: <em>{{.YourAnswer}}</em></p>
+  <p class="rezulto-ikono">&#10007; {{t .UILang "result.incorrect"}}</p>
+  <p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>
+  <p>{{t .UILang "result.your_answer_label"}} <em>{{.YourAnswer}}</em></p>
+  {{if and .User .Item .YourAnswer (ne .Item.Type "multiplechoice")}}
+  <div id="suggest-alt-{{.Item.Slug}}">
+    <form hx-post="/ekzerco/{{.Item.Slug}}/alternativo"
+          hx-target="#suggest-alt-{{.Item.Slug}}"
+          hx-swap="innerHTML">
+      <input type="hidden" name="answer" value="{{.YourAnswer}}">
+      <button type="submit" class="outline secondary" style="font-size:0.8rem;padding:0.2em 0.6em">
+        &#128172; {{t .UILang "result.suggest_alternative"}}
+      </button>
+    </form>
+  </div>
+  {{end}}
+  {{end}}
+
+  {{if .LevelUp}}
+  <p class="level-up-banner">&#127881; {{t .UILang "result.level_up_prefix"}} <strong>{{.CEFRLevel}}</strong>!</p>
   {{end}}
 
   <p class="rating-change">
-    Nivelo: <span class="rating-badge">{{printf "%.0f" .UserRating}}</span>
+    {{t .UILang "result.level_label"}} <span class="cefr-badge cefr-{{.CEFRLevel}}">{{.CEFRLevel}}</span>
+    <span class="rating-badge">{{printf "%.0f" .UserRating}}</span>
     {{if gt .RatingDelta 0.0}}
     <span class="delta-pos">(+{{printf "%.1f" .RatingDelta}})</span>
     {{else if lt .RatingDelta 0.0}}
     <span class="delta-neg">({{printf "%.1f" .RatingDelta}})</span>
+    {{end}}
+    {{if .StreakDays}}
+    <span class="streak-badge" title="{{t .UILang "result.streak_title"}}">&#128293; {{.StreakDays}}d</span>
     {{end}}
   </p>
 
   <nav class="next-buttons">
     <ul>
       {{if .EasierSlug}}
-      <li><a href="/ekzerco/{{.EasierSlug}}" role="button" class="outline secondary">&#8595; Pli facila</a></li>
+      <li><a href="/ekzerco/{{.EasierSlug}}" role="button" class="outline secondary">&#8595; {{t .UILang "result.easier"}}</a></li>
       {{end}}
       {{if .NextInSeries}}
-      <li><a href="/ekzerco/{{.NextInSeries.Slug}}" role="button" class="series-next">&#128196; Sekva en serio</a></li>
+      <li><a href="/ekzerco/{{.NextInSeries.Slug}}" role="button" class="series-next">&#128196; {{t .UILang "result.next_in_series"}}</a></li>
       {{else if .NextSlug}}
-      <li><a href="/ekzerco/{{.NextSlug}}" role="button">Mia nuna nivelo &rarr;</a></li>
+      <li><a href="/ekzerco/{{.NextSlug}}" role="button">{{t .UILang "result.next_level"}}</a></li>
       {{else}}
-      <li><a href="/" role="button">Reveni al hejmo</a></li>
+      <li><a href="/" role="button">{{t .UILang "result.back_home"}}</a></li>
       {{end}}
       {{if .HarderSlug}}
-      <li><a href="/ekzerco/{{.HarderSlug}}" role="button" class="outline">&#8593; Pli malfacila</a></li>
+      <li><a href="/ekzerco/{{.HarderSlug}}" role="button" class="outline">&#8593; {{t .UILang "result.harder"}}</a></li>
       {{end}}
     </ul>
     {{if .NextInSeries}}{{if .NextSlug}}
-    <p><small><a href="/ekzerco/{{.NextSlug}}">Mia nuna nivelo &rarr;</a></small></p>
+    <p><small><a href="/ekzerco/{{.NextSlug}}">{{t .UILang "result.next_level"}}</a></small></p>
     {{end}}{{end}}
   </nav>
 </div>

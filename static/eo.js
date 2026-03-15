@@ -40,12 +40,14 @@
     }
   });
 
-  // On load, pick up the token from the cookie if localStorage is empty.
-  // The server sets a "token" cookie; read it so HTMX requests also carry it.
+  // On load, sync localStorage token from the server-set cookie.
+  // The cookie is authoritative after passkey/magic-link login, so always
+  // overwrite localStorage when they differ (avoids stale anonymous token).
   document.addEventListener('DOMContentLoaded', function () {
-    if (!getToken()) {
-      const match = document.cookie.match(/(?:^|;\s*)token=([^;]+)/);
-      if (match) setToken(decodeURIComponent(match[1]));
+    const match = document.cookie.match(/(?:^|;\s*)token=([^;]+)/);
+    if (match) {
+      const cookieToken = decodeURIComponent(match[1]);
+      if (cookieToken !== getToken()) setToken(cookieToken);
     }
   });
 
@@ -193,21 +195,24 @@ function showContentFields(type) {
   const allFields = [
     'field-question',
     'field-answer',
+    'field-fillin',
     'field-options',
     'field-vocab',
     'field-reading',
     'field-audio',
+    'field-video',
   ];
 
   // Which fields are visible for each type.
   const fieldMap = {
     multiplechoice: ['field-question', 'field-options'],
-    fillin:         ['field-question', 'field-answer'],
+    fillin:         ['field-question', 'field-fillin'],
     listening:      ['field-question', 'field-answer', 'field-audio'],
     vocab:          ['field-vocab'],
     reading:        ['field-reading', 'field-question', 'field-answer'],
     phrasebook:     ['field-question', 'field-answer'],
     image:          ['field-question', 'field-answer'],
+    video:          ['field-question', 'field-answer', 'field-video'],
   };
 
   const visible = fieldMap[type] || ['field-question', 'field-answer'];
@@ -258,3 +263,108 @@ function credentialToJSON(cred) {
   }
   return cred;
 }
+
+// ---- Exercise feedback: sounds + level-up celebration ----
+
+(function () {
+  'use strict';
+
+  // Web Audio beeps — no external files needed.
+  function beep(freq, duration, type, vol) {
+    try {
+      const ctx = new (window.AudioContext || window.webkitAudioContext)();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.type = type || 'sine';
+      osc.frequency.setValueAtTime(freq, ctx.currentTime);
+      gain.gain.setValueAtTime(vol || 0.15, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + duration);
+    } catch (e) { /* AudioContext may not be available */ }
+  }
+
+  function playCorrect() {
+    beep(660, 0.12, 'sine', 0.12);
+    setTimeout(() => beep(880, 0.15, 'sine', 0.10), 100);
+  }
+
+  function playIncorrect() {
+    beep(300, 0.2, 'sawtooth', 0.10);
+  }
+
+  // Minimal confetti burst for level-up (no external lib).
+  function launchConfetti() {
+    const canvas = document.createElement('canvas');
+    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999';
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const colors = ['#009900','#f5c400','#fff','#00c853','#ffd600'];
+    const particles = Array.from({length: 80}, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -100,
+      r: Math.random() * 6 + 3,
+      d: Math.random() * 3 + 1,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.random() * 10 - 5,
+      tiltAngle: 0,
+      tiltSpeed: Math.random() * 0.05 + 0.02,
+    }));
+
+    let frame = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.tiltAngle += p.tiltSpeed;
+        p.y += p.d + 1;
+        p.tilt = Math.sin(p.tiltAngle) * 12;
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
+        ctx.stroke();
+      });
+      frame++;
+      if (frame < 120) requestAnimationFrame(draw);
+      else canvas.remove();
+    }
+    draw();
+  }
+
+  // After HTMX swaps in a result, play sound and check for level-up.
+  document.addEventListener('htmx:afterSwap', function (evt) {
+    const target = evt.detail.target;
+    if (!target || target.id !== 'rezulto') return;
+
+    const result = target.querySelector('.rezulto');
+    if (!result) return;
+
+    if (result.classList.contains('correct')) {
+      playCorrect();
+    } else {
+      playIncorrect();
+    }
+
+    if (target.querySelector('.level-up-banner')) {
+      launchConfetti();
+    }
+  });
+
+})();
+
+// ---- Reveal community sections after answer ----
+document.addEventListener('htmx:afterSwap', function (evt) {
+  if (evt.detail.target && evt.detail.target.id === 'rezulto') {
+    const postAnswer = document.getElementById('post-answer');
+    if (postAnswer) {
+      postAnswer.classList.remove('post-answer-hidden');
+      postAnswer.classList.add('post-answer-visible');
+    }
+  }
+});

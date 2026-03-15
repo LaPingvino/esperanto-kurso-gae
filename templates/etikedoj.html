@@ -1,0 +1,22 @@
+{{template "base" .}}
+
+{{define "title"}}Etikedoj — Esperanto-kurso{{end}}
+
+{{define "content"}}
+{{$lang := .UILang}}
+<h1>{{t $lang "tags.title"}}</h1>
+<p>{{t $lang "tags.subtitle"}}</p>
+
+{{if .Tags}}
+<div class="tag-cloud">
+  {{range $tag, $count := .Tags}}
+  <a href="/sercxi?etikedo={{$tag}}" class="tag-item">
+    <span class="tag">{{$tag}}</span>
+    <small class="tag-count">{{$count}}</small>
+  </a>
+  {{end}}
+</div>
+{{else}}
+<p>{{t $lang "tags.none"}}</p>
+{{end}}
+{{end}}

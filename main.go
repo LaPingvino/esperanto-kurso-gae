@@ -7,11 +7,15 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"path/filepath"
+	"strings"
 
-	localauth "esperanto-kurso-gae/internal/auth"
-	"esperanto-kurso-gae/internal/config"
-	"esperanto-kurso-gae/internal/handler"
-	"esperanto-kurso-gae/internal/store"
+	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/config"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/handler"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 func main() {
@@ -32,6 +36,7 @@ func main() {
 	voteStore := store.NewVoteStore(db)
 	commentStore := store.NewCommentStore(db)
 	translationStore := store.NewTranslationStore(db)
+	modMessageStore := store.NewModMessageStore(db)
 
 	// --- Templates ---
 	tmpl, err := parseTemplates()
@@ -50,8 +55,8 @@ func main() {
 	authH := handler.NewAuthHandler(tmpl, userStore, sessionStore, wa)
 	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore)
 	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore)
-	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore)
-	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore)
+	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore)
+	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
 
 	// --- Router ---
 	mux := http.NewServeMux()
@@ -60,8 +65,12 @@ func main() {
 	mux.HandleFunc("GET /", contentH.ShowHome)
 	mux.HandleFunc("GET /ekzerco/{slug}", contentH.ShowExercise)
 	mux.HandleFunc("GET /vortaro", contentH.ShowVortaro)
+	mux.HandleFunc("GET /sercxi", contentH.Browse)
+	mux.HandleFunc("GET /etikedoj", contentH.ShowEtikedoj)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
-	mux.HandleFunc("POST /ekzerco/{slug}/jugo", exerciseH.JudgeExercise)
+	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
+	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)
+	mux.HandleFunc("POST /ekzerco/{slug}/flagi", communityH.FlagExercise)
 	mux.HandleFunc("GET /enskribi", authH.ShowEnskribi)
 
 	// Auth routes.
@@ -73,6 +82,7 @@ func main() {
 	mux.HandleFunc("POST /auth/passkey/login/finish", authH.FinishPasskeyLogin)
 	mux.HandleFunc("POST /auth/magic", authH.ShowEnskribi) // alias
 	mux.HandleFunc("POST /lingvo", authH.SetLang)
+	mux.HandleFunc("POST /uilingvo", authH.SetUILang)
 
 	// Community routes.
 	mux.HandleFunc("POST /vochdonado/{contentID}", communityH.Vote)
@@ -92,10 +102,23 @@ func main() {
 	mux.Handle("POST /admin/enhavo/{slug}/forigi", ra(adminH.DeleteContent))
 	mux.Handle("GET /admin/moderigo", ra(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", ra(adminH.ModerateComment))
+	mux.Handle("POST /admin/tradukoj/{id}/aprobi", ra(adminH.ApproveTranslation))
+	mux.Handle("POST /admin/tradukoj/{id}/forigi", ra(adminH.DeleteTranslation))
 	mux.Handle("POST /admin/seed", ra(adminH.SeedContent))
+	mux.Handle("POST /admin/patch-seed", ra(adminH.PatchSeedContent))
 	mux.Handle("GET /admin/eksporti", ra(adminH.ExportContent))
 	mux.Handle("POST /admin/importi", ra(adminH.ImportContent))
 	mux.Handle("POST /admin/forigi-cion", ra(adminH.NukeContent))
+	mux.Handle("GET /admin/enhavo/{slug}/vortaro", ra(adminH.VocabFromReading))
+	mux.Handle("POST /admin/enhavo/{slug}/vortaro", ra(adminH.CreateVocabFromReading))
+	mux.Handle("GET /admin/uzantoj", ra(adminH.ListUsers))
+	mux.Handle("POST /admin/uzantoj/kunfandi", ra(adminH.MergeUsers))
+	mux.Handle("POST /admin/uzantoj/{id}/rolo", ra(adminH.SetUserRole))
+	mux.Handle("POST /admin/mesagxoj/{id}/legita", ra(adminH.MarkModMessageRead))
+
+	// Profile routes (logged-in users).
+	mux.HandleFunc("POST /profilo/nomo", authH.SetUsername)
+	mux.HandleFunc("POST /kontaktu", communityH.SendModMessage)
 
 	// Apply auth middleware to all routes.
 	root := handler.AuthMiddleware(userStore, mux)
@@ -122,7 +145,10 @@ func (pt *pageTemplates) ExecuteTemplate(w io.Writer, name string, data interfac
 	if !ok {
 		return fmt.Errorf("template %q not found", name)
 	}
-	return t.ExecuteTemplate(w, name, data)
+	// t.Execute runs the root template, which is named after the file's
+	// basename (set via template.New(filepath.Base(path)) below).
+	// This correctly handles admin templates whose map key differs from basename.
+	return t.Execute(w, data)
 }
 
 // parseTemplates builds one *template.Template per page/partial.
@@ -140,20 +166,29 @@ func parseTemplates() (*pageTemplates, error) {
 		"listo.html":            "templates/admin/listo.html",
 		"redaktilo.html":        "templates/admin/redaktilo.html",
 		"moderigo.html":         "templates/admin/moderigo.html",
+		"admin_uzantoj.html":    "templates/admin/uzantoj.html",
+		"admin_vortaro_gen.html": "templates/admin/vortaro-gen.html",
+		"sercxi.html":           "templates/sercxi.html",
+		"etikedoj.html":         "templates/etikedoj.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).
 	partials := map[string]string{
-		"rezulto.html":    "templates/rezulto.html",
-		"vochdonado.html": "templates/partials/vochdonado.html",
-		"komentoj.html":   "templates/partials/komentoj.html",
-		"traduko.html":    "templates/partials/traduko.html",
+		"rezulto.html":              "templates/rezulto.html",
+		"vochdonado.html":           "templates/partials/vochdonado.html",
+		"komentoj.html":             "templates/partials/komentoj.html",
+		"traduko.html":              "templates/partials/traduko.html",
+		"alternativo-konfirmo.html": "templates/partials/alternativo-konfirmo.html",
+		"flag-konfirmo.html":        "templates/partials/flag-konfirmo.html",
 	}
 
 	pt := &pageTemplates{m: make(map[string]*template.Template)}
 
 	for name, path := range pages {
-		t, err := template.New(name).Funcs(funcs).ParseFiles(
+		// Use the file's basename as the root template name so that
+		// t.Execute() runs the right template even when the map key
+		// (e.g. "admin_uzantoj.html") differs from the basename ("uzantoj.html").
+		t, err := template.New(filepath.Base(path)).Funcs(funcs).ParseFiles(
 			"templates/base.html",
 			"templates/partials/vochdonado.html",
 			"templates/partials/komentoj.html",
@@ -186,13 +221,61 @@ func templateFuncs() template.FuncMap {
 		"reading":        "Legado",
 		"phrasebook":     "Frazaro",
 		"image":          "Bildo",
+		"video":          "Video",
 	}
 	return template.FuncMap{
+		"t": func(lang, key string) string {
+			return locale.T(lang, key)
+		},
+		"isRTL": func(lang string) bool {
+			return locale.IsRTL(lang)
+		},
 		"tipNomo": func(t string) string {
 			if name, ok := typeNames[t]; ok {
 				return name
 			}
 			return t
+		},
+		"cefr": func(rating float64) string {
+			return model.RatingToCEFR(rating)
+		},
+		// canContribute returns true for admins and for established learners (B1+ with stable rating).
+		"canContribute": func(u *model.User) bool {
+			if u == nil {
+				return false
+			}
+			if u.Role == "admin" || u.Role == "mod" {
+				return true
+			}
+			return u.Rating >= 1500 && u.RD < 150
+		},
+		"slice": func(s string, i, j int) string {
+			if i < 0 {
+				i = 0
+			}
+			if j > len(s) {
+				j = len(s)
+			}
+			if i >= j {
+				return ""
+			}
+			return s[i:j]
+		},
+		"seriesBar": func(current, total int) string {
+			if total <= 0 {
+				return ""
+			}
+			bar := ""
+			for i := 1; i <= total; i++ {
+				if i < current {
+					bar += "▪"
+				} else if i == current {
+					bar += "◆"
+				} else {
+					bar += "▫"
+				}
+			}
+			return bar
 		},
 		// defForLang returns a vocab definition in the requested language only.
 		// No fallback to other languages — missing translations are handled in the template.
@@ -229,6 +312,12 @@ func templateFuncs() template.FuncMap {
 			return s
 		},
 		"add": func(a, b int) int { return a + b },
+		"sub": func(a, b int) int { return a - b },
+		// splitGaps splits a fill-in question by "___" returning text segments.
+		// len(segments) == number-of-gaps + 1.
+		"splitGaps": func(q string) []string {
+			return strings.Split(q, "___")
+		},
 		"truncate": func(s string, n int) string {
 			if len(s) <= n {
 				return s
@@ -254,6 +343,28 @@ func templateFuncs() template.FuncMap {
 				return !b
 			}
 			return false
+		},
+		"ne": func(a, b string) bool { return a != b },
+		"langName": func(code string) string {
+			names := map[string]string{
+				"ar": "العربية", "be": "Беларуская", "bn": "বাংলা", "ca": "Català",
+				"cs": "Čeština", "da": "Dansk", "de": "Deutsch", "el": "Ελληνικά",
+				"en": "English", "eo": "Esperanto", "es": "Español", "fa": "فارسی",
+				"fr": "Français", "frp": "Arpitan", "ga": "Gaeilge", "he": "עברית",
+				"hi": "हिन्दी", "hr": "Hrvatski", "hu": "Magyar", "id": "Bahasa Indonesia",
+				"it": "Italiano", "ja": "日本語", "kk": "Қазақша", "km": "ខ្មែរ",
+				"ko": "한국어", "ku": "Kurdî", "lo": "ລາວ", "mg": "Malagasy",
+				"ms": "Bahasa Melayu", "my": "မြန်မာဘာသာ", "nl": "Nederlands",
+				"pl": "Polski", "pt": "Português", "ro": "Română", "ru": "Русский",
+				"sk": "Slovenčina", "sl": "Slovenščina", "sv": "Svenska", "sw": "Kiswahili",
+				"th": "ไทย", "tok": "Toki Pona", "tr": "Türkçe", "uk": "Українська",
+				"ur": "اردو", "vi": "Tiếng Việt", "yo": "Yorùbá", "zh": "中文",
+				"zh-tw": "繁體中文",
+			}
+			if n, ok := names[code]; ok {
+				return n
+			}
+			return code
 		},
 	}
 }

@@ -1,0 +1,41 @@
+{{template "base" .}}
+
+{{define "title"}}Sercxi — Esperanto-kurso{{end}}
+
+{{define "content"}}
+{{$lang := .UILang}}
+<h1>{{t $lang "browse.title"}}: <em>{{.Filter}}</em></h1>
+
+{{if .Items}}
+<p>
+  <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button">&#9654; {{t $lang "browse.start_first"}}</a>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>{{t $lang "browse.col_exercise"}}</th>
+      <th>{{t $lang "browse.col_type"}}</th>
+      <th>{{t $lang "browse.col_level"}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Items}}
+    <tr>
+      <td><a href="/ekzerco/{{.Slug}}">
+        {{if .Word}}{{.Word}}
+        {{else if .Title}}{{.Title}}
+        {{else if .Question}}{{truncate .Question 60}}
+        {{else}}{{.Slug}}{{end}}
+      </a></td>
+      <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+      <td><span class="cefr-badge cefr-{{cefr .Rating}}">{{cefr .Rating}}</span></td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{else}}
+<p>{{t $lang "browse.no_results"}}</p>
+<a href="/etikedoj" role="button" class="outline">{{t $lang "browse.all_tags"}}</a>
+{{end}}
+{{end}}

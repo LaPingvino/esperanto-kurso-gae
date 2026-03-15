@@ -1,0 +1,59 @@
+{{template "base" .}}
+{{define "title"}}Uzantoj — Administrado{{end}}
+{{define "content"}}
+<h1>Uzant-administrado</h1>
+
+{{if .Msg}}<p class="success">&#10003; {{.Msg}}</p>{{end}}
+
+<section>
+  <h2>Serĉi uzanton</h2>
+  <form method="GET" action="/admin/uzantoj">
+    <fieldset role="group">
+      <input type="text" name="s" value="{{.Search}}" placeholder="Uzantnomo aŭ ID">
+      <button type="submit">Serĉi</button>
+    </fieldset>
+  </form>
+
+  {{if .Found}}
+  <table>
+    <thead><tr><th>ID</th><th>Nomo</th><th>Nivelo</th><th>Rolo</th><th>Agoj</th></tr></thead>
+    <tbody>
+    {{range .Found}}
+    <tr>
+      <td><small>{{slice .ID 0 8}}…</small></td>
+      <td><strong>{{.DisplayName}}</strong></td>
+      <td><span class="cefr-badge cefr-{{.CEFRLevel}}">{{.CEFRLevel}}</span> {{printf "%.0f" .Rating}}</td>
+      <td>{{.Role}}</td>
+      <td>
+        <form method="POST" action="/admin/uzantoj/{{.ID}}/rolo" style="display:inline">
+          <select name="rolo">
+            <option value="user" {{if eq .Role "user"}}selected{{end}}>uzanto</option>
+            <option value="mod" {{if eq .Role "mod"}}selected{{end}}>moderisto</option>
+            <option value="admin" {{if eq .Role "admin"}}selected{{end}}>administranto</option>
+          </select>
+          <button type="submit" class="outline">Ŝanĝi rolon</button>
+        </form>
+      </td>
+    </tr>
+    {{end}}
+    </tbody>
+  </table>
+  {{else if .Search}}
+  <p>Neniu trovita por <em>{{.Search}}</em>.</p>
+  {{end}}
+</section>
+
+<hr>
+
+<section>
+  <h2>Kunfandi uzantojn</h2>
+  <p>Kunfandas la progreson de la <em>fonta</em> uzanto en la <em>celan</em> uzanton, poste forigas la fontan konton.</p>
+  <form method="POST" action="/admin/uzantoj/kunfandi">
+    <label>Cela ID (konservota): <input type="text" name="dst" placeholder="dst-user-id" required></label>
+    <label>Fonta ID (forigota): <input type="text" name="src" placeholder="src-user-id" required></label>
+    <button type="submit" class="secondary" onclick="return confirm('Ĉu vi certas? Tio estas neregebla!')">Kunfandi</button>
+  </form>
+</section>
+
+<p><a href="/admin">&larr; Reen al panelo</a></p>
+{{end}}

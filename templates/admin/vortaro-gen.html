@@ -1,0 +1,39 @@
+{{define "vortaro-gen.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Krei vortaron: {{.Item.Slug}} — Esperanto-kurso{{end}}
+
+{{define "content"}}
+<h1>Krei vortaron el: <em>{{.Item.Title}}</em></h1>
+<p><a href="/admin/enhavo/{{.Item.Slug}}/redakti">← Redakti</a></p>
+
+{{$created := .Created}}
+{{$skipped := .Skipped}}
+{{if $created}}
+<p role="alert"><strong>{{$created}} vorto(j) kreit(aj){{if $skipped}}, {{$skipped}} preterlasit(aj) (jam ekzistis){{end}}.</strong></p>
+{{end}}
+
+<form method="POST" action="/admin/enhavo/{{.Item.Slug}}/vortaro">
+  <p>Elektu la vortojn kiujn aldoni al la vortaro. Vortoj jam ekzistantaj estas markitaj.</p>
+
+  <div class="word-grid">
+    {{range .Words}}
+    <label class="word-check{{if .Exists}} word-exists{{end}}">
+      <input type="checkbox" name="word" value="{{.Word}}"
+             {{if not .Exists}}checked{{end}}
+             {{if .Exists}}disabled{{end}}>
+      {{.Word}}
+      {{if .Exists}}<small>(jam)</small>{{end}}
+    </label>
+    {{else}}
+    <p>Neniu nova vorto trovita en la teksto.</p>
+    {{end}}
+  </div>
+
+  <div class="form-actions" style="margin-top:1rem">
+    <button type="submit">Krei elektitajn vortojn</button>
+    <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+  </div>
+</form>
+{{end}}

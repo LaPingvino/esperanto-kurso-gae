@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"cloud.google.com/go/datastore"
-	"esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
 const voteKind = "Vote"

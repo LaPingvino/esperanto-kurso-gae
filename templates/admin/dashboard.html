@@ -1,6 +1,4 @@
-{{define "admin_dashboard.html"}}
 {{template "base" .}}
-{{end}}
 
 {{define "title"}}Administra panelo — Esperanto-kurso{{end}}
 
@@ -22,16 +20,40 @@
 
   <article>
     <h2>{{.CommentCount}}</h2>
-    <p>Komentoj atendantaj moderaton</p>
+    <p>Komentoj atendantaj moderiĝon</p>
     <a href="/admin/moderigo">Moderigi</a>
   </article>
+
+  <article>
+    <h2>{{len .ModMessages}}</h2>
+    <p>Nelegitaj uzant-mesaĝoj</p>
+  </article>
 </div>
+
+{{if .ModMessages}}
+<section>
+  <h2>Mesaĝoj de uzantoj</h2>
+  {{range .ModMessages}}
+  <article>
+    <header><strong>{{.Username}}</strong> <small>{{.CreatedAt.Format "2006-01-02 15:04"}}</small></header>
+    <p>{{.Text}}</p>
+    <footer>
+      <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+        <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+      </form>
+    </footer>
+  </article>
+  {{end}}
+</section>
+<hr>
+{{end}}
 
 <nav>
   <ul>
     <li><a href="/admin/enhavo" role="button">Administri enhavon</a></li>
     <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova enhavo</a></li>
-    <li><a href="/admin/moderigo" role="button" class="outline">Moderado</a></li>
+    <li><a href="/admin/moderigo" role="button" class="outline">Moderiĝo</a></li>
+    <li><a href="/admin/uzantoj" role="button" class="outline">Uzantoj</a></li>
   </ul>
 </nav>
 
@@ -39,9 +61,14 @@
 <section>
   <h2>Semado</h2>
   <p>Ŝarĝu la enkonstruitajn bazazajn ekzercojn (idempotenta — preterlasas jam ekzistantajn).</p>
-  <form method="POST" action="/admin/seed">
+  <form method="POST" action="/admin/seed" style="display:inline">
     <button type="submit">Semi bazajn ekzercojn</button>
   </form>
+  &nbsp;
+  <form method="POST" action="/admin/patch-seed" style="display:inline">
+    <button type="submit" class="outline">Ĝisdatigi korektitajn semdatumojn</button>
+  </form>
+  <p><small>La dua butono ĝisdatigas nur la enhavon/etikedojn de ekzistantaj ekzercoj, konservante rangigojn kaj voĉdonojn.</small></p>
   {{if .SeedResult}}
   <p><strong>{{.SeedResult}}</strong></p>
   {{end}}

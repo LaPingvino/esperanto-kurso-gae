@@ -18,6 +18,12 @@ indexes:
       - name: status
       - name: type
 
+  # Content: approved items by tag (for tag-filtered vortaro)
+  - kind: ContentItem
+    properties:
+      - name: status
+      - name: tags
+
   # Attempts: by user, newest first
   - kind: Attempt
     properties:
@@ -57,3 +63,14 @@ indexes:
       - name: content_item_id
       - name: approved
       - name: created_at
+
+  # ModMessage: unread messages, oldest first
+  - kind: ModMessage
+    properties:
+      - name: read
+      - name: created_at
+
+  # User: by username (for unique lookup)
+  - kind: User
+    properties:
+      - name: username

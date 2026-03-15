@@ -3,17 +3,18 @@
 {{define "title"}}Vortaro — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>Vortaro</h1>
+<h1>Vortaro{{if .Tag}} — {{.Tag}}{{end}}</h1>
 {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
-<p>Difino-lingvo: <strong>{{$lang}}</strong> — ŝanĝu ĝin per la elektilo en la malsupro de la paĝo.</p>
+<p>{{t .UILang "vortaro.def_lang_note_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "vortaro.def_lang_note_suffix"}}</p>
+{{if .Tag}}<p><a href="/vortaro">&larr; {{t .UILang "vortaro.all_words_link"}}</a>{{if .Items}} &nbsp; <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button">&#9654; {{t .UILang "vortaro.start_practice"}}</a>{{end}}</p>{{end}}
 
 {{if .Items}}
 <table>
   <thead>
     <tr>
-      <th>Esperante</th>
-      <th>Difino ({{$lang}})</th>
-      <th>Etikedoj</th>
+      <th>{{t .UILang "vortaro.esperanto_col"}}</th>
+      <th>{{t .UILang "vortaro.definition_col"}} ({{$lang}})</th>
+      <th>{{t .UILang "vortaro.tags_col"}}</th>
       <th></th>
     </tr>
   </thead>
@@ -23,12 +24,15 @@
       <td><strong>{{.Word}}</strong></td>
       <td>{{defForLang .Content $lang}}</td>
       <td>{{range .Tags}}<small class="tag">{{.}}</small> {{end}}</td>
-      <td><a href="/ekzerco/{{.Slug}}">Ekzerci</a></td>
+      <td>
+        <a href="/ekzerco/{{.Slug}}">{{t $.UILang "vortaro.practice_link"}}</a>
+        {{if $.User}} &middot; <a href="/ekzerco/{{.Slug}}#tradukoj-{{.Slug}}">{{t $.UILang "vortaro.translate_link"}}</a>{{end}}
+      </td>
     </tr>
     {{end}}
   </tbody>
 </table>
 {{else}}
-<p>Ankoraŭ ne estas vortoj en la vortaro.</p>
+<p>{{t .UILang "vortaro.empty"}}</p>
 {{end}}
 {{end}}

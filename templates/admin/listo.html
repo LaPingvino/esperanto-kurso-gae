@@ -53,6 +53,8 @@
           <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
           &middot;
           <a href="/ekzerco/{{.Slug}}">Vidi</a>
+          {{if eq .Type "vocab"}}&middot;
+          <a href="/ekzerco/{{.Slug}}#tradukoj-{{.Slug}}">Traduki</a>{{end}}
           &middot;
           <form method="POST" action="/admin/enhavo/{{.Slug}}/forigi" style="display:inline"
                 onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Slug}}»?')">

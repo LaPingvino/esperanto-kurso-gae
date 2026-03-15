@@ -5,8 +5,8 @@ import (
 	"context"
 	"sort"
 
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/store"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 // GetForUser returns up to limit content items appropriate for the user's rating.

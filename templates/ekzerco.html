@@ -3,66 +3,138 @@
 {{define "title"}}Ekzerco — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<article>
+{{$diff := "medium"}}
+{{if lt .Item.Rating 1200.0}}{{$diff = "easy"}}{{else if gt .Item.Rating 1700.0}}{{$diff = "hard"}}{{end}}
+{{$vocabKarto := and (eq .Item.Type "vocab") (ne .VocabModo "") (ne .VocabModo "tipi")}}
+<article class="exercise-card difficulty-{{$diff}}">
   <header>
-    <span class="type-badge type-{{.Item.Type}}">{{tipNomo .Item.Type}}</span>
-    <span class="rating-badge">{{printf "%.0f" .Item.Rating}}</span>
+    <a href="/sercxi?tipo={{.Item.Type}}" class="type-badge type-{{.Item.Type}}" title="Filtri laŭ tipo">{{tipNomo .Item.Type}}</a>
+    <a href="/sercxi?cefr={{cefr .Item.Rating}}" class="cefr-badge cefr-{{cefr .Item.Rating}}" title="Filtri laŭ nivelo">{{cefr .Item.Rating}}</a>
     {{if .Item.Tags}}
-      {{range .Item.Tags}}<small class="tag">{{.}}</small> {{end}}
+      {{range .Item.Tags}}<a href="/sercxi?etikedo={{.}}" class="tag" title="Filtri laŭ etikedo">{{.}}</a> {{end}}
     {{end}}
     {{if .Item.SeriesSlug}}
     <small class="series-badge">&#128196; {{.Item.SeriesSlug}} #{{.Item.SeriesOrder}}</small>
     {{end}}
   </header>
 
+  {{/* Series progress bar */}}
+  {{if and .Item.SeriesSlug .SeriesTotal}}
+  <p class="series-progress" title="{{.Item.SeriesOrder}} el {{.SeriesTotal}} en serio">{{seriesBar .Item.SeriesOrder .SeriesTotal}}</p>
+  {{end}}
+
   {{if or .PrevInSeries .NextInSeries}}
   <nav class="series-nav" aria-label="Serio-navigado">
     {{if .PrevInSeries}}
-    <a href="/ekzerco/{{.PrevInSeries.Slug}}" class="series-link prev">&larr; {{if .PrevInSeries.Word}}{{.PrevInSeries.Word}}{{else if .PrevInSeries.Question}}{{truncate .PrevInSeries.Question 30}}{{else}}Antaŭa{{end}}</a>
+    <a href="/ekzerco/{{.PrevInSeries.Slug}}" class="series-link prev">&larr; {{if .PrevInSeries.Word}}{{.PrevInSeries.Word}}{{else if .PrevInSeries.Question}}{{truncate .PrevInSeries.Question 30}}{{else}}{{t .UILang "exercise.series_prev_fallback"}}{{end}}</a>
     {{end}}
     {{if .NextInSeries}}
-    <a href="/ekzerco/{{.NextInSeries.Slug}}" class="series-link next">{{if .NextInSeries.Word}}{{.NextInSeries.Word}}{{else if .NextInSeries.Question}}{{truncate .NextInSeries.Question 30}}{{else}}Sekva{{end}} &rarr;</a>
+    <a href="/ekzerco/{{.NextInSeries.Slug}}" class="series-link next">{{if .NextInSeries.Word}}{{.NextInSeries.Word}}{{else if .NextInSeries.Question}}{{truncate .NextInSeries.Question 30}}{{else}}{{t .UILang "exercise.series_next_fallback"}}{{end}} &rarr;</a>
     {{end}}
   </nav>
   {{end}}
 
-  {{/* ── Passive types: Anki judgment buttons, no text input ── */}}
-  {{if or (eq .Item.Type "reading") (eq .Item.Type "phrasebook")}}
+  {{/* ── Passive types + vocab flashcard: Anki judgment, no text input ── */}}
+  {{if or (eq .Item.Type "reading") (eq .Item.Type "phrasebook") (eq .Item.Type "video") $vocabKarto}}
 
   {{if eq .Item.Type "reading"}}
   <article class="reading-text">
     {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
     <p>{{.Item.Text}}</p>
   </article>
+  {{if .VocabTag}}
+  <p><a href="/vortaro?tag={{.VocabTag}}" role="button" class="outline">&#128218; {{t .UILang "exercise.vocab_practice_link"}}</a></p>
+  {{end}}
+  {{else if eq .Item.Type "video"}}
+  {{if .Item.Title}}<h2>{{.Item.Title}}</h2>{{end}}
+  {{if .Item.VideoURL}}
+  <div class="video-wrapper">
+    <iframe src="{{.Item.VideoURL}}" title="{{.Item.Title}}" frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+  {{end}}
+  {{if .Item.Text}}<p>{{.Item.Text}}</p>{{end}}
+  {{else if $vocabKarto}}
+  {{/* ── Vocab flashcard mode ── */}}
+  {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
+  {{$def := defForLang .Item.Content $lang}}
+  {{$communityDef := ""}}
+  {{with .TradukData}}
+    {{range .MyLangTranslations}}{{if eq $communityDef ""}}{{$communityDef = .Text}}{{end}}{{end}}
+  {{end}}
+  {{$shownDef := $def}}{{if and (eq $shownDef "") $communityDef}}{{$shownDef = $communityDef}}{{end}}
+  {{$modo := .VocabModo}}
+  <nav class="vocab-mode-switch">
+    <a href="?modo=tipi">{{t .UILang "exercise.vocab_mode_type"}}</a>
+    <a href="?modo=karto-eo"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_fwd"}}</a>
+    <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
+  </nav>
+  <div class="flashcard" id="fc-{{.Item.Slug}}">
+    <div class="flashcard-front" id="fc-front-{{.Item.Slug}}">
+      {{if eq $modo "karto-eo"}}
+      {{if $shownDef}}<h2 class="vocab-word">{{$shownDef}}</h2>{{else}}<h2 class="vocab-word">{{.Item.Word}}</h2>{{end}}
+      {{else}}
+      <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
+      <h2 class="vocab-word">{{.Item.Word}}</h2>
+      {{end}}
+      <button type="button" class="outline"
+              onclick="document.getElementById('fc-front-{{.Item.Slug}}').style.display='none';document.getElementById('fc-back-{{.Item.Slug}}').style.display=''">
+        &#8635; {{t .UILang "exercise.flip_card"}}
+      </button>
+    </div>
+    <div class="flashcard-back" id="fc-back-{{.Item.Slug}}" style="display:none">
+      {{if eq $modo "karto-eo"}}
+      <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
+      <h2 class="vocab-word">{{.Item.Word}}</h2>
+      {{else}}
+      {{if $shownDef}}<h2 class="vocab-word">{{$shownDef}}</h2>{{else}}<p><em>{{t .UILang "exercise.missing_def_prefix"}} {{langName $lang}}</em></p>{{end}}
+      {{end}}
+      <form hx-post="/ekzerco/{{.Item.Slug}}/jugxo"
+            hx-target="#rezulto"
+            hx-swap="innerHTML transition:true">
+        <nav class="anki-buttons">
+          <ul>
+            <li><button type="submit" name="judgment" value="ne-sciis" class="reject-btn">&#10007; {{t .UILang "exercise.judge_unknown"}}</button></li>
+            <li><button type="submit" name="judgment" value="malfacile" class="outline">&#9888; {{t .UILang "exercise.judge_hard"}}</button></li>
+            <li><button type="submit" name="judgment" value="bone" class="outline">&#10003; {{t .UILang "exercise.judge_good"}}</button></li>
+            <li><button type="submit" name="judgment" value="facile">&#9733; {{t .UILang "exercise.judge_easy"}}</button></li>
+          </ul>
+        </nav>
+      </form>
+    </div>
+  </div>
   {{else}}
-  <p>Kiel oni diras tion ĉi esperante?</p>
+  <p>{{t .UILang "exercise.phrase_prompt"}}</p>
   <h2 class="phrase">{{.Item.Question}}</h2>
   {{end}}
 
-  <form hx-post="/ekzerco/{{.Item.Slug}}/jugo"
+  {{if not $vocabKarto}}
+  <form hx-post="/ekzerco/{{.Item.Slug}}/jugxo"
         hx-target="#rezulto"
-        hx-swap="innerHTML">
+        hx-swap="innerHTML transition:true">
     <nav class="anki-buttons">
       <ul>
-        <li><button type="submit" name="judgment" value="ne-sciis" class="reject-btn">&#10007; Ne sciis</button></li>
-        <li><button type="submit" name="judgment" value="malfacile" class="outline">&#9888; Malfacile</button></li>
-        <li><button type="submit" name="judgment" value="bone" class="outline">&#10003; Bone</button></li>
-        <li><button type="submit" name="judgment" value="facile">&#9733; Facile</button></li>
+        <li><button type="submit" name="judgment" value="ne-sciis" class="reject-btn">&#10007; {{t .UILang "exercise.judge_unknown"}}</button></li>
+        <li><button type="submit" name="judgment" value="malfacile" class="outline">&#9888; {{t .UILang "exercise.judge_hard"}}</button></li>
+        <li><button type="submit" name="judgment" value="bone" class="outline">&#10003; {{t .UILang "exercise.judge_good"}}</button></li>
+        <li><button type="submit" name="judgment" value="facile">&#9733; {{t .UILang "exercise.judge_easy"}}</button></li>
       </ul>
     </nav>
   </form>
+  {{end}}
 
   {{/* ── Interactive types: answer input + Mi ne scias ── */}}
   {{else}}
 
   <form hx-post="/ekzerco/{{.Item.Slug}}/provo"
         hx-target="#rezulto"
-        hx-swap="innerHTML"
+        hx-swap="innerHTML transition:true"
         hx-indicator="#loading">
 
     {{if eq .Item.Type "multiplechoice"}}
     <fieldset>
-      <legend>Elektu la ĝustan respondon:</legend>
+      <legend>{{t .UILang "exercise.choose_answer"}}</legend>
       {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
       {{range $i, $opt := .Item.Options}}
       <label>
@@ -73,17 +145,20 @@
     </fieldset>
 
     {{else if eq .Item.Type "fillin"}}
-    <p><strong>{{.Item.Question}}</strong></p>
-    {{if .Item.Hint}}<small>Indiko: {{.Item.Hint}}</small>{{end}}
-    <input type="text" name="answer" placeholder="Via respondo…" required autofocus>
+    {{if .Item.Hint}}<small>{{t .UILang "exercise.hint_label"}} {{.Item.Hint}}</small>{{end}}
+    <p class="fillin-question">
+      {{$parts := splitGaps .Item.Question}}
+      {{$last := sub (len $parts) 1}}
+      {{range $i, $part := $parts}}{{$part}}{{if lt $i $last}}<input type="text" name="answer" class="gap-input" placeholder="___" required {{if eq $i 0}}autofocus{{end}} oninput="this.style.width=Math.max(4,this.value.length+1)+'ch'">{{end}}{{end}}
+    </p>
 
     {{else if eq .Item.Type "listening"}}
-    <p>Aŭskultu kaj respondu:</p>
+    <p>{{t .UILang "exercise.listen_prompt"}}</p>
     {{if .Item.AudioURL}}
-    <audio controls src="{{.Item.AudioURL}}">Via retumilo ne subtenas aŭdion.</audio>
+    <audio controls src="{{.Item.AudioURL}}">{{t .UILang "exercise.no_audio"}}</audio>
     {{end}}
     {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
-    <input type="text" name="answer" placeholder="Via respondo…" required>
+    <input type="text" name="answer" placeholder="{{t .UILang "exercise.answer_placeholder"}}" required>
 
     {{else if eq .Item.Type "vocab"}}
     {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
@@ -92,55 +167,81 @@
     {{with .TradukData}}
       {{range .MyLangTranslations}}{{if eq $communityDef ""}}{{$communityDef = .Text}}{{end}}{{end}}
     {{end}}
+    {{$shownDef := $def}}{{if and (eq $shownDef "") $communityDef}}{{$shownDef = $communityDef}}{{end}}
+    {{$modo := .VocabModo}}
+    {{/* Mode switcher — only show card modes when a definition is available */}}
+    <nav class="vocab-mode-switch">
+      <a href="?modo=tipi"{{if or (eq $modo "") (eq $modo "tipi")}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_type"}}</a>
+      {{if $shownDef}}
+      <a href="?modo=karto-eo"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_fwd"}}</a>
+      <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
+      {{end}}
+    </nav>
     {{if $def}}
-    <p>Kiel oni diras esperante?</p>
+    <p>{{t .UILang "exercise.vocab_prompt"}}</p>
     <h2 class="vocab-word">{{$def}}</h2>
     {{else if $communityDef}}
-    <p>Kiel oni diras esperante? <small>(komunuma traduko en {{$lang}})</small></p>
+    <p>{{t .UILang "exercise.vocab_prompt"}} <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
     <h2 class="vocab-word">{{$communityDef}}</h2>
     {{else}}
-    <p class="missing-def">Ankoraŭ ne estas difino en <strong>{{$lang}}</strong> por ĉi tiu vorto.</p>
+    <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
     {{$allDefs := allDefs .Item.Content}}
     {{if $allDefs}}
     <details>
-      <summary>Vidi difinoj en aliaj lingvoj</summary>
-      <dl>{{range $k, $v := $allDefs}}<dt>{{$k}}</dt><dd>{{$v}}</dd>{{end}}</dl>
+      <summary>{{t .UILang "exercise.other_langs_summary"}}</summary>
+      <dl>{{range $k, $v := $allDefs}}<dt>{{langName $k}}</dt><dd>{{$v}}</dd>{{end}}</dl>
     </details>
     {{end}}
-    <p>Kion signifas tiu ĉi vorto?</p>
+    <p>{{t .UILang "exercise.what_means"}}</p>
     <h2 class="vocab-word">{{.Item.Word}}</h2>
+    {{if .User}}
+    <div id="add-def-{{.Item.Slug}}" style="margin:0.5rem 0;display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap">
+      <input type="text" id="add-def-input-{{.Item.Slug}}" name="text"
+             placeholder="{{t .UILang "exercise.add_def_placeholder"}}"
+             style="flex:1;min-width:8rem">
+      <button type="button"
+              hx-post="/tradukoj/{{.Item.Slug}}"
+              hx-target="#add-def-{{.Item.Slug}}"
+              hx-swap="outerHTML"
+              hx-include="#add-def-input-{{.Item.Slug}}"
+              hx-vals='{"language":"{{$lang}}","from":"ekzerco"}'
+              class="outline" style="padding:0.2em 0.6em;font-size:0.85rem">
+        + {{t .UILang "exercise.add_def_button"}}
+      </button>
+    </div>
     {{end}}
-    <input type="text" name="answer" placeholder="La vorto esperante…" required autofocus>
+    {{end}}
+    <input type="text" name="answer" placeholder="{{t .UILang "exercise.esperanto_placeholder"}}" required autofocus>
 
     {{else if eq .Item.Type "image"}}
-    <p>Kion vidas vi?</p>
+    <p>{{t .UILang "exercise.image_prompt"}}</p>
     {{if .Item.ImageURL}}<img src="{{.Item.ImageURL}}" alt="Ekzerco-bildo" class="exercise-image">{{end}}
     {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
-    <input type="text" name="answer" placeholder="Via respondo…" required>
+    <input type="text" name="answer" placeholder="{{t .UILang "exercise.answer_placeholder"}}" required>
 
     {{else}}
     {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
-    <input type="text" name="answer" placeholder="Via respondo…" required autofocus>
+    <input type="text" name="answer" placeholder="{{t .UILang "exercise.answer_placeholder"}}" required autofocus>
     {{end}}
 
     <nav class="submit-row">
       <ul>
-        <li><button type="submit">Sendi</button></li>
+        <li><button type="submit">{{t .UILang "exercise.send"}}</button></li>
         <li>
-          <button type="submit" form="jugo-form" class="reject-btn outline" title="Transsaltu kaj registru kiel malsukceson">
-            &#10007; Mi ne scias
+          <button type="submit" form="jugo-form" class="reject-btn outline" title="{{t .UILang "exercise.dont_know_title"}}">
+            &#10007; {{t .UILang "exercise.dont_know"}}
           </button>
         </li>
       </ul>
     </nav>
-    <span id="loading" class="htmx-indicator">Ŝarĝas…</span>
+    <span id="loading" class="htmx-indicator">{{t .UILang "exercise.loading"}}</span>
   </form>
 
   {{/* Hidden form for "Mi ne scias" — posts to jugo endpoint */}}
   <form id="jugo-form"
-        hx-post="/ekzerco/{{.Item.Slug}}/jugo"
+        hx-post="/ekzerco/{{.Item.Slug}}/jugxo"
         hx-target="#rezulto"
-        hx-swap="innerHTML">
+        hx-swap="innerHTML transition:true">
     <input type="hidden" name="judgment" value="ne-sciis">
   </form>
 
@@ -149,9 +250,11 @@
   <div id="rezulto"></div>
 </article>
 
-{{template "vochdonado.html" map "ContentID" .Item.Slug "VoteScore" .Item.VoteScore "CurrentVote" .CurrentVote "User" .User}}
+<div id="post-answer" class="post-answer-hidden">
+{{template "vochdonado.html" map "ContentID" .Item.Slug "VoteScore" .Item.VoteScore "CurrentVote" .CurrentVote "User" .User "UILang" .UILang}}
 
-{{template "komentoj.html" map "ContentID" .Item.Slug "Comments" .Comments "User" .User}}
+{{template "komentoj.html" map "ContentID" .Item.Slug "Comments" .Comments "User" .User "UILang" .UILang}}
 
 {{template "traduko.html" .TradukData}}
+</div>
 {{end}}

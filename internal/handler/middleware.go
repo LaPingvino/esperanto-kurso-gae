@@ -7,8 +7,9 @@ import (
 	"net/http"
 	"time"
 
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/store"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 	gaeuser "google.golang.org/appengine/v2/user"
 )
 
@@ -69,6 +70,10 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 				if c, err2 := r.Cookie("lang"); err2 == nil && c.Value != "" {
 					u.Lang = c.Value
 				}
+				// Override UILang from cookie if present.
+				if c, err2 := r.Cookie("ui_lang"); err2 == nil && c.Value != "" && locale.Supported(c.Value) {
+					u.UILang = c.Value
+				}
 				ctx = context.WithValue(ctx, UserContextKey, u)
 				r = r.WithContext(ctx)
 				go func() { _ = us.UpdateLastSeen(context.Background(), u.ID) }()
@@ -81,7 +86,8 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 		// This ensures the cookie is ready before the user reaches /admin/initial.
 		// If never used and no ensalutŝlosilo registered, the account is
 		// functionally equivalent to a new one on the next visit.
-		newToken, err := autoCreateUser(ctx, us)
+		uiLang := locale.DetectLang(r.Header.Get("Accept-Language"))
+		newToken, err := autoCreateUser(ctx, us, uiLang)
 		if err == nil {
 			http.SetCookie(w, &http.Cookie{
 				Name:     "token",
@@ -131,7 +137,7 @@ func RequireMod(next http.Handler) http.Handler {
 }
 
 // autoCreateUser creates a new anonymous user, stores it, and returns the token.
-func autoCreateUser(ctx context.Context, us *store.UserStore) (string, error) {
+func autoCreateUser(ctx context.Context, us *store.UserStore, uiLang string) (string, error) {
 	idB := make([]byte, 16)
 	if _, err := rand.Read(idB); err != nil {
 		return "", err
@@ -145,8 +151,17 @@ func autoCreateUser(ctx context.Context, us *store.UserStore) (string, error) {
 	token := base64.URLEncoding.EncodeToString(tokB)
 
 	u := model.NewUser(id, token)
+	u.UILang = uiLang
 	if err := us.Create(ctx, u); err != nil {
 		return "", err
 	}
 	return token, nil
+}
+
+// UILangFor returns the UI language for a user, defaulting to "eo".
+func UILangFor(u *model.User) string {
+	if u == nil || u.UILang == "" {
+		return "eo"
+	}
+	return u.UILang
 }

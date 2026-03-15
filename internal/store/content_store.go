@@ -7,7 +7,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
-	"esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
 const contentKind = "ContentItem"
@@ -128,6 +128,66 @@ func (s *ContentStore) Update(ctx context.Context, item *model.ContentItem) erro
 	return err
 }
 
+// PatchContentFields updates only the content JSON, tags, source, image URL, and
+// series fields of an existing item, preserving rating/RD/volatility/votes.
+// If the item does not exist yet, it is created with the provided defaults.
+func (s *ContentStore) PatchContentFields(ctx context.Context, item *model.ContentItem) error {
+	key := s.contentKey(item.Slug)
+	var existing contentEntity
+	err := s.db.Get(ctx, key, &existing)
+	if err != nil {
+		// Not found — create fresh.
+		return s.Create(ctx, item)
+	}
+	b, err := json.Marshal(item.Content)
+	if err != nil {
+		return fmt.Errorf("content_store: patch marshal: %w", err)
+	}
+	existing.ContentJSON = b
+	existing.Tags = item.Tags
+	existing.Source = item.Source
+	existing.ImageURL = item.ImageURL
+	existing.SeriesSlug = item.SeriesSlug
+	existing.SeriesOrder = item.SeriesOrder
+	existing.UpdatedAt = time.Now()
+	_, err = s.db.Put(ctx, key, &existing)
+	return err
+}
+
+// UpdateDefinition writes text into content["definitions"]["lang"] for a vocab item.
+func (s *ContentStore) UpdateDefinition(ctx context.Context, slug, lang, text string) error {
+	key := s.contentKey(slug)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e contentEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		content := map[string]interface{}{}
+		if len(e.ContentJSON) > 0 {
+			if err := json.Unmarshal(e.ContentJSON, &content); err != nil {
+				return err
+			}
+		}
+		defs := map[string]interface{}{}
+		if existing, ok := content["definitions"]; ok {
+			if m, ok := existing.(map[string]interface{}); ok {
+				defs = m
+			}
+		}
+		defs[lang] = text
+		content["definitions"] = defs
+		b, err := json.Marshal(content)
+		if err != nil {
+			return err
+		}
+		e.ContentJSON = b
+		e.UpdatedAt = time.Now()
+		_, err = tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
 func (s *ContentStore) ListByType(ctx context.Context, typ string, limit int) ([]*model.ContentItem, error) {
 	q := datastore.NewQuery(contentKind).
 		FilterField("status", "=", "approved").
@@ -143,6 +203,30 @@ func (s *ContentStore) ListBySeries(ctx context.Context, seriesSlug string) ([]*
 		FilterField("series_slug", "=", seriesSlug).
 		Order("series_order")
 	return s.runContentQuery(ctx, q)
+}
+
+// ListByTag returns approved items that have the given tag.
+func (s *ContentStore) ListByTag(ctx context.Context, tag string, limit int) ([]*model.ContentItem, error) {
+	q := datastore.NewQuery(contentKind).
+		FilterField("status", "=", "approved").
+		FilterField("tags", "=", tag).
+		Limit(limit)
+	return s.runContentQuery(ctx, q)
+}
+
+// ListAllTags scans all approved items and returns a map of tag → count.
+func (s *ContentStore) ListAllTags(ctx context.Context) (map[string]int, error) {
+	items, err := s.ListApproved(ctx, 2000)
+	if err != nil {
+		return nil, err
+	}
+	counts := make(map[string]int)
+	for _, it := range items {
+		for _, tag := range it.Tags {
+			counts[tag]++
+		}
+	}
+	return counts, nil
 }
 
 func (s *ContentStore) Delete(ctx context.Context, slug string) error {

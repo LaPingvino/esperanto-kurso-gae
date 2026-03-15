@@ -6,21 +6,32 @@
     <div class="vote-buttons">
       <button type="submit" name="value" value="1"
               class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
-              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}Nuligi voĉon{{else}}Voĉdoni supren{{end}}{{else}}Voĉdoni supren{{end}}"
-              aria-label="Voĉdoni supren"
+              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}{{t .UILang "vote.aria_cancel"}}{{else}}{{t .UILang "vote.aria_up"}}{{end}}{{else}}{{t .UILang "vote.aria_up"}}{{end}}"
+              aria-label="{{t .UILang "vote.aria_up"}}"
               {{if not .User}}disabled{{end}}>
-        &#9650; Utila
+        &#9650; {{t .UILang "vote.useful"}}
       </button>
-      <span class="vote-score" aria-label="{{.VoteScore}} voĉoj">{{.VoteScore}}</span>
+      <span class="vote-score" aria-label="{{.VoteScore}} {{t .UILang "vote.count_aria"}}">{{.VoteScore}}</span>
       <button type="submit" name="value" value="-1"
               class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
-              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}Nuligi voĉon{{else}}Voĉdoni malsupren{{end}}{{else}}Voĉdoni malsupren{{end}}"
-              aria-label="Voĉdoni malsupren"
+              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}{{t .UILang "vote.aria_cancel"}}{{else}}{{t .UILang "vote.aria_down"}}{{end}}{{else}}{{t .UILang "vote.aria_down"}}{{end}}"
+              aria-label="{{t .UILang "vote.aria_down"}}"
               {{if not .User}}disabled{{end}}>
-        &#9660; Senutila
+        &#9660; {{t .UILang "vote.useless"}}
       </button>
     </div>
-    {{if not .User}}<small><a href="/enskribi">Ensalitu</a> por voĉdoni.</small>{{end}}
+    {{if not .User}}<small><a href="/enskribi">{{t .UILang "vote.login_link"}}</a> {{t .UILang "vote.login_prompt"}}</small>{{end}}
   </form>
+  {{if .User}}
+  <div id="flag-{{.ContentID}}" class="flag-section">
+    <form hx-post="/ekzerco/{{.ContentID}}/flagi"
+          hx-target="#flag-{{.ContentID}}"
+          hx-swap="innerHTML">
+      <button type="submit" class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">
+        &#9873; {{t .UILang "flag.button"}}
+      </button>
+    </form>
+  </div>
+  {{end}}
 </section>
 {{end}}

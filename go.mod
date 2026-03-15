@@ -1,4 +1,4 @@
-module esperanto-kurso-gae
+module github.com/LaPingvino/esperanto-kurso-gae
 
 go 1.24.0
 

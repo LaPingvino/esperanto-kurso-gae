@@ -1,5 +1,5 @@
 {{define "base"}}<!DOCTYPE html>
-<html lang="eo">
+<html lang="{{.UILang}}"{{if isRTL .UILang}} dir="rtl"{{end}}>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,12 +16,106 @@
         <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong> <a href="/admin/initial" id="admin-link" aria-hidden="true">&#9651;</a></li>
       </ul>
       <ul>
-        <li><a href="/">Hejmo</a></li>
-        <li><a href="/vortaro">Vortaro</a></li>
-        <li><a href="/enskribi">Konservu progreson</a></li>
+        <li><a href="/">{{t .UILang "nav.home"}}</a></li>
+        <li><a href="/vortaro">{{t .UILang "nav.vortaro"}}</a></li>
+        <li><a href="/etikedoj">{{t .UILang "tags.title"}}</a></li>
+        <li><a href="/enskribi">{{t .UILang "nav.save_progress"}}</a></li>
         {{if .User}}{{if eq .User.Role "admin"}}
-        <li><a href="/admin">Administrado</a></li>
+        <li><a href="/admin">{{t .UILang "nav.admin"}}</a></li>
         {{end}}{{end}}
+        {{if .User}}{{if canContribute .User}}
+        <li><a href="/admin/enhavo/nova">{{t .UILang "nav.contribute"}}</a></li>
+        {{end}}{{end}}
+        {{- /* ── Language switchers ── */}}
+        {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
+        <li class="lang-switchers">
+          <form method="POST" action="/uilingvo" class="lang-form" title="{{t .UILang "nav.ui_lang_title"}}">
+            <label>&#127760;<select name="ui_lang" onchange="this.form.submit()" class="lang-select">
+              <option value="ar"  {{if eq .UILang "ar" }}selected{{end}}>العربية</option>
+              <option value="bn"  {{if eq .UILang "bn" }}selected{{end}}>বাংলা</option>
+              <option value="cs"  {{if eq .UILang "cs" }}selected{{end}}>Čeština</option>
+              <option value="da"  {{if eq .UILang "da" }}selected{{end}}>Dansk</option>
+              <option value="de"  {{if eq .UILang "de" }}selected{{end}}>Deutsch</option>
+              <option value="el"  {{if eq .UILang "el" }}selected{{end}}>Ελληνικά</option>
+              <option value="en"  {{if eq .UILang "en" }}selected{{end}}>English</option>
+              <option value="eo"  {{if eq .UILang "eo" }}selected{{end}}>Esperanto</option>
+              <option value="es"  {{if eq .UILang "es" }}selected{{end}}>Español</option>
+              <option value="fa"  {{if eq .UILang "fa" }}selected{{end}}>فارسی</option>
+              <option value="fr"  {{if eq .UILang "fr" }}selected{{end}}>Français</option>
+              <option value="he"  {{if eq .UILang "he" }}selected{{end}}>עברית</option>
+              <option value="hi"  {{if eq .UILang "hi" }}selected{{end}}>हिन्दी</option>
+              <option value="hu"  {{if eq .UILang "hu" }}selected{{end}}>Magyar</option>
+              <option value="id"  {{if eq .UILang "id" }}selected{{end}}>Bahasa Indonesia</option>
+              <option value="it"  {{if eq .UILang "it" }}selected{{end}}>Italiano</option>
+              <option value="ja"  {{if eq .UILang "ja" }}selected{{end}}>日本語</option>
+              <option value="ko"  {{if eq .UILang "ko" }}selected{{end}}>한국어</option>
+              <option value="nl"  {{if eq .UILang "nl" }}selected{{end}}>Nederlands</option>
+              <option value="pl"  {{if eq .UILang "pl" }}selected{{end}}>Polski</option>
+              <option value="pt"  {{if eq .UILang "pt" }}selected{{end}}>Português</option>
+              <option value="ro"  {{if eq .UILang "ro" }}selected{{end}}>Română</option>
+              <option value="ru"  {{if eq .UILang "ru" }}selected{{end}}>Русский</option>
+              <option value="sv"  {{if eq .UILang "sv" }}selected{{end}}>Svenska</option>
+              <option value="sw"  {{if eq .UILang "sw" }}selected{{end}}>Kiswahili</option>
+              <option value="tr"  {{if eq .UILang "tr" }}selected{{end}}>Türkçe</option>
+              <option value="uk"  {{if eq .UILang "uk" }}selected{{end}}>Українська</option>
+              <option value="ur"  {{if eq .UILang "ur" }}selected{{end}}>اردو</option>
+              <option value="vi"  {{if eq .UILang "vi" }}selected{{end}}>Tiếng Việt</option>
+              <option value="zh"  {{if eq .UILang "zh" }}selected{{end}}>中文</option>
+            </select></label>
+          </form>
+          <form method="POST" action="/lingvo" class="lang-form" title="{{t .UILang "nav.vocab_lang_title"}}">
+            <label>&#128172;<select name="lang" onchange="this.form.submit()" class="lang-select">
+              <option value="ar"  {{if eq $vl "ar" }}selected{{end}}>العربية</option>
+              <option value="be"  {{if eq $vl "be" }}selected{{end}}>Беларуская</option>
+              <option value="bn"  {{if eq $vl "bn" }}selected{{end}}>বাংলা</option>
+              <option value="ca"  {{if eq $vl "ca" }}selected{{end}}>Català</option>
+              <option value="cs"  {{if eq $vl "cs" }}selected{{end}}>Čeština</option>
+              <option value="da"  {{if eq $vl "da" }}selected{{end}}>Dansk</option>
+              <option value="de"  {{if eq $vl "de" }}selected{{end}}>Deutsch</option>
+              <option value="el"  {{if eq $vl "el" }}selected{{end}}>Ελληνικά</option>
+              <option value="en"  {{if eq $vl "en" }}selected{{end}}>English</option>
+              <option value="eo"  {{if eq $vl "eo" }}selected{{end}}>Esperanto</option>
+              <option value="es"  {{if eq $vl "es" }}selected{{end}}>Español</option>
+              <option value="fa"  {{if eq $vl "fa" }}selected{{end}}>فارسی</option>
+              <option value="fr"  {{if eq $vl "fr" }}selected{{end}}>Français</option>
+              <option value="frp" {{if eq $vl "frp"}}selected{{end}}>Arpitan</option>
+              <option value="ga"  {{if eq $vl "ga" }}selected{{end}}>Gaeilge</option>
+              <option value="he"  {{if eq $vl "he" }}selected{{end}}>עברית</option>
+              <option value="hi"  {{if eq $vl "hi" }}selected{{end}}>हिन्दी</option>
+              <option value="hr"  {{if eq $vl "hr" }}selected{{end}}>Hrvatski</option>
+              <option value="hu"  {{if eq $vl "hu" }}selected{{end}}>Magyar</option>
+              <option value="id"  {{if eq $vl "id" }}selected{{end}}>Bahasa Indonesia</option>
+              <option value="it"  {{if eq $vl "it" }}selected{{end}}>Italiano</option>
+              <option value="ja"  {{if eq $vl "ja" }}selected{{end}}>日本語</option>
+              <option value="kk"  {{if eq $vl "kk" }}selected{{end}}>Қазақша</option>
+              <option value="km"  {{if eq $vl "km" }}selected{{end}}>ខ្មែរ</option>
+              <option value="ko"  {{if eq $vl "ko" }}selected{{end}}>한국어</option>
+              <option value="ku"  {{if eq $vl "ku" }}selected{{end}}>Kurdî</option>
+              <option value="lo"  {{if eq $vl "lo" }}selected{{end}}>ລາວ</option>
+              <option value="mg"  {{if eq $vl "mg" }}selected{{end}}>Malagasy</option>
+              <option value="ms"  {{if eq $vl "ms" }}selected{{end}}>Bahasa Melayu</option>
+              <option value="my"  {{if eq $vl "my" }}selected{{end}}>မြန်မာဘာသာ</option>
+              <option value="nl"  {{if eq $vl "nl" }}selected{{end}}>Nederlands</option>
+              <option value="pl"  {{if eq $vl "pl" }}selected{{end}}>Polski</option>
+              <option value="pt"  {{if eq $vl "pt" }}selected{{end}}>Português</option>
+              <option value="ro"  {{if eq $vl "ro" }}selected{{end}}>Română</option>
+              <option value="ru"  {{if eq $vl "ru" }}selected{{end}}>Русский</option>
+              <option value="sk"  {{if eq $vl "sk" }}selected{{end}}>Slovenčina</option>
+              <option value="sl"  {{if eq $vl "sl" }}selected{{end}}>Slovenščina</option>
+              <option value="sv"  {{if eq $vl "sv" }}selected{{end}}>Svenska</option>
+              <option value="sw"  {{if eq $vl "sw" }}selected{{end}}>Kiswahili</option>
+              <option value="th"  {{if eq $vl "th" }}selected{{end}}>ไทย</option>
+              <option value="tok" {{if eq $vl "tok"}}selected{{end}}>Toki Pona</option>
+              <option value="tr"  {{if eq $vl "tr" }}selected{{end}}>Türkçe</option>
+              <option value="uk"  {{if eq $vl "uk" }}selected{{end}}>Українська</option>
+              <option value="ur"  {{if eq $vl "ur" }}selected{{end}}>اردو</option>
+              <option value="vi"  {{if eq $vl "vi" }}selected{{end}}>Tiếng Việt</option>
+              <option value="yo"  {{if eq $vl "yo" }}selected{{end}}>Yorùbá</option>
+              <option value="zh"  {{if eq $vl "zh" }}selected{{end}}>中文</option>
+              <option value="zh-tw" {{if eq $vl "zh-tw"}}selected{{end}}>繁體中文</option>
+            </select></label>
+          </form>
+        </li>
       </ul>
     </nav>
   </header>
@@ -33,63 +127,12 @@
   <footer class="container">
     <small>
       {{if .User}}
-        Nivelo: <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
-        &plusmn;{{printf "%.0f" .User.RD}}
+        <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
+        <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
+        {{if .User.StreakDays}}<span class="streak-badge" title="{{t .UILang "footer.streak_title"}}">&#128293; {{.User.StreakDays}}d</span>{{end}}
       {{else}}
-        <em><a href="/enskribi">Ensalitu</a> por konservi progreson.</em>
+        <em><a href="/enskribi">{{t .UILang "footer.login_link"}}</a> {{t .UILang "footer.login_prompt"}}</em>
       {{end}}
-      &mdash;
-      <form method="POST" action="/lingvo" style="display:inline" aria-label="Difin-lingvo">
-        <select name="lang" onchange="this.form.submit()" title="Elektu lingvon por vortaro-difinoj">
-          <option value="en" {{if .User}}{{if eq .User.Lang "en"}}selected{{end}}{{end}}>English</option>
-          <option value="nl" {{if .User}}{{if eq .User.Lang "nl"}}selected{{end}}{{end}}>Nederlands</option>
-          <option value="de" {{if .User}}{{if eq .User.Lang "de"}}selected{{end}}{{end}}>Deutsch</option>
-          <option value="fr" {{if .User}}{{if eq .User.Lang "fr"}}selected{{end}}{{end}}>Français</option>
-          <option value="es" {{if .User}}{{if eq .User.Lang "es"}}selected{{end}}{{end}}>Español</option>
-          <option value="pt" {{if .User}}{{if eq .User.Lang "pt"}}selected{{end}}{{end}}>Português</option>
-          <option value="ar" {{if .User}}{{if eq .User.Lang "ar"}}selected{{end}}{{end}}>العربية</option>
-          <option value="be" {{if .User}}{{if eq .User.Lang "be"}}selected{{end}}{{end}}>Беларуская</option>
-          <option value="ca" {{if .User}}{{if eq .User.Lang "ca"}}selected{{end}}{{end}}>Català</option>
-          <option value="cs" {{if .User}}{{if eq .User.Lang "cs"}}selected{{end}}{{end}}>Čeština</option>
-          <option value="da" {{if .User}}{{if eq .User.Lang "da"}}selected{{end}}{{end}}>Dansk</option>
-          <option value="el" {{if .User}}{{if eq .User.Lang "el"}}selected{{end}}{{end}}>Ελληνικά</option>
-          <option value="eo" {{if .User}}{{if eq .User.Lang "eo"}}selected{{end}}{{end}}>Esperanto</option>
-          <option value="fa" {{if .User}}{{if eq .User.Lang "fa"}}selected{{end}}{{end}}>فارسی</option>
-          <option value="frp" {{if .User}}{{if eq .User.Lang "frp"}}selected{{end}}{{end}}>Arpitan</option>
-          <option value="ga" {{if .User}}{{if eq .User.Lang "ga"}}selected{{end}}{{end}}>Gaeilge</option>
-          <option value="he" {{if .User}}{{if eq .User.Lang "he"}}selected{{end}}{{end}}>עברית</option>
-          <option value="hi" {{if .User}}{{if eq .User.Lang "hi"}}selected{{end}}{{end}}>हिन्दी</option>
-          <option value="hr" {{if .User}}{{if eq .User.Lang "hr"}}selected{{end}}{{end}}>Hrvatski</option>
-          <option value="hu" {{if .User}}{{if eq .User.Lang "hu"}}selected{{end}}{{end}}>Magyar</option>
-          <option value="id" {{if .User}}{{if eq .User.Lang "id"}}selected{{end}}{{end}}>Bahasa Indonesia</option>
-          <option value="it" {{if .User}}{{if eq .User.Lang "it"}}selected{{end}}{{end}}>Italiano</option>
-          <option value="ja" {{if .User}}{{if eq .User.Lang "ja"}}selected{{end}}{{end}}>日本語</option>
-          <option value="kk" {{if .User}}{{if eq .User.Lang "kk"}}selected{{end}}{{end}}>Қазақша</option>
-          <option value="km" {{if .User}}{{if eq .User.Lang "km"}}selected{{end}}{{end}}>ខ្មែរ</option>
-          <option value="ko" {{if .User}}{{if eq .User.Lang "ko"}}selected{{end}}{{end}}>한국어</option>
-          <option value="ku" {{if .User}}{{if eq .User.Lang "ku"}}selected{{end}}{{end}}>Kurdî</option>
-          <option value="lo" {{if .User}}{{if eq .User.Lang "lo"}}selected{{end}}{{end}}>ລາວ</option>
-          <option value="mg" {{if .User}}{{if eq .User.Lang "mg"}}selected{{end}}{{end}}>Malagasy</option>
-          <option value="ms" {{if .User}}{{if eq .User.Lang "ms"}}selected{{end}}{{end}}>Bahasa Melayu</option>
-          <option value="my" {{if .User}}{{if eq .User.Lang "my"}}selected{{end}}{{end}}>မြန်မာဘာသာ</option>
-          <option value="pl" {{if .User}}{{if eq .User.Lang "pl"}}selected{{end}}{{end}}>Polski</option>
-          <option value="ro" {{if .User}}{{if eq .User.Lang "ro"}}selected{{end}}{{end}}>Română</option>
-          <option value="ru" {{if .User}}{{if eq .User.Lang "ru"}}selected{{end}}{{end}}>Русский</option>
-          <option value="sk" {{if .User}}{{if eq .User.Lang "sk"}}selected{{end}}{{end}}>Slovenčina</option>
-          <option value="sl" {{if .User}}{{if eq .User.Lang "sl"}}selected{{end}}{{end}}>Slovenščina</option>
-          <option value="sv" {{if .User}}{{if eq .User.Lang "sv"}}selected{{end}}{{end}}>Svenska</option>
-          <option value="sw" {{if .User}}{{if eq .User.Lang "sw"}}selected{{end}}{{end}}>Kiswahili</option>
-          <option value="th" {{if .User}}{{if eq .User.Lang "th"}}selected{{end}}{{end}}>ไทย</option>
-          <option value="tok" {{if .User}}{{if eq .User.Lang "tok"}}selected{{end}}{{end}}>Toki Pona</option>
-          <option value="tr" {{if .User}}{{if eq .User.Lang "tr"}}selected{{end}}{{end}}>Türkçe</option>
-          <option value="uk" {{if .User}}{{if eq .User.Lang "uk"}}selected{{end}}{{end}}>Українська</option>
-          <option value="ur" {{if .User}}{{if eq .User.Lang "ur"}}selected{{end}}{{end}}>اردو</option>
-          <option value="vi" {{if .User}}{{if eq .User.Lang "vi"}}selected{{end}}{{end}}>Tiếng Việt</option>
-          <option value="yo" {{if .User}}{{if eq .User.Lang "yo"}}selected{{end}}{{end}}>Yorùbá</option>
-          <option value="zh" {{if .User}}{{if eq .User.Lang "zh"}}selected{{end}}{{end}}>中文</option>
-          <option value="zh-tw" {{if .User}}{{if eq .User.Lang "zh-tw"}}selected{{end}}{{end}}>繁體中文</option>
-        </select>
-      </form>
       &mdash; Esperanto-kurso &copy; 2026
     </small>
   </footer>

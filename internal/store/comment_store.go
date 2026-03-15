@@ -3,11 +3,12 @@ package store
 import (
 	"context"
 	"fmt"
+	"sort"
 	"strconv"
 	"time"
 
 	"cloud.google.com/go/datastore"
-	"esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
 const commentKind = "Comment"
@@ -49,19 +50,38 @@ func (s *CommentStore) Create(ctx context.Context, c *model.Comment) error {
 }
 
 func (s *CommentStore) ListApprovedByContent(ctx context.Context, contentID string) ([]*model.Comment, error) {
-	q := datastore.NewQuery(commentKind).
-		FilterField("content_item_id", "=", contentID).
-		FilterField("approved", "=", true).
-		Order("created_at")
-	return s.runQuery(ctx, q)
+	// Single-field filter only — no composite index needed.
+	q := datastore.NewQuery(commentKind).FilterField("content_item_id", "=", contentID)
+	all, err := s.runQuery(ctx, q)
+	if err != nil {
+		return nil, err
+	}
+	var approved []*model.Comment
+	for _, c := range all {
+		if c.Approved {
+			approved = append(approved, c)
+		}
+	}
+	sort.Slice(approved, func(i, j int) bool {
+		return approved[i].CreatedAt.Before(approved[j].CreatedAt)
+	})
+	return approved, nil
 }
 
 func (s *CommentStore) ListPending(ctx context.Context, limit int) ([]*model.Comment, error) {
-	q := datastore.NewQuery(commentKind).
-		FilterField("approved", "=", false).
-		Order("created_at").
-		Limit(limit)
-	return s.runQuery(ctx, q)
+	// Single-field filter, sort in Go — no composite index needed.
+	q := datastore.NewQuery(commentKind).FilterField("approved", "=", false).Limit(limit * 3)
+	all, err := s.runQuery(ctx, q)
+	if err != nil {
+		return nil, err
+	}
+	sort.Slice(all, func(i, j int) bool {
+		return all[i].CreatedAt.Before(all[j].CreatedAt)
+	})
+	if limit > 0 && len(all) > limit {
+		all = all[:limit]
+	}
+	return all, nil
 }
 
 func (s *CommentStore) Approve(ctx context.Context, id string) error {

@@ -6,17 +6,18 @@ import (
 	"net/http"
 	"strings"
 
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/store"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
-// CommunityHandler handles voting, commenting, and translations.
+// CommunityHandler handles voting, commenting, translations, and mod messages.
 type CommunityHandler struct {
 	tmpl         Renderer
 	content      *store.ContentStore
 	votes        *store.VoteStore
 	comments     *store.CommentStore
 	translations *store.TranslationStore
+	modMessages  *store.ModMessageStore
 }
 
 // NewCommunityHandler creates a CommunityHandler.
@@ -26,6 +27,7 @@ func NewCommunityHandler(
 	votes *store.VoteStore,
 	comments *store.CommentStore,
 	translations *store.TranslationStore,
+	modMessages *store.ModMessageStore,
 ) *CommunityHandler {
 	return &CommunityHandler{
 		tmpl:         tmpl,
@@ -33,6 +35,7 @@ func NewCommunityHandler(
 		votes:        votes,
 		comments:     comments,
 		translations: translations,
+		modMessages:  modMessages,
 	}
 }
 
@@ -114,6 +117,7 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 		"VoteScore":   voteScore,
 		"CurrentVote": currentVote,
 		"User":        u,
+		"UILang":      UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "vochdonado.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -173,6 +177,7 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 		"ContentID": contentID,
 		"Comments":  comments,
 		"User":      u,
+		"UILang":    UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "komentoj.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -246,6 +251,14 @@ func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request
 		return
 	}
 
+	// When submitted from the exercise page, redirect so the full page reloads
+	// with the new definition visible (including in the vocab prompt).
+	if r.FormValue("from") == "ekzerco" {
+		w.Header().Set("HX-Redirect", "/ekzerco/"+contentID)
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
 	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
 	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
 	userLang := "en"
@@ -254,6 +267,7 @@ func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request
 	}
 	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
 	data["User"] = u
+	data["UILang"] = UILangFor(u)
 	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -304,7 +318,96 @@ func (h *CommunityHandler) VoteTranslation(w http.ResponseWriter, r *http.Reques
 	}
 	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
 	data["User"] = u
+	data["UILang"] = UILangFor(u)
 	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+// SuggestAlternative handles POST /ekzerco/{slug}/alternativo.
+// Any logged-in user can suggest their wrong answer should be accepted as correct.
+// The suggestion is queued as a mod message for admin review.
+func (h *CommunityHandler) SuggestAlternative(w http.ResponseWriter, r *http.Request) {
+	slug := r.PathValue("slug")
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	answer := strings.TrimSpace(r.FormValue("answer"))
+	if answer == "" || len(answer) > 500 {
+		http.Error(w, "Malvalida respondo", http.StatusBadRequest)
+		return
+	}
+	msg := &model.ModMessage{
+		UserID:   u.ID,
+		Username: u.DisplayName(),
+		Text:     "[alternativo] ekzerco: " + slug + "\nSuggestita respondo: " + answer,
+	}
+	if err := h.modMessages.Create(r.Context(), msg); err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	uiLang := UILangFor(u)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "alternativo-konfirmo.html", map[string]interface{}{
+		"UILang": uiLang,
+	})
+}
+
+// FlagExercise handles POST /ekzerco/{slug}/flagi.
+// Any logged-in user can flag an exercise as having an error; queued as mod message.
+func (h *CommunityHandler) FlagExercise(w http.ResponseWriter, r *http.Request) {
+	slug := r.PathValue("slug")
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	msg := &model.ModMessage{
+		UserID:   u.ID,
+		Username: u.DisplayName(),
+		Text:     "[eraro-raporto] ekzerco: " + slug + "\nUzanto raportis problemon en ĉi tiu ekzerco.",
+	}
+	if err := h.modMessages.Create(r.Context(), msg); err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	uiLang := UILangFor(u)
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	_ = h.tmpl.ExecuteTemplate(w, "flag-konfirmo.html", map[string]interface{}{
+		"UILang": uiLang,
+	})
+}
+
+// SendModMessage handles POST /kontaktu — logged-in users send a message to mods.
+func (h *CommunityHandler) SendModMessage(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	text := strings.TrimSpace(r.FormValue("teksto"))
+	if text == "" || len(text) > 2000 {
+		http.Error(w, "Mesaĝo devas havi 1–2000 signojn", http.StatusBadRequest)
+		return
+	}
+	msg := &model.ModMessage{
+		UserID:   u.ID,
+		Username: u.DisplayName(),
+		Text:     text,
+	}
+	if err := h.modMessages.Create(r.Context(), msg); err != nil {
+		http.Error(w, "Eraro dum sendado", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/enskribi?sendita=1", http.StatusSeeOther)
 }

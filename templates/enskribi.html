@@ -1,47 +1,79 @@
 {{template "base" .}}
 
-{{define "title"}}Konservu progreson — Esperanto-kurso{{end}}
+{{define "title"}}{{t .UILang "enskribi.title"}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>Konservu vian progreson</h1>
-<p>Elektu metodon por konservi vian lernadon.</p>
+<h1>{{t .UILang "enskribi.title"}}</h1>
+<p>{{t .UILang "enskribi.subtitle"}}</p>
 
 <section>
-  <h2>Sekreta ligo</h2>
-  <p>Kopiu tiun ĉi ligilon kaj konservu ĝin sekure. Vi povas uzi ĝin por reensaluti de iu ajn aparato.</p>
+  <h2>{{t .UILang "enskribi.magic_title"}}</h2>
+  <p>{{t .UILang "enskribi.magic_desc"}}</p>
   {{if .MagicURL}}
   <div class="magic-link-container">
-    <input type="text" id="magic-link" value="{{.MagicURL}}" readonly aria-label="Via sekreta ligo">
-    <button onclick="copyMagicLink()" class="outline">Kopii</button>
+    <input type="text" id="magic-link" value="{{.MagicURL}}" readonly aria-label="{{t .UILang "enskribi.magic_aria"}}">
+    <button onclick="copyMagicLink()" class="outline">{{t .UILang "enskribi.copy_btn"}}</button>
   </div>
   <small id="copy-confirm" aria-live="polite"></small>
   {{else}}
-  <p><em>Vi bezonas uzantan ĵetonon por generi sekretan ligilon. Bonvolu unue viziti la hejmpaĝon.</em></p>
+  <p><em>{{t .UILang "enskribi.magic_no_token"}}</em></p>
   {{end}}
 </section>
 
 <hr>
 
 <section>
-  <h2>Ensalutŝlosilo</h2>
-  <p>Registru ensalutŝlosilon por sekura, senpasvorta ensaluto.</p>
+  <h2>{{t .UILang "enskribi.passkey_title"}}</h2>
+  <p>{{t .UILang "enskribi.passkey_desc"}}</p>
   {{if .User}}
-  <button onclick="registerPasskey()">Registri ensalutŝlosilon</button>
-  <button class="outline" onclick="loginPasskey()">Ensaluti per ensalutŝlosilo</button>
+  <button onclick="registerPasskey()">{{t .UILang "enskribi.passkey_register_btn"}}</button>
+  <button class="outline" onclick="loginPasskey()">{{t .UILang "enskribi.passkey_login_btn"}}</button>
   <p id="passkey-status" aria-live="polite"></p>
   {{else}}
-  <p><em>Vi devas esti ensalutinta por registri ensalutŝlosilon.</em></p>
+  <p><em>{{t .UILang "enskribi.passkey_no_user"}}</em></p>
   {{end}}
 </section>
 
 <hr>
 
+{{if .User}}
+<hr>
+
 <section>
-  <h2>Kiel ĝi funkcias</h2>
+  <h2>{{t .UILang "enskribi.profile_title"}}</h2>
+  {{if .SentMsg}}<p class="success">&#10003; {{t .UILang "enskribi.msg_sent"}}</p>{{end}}
+  <p>{{t .UILang "enskribi.level_label"}} <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
+     <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
+     {{if .User.StreakDays}}<span class="streak-badge">&#128293; {{.User.StreakDays}}d</span>{{end}}</p>
+
+  <h3>{{t .UILang "enskribi.username_title"}}</h3>
+  {{if .User.Username}}
+  <p>{{t .UILang "enskribi.current_username"}} <strong>{{.User.Username}}</strong></p>
+  {{end}}
+  <form method="POST" action="/profilo/nomo">
+    <fieldset role="group">
+      <input type="text" name="username" placeholder="{{t .UILang "enskribi.username_placeholder"}}" minlength="3" maxlength="30"
+             pattern="[a-zA-Z0-9\-_]+" title="Nur literoj, ciferoj, streketo, substreko"
+             value="{{.User.Username}}" required>
+      <button type="submit">{{if .User.Username}}{{t .UILang "enskribi.change_btn"}}{{else}}{{t .UILang "enskribi.set_btn"}}{{end}}</button>
+    </fieldset>
+    <small>{{t .UILang "enskribi.username_hint"}}</small>
+  </form>
+
+  <h3>{{t .UILang "enskribi.contact_title"}}</h3>
+  <form method="POST" action="/kontaktu">
+    <textarea name="teksto" rows="4" placeholder="{{t .UILang "enskribi.contact_placeholder"}}" maxlength="2000" required></textarea>
+    <button type="submit">{{t .UILang "enskribi.contact_btn"}}</button>
+  </form>
+</section>
+{{end}}
+
+<section>
+  <h2>{{t .UILang "enskribi.how_title"}}</h2>
   <ol>
-    <li>Faru ekzercojn &mdash; via progreso estas aŭtomate konservata.</li>
-    <li>Konservu vian sekretan ligilon aŭ registru ensalutŝlosilon por ne perdi ĝin.</li>
-    <li>Reensaluti per la ligilo aŭ ensalutŝlosilo de iu ajn aparato.</li>
+    <li>{{t .UILang "enskribi.how_1"}}</li>
+    <li>{{t .UILang "enskribi.how_2"}}</li>
+    <li>{{t .UILang "enskribi.how_3"}}</li>
   </ol>
 </section>
 {{end}}

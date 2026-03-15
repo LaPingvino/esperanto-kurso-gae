@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	localauth "esperanto-kurso-gae/internal/auth"
-	"esperanto-kurso-gae/internal/glicko"
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/recommend"
-	"esperanto-kurso-gae/internal/store"
+	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/glicko"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 // ExerciseHandler handles exercise submission and result rendering.
@@ -68,8 +68,14 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 		}
 	}
 
-	answer := strings.TrimSpace(r.FormValue("answer"))
-	correct := checkAnswer(item, answer)
+	// Collect all submitted gap answers (multi-gap fillin posts multiple "answer" values).
+	rawAnswers := r.Form["answer"]
+	answers := make([]string, len(rawAnswers))
+	for i, a := range rawAnswers {
+		answers[i] = strings.TrimSpace(a)
+	}
+	answer := strings.Join(answers, " / ") // display string
+	correct := checkAnswer(item, answers)
 
 	// Record the attempt.
 	attempt := &model.Attempt{
@@ -107,18 +113,25 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	// Persist updated ratings.
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
+	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+
+	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
+	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
+		_ = h.users.UpdateUILang(r.Context(), u.ID, "eo")
+	}
 
 	// Recommend next exercises (normal, harder, easier).
 	nextSlug, harderSlug, easierSlug := nextSlugs(r.Context(), newUserR, newUserRD, slug, h.content)
 	nextInSeries := nextSeriesItem(r.Context(), item, h.content)
 
 	ratingDelta := newUserR - u.Rating
+	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
 
 	data := map[string]interface{}{
 		"User":          u,
 		"Item":          item,
 		"Correct":       correct,
-		"CorrectAnswer": item.Answer(),
+		"CorrectAnswer": strings.Join(item.GapAnswers(), " / "),
 		"YourAnswer":    answer,
 		"NextSlug":      nextSlug,
 		"HarderSlug":    harderSlug,
@@ -126,7 +139,11 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 		"NextInSeries":  nextInSeries,
 		"UserRating":    newUserR,
 		"RatingDelta":   ratingDelta,
+		"CEFRLevel":     model.RatingToCEFR(newUserR),
+		"LevelUp":       levelUp,
+		"StreakDays":    streak,
 		"NewToken":      newToken,
+		"UILang":        u.UILangOrDefault(),
 	}
 
 	if newToken != "" {
@@ -157,29 +174,60 @@ func (h *ExerciseHandler) createAnonymousUser(ctx context.Context) (*model.User,
 	return u, token, nil
 }
 
-// checkAnswer validates the submitted answer against the content item.
-func checkAnswer(item *model.ContentItem, answer string) bool {
+// checkAnswer validates submitted gap answers against the content item.
+// answers[i] corresponds to the i-th "___" in the question.
+// For single-answer types (multiplechoice, vocab, etc.) only answers[0] is used.
+func checkAnswer(item *model.ContentItem, answers []string) bool {
+	first := ""
+	if len(answers) > 0 {
+		first = strings.TrimSpace(answers[0])
+	}
+
 	switch item.Type {
 	case "multiplechoice":
-		// Answer is the index of the chosen option as a string.
 		opts := item.Options()
 		if len(opts) == 0 {
 			return false
 		}
 		correct := item.CorrectIndex()
-		// Accept the option text itself (case-insensitive) or the index.
 		if correct >= 0 && correct < len(opts) {
-			if strings.EqualFold(strings.TrimSpace(answer), strings.TrimSpace(opts[correct])) {
-				return true
-			}
+			return strings.EqualFold(first, strings.TrimSpace(opts[correct]))
 		}
 		return false
+
+	case "fillin":
+		gapAnswers := item.GapAnswers()
+		if len(gapAnswers) == 0 || len(answers) == 0 {
+			return false
+		}
+		for i, submitted := range answers {
+			// Cycle single-answer exercises (same suffix for every gap).
+			expected := strings.TrimSpace(gapAnswers[i%len(gapAnswers)])
+			if !strings.EqualFold(strings.TrimSpace(submitted), expected) {
+				return false
+			}
+		}
+		return true
+
 	case "vocab":
-		return strings.EqualFold(answer, strings.TrimSpace(item.Word()))
+		if strings.EqualFold(first, strings.TrimSpace(item.Word())) {
+			return true
+		}
+
 	default:
-		// fillin, listening, image, reading, phrasebook — compare against answer field.
-		return strings.EqualFold(answer, strings.TrimSpace(item.Answer()))
+		// listening, image, phrasebook — compare against primary answer.
+		if strings.EqualFold(first, strings.TrimSpace(item.Answer())) {
+			return true
+		}
 	}
+
+	// Check community-accepted alternative answers (single-answer types).
+	for _, alt := range item.Alternatives() {
+		if strings.EqualFold(first, strings.TrimSpace(alt)) {
+			return true
+		}
+	}
+	return false
 }
 
 // nextSlugs returns the recommended, harder, and easier next exercise slugs.
@@ -261,22 +309,39 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
+	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+
+	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
+	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
+		_ = h.users.UpdateUILang(r.Context(), u.ID, "eo")
+	}
 
 	nextSlug, harderSlug, easierSlug := nextSlugs(r.Context(), newUserR, newUserRD, slug, h.content)
 	nextInSeries := nextSeriesItem(r.Context(), item, h.content)
+	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
+
+	correctAnswer := item.Answer()
+	if item.Type == "fillin" {
+		correctAnswer = strings.Join(item.GapAnswers(), " / ")
+	}
 
 	data := map[string]interface{}{
-		"User":         u,
-		"Item":         item,
-		"Correct":      correct,
-		"Judgment":     r.FormValue("judgment"),
+		"User":          u,
+		"Item":          item,
+		"Correct":       correct,
+		"Judgment":      r.FormValue("judgment"),
+		"CorrectAnswer": correctAnswer,
 		"NextSlug":     nextSlug,
 		"HarderSlug":   harderSlug,
 		"EasierSlug":   easierSlug,
 		"NextInSeries": nextInSeries,
 		"UserRating":   newUserR,
 		"RatingDelta":  newUserR - u.Rating,
+		"CEFRLevel":    model.RatingToCEFR(newUserR),
+		"LevelUp":      levelUp,
+		"StreakDays":   streak,
 		"NewToken":     newToken,
+		"UILang":       u.UILangOrDefault(),
 	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)

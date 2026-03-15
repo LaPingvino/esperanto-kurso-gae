@@ -3,12 +3,13 @@
 {{define "title"}}Hejmo — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>Bonvenon al Esperanto-kurso!</h1>
-<p>Lernu Esperanton per interagaj ekzercoj. Ĉiu ekzerco adaptiĝas al via nivelo.</p>
+{{$lang := .UILang}}
+<h1>{{t $lang "home.title"}}</h1>
+<p>{{t $lang "home.subtitle"}}</p>
 
 {{if .Items}}
 <section>
-  <h2>Rekomendataj ekzercoj</h2>
+  <h2>{{t $lang "home.recommended"}}</h2>
   <div class="exercise-grid">
     {{range .Items}}
     <article class="exercise-card">
@@ -25,16 +26,16 @@
         {{range .Tags}}<small class="tag">{{.}}</small> {{end}}
       </footer>
       {{end}}
-      <a href="/ekzerco/{{.Slug}}" role="button">Ekzerci</a>
+      <a href="/ekzerco/{{.Slug}}" role="button">{{t $lang "home.practice_btn"}}</a>
     </article>
     {{end}}
   </div>
 </section>
 {{else}}
 <article>
-  <p>Ankoraŭ ne estas ekzercoj. Bonvolu reveni baldaŭ!</p>
+  <p>{{t $lang "home.no_exercises"}}</p>
   {{if .User}}{{if eq .User.Role "admin"}}
-  <a href="/admin/enhavo/nova" role="button">Aldoni ekzercon</a>
+  <a href="/admin/enhavo/nova" role="button">{{t $lang "home.add_exercise"}}</a>
   {{end}}{{end}}
 </article>
 {{end}}

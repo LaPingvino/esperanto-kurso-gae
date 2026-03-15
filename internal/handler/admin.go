@@ -10,16 +10,19 @@ import (
 	"strings"
 	"time"
 
-	"esperanto-kurso-gae/internal/model"
-	"esperanto-kurso-gae/internal/store"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 // AdminHandler bundles all admin HTTP handlers.
 type AdminHandler struct {
-	tmpl     Renderer
-	content  *store.ContentStore
-	comments *store.CommentStore
-	users    *store.UserStore
+	tmpl         Renderer
+	content      *store.ContentStore
+	comments     *store.CommentStore
+	users        *store.UserStore
+	modMessages  *store.ModMessageStore
+	translations *store.TranslationStore
 }
 
 // NewAdminHandler creates an AdminHandler.
@@ -28,12 +31,16 @@ func NewAdminHandler(
 	content *store.ContentStore,
 	comments *store.CommentStore,
 	users *store.UserStore,
+	modMessages *store.ModMessageStore,
+	translations *store.TranslationStore,
 ) *AdminHandler {
 	return &AdminHandler{
-		tmpl:     tmpl,
-		content:  content,
-		comments: comments,
-		users:    users,
+		tmpl:         tmpl,
+		content:      content,
+		comments:     comments,
+		users:        users,
+		modMessages:  modMessages,
+		translations: translations,
 	}
 }
 
@@ -43,15 +50,18 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 	approved, _ := h.content.ListForAdmin(r.Context(), "approved", 1000)
 	pending, _ := h.content.ListForAdmin(r.Context(), "pending", 1000)
 	pendingComments, _ := h.comments.ListPending(r.Context(), 100)
+	unreadMessages, _ := h.modMessages.ListUnread(r.Context(), 50)
 
 	data := map[string]interface{}{
-		"User":          u,
-		"ApprovedCount": len(approved),
-		"PendingCount":  len(pending),
-		"CommentCount":  len(pendingComments),
-		"SeedResult":    r.URL.Query().Get("seed"),
-		"ImportResult":  r.URL.Query().Get("import"),
-		"NukeResult":    r.URL.Query().Get("nuke"),
+		"User":           u,
+		"ApprovedCount":  len(approved),
+		"PendingCount":   len(pending),
+		"CommentCount":   len(pendingComments),
+		"ModMessages":    unreadMessages,
+		"SeedResult":     r.URL.Query().Get("seed"),
+		"ImportResult":   r.URL.Query().Get("import"),
+		"NukeResult":     r.URL.Query().Get("nuke"),
+		"UILang":         UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "admin_dashboard.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -73,6 +83,7 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 		"User":         u,
 		"Items":        items,
 		"StatusFilter": statusFilter,
+		"UILang":       UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "listo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -90,7 +101,8 @@ func (h *AdminHandler) NewContentForm(w http.ResponseWriter, r *http.Request) {
 			Volatility: 0.06,
 			Status:     "draft",
 		},
-		"IsNew": true,
+		"IsNew":  true,
+		"UILang": UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "redaktilo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -135,9 +147,10 @@ func (h *AdminHandler) EditContentForm(w http.ResponseWriter, r *http.Request) {
 
 	u := UserFromContext(r.Context())
 	data := map[string]interface{}{
-		"User":  u,
-		"Item":  item,
-		"IsNew": false,
+		"User":   u,
+		"Item":   item,
+		"IsNew":  false,
+		"UILang": UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "redaktilo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -181,6 +194,125 @@ func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin/enhavo", http.StatusSeeOther)
 }
 
+// VocabFromReading handles GET /admin/enhavo/{slug}/vortaro.
+// Shows words extracted from the reading text, split into "already in dictionary"
+// and "not yet added". The admin can select words and POST to create vocab items.
+func (h *AdminHandler) VocabFromReading(w http.ResponseWriter, r *http.Request) {
+	slug := r.PathValue("slug")
+	item, err := h.content.GetBySlug(r.Context(), slug)
+	if err != nil || item == nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	text := item.Text()
+	extracted := eo.ExtractWords(text)
+
+	// Find which words already have a vocab item (slug voc-auto-WORD or voc-ANYTHING with matching word).
+	// We use a simple heuristic: scan all vocab items and collect their word fields.
+	allItems, _ := h.content.ListByType(r.Context(), "vocab", 2000)
+	existing := make(map[string]bool)
+	for _, v := range allItems {
+		if w, ok := v.Content["word"].(string); ok {
+			existing[strings.ToLower(strings.TrimSpace(w))] = true
+		}
+	}
+
+	type wordEntry struct {
+		Word    string
+		Slug    string
+		Exists  bool
+	}
+	var words []wordEntry
+	for _, w := range extracted {
+		words = append(words, wordEntry{
+			Word:   w,
+			Slug:   "voc-auto-" + eo.WordToSlug(w),
+			Exists: existing[w],
+		})
+	}
+
+	u := UserFromContext(r.Context())
+	created, _ := strconv.Atoi(r.URL.Query().Get("created"))
+	skipped, _ := strconv.Atoi(r.URL.Query().Get("skipped"))
+	data := map[string]interface{}{
+		"User":    u,
+		"Item":    item,
+		"Words":   words,
+		"Created": created,
+		"Skipped": skipped,
+		"UILang":  UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "admin_vortaro_gen.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// CreateVocabFromReading handles POST /admin/enhavo/{slug}/vortaro.
+// Creates vocab items for the selected words.
+func (h *AdminHandler) CreateVocabFromReading(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+
+	slug := r.PathValue("slug")
+	item, err := h.content.GetBySlug(r.Context(), slug)
+	if err != nil || item == nil {
+		http.NotFound(w, r)
+		return
+	}
+
+	u := UserFromContext(r.Context())
+	authorID := ""
+	if u != nil {
+		authorID = u.ID
+	}
+
+	words := r.Form["word"]
+	created := 0
+	skipped := 0
+	for _, word := range words {
+		word = strings.TrimSpace(word)
+		if word == "" {
+			continue
+		}
+		vocSlug := "voc-auto-" + eo.WordToSlug(word)
+		existing, _ := h.content.GetBySlug(r.Context(), vocSlug)
+		if existing != nil {
+			skipped++
+			continue
+		}
+		// Tag with "vortaro", the reading's slug (so /vortaro?tag=slug works), and the reading's own tags.
+		tags := append([]string{"vortaro", item.Slug}, item.Tags...)
+		seen := make(map[string]bool)
+		var uniqueTags []string
+		for _, t := range tags {
+			if !seen[t] {
+				seen[t] = true
+				uniqueTags = append(uniqueTags, t)
+			}
+		}
+		voc := &model.ContentItem{
+			Slug:     vocSlug,
+			Type:     "vocab",
+			Content:  map[string]interface{}{"word": word},
+			Tags:     uniqueTags,
+			Source:   item.Source,
+			AuthorID: authorID,
+			Status:   "approved",
+			Rating:   item.Rating,
+			RD:       200,
+		}
+		if err := h.content.Create(r.Context(), voc); err == nil {
+			created++
+		}
+	}
+
+	redir := fmt.Sprintf("/admin/enhavo/%s/vortaro?created=%d&skipped=%d", slug, created, skipped)
+	http.Redirect(w, r, redir, http.StatusSeeOther)
+}
+
 // ModerationQueue handles GET /admin/moderigo.
 func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
@@ -189,14 +321,51 @@ func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	messages, _ := h.modMessages.ListUnread(r.Context(), 100)
+	translations, _ := h.translations.ListAll(r.Context(), 200)
 
 	data := map[string]interface{}{
-		"User":     u,
-		"Comments": comments,
+		"User":         u,
+		"Comments":     comments,
+		"ModMessages":  messages,
+		"Translations": translations,
+		"UILang":       UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "moderigo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
+}
+
+// ApproveTranslation handles POST /admin/tradukoj/{id}/aprobi.
+// It writes the translation text to content["definitions"]["lang"] and deletes the Translation entry.
+func (h *AdminHandler) ApproveTranslation(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if id == "" {
+		http.NotFound(w, r)
+		return
+	}
+	t, err := h.translations.GetByID(r.Context(), id)
+	if err != nil {
+		http.Error(w, "Traduko ne trovita", http.StatusNotFound)
+		return
+	}
+	if err := h.content.UpdateDefinition(r.Context(), t.TargetID, t.Language, t.Text); err != nil {
+		http.Error(w, "Ne eblis ĝisdatigi enhavon: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	_ = h.translations.Delete(r.Context(), id)
+	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
+}
+
+// DeleteTranslation handles POST /admin/tradukoj/{id}/forigi.
+func (h *AdminHandler) DeleteTranslation(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if id == "" {
+		http.NotFound(w, r)
+		return
+	}
+	_ = h.translations.Delete(r.Context(), id)
+	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
 }
 
 // ModerateComment handles POST /admin/moderigo/{id}.
@@ -247,6 +416,7 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 		"answer":        r.FormValue("answer"),
 		"hint":          r.FormValue("hint"),
 		"audio_url":     r.FormValue("audio_url"),
+		"video_url":     r.FormValue("video_url"),
 		"word":          r.FormValue("word"),
 		"definition":    r.FormValue("definition"),
 		"title":         r.FormValue("title"),
@@ -264,6 +434,23 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	}
 	if len(options) > 0 {
 		contentMap["options"] = options
+	}
+
+	// Parse gap answers for fill-in exercises (newline-separated, one per blank).
+	if r.FormValue("type") == "fillin" {
+		var gapAnswers []string
+		for _, a := range strings.Split(r.FormValue("gap_answers"), "\n") {
+			a = strings.TrimSpace(a)
+			if a != "" {
+				gapAnswers = append(gapAnswers, a)
+			}
+		}
+		delete(contentMap, "answer")
+		if len(gapAnswers) == 1 {
+			contentMap["answer"] = gapAnswers[0]
+		} else if len(gapAnswers) > 1 {
+			contentMap["answers"] = gapAnswers
+		}
 	}
 
 	correctIndex, _ := strconv.Atoi(r.FormValue("correct_index"))
@@ -306,7 +493,11 @@ func (h *AdminHandler) DeleteContent(w http.ResponseWriter, r *http.Request) {
 // Idempotent: skips items that already exist. Redirects back to dashboard with result.
 func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
 	loaded, skipped, failed := 0, 0, 0
-	for _, item := range seedItems() {
+	allSeedItems := append(seedItems(), seedContentItems()...)
+	allSeedItems = append(allSeedItems, seedVideoItems()...)
+	allSeedItems = append(allSeedItems, seedExtraItems()...)
+	allSeedItems = append(allSeedItems, seedFillinItems()...)
+	for _, item := range allSeedItems {
 		existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
 		if existing != nil {
 			skipped++
@@ -319,6 +510,30 @@ func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
 		loaded++
 	}
 	msg := fmt.Sprintf("Semo: %d ŝargitaj, %d preterlasitaj, %d malsukcesaj", loaded, skipped, failed)
+	http.Redirect(w, r, "/admin?seed="+url.QueryEscape(msg), http.StatusSeeOther)
+}
+
+// PatchSeedContent handles POST /admin/patch-seed — updates only the content/tags fields
+// of existing seed items (preserving ratings, votes, etc.) and creates missing ones.
+func (h *AdminHandler) PatchSeedContent(w http.ResponseWriter, r *http.Request) {
+	updated, created, failed := 0, 0, 0
+	allSeedItems := append(seedItems(), seedContentItems()...)
+	allSeedItems = append(allSeedItems, seedVideoItems()...)
+	allSeedItems = append(allSeedItems, seedExtraItems()...)
+	allSeedItems = append(allSeedItems, seedFillinItems()...)
+	for _, item := range allSeedItems {
+		existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
+		if err := h.content.PatchContentFields(r.Context(), item); err != nil {
+			failed++
+			continue
+		}
+		if existing == nil {
+			created++
+		} else {
+			updated++
+		}
+	}
+	msg := fmt.Sprintf("Flikaĵo: %d ĝisdatigitaj, %d novaj, %d malsukcesaj", updated, created, failed)
 	http.Redirect(w, r, "/admin?seed="+url.QueryEscape(msg), http.StatusSeeOther)
 }
 
@@ -410,6 +625,81 @@ func (h *AdminHandler) NukeContent(w http.ResponseWriter, r *http.Request) {
 	}
 	msg := fmt.Sprintf("Forigitaj: %d, malsukcesaj: %d", deleted, failed)
 	http.Redirect(w, r, "/admin?nuke="+url.QueryEscape(msg), http.StatusSeeOther)
+}
+
+// MarkModMessageRead handles POST /admin/mesagxoj/{id}/legita.
+func (h *AdminHandler) MarkModMessageRead(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	_ = h.modMessages.MarkRead(r.Context(), id)
+	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+}
+
+// SetUserRole handles POST /admin/uzantoj/{id}/rolo — sets role to "user", "mod", or "admin".
+func (h *AdminHandler) SetUserRole(w http.ResponseWriter, r *http.Request) {
+	userID := r.PathValue("id")
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	role := r.FormValue("rolo")
+	if role != "user" && role != "mod" && role != "admin" {
+		http.Error(w, "Nevalida rolo", http.StatusBadRequest)
+		return
+	}
+	target, err := h.users.GetByID(r.Context(), userID)
+	if err != nil || target == nil {
+		http.Error(w, "Uzanto ne trovita", http.StatusNotFound)
+		return
+	}
+	target.Role = role
+	if err := h.users.Update(r.Context(), target); err != nil {
+		http.Error(w, "Eraro", http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/admin/uzantoj?msg=rolo+ŝanĝita", http.StatusSeeOther)
+}
+
+// ListUsers handles GET /admin/uzantoj — search users by username or ID.
+func (h *AdminHandler) ListUsers(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	search := r.URL.Query().Get("s")
+	var found []*model.User
+	if search != "" {
+		if byName, err := h.users.GetByUsername(r.Context(), search); err == nil && byName != nil {
+			found = append(found, byName)
+		} else if byID, err := h.users.GetByID(r.Context(), search); err == nil && byID != nil {
+			found = append(found, byID)
+		}
+	}
+	data := map[string]interface{}{
+		"User":   u,
+		"Search": search,
+		"Found":  found,
+		"Msg":    r.URL.Query().Get("msg"),
+		"UILang": UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "admin_uzantoj.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// MergeUsers handles POST /admin/uzantoj/kunfandi — merges src into dst.
+func (h *AdminHandler) MergeUsers(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	dstID := r.FormValue("dst")
+	srcID := r.FormValue("src")
+	if dstID == "" || srcID == "" || dstID == srcID {
+		http.Error(w, "Bezonatas du malsamaj uzant-IDoj", http.StatusBadRequest)
+		return
+	}
+	if err := h.users.MergeUsers(r.Context(), dstID, srcID); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/admin/uzantoj?msg=kunfandita", http.StatusSeeOther)
 }
 
 // seedItems returns the built-in bootstrap dataset (Zagreba Metodo vortaro).
@@ -7087,4 +7377,1051 @@ func (h *AdminHandler) InitialSetup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+}
+// seedContentItems returns reading and fill-in seed content (Zagreba Metodo + esperanto-kurso.net).
+func seedContentItems() []*model.ContentItem {
+	type si struct {
+		slug, typ    string
+		content      map[string]interface{}
+		tags         []string
+		source       string
+		rating, rd   float64
+		seriesSlug   string
+		seriesOrder  int
+	}
+	items := []si{
+		{
+			slug: "zagr-l01-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 1: Amiko Marko", "text": "Marko estas mia amiko. Li estas lernanto kaj sportisto. Li nun sidas en ĉambro kaj lernas. Sur tablo estas paperoj kaj libroj. Ĝi estas skribotablo. La libroj sur la tablo estas lernolibroj.\n\nLa patro kaj la patrino de mia amiko ne estas en la ĉambro. Ili nun laboras. Lia patro estas laboristo, li laboras en hotelo. La patrino instruas. Ŝi estas instruistino.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-01", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 950, rd: 200,
+			seriesSlug:  "zagr-l01",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l02-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 2: En la urbo", "text": "Marko havas amikinon. Ŝia nomo estas Ana. Ŝi estas juna kaj bela. Ana kaj Marko estas geamikoj.\n\nAna venis al la hejmo de Marko.\n\n– Bonvolu eniri, amikino.\n\n– Saluton Marko. Kion vi faras?\n\n– Saluton. Mi legis, sed nun mi volas paroli kun vi.\n\n– Ĉu vi havas bonan libron?\n\n– Jes, mi havas. Mi ŝatas legi nur bonajn librojn. Ĉu vi volas trinki kafon?\n\n– Jes. Ĉu viaj gepatroj kaj gefratoj estas en via hejmo?\n\n– Ne. Jen la kafo, ĝi estas ankoraŭ varma. Mi nun kuiris ĝin.\n\n– Dankon. Mi povas trinki ankaŭ malvarman kafon.\n\nMarko rigardis la belajn okulojn de Ana. Mi vidas, ke li amas ŝin.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-02", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1000, rd: 200,
+			seriesSlug:  "zagr-l02",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l03-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 3: Vojaĝo", "text": "Ana kaj Marko longe parolis antaŭ la lernejo. Poste ili ĝoje iris tra la strato. Estis varma tago. Ili vidis kafejon kaj en ĝi kukojn.\n\n– Ni eniru kaj manĝu – diris Marko.\n\n– Ĉu vi havas sufiĉan monon?\n\n– Kompreneble, mi havas cent dolarojn.\n\n– Ho, vi estas riĉa!\n\nLa kelnero alportis multajn kukojn. Ili manĝis kaj post la manĝo la kelnero denove venis.\n\nMarko serĉis en unu loko … serĉis en alia … Lia vizaĝo estis malĝoja. Fine li diris per malforta voĉo:\n\n– Mi ne havas monon.\n\nKio okazis poste? Ĉu vi scias?", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-03", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1050, rd: 200,
+			seriesSlug:  "zagr-l03",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l04-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 4: Familio", "text": "Marko skribis al mi belan leteron. Ĝi estas vera amletero. En la letero estis ankaŭ lia foto.\n\nKiam mi revenis el la lernejo, mi volis ĝin denove legi. Mi rapide eniris en mian ĉambron. Tie staris mia fratino Vera antaŭ mia tablo kaj legis mian leteron. En ŝia mano estis ankaŭ la foto.\n\nMi diris kolere:\n\n– Kion vi faras tie? Ne legu leterojn de aliaj!\n\nMia fratino fariĝis ruĝa. La foto falis el ŝia mano sur la tablon kaj la letero falis ankaŭ.\n\nŜi diris:\n\n– Pardonu … mi serĉis mian libron …\n\n– Sed vi bone scias, ke viaj libroj ne estas sur mia tablo. Ankaŭ ne en mia ĉambro! Redonu la leteron al mi.\n\nŜi ricevis bonan lecionon: ŝi ne plu legos leterojn de aliaj.\n\nAnkaŭ mi ricevis lecionon: mi devas bone fermi la pordon de mia ĉambro.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-04", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1100, rd: 200,
+			seriesSlug:  "zagr-l04",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l05-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 5: Hejmo", "text": "Sinjoro Rapid, amiko de Marko, eniris vendejon de aŭtoj. Tie li vidas belan sinjorinon, kiu plaĉas al li. Vendisto venas al li. Sinjoro Rapid demandas:\n\n– Kiu aŭto estas la plej bona?\n\n– Tiu ĉi estas la plej bona el ĉiuj.\n\n– Ĉu ĝi estas rapida?\n\n– Ĝi estas pli rapida ol aliaj.\n\n– Ĉu ĝi estas ankaŭ forta?\n\n– Ho jes, ĝi estas tre forta.\n\n– Certe ĝi estas multekosta?\n\n– Kompreneble, ĝi estas la plej multekosta el ĉiuj.\n\n– Dankon, bedaŭrinde mi ne aĉetos novan aŭton, ĉar mia malnova aŭto estas la plej malmultekosta el ĉiuj. Mi ankoraŭ veturos per ĝi.\n\nDum li tion diris, li denove rigardis la belan sinjorinon. Sed la vendisto diris:\n\n– Estos pli bone, ke vi ne rigardu tiun ĉi sinjorinon. Ankaŭ ŝi estas tre multekosta. Mi scias, ĉar mi estas ŝia edzo.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-05", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1150, rd: 200,
+			seriesSlug:  "zagr-l05",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l06-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 6: Manĝo", "text": "Maja estas beleta junulino. Ĉiuj ŝiaj geamikoj amas ŝin. Antaŭ tri tagoj malbono okazis: sur strato aŭto faligis ŝin.\n\nMaja malsaniĝis kaj havas altan temperaturon. Ŝia patrino diris, ke ŝi devas resti hejme. Morgaŭ ŝi vokos doktoron.\n\nLa doktoro venis je la naŭa horo por helpi al Maja.\n\n– Diru \"A\" … montru viajn manojn … montru viajn piedojn … malvestu vin!\n\nLa doktoro ĉion bone rigardis kaj fine diris:\n\n– Unu semajnon restu hejme kaj … ne iru sub aŭton. Trinku multan teon matene kaj vespere. Mi deziras, ke vi estu trankvila. Post unu semajno vi fartos pli bone. Mi venos por revidi vin.\n\n– Sinjoro doktoro, ĉu mia bonega amiko Karlo povas veni vidi min?\n\n– Hm, jes … jes. Li povas veni … sed ankaŭ li estu trankvila.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-06", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1200, rd: 200,
+			seriesSlug:  "zagr-l06",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l07-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 7: Laboro", "text": "Marko dormis matene tre longe.\n\nKiam li vidis la sunon, subite li eksaltis. Ĉiam li malfruas, kiam li devas iri al la lernejo. Li scias, ke la instruistino malŝatas tion.\n\nSed hodiaŭ li ne volas malfrui. Li rapide metis la vestaĵon. Rapidege li trinkis la kafon. Poste kun la libroj en la mano li kuris kaj saltis laŭ la strato. La homoj rigardis lin kaj diris: \" Kia malsaĝa knabo. \"\n\nBaldaŭ li estis antaŭ la lernejo. Li volis eniri en la lernejon, sed li ne povis. Ĝi estis fermita. Li vidis nek instruiston nek gelernantojn.\n\nLi eksidis antaŭ la lernejo kaj pensis: kio okazis?\n\n– Diable, nun mi memoras! Hodiaŭ estas dimanĉo!", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-07", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1250, rd: 200,
+			seriesSlug:  "zagr-l07",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l08-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 8: Libertempo", "text": "Hodiaŭ mia patrino estis tre maltrankvila. Mi venis el la lernejo kaj raportis al ŝi, ke mi ricevis malbonan noton. Ŝi diris: \" Knabaĉo, vi devas pli multe laborigi vian kapon. Kiom da malbonaj notoj vi havas?.\n\nMi estis malĝoja.\n\n– Iru en vian ĉambron kaj lernu! – ŝi diris.\n\nMi sidis en mia ĉambro, sed mi povis nek lerni nek legi. Miaj pensoj estis ĉe ludo kun miaj amikoj kaj ĉe sporto.\n\nMi diris al mi mem: Ĉu mi estas tiom malsaĝa, kvankam mi lernis multe?\n\nTiam la patrino eniris en la ĉambron kaj aŭdis miajn vortojn. Ŝi tuj respondis:\n\n– Ne, mia kara, vi ne estas malsaĝa. La problemo estas, ke vi devas lerni multe pli. Tiam vi ne havos nur malbonajn notojn.\n\nAnkaŭ nun mi ne havas ilin. Mi havas bonan noton pri muziko – mi diris.\n\nLa patrino subite ekridis. Tio denove plibeligis mian tagon. Sed la problemo tamen restis.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-08", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1300, rd: 200,
+			seriesSlug:  "zagr-l08",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l09-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 9: Naturo", "text": "Petro kaj Maria volis vojaĝi al alia lando en libertempo. Ili decidis iri al Italio, bela lando kun malnovaj urboj kaj aliaj belaĵoj. Ili estis feliĉaj:\n\n– Kie estas mia vestaĵo? – ŝi demandis.\n\n– Ni ne forgesu kunporti la libron por lerni Esperanton. Ni povus komenci jam en la vagonaro.\n\n– En la vagonaro ni nenion faros, kara Petro. Ni veturos per aŭto. Mi havas sekreton: mia riĉa onklo Bonifacio plenumis mian deziron kaj donis al ni sian aŭton por uzo. Ĝi jam staras antaŭ la domo.\n\n– Sed mi devas diri …\n\n– Nenion diru, karulo, ni eksidu en la aŭton kaj veturu al Italio.\n\nPetro kaj Maria sidis en la aŭto. Ankaŭ la vestaĵoj estis en la aŭto. Sed ili ankoraŭ sidadis kaj atendis.\n\n– Do, karulo – ŝi diris – kial ni ne ekveturas?\n\n– Karulino, ankaŭ mi havas sekreton. Mi veturigus la aŭton, sed mi ne scias. Mi neniam lernis tion.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-09", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1350, rd: 200,
+			seriesSlug:  "zagr-l09",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l10-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 10: Vetero", "text": "– Kiel rapide pasas tagoj! Morgaŭ estas la naskiĝtago de via patro, Marko. Alvenos kelkaj familianoj kaj geamikoj. Ĉu vi bonvolus iom helpi? Trovu iomete da tempo almenaŭ por ordigi vian ĉambron. Mi ŝatus kuiri ion bonan. Por la naskiĝtaga kuko mankas lakto en la hejmo. Necesas havigi iom da manĝaĵo el vendejo …\n\n– Bone, mi aĉetumos por la naskiĝtago. Sed, anstataŭ sidi kaj manĝegi kun neinteresaj familianoj, mi ŝatus ekskursi kun klubanoj.\n\n– Kun kiuj klubanoj? – diris la patrino kaj ĵetis iajn paperojn en paperujon.\n\n– Morgaŭ frue kunvenas anoj de mia sporta klubo.\n\n– Sed, kara mia, ĉu ĝuste morgaŭ vi devas foresti? Ĉu vi ne intervidiĝas kun viaj samklubanoj trifoje semajne?\n\n– Ĉu mi rajtas ion proponi: Mi kunmanĝos kun la familianoj. Sed en la dua parto de la tago mi foriros kun miaj geamikoj. Post la kuko Maria kaj Petro certe parolos pri la malsukcesa veturado per aŭto. Malinterese! Mi ne plu volas tion aŭdi! Kial ni ne havas iun ideoriĉan onklon Bonifacio en nia familio?!\n\nLa patrino ridetis je liaj vortoj. Ŝi scias, ke Marko iom tro parolas hodiaŭ.\n\n– Kara Marko, ne sufiĉas nur riĉeco de la ideoj. Necesas ankaŭ plena monujo por realigi ilin.\n\nLa patrino post iom da silento daŭrigis:\n\n– Nu, antaŭ kelkaj minutoj telefonis Ana, ke ankaŭ ŝi vizitos nin morgaŭ. Ŝi tre ŝatas dolĉajn kukojn, kvankam ŝi atentos por ne dikiĝi.\n\nTuj Marko ŝanĝis la opinion. Sen Ana dum la ekskurso li estus tre soleca.\n\n– Patrino, tiuokaze mi tamen pasigos la morgaŭan tagon hejme.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-10", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1400, rd: 200,
+			seriesSlug:  "zagr-l10",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l11-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 11: Sano", "text": "Estis vespero en Venecio. Centoj da homoj plenigadis la Sankt-Markan placon. Junuloj kaj militistoj, maristoj de sur la ŝipoj, elstaraj sinjorinoj, kaj junulinoj, alilandaj vojaĝantoj, ĉambristoj kaj gondolistoj – ĉiuj moviĝis al la urbomezo. Iom plue sed ne malproksime de la maro troviĝis malgranda placo. Fine de ĝi, proksime de la maro staris homo. Laŭ la vestaĵo oni facile povis ekscii, ke li estas gondolisto de iu riĉulo. Seninterese li rigardis la ĝojan hommulton. Subite rideto lumigis lian vizaĝon, kiam li ekvidis mariston, kiu alvenis el la flanko de la maro.\n\n– Ĉu tio estas vi, Stefano? – ekkriis la gondolisto. Ĉiuj diras, ke vi falis en la manojn de la Turkoj.\n\n– Vere. Ni renkontis unu el iliaj ŝipoj. Ĝi sekvis nin dum pli ol unu horo. Sed ne estas facile iri pli rapide ol nia ŝipo. Do, kiaj novaĵoj estas tie ĉi en Venecio?\n\n– Nenio interesa – nur granda malfeliĉo por Pietro. Ĉu vi konas Pietron?\n\n– Kompreneble, ke mi konas.\n\n– Granda ŝipo subakvigis lian gondolon.\n\n– Kaj kio pri Pietro?\n\n– Lia gondolo subakviĝis. Okazis, ke ni troviĝis proksime, tiel ke Ĝorĝo kaj mi prenis Pietron en nian gondolon. En la sama tempo mia estro subakviĝis por helpi junulinon, kiu preskaŭ jam mortis kun sia onklo.\n\n– Ho, tie estis junulino – kaj onklo?\n\n– Lin ni ne povis helpi. Estis grava homo. Sed kio vin alvenigas en Venecion, amiko mia?\n\nLa maristo rapide ekrigardis sian amikon kaj komencis diri:\n\n– Do, vi scias, Ĝino, mi alportis …\n\nLa gondolisto subite haltigis lin.\n\n– Vidu. – li diris.\n\nTiam iu homo pasis apud ili. Li ankoraŭ ne estis tridekjara, kaj lia vizaĝo estis senkolora. Lia iro estis certa kaj facila. Lia vizaĝo estis malĝoja.\n\n– Jakopo – diris Ĝino, kiam li ekvidis la homon – oni diras, ke multaj gravuloj donas sekretajn laborojn al li. Li scias tro da sekretoj.\n\n– Kaj tial ili timas sendi lin en malliberejon – diris la maristo, kaj dum li parolis, li montris la domegon de la Doĝoj.\n\n– Vere, multaj gravuloj bezonas lian helpon – diris Ĝino.\n\n– Kaj kiom ili pagas al li por unu mortigo?\n\n– Certe ne malpli ol cent monerojn. Ne forgesu, ke li laboras por tiuj, kiuj havas sufiĉe da mono por pagi al li. Sed, Stefano, en Venecio estas aferoj, kiujn estas pli bone forgesi, se vi volas trankvile manĝi vian panon.\n\nEstis iom da silento kaj poste la gondolisto denove ekparolis:\n\n– Vi venis ĝustatempe por vidi ŝipkuron.\n\n– Ĝino – iu diris malforte proksime de la gondolisto.\n\n– Sinjoro?\n\nDon Kamilo Monforte, la estro de Ĝino senvorte montris al la gondolo.\n\n– Ĝis revido – diris la gondolisto kaj prenis la manon de sia amiko.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-11", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1450, rd: 200,
+			seriesSlug:  "zagr-l11",
+			seriesOrder: 1,
+		},
+		{
+			slug: "zagr-l12-teksto", typ: "reading",
+			content: map[string]interface{}{"title": "Leciono 12: Reveno", "text": "S-ro Pipelbom estis alta, dika, peza kaj larĝa. Tio donis al li havindan korpoforton, kaj lia grandula aspekto ludis ne etan rolon en la fakto, ke la plimulto el la homoj, se ne lin timis, certe respektis kaj almenaŭ pripensis antaŭ ol decidi malkontentigi lin.\n\nSed tio, kio estas ofte utila dumtage, prezentas per si malplaĉan ĝenon dumnokte en loko arboplena. Ĉefe kiam oni devojiĝis kaj ekstervoje iraĉas en nehoma sovaĝejo.\n\nLa dika, peza, alta larĝa korpo ne sukcesis pasi senbrue inter la arbetoj; krome tuŝi la naturaĵojn, ĝenerale malsekajn, meze de kiuj li malfacile paŝis, estis travivaĵo ne malofte doloriga kaj ĉiam malagrabla. Ju pli li antaŭeniris en la vivo – kaj ju pli antaŭeniris en la ĉe kastela arbaro des pli Adriano Pipelbom malŝatis la noktan naturon.\n\nViro kun okuloj, kiuj kapablis bone vidi en la mallumo, rigardis la malfacilan iron de nia industriisto. Li ridetis.\n\nApud tiu viro, en vestaĵo de policano, staris alia persono, en simila vestaĵo. Ĉi lasta estis virino.\n\n\" Ni iru, \" la viro diris mallaŭte en la orelon de sia kunulino. \" Nun estas la ĝusta momento. \"\n\nAmbaŭ paŝis direkte al la alta, larĝa, peza, dika persono. Ili zorgis fari kiel eble plej malmulte da bruo. Junaj, facilmovaj, ili preskaŭ plene sukcesis.\n\nEn ĉi tiu aĉa situacio, kie arboj sovaĝe ĵetis siajn malsekajn branĉojn rekte en la vizaĝon de la industriisto, kie multpiedaj bestetoj prenis liajn piedojn por promenejo, kie naturo faligis lian piedon plej dolorige en kavon plenan de akvo aĉodora, Adriano Pipelbom rapide alvenis al la penso, ke oni devas ĉi tie esti preta por iu ajn malplaĉa renkonto. Ion ajn li efektive atendis, krom homa voĉo. Kiam do voĉo aŭdiĝis tuj proksime, li faris, ekmire, belan surlokan salton, kiu movis lian koron, ŝajne, supren ĝis la buŝo.\n\n\" Kio? \" li diris kun la provo sensukcese rekapti iom da trankvilo.\n\nSed la lumo de lampeto, kiun oni direktis rekte al liaj okuloj, malhelpis la repaciĝon. Krome, ŝajnis al li, ke la homformo, kiu tenis la lampon, surhavas vestojn policajn.\n\n\" Kion vi faras ĉi tie? \" sonis la aŭtoritata voĉo.\n\n\" Mi … mi … nuuuu … eee … \" fuŝparolis Pipelbom.\n\n\" Bonvolu paroli iom pli klare, \" la alia diris eĉ pli grav- tone.\n\n\" Mi … mi … mi promenas. \"\n\n\" Ha ha. Vi promenas en la bieno de la grafino de Montokalva, meze de la nokto. Ĉu la grafino vin invitis? Ĉu ŝi scias pri via ĉeesto ĉi tie? \"\n\n\" N … nu … N … ne. Mi … \"\n\n\" Mi do devas peti vin min sekvi. \" Kaj li klarigis, ke ekde la fuŝa provo kapti la grafinon, fare de teroristoj, la polico kontrolas atente, kio okazas en la ĉirkaŭaĵo de la kastelo.\n\nAl la industriisto ŝajnis, ke lia koro ĉi foje falis ĝis liaj piedoj. Li sciis, ke nur malfacile li povos trovi akcepteblan klarigon pri sia ĉeesto, kaj la ideo, ke la grafino ĉion scios, perdigis al li la malmulton da espero, kiu restis post la unuaj vortoj de la policano.", "question": "", "answer": ""},
+			tags:        []string{"leciono", "zagr-12", "legado"},
+			source:      "La Zagreba Metodo",
+			rating: 1500, rd: 200,
+			seriesSlug:  "zagr-l12",
+			seriesOrder: 1,
+		},
+		{
+			slug: "ekc-la-alfabeto-de-esperanto", typ: "reading",
+			content: map[string]interface{}{"title": "La alfabeto de Esperanto", "text": "La Esperanta alfabeto havas 28 literojn: a, b, c, ĉ, d, e, f, g, ĝ, h, ĥ, i, j, ĵ, k, l, m, n, o, p, r, s, ŝ, t, u, ŭ, v, z.\n\nĈiu litero havas nur unu sonon. La akĉento ĉiam falas sur la antaŭlasta silabo.\n\nEsperanto estas fonetika lingvo — oni skribas kiel oni parolas.", "question": "", "answer": ""},
+			tags:        []string{"alfabeto", "elparolo", "A0"},
+			source:      "esperanto-kurso.net",
+			rating: 850, rd: 200,
+			seriesSlug:  "leciono-A0",
+			seriesOrder: 1,
+		},
+		{
+			slug: "ekc-salutado-kaj-adiauxado", typ: "reading",
+			content: map[string]interface{}{"title": "Salutado kaj Adiaŭado", "text": "Saluton! — ĝenerala saluto\nBonan matenon! — matene\nBonan tagon! — tage\nBonan vesperon! — vespere\nBonan nokton! — dormante\n\nĜis revido! — ĝenerala adiaŭo\nĜis! — neformale\nAdiaŭ! — adiaŭo\n\nKiel vi fartas? — Bone, dankon. Kaj vi?", "question": "", "answer": ""},
+			tags:        []string{"salutado", "A0", "leciono"},
+			source:      "esperanto-kurso.net",
+			rating: 900, rd: 200,
+			seriesSlug:  "leciono-A0",
+			seriesOrder: 2,
+		},
+		// familio vocab items (replaces the old reading word-list entry)
+		{slug: "voc-familio-patro",   typ: "vocab", content: map[string]interface{}{"word": "patro",   "en": "father"},      tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-patrino", typ: "vocab", content: map[string]interface{}{"word": "patrino", "en": "mother"},      tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-filo",    typ: "vocab", content: map[string]interface{}{"word": "filo",    "en": "son"},         tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-filino",  typ: "vocab", content: map[string]interface{}{"word": "filino",  "en": "daughter"},    tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-frato",   typ: "vocab", content: map[string]interface{}{"word": "frato",   "en": "brother"},     tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-fratino", typ: "vocab", content: map[string]interface{}{"word": "fratino", "en": "sister"},      tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-avo",     typ: "vocab", content: map[string]interface{}{"word": "avo",     "en": "grandfather"}, tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-avino",   typ: "vocab", content: map[string]interface{}{"word": "avino",   "en": "grandmother"}, tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-edzo",    typ: "vocab", content: map[string]interface{}{"word": "edzo",    "en": "husband"},     tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-edzino",  typ: "vocab", content: map[string]interface{}{"word": "edzino",  "en": "wife"},        tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-familio-infano",  typ: "vocab", content: map[string]interface{}{"word": "infano",  "en": "child"},       tags: []string{"familio", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		// objektoj vocab items (replaces the old reading word-list entry)
+		{slug: "voc-obj-libro",      typ: "vocab", content: map[string]interface{}{"word": "libro",      "en": "book"},      tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-tablo",      typ: "vocab", content: map[string]interface{}{"word": "tablo",      "en": "table"},     tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-segxo",      typ: "vocab", content: map[string]interface{}{"word": "seĝo",       "en": "chair"},     tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-fenestro",   typ: "vocab", content: map[string]interface{}{"word": "fenestro",   "en": "window"},    tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-pordo",      typ: "vocab", content: map[string]interface{}{"word": "pordo",      "en": "door"},      tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-lampo",      typ: "vocab", content: map[string]interface{}{"word": "lampo",      "en": "lamp"},      tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-akvo",       typ: "vocab", content: map[string]interface{}{"word": "akvo",       "en": "water"},     tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-pano",       typ: "vocab", content: map[string]interface{}{"word": "pano",       "en": "bread"},     tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-telefono",   typ: "vocab", content: map[string]interface{}{"word": "telefono",   "en": "telephone"}, tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{slug: "voc-obj-komputilo",  typ: "vocab", content: map[string]interface{}{"word": "komputilo",  "en": "computer"},  tags: []string{"objektoj", "vortaro"}, source: "esperanto-kurso.net", rating: 950, rd: 200},
+		{
+			slug: "ekc-baza-gramatiko-substantivoj-ka", typ: "reading",
+			content: map[string]interface{}{"title": "Baza Gramatiko — Substantivoj kaj Verboj", "text": "SUBSTANTIVOJ finiĝas per -o:\nlibro, tablo, homo, urbo\n\nAKUZATIVO (direkto, objekto) finiĝas per -n:\nMi vidas libron. Ni iras en urbon.\n\nPLURalo finiĝas per -j:\nlibroj, tabloj, homoj\n\nVERBOJ:\n-as = nuno (mi lernas)\n-is = pasinto (mi lernis)\n-os = estonto (mi lernos)\n-u = ordono (lernu!)\n-i = infinitivo (lerni)", "question": "", "answer": ""},
+			tags:        []string{"gramatiko", "A2", "leciono"},
+			source:      "esperanto-kurso.net",
+			rating: 1100, rd: 200,
+			seriesSlug:  "leciono-A2",
+			seriesOrder: 1,
+		},
+		{
+			slug: "ekc-literatura-la-eta-princo-komen", typ: "reading",
+			content: map[string]interface{}{"title": "Literatura — La Eta Princo: Komenco", "text": "Iam, kiam mi estis sesjara, mi vidis belegan bildon en iu libro pri la praarbaro, titolita 'Travivitaj rakontoj'. Tiu bildo prezentis boaon, kiu glutis sovaĝan beston.\n\nEn la libro estis skribite: 'Boaoj glutas sian predon tutaj, sen maĉi ĝin. Poste ili ne povas movi sin, kaj dormas dum ses monatoj dum digestado.'\n\nTiam mi multe primeditis la aventurojn de la ĝangalo, kaj mi sukcesis fari, per koloro, mian unuan desegnaĵon.", "question": "", "answer": ""},
+			tags:        []string{"literatura", "C1", "legado"},
+			source:      "esperanto-kurso.net",
+			rating: 1700, rd: 200,
+			seriesSlug:  "lit-eta-princo",
+			seriesOrder: 1,
+		},
+		{
+			slug: "ekc-literatura-la-sep-kapridoj", typ: "reading",
+			content: map[string]interface{}{"title": "Literatura — La Sep Kapridoj", "text": "Estis iam maljuna kaprino, kiu havis sep idojn kaj amis ilin, kiel ĉiu patrino amas siajn infanojn. Iam ŝi volis iri en la arbaron por alporti manĝaĵon. Tiam ŝi kunvokis ĉiujn siajn idojn kaj diris:\n\n— Karaj infanoj, mi devas iri en la arbaron. Gardu vin antaŭ la lupo! Se li eniras, li manĝos vin ĉiujn — haŭton kaj harojn. La kanajlo ofte sin kaŝas, sed vi rekonos lin laŭ lia malglata voĉo kaj liaj nigraj piedoj.", "question": "", "answer": ""},
+			tags:        []string{"literatura", "C1", "legado"},
+			source:      "esperanto-kurso.net",
+			rating: 1650, rd: 200,
+			seriesSlug:  "lit-fabeloj",
+			seriesOrder: 1,
+		},
+	}
+
+	out := make([]*model.ContentItem, len(items))
+	for i, s := range items {
+		out[i] = &model.ContentItem{
+			Slug:        s.slug,
+			Type:        s.typ,
+			Content:     s.content,
+			Tags:        s.tags,
+			Source:      s.source,
+			AuthorID:    "seed",
+			Status:      "approved",
+			Rating:      s.rating,
+			RD:          s.rd,
+			Volatility:  0.06,
+			Version:     1,
+			SeriesSlug:  s.seriesSlug,
+			SeriesOrder: s.seriesOrder,
+		}
+	}
+	return out
+}
+// seedVideoItems returns Mazi, Pasporto, music video, and PMEG seed content.
+func seedVideoItems() []*model.ContentItem {
+	type vi struct {
+		slug, typ   string
+		title       string
+		videoURL    string
+		text        string
+		tags        []string
+		source      string
+		rating      float64
+		seriesSlug  string
+		seriesOrder int
+	}
+	videos := []vi{
+		// Mazi en Gondolando (12 episodes, sorted by episode number)
+		{slug: "mazi-parto-01", typ: "video", title: "Mazi en Gondolando, parto 1", videoURL: "https://www.youtube.com/embed/fLFbqPBVOTg", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 1},
+		{slug: "mazi-parto-02", typ: "video", title: "Mazi en Gondolando, parto 2", videoURL: "https://www.youtube.com/embed/pM9lYkBjqM8", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 2},
+		{slug: "mazi-parto-03", typ: "video", title: "Mazi en Gondolando, parto 3", videoURL: "https://www.youtube.com/embed/_9XxngR3csI", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 3},
+		{slug: "mazi-parto-04", typ: "video", title: "Mazi en Gondolando, parto 4", videoURL: "https://www.youtube.com/embed/vQaDTmdsHLw", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 4},
+		{slug: "mazi-parto-05", typ: "video", title: "Mazi en Gondolando, parto 5", videoURL: "https://www.youtube.com/embed/WzkA3NUNhO8", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 5},
+		{slug: "mazi-parto-06", typ: "video", title: "Mazi en Gondolando, parto 6", videoURL: "https://www.youtube.com/embed/zdGEBQp8Mwc", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 6},
+		{slug: "mazi-parto-07", typ: "video", title: "Mazi en Gondolando, parto 7", videoURL: "https://www.youtube.com/embed/RkZgzjXCFsQ", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 7},
+		{slug: "mazi-parto-08", typ: "video", title: "Mazi en Gondolando, parto 8", videoURL: "https://www.youtube.com/embed/KJRwTbIBERQ", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 8},
+		{slug: "mazi-parto-09", typ: "video", title: "Mazi en Gondolando, parto 9", videoURL: "https://www.youtube.com/embed/mnKANu62kcM", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 9},
+		{slug: "mazi-parto-10", typ: "video", title: "Mazi en Gondolando, parto 10", videoURL: "https://www.youtube.com/embed/Bkq_uxBxNCc", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 10},
+		{slug: "mazi-parto-11", typ: "video", title: "Mazi en Gondolando, parto 11", videoURL: "https://www.youtube.com/embed/Oag9u2ilTxA", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 11},
+		{slug: "mazi-parto-12", typ: "video", title: "Mazi en Gondolando, parto 12", videoURL: "https://www.youtube.com/embed/GScgLQKU9BQ", tags: []string{"mazi", "video"}, source: "Mazi en Gondolando", rating: 1000, seriesSlug: "mazi", seriesOrder: 12},
+		// Pasporto al la Tuta Mondo (16 episodes)
+		{slug: "pasporto-parto-01", typ: "video", title: "Pasporto al la Tuta Mondo, parto 1", videoURL: "https://www.youtube.com/embed/OquSnGAKYGc", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 1},
+		{slug: "pasporto-parto-02", typ: "video", title: "Pasporto al la Tuta Mondo, parto 2", videoURL: "https://www.youtube.com/embed/7BHZdq2A5lM", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 2},
+		{slug: "pasporto-parto-03", typ: "video", title: "Pasporto al la Tuta Mondo, parto 3", videoURL: "https://www.youtube.com/embed/DAhb9Zej93o", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 3},
+		{slug: "pasporto-parto-04", typ: "video", title: "Pasporto al la Tuta Mondo, parto 4", videoURL: "https://www.youtube.com/embed/raq3A0WSS1U", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 4},
+		{slug: "pasporto-parto-05", typ: "video", title: "Pasporto al la Tuta Mondo, parto 5", videoURL: "https://www.youtube.com/embed/iRFNEdVkXcg", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 5},
+		{slug: "pasporto-parto-06", typ: "video", title: "Pasporto al la Tuta Mondo, parto 6", videoURL: "https://www.youtube.com/embed/8o5oH1zaj_M", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 6},
+		{slug: "pasporto-parto-07", typ: "video", title: "Pasporto al la Tuta Mondo, parto 7", videoURL: "https://www.youtube.com/embed/7M95i0pN66o", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 7},
+		{slug: "pasporto-parto-08", typ: "video", title: "Pasporto al la Tuta Mondo, parto 8", videoURL: "https://www.youtube.com/embed/erfCfwjHco8", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 8},
+		{slug: "pasporto-parto-09", typ: "video", title: "Pasporto al la Tuta Mondo, parto 9", videoURL: "https://www.youtube.com/embed/wcJ4C9P7u00", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 9},
+		{slug: "pasporto-parto-10", typ: "video", title: "Pasporto al la Tuta Mondo, parto 10", videoURL: "https://www.youtube.com/embed/1oWmSY38mUo", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 10},
+		{slug: "pasporto-parto-11", typ: "video", title: "Pasporto al la Tuta Mondo, parto 11", videoURL: "https://www.youtube.com/embed/unnDQijvVjI", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 11},
+		{slug: "pasporto-parto-12", typ: "video", title: "Pasporto al la Tuta Mondo, parto 12", videoURL: "https://www.youtube.com/embed/zUXkh4goHvc", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 12},
+		{slug: "pasporto-parto-13", typ: "video", title: "Pasporto al la Tuta Mondo, parto 13", videoURL: "https://www.youtube.com/embed/QusvdgPQvwQ", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 13},
+		{slug: "pasporto-parto-14", typ: "video", title: "Pasporto al la Tuta Mondo, parto 14", videoURL: "https://www.youtube.com/embed/00XI4N2YvZs", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 14},
+		{slug: "pasporto-parto-15", typ: "video", title: "Pasporto al la Tuta Mondo, parto 15", videoURL: "https://www.youtube.com/embed/pVDS89uIaWY", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 15},
+		{slug: "pasporto-parto-16", typ: "video", title: "Pasporto al la Tuta Mondo, parto 16", videoURL: "https://www.youtube.com/embed/vOnh09gXBuU", tags: []string{"pasporto", "video"}, source: "Pasporto al la Tuta Mondo", rating: 1200, seriesSlug: "pasporto", seriesOrder: 16},
+		// Esperanto music videos
+		{slug: "muzikv-berlino-sen-vi", typ: "video", title: "Berlino sen vi (inicialoj dc)", videoURL: "https://www.youtube.com/embed/530Y4a6jomI", tags: []string{"muziko", "video"}, source: "Esperanta muziko", rating: 1100, seriesSlug: "muziko", seriesOrder: 1},
+		{slug: "muzikv-dankon-jonny-m", typ: "video", title: "Dankon (Jonny M)", videoURL: "https://www.youtube.com/embed/_T1u5Tq6jsU", tags: []string{"muziko", "video"}, source: "Esperanta muziko", rating: 1100, seriesSlug: "muziko", seriesOrder: 2},
+		{slug: "muzikv-la-pluvo", typ: "video", title: "La pluvo (María Villalón)", videoURL: "https://www.youtube.com/embed/fOBkKcbJUAE", tags: []string{"muziko", "video"}, source: "Esperanta muziko", rating: 1100, seriesSlug: "muziko", seriesOrder: 3},
+		{slug: "muzikv-superbazaro", typ: "video", title: "Superbazaro (Martin Wiese)", videoURL: "https://www.youtube.com/embed/gWiH8BlpU0U", tags: []string{"muziko", "video"}, source: "Esperanta muziko", rating: 1100, seriesSlug: "muziko", seriesOrder: 4},
+	}
+
+	type ri struct {
+		slug, title, text string
+		tags               []string
+		source             string
+		rating             float64
+		seriesOrder        int
+	}
+	readings := []ri{
+		{
+			slug:  "pmeg-substantivoj",
+			title: "PMEG – Substantivoj (O-vortoj)",
+			text: "Vorto kun la finaĵo O nomiĝas O-vorto. O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.\n\ntablo = nomo de konkretaĵo\nhundo = nomo de bestospeco\nsaĝo = nomo de kvalito\namo = nomo de sento\nkuro = nomo de ago\nPetro = nomo de persono\nBerlino = nomo de urbo\n\nPost O-finaĵo povas sekvi J-finaĵo por multenombro, kaj N-finaĵo por frazrolo. Oni ankaŭ povas meti ambaŭ, sed ĉiam J antaŭ N: tabloj — tablon — tablojn.\n\nOni povas anstataŭigi la finaĵon O per apostrofo ('), sed nur kiam ne sekvas J aŭ N: hund' = hundo, saĝ' = saĝo, Berlin' = Berlino.\n\nEn Esperanto ne ekzistas gramatika sekso. Sekso estas nur parto de la signifo de iuj O-vortoj. La finaĵo O neniel esprimas sekson. Ekzistas tri signifoklasoj: sekse neŭtraj radikoj (homo, infano, kato, amiko, studento...), virseksaj radikoj (viro, patro, frato, knabo...) kaj inseksaj radikoj (virino, patrino, fratino...).\n\nPor ina formo de sekse neŭtra radiko oni uzas la sufikson IN: instruistino, leonino, hundino. La sufikso GE indikas ambaŭsekse: gepatroj = patro kaj patrino kune, gefratoj = frato kaj fratino kune.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1450, seriesOrder: 1,
+		},
+		{
+			slug:  "pmeg-adjektivoj",
+			title: "PMEG – Adjektivoj (A-vortoj)",
+			text: "Vorto kun la finaĵo A nomiĝas A-vorto. A-vortoj montras ecojn, kvalitojn, apartenojn, rilatojn ktp., kaj estas uzataj por priskribi. La A-finaĵo aldonas la ĝeneralan ideon «karakterizata de tio, kion esprimas la radiko».\n\nlonga = havanta multe da longo\nruĝa = havanta ruĝon kiel econ\nbona = karakterizata de bono\nhoma = rilata al homoj\n\nPost A-finaĵo povas sekvi J-finaĵo por multenombro, kaj N-finaĵo por frazrolo, ĉiam J antaŭ N: longaj — longan — longajn.\n\nA-vortoj estas uzataj precipe por priskribi O-vortojn. Rekte priskribantaj A-vortoj staras plej ofte antaŭ la priskribata O-vorto, sed povas ankaŭ stari poste:\ngranda domo — domo granda\nla longa tago — la tago longa\nfama Franca verkisto\n\nA-vorto povas ankaŭ priskribi ion pere de verbo (perverba priskribo):\nLa domo estas granda.\nTiuj ĉi verkistoj estas famaj.\nMi farbis mian domon blanka.\n\nAnkaŭ posedaj pronomoj kaj vicordaj nombrovortoj estas A-vortoj: ŝia, nia, sia, dua, sesa, dek-unua.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1500, seriesOrder: 2,
+		},
+		{
+			slug:  "pmeg-verboj",
+			title: "PMEG – Verbaj finaĵoj",
+			text: "Verboj kun AS, IS, OS, US aŭ U rolas kiel ĉefverboj de frazo. Verboj kun I-finaĵo ne rolas kiel ĉefverbo, sed havas diversajn aliajn rolojn. I-verbo estas tradicie rigardataj kiel la baza formo de verbo — tial verboj aperas en I-formo en vortaroj.\n\nLa diversaj verbfinaĵoj prezentas agojn en kvar modoj: la neŭtrala modo (I-finaĵo), la reala modo, la vola modo (U-finaĵo) kaj la imaga modo (US-finaĵo). En la reala modo oni distingas inter tri tempoj.\n\nNeŭtrala modo — I-finaĵo: nur nomas agon aŭ staton, sen montri ĉu temas pri realaĵo, volo aŭ imago. Mi volas labori. Estas tede labori.\n\nNun-tempo — AS-finaĵo: la ago estas reala, efektiva, kaj komenciĝis sed ne finiĝis. Mi sidas sur seĝo. Kvar kaj dek ok faras dudek du. En la vintro oni hejtas la fornojn.\n\nPasinta tempo — IS-finaĵo: la ago estas reala, sed okazis iam antaŭ la momento de parolado. Mi sidis tiam sur seĝo. Hieraŭ mi renkontis vian filon, kaj li ĝentile salutis min.\n\nVenonta tempo — OS-finaĵo: la ago estos reala, sed ankoraŭ ne komenciĝis. Mi iros morgaŭ. Ĉu vi estos tie?\n\nVola modo — U-finaĵo: esprimas volon, peton, ordonon aŭ celon. Venu! Ni iru. Mi volas, ke vi legu tion.\n\nImaga modo — US-finaĵo: esprimas ion hipotezan. Se mi havus monon, mi vojaĝus. Mi estus feliĉa.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1550, seriesOrder: 3,
+		},
+		{
+			slug:  "pmeg-pronomoj",
+			title: "PMEG – Pronomoj",
+			text: "Pronomoj estas vortetoj, kiujn oni uzas por paroli pri tute konataj aferoj. En Esperanto ekzistas dek personaj pronomoj:\n\nmi = la parolanto\nni = la parolanto kaj alia(j) persono(j)\nvi = la alparolato(j)\nli = la priparolata vira persono aŭ persono kun nekonata sekso\nŝi = la priparolata ina persono\nĝi = la priparolata aĵo, besto aŭ infaneto\nili = la priparolataj personoj, aĵoj aŭ bestoj\noni = neprecizigita(j) persono(j)\nsi = la sama persono kiel la subjekto, se tiu ne estas mi, ni aŭ vi\n\nPersonaj pronomoj povas ricevi la finaĵon N: Mi amas vin. Ilin konas Karlo. Ĉu vi ĝin vidas? Elizabeto lavas sin en la lago.\n\nSe oni aldonas la finaĵon A al personaj pronomoj, oni kreas posedajn pronomojn:\nmia = (la)... de mi\nnia = (la)... de ni\nvia = (la)... de vi\nlia = (la)... de li\nŝia = (la)... de ŝi\nĝia = (la)... de ĝi\nilia = (la)... de ili\nsia = (la)... de si\n\nLa pronomo si estas uzata por referi returne al la subjekto de la sama frazo: Petro lavas sin. Li prenis sian ĉapelon. Tio estas alia ol: Petro lavas lin (= iun alian homon).",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1600, seriesOrder: 4,
+		},
+		{
+			slug:  "pmeg-prepozicioj",
+			title: "PMEG – Rolvortetoj (Prepozicioj)",
+			text: "Rolvortetoj estas vortetoj, kiujn oni metas antaŭ frazpartoj por montri frazrolojn. Frazparto kun rolvorteto povas roli aŭ kiel komplemento de verbo, aŭ kiel priskribo de alia frazparto.\n\nLokaj rolvortetoj montras pozicion:\nen — interne de io: en la domo, en Berlino\nsur — sur la surfaco de io: sur la tablo\nsub — malsupre de io: sub la lito\nsuper — pli alte ol io, sen tuŝo: super la nuboj\napud — flanke proksime de io: apud la pordo\nĉe — tre proksime de io: ĉe la fenestro\ninter — meze de du aŭ pli da aĵoj: inter la domoj\n\nDirektaj rolvortetoj montras direkton de movo:\nal — direkto al celo: iri al la urbo\nel — direkto el iu loko: veni el la domo\nde — deveno, fonto: letero de la amiko\nĝis — fino de movo aŭ daŭro: iri ĝis la rivero\n\nAliaj gravaj rolvortetoj:\nkun — kuneco: iri kun amiko\nsen — manko: kafi sen sukero\npor — celo aŭ destinulo: libro por infanoj\nper — ilo aŭ rimedo: skribi per krajono\npri — temo: paroli pri la vetero\npro — kaŭzo: danki pro la helpo\ndum — daŭro: labori dum la tuta tago\npost — posteco: veni post li",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1650, seriesOrder: 5,
+		},
+		{
+			slug:  "pmeg-nombroj",
+			title: "PMEG – Nombro kaj Multenombro",
+			text: "Ĉe O-vortoj kaj A-vortoj oni devas distingi inter ununombro kaj multenombro. Ununombro signifas, ke temas pri unu afero. Multenombron oni montras per la finaĵo J. Manko de J-finaĵo montras ununombron.\n\n(unu) tago — (pluraj) tagoj\n(unu) granda domo — (pluraj) grandaj domoj\nilia granda domo — iliaj grandaj domoj\nla kato estas nigra — la katoj estas nigraj\n\nEventuala N-finaĵo staras post J: tagojn, grandajn, nigrajn, iliajn.\n\nRadikoj estas neŭtralaj pri nombro. Ili povas montri jen unu aferon, jen plurajn:\nokula = rilata al okulo aŭ okuloj\nokulkuracisto = kuracisto de okuloj (ne: okulojkuracisto)\nlibrovendejo = vendejo de libroj (ne: librojvendejo)\n\nOni do ne uzas J-finaĵojn ene de kunmetitaj vortoj.\n\nNombrovortoj en Esperanto: nul, unu, du, tri, kvar, kvin, ses, sep, ok, naŭ, dek, dudek, cent, mil, miliono. Ili ne havas finaĵon propre. Vicordaj nombroj (ordinaloj) estas A-vortoj: unua, dua, tria, kvara... Multioblaj nombroj: duobla, triobla. Frakciaj nombroj: duono, triono, kvarono.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1700, seriesOrder: 6,
+		},
+		{
+			slug:  "pmeg-tabelvortoj",
+			title: "PMEG – Tabelvortoj",
+			text: "45 vortetoj nomiĝas tabelvortoj, ĉar oni povas ilin aranĝi en tabelo laŭ similaj formoj kaj similaj signifoj. Ĉiu tabelvorto konsistas el antaŭparto kaj postparto.\n\nAntaŭpartoj:\nKI- = demandovorto, rilata vorto\nTI- = montrovorto\nI- = nedifinita vorto\nĈI- = tutampleksa vorto\nNENI- = nea vorto\n\nPostpartoj:\n-U = individuo: kiu, tiu, iu, ĉiu, neniu\n-O = afero: kio, tio, io, ĉio, nenio\n-A = eco, speco: kia, tia, ia, ĉia, nenia\n-E = loko: kie, tie, ie, ĉie, nenie\n-AM = tempo: kiam, tiam, iam, ĉiam, neniam\n-AL = kaŭzo: kial, tial, ial, ĉial, nenial\n-EL = maniero: kiel, tiel, iel, ĉiel, neniel\n-OM = kvanto: kiom, tiom, iom, ĉiom, neniom\n\nLa tabelvortoj je U kaj A povas ricevi la finaĵojn J kaj N: kiujn, tiujn, iujn, ĉiujn, neniujn. La tabelvortoj je O povas ricevi N, sed normale ne J: kion, tion, ion, ĉion, nenion.\n\nEkzemploj: Kiu estas tiu homo? Tio estas bela. Mi ne scias, kio okazis. Ĉiuj venis. Li neniam helpas.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1750, seriesOrder: 7,
+		},
+		{
+			slug:  "pmeg-participoj",
+			title: "PMEG – Participoj",
+			text: "Participoj estas vortoj, kiuj prezentas agon aŭ staton kvazaŭ econ de ĝia subjekto aŭ objekto. Participojn oni formas per specialaj participaj sufiksoj. Ekzistas ses participaj sufiksoj, tri aktivaj kaj tri pasivaj.\n\nAktivaj participoj (priskribas la subjekton de la ago):\nANT — la ago ankoraŭ ne finiĝis: leganta = tia, ke oni ankoraŭ legas\nINT — la ago jam finiĝis: leginta = tia, ke oni antaŭe legis\nONT — la ago ankoraŭ ne komenciĝis: legonta = tia, ke oni poste legos\n\nPasivaj participoj (priskribas la objekton de la ago):\nAT — la ago ankoraŭ ne finiĝis: legata = tia, ke iu ĝin legas\nIT — la ago jam finiĝis: legita = tia, ke iu ĝin jam legis\nOT — la ago ankoraŭ ne komenciĝis: legota = tia, ke iu ĝin poste legos\n\nEkzemploj:\nViro, kiu ankoraŭ legas, estas leganta viro.\nViro, kiu antaŭe legis, estas leginta viro.\nLibro, kiun oni ankoraŭ legas, estas legata libro.\nLibro, kiun oni antaŭe legis, estas legita libro.\n\nParticipoj kun O-finaĵo funkcias kiel substantivoj: leganto = tiu, kiu nun legas; leginto = tiu, kiu legis; legitaro = grupo de legintoj. Participoj kun E-finaĵo funkcias kiel adverboj: li falis kuŝante = li falis dum li kuŝis.",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1800, seriesOrder: 8,
+		},
+		{
+			slug:  "pmeg-vortfarado",
+			title: "PMEG – Afiksoj kaj Vortfarado",
+			text: "Malgranda grupo de radikoj (ĉirkaŭ 40) nomiĝas afiksoj. Kelkaj estas sufiksoj (postafiksoj), aliaj estas prefiksoj (antaŭafiksoj). Afiksoj partoprenas en vortfarado laŭ specialaj reguloj.\n\nGravaj prefiksoj:\nmal- = kontraŭo de la baza signifo: bona→malbona, granda→malgranda, ami→malami\nre- = denova ago aŭ reveno: fari→refari, veni→reveni\nek- = komenco de ago: kuri→ekkuri, ridi→ekridi\ndis- = disigo, disiĝo: doni→disdoni, fali→disfali\nmis- = malbona, erara ago: uzi→misuzi, kompreni→miskompreni\nge- = ambaŭ seksoj kune: patro→gepatroj, frato→gefratoj\n\nGravaj sufiksoj:\n-ist = profesiulo pri io: lerni→lernisto, instrui→instruisto, muziko→muzikisto\n-in = ina formo: kato→katino, instruisto→instruistino, leono→leonino\n-et = malgranda: domo→dometo, ridi→rideti, varma→varmeta\n-eg = granda, intensa: domo→domego, varma→varmega, bela→belega\n-aĵ = konkreta manifesto de io: manĝi→manĝaĵo, bela→belaĵo, nova→novaĵo\n-ar = kolekto de similaj aferoj: vorto→vortaro, arbo→arbaro, homo→homaro\n-ej = loko destinita por io: lerni→lernejo, manĝi→manĝejo, libro→librejo\n-il = ilo por fari ion: skribi→skribilo, tranĉi→tranĉilo, kombi→kombilo\n-an = membro de grupo: urbo→urbano, klubo→klubano, Eŭropo→Eŭropano",
+			tags: []string{"pmeg", "gramatiko"}, source: "PMEG", rating: 1850, seriesOrder: 9,
+		},
+	}
+
+	var items []*model.ContentItem
+	for _, v := range videos {
+		items = append(items, &model.ContentItem{
+			Slug:        v.slug,
+			Type:        v.typ,
+			Content:     map[string]interface{}{"title": v.title, "video_url": v.videoURL},
+			Tags:        v.tags,
+			Source:      v.source,
+			Status:      "approved",
+			Rating:      v.rating,
+			RD:          200,
+			Volatility:  0.06,
+			SeriesSlug:  v.seriesSlug,
+			SeriesOrder: v.seriesOrder,
+		})
+	}
+	for _, r := range readings {
+		items = append(items, &model.ContentItem{
+			Slug:        r.slug,
+			Type:        "reading",
+			Content:     map[string]interface{}{"title": r.title, "text": r.text},
+			Tags:        r.tags,
+			Source:      r.source,
+			Status:      "approved",
+			Rating:      r.rating,
+			RD:          200,
+			Volatility:  0.06,
+			SeriesSlug:  "pmeg",
+			SeriesOrder: r.seriesOrder,
+		})
+	}
+	return items
+}
+// seedExtraItems returns literary texts, news articles, grammar exercises, and the alphabet video.
+func seedExtraItems() []*model.ContentItem {
+	var items []*model.ContentItem
+
+	// Alphabet video (YouTube embed — overrides the reading we already have under a different slug)
+	items = append(items, &model.ContentItem{
+		Slug: "la-alfabeto-video", Type: "video",
+		Content: map[string]interface{}{
+			"title":     "La alfabeto de Esperanto (video)",
+			"video_url": "https://www.youtube.com/embed/OPsdp1M5pjQ",
+		},
+		Tags: []string{"alfabeto", "video", "komencanto"},
+		Source: "esperanto-kurso.net", Status: "approved",
+		Rating: 800, RD: 200, Volatility: 0.06,
+		SeriesSlug: "", SeriesOrder: 0,
+	})
+
+	// Grammar multiple-choice exercises (from TiddlyWiki "Ekzerco - Baza Gramatiko")
+	grammarMC := []struct {
+		slug, question string
+		options        []string
+		correct        int
+		tags           []string
+		rating         float64
+		order          int
+	}{
+		{
+			slug:     "gramatiko-mc-01-plurnombro",
+			question: `Kiel oni faras plurnombron el la vorto "libro"?`,
+			options:  []string{"libroj", "libros", "library"},
+			correct:  0,
+			tags:     []string{"gramatiko", "substantivoj"},
+			rating:   1100,
+			order:    1,
+		},
+		{
+			slug:     "gramatiko-mc-02-akuzativo",
+			question: "Kiu frazo estas ĝusta?",
+			options:  []string{"Mi vidas hundon", "Mi vidas hundo", "Mi vidas de hundo"},
+			correct:  0,
+			tags:     []string{"gramatiko", "akuzativo"},
+			rating:   1150,
+			order:    2,
+		},
+		{
+			slug:     "gramatiko-mc-03-adjektivo",
+			question: `Kiel oni diras "bela domo" en plurnombro?`,
+			options:  []string{"belaj domoj", "bela domoj", "belaj domo"},
+			correct:  0,
+			tags:     []string{"gramatiko", "adjektivoj"},
+			rating:   1200,
+			order:    3,
+		},
+		{
+			slug:     "gramatiko-mc-04-pasinteco",
+			question: "Kiel oni diras la pasintecon de manĝi?",
+			options:  []string{"mi manĝis", "mi manĝas", "mi manĝos"},
+			correct:  0,
+			tags:     []string{"gramatiko", "verboj"},
+			rating:   1100,
+			order:    4,
+		},
+		{
+			slug:     "gramatiko-mc-05-prepozicio",
+			question: "Kiu frazo estas ĝusta?",
+			options:  []string{"La libro estas sur la tablo", "La libro estas sur la tablon", "La libro estas sur la tablen"},
+			correct:  0,
+			tags:     []string{"gramatiko", "prepozicioj"},
+			rating:   1250,
+			order:    5,
+		},
+	}
+	for _, q := range grammarMC {
+		items = append(items, &model.ContentItem{
+			Slug: q.slug, Type: "multiplechoice",
+			Content: map[string]interface{}{
+				"question":      q.question,
+				"options":       q.options,
+				"correct_index": q.correct,
+			},
+			Tags: q.tags, Source: "esperanto-kurso.net", Status: "approved",
+			Rating: q.rating, RD: 200, Volatility: 0.06,
+			SeriesSlug: "gramatiko-mc", SeriesOrder: q.order,
+		})
+	}
+
+	// Literary readings — direct copies from esperantolibroj repo
+	literary := []struct {
+		slug, title, text, source string
+		rating                    float64
+		order                     int
+	}{
+		{
+			slug:  "lit-la-eta-princo-komenco",
+			title: "La Eta Princo — Ĉapitro I (Antoine de Saint-Exupéry)",
+			text:  "Iam, kiam mi estis sesjara, mi vidis belegan bildon en iu libro pri la praarbaro, titolita \"Travivitaj rakontoj\". Tiu bildo prezentis boaon, kiu glutas rabobeston.\n\nEn la libro oni diris: \"La boaj glutas sian rabaĵon unuglute, sen-maĉe. Sekve ili ne plu povas moviĝi kaj dormas dum sia sesmona-ta digestado.\"\n\nEkde tiam mi multe meditis pri la aventuroj en ĝangalo kaj per kolorkrajono mi sukcesis miavice fari mian unuan desegnon. Mian desegnon numero Unu.\n\nMi montris mian ĉefverkon al granduloj kaj ilin demandis, ĉu mia desegno timigis ilin.\n\nIli al mi respondis: \"Kial ĉapelo timigus?\"\n\nMia desegno ne prezentis ĉapelon. Ĝi prezentis boaon, kiu digestadas elefanton. Do, mi desegnis la enhavon de la boao, por komprenigi al granduloj. Ili ĉiam bezonas klarigojn.\n\nLa granduloj konsilis, ke mi flankenlasu desegnojn de boaoj aŭ malfermitaj aŭ ne, kaj prefere interesiĝu pri geografio, historio, kalkularto kaj gramatiko. Kaj tiel, en mia sesjara aĝo, mi rezignis grandiozan pentristan karieron. Mi senkuraĝiĝis pro la fiasko de mia desegno numero Unu kaj de mia desegno numero Du. Neniam la granduloj komprenas tute per si mem kaj al la infanoj estas lacige ĉiam kaj ĉiam donadi al ili klarigojn.\n\nMi do devis elekti alian metion kaj lernis piloti aviadilojn. Mi flugis iom ĉie tra la mondo. Kaj mi tute konsentas, ke geografio multe utilis al mi. Mi scipovis unuavide distingi Ĉinion de Arizono. Tio estas tre taŭga, se oni vojeraris nokte.\n\nKiam mi renkontis inter ili iun, kiu ŝajnis al mi iom klarvida, iam mi provis per mia desegno numero Unu, kiun mi ĉiam konservis. Mi volis scii, ĉu tiu ĉi vere estas komprenema. Sed ĉiam oni respondis al mi: \"Ĝi estas ĉapelo.\" Tiam al tiu mi parolis nek pri boaoj, nek pri praarbaroj, nek pri steloj. Mi adaptiĝis al ties komprenpovo. Mi priparolis briĝon, golfludon, politikon kaj kravatojn. Kaj la grandulo estis ja kontenta koni homon tiel konvenan.",
+			source: "La eta princo — Antoine de Saint-Exupéry", rating: 1600, order: 1,
+		},
+		{
+			slug:  "lit-la-sep-kapridoj",
+			title: "La Sep Kapridoj (Fratoj Grimm, trad. Kabe)",
+			text:  "Estis iam maljuna kaprino, kiu havis sep idojn kaj amis ilin, kiel ĉiu patrino amas siajn infanojn. Iam ŝi volis iri en la arbaron por alporti nutraĵon. Ŝi alvokis ĉiujn sep kaj diris:\n\n\"Karaj infanoj, mi iras en la arbaron, gardu vin bone kontraŭ la lupo; ne enlasu ĝin, ĉar alie ĝi manĝos vin kun haŭto kaj haroj. La fripono ofte aliformigas sin, sed vi tuj rekonos ĝin per ĝiaj nigraj piedoj kaj ĝia raŭka voĉo.\"\n\nLa kapridoj diris: \"Kara patrinjo, vi povas trankvile foriri, ni estos singardaj.\"\n\nLa patrino ekblekis kaj foriris.\n\nBaldaŭ iu ekfrapis la pordon kaj ekkriis: \"Malfermu, karaj infanoj, via panjo alportis ion por ĉiu.\"\n\nSed la kapridoj rekonis la lupon per la raŭka voĉo: \"Ni ne malfermos,\" ili ekkriis, \"vi ne estas nia patrino, ŝi havas delikatan voĉon, kaj la via estas raŭka, vi estas la lupo!\"\n\nLa lupo iris en butikon kaj aĉetis grandan pecon da kreto. Ĝi manĝis ĝin kaj ĝia voĉo fariĝis delikata. Ĝi revenis, frapis la pordon kaj ekkriis: \"Malfermu karaj infanoj, via patrino alportis ion por ĉiu.\"\n\nSed ĉar la lupo metis sian nigran piedon en la fenestron, la infanoj rekonis ĝin kaj diris: \"Ni ne malfermos, nia patrino ne havas nigrajn piedojn, kiajn vi: vi estas la lupo.\"\n\nLa lupo kuris al bakisto kaj diris: \"Mi doloriĝis mian piedon, ŝmiru ĝin per pasto.\" Poste ĝi kuris al la muelisto kaj diris: \"Ŝutu blankan farunon sur mian piedon.\" La muelisto ektimis kaj blankigis ĝian piedon.\n\nLa fripono iris trian fojon al la pordo kaj diris: \"Malfermu, infanoj, jen revenis via kara patrinjo.\" La kapridoj ekkriis: \"Antaŭe montru vian piedon, ni volas vidi, ĉu vi estas nia kara panjo.\" La lupo metis la piedon en la fenestron — ĝi estis blanka. Ili kredis kaj malfermis la pordon. Sed tiu, kiu eniris, estis la lupo.",
+			source: "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)", rating: 1400, order: 2,
+		},
+		{
+			slug:  "lit-pinokjo-komenco",
+			title: "La Aventuroj de Pinokjo — Ĉapitro 1 (Carlo Collodi)",
+			text:  "—Ne, geknaboj, vi eraras. Estis iam lignopeco.\n\nĜi ne estis io luksa, sed simpla peco el stako, tia, kian vintre oni metas en la fornon aŭ kamenon por bruligi fajron kaj varmigi la ĉambron.\n\nMi ne scias, kiel okazis, sed fakto estas, ke iun tagon tiu lignopeco venis en la laborejon de maljuna lignaĵisto, kies nomo estis majstro Antono, kvankam ĉiuj nomis lin nur Ĉerizo pro makulo sur la nazopinto, ĉiam brila kaj ruĝa, simile al matura ĉerizo!\n\nKiam majstro Ĉerizo ekvidis la lignopecon, li tre ekĝojis, kontente kunfrotis la manojn, kaj murmuris duonlaŭte:\n\n—Ĉi tiu ligno venis ĝustatempe: mi uzos ĝin por fari el ĝi piedon por tablo.\n\nDirite, farite: senplie li prenis akran adzon por senŝeligi ĝin, sed kiam li ĝuste pretis fari la unuan frapon, lia brako restis en la aero, ĉar li ekaŭdis voĉeton tre mallaŭtetan, kiu diris peteme:\n\n—Ne batu min tiel forte!\n\nVi povas imagi, kia miro frapis tiun bonan maljunulon majstron Ĉerizon.\n\nGape li ĉirkaŭokulis en la ejo por vidi, de kie povis veni la voĉeto, sed neniun li vidis! Li rigardis sub la tablon — neniu; rigardis en la ŝrankon — same neniu; malfermis eĉ la pordon de la laborejo por elrigardi al la strato — ankaŭ neniu!\n\n—Mi jam komprenas, — li diris ridetante, kaj gratis sian perukon, — estas klare: mi ĝin nur imagis. Ni reiru al la laboro.\n\nKaj li reprenis la adzon, donis fortegan frapon sur la lignopecon.\n\n—Oj, vi kaŭzas al mi doloron! — kriis plendeme la sama voĉeto.\n\nĈi-foje la kompatinda majstro Ĉerizo falis sur la plankon, kiel fulmofrapito.",
+			source: "La aventuroj de Pinokjo — Carlo Collodi", rating: 1500, order: 3,
+		},
+		{
+			slug:  "lit-rego-macxjo-unua",
+			title: "Reĝo Maĉjo Unua (Janusz Korczak)",
+			text:  "Maturaj homoj prefere ne legu mian rakonton, ĉar estas en ĝi malkonvenaj ĉapitroj, kiujn ili ne komprenos kaj pro tio primokos. Sed se ili nepre volas, ili legu — al plenkreskuloj oni ja nenion povas malpermesi — ili ne obeas.\n\nLa rakonto komenciĝas tiel: La doktoro diris, ke se la reĝo dum tri tagoj ne resaniĝos, estos tre malbone. Ĉiuj tre ĉagreniĝis, kaj la plej maljuna ministro surmetis okulvitrojn kaj demandis: \"Do kio okazos, se la reĝo ne resaniĝos?\"\n\nLa doktoro ne volis klare diri tion, sed ĉiuj komprenis, ke la reĝo mortos.\n\nLa plej maljuna ministro tre malĝojis kaj invitis al konferenco la aliajn ministrojn. Ili kolektiĝis en granda salono, lokiĝis en komfortaj apogseĝoj ĉe longa tablo. Antaŭ ĉiu ministro kuŝis paperfolio kaj du krajonoj; unu krajono estis ordinara, kaj la dua estis ĉe unu flanko blua, ĉe la alia ruĝa.\n\nLa ministroj ŝlosis la pordon, por ke neniu malhelpu la kunsidon, ili lumigis elektrajn lampojn kaj parolis nenion. Poste la plej maljuna ministro eksonorigis la sonorileton kaj diris: \"Nun ni interkonsiliĝos, kion fari, ĉar la reĝo estas malsana kaj ne plu povas regi.\"\n\n\"Mi pensas,\" diris la militministro, \"ke oni devas venigi la kuraciston, por ke li klare diru, ĉu li povas sanigi lin.\"",
+			source: "Bonhumoraj rakontoj — Janusz Korczak", rating: 1650, order: 4,
+		},
+		{
+			slug:  "lit-1984-komenco",
+			title: "Mil Naŭcent Okdek Kvar — Komenco (George Orwell)",
+			text:  "Estis hela malvarma tago en aprilo, kaj la horloĝoj sonigis la dektrian horon. Winston Smith, kun la mentono premita en la bruston, por eskapi de la akrega vento, rapide puŝis sin tra la vitrajn pordojn de la Loĝejoj de la Venko, kvankam ne sufiĉe rapide por neebligi la eniron kun li de nebuleto de eroplena polvo.\n\nLa koridoro fetoris pro boligitaj brasikoj kaj malnovaj ĉifonaj matoj. Ĉe unu finaĵo kolorita afiŝo, tro granda por endoma montrado, estis najlita al la muro. Ĝi montris nur enorman vizaĝon, larĝan pli ol metron: la vizaĝon de viro eble kvardekkvinjaraĝa, kun dikaj nigraj lipharoj kaj neglataj, sed belaj, trajtoj.\n\nWinston paŝis al la ŝtuparo. Ne utilus provi la lifton. Eĉ dum la plej bonaj periodoj, ĝi malofte funkciis, kaj nuntempe la elektro estis malŝaltita dum la taghoroj. Tio estis parto de la ekonomi-kampanjo, prepare por la Semajno da Malamo.\n\nLa apartamento estis sur la sepa etaĝo, kaj Winston, kiu estis trideknaŭjaraĝa, kaj havis varikan ulceron super sia dekstra maleolo, grimpis malrapide, haltante plurfoje por ripozeti. Ĉe ĉiu placeto, kontraŭ la liftejo, la afiŝo kun la enorma vizaĝo rigardis de la muro. GRANDA FRATO RIGARDAS VIN, diris la vortoj sub la bildo.\n\nEkstere, eĉ tra la fermita fenestroglaco, la mondo aspektis malvarmega. Malsupre, en la strato, etaj kirloventoj spirale kirladis polvon kaj ŝiritajn paperpecojn. La vizaĝo kun nigraj lipharoj rigardis de ĉiu grava angulo. GRANDA FRATO RIGARDAS VIN.",
+			source: "Mil Naŭcent Okdek Kvar — George Orwell, trad. Donald Broadribb", rating: 1800, order: 5,
+		},
+		{
+			slug:  "lit-regidino-sur-pizo",
+			title: "Reĝidino sur Pizo (H. C. Andersen, trad. L. L. Zamenhof)",
+			text:  "Estis iam reĝido, kiu volis edziĝi kun reĝidino, sed li nepre volis, ke tio estu vera reĝidino. Li travojaĝis la tutan mondon, por trovi tian, sed ĉie troviĝis ia kontraŭaĵo. Da reĝidinoj estis sufiĉe multe, sed ĉu tio estas veraj reĝidinoj, pri tio li neniel povis konvinkiĝi; ĉiam troviĝis io, kio ne estis tute konforma. Tial li venis returne hejmen kaj estis tre malĝoja, ĉar li tre deziris havi veran reĝidinon.\n\nUnu vesperon fariĝis granda uragano: fulmis kaj tondris, forte pluvegis, estis terure. Subite oni frapetis je la urba pordego, kaj la maljuna reĝo iris, por malfermi. Montriĝis, ke ekstere antaŭ la pordo staras reĝidino. Sed, ho mia Dio, kiel ŝi aspektis pro la pluvo kaj la ventego! La akvo fluis de ŝiaj haroj kaj vestoj, kaj verŝiĝis en ŝiajn ŝuojn kaj elen. Kaj ŝi diris, ke ŝi estas vera reĝidino.\n\n\"Nu, pri tio ni tre baldaŭ konvinkiĝos!\" pensis la maljuna reĝino. Ŝi tamen nenion diris, sed ŝi iris en la dormoĉambron, elprenis ĉiujn litaĵojn kaj metis unu pizon sur la fundon de la lito. Post tio ŝi prenis dudek matracojn, metis ilin sur la pizon, kaj poste ankoraŭ dudek lanugaĵojn sur la matracojn. En tiu lito la reĝidino devis dormi dum la nokto.\n\nMatene oni ŝin demandis, kiel ŝi dormis.\n\n\"Ho, terure malbone!\" diris la reĝidino; \"preskaŭ dum la tuta nokto mi ne povis fermi la okulojn! Dio scias, kio estis en mia lito! Mi kuŝis sur io malmola, kaj mia korpo pro tio fariĝis blua kaj bruna! Estis terure!\"\n\nPer tio oni povis vidi, ke ŝi estas vera reĝidino, ĉar tra la dudek matracoj kaj la dudek lanugaĵojn ŝi sentis la pizon. Tiel delikatsenta povis esti nur vera reĝidino!\n\nTiam la reĝido edziĝis kun ŝi, ĉar nun li sciis, ke li havas veran reĝidinon; kaj la pizon oni metis en la muzeon, kie oni ankoraŭ nun povas ĝin vidi, se neniu ĝin forprenis.\n\nVidu, tio estis vera historio.",
+			source: "Fabeloj — H. C. Andersen, trad. L. L. Zamenhof", rating: 1600, order: 7,
+		},
+		{
+			slug:  "lit-vivo-zamenhof-1",
+			title: "Vivo de Zamenhof — Infano en Bjalistoko (Edmond Privat)",
+			text:  "De la patrino la koro, de la patro la cerbo, de la loko la impreso: jen la tri ĉefaj elementoj en la formado de Zamenhofa genio.\n\nSur la litva tero kvar gentoj malsamaj loĝis en la urboj, kun celoj kontraŭaj, kun lingvoj diversaj, kun kredoj malamikaj. De strato al strato regis malfido, suspekto, sur placoj ofendo ĉiutaga, venĝemo, persekuto kaj malamo. Sur tiu tero malfeliĉa naskiĝis Zamenhof.\n\nLa knabo ja vidis la faktojn ĉirkaŭ si en stratoj Bjalistokoaj. Sur la vendoplaco moviĝis la popolamaso. Bruladis paŝoj kaj paroloj en zumado laŭta. Briladis koloroj inter korboj kaj legomoj: verdaj ŝaloj de virinoj el la kamparo litva, ŝafaj peltoj, grizaj vestoj de soldatoj. Disputis vendistinoj kun germana marĉandulo. Plendis virinoj en dialekto litva. La policanoj ne komprenis. \"Ruse parolu!\" minacis la oficiro, \"nur ruse, ne lingvaĉe! Ĉi tie estas rusa lando!\" Protestis Polo el la amaso — jen lin kaptis la ĝendarmoj. Silentas la vilaĝanoj.\n\nKion scias tiuj homoj unuj pri la aliaj? Ke ankaŭ ili havas koron, konas ĝojon kaj doloron, amas hejmon kun edzino kaj infanoj? Eĉ penso tia ne okazas. Ekzistas nur Hebreoj, Rusoj, Poloj, Germanoj — ne homoj, sole gentoj. En sia domo ĉiu akceptas nur samgentanojn.\n\nPri tiaj kalumnioj indignis jam knabeto Zamenhof en Bjalistoko. Kion fari, por ke la homoj ne eraru tiel abomene? El tiaj kredoj kaj incitoj rezultas iam veraj katastrofoj.\n\nKvardek jarojn pli poste, en 1906, Zamenhof parolis en Ĝenevo pri la Bjalostoka pogromo: \"Ĉu la plej grandaj mensogoj kaj kalumnioj povus doni tiajn terurajn fruktojn, se la gentoj sin reciproke bone konus, se inter ili ne starus altaj kaj dikaj muroj, kiuj malpermesas al ili libere komunikiĝadi inter si kaj vidi, ke la membroj de aliaj gentoj estas tute tiaj samaj homoj kiel la membroj de nia gento? Rompu, rompu la murojn inter la popoloj!\"",
+			source: "Vivo de Zamenhof — Edmond Privat", rating: 1850, order: 8,
+		},
+		{
+			slug:  "lit-zamenhof-kongreso-1905",
+			title: "Parolado de Zamenhof — Unua Kongreso (Bulonjo, 1905)",
+			text:  "Estimataj sinjorinoj kaj sinjoroj! Mi salutas vin, karaj samideanoj, fratoj kaj fratinoj el la granda tutmonda homa familio, kiuj kunvenis el landoj proksimaj kaj malproksimaj, el la plej diversaj regnoj de la mondo, por frate premi al si reciproke la manojn pro la nomo de granda ideo, kiu ĉiujn nin ligas.\n\nSankta estas por ni la hodiaŭa tago. Modesta estas nia kunveno; la mondo ekstera ne multe scias pri ĝi, kaj la vortoj, kiuj estas parolataj en nia kunveno, ne flugos telegrafe al ĉiuj urboj kaj urbetoj de la mondo; ne kunvenis regnestroj, nek ministroj, por ŝanĝi la politikan karton de la mondo, ne brilas luksaj vestoj kaj multego da imponantaj ordenoj en nia salono; sed tra la aero de nia salono flugas misteraj sonoj, sonoj tre mallaŭtaj, ne aŭdeblaj por la orelo, sed senteblaj por ĉiu animo sentema: ĝi estas la sono de io granda, kio nun naskiĝas.\n\nEn la plej malproksima antikveco la homa familio disiĝis kaj ĝiaj membroj ĉesis kompreni unu la alian. Fratoj kreitaj ĉiuj laŭ unu modelo, fratoj, kiuj havis ĉiuj egalan korpon, egalan spiriton, egalajn kapablojn, egalajn idealojn, egalan Dion en siaj koroj — tiuj fratoj fariĝis tute fremdaj unuj al aliaj, disiĝis ŝajne por ĉiam en malamikajn grupetojn.\n\nKaj nun la unuan fojon la revo de miljaroj komencas realiĝi. En la malgrandan urbon de la franca marbordo kunvenis homoj el la plej diversaj landoj kaj nacioj, kaj ili renkontas sin reciproke ne mute kaj surde, sed ili komprenas unu la alian, ili parolas unu kun la alia kiel fratoj, kiel membroj de unu nacio.\n\nNi konsciu bone la tutan gravecon de la hodiaŭa tago, ĉar hodiaŭ inter la gastamaj muroj de Bulonjo-sur-Maro kunvenis ne francoj kun angloj, ne rusoj kun poloj, sed homoj kun homoj. Benata estu la tago, kaj grandaj kaj gloraj estu ĝiaj sekvoj!",
+			source: "Paroladoj — L. L. Zamenhof", rating: 1900, order: 9,
+		},
+	}
+	for _, l := range literary {
+		items = append(items, &model.ContentItem{
+			Slug: l.slug, Type: "reading",
+			Content: map[string]interface{}{
+				"title": l.title,
+				"text":  l.text,
+			},
+			Tags: []string{"literatura", "legado"}, Source: l.source, Status: "approved",
+			Rating: l.rating, RD: 200, Volatility: 0.06,
+			SeriesSlug: "literatura", SeriesOrder: l.order,
+		})
+	}
+
+	// News articles (C-level reading)
+	articles := []struct {
+		slug, title, text string
+		order             int
+	}{
+		{
+			slug:  "artikolo-filmo-finnlando",
+			title: "En Finnlando aperas profesia filmo en Esperanto",
+			text:  "La finna filmarto atingis novan signifan mejlŝtonon: la unua profesia duonhora filmo tute en Esperanto. \"Patrinoj\", reĝisorita de Aino Suni, prezentos sin en internaciaj festivaloj komencante en 2025.\n\nLa filmo naskiĝis el hazarda renkontiĝo. Suni, konata pro siaj dokumentaj filmoj pri socia justeco, renkontis Esperantiston en helsinka kafejo dum la pandemio. \"Mi neniam pensis pri Esperanto kiel kreiva medio,\" konfesas Suni. \"Sed ju pli mi lernis, des pli mi komprenis ĝian artistikan potencialon.\"\n\nLa rakonto sekvas tri patrinojn el malsamaj generacioj, kiuj komunikas nur tra Esperanto. La filmo esploras temojn de materineco, migrado, kaj intergeneracia kompreno.\n\nLa filmo produktiĝis per miksobendo: Finnish Film Foundation-subvencio, privata investo, kaj amaskolekata financado el la internacia Esperanto-komunumo. La totala buĝeto atingis 180,000 eŭrojn.",
+			order: 1,
+		},
+		{
+			slug:  "artikolo-sveda-vortaro",
+			title: "Sveda vortaro migras reten – ĉu aliaj sekvos?",
+			text:  "Post preskaŭ naŭ jardekojn da silento, la Esperanta-sveda vortaro denove vekiĝas. La Sveda Esperanto-Federacio anoncis la digitigon de sia fundamenta vortaro, kiu laste aperis en la 1930-aj jaroj.\n\nDr. Anders Löfgren, ĉefredaktoro de la projekto, klarigas: \"Ni ne simple digitalas malnovan libron. Ni rekonstruas tutan lingvan rilaton por la 21-a jarcento.\"\n\nLa digitiga procezo alfrontas plurajn obstakojn: kodprava konservado, semantika ĝisdatigo, kaj teknologia integrado. La nova vortaro devos funkcii en modernaj retaj platformoj.\n\nMalpleje tradicie, la nova sveda vortaro estos komunumo-redaktata. Uzantoj povos proponi novajn terminojn, korekti erarojn, kaj diskuti nuancojn. \"Lingvoj vivas tra siaj parolantoj\", komentas Löfgren.",
+			order: 2,
+		},
+	}
+	for _, a := range articles {
+		items = append(items, &model.ContentItem{
+			Slug: a.slug, Type: "reading",
+			Content: map[string]interface{}{
+				"title": a.title,
+				"text":  a.text,
+			},
+			Tags: []string{"artikolo", "legado", "altnivela"}, Source: "esperanto-kurso.net", Status: "approved",
+			Rating: 1900, RD: 200, Volatility: 0.06,
+			SeriesSlug: "artikoloj", SeriesOrder: a.order,
+		})
+	}
+
+	return items
+}
+// seedFillinItems returns clean fill-in-blank exercises from La Zagreba Metodo.
+// This replaces the flawed entries created by seedContentItems().
+func seedFillinItems() []*model.ContentItem {
+	var items []*model.ContentItem
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Marko estas en la ___.", "answer": "ĉambro"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "___ sidas sur seĝo.", "answer": "Li"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Instruisto instruas. Laboristo ___. Lernanto ___.", "answers": []string{"laboras", "lernas"}},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Marko kaj Aleksandro estas lernant___kaj sportist___.", "answer": "oj"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "La patrino ___ Marko estas instruistino.", "answer": "de"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi06", Type: "fillin",
+		Content: map[string]interface{}{"question": "La seĝo estas en ___ ĉambro.", "answer": "la"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 7,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi07", Type: "fillin",
+		Content: map[string]interface{}{"question": "La libro estas de li, ĝi estas li___.", "answer": "a"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 8,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l01-fi08", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mia nomo est___ Marko.", "answer": "as"},
+		Tags: []string{"ekzerco", "zagr-01", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1000.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l01", SeriesOrder: 9,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l02-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Marko havas amik___ kaj amikin___. Ili estas ___amikoj.", "answers": []string{"on", "on", "ge"}},
+		Tags: []string{"ekzerco", "zagr-02", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1050.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l02", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l02-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Li kuiras kaf___ kaj ili trinkas ĝi___ en nia hejmo.", "answers": []string{"on", "n"}},
+		Tags: []string{"ekzerco", "zagr-02", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1050.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l02", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l02-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ili iras ___ la hotelo.", "answer": "al"},
+		Tags: []string{"ekzerco", "zagr-02", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1050.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l02", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l02-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ŝi vidas, ___ Marko amas ŝi___.", "answers": []string{"ke", "n"}},
+		Tags: []string{"ekzerco", "zagr-02", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1050.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l02", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l02-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ili havas facil___lernolibroj___.", "answers": []string{"ajn", "n"}},
+		Tags: []string{"ekzerco", "zagr-02", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1050.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l02", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mia amiko skribas mult___.", "answer": "e"},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Bela kelnerino estas bel___o.", "answer": "ulin"},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ni havas multa___bela___afero___.", "answer": "jn"},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ni kun___ lernas en lern___o.", "answers": []string{"e", "ej"}},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Miaj ___patroj manĝas en manĝ___.", "answers": []string{"ge", "ejo"}},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l03-fi06", Type: "fillin",
+		Content: map[string]interface{}{"question": "La kuko estas manĝ___a.", "answer": "ebl"},
+		Tags: []string{"ekzerco", "zagr-03", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1100.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l03", SeriesOrder: 7,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l04-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ana kaj Marko iris ___ la strato.", "answer": "tra"},
+		Tags: []string{"ekzerco", "zagr-04", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1150.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l04", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l04-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ili venis ___ kafejo, iris ___ tablo kaj vidis la patro___ sidi ___ seĝo.", "answers": []string{"al", "al", "n", "sur"}},
+		Tags: []string{"ekzerco", "zagr-04", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1150.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l04", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l04-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ana metis tri kukojn sur seĝ___.", "answer": "on"},
+		Tags: []string{"ekzerco", "zagr-04", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1150.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l04", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l04-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ŝi ___metis poste la kukojn sur la tabl___.", "answers": []string{"re", "on"}},
+		Tags: []string{"ekzerco", "zagr-04", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1150.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l04", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l05-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Dankon, sinjoro. Nedank___.", "answer": "inde"},
+		Tags: []string{"ekzerco", "zagr-05", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1200.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l05", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l05-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Horo estas mallonga, tago estas ___ longa, monato estas ___ ___ longa.", "answers": []string{"pli", "la", "plej"}},
+		Tags: []string{"ekzerco", "zagr-05", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1200.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l05", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l05-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mi legas pli multajn librojn ___ mia amiko.", "answer": "ol"},
+		Tags: []string{"ekzerco", "zagr-05", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1200.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l05", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l05-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mi sendis al mia amiko longajn leterojn, ___ li estis en Tokio.", "answer": "dum"},
+		Tags: []string{"ekzerco", "zagr-05", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1200.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l05", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l05-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "La libro estas leg___.", "answer": "inda"},
+		Tags: []string{"ekzerco", "zagr-05", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1200.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l05", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "La gepatroj ĉiam deziras, ke mi lern___ mult___.", "answers": []string{"u", "on"}},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mia amiko deziras, ke mi ir___kant___kun li.", "answers": []string{"u", "i"}},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "La patro volas, ke lia infano manĝ___kukon, ki___estas sur la tablo.", "answer": "u"},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ni loĝas en malgranda ĉambr___.", "answer": "o"},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mi far___is maltrankvila, kiam mi vidis vin.", "answer": "iĝ"},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l06-fi06", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ĉiuj rimarkis, ke ŝi estas bel___a.", "answer": "eg"},
+		Tags: []string{"ekzerco", "zagr-06", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1250.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l06", SeriesOrder: 7,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l07-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Li trinkis rapidege sian matenan trink___ por frue ven___ al la lernejo.", "answers": []string{"aĵon", "i"}},
+		Tags: []string{"ekzerco", "zagr-07", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1300.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l07", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l07-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mi ankoraŭ ne aŭdis nova___.", "answer": "ĵon"},
+		Tags: []string{"ekzerco", "zagr-07", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1300.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l07", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l07-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "En tiu momento Marko ___kriis.", "answer": "ek"},
+		Tags: []string{"ekzerco", "zagr-07", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1300.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l07", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l07-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Knabo, kiu ne amas aliajn geknabojn, havas ___ amikojn ___ amikinojn.", "answer": "nek"},
+		Tags: []string{"ekzerco", "zagr-07", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1300.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l07", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l08-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ni ord___is ĉion kaj transdonis al ili.", "answer": "ig"},
+		Tags: []string{"ekzerco", "zagr-08", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1350.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l08", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l08-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Mi petas glason ___ kafo kaj iom ___ akvo.", "answer": "da"},
+		Tags: []string{"ekzerco", "zagr-08", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1350.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l08", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l08-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Doloris lin la kapo. Li malsan___is.", "answer": "iĝ"},
+		Tags: []string{"ekzerco", "zagr-08", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1350.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l08", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l08-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "La knabino ŝatas esti bela kaj pro tio ŝi bel___as sian vizaĝon.", "answer": "ig"},
+		Tags: []string{"ekzerco", "zagr-08", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1350.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l08", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l09-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Se mi havus tiom da mono kiom da ideoj, mi vojaĝ___us ĉirkaŭ la mondo.", "answer": "ad"},
+		Tags: []string{"ekzerco", "zagr-09", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1400.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l09", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l09-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "En ĉiu vort___o mankas kelkaj vortoj.", "answer": "ar"},
+		Tags: []string{"ekzerco", "zagr-09", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1400.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l09", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l09-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Homo, kiu longe rakont___as ĉe la manĝotablo, restos malsata.", "answer": "ad"},
+		Tags: []string{"ekzerco", "zagr-09", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1400.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l09", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l09-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Li devis atenti kaj ne rajtis longe resti ekstere en pluvo. Tial li malvarm___is.", "answer": "um"},
+		Tags: []string{"ekzerco", "zagr-09", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1400.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l09", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l09-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Li havas sian klaran ideon, sed li kredos ĉion, kion vi diros, ___ vi estus lia edzino.", "answer": "kvazaŭ"},
+		Tags: []string{"ekzerco", "zagr-09", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1400.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l09", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l10-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "En jun___o oni havas ankaŭ bel___on.", "answer": "ec"},
+		Tags: []string{"ekzerco", "zagr-10", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1450.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l10", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l10-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Malsimplajn laborojn ĉefoj devus plisimpl___i.", "answer": "ig"},
+		Tags: []string{"ekzerco", "zagr-10", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1450.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l10", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l10-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "En tiu aĝo li jam fariĝis klub___o de sporta klubo.", "answer": "estr"},
+		Tags: []string{"ekzerco", "zagr-10", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1450.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l10", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l10-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Monon oni metas en mon___on.", "answer": "uj"},
+		Tags: []string{"ekzerco", "zagr-10", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1450.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l10", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l10-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Sekvu la ekzemplon de la bonaj famili___oj.", "answer": "an"},
+		Tags: []string{"ekzerco", "zagr-10", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1450.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l10", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l11-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "La knabino ĵetis la paper___ en la paper___.", "answers": []string{"on", "ujon"}},
+		Tags: []string{"ekzerco", "zagr-11", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1500.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l11", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l11-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Kie estas mia skrib___, mi volas respondi ___ li.", "answers": []string{"ilo", "al"}},
+		Tags: []string{"ekzerco", "zagr-11", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1500.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l11", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l11-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "La suno ___aperis kaj nun estas ___ malhele.", "answers": []string{"mal", "preskaŭ"}},
+		Tags: []string{"ekzerco", "zagr-11", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1500.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l11", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l11-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "Bonvolu manĝi la panon ___ manĝ___o.", "answers": []string{"per", "il"}},
+		Tags: []string{"ekzerco", "zagr-11", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1500.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l11", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l11-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Pardon___min, mi ne rajtas rest___.", "answers": []string{"u", "i"}},
+		Tags: []string{"ekzerco", "zagr-11", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1500.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l11", SeriesOrder: 6,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l12-fi01", Type: "fillin",
+		Content: map[string]interface{}{"question": "Antaŭ kvar___a horo ili ___venis.", "answers": []string{"on", "re"}},
+		Tags: []string{"ekzerco", "zagr-12", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1550.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l12", SeriesOrder: 2,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l12-fi02", Type: "fillin",
+		Content: map[string]interface{}{"question": "Post la terura ___feliĉo la homoj foriris kaj la malnovaj urboj ___falis.", "answers": []string{"mal", "dis"}},
+		Tags: []string{"ekzerco", "zagr-12", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1550.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l12", SeriesOrder: 3,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l12-fi03", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ni devus ___vidi nin, mia amiko.", "answer": "re"},
+		Tags: []string{"ekzerco", "zagr-12", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1550.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l12", SeriesOrder: 4,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l12-fi04", Type: "fillin",
+		Content: map[string]interface{}{"question": "___ pli ofte mi pripensas, ___ pli mi koleras.", "answers": []string{"Ju", "des"}},
+		Tags: []string{"ekzerco", "zagr-12", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1550.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l12", SeriesOrder: 5,
+	})
+	items = append(items, &model.ContentItem{
+		Slug: "zagr-l12-fi05", Type: "fillin",
+		Content: map[string]interface{}{"question": "Ŝi loĝas en iu ___ domo.", "answer": "ajn"},
+		Tags: []string{"ekzerco", "zagr-12", "plenigi"},
+		Source: "La Zagreba Metodo", Status: "approved",
+		Rating: 1550.0, RD: 200, Volatility: 0.06,
+		SeriesSlug: "zagr-l12", SeriesOrder: 6,
+	})
+	return items
 }
