@@ -219,7 +219,30 @@ func (s *UserStore) ResolveUserRef(ctx context.Context, ref string) (*model.User
 	return nil, fmt.Errorf("uzanto ne trovita: %s", ref)
 }
 
-// MergeUsers merges srcID into dstID: copies progress, keeps dst ratings, deletes src.
+// userAliasKind stores old-ID → new-ID mappings so that passkeys registered
+// under a merged (deleted) user can still resolve to the surviving account.
+const userAliasKind = "UserAlias"
+
+type userAliasEntity struct {
+	TargetID string `datastore:"target_id"`
+}
+
+// ResolveAlias follows a UserAlias chain, returning the final live user ID.
+// Returns the input id unchanged if no alias exists.
+func (s *UserStore) ResolveAlias(ctx context.Context, id string) string {
+	for i := 0; i < 5; i++ { // cap chain length
+		var e userAliasEntity
+		key := datastore.NameKey(userAliasKind, id, nil)
+		if err := s.db.Get(ctx, key, &e); err != nil || e.TargetID == "" {
+			return id
+		}
+		id = e.TargetID
+	}
+	return id
+}
+
+// MergeUsers merges srcID into dstID: copies progress and passkeys,
+// keeps dst ratings, stores an alias so old passkeys still resolve, deletes src.
 func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 	dst, err := s.GetByID(ctx, dstID)
 	if err != nil || dst == nil {
@@ -243,7 +266,16 @@ func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 	if dst.Username == "" && src.Username != "" {
 		dst.Username = src.Username
 	}
+	// Copy passkeys so that devices registered under src still work.
+	for _, pk := range src.Passkeys {
+		dst.Passkeys = append(dst.Passkeys, pk)
+	}
 	if err := s.Update(ctx, dst); err != nil {
+		return err
+	}
+	// Store an alias so that FinishPasskeyLogin can resolve the old ID.
+	aliasKey := datastore.NameKey(userAliasKind, srcID, nil)
+	if _, err := s.db.Put(ctx, aliasKey, &userAliasEntity{TargetID: dstID}); err != nil {
 		return err
 	}
 	return s.db.Delete(ctx, s.userKey(srcID))

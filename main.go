@@ -47,7 +47,7 @@ func main() {
 	}
 
 	// --- Auth ---
-	sessionStore := localauth.NewSessionStore()
+	sessionStore := localauth.NewSessionStore(db)
 	wa, err := localauth.NewWebAuthn(cfg.WebAuthnRPID, cfg.WebAuthnOrigin)
 	if err != nil {
 		log.Fatalf("webauthn: %v", err)

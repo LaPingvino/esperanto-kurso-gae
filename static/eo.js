@@ -113,12 +113,12 @@ async function registerPasskey() {
 
 // ---- WebAuthn Login ----
 
-async function loginPasskey() {
+async function loginPasskey(mediation) {
   const statusEl = document.getElementById('passkey-status');
   function status(msg) { if (statusEl) statusEl.textContent = msg; }
 
   try {
-    status('Komencas ensaluton…');
+    if (!mediation) status('Komencas ensaluton…');
 
     // Step 1: get options from server.
     const beginRes = await fetch('/auth/passkey/login/begin', {
@@ -135,10 +135,12 @@ async function loginPasskey() {
         id: base64urlToBuffer(c.id)
       }));
     }
+    if (mediation) options.mediation = mediation;
 
     // Step 2: call browser WebAuthn API.
-    status('Bonvolu sekvi la instrukciojn de via aparato…');
+    if (!mediation) status('Bonvolu sekvi la instrukciojn de via aparato…');
     const assertion = await navigator.credentials.get(options);
+    if (!assertion) return; // user dismissed or no credential available
 
     // Step 3: send assertion to server.
     const token = window.getEoToken ? window.getEoToken() : null;
@@ -156,17 +158,38 @@ async function loginPasskey() {
     const data = await finishRes.json();
     if (data.token) {
       window.setEoToken(data.token);
-      status('Ensaluto sukcesa! Reŝarĝas…');
-      setTimeout(() => window.location.href = '/', 1000);
-    } else {
-      status('Ensaluto sukcesa!');
+      if (!mediation || mediation === 'optional') {
+        status('Ensaluto sukcesa! Reŝarĝas…');
+        setTimeout(() => window.location.href = '/', 800);
+      } else {
+        // Silent/conditional: just reload to pick up the new token.
+        window.location.reload();
+      }
     }
   } catch (err) {
+    // Suppress AbortError from conditional mediation (user didn't interact).
+    if (err.name === 'AbortError' || err.name === 'NotAllowedError') return;
     console.error('Passkey login failed:', err);
     const statusEl = document.getElementById('passkey-status');
     if (statusEl) statusEl.textContent = 'Eraro: ' + err.message;
   }
 }
+
+// On page load: if the user has no token and the browser supports conditional
+// mediation, silently prompt for a saved passkey via the autofill UI.
+document.addEventListener('DOMContentLoaded', async function () {
+  if (getToken()) return; // already have a session
+  if (!window.PublicKeyCredential) return;
+  try {
+    const supported = await PublicKeyCredential.isConditionalMediationAvailable?.();
+    if (supported) {
+      loginPasskey('conditional');
+    } else {
+      // Fallback: try a silent get — resolves immediately if a credential exists.
+      loginPasskey('silent');
+    }
+  } catch (e) { /* ignore — not all browsers support this */ }
+});
 
 
 // ---- Copy Magic Link ----

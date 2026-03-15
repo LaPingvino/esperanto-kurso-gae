@@ -236,14 +236,16 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 	r.Body = io.NopCloser(bytes.NewReader(bodyBytes))
 
 	// userHandler finds the user matching the credential.
+	// Follows UserAlias redirects so that passkeys registered under a merged
+	// (deleted) account still resolve to the surviving account.
 	userHandler := func(rawID, userHandle []byte) (webauthn.User, error) {
-		userID := string(userHandle)
+		userID := h.users.ResolveAlias(r.Context(), string(userHandle))
 		u, err := h.users.GetByID(r.Context(), userID)
 		if err != nil {
 			return nil, err
 		}
 		if u == nil {
-			return nil, fmt.Errorf("user not found")
+			return nil, fmt.Errorf("uzanto ne trovita")
 		}
 		return u, nil
 	}
@@ -274,6 +276,7 @@ func (h *AuthHandler) FinishPasskeyLogin(w http.ResponseWriter, r *http.Request)
 		http.Error(w, "Ne eblis identigi uzanton", http.StatusInternalServerError)
 		return
 	}
+	userID = h.users.ResolveAlias(r.Context(), userID)
 
 	u, err := h.users.GetByID(r.Context(), userID)
 	if err != nil || u == nil {
