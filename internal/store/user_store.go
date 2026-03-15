@@ -25,6 +25,7 @@ type userEntity struct {
 	PasskeysJSON  []byte    `datastore:"passkeys_json,noindex"`
 	ProgressJSON  []byte    `datastore:"progress_json,noindex"`
 	FavoritesJSON []byte    `datastore:"favorites_json,noindex"`
+	KeepDataDays  int       `datastore:"keep_data_days"`
 	StreakDays    int       `datastore:"streak_days"`
 	CreatedAt    time.Time `datastore:"created_at"`
 	LastSeenAt   time.Time `datastore:"last_seen_at"`
@@ -63,6 +64,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		PasskeysJSON:  pkJSON,
 		ProgressJSON:  prJSON,
 		FavoritesJSON: favJSON,
+		KeepDataDays:  u.KeepDataDays,
 		StreakDays:    u.StreakDays,
 		CreatedAt:    u.CreatedAt,
 		LastSeenAt:   u.LastSeenAt,
@@ -99,8 +101,9 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		Role:       e.Role,
 		Lang:       lang,
 		UILang:     uiLang,
-		StreakDays: e.StreakDays,
-		CreatedAt:  e.CreatedAt,
+		KeepDataDays: e.KeepDataDays,
+		StreakDays:   e.StreakDays,
+		CreatedAt:   e.CreatedAt,
 		LastSeenAt: e.LastSeenAt,
 		Progress:   make(map[string]bool),
 	}
@@ -457,4 +460,70 @@ func (s *UserStore) ToggleFavorite(ctx context.Context, userID, slug string) (bo
 		return err
 	})
 	return added, err
+}
+
+// UpdateKeepDataDays sets how many idle days before the account is auto-deleted.
+// -1 = never, 0 = use default (7 for anon, 365 for named), >0 = explicit days.
+func (s *UserStore) UpdateKeepDataDays(ctx context.Context, userID string, days int) error {
+	key := s.userKey(userID)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		e.KeepDataDays = days
+		_, err := tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
+// DeleteUser removes the user entity from Datastore.
+func (s *UserStore) DeleteUser(ctx context.Context, userID string) error {
+	return s.db.Delete(ctx, s.userKey(userID))
+}
+
+// ListDueForDeletion returns users whose inactivity exceeds their retention
+// threshold. Anonymous users (no username) are deleted after 7 days; named
+// users after their KeepDataDays (defaults to 365 if 0, skip if -1).
+func (s *UserStore) ListDueForDeletion(ctx context.Context) ([]*model.User, error) {
+	now := time.Now()
+
+	// Fetch users not seen in the past 7 days — the minimum threshold.
+	cutoff := now.Add(-7 * 24 * time.Hour)
+	q := datastore.NewQuery(userKind).
+		FilterField("last_seen_at", "<", cutoff).
+		Limit(500)
+	var entities []userEntity
+	keys, err := s.db.GetAll(ctx, q, &entities)
+	if err != nil {
+		return nil, fmt.Errorf("user_store: ListDueForDeletion: %w", err)
+	}
+
+	var due []*model.User
+	for i, k := range keys {
+		u, err := entityToUser(k.Name, &entities[i])
+		if err != nil {
+			continue
+		}
+		idle := now.Sub(u.LastSeenAt)
+		var threshold time.Duration
+		if u.Username == "" {
+			// Anonymous: always 7 days
+			threshold = 7 * 24 * time.Hour
+		} else {
+			days := u.KeepDataDays
+			if days == -1 {
+				continue // never delete
+			}
+			if days == 0 {
+				days = 365 // default for named accounts
+			}
+			threshold = time.Duration(days) * 24 * time.Hour
+		}
+		if idle >= threshold {
+			due = append(due, u)
+		}
+	}
+	return due, nil
 }

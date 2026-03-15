@@ -120,9 +120,11 @@ func main() {
 	mux.Handle("POST /admin/uzantoj/{id}/rolo", ra(adminH.SetUserRole))
 	mux.Handle("POST /admin/uzantoj/{id}/nomo-forigi", ra(adminH.UnlinkUsername))
 	mux.Handle("POST /admin/mesagxoj/{id}/legita", ra(adminH.MarkModMessageRead))
+	mux.HandleFunc("GET /admin/purigxi", adminH.CleanupInactiveUsers)
 
 	// Profile routes (logged-in users).
 	mux.HandleFunc("POST /profilo/nomo", authH.SetUsername)
+	mux.HandleFunc("POST /profilo/konservado", authH.UpdateKeepDataDays)
 	mux.HandleFunc("POST /kontaktu", communityH.SendModMessage)
 
 	// Apply auth middleware to all routes.
@@ -392,20 +394,27 @@ func templateFuncs() template.FuncMap {
 				}
 				entry := vocabEntry{slug: item.Slug, def: def}
 				lookup[word] = entry
-				// If the word is a root (ends in consonant, not a vowel), also
-				// register the common grammatical forms so that full words in
-				// texts (akvo, amiko, bela…) match the zagr root entries.
-				lastRune := []rune(word)
-				if len(lastRune) > 0 {
-					last := lastRune[len(lastRune)-1]
-					if last != 'o' && last != 'i' && last != 'a' && last != 'e' && last != 'ŭ' {
-						for _, ending := range []string{"o", "i", "a", "e"} {
-							form := word + ending
-							if _, exists := lookup[form]; !exists {
-								lookup[form] = entry
-							}
-						}
+				// Register root forms and inflected variants so any word form
+				// in a reading text matches, regardless of whether the stored
+				// word is a full form (amiko) or a bare root (amik).
+				// Strip common endings to get the root, then re-register.
+				root := word
+				for _, sfx := range []string{"ojn", "ajn", "oj", "aj", "on", "an", "en", "in", "o", "a", "e", "i"} {
+					if strings.HasSuffix(word, sfx) && len(word)-len(sfx) >= 2 {
+						root = word[:len(word)-len(sfx)]
+						break
 					}
+				}
+				// Register all grammatical forms under the same entry.
+				for _, ending := range []string{"o", "oj", "on", "ojn", "a", "aj", "an", "ajn", "e", "i"} {
+					form := root + ending
+					if _, exists := lookup[form]; !exists {
+						lookup[form] = entry
+					}
+				}
+				// Also register the bare root itself.
+				if _, exists := lookup[root]; !exists {
+					lookup[root] = entry
 				}
 			}
 

@@ -1,0 +1,4 @@
+cron:
+- description: "Forigi neaktivajn uzantojn"
+  url: /admin/purigxi
+  schedule: every 24 hours

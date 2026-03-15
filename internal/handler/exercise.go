@@ -321,8 +321,11 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
 
 	correctAnswer := item.Answer()
-	if item.Type == "fillin" {
+	switch item.Type {
+	case "fillin":
 		correctAnswer = strings.Join(item.GapAnswers(), " / ")
+	case "vocab":
+		correctAnswer = item.Word()
 	}
 
 	data := map[string]interface{}{

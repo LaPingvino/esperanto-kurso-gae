@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -403,9 +404,38 @@ func (h *AuthHandler) SetUsername(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Eraro: "+err.Error(), http.StatusConflict)
 		return
 	}
+	// Optionally update retention preference at the same time.
+	if keepStr := r.FormValue("keep_days"); keepStr != "" {
+		if days, err := strconv.Atoi(keepStr); err == nil {
+			_ = h.users.UpdateKeepDataDays(r.Context(), u.ID, days)
+		}
+	}
 	ref := r.Header.Get("Referer")
 	if ref == "" {
 		ref = "/enskribi"
 	}
 	http.Redirect(w, r, ref, http.StatusSeeOther)
+}
+
+// UpdateKeepDataDays handles POST /profilo/konservado — updates data retention preference.
+func (h *AuthHandler) UpdateKeepDataDays(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
+		return
+	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	days, err := strconv.Atoi(r.FormValue("keep_days"))
+	if err != nil {
+		http.Error(w, "Nevalida valoro", http.StatusBadRequest)
+		return
+	}
+	if err := h.users.UpdateKeepDataDays(r.Context(), u.ID, days); err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
 }

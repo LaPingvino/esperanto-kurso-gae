@@ -23,15 +23,20 @@
     {{if not .User}}<small><a href="/enskribi">{{t .UILang "vote.login_link"}}</a> {{t .UILang "vote.login_prompt"}}</small>{{end}}
   </form>
   {{if .User}}
-  <div id="flag-{{.ContentID}}" class="flag-section">
+  <details id="flag-{{.ContentID}}" class="flag-section">
+    <summary class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">&#9873; {{t .UILang "flag.button"}}</summary>
     <form hx-post="/ekzerco/{{.ContentID}}/flagi"
           hx-target="#flag-{{.ContentID}}"
-          hx-swap="innerHTML">
-      <button type="submit" class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">
+          hx-swap="outerHTML"
+          style="margin-top:0.5rem">
+      <textarea name="comment" rows="2" maxlength="500"
+                placeholder="Priskribu la problemon (nedeviga)..."
+                style="font-size:0.85em"></textarea>
+      <button type="submit" class="flag-btn outline secondary">
         &#9873; {{t .UILang "flag.button"}}
       </button>
     </form>
-  </div>
+  </details>
   {{end}}
 </section>
 {{end}}

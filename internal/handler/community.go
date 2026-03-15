@@ -374,11 +374,20 @@ func (h *CommunityHandler) FlagExercise(w http.ResponseWriter, r *http.Request) 
 		http.Error(w, "Ne ensalutita", http.StatusUnauthorized)
 		return
 	}
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝustaj datumoj", http.StatusBadRequest)
+		return
+	}
+	comment := strings.TrimSpace(r.FormValue("comment"))
+	note := "Uzanto raportis problemon en ĉi tiu ekzerco."
+	if comment != "" && len(comment) <= 500 {
+		note = comment
+	}
 	msg := &model.ModMessage{
 		UserID:        u.ID,
 		Username:      u.DisplayName(),
 		ContentItemID: slug,
-		Text:          "[eraro-raporto] ekzerco: " + slug + "\nUzanto raportis problemon en ĉi tiu ekzerco.",
+		Text:          "[eraro-raporto] ekzerco: " + slug + "\n" + note,
 	}
 	if err := h.modMessages.Create(r.Context(), msg); err != nil {
 		http.Error(w, "Eraro", http.StatusInternalServerError)

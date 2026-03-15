@@ -804,6 +804,32 @@ func (h *AdminHandler) UnlinkUsername(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin/uzantoj?msg=nomo-forigita", http.StatusSeeOther)
 }
 
+// CleanupInactiveUsers handles GET /admin/purigxi — called daily by GAE Cron.
+// Deletes users who have exceeded their retention threshold.
+func (h *AdminHandler) CleanupInactiveUsers(w http.ResponseWriter, r *http.Request) {
+	// GAE Cron sets X-Appengine-Cron: true; also allow admin token access.
+	if r.Header.Get("X-Appengine-Cron") != "true" {
+		u := UserFromContext(r.Context())
+		if u == nil || u.Role != "admin" {
+			http.Error(w, "Aliro malpermesita", http.StatusForbidden)
+			return
+		}
+	}
+	due, err := h.users.ListDueForDeletion(r.Context())
+	if err != nil {
+		http.Error(w, "Eraro: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	deleted := 0
+	for _, u := range due {
+		if err := h.users.DeleteUser(r.Context(), u.ID); err == nil {
+			deleted++
+		}
+	}
+	w.Header().Set("Content-Type", "text/plain")
+	fmt.Fprintf(w, "forigitaj: %d el %d elektitaj\n", deleted, len(due))
+}
+
 // seedItems returns the built-in bootstrap dataset (Zagreba Metodo vortaro).
 func seedItems() []*model.ContentItem {
 	type si struct {
