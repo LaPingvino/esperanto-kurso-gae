@@ -16,17 +16,16 @@
         <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong> <a href="/admin/initial" id="admin-link" aria-hidden="true">&#9651;</a></li>
       </ul>
       <ul>
-        <li><a href="/">{{t .UILang "nav.home"}}</a></li>
-        <li><a href="/vortaro">{{t .UILang "nav.vortaro"}}</a></li>
-        <li><a href="/etikedoj">{{t .UILang "tags.title"}}</a></li>
-        {{if .User}}<li><a href="/steloj" title="Viaj stelitaj ekzercoj">★</a></li>{{end}}
-        <li><a href="/enskribi">{{t .UILang "nav.save_progress"}}</a></li>
-        {{if .User}}{{if eq .User.Role "admin"}}
-        <li><a href="/admin">{{t .UILang "nav.admin"}}</a></li>
-        {{end}}{{end}}
-        {{if .User}}{{if canContribute .User}}
-        <li><a href="/admin/enhavo/nova">{{t .UILang "nav.contribute"}}</a></li>
-        {{end}}{{end}}
+        <li><a href="/" title="Hejmo">🏠</a></li>
+        <li>
+          <form method="GET" action="/vortaro" class="nav-search-form">
+            <input type="search" name="s" placeholder="🔍" class="nav-search" aria-label="Serĉi en vortaro">
+          </form>
+        </li>
+        {{if .User}}<li><a href="/steloj" title="Stelitaj ekzercoj">★</a></li>{{end}}
+        <li><a href="/etikedoj" title="Etikedoj">🏷️</a></li>
+        <li><a href="/honorlisto" title="Honora Listo">🏆</a></li>
+        <li><a href="/enskribi" class="nav-profile" title="Profilo">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
         {{- /* ── Language switchers ── */}}
         {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
         <li class="lang-switchers">

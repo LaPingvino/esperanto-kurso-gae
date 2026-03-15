@@ -71,6 +71,7 @@ func main() {
 	mux.HandleFunc("GET /etikedoj", contentH.ShowEtikedoj)
 	mux.HandleFunc("GET /steloj", contentH.ShowFavorites)
 	mux.HandleFunc("POST /ekzerco/{slug}/steli", contentH.ToggleFavorite)
+	mux.HandleFunc("GET /honorlisto", contentH.ShowHonorListo)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
 	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)
@@ -178,6 +179,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"sercxi.html":           "templates/sercxi.html",
 		"etikedoj.html":         "templates/etikedoj.html",
 		"steloj.html":           "templates/steloj.html",
+		"honorlisto.html":       "templates/honorlisto.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).

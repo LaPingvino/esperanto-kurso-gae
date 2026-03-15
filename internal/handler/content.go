@@ -513,3 +513,20 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
+
+// ShowHonorListo handles GET /honorlisto — hall of fame, top rated named users.
+func (h *ContentHandler) ShowHonorListo(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	top, err := h.users.ListTopUsers(r.Context(), 100)
+	if err != nil {
+		top = nil
+	}
+	data := map[string]interface{}{
+		"User":   u,
+		"Top":    top,
+		"UILang": UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "honorlisto.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}

@@ -1,0 +1,38 @@
+{{template "base" .}}
+
+{{define "title"}}Honora Listo — Esperanto-kurso{{end}}
+
+{{define "content"}}
+<h1>🏆 Honora Listo</h1>
+<p><small>Uzantoj kun uzantnomo, ordigitaj laŭ poentaro.</small></p>
+
+{{if .Top}}
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Uzanto</th>
+      <th>Nivelo</th>
+      <th>Poentaro</th>
+      <th>🔥 Sinsekvo</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range $i, $u := .Top}}
+    <tr {{if and $.User (eq $.User.Username $u.Username)}}class="highlight-row"{{end}}>
+      <td>{{add $i 1}}</td>
+      <td><strong>@{{$u.Username}}</strong></td>
+      <td><span class="cefr-badge cefr-{{$u.CEFRLevel}}">{{$u.CEFRLevel}}</span></td>
+      <td><span class="rating-badge">{{printf "%.0f" $u.Rating}}</span></td>
+      <td>{{if $u.StreakDays}}<span class="streak-badge">{{$u.StreakDays}}d</span>{{else}}<span class="muted">—</span>{{end}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+{{if .User}}{{if not .User.Username}}
+<p><em>Vi ne estas sur la listo. <a href="/enskribi">Agordu uzantnomon</a> por aperi ĉi tie.</em></p>
+{{end}}{{end}}
+{{else}}
+<p><em>Ankoraŭ neniu agordi uzantnomon. <a href="/enskribi">Estu la unua!</a></em></p>
+{{end}}
+{{end}}

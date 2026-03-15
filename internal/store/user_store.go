@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"time"
 
 	"cloud.google.com/go/datastore"
@@ -526,4 +527,36 @@ func (s *UserStore) ListDueForDeletion(ctx context.Context) ([]*model.User, erro
 		}
 	}
 	return due, nil
+}
+
+// ListTopUsers returns up to limit users who have set a username, ordered by
+// rating descending. Used for the hall of fame page.
+func (s *UserStore) ListTopUsers(ctx context.Context, limit int) ([]*model.User, error) {
+	// Fetch named users sorted by username (username index exists); sort by
+	// rating in Go to avoid needing a composite index.
+	q := datastore.NewQuery(userKind).
+		FilterField("username", ">", "").
+		Order("username").
+		Limit(500)
+	var entities []userEntity
+	keys, err := s.db.GetAll(ctx, q, &entities)
+	if err != nil {
+		return nil, fmt.Errorf("user_store: ListTopUsers: %w", err)
+	}
+	users := make([]*model.User, 0, len(keys))
+	for i, k := range keys {
+		u, err := entityToUser(k.Name, &entities[i])
+		if err != nil {
+			continue
+		}
+		users = append(users, u)
+	}
+	// Sort by rating descending.
+	sort.Slice(users, func(i, j int) bool {
+		return users[i].Rating > users[j].Rating
+	})
+	if len(users) > limit {
+		users = users[:limit]
+	}
+	return users, nil
 }
