@@ -196,15 +196,12 @@
     <h2 class="vocab-word">{{.Item.Word}}</h2>
     {{if .User}}
     <div id="add-def-{{.Item.Slug}}" style="margin:0.5rem 0;display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap">
-      <input type="text" id="add-def-input-{{.Item.Slug}}" name="text"
+      <input type="text" id="add-def-input-{{.Item.Slug}}"
              placeholder="{{t .UILang "exercise.add_def_placeholder"}}"
-             style="flex:1;min-width:8rem">
+             style="flex:1;min-width:8rem"
+             onkeydown="if(event.key==='Enter'){event.preventDefault();addVocabDef('{{.Item.Slug}}','{{$lang}}');}">
       <button type="button"
-              hx-post="/tradukoj/{{.Item.Slug}}"
-              hx-target="#add-def-{{.Item.Slug}}"
-              hx-swap="outerHTML"
-              hx-include="#add-def-input-{{.Item.Slug}}"
-              hx-vals='{"language":"{{$lang}}","from":"ekzerco"}'
+              onclick="addVocabDef('{{.Item.Slug}}','{{$lang}}')"
               class="outline" style="padding:0.2em 0.6em;font-size:0.85rem">
         + {{t .UILang "exercise.add_def_button"}}
       </button>

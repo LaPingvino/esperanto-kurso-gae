@@ -412,15 +412,32 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	}
 
 	contentMap := map[string]interface{}{
-		"question":      r.FormValue("question"),
-		"answer":        r.FormValue("answer"),
-		"hint":          r.FormValue("hint"),
-		"audio_url":     r.FormValue("audio_url"),
-		"video_url":     r.FormValue("video_url"),
-		"word":          r.FormValue("word"),
-		"definition":    r.FormValue("definition"),
-		"title":         r.FormValue("title"),
-		"text":          r.FormValue("text"),
+		"question":  r.FormValue("question"),
+		"answer":    r.FormValue("answer"),
+		"hint":      r.FormValue("hint"),
+		"audio_url": r.FormValue("audio_url"),
+		"video_url": r.FormValue("video_url"),
+		"word":      r.FormValue("word"),
+		"title":     r.FormValue("title"),
+		"text":      r.FormValue("text"),
+	}
+
+	// Parse multilingual definitions (format: "lang: text" per line).
+	if rawDefs := r.FormValue("definitions"); rawDefs != "" {
+		defs := map[string]interface{}{}
+		for _, line := range strings.Split(rawDefs, "\n") {
+			line = strings.TrimSpace(line)
+			if idx := strings.Index(line, ":"); idx > 0 {
+				lang := strings.TrimSpace(line[:idx])
+				text := strings.TrimSpace(line[idx+1:])
+				if lang != "" && text != "" {
+					defs[lang] = text
+				}
+			}
+		}
+		if len(defs) > 0 {
+			contentMap["definitions"] = defs
+		}
 	}
 
 	// Parse options (newline-separated).

@@ -278,7 +278,8 @@ func templateFuncs() template.FuncMap {
 			return bar
 		},
 		// defForLang returns a vocab definition in the requested language only.
-		// No fallback to other languages — missing translations are handled in the template.
+		// Checks content["definitions"]["lang"] first (multilingual map), then falls
+		// back to the legacy content["definition"] flat string as English.
 		"defForLang": func(content map[string]interface{}, lang string) string {
 			if content == nil {
 				return ""
@@ -290,17 +291,28 @@ func templateFuncs() template.FuncMap {
 					}
 				}
 			}
+			// Legacy fallback: flat "definition" field treated as English.
+			if lang == "en" {
+				if v, ok := content["definition"].(string); ok && v != "" {
+					return v
+				}
+			}
 			return ""
 		},
 		// allDefs returns all available definitions from content["definitions"] as a map.
+		// Also includes the legacy flat content["definition"] as "en" if no multilingual map exists.
 		"allDefs": func(content map[string]interface{}) map[string]interface{} {
 			if content == nil {
 				return nil
 			}
 			if defsRaw, ok := content["definitions"]; ok {
-				if defs, ok := defsRaw.(map[string]interface{}); ok {
+				if defs, ok := defsRaw.(map[string]interface{}); ok && len(defs) > 0 {
 					return defs
 				}
+			}
+			// Legacy fallback.
+			if v, ok := content["definition"].(string); ok && v != "" {
+				return map[string]interface{}{"en": v}
 			}
 			return nil
 		},

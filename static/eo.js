@@ -188,6 +188,28 @@ function copyMagicLink() {
 }
 
 
+// ---- Add vocab definition (bypasses form nesting issues) ----
+
+async function addVocabDef(slug, lang) {
+  const input = document.getElementById('add-def-input-' + slug);
+  if (!input) return;
+  const text = input.value.trim();
+  if (!text) { input.focus(); return; }
+
+  const token = window.getEoToken ? window.getEoToken() : null;
+  const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+  if (token) headers['X-Auth-Token'] = token;
+
+  const body = new URLSearchParams({ text: text, language: lang, from: 'ekzerco' });
+  try {
+    await fetch('/tradukoj/' + slug, { method: 'POST', headers: headers, body: body });
+  } catch (e) {
+    console.error('addVocabDef failed:', e);
+  }
+  window.location.href = '/ekzerco/' + slug;
+}
+
+
 // ---- Admin: Show/Hide Content Fields ----
 
 function showContentFields(type) {

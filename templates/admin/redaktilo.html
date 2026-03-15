@@ -79,9 +79,12 @@
       <input type="text" name="word" value="{{.Item.Word}}" placeholder="La vorto">
     </label>
     <label>
-      Difino:
-      <textarea name="definition" rows="2" placeholder="La difino de la vorto">{{.Item.Definition}}</textarea>
+      Difinoj (unu per linio: <code>en: definition</code>, <code>nl: definitie</code>, <code>pt: definição</code> …):
+      <textarea name="definitions" rows="6"
+                placeholder="en: the definition&#10;nl: de definitie&#10;de: die Bedeutung&#10;fr: la définition&#10;es: la definición&#10;pt: a definição">{{range $k, $v := allDefs .Item.Content}}{{$k}}: {{$v}}
+{{end}}</textarea>
     </label>
+    <small>Ĉiu lingvo en sia linio. Uzu ISO 639-1 lingvokodojn (en, nl, de, fr, es, pt, ru, zh, ja…).</small>
   </div>
 
   <!-- Reading fields -->
