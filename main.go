@@ -97,30 +97,37 @@ func main() {
 
 	// Admin routes — registered directly with method+path to avoid ServeMux conflicts.
 	ra := func(h http.HandlerFunc) http.Handler { return handler.RequireAdmin(h) }
+	rm := func(h http.HandlerFunc) http.Handler { return handler.RequireMod(h) }
 	mux.HandleFunc("GET /admin/initial", adminH.InitialSetup)
-	mux.Handle("GET /admin", ra(adminH.Dashboard))
-	mux.Handle("GET /admin/enhavo", ra(adminH.ListContent))
-	mux.Handle("GET /admin/enhavo/nova", ra(adminH.NewContentForm))
-	mux.Handle("POST /admin/enhavo", ra(adminH.CreateContent))
-	mux.Handle("GET /admin/enhavo/{slug}/redakti", ra(adminH.EditContentForm))
-	mux.Handle("POST /admin/enhavo/{slug}", ra(adminH.UpdateContent))
+	mux.Handle("GET /admin", rm(adminH.Dashboard))
+	// Content editing: mods and admins
+	mux.Handle("GET /admin/enhavo", rm(adminH.ListContent))
+	mux.Handle("GET /admin/enhavo/nova", rm(adminH.NewContentForm))
+	mux.Handle("POST /admin/enhavo", rm(adminH.CreateContent))
+	mux.Handle("GET /admin/enhavo/{slug}/redakti", rm(adminH.EditContentForm))
+	mux.Handle("POST /admin/enhavo/{slug}", rm(adminH.UpdateContent))
 	mux.Handle("POST /admin/enhavo/{slug}/forigi", ra(adminH.DeleteContent))
-	mux.Handle("GET /admin/moderigo", ra(adminH.ModerationQueue))
-	mux.Handle("POST /admin/moderigo/{id}", ra(adminH.ModerateComment))
-	mux.Handle("POST /admin/tradukoj/{id}/aprobi", ra(adminH.ApproveTranslation))
+	// Moderation queue: mods and admins
+	mux.Handle("GET /admin/moderigo", rm(adminH.ModerationQueue))
+	mux.Handle("POST /admin/moderigo/{id}", rm(adminH.ModerateComment))
+	mux.Handle("POST /admin/tradukoj/{id}/aprobi", rm(adminH.ApproveTranslation))
+	mux.Handle("POST /admin/mesagxoj/{id}/legita", rm(adminH.MarkModMessageRead))
+	// Translation deletion: admin only
 	mux.Handle("POST /admin/tradukoj/{id}/forigi", ra(adminH.DeleteTranslation))
+	// Vocabulary generator: mods and admins
+	mux.Handle("GET /admin/enhavo/{slug}/vortaro", rm(adminH.VocabFromReading))
+	mux.Handle("POST /admin/enhavo/{slug}/vortaro", rm(adminH.CreateVocabFromReading))
+	// Destructive / bulk operations: admin only
 	mux.Handle("POST /admin/seed", ra(adminH.SeedContent))
 	mux.Handle("POST /admin/patch-seed", ra(adminH.PatchSeedContent))
 	mux.Handle("GET /admin/eksporti", ra(adminH.ExportContent))
 	mux.Handle("POST /admin/importi", ra(adminH.ImportContent))
 	mux.Handle("POST /admin/forigi-cion", ra(adminH.NukeContent))
-	mux.Handle("GET /admin/enhavo/{slug}/vortaro", ra(adminH.VocabFromReading))
-	mux.Handle("POST /admin/enhavo/{slug}/vortaro", ra(adminH.CreateVocabFromReading))
+	// User management: admin only
 	mux.Handle("GET /admin/uzantoj", ra(adminH.ListUsers))
 	mux.Handle("POST /admin/uzantoj/kunfandi", ra(adminH.MergeUsers))
 	mux.Handle("POST /admin/uzantoj/{id}/rolo", ra(adminH.SetUserRole))
 	mux.Handle("POST /admin/uzantoj/{id}/nomo-forigi", ra(adminH.UnlinkUsername))
-	mux.Handle("POST /admin/mesagxoj/{id}/legita", ra(adminH.MarkModMessageRead))
 	mux.HandleFunc("GET /admin/purigxi", adminH.CleanupInactiveUsers)
 
 	// Profile routes (logged-in users).

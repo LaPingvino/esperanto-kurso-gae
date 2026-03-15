@@ -42,10 +42,11 @@
     <li><a href="/admin/enhavo" role="button">Administri enhavon</a></li>
     <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova enhavo</a></li>
     <li><a href="/admin/moderigo" role="button" class="outline">Moderiĝo</a></li>
-    <li><a href="/admin/uzantoj" role="button" class="outline">Uzantoj</a></li>
+    {{if eq .User.Role "admin"}}<li><a href="/admin/uzantoj" role="button" class="outline">Uzantoj</a></li>{{end}}
   </ul>
 </nav>
 
+{{if eq .User.Role "admin"}}
 <hr>
 <section>
   <h2>Semado</h2>
@@ -96,4 +97,5 @@
   <p><strong>{{.NukeResult}}</strong></p>
   {{end}}
 </section>
+{{end}}
 {{end}}

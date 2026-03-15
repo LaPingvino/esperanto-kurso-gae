@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/dolthub"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
@@ -266,6 +267,16 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	tradukData := buildTradukData(slug, userLang, userID, translations, votes)
 	tradukData["User"] = u
 	tradukData["UILang"] = UILangFor(u)
+
+	// If there are no community translations in the user's language yet,
+	// look up the Esperanto word in the DoltHub dictionary and offer suggestions.
+	if len(tradukData["MyLangTranslations"].([]*model.Translation)) == 0 {
+		if word := item.Word(); word != "" {
+			if suggestions, err := dolthub.LookupTranslations(word, userLang); err == nil {
+				tradukData["DoltSuggestions"] = suggestions
+			}
+		}
+	}
 
 	// Inject a just-added community translation passed via query params (avoids
 	// eventual-consistency gap where the Datastore query misses the new entry).

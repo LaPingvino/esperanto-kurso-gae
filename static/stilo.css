@@ -932,3 +932,15 @@ nav a[href="/admin/enhavo/nova"] {
   background: var(--pico-primary-background);
 }
 
+
+.dolt-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.75rem;
+}
+.dolt-suggestion-btn {
+  font-size: 0.85rem;
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}

@@ -56,6 +56,15 @@
           hx-target="#tradukoj-{{$contentID}}"
           hx-swap="outerHTML">
       <input type="hidden" name="language" value="{{$lang}}">
+      {{if .DoltSuggestions}}
+      <p><small>💡 {{t $uiLang "translate.dolt_hint"}}:</small></p>
+      <div class="dolt-suggestions">
+        {{range .DoltSuggestions}}
+        <button type="button" class="outline secondary dolt-suggestion-btn"
+                onclick="this.closest('form').querySelector('textarea').value='{{.}}'">{{.}}</button>
+        {{end}}
+      </div>
+      {{end}}
       <label>{{t $uiLang "translate.your_label_prefix"}}<strong>{{langName $lang}}</strong>{{t $uiLang "translate.your_label_suffix"}}
         <textarea name="text" rows="2" required placeholder="{{t $uiLang "translate.placeholder"}}"></textarea>
       </label>

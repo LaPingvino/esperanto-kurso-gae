@@ -13,7 +13,14 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong> <a href="/admin/initial" id="admin-link" aria-hidden="true">&#9651;</a></li>
+        <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong>
+          <a href="/admin/initial" id="admin-link" aria-hidden="true" tabindex="-1">&#9651;</a>
+          {{if .User}}
+            {{if eq .User.Role "admin"}}&nbsp;<a href="/admin" title="{{t .UILang "nav.admin"}}">⚙️</a>{{end}}
+            {{if eq .User.Role "mod"}}&nbsp;<a href="/admin/moderigo" title="{{t .UILang "nav.mod"}}">🔧</a>{{end}}
+            {{if canContribute .User}}&nbsp;<a href="/admin/enhavo/nova" title="{{t .UILang "nav.contribute"}}">➕</a>{{end}}
+          {{end}}
+        </li>
       </ul>
       <ul>
         <li><a href="/" title="{{t .UILang "nav.home"}}">🏠</a></li>
