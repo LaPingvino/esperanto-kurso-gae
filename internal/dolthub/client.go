@@ -13,10 +13,16 @@ import (
 
 const apiBase = "https://www.dolthub.com/api/v1alpha1/lapingvino/esperantaj-vortaroj/main"
 
-// langMap translates our app's language codes to the codes used in DoltHub where they differ.
+// langMap translates app language codes to DoltHub codes where they differ.
 var langMap = map[string]string{
 	"zh":    "cmn",
 	"zh-tw": "zh-tw",
+}
+
+// sourceNames maps internal fonto values to display names.
+var sourceNames = map[string]string{
+	"komputeko": "Komputeko",
+	"revo":      "Reta Vortaro",
 }
 
 var httpClient = &http.Client{Timeout: 3 * time.Second}
@@ -25,21 +31,45 @@ type apiResponse struct {
 	Rows []map[string]json.RawMessage `json:"rows"`
 }
 
-// LookupTranslations returns up to 5 translations of an Esperanto word in the given language
-// from the DoltHub esperantaj-vortaroj repository. Returns nil (no error) if nothing is found.
-func LookupTranslations(word, lang string) ([]string, error) {
-	if word == "" || lang == "" {
+// VocabResult holds the result of a single DoltHub vocab lookup.
+type VocabResult struct {
+	// Suggestions are translation strings in the requested user language.
+	Suggestions []string
+	// EoDefinition is the Esperanto-language definition of the word.
+	EoDefinition string
+	// Source is the human-readable source name ("Komputeko" or "Reta Vortaro").
+	Source string
+}
+
+func escapeSQL(s string) string {
+	return strings.ReplaceAll(s, "'", "''")
+}
+
+func mapLang(lang string) string {
+	if mapped, ok := langMap[lang]; ok {
+		return mapped
+	}
+	return lang
+}
+
+// LookupVocab fetches the Esperanto definition (with source) and up to 5
+// translation suggestions in userLang for the given Esperanto word, in a
+// single DoltHub query. Returns nil result (no error) when nothing is found.
+func LookupVocab(word, userLang string) (*VocabResult, error) {
+	if word == "" {
 		return nil, nil
 	}
-	dbLang := lang
-	if mapped, ok := langMap[lang]; ok {
-		dbLang = mapped
+	dbLang := mapLang(userLang)
+
+	// Build the IN clause — always include eo; add userLang if different.
+	langs := "'eo'"
+	if dbLang != "eo" {
+		langs += fmt.Sprintf(", '%s'", escapeSQL(dbLang))
 	}
 
 	q := fmt.Sprintf(
-		`SELECT DISTINCT t.traduko FROM vortoj v JOIN tradukoj t ON v.id = t.vorto_id WHERE v.vorto = '%s' AND t.lingvo = '%s' LIMIT 5`,
-		strings.ReplaceAll(word, "'", "''"),
-		strings.ReplaceAll(dbLang, "'", "''"),
+		`SELECT t.traduko, t.lingvo, v.fonto FROM vortoj v JOIN tradukoj t ON v.id = t.vorto_id WHERE v.vorto = '%s' AND t.lingvo IN (%s) LIMIT 15`,
+		escapeSQL(word), langs,
 	)
 
 	resp, err := httpClient.Get(apiBase + "?q=" + url.QueryEscape(q))
@@ -53,17 +83,39 @@ func LookupTranslations(word, lang string) ([]string, error) {
 		return nil, err
 	}
 
-	var out []string
+	out := &VocabResult{}
 	for _, row := range result.Rows {
-		raw, ok := row["traduko"]
-		if !ok {
+		traduko := jsonStr(row["traduko"])
+		lingvo := jsonStr(row["lingvo"])
+		fonto := jsonStr(row["fonto"])
+		if traduko == "" {
 			continue
 		}
-		var s string
-		if err := json.Unmarshal(raw, &s); err != nil || s == "" {
-			continue
+		if lingvo == "eo" && out.EoDefinition == "" {
+			out.EoDefinition = traduko
+			if name, ok := sourceNames[fonto]; ok {
+				out.Source = name
+			} else {
+				out.Source = fonto
+			}
+		} else if lingvo == dbLang && len(out.Suggestions) < 5 {
+			out.Suggestions = append(out.Suggestions, traduko)
 		}
-		out = append(out, s)
+	}
+
+	if out.EoDefinition == "" && len(out.Suggestions) == 0 {
+		return nil, nil
 	}
 	return out, nil
+}
+
+func jsonStr(raw json.RawMessage) string {
+	if raw == nil {
+		return ""
+	}
+	var s string
+	if err := json.Unmarshal(raw, &s); err != nil {
+		return ""
+	}
+	return s
 }

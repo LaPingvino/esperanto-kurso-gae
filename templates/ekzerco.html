@@ -103,6 +103,8 @@
       {{if eq $modo "karto-eo"}}
       <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
       <h2 class="vocab-word">{{.Item.Word}}</h2>
+      {{if $.DoltEoDef}}<blockquote class="eo-definition"><em>{{$.DoltEoDef}}</em> <small class="def-source">— {{$.DoltSource}}</small></blockquote>
+      {{else if $.Item.Definition}}<blockquote class="eo-definition"><em>{{$.Item.Definition}}</em></blockquote>{{end}}
       {{else}}
         {{if $shownDef}}
         <h2 class="vocab-word">{{$shownDef}}</h2>
@@ -238,6 +240,11 @@
       </button>
     </div>
     {{end}}
+    {{end}}
+    {{if .DoltEoDef}}
+    <blockquote class="eo-definition"><em>{{.DoltEoDef}}</em> <small class="def-source">— {{.DoltSource}}</small></blockquote>
+    {{else if .Item.Definition}}
+    <blockquote class="eo-definition"><em>{{.Item.Definition}}</em></blockquote>
     {{end}}
     <input type="text" name="answer" placeholder="{{if .IsRadiko}}{{t .UILang "exercise.radiko_placeholder"}}{{else}}{{t .UILang "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
 

@@ -944,3 +944,15 @@ nav a[href="/admin/enhavo/nova"] {
   padding: 0.2rem 0.6rem;
   cursor: pointer;
 }
+
+.eo-definition {
+  font-size: 0.9rem;
+  border-left: 3px solid var(--pico-muted-border-color);
+  margin: 0.5rem 0 0.75rem;
+  padding: 0.3rem 0.75rem;
+  color: var(--pico-muted-color);
+}
+.def-source {
+  font-style: normal;
+  opacity: 0.7;
+}

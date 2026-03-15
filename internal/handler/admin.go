@@ -473,8 +473,9 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 		"hint":      r.FormValue("hint"),
 		"audio_url": r.FormValue("audio_url"),
 		"video_url": r.FormValue("video_url"),
-		"word":      r.FormValue("word"),
-		"title":     r.FormValue("title"),
+		"word":       r.FormValue("word"),
+		"definition": r.FormValue("definition"),
+		"title":      r.FormValue("title"),
 		"text":      r.FormValue("text"),
 	}
 

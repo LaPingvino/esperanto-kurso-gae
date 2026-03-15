@@ -268,12 +268,17 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	tradukData["User"] = u
 	tradukData["UILang"] = UILangFor(u)
 
-	// If there are no community translations in the user's language yet,
-	// look up the Esperanto word in the DoltHub dictionary and offer suggestions.
-	if len(tradukData["MyLangTranslations"].([]*model.Translation)) == 0 {
+	// For vocab items, query DoltHub for both the Esperanto definition and
+	// user-lang translation suggestions in a single request.
+	var doltEoDef, doltSource string
+	if item.Type == "vocab" {
 		if word := item.Word(); word != "" {
-			if suggestions, err := dolthub.LookupTranslations(word, userLang); err == nil {
-				tradukData["DoltSuggestions"] = suggestions
+			if result, err := dolthub.LookupVocab(word, userLang); err == nil && result != nil {
+				doltEoDef = result.EoDefinition
+				doltSource = result.Source
+				if len(tradukData["MyLangTranslations"].([]*model.Translation)) == 0 && len(result.Suggestions) > 0 {
+					tradukData["DoltSuggestions"] = result.Suggestions
+				}
 			}
 		}
 	}
@@ -395,6 +400,8 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"VocabModo":     vocabModo,
 		"IsFavorite":    isFavorite,
 		"IsRadiko":      isRadiko,
+		"DoltEoDef":     doltEoDef,
+		"DoltSource":    doltSource,
 		"UILang":        UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
