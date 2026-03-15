@@ -1240,8 +1240,18 @@ func (h *AdminHandler) ExportContent(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// importRecord is a superset of ContentItem used only for JSON import.
+// OldSlug, if set and different from Slug, causes the old entry to be deleted
+// after the new one is written — enabling slug renames via JSON migration.
+type importRecord struct {
+	model.ContentItem
+	OldSlug string `json:"OldSlug,omitempty"`
+}
+
 // ImportContent handles POST /admin/importi — imports a JSON array of content items.
 // Existing slugs are overwritten; new slugs are created.
+// If an item includes OldSlug (different from Slug), the old entry is deleted after
+// the new one is written, enabling slug renames in a single import pass.
 func (h *AdminHandler) ImportContent(w http.ResponseWriter, r *http.Request) {
 	r.Body = http.MaxBytesReader(w, r.Body, 32<<20) // 32 MB
 	if err := r.ParseMultipartForm(32 << 20); err != nil {
@@ -1261,15 +1271,17 @@ func (h *AdminHandler) ImportContent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var items []*model.ContentItem
-	if err := json.Unmarshal(data, &items); err != nil {
+	var records []importRecord
+	if err := json.Unmarshal(data, &records); err != nil {
 		http.Error(w, "Nevalida JSON: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
 	ctx := r.Context()
-	created, updated, failed := 0, 0, 0
-	for _, item := range items {
+	created, updated, renamed, failed := 0, 0, 0, 0
+	for i := range records {
+		item := &records[i].ContentItem
+		oldSlug := records[i].OldSlug
 		if item.Slug == "" {
 			failed++
 			continue
@@ -1279,18 +1291,23 @@ func (h *AdminHandler) ImportContent(w http.ResponseWriter, r *http.Request) {
 			item.CreatedAt = existing.CreatedAt
 			if err := h.content.Update(ctx, item); err != nil {
 				failed++
-			} else {
-				updated++
+				continue
 			}
+			updated++
 		} else {
 			if err := h.content.Create(ctx, item); err != nil {
 				failed++
-			} else {
-				created++
+				continue
 			}
+			created++
+		}
+		// If OldSlug is set and differs, delete the old entry.
+		if oldSlug != "" && oldSlug != item.Slug {
+			_ = h.content.Delete(ctx, oldSlug)
+			renamed++
 		}
 	}
-	msg := fmt.Sprintf("Importo: %d novaj, %d ĝisdatigitaj, %d malsukcesaj", created, updated, failed)
+	msg := fmt.Sprintf("Importo: %d novaj, %d ĝisdatigitaj, %d renomitaj, %d malsukcesaj", created, updated, renamed, failed)
 	http.Redirect(w, r, "/admin?import="+url.QueryEscape(msg), http.StatusSeeOther)
 }
 
