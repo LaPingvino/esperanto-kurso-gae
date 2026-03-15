@@ -182,5 +182,9 @@
   "vote.login_link": "登录",
   "vote.login_prompt": "以投票。",
   "vote.useful": "有用",
-  "vote.useless": "无用"
+  "vote.useless": "无用",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

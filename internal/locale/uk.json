@@ -182,5 +182,9 @@
   "vote.login_link": "Увійти",
   "vote.login_prompt": "щоб проголосувати.",
   "vote.useful": "Корисно",
-  "vote.useless": "Некорисно"
+  "vote.useless": "Некорисно",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

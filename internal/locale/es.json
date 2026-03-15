@@ -182,5 +182,9 @@
   "vote.login_link": "Iniciar sesión",
   "vote.login_prompt": "para votar.",
   "vote.useful": "Útil",
-  "vote.useless": "No útil"
+  "vote.useless": "No útil",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

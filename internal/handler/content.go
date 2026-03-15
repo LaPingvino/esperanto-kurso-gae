@@ -394,6 +394,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 
 	isFavorite := false
 	isRadiko := false
+	vocabKind := ""
 	isFavoriteSeries := false
 	if u != nil {
 		isFavorite = u.IsFavorite(slug)
@@ -402,8 +403,9 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	for _, t := range item.Tags {
-		if t == "radiko" {
-			isRadiko = true
+		if t == "radiko" || t == "sufikso" || t == "prefikso" {
+			isRadiko = (t == "radiko")
+			vocabKind = t
 			break
 		}
 	}
@@ -435,6 +437,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"IsFavorite":       isFavorite,
 		"IsFavoriteSeries": isFavoriteSeries,
 		"IsRadiko":         isRadiko,
+		"VocabKind":        vocabKind,
 		"DoltEoDef":        doltEoDef,
 		"DoltSource":       doltSource,
 		"ChildSeries":      uniqueChildSeries,

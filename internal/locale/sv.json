@@ -182,5 +182,9 @@
   "vote.login_link": "Logga in",
   "vote.login_prompt": "för att rösta.",
   "vote.useful": "Användbart",
-  "vote.useless": "Inte användbart"
+  "vote.useless": "Inte användbart",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

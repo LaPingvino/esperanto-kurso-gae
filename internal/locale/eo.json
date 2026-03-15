@@ -182,5 +182,9 @@
   "vote.login_link": "Ensalitu",
   "vote.login_prompt": "por voĉdoni.",
   "vote.useful": "Utila",
-  "vote.useless": "Senutila"
+  "vote.useless": "Senutila",
+  "exercise.sufikso_prompt": "Kia estas la Esperanta sufikso por:",
+  "exercise.sufikso_placeholder": "sufikso…",
+  "exercise.prefikso_prompt": "Kia estas la Esperanta prefikso por:",
+  "exercise.prefikso_placeholder": "prefikso…"
 }

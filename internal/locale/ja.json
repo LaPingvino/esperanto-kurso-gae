@@ -182,5 +182,9 @@
   "vote.login_link": "ログイン",
   "vote.login_prompt": "して投票しましょう。",
   "vote.useful": "役立つ",
-  "vote.useless": "役立たない"
+  "vote.useless": "役立たない",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

@@ -182,5 +182,9 @@
   "vote.login_link": "התחבר",
   "vote.login_prompt": "כדי להצביע.",
   "vote.useful": "שימושי",
-  "vote.useless": "לא שימושי"
+  "vote.useless": "לא שימושי",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

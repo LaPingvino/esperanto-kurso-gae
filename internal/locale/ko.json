@@ -182,5 +182,9 @@
   "vote.login_link": "로그인",
   "vote.login_prompt": "하여 투표하세요.",
   "vote.useful": "유용함",
-  "vote.useless": "유용하지 않음"
+  "vote.useless": "유용하지 않음",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

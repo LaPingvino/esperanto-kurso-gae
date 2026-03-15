@@ -223,12 +223,16 @@
       <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
     </nav>
     {{if $def}}
-    {{if $.IsRadiko}}<p>{{t .UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span></p>
-    {{else}}<p>{{t .UILang "exercise.vocab_prompt"}}</p>{{end}}
+    {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span></p>
+    {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span></p>
+    {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span></p>
+    {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}}</p>{{end}}
     <h2 class="vocab-word">{{$def}}</h2>
     {{else if $communityDef}}
-    {{if $.IsRadiko}}<p>{{t .UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
-    {{else}}<p>{{t .UILang "exercise.vocab_prompt"}} <small>({{t .UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
+    {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
+    {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
+    {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
+    {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}} <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
     <h2 class="vocab-word">{{$communityDef}}</h2>
     {{else}}
     <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
@@ -260,7 +264,7 @@
     {{else if .Item.Definition}}
     <blockquote class="eo-definition"><em>{{.Item.Definition}}</em></blockquote>
     {{end}}
-    <input type="text" name="answer" placeholder="{{if .IsRadiko}}{{t .UILang "exercise.radiko_placeholder"}}{{else}}{{t .UILang "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
+    <input type="text" name="answer" placeholder="{{if eq .VocabKind "sufikso"}}{{t .UILang "exercise.sufikso_placeholder"}}{{else if eq .VocabKind "prefikso"}}{{t .UILang "exercise.prefikso_placeholder"}}{{else if .IsRadiko}}{{t .UILang "exercise.radiko_placeholder"}}{{else}}{{t .UILang "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
 
     {{else if eq .Item.Type "image"}}
     <p>{{t .UILang "exercise.image_prompt"}}</p>

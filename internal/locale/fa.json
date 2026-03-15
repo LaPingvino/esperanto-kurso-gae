@@ -182,5 +182,9 @@
   "vote.login_link": "ورود",
   "vote.login_prompt": "برای رأی دادن.",
   "vote.useful": "مفید",
-  "vote.useless": "غیرمفید"
+  "vote.useless": "غیرمفید",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }

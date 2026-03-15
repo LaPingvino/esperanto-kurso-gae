@@ -182,5 +182,9 @@
   "vote.login_link": "Giriş yap",
   "vote.login_prompt": "oy vermek için.",
   "vote.useful": "Yararlı",
-  "vote.useless": "Yararsız"
+  "vote.useless": "Yararsız",
+  "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
+  "exercise.sufikso_placeholder": "suffix…",
+  "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
+  "exercise.prefikso_placeholder": "prefix…"
 }
