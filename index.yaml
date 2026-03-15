@@ -82,7 +82,3 @@ indexes:
       - name: read
       - name: created_at
 
-  # User: by username (for unique lookup)
-  - kind: User
-    properties:
-      - name: username
