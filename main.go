@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"context"
+	"html"
 	"html/template"
 	"io"
 	"log"
@@ -12,6 +13,7 @@ import (
 
 	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/config"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/handler"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
@@ -347,6 +349,85 @@ func templateFuncs() template.FuncMap {
 			}
 			return m
 		},
+		// linkifyText wraps known Esperanto words in reading texts with links to
+		// their vocab exercise. Returns safe HTML. vocabItems should be the vocab
+		// items tagged with this reading's slug.
+		"linkifyText": func(text string, vocabItems []*model.ContentItem, lang string) template.HTML {
+			// Build lookup: base_form → (slug, best_def)
+			type vocabEntry struct {
+				slug string
+				def  string
+			}
+			lookup := map[string]vocabEntry{}
+			for _, item := range vocabItems {
+				if item.Type != "vocab" {
+					continue
+				}
+				word := ""
+				if w, ok := item.Content["word"].(string); ok {
+					word = strings.ToLower(strings.TrimSpace(w))
+				}
+				if word == "" {
+					continue
+				}
+				def := ""
+				if defs, ok := item.Content["definitions"].(map[string]interface{}); ok {
+					if v, ok := defs[lang].(string); ok {
+						def = v
+					}
+					if def == "" {
+						if v, ok := defs["en"].(string); ok {
+							def = v
+						}
+					}
+				}
+				if def == "" {
+					if v, ok := item.Content["definition"].(string); ok {
+						def = v
+					}
+				}
+				lookup[word] = vocabEntry{slug: item.Slug, def: def}
+			}
+
+			// Tokenize text preserving whitespace and punctuation.
+			var out strings.Builder
+			// Process character by character, collecting word tokens.
+			runes := []rune(text)
+			i := 0
+			for i < len(runes) {
+				// Collect a word (Esperanto letters only).
+				j := i
+				for j < len(runes) && isEoLetter(runes[j]) {
+					j++
+				}
+				if j > i {
+					token := string(runes[i:j])
+					base := eo.ToBaseForm(strings.ToLower(token))
+					if entry, ok := lookup[base]; ok && entry.slug != "" {
+						escaped := html.EscapeString(token)
+						link := `/ekzerco/` + entry.slug
+						if entry.def != "" {
+							out.WriteString(`<a href="` + link + `" class="eo-word" data-def="` + html.EscapeString(entry.def) + `">` + escaped + `</a>`)
+						} else {
+							out.WriteString(`<a href="` + link + `" class="eo-word">` + escaped + `</a>`)
+						}
+					} else {
+						out.WriteString(html.EscapeString(token))
+					}
+					i = j
+				} else {
+					// Non-word character: emit as-is (escaped).
+					ch := runes[i]
+					if ch == '\n' {
+						out.WriteString("<br>")
+					} else {
+						out.WriteString(html.EscapeString(string(ch)))
+					}
+					i++
+				}
+			}
+			return template.HTML(out.String())
+		},
 		"not": func(v interface{}) bool {
 			if v == nil {
 				return true
@@ -379,4 +460,12 @@ func templateFuncs() template.FuncMap {
 			return code
 		},
 	}
+}
+
+// isEoLetter reports whether r is an Esperanto letter (Latin + special chars).
+func isEoLetter(r rune) bool {
+	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') ||
+		r == 'ĉ' || r == 'Ĉ' || r == 'ĝ' || r == 'Ĝ' ||
+		r == 'ĥ' || r == 'Ĥ' || r == 'ĵ' || r == 'Ĵ' ||
+		r == 'ŝ' || r == 'Ŝ' || r == 'ŭ' || r == 'Ŭ'
 }

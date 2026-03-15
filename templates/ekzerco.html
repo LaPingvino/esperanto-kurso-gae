@@ -40,7 +40,8 @@
   {{if eq .Item.Type "reading"}}
   <article class="reading-text">
     {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
-    <p>{{.Item.Text}}</p>
+    {{$uiLang := "en"}}{{if .User}}{{$uiLang = .User.Lang}}{{end}}
+    <p>{{linkifyText .Item.Text .VocabItems $uiLang}}</p>
   </article>
   {{if .VocabTag}}
   <p><a href="/vortaro?tag={{.VocabTag}}" role="button" class="outline">&#128218; {{t .UILang "exercise.vocab_practice_link"}}</a></p>
@@ -73,7 +74,12 @@
   <div class="flashcard" id="fc-{{.Item.Slug}}">
     <div class="flashcard-front" id="fc-front-{{.Item.Slug}}">
       {{if eq $modo "karto-eo"}}
-      {{if $shownDef}}<h2 class="vocab-word">{{$shownDef}}</h2>{{else}}<h2 class="vocab-word">{{.Item.Word}}</h2>{{end}}
+        {{if $shownDef}}
+        <h2 class="vocab-word">{{$shownDef}}</h2>
+        {{else}}
+        <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
+        <h2 class="vocab-word">{{.Item.Word}}</h2>
+        {{end}}
       {{else}}
       <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
       <h2 class="vocab-word">{{.Item.Word}}</h2>
@@ -88,7 +94,23 @@
       <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
       <h2 class="vocab-word">{{.Item.Word}}</h2>
       {{else}}
-      {{if $shownDef}}<h2 class="vocab-word">{{$shownDef}}</h2>{{else}}<p><em>{{t .UILang "exercise.missing_def_prefix"}} {{langName $lang}}</em></p>{{end}}
+        {{if $shownDef}}
+        <h2 class="vocab-word">{{$shownDef}}</h2>
+        {{else}}
+        <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
+        {{if .User}}
+        <div style="margin:0.5rem 0;display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap">
+          <input type="text" id="add-def-input-fc-{{.Item.Slug}}"
+                 placeholder="{{t .UILang "exercise.add_def_placeholder"}}"
+                 style="flex:1;min-width:8rem"
+                 onkeydown="if(event.key==='Enter'){event.preventDefault();addVocabDef('{{.Item.Slug}}','{{$lang}}','fc');}">
+          <button type="button" onclick="addVocabDef('{{.Item.Slug}}','{{$lang}}','fc')"
+                  class="outline" style="padding:0.2em 0.6em;font-size:0.85rem">
+            + {{t .UILang "exercise.add_def_button"}}
+          </button>
+        </div>
+        {{end}}
+        {{end}}
       {{end}}
       <form hx-post="/ekzerco/{{.Item.Slug}}/jugxo"
             hx-target="#rezulto"
@@ -169,13 +191,10 @@
     {{end}}
     {{$shownDef := $def}}{{if and (eq $shownDef "") $communityDef}}{{$shownDef = $communityDef}}{{end}}
     {{$modo := .VocabModo}}
-    {{/* Mode switcher — only show card modes when a definition is available */}}
     <nav class="vocab-mode-switch">
       <a href="?modo=tipi"{{if or (eq $modo "") (eq $modo "tipi")}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_type"}}</a>
-      {{if $shownDef}}
       <a href="?modo=karto-eo"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_fwd"}}</a>
       <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
-      {{end}}
     </nav>
     {{if $def}}
     <p>{{t .UILang "exercise.vocab_prompt"}}</p>

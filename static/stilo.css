@@ -810,3 +810,34 @@ nav a[href="/admin/enhavo/nova"] {
 .flashcard-back button {
   margin-top: 0.8rem;
 }
+
+/* ---- Clickable words in reading texts ---- */
+.reading-text a.eo-word {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--eo-green);
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  position: relative;
+}
+.reading-text a.eo-word:hover {
+  color: var(--eo-green);
+}
+/* CSS tooltip: shows data-def on hover */
+.reading-text a.eo-word[data-def]:hover::after {
+  content: attr(data-def);
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--pico-contrast-background, #222);
+  color: var(--pico-contrast-inverse, #fff);
+  padding: 0.25em 0.5em;
+  border-radius: 4px;
+  white-space: nowrap;
+  font-size: 0.8em;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}

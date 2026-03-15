@@ -190,8 +190,9 @@ function copyMagicLink() {
 
 // ---- Add vocab definition (bypasses form nesting issues) ----
 
-async function addVocabDef(slug, lang) {
-  const input = document.getElementById('add-def-input-' + slug);
+async function addVocabDef(slug, lang, prefix) {
+  const id = prefix ? 'add-def-input-' + prefix + '-' + slug : 'add-def-input-' + slug;
+  const input = document.getElementById(id);
   if (!input) return;
   const text = input.value.trim();
   if (!text) { input.focus(); return; }
@@ -380,6 +381,48 @@ function credentialToJSON(cred) {
     }
   });
 
+})();
+
+// ---- X-system auto-correction ----
+// Converts cx→ĉ, gx→ĝ, hx→ĥ, jx→ĵ, sx→ŝ, ux→ŭ (case-preserving) in text inputs.
+
+(function () {
+  'use strict';
+  const xMap = {
+    c: 'ĉ', C: 'Ĉ',
+    g: 'ĝ', G: 'Ĝ',
+    h: 'ĥ', H: 'Ĥ',
+    j: 'ĵ', J: 'Ĵ',
+    s: 'ŝ', S: 'Ŝ',
+    u: 'ŭ', U: 'Ŭ',
+  };
+
+  function applyXSystem(el) {
+    const val = el.value;
+    const pos = el.selectionStart;
+    // Check if the character just before the cursor is 'x' or 'X'
+    // and the character before that is a convertible letter.
+    if (pos < 2) return;
+    const xChar = val[pos - 1];
+    if (xChar !== 'x' && xChar !== 'X') return;
+    const base = val[pos - 2];
+    const replacement = xMap[base];
+    if (!replacement) return;
+    // Replace the two chars with the Esperanto char.
+    el.value = val.slice(0, pos - 2) + replacement + val.slice(pos);
+    el.selectionStart = el.selectionEnd = pos - 1;
+  }
+
+  document.addEventListener('input', function (evt) {
+    const el = evt.target;
+    if (el.tagName !== 'INPUT' && el.tagName !== 'TEXTAREA') return;
+    // Only apply to fields where the user types Esperanto (not emails, URLs, etc.)
+    const type = (el.type || '').toLowerCase();
+    if (type === 'email' || type === 'url' || type === 'number') return;
+    // Skip fields with data-no-x-system attribute.
+    if (el.dataset.noXSystem !== undefined) return;
+    applyXSystem(el);
+  }, true);
 })();
 
 // ---- Reveal community sections after answer ----

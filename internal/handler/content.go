@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"math/rand"
 	"net/http"
 	"strings"
 
@@ -52,7 +53,8 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if len(items) > 0 {
-		http.Redirect(w, r, "/ekzerco/"+items[0].Slug, http.StatusSeeOther)
+		pick := items[rand.Intn(len(items))]
+		http.Redirect(w, r, "/ekzerco/"+pick.Slug, http.StatusSeeOther)
 		return
 	}
 
@@ -236,8 +238,42 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 
 	// For reading exercises, link to vocab training using the reading's slug as tag.
 	vocabTag := ""
+	var vocabItems []*model.ContentItem
 	if item.Type == "reading" {
 		vocabTag = item.Slug
+		vocabItems, _ = h.content.ListByTag(r.Context(), item.Slug, 500)
+	}
+
+	vocabModo := r.URL.Query().Get("modo")
+	// For vocab exercises with no definition in the user's language, default to
+	// karto-def mode so the word is shown first and the user can add a definition.
+	if item.Type == "vocab" && vocabModo == "" {
+		hasDef := false
+		if defs, ok := item.Content["definitions"]; ok {
+			if defsMap, ok := defs.(map[string]interface{}); ok {
+				if v, ok := defsMap[userLang].(string); ok && v != "" {
+					hasDef = true
+				}
+			}
+		}
+		// Also check legacy flat "definition" for English users.
+		if !hasDef && userLang == "en" {
+			if v, ok := item.Content["definition"].(string); ok && v != "" {
+				hasDef = true
+			}
+		}
+		// Check community translations for this user's language.
+		if !hasDef {
+			for _, tr := range translations {
+				if tr.Language == userLang {
+					hasDef = true
+					break
+				}
+			}
+		}
+		if !hasDef {
+			vocabModo = "karto-def"
+		}
 	}
 
 	data := map[string]interface{}{
@@ -249,8 +285,9 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"PrevInSeries":  prevInSeries,
 		"NextInSeries":  nextInSeries,
 		"VocabTag":      vocabTag,
+		"VocabItems":    vocabItems,
 		"SeriesTotal":   seriesTotal,
-		"VocabModo":     r.URL.Query().Get("modo"),
+		"VocabModo":     vocabModo,
 		"UILang":        UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
