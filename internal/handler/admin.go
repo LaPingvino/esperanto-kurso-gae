@@ -704,7 +704,8 @@ func (h *AdminHandler) NukeContent(w http.ResponseWriter, r *http.Request) {
 func (h *AdminHandler) MarkModMessageRead(w http.ResponseWriter, r *http.Request) {
 	id := r.PathValue("id")
 	_ = h.modMessages.MarkRead(r.Context(), id)
-	http.Redirect(w, r, "/admin", http.StatusSeeOther)
+	// Return empty body — HTMX swaps the article out of the DOM.
+	w.WriteHeader(http.StatusOK)
 }
 
 // SetUserRole handles POST /admin/uzantoj/{id}/rolo — sets role to "user", "mod", or "admin".

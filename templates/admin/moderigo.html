@@ -13,7 +13,7 @@
   {{if .ContactMessages}}
   <div class="moderation-list">
     {{range .ContactMessages}}
-    <article class="moderation-item">
+    <article class="moderation-item" id="msg-{{.ID}}">
       <header>
         <strong>{{if .Username}}{{.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
         {{if .UserID}}<small><code>{{.UserID}}</code></small>{{end}}
@@ -21,7 +21,10 @@
       </header>
       <p style="white-space:pre-wrap">{{.Text}}</p>
       <footer>
-        <form method="POST" action="/admin/mesagxoj/{{.ID}}/legita" style="display:inline">
+        <form hx-post="/admin/mesagxoj/{{.ID}}/legita"
+              hx-target="#msg-{{.ID}}"
+              hx-swap="outerHTML"
+              style="display:inline">
           <button type="submit" class="outline">&#10003; Markita kiel legita</button>
         </form>
       </footer>
@@ -41,7 +44,7 @@
   {{if .ReportMessages}}
   <div class="moderation-list">
     {{range .ReportMessages}}
-    <article class="moderation-item">
+    <article class="moderation-item" id="msg-{{.Msg.ID}}">
       <header style="display:flex;gap:1rem;flex-wrap:wrap;align-items:baseline">
         <strong>{{if .Msg.Username}}{{.Msg.Username}}{{else}}<em>Anonima</em>{{end}}</strong>
         {{if .Msg.UserID}}<small><code>{{.Msg.UserID}}</code></small>{{end}}
@@ -68,7 +71,10 @@
       <p>&#128161; Sugesto: <strong><code>{{.Answer}}</code></strong></p>
       {{end}}
       <footer>
-        <form method="POST" action="/admin/mesagxoj/{{.Msg.ID}}/legita" style="display:inline">
+        <form hx-post="/admin/mesagxoj/{{.Msg.ID}}/legita"
+              hx-target="#msg-{{.Msg.ID}}"
+              hx-swap="outerHTML"
+              style="display:inline">
           <button type="submit" class="outline">&#10003; Markita kiel legita</button>
         </form>
       </footer>
