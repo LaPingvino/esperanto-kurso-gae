@@ -17,6 +17,22 @@ except ImportError:
     HAS_YAML = False
 
 
+VOWELS = set('aeiouŭAEIOUŬ')
+
+def canonicalize(root, cats):
+    """Add the canonical Esperanto ending to a bare root.
+    Adverbs get -e, roots ending in a vowel stay unchanged,
+    all others get -o (the substantive/dictionary form).
+    """
+    if not root:
+        return root
+    if root[-1] not in VOWELS:
+        if 'adverbo' in cats:
+            return root + 'e'
+        return root + 'o'
+    return root
+
+
 def word_to_slug(word):
     """Convert Esperanto word to ASCII slug fragment."""
     r = str(word)
@@ -229,12 +245,13 @@ def main():
 
         cats = sorted(all_cats.get(eo_key, {'radiko'}))
         tags = ['vortaro', 'zagr'] + cats
+        full_word = canonicalize(eo_key, set(cats))
 
         item = {
             "Slug": slug,
             "Type": "vocab",
             "Content": {
-                "word": eo_key,
+                "word": full_word,
                 "definitions": defs
             },
             "Tags": tags,
