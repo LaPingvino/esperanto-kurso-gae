@@ -91,13 +91,9 @@ func LookupVocab(word, userLang string) (*VocabResult, error) {
 		if traduko == "" {
 			continue
 		}
-		if lingvo == "eo" && out.EoDefinition == "" {
+		if lingvo == "eo" && fonto == "revo" && out.EoDefinition == "" {
 			out.EoDefinition = traduko
-			if name, ok := sourceNames[fonto]; ok {
-				out.Source = name
-			} else {
-				out.Source = fonto
-			}
+			out.Source = "Reta Vortaro"
 		} else if lingvo == dbLang && len(out.Suggestions) < 5 {
 			out.Suggestions = append(out.Suggestions, traduko)
 		}
