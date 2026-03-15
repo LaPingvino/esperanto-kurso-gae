@@ -498,6 +498,21 @@ func templateFuncs() template.FuncMap {
 			return false
 		},
 		"ne": func(a, b string) bool { return a != b },
+		// kCount formats a count with a 'k' suffix when ≥ 1000.
+		// The full number is placed in a title attribute for mouseover.
+		"kCount": func(n int) template.HTML {
+			if n < 1000 {
+				return template.HTML(fmt.Sprintf("%d", n))
+			}
+			k := float64(n) / 1000.0
+			var short string
+			if k == float64(int(k)) {
+				short = fmt.Sprintf("%dk", int(k))
+			} else {
+				short = fmt.Sprintf("%.1fk", k)
+			}
+			return template.HTML(fmt.Sprintf(`<span title="%d">%s</span>`, n, short))
+		},
 		"langName": func(code string) string {
 			names := map[string]string{
 				"ar": "العربية", "be": "Беларуская", "bn": "বাংলা", "ca": "Català",

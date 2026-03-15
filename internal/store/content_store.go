@@ -291,6 +291,20 @@ func (s *ContentStore) ListByRatingRange(ctx context.Context, minR, maxR float64
 	return s.runContentQuery(ctx, q)
 }
 
+// CountByStatus returns the number of ContentItems with the given status.
+// Uses a keys-only query so no entity data is fetched.
+func (s *ContentStore) CountByStatus(ctx context.Context, status string) (int, error) {
+	q := datastore.NewQuery(contentKind).KeysOnly()
+	if status != "" {
+		q = q.FilterField("status", "=", status)
+	}
+	keys, err := s.db.GetAll(ctx, q, nil)
+	if err != nil {
+		return 0, fmt.Errorf("content_store: CountByStatus: %w", err)
+	}
+	return len(keys), nil
+}
+
 func (s *ContentStore) ListForAdmin(ctx context.Context, statusFilter string, limit int) ([]*model.ContentItem, error) {
 	q := datastore.NewQuery(contentKind).Limit(limit)
 	if statusFilter != "" {

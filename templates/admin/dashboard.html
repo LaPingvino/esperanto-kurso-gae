@@ -7,31 +7,31 @@
 
 <div class="grid">
   <article>
-    <h2>{{.ApprovedCount}}</h2>
+    <h2>{{kCount .ApprovedCount}}</h2>
     <p>Aprobitaj ekzercoj</p>
     <a href="/admin/enhavo?status=approved">Vidi</a>
   </article>
 
   <article>
-    <h2>{{.PendingCount}}</h2>
+    <h2>{{kCount .PendingCount}}</h2>
     <p>Atendantaj ekzercoj</p>
     <a href="/admin/enhavo?status=pending">Vidi</a>
   </article>
 
   <article>
-    <h2>{{.CommentCount}}</h2>
+    <h2>{{kCount .CommentCount}}</h2>
     <p>Komentoj atendantaj moderiĝon</p>
     <a href="/admin/moderigo">Moderigi</a>
   </article>
 
   <article>
-    <h2>{{.TranslationCount}}</h2>
+    <h2>{{kCount .TranslationCount}}</h2>
     <p>Komunumaj tradukoj</p>
     <a href="/admin/moderigo">Vidi</a>
   </article>
 
   <article>
-    <h2>{{.ModMessageCount}}</h2>
+    <h2>{{kCount .ModMessageCount}}</h2>
     <p>Nelegitaj mesaĝoj kaj raportoj</p>
     <a href="/admin/moderigo">Vidi</a>
   </article>

@@ -48,16 +48,16 @@ func NewAdminHandler(
 // Dashboard handles GET /admin.
 func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
-	approved, _ := h.content.ListForAdmin(r.Context(), "approved", 1000)
-	pending, _ := h.content.ListForAdmin(r.Context(), "pending", 1000)
+	approvedCount, _ := h.content.CountByStatus(r.Context(), "approved")
+	pendingCount, _  := h.content.CountByStatus(r.Context(), "pending")
 	pendingComments, _ := h.comments.ListPending(r.Context(), 100)
 	unreadMessages, _ := h.modMessages.ListUnread(r.Context(), 50)
 	pendingTranslations, _ := h.translations.ListAll(r.Context(), 200)
 
 	data := map[string]interface{}{
 		"User":               u,
-		"ApprovedCount":      len(approved),
-		"PendingCount":       len(pending),
+		"ApprovedCount":      approvedCount,
+		"PendingCount":       pendingCount,
 		"CommentCount":       len(pendingComments),
 		"ModMessageCount":    len(unreadMessages),
 		"TranslationCount":   len(pendingTranslations),
@@ -82,7 +82,7 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	statusFilter := r.URL.Query().Get("status")
 
-	items, err := h.content.ListForAdmin(r.Context(), statusFilter, 1000)
+	items, err := h.content.ListForAdmin(r.Context(), statusFilter, 50000)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
