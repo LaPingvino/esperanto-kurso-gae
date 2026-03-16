@@ -77,13 +77,33 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 }
 
 // RandomVocab handles GET /vorto — redirects to a random vocab exercise near the user's level.
+// Optional query param ?etikedo=tag restricts to a specific tag (topic context).
 func (h *ContentHandler) RandomVocab(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	var rating float64 = 1500
 	if u != nil {
 		rating = u.Rating
 	}
-	items, _ := h.content.ListByTypeAndRatingRange(r.Context(), "vocab", rating-300, rating+300, 20)
+	tag := r.URL.Query().Get("etikedo")
+	var items []*model.ContentItem
+	if tag != "" {
+		// Try as tag first, then as series slug (covers both use cases).
+		tagged, _ := h.content.ListByTag(r.Context(), tag, 100)
+		seriesItems, _ := h.content.ListBySeries(r.Context(), tag)
+		seen := map[string]bool{}
+		for _, it := range append(tagged, seriesItems...) {
+			if seen[it.Slug] {
+				continue
+			}
+			seen[it.Slug] = true
+			if it.Type == "vocab" && it.Rating >= rating-400 && it.Rating <= rating+400 {
+				items = append(items, it)
+			}
+		}
+	}
+	if len(items) == 0 {
+		items, _ = h.content.ListByTypeAndRatingRange(r.Context(), "vocab", rating-300, rating+300, 20)
+	}
 	if len(items) == 0 {
 		items, _ = h.content.ListByType(r.Context(), "vocab", 20)
 	}
@@ -438,10 +458,39 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Count comments in user's languages for the peek button badge.
+	uiLang := UILangFor(u)
+	commentCountMyLang := 0
+	for _, c := range comments {
+		if c.Language == userLang || c.Language == uiLang {
+			commentCountMyLang++
+		}
+	}
+
+	// Sort comments: user's translate lang first, then UI lang, then rest.
+	sortedComments := make([]*model.Comment, 0, len(comments))
+	for _, c := range comments {
+		if c.Language == userLang {
+			sortedComments = append(sortedComments, c)
+		}
+	}
+	for _, c := range comments {
+		if c.Language != userLang && c.Language == uiLang {
+			sortedComments = append(sortedComments, c)
+		}
+	}
+	for _, c := range comments {
+		if c.Language != userLang && c.Language != uiLang {
+			sortedComments = append(sortedComments, c)
+		}
+	}
+
 	data := map[string]interface{}{
 		"User":             u,
 		"Item":             item,
-		"Comments":         comments,
+		"Comments":         sortedComments,
+		"CommentCount":     len(comments),
+		"CommentCountMyLang": commentCountMyLang,
 		"CurrentVote":      currentVote,
 		"TradukData":       tradukData,
 		"PrevInSeries":     prevInSeries,

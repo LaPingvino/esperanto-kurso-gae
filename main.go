@@ -57,7 +57,7 @@ func main() {
 	// --- Handlers ---
 	authH := handler.NewAuthHandler(tmpl, userStore, sessionStore, wa)
 	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore, userStore)
-	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore)
+	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore, voteStore)
 	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
 
@@ -97,6 +97,7 @@ func main() {
 
 	// Community routes.
 	mux.HandleFunc("POST /vochdonado/{contentID}", communityH.Vote)
+	mux.HandleFunc("POST /vochdonado/{contentID}/kompakta", communityH.VoteCompact)
 	mux.HandleFunc("POST /komentoj/{contentID}", communityH.AddComment)
 	mux.HandleFunc("POST /tradukoj/{contentID}", communityH.AddTranslation)
 	mux.HandleFunc("POST /tradukoj/{contentID}/vochdoni/{id}", communityH.VoteTranslation)
@@ -123,6 +124,8 @@ func main() {
 	// Moderation queue: mods and admins
 	mux.Handle("GET /admin/moderigo", rm(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", rm(adminH.ModerateComment))
+	mux.Handle("GET /admin/komentoj", rm(adminH.ShowAllComments))
+	mux.Handle("POST /admin/komentoj/{id}/forigi", rm(adminH.DeleteApprovedComment))
 	mux.Handle("POST /admin/tradukoj/{id}/aprobi", rm(adminH.ApproveTranslation))
 	mux.Handle("POST /admin/mesagxoj/{id}/legita", rm(adminH.MarkModMessageRead))
 	// Translation deletion: admin only
@@ -131,6 +134,7 @@ func main() {
 	mux.Handle("GET /admin/enhavo/{slug}/vortaro", rc(adminH.VocabFromReading))
 	mux.Handle("POST /admin/enhavo/{slug}/vortaro", rc(adminH.CreateVocabFromReading))
 	// Destructive / bulk operations: admin only
+	mux.Handle("GET /admin/seed/{filename}/rigardi", ra(adminH.PeekSeed))
 	mux.Handle("POST /admin/seed/{filename}", ra(adminH.SeedContent))
 	mux.Handle("GET /admin/eksporti", ra(adminH.ExportContent))
 	mux.Handle("POST /admin/importi", ra(adminH.ImportContent))
@@ -201,6 +205,8 @@ func parseTemplates() (*pageTemplates, error) {
 		"steloj.html":           "templates/steloj.html",
 		"honorlisto.html":       "templates/honorlisto.html",
 		"serioj.html":           "templates/serioj.html",
+		"admin-komentoj.html":       "templates/admin/komentoj.html",
+		"admin-seed-rigardi.html":   "templates/admin/seed-rigardi.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).
@@ -211,6 +217,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"traduko.html":              "templates/partials/traduko.html",
 		"alternativo-konfirmo.html": "templates/partials/alternativo-konfirmo.html",
 		"flag-konfirmo.html":        "templates/partials/flag-konfirmo.html",
+		"vote-kompakta.html":        "templates/partials/vote-kompakta.html",
 	}
 
 	pt := &pageTemplates{m: make(map[string]*template.Template)}

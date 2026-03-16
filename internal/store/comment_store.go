@@ -19,6 +19,7 @@ type commentEntity struct {
 	Text          string    `datastore:"text,noindex"`
 	Approved      bool      `datastore:"approved"`
 	AutoApproved  bool      `datastore:"auto_approved"`
+	Language      string    `datastore:"language,noindex"`
 	CreatedAt     time.Time `datastore:"created_at"`
 }
 
@@ -38,6 +39,7 @@ func (s *CommentStore) Create(ctx context.Context, c *model.Comment) error {
 		Text:          c.Text,
 		Approved:      c.Approved,
 		AutoApproved:  c.AutoApproved,
+		Language:      c.Language,
 		CreatedAt:     c.CreatedAt,
 	}
 	key := datastore.IncompleteKey(commentKind, nil)
@@ -88,6 +90,7 @@ func (s *CommentStore) ListApprovedByContent(ctx context.Context, contentID stri
 			Text:          e.Text,
 			Approved:      e.Approved,
 			AutoApproved:  e.AutoApproved,
+			Language:      e.Language,
 			CreatedAt:     e.CreatedAt,
 		})
 	}
@@ -110,6 +113,19 @@ func (s *CommentStore) ListPending(ctx context.Context, limit int) ([]*model.Com
 	if limit > 0 && len(all) > limit {
 		all = all[:limit]
 	}
+	return all, nil
+}
+
+// ListAllApproved returns all approved comments, sorted newest first, up to limit.
+func (s *CommentStore) ListAllApproved(ctx context.Context, limit int) ([]*model.Comment, error) {
+	q := datastore.NewQuery(commentKind).FilterField("approved", "=", true).Limit(limit)
+	all, err := s.runQuery(ctx, q)
+	if err != nil {
+		return nil, err
+	}
+	sort.Slice(all, func(i, j int) bool {
+		return all[i].CreatedAt.After(all[j].CreatedAt)
+	})
 	return all, nil
 }
 
@@ -154,6 +170,7 @@ func (s *CommentStore) runQuery(ctx context.Context, q *datastore.Query) ([]*mod
 			Text:          e.Text,
 			Approved:      e.Approved,
 			AutoApproved:  e.AutoApproved,
+			Language:      e.Language,
 			CreatedAt:     e.CreatedAt,
 		}
 	}

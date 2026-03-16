@@ -1,0 +1,46 @@
+{{define "komentoj.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Ĉiuj komentoj — Administrado{{end}}
+
+{{define "content"}}
+<h1>Ĉiuj aprobita komentoj ({{len .Comments}})</h1>
+
+<p><a href="/admin/moderigo">&larr; Reen al moderigado</a></p>
+
+{{if .Comments}}
+<div class="moderation-list">
+  {{range .Comments}}
+  <article class="moderation-item" id="comment-{{.Comment.ID}}">
+    <header style="display:flex;gap:1rem;flex-wrap:wrap;align-items:baseline">
+      <small>Uzanto: <code>{{truncate .Comment.UserID 8}}</code></small>
+      <small>{{.Comment.CreatedAt.Format "2006-01-02 15:04"}}</small>
+      <small>
+        Ekzerco:
+        <a href="/ekzerco/{{.Comment.ContentItemID}}">{{.Title}}</a>
+        &middot;
+        <a href="/ekzerco/{{.Comment.ContentItemID}}">&#128065;</a>
+        &middot;
+        <a href="/admin/enhavo/{{.Comment.ContentItemID}}/redakti">&#9998;</a>
+      </small>
+    </header>
+    <p style="white-space:pre-wrap">{{.Comment.Text}}</p>
+    <footer>
+      <form hx-post="/admin/komentoj/{{.Comment.ID}}/forigi"
+            hx-target="#comment-{{.Comment.ID}}"
+            hx-swap="outerHTML"
+            hx-confirm="Forigi tiun ĉi komenton?"
+            style="display:inline">
+        <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
+      </form>
+    </footer>
+  </article>
+  {{end}}
+</div>
+{{else}}
+<p><em>Neniu aprobita komento.</em></p>
+{{end}}
+
+<p><a href="/admin">&larr; Reen al panelo</a></p>
+{{end}}

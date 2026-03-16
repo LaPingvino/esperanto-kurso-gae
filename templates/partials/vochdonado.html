@@ -1,28 +1,19 @@
 {{define "vochdonado.html"}}
 <section class="vochdonado" aria-label="Voĉdonado">
-  <form hx-post="/vochdonado/{{.ContentID}}"
-        hx-target="closest .vochdonado"
-        hx-swap="outerHTML">
-    <div class="vote-buttons">
-      <button type="submit" name="value" value="1"
-              class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
-              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}{{t .UILang "vote.aria_cancel"}}{{else}}{{t .UILang "vote.aria_up"}}{{end}}{{else}}{{t .UILang "vote.aria_up"}}{{end}}"
-              aria-label="{{t .UILang "vote.aria_up"}}"
-              {{if not .User}}disabled{{end}}>
-        &#9650; {{t .UILang "vote.useful"}}
-      </button>
-      <span class="vote-score" aria-label="{{.VoteScore}} {{t .UILang "vote.count_aria"}}">{{.VoteScore}}</span>
-      <button type="submit" name="value" value="-1"
-              class="vote-btn {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
-              title="{{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}{{t .UILang "vote.aria_cancel"}}{{else}}{{t .UILang "vote.aria_down"}}{{end}}{{else}}{{t .UILang "vote.aria_down"}}{{end}}"
-              aria-label="{{t .UILang "vote.aria_down"}}"
-              {{if not .User}}disabled{{end}}>
-        &#9660; {{t .UILang "vote.useless"}}
-      </button>
-    </div>
-    {{if not .User}}<small><a href="/enskribi">{{t .UILang "vote.login_link"}}</a> {{t .UILang "vote.login_prompt"}}</small>{{end}}
-  </form>
   {{if .User}}
+  <form class="vote-inline" hx-post="/vochdonado/{{.ContentID}}"
+        hx-target="closest .vochdonado"
+        hx-swap="innerHTML">
+    <button type="submit" name="value" value="1"
+            class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
+            title="{{t .UILang "vote.aria_up"}}"
+            aria-label="{{t .UILang "vote.aria_up"}}">&#9650;</button>
+    <span class="vote-score-inline" aria-label="{{.VoteScore}} {{t .UILang "vote.count_aria"}}">{{.VoteScore}}</span>
+    <button type="submit" name="value" value="-1"
+            class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
+            title="{{t .UILang "vote.aria_down"}}"
+            aria-label="{{t .UILang "vote.aria_down"}}">&#9660;</button>
+  </form>
   <details id="flag-{{.ContentID}}" class="flag-section">
     <summary class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">&#9873; {{t .UILang "flag.button"}}</summary>
     <form hx-post="/ekzerco/{{.ContentID}}/flagi"
@@ -37,6 +28,8 @@
       </button>
     </form>
   </details>
+  {{else}}
+  <small><a href="/enskribi">{{t .UILang "vote.login_link"}}</a> {{t .UILang "vote.login_prompt"}}</small>
   {{end}}
 </section>
 {{end}}

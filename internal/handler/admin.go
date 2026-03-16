@@ -642,6 +642,61 @@ func (h *AdminHandler) ModerateComment(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
 }
 
+// ShowAllComments handles GET /admin/komentoj — lists all approved comments.
+func (h *AdminHandler) ShowAllComments(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	comments, err := h.comments.ListAllApproved(r.Context(), 500)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	// Enrich with content item titles for easy navigation.
+	type EnrichedComment struct {
+		Comment *model.Comment
+		Title   string
+	}
+	enriched := make([]EnrichedComment, 0, len(comments))
+	itemCache := map[string]*model.ContentItem{}
+	for _, c := range comments {
+		item, ok := itemCache[c.ContentItemID]
+		if !ok {
+			item, _ = h.content.GetBySlug(r.Context(), c.ContentItemID)
+			itemCache[c.ContentItemID] = item
+		}
+		title := c.ContentItemID
+		if item != nil && item.Title() != "" {
+			title = item.Title()
+		}
+		enriched = append(enriched, EnrichedComment{Comment: c, Title: title})
+	}
+	data := map[string]interface{}{
+		"User":     u,
+		"Comments": enriched,
+		"UILang":   UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "admin-komentoj.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// DeleteApprovedComment handles POST /admin/komentoj/{id}/forigi.
+func (h *AdminHandler) DeleteApprovedComment(w http.ResponseWriter, r *http.Request) {
+	id := r.PathValue("id")
+	if id == "" {
+		http.NotFound(w, r)
+		return
+	}
+	if err := h.comments.Reject(r.Context(), id); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	if r.Header.Get("HX-Request") == "true" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
+	http.Redirect(w, r, "/admin/komentoj", http.StatusSeeOther)
+}
+
 // buildContentItem constructs a ContentItem from an HTTP form.
 func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	tagsRaw := r.FormValue("tags")
@@ -1462,6 +1517,30 @@ func inferParent(slug, seriesSlug string, slugSet map[string]bool, word string, 
 	}
 
 	return ""
+}
+
+// PeekSeed handles GET /admin/seed/{filename}/rigardi — shows seed file contents without applying.
+func (h *AdminHandler) PeekSeed(w http.ResponseWriter, r *http.Request) {
+	filename := r.PathValue("filename")
+	if filename == "" || strings.Contains(filename, "/") || strings.Contains(filename, "..") {
+		http.Error(w, "Nevalida dosiernomo", http.StatusBadRequest)
+		return
+	}
+	items, err := loadSeedFile(filename)
+	if err != nil {
+		http.Error(w, "Ne povas legi dosieron: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+	u := UserFromContext(r.Context())
+	data := map[string]interface{}{
+		"User":     u,
+		"Filename": filename,
+		"Items":    items,
+		"UILang":   UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "admin-seed-rigardi.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
 }
 
 // SeedContent handles POST /admin/seed/{filename} — seeds a single JSON file.

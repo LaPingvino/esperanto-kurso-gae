@@ -355,6 +355,45 @@ a[role="button"]:not(.outline):not([class*="secondary"]) {
   text-align: center;
 }
 
+/* ---- Compact inline voting (result + peek) ---- */
+.result-nav-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.vote-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin: 0;
+}
+
+.vote-arrow {
+  background: none;
+  border: 1px solid var(--pico-muted-border-color, #ccc);
+  border-radius: 0.2rem;
+  padding: 0.1em 0.4em;
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  transition: background 0.15s;
+}
+
+.vote-arrow.active {
+  background: var(--eo-green);
+  color: white;
+  border-color: var(--eo-green);
+}
+
+.vote-score-inline {
+  font-weight: bold;
+  min-width: 1.5rem;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
 /* ---- Comments ---- */
 .komentoj {
   margin-top: 2rem;

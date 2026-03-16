@@ -10,5 +10,6 @@ type Comment struct {
 	Text          string    `firestore:"text"`
 	Approved      bool      `firestore:"approved"`
 	AutoApproved  bool      `firestore:"auto_approved"`
+	Language      string    `firestore:"language"` // UI language of the author at submission time
 	CreatedAt     time.Time `firestore:"created_at"`
 }

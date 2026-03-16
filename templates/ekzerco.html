@@ -347,12 +347,15 @@
 
   <div id="rezulto"></div>
 
+  {{if gt .CommentCount 0}}
   <p style="margin-top:0.5rem">
     <button type="button" class="outline btn-sm"
             onclick="var pa=document.getElementById('post-answer');if(pa){pa.classList.remove('post-answer-hidden');pa.classList.add('post-answer-visible');this.style.display='none'}">
       💬 {{t .UILang "exercise.peek_comments"}}
+      {{if gt .CommentCountMyLang 0}}<small>({{.CommentCountMyLang}}/{{.CommentCount}})</small>{{else}}<small>({{.CommentCount}})</small>{{end}}
     </button>
   </p>
+  {{end}}
 
   {{if .User}}{{if canContribute .User}}
   <nav class="contributor-bar">

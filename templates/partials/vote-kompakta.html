@@ -1,0 +1,15 @@
+{{define "vote-kompakta.html"}}
+<form class="vote-inline" hx-post="/vochdonado/{{.ContentID}}/kompakta"
+      hx-target="closest .vote-inline"
+      hx-swap="outerHTML">
+  <button type="submit" name="value" value="1"
+          class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
+          title="{{t .UILang "vote.aria_up"}}"
+          aria-label="{{t .UILang "vote.aria_up"}}">&#9650;</button>
+  <span class="vote-score-inline" aria-label="{{.VoteScore}} {{t .UILang "vote.count_aria"}}">{{.VoteScore}}</span>
+  <button type="submit" name="value" value="-1"
+          class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
+          title="{{t .UILang "vote.aria_down"}}"
+          aria-label="{{t .UILang "vote.aria_down"}}">&#9660;</button>
+</form>
+{{end}}

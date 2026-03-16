@@ -1,0 +1,43 @@
+{{define "seed-rigardi.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Rigardi semajn dosieron — Administrado{{end}}
+
+{{define "content"}}
+<h1>Rigardi: <code>{{.Filename}}</code></h1>
+<p>{{len .Items}} eroj. Ĉi tio estas nur antaŭrigardo — nenio estas ŝanĝita.</p>
+
+<nav style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+  <form method="POST" action="/admin/seed/{{.Filename}}" style="display:inline">
+    <input type="hidden" name="mode" value="create">
+    <button type="submit">Semu novajn</button>
+  </form>
+  <form method="POST" action="/admin/seed/{{.Filename}}" style="display:inline">
+    <input type="hidden" name="mode" value="patch">
+    <button type="submit" class="outline">Ĝisdatigu</button>
+  </form>
+  <a href="/admin" role="button" class="outline">&larr; Reen</a>
+</nav>
+
+<div class="moderation-list">
+{{range .Items}}
+<article class="moderation-item">
+  <header style="display:flex;gap:1rem;flex-wrap:wrap;align-items:baseline">
+    <code>{{.Slug}}</code>
+    <span class="type-badge type-{{.Type}}">{{.Type}}</span>
+    {{if .Title}}<strong>{{.Title}}</strong>{{end}}
+    {{if .SeriesSlug}}<small>serio: <code>{{.SeriesSlug}}</code>{{if .SeriesOrder}} #{{.SeriesOrder}}{{end}}</small>{{end}}
+    {{if .Tags}}<small>etikedoj: {{range .Tags}}<span class="tag">{{.}}</span> {{end}}</small>{{end}}
+    <small>nivelo ≈ {{printf "%.0f" .Rating}}</small>
+  </header>
+  {{if .Title}}<p><strong>{{.Title}}</strong></p>{{end}}
+  {{if .Question}}<p>&#10067; {{.Question}}</p>{{end}}
+  {{if .Answer}}<p>&#10003; <code>{{.Answer}}</code></p>{{end}}
+  {{if .Text}}<p style="white-space:pre-wrap;max-height:8em;overflow:auto;font-size:0.85em">{{.Text}}</p>{{end}}
+</article>
+{{end}}
+</div>
+
+<p><a href="/admin">&larr; Reen al panelo</a></p>
+{{end}}

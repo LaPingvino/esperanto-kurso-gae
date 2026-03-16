@@ -40,8 +40,17 @@ func NewCommunityHandler(
 	}
 }
 
+// VoteCompact handles POST /vochdonado/{contentID}/kompakta — same as Vote but returns compact template.
+func (h *CommunityHandler) VoteCompact(w http.ResponseWriter, r *http.Request) {
+	h.vote(w, r, "vote-kompakta.html")
+}
+
 // Vote handles POST /vochdonado/{contentID}.
 func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
+	h.vote(w, r, "vochdonado.html")
+}
+
+func (h *CommunityHandler) vote(w http.ResponseWriter, r *http.Request, tmplName string) {
 	contentID := r.PathValue("contentID")
 	if contentID == "" {
 		http.NotFound(w, r)
@@ -120,7 +129,7 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 		"User":        u,
 		"UILang":      UILangFor(u),
 	}
-	if err := h.tmpl.ExecuteTemplate(w, "vochdonado.html", data); err != nil {
+	if err := h.tmpl.ExecuteTemplate(w, tmplName, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
@@ -163,6 +172,7 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 		Text:          text,
 		Approved:      autoApprove,
 		AutoApproved:  autoApprove,
+		Language:      UILangFor(u),
 	}
 	if err := h.comments.Create(r.Context(), comment); err != nil {
 		http.Error(w, "Ne eblis konservi komenton", http.StatusInternalServerError)

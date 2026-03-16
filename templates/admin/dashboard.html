@@ -42,6 +42,7 @@
     <li><a href="/admin/enhavo" role="button">Administri enhavon</a></li>
     <li><a href="/admin/enhavo/nova" role="button" class="outline">+ Nova enhavo</a></li>
     <li><a href="/admin/moderigo" role="button" class="outline">Moderiĝo</a></li>
+    <li><a href="/admin/komentoj" role="button" class="outline">Ĉiuj komentoj</a></li>
     {{if eq .User.Role "admin"}}<li><a href="/admin/uzantoj" role="button" class="outline">Uzantoj</a></li>{{end}}
   </ul>
 </nav>
@@ -56,16 +57,17 @@
     {{range .SeedFiles}}
     <tr>
       <td><code>{{.}}</code></td>
+      <td><a href="/admin/seed/{{.}}/rigardi" role="button" class="outline btn-sm">&#128065; Rigardi</a></td>
       <td>
         <form method="POST" action="/admin/seed/{{.}}" style="display:inline">
           <input type="hidden" name="mode" value="create">
-          <button type="submit">Semu novajn</button>
+          <button type="submit" class="btn-sm">Semu novajn</button>
         </form>
       </td>
       <td>
         <form method="POST" action="/admin/seed/{{.}}" style="display:inline">
           <input type="hidden" name="mode" value="patch">
-          <button type="submit" class="outline">Ĝisdatigu</button>
+          <button type="submit" class="outline btn-sm">Ĝisdatigu</button>
         </form>
       </td>
     </tr>

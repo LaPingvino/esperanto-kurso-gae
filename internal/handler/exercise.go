@@ -21,6 +21,7 @@ type ExerciseHandler struct {
 	content  *store.ContentStore
 	users    *store.UserStore
 	attempts *store.AttemptStore
+	votes    *store.VoteStore
 }
 
 // NewExerciseHandler creates an ExerciseHandler.
@@ -29,12 +30,14 @@ func NewExerciseHandler(
 	content *store.ContentStore,
 	users *store.UserStore,
 	attempts *store.AttemptStore,
+	votes *store.VoteStore,
 ) *ExerciseHandler {
 	return &ExerciseHandler{
 		tmpl:     tmpl,
 		content:  content,
 		users:    users,
 		attempts: attempts,
+		votes:    votes,
 	}
 }
 
@@ -136,6 +139,8 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 		correctAnswer = item.Word()
 	}
 
+	currentVote, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
+
 	data := map[string]interface{}{
 		"User":           u,
 		"Item":           item,
@@ -154,6 +159,8 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 		"StreakDeadline": streakDeadline,
 		"NewToken":       newToken,
 		"UILang":         u.UILangOrDefault(),
+		"CurrentVote":    currentVote,
+		"VoteScore":      item.VoteScore,
 	}
 
 	if newToken != "" {
@@ -339,6 +346,8 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 		correctAnswer = item.Word()
 	}
 
+	currentVote, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
+
 	data := map[string]interface{}{
 		"User":           u,
 		"Item":           item,
@@ -357,6 +366,8 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 		"StreakDeadline": streakDeadline,
 		"NewToken":       newToken,
 		"UILang":         u.UILangOrDefault(),
+		"CurrentVote":    currentVote,
+		"VoteScore":      item.VoteScore,
 	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)
