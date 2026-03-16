@@ -44,7 +44,9 @@
                     list="ui-lang-list" autocomplete="off" spellcheck="false"
                     class="lang-input" placeholder="{{.UILang}}"
                     value="{{.UILang}}"
-                    oninput="uiLangInput(this)"></label>
+                    oninput="uiLangInput(this)"
+                    onfocus="langInputFocus(this)"
+                    onblur="langInputBlur(this,'ui-lang-list')"></label>
             <datalist id="ui-lang-list">
               <option value="ar">العربية</option>
               <option value="bn">বাংলা</option>
@@ -84,7 +86,9 @@
                     list="vocab-lang-list" autocomplete="off" spellcheck="false"
                     class="lang-input" placeholder="{{$vl}}"
                     value="{{$vl}}"
-                    oninput="vocabLangInput(this)"></label>
+                    oninput="vocabLangInput(this)"
+                    onfocus="langInputFocus(this)"
+                    onblur="langInputBlur(this,'vocab-lang-list')"></label>
             <datalist id="vocab-lang-list">
               <option value="ar">العربية</option>
               <option value="be">Беларуская</option>

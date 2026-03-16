@@ -498,22 +498,58 @@ function credentialToJSON(cred) {
 })();
 
 // ---- Language pickers (datalist with code or name search) ----
+
+function _getLangName(datalistId, code) {
+  var dl = document.getElementById(datalistId);
+  if (!dl) return code;
+  var opts = dl.options;
+  for (var i = 0; i < opts.length; i++) {
+    if (opts[i].value === code) return opts[i].label || code;
+  }
+  return code;
+}
+
 function _langInput(input, datalistId, formId) {
   var dl = document.getElementById(datalistId);
   if (!dl) return;
   var val = input.value.trim().toLowerCase();
-  var options = dl.options;
-  for (var i = 0; i < options.length; i++) {
-    var opt = options[i];
-    if (opt.value.toLowerCase() === val || opt.label.toLowerCase() === val) {
+  var opts = dl.options;
+  for (var i = 0; i < opts.length; i++) {
+    var opt = opts[i];
+    var label = (opt.label || '').toLowerCase();
+    if (opt.value.toLowerCase() === val || label === val) {
+      input.dataset.code = opt.value;
       input.value = opt.value;
       document.getElementById(formId).submit();
       return;
     }
   }
 }
+
+function langInputFocus(input) {
+  // Show the code so the user can type to search
+  var code = input.dataset.code || input.value;
+  input.dataset.code = code;
+  input.value = code;
+  input.select();
+}
+
+function langInputBlur(input, datalistId) {
+  // Restore human-readable name if unchanged or invalid
+  var code = input.dataset.code || input.value;
+  input.dataset.code = code;
+  input.value = _getLangName(datalistId, code);
+}
+
 function vocabLangInput(input) { _langInput(input, 'vocab-lang-list', 'vocab-lang-form'); }
 function uiLangInput(input)    { _langInput(input, 'ui-lang-list',    'ui-lang-form');    }
+
+document.addEventListener('DOMContentLoaded', function () {
+  var ui = document.getElementById('ui-lang-input');
+  if (ui) langInputBlur(ui, 'ui-lang-list');
+  var vl = document.getElementById('vocab-lang-input');
+  if (vl) langInputBlur(vl, 'vocab-lang-list');
+});
 
 // ---- Reveal community sections after answer ----
 document.addEventListener('htmx:afterSwap', function (evt) {
