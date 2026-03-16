@@ -28,7 +28,7 @@
         <form method="POST" action="/admin/uzantoj/{{.ID}}/rolo" style="display:inline">
           <select name="rolo">
             <option value="user" {{if eq .Role "user"}}selected{{end}}>uzanto</option>
-            <option value="creator" {{if eq .Role "creator"}}selected{{end}}>kreatoro</option>
+            <option value="creator" {{if eq .Role "creator"}}selected{{end}}>kurskreanto</option>
             <option value="mod" {{if eq .Role "mod"}}selected{{end}}>moderisto</option>
             <option value="admin" {{if eq .Role "admin"}}selected{{end}}>administranto</option>
           </select>
