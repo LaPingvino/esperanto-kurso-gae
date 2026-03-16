@@ -36,40 +36,45 @@
         {{- /* ── Language switchers ── */}}
         {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
         <li class="lang-switchers">
-          <form method="POST" action="/uilingvo" class="lang-form" title="{{t .UILang "nav.ui_lang_title"}}">
-            <label>&#127760;<select name="ui_lang" onchange="this.form.submit()" class="lang-select">
-              <option value="ar"  {{if eq .UILang "ar" }}selected{{end}}>العربية</option>
-              <option value="bn"  {{if eq .UILang "bn" }}selected{{end}}>বাংলা</option>
-              <option value="cs"  {{if eq .UILang "cs" }}selected{{end}}>Čeština</option>
-              <option value="da"  {{if eq .UILang "da" }}selected{{end}}>Dansk</option>
-              <option value="de"  {{if eq .UILang "de" }}selected{{end}}>Deutsch</option>
-              <option value="el"  {{if eq .UILang "el" }}selected{{end}}>Ελληνικά</option>
-              <option value="en"  {{if eq .UILang "en" }}selected{{end}}>English</option>
-              <option value="eo"  {{if eq .UILang "eo" }}selected{{end}}>Esperanto</option>
-              <option value="es"  {{if eq .UILang "es" }}selected{{end}}>Español</option>
-              <option value="fa"  {{if eq .UILang "fa" }}selected{{end}}>فارسی</option>
-              <option value="fr"  {{if eq .UILang "fr" }}selected{{end}}>Français</option>
-              <option value="he"  {{if eq .UILang "he" }}selected{{end}}>עברית</option>
-              <option value="hi"  {{if eq .UILang "hi" }}selected{{end}}>हिन्दी</option>
-              <option value="hu"  {{if eq .UILang "hu" }}selected{{end}}>Magyar</option>
-              <option value="id"  {{if eq .UILang "id" }}selected{{end}}>Bahasa Indonesia</option>
-              <option value="it"  {{if eq .UILang "it" }}selected{{end}}>Italiano</option>
-              <option value="ja"  {{if eq .UILang "ja" }}selected{{end}}>日本語</option>
-              <option value="ko"  {{if eq .UILang "ko" }}selected{{end}}>한국어</option>
-              <option value="nl"  {{if eq .UILang "nl" }}selected{{end}}>Nederlands</option>
-              <option value="pl"  {{if eq .UILang "pl" }}selected{{end}}>Polski</option>
-              <option value="pt"  {{if eq .UILang "pt" }}selected{{end}}>Português</option>
-              <option value="ro"  {{if eq .UILang "ro" }}selected{{end}}>Română</option>
-              <option value="ru"  {{if eq .UILang "ru" }}selected{{end}}>Русский</option>
-              <option value="sv"  {{if eq .UILang "sv" }}selected{{end}}>Svenska</option>
-              <option value="sw"  {{if eq .UILang "sw" }}selected{{end}}>Kiswahili</option>
-              <option value="tr"  {{if eq .UILang "tr" }}selected{{end}}>Türkçe</option>
-              <option value="uk"  {{if eq .UILang "uk" }}selected{{end}}>Українська</option>
-              <option value="ur"  {{if eq .UILang "ur" }}selected{{end}}>اردو</option>
-              <option value="vi"  {{if eq .UILang "vi" }}selected{{end}}>Tiếng Việt</option>
-              <option value="tok" {{if eq .UILang "tok"}}selected{{end}}>Toki Pona</option>
-              <option value="zh"  {{if eq .UILang "zh" }}selected{{end}}>中文</option>
-            </select></label>
+          <form method="POST" action="/uilingvo" id="ui-lang-form" class="lang-form" title="{{t .UILang "nav.ui_lang_title"}}">
+            <label>&#127760;<input id="ui-lang-input" name="ui_lang" type="text"
+                    list="ui-lang-list" autocomplete="off" spellcheck="false"
+                    class="lang-input" placeholder="{{.UILang}}"
+                    value="{{.UILang}}"
+                    oninput="uiLangInput(this)"></label>
+            <datalist id="ui-lang-list">
+              <option value="ar">العربية</option>
+              <option value="bn">বাংলা</option>
+              <option value="cs">Čeština</option>
+              <option value="da">Dansk</option>
+              <option value="de">Deutsch</option>
+              <option value="el">Ελληνικά</option>
+              <option value="en">English</option>
+              <option value="eo">Esperanto</option>
+              <option value="es">Español</option>
+              <option value="fa">فارسی</option>
+              <option value="fr">Français</option>
+              <option value="he">עברית</option>
+              <option value="hi">हिन्दी</option>
+              <option value="hu">Magyar</option>
+              <option value="id">Bahasa Indonesia</option>
+              <option value="it">Italiano</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="nl">Nederlands</option>
+              <option value="pl">Polski</option>
+              <option value="pt">Português</option>
+              <option value="ro">Română</option>
+              <option value="ru">Русский</option>
+              <option value="sv">Svenska</option>
+              <option value="sw">Kiswahili</option>
+              <option value="tr">Türkçe</option>
+              <option value="uk">Українська</option>
+              <option value="ur">اردو</option>
+              <option value="vi">Tiếng Việt</option>
+              <option value="tok">Toki Pona</option>
+              <option value="zh">中文</option>
+            </datalist>
           </form>
           <form method="POST" action="/lingvo" id="vocab-lang-form" class="lang-form" title="{{t .UILang "nav.vocab_lang_title"}}">
             <label>&#128172;<input id="vocab-lang-input" name="lang" type="text"

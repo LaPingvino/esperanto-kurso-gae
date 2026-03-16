@@ -765,20 +765,21 @@ nav a[href="/admin/enhavo/nova"] {
 /* Datalist-based vocab lang picker */
 .lang-input {
   font-size: 0.75rem;
-  padding: 0.1em 0.3em;
+  padding: 0.1em 0.2em;
   border: 1px solid transparent;
   border-radius: 0.25em;
   background: transparent;
   color: inherit;
-  width: 4rem;
+  width: 2.6rem;
   margin: 0;
   min-height: unset;
   display: inline;
+  transition: width 0.15s;
 }
 .lang-input:hover, .lang-input:focus {
   border-color: var(--pico-muted-border-color, #ccc);
   background: var(--pico-background-color, #fff);
-  width: 8rem;
+  width: 9rem;
 }
 
 /* ---- RTL overrides ---- */
