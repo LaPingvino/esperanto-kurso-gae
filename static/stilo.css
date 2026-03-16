@@ -770,16 +770,16 @@ nav a[href="/admin/enhavo/nova"] {
   border-radius: 0.25em;
   background: transparent;
   color: inherit;
-  width: 2.6rem;
+  width: 2.6rem !important;
   margin: 0;
-  min-height: unset;
+  min-height: unset !important;
   display: inline;
   transition: width 0.15s;
 }
 .lang-input:hover, .lang-input:focus {
   border-color: var(--pico-muted-border-color, #ccc);
   background: var(--pico-background-color, #fff);
-  width: 9rem;
+  width: 9rem !important;
 }
 
 /* ---- RTL overrides ---- */
