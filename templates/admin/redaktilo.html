@@ -248,7 +248,7 @@
 
     <div class="grid">
       <label>Malfacileco (CEFR) por ĉiuj eroj:
-        <select onchange="cefrToRating(this.value)">
+        <select onchange="cefrToRating(this)">
           <option value="900">A0 — Neniu antaŭa kono</option>
           <option value="1100">A1 — Enirnivela uzanto</option>
           <option value="1300">A2 — Elementa uzanto</option>
@@ -259,7 +259,7 @@
         </select>
       </label>
       <label>Preciza ratingpunkto:
-        <input type="number" name="initial_rating" id="rating-field"
+        <input type="number" name="initial_rating" 
                value="1500" min="500" max="3000" step="50">
       </label>
     </div>
@@ -308,7 +308,7 @@
 
   <div class="grid">
     <label>Malfacileco (CEFR-nivelo):
-      <select id="cefr-picker" onchange="cefrToRating(this.value)">
+      <select onchange="cefrToRating(this)">
         <option value="900"  {{if lt .Item.Rating 1000.0}}selected{{end}}>A0 — Neniu antaŭa kono</option>
         <option value="1100" {{if and (ge .Item.Rating 1000.0) (lt .Item.Rating 1200.0)}}selected{{end}}>A1 — Enirnivela uzanto</option>
         <option value="1300" {{if and (ge .Item.Rating 1200.0) (lt .Item.Rating 1400.0)}}selected{{end}}>A2 — Elementa uzanto</option>
@@ -319,7 +319,7 @@
       </select>
     </label>
     <label>Preciza ratingpunkto <small>(aŭtomate kalibriĝas)</small>:
-      <input type="number" name="initial_rating" id="rating-field"
+      <input type="number" name="initial_rating" 
              value="{{printf "%.0f" .Item.Rating}}" min="500" max="3000" step="50">
     </label>
   </div>
@@ -647,21 +647,24 @@ document.addEventListener('DOMContentLoaded', function() {
   if (sel && sel.value) showContentFields(sel.value);
 });
 
-// CEFR picker ↔ rating field sync
-function cefrToRating(val) {
-  var rf = document.getElementById('rating-field');
-  if (rf) rf.value = val;
+// CEFR picker ↔ rating field sync.
+// Each CEFR select updates the initial_rating input in the same .grid parent.
+function cefrToRating(selectEl) {
+  var grid = selectEl.closest('.grid');
+  var rf = grid ? grid.querySelector('input[name="initial_rating"]') : null;
+  if (rf) rf.value = selectEl.value;
 }
 document.addEventListener('DOMContentLoaded', function() {
-  var rf = document.getElementById('rating-field');
-  var cp = document.getElementById('cefr-picker');
-  if (!rf || !cp) return;
-  // Keep CEFR picker in sync when rating is typed manually.
-  rf.addEventListener('change', function() {
-    var v = parseFloat(this.value);
-    var opt = v < 1000 ? '900' : v < 1200 ? '1100' : v < 1400 ? '1300' :
-              v < 1600 ? '1500' : v < 1800 ? '1700' : v < 2000 ? '1900' : '2100';
-    cp.value = opt;
+  // For each rating input, keep its sibling CEFR select in sync when typed manually.
+  document.querySelectorAll('input[name="initial_rating"]').forEach(function(rf) {
+    var grid = rf.closest('.grid');
+    var cp = grid ? grid.querySelector('select') : null;
+    if (!cp) return;
+    rf.addEventListener('change', function() {
+      var v = parseFloat(this.value);
+      cp.value = v < 1000 ? '900' : v < 1200 ? '1100' : v < 1400 ? '1300' :
+                 v < 1600 ? '1500' : v < 1800 ? '1700' : v < 2000 ? '1900' : '2100';
+    });
   });
 });
 </script>

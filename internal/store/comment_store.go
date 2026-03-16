@@ -50,17 +50,46 @@ func (s *CommentStore) Create(ctx context.Context, c *model.Comment) error {
 }
 
 func (s *CommentStore) ListApprovedByContent(ctx context.Context, contentID string) ([]*model.Comment, error) {
-	// Single-field filter only — no composite index needed.
-	q := datastore.NewQuery(commentKind).FilterField("content_item_id", "=", contentID)
-	all, err := s.runQuery(ctx, q)
+	// Keys-only query to get all comment keys for this content item.
+	// The keys are eventually consistent for new entities, but already-existing
+	// entities (like those awaiting moderation approval) will appear.
+	q := datastore.NewQuery(commentKind).
+		FilterField("content_item_id", "=", contentID).
+		KeysOnly()
+	keys, err := s.db.GetAll(ctx, q, nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("comment_store: list keys: %w", err)
+	}
+	if len(keys) == 0 {
+		return nil, nil
+	}
+	// GetMulti by key is strongly consistent — reflects the current approved state.
+	entities := make([]commentEntity, len(keys))
+	if err := s.db.GetMulti(ctx, keys, entities); err != nil {
+		if me, ok := err.(datastore.MultiError); ok {
+			for _, e := range me {
+				if e != nil && e != datastore.ErrNoSuchEntity {
+					return nil, fmt.Errorf("comment_store: get multi: %w", e)
+				}
+			}
+		} else {
+			return nil, fmt.Errorf("comment_store: get multi: %w", err)
+		}
 	}
 	var approved []*model.Comment
-	for _, c := range all {
-		if c.Approved {
-			approved = append(approved, c)
+	for i, e := range entities {
+		if !e.Approved {
+			continue
 		}
+		approved = append(approved, &model.Comment{
+			ID:            strconv.FormatInt(keys[i].ID, 10),
+			UserID:        e.UserID,
+			ContentItemID: e.ContentItemID,
+			Text:          e.Text,
+			Approved:      e.Approved,
+			AutoApproved:  e.AutoApproved,
+			CreatedAt:     e.CreatedAt,
+		})
 	}
 	sort.Slice(approved, func(i, j int) bool {
 		return approved[i].CreatedAt.Before(approved[j].CreatedAt)
