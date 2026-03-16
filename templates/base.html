@@ -6,6 +6,7 @@
   <title>{{block "title" .}}Esperanto-kurso{{end}}</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/static/stilo.css">
+  <script>(function(){var t=localStorage.getItem('eo_theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);})();</script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   <script src="/static/eo.js" defer></script>
 </head>
@@ -32,6 +33,7 @@
         {{if .User}}<li><a href="/steloj" title="{{t .UILang "nav.favorites"}}">★</a></li>{{end}}
         <li><a href="/serioj" title="{{t .UILang "nav.serioj"}}">📋</a></li>
         <li><a href="/honorlisto" title="{{t .UILang "nav.honorlisto"}}">🏆</a></li>
+        <li><button id="theme-toggle" class="theme-toggle" onclick="cycleTheme()">🔆</button></li>
         <li><button class="focus-toggle" onclick="toggleFocusMode()" title="{{t .UILang "focus.toggle"}}">🎯</button></li>
         <li><a href="/enskribi" class="nav-profile" title="{{t .UILang "nav.profile"}}">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
         {{- /* ── Language switchers ── */}}

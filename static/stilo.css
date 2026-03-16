@@ -17,7 +17,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --eo-green: #00c000;
     --eo-green-light: #00e000;
     --eo-green-dark: #00a000;
@@ -30,6 +30,20 @@
     --reading-bg: rgba(255, 255, 255, 0.05);
     --reading-color: inherit;
   }
+}
+
+[data-theme="dark"] {
+  --eo-green: #00c000;
+  --eo-green-light: #00e000;
+  --eo-green-dark: #00a000;
+  --correct-bg: rgba(40, 167, 69, 0.2);
+  --correct-border: #5cb85c;
+  --incorrect-bg: rgba(220, 53, 69, 0.2);
+  --incorrect-border: #e05a6a;
+  --delta-pos: #5cb85c;
+  --delta-neg: #e05a6a;
+  --reading-bg: rgba(255, 255, 255, 0.05);
+  --reading-color: inherit;
 }
 
 /* ---- Typography ---- */
@@ -502,14 +516,22 @@ button[value="bone"] {
   color: var(--eo-green-dark);
 }
 @media (prefers-color-scheme: dark) {
-  button[value="bone"] {
+  :root:not([data-theme="light"]) button[value="bone"] {
     color: var(--eo-green-light);
     border-color: var(--eo-green-light);
   }
-  button[value="malfacile"] {
+  :root:not([data-theme="light"]) button[value="malfacile"] {
     color: #e07000;
     border-color: #e07000;
   }
+}
+[data-theme="dark"] button[value="bone"] {
+  color: var(--eo-green-light);
+  border-color: var(--eo-green-light);
+}
+[data-theme="dark"] button[value="malfacile"] {
+  color: #e07000;
+  border-color: #e07000;
 }
 button[value="bone"]:hover {
   background: var(--eo-green);
@@ -782,6 +804,18 @@ nav a[href="/admin/enhavo/nova"] {
   background: var(--pico-background-color, #fff);
   width: 9rem !important;
 }
+
+/* ---- Theme toggle ---- */
+.theme-toggle {
+  background: none;
+  border: none;
+  padding: 0.1em 0.2em;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.6;
+  line-height: 1;
+}
+.theme-toggle:hover { opacity: 1; }
 
 /* ---- Focus mode ---- */
 .focus-toggle {

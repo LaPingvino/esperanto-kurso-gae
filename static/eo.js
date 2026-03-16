@@ -454,6 +454,34 @@ function credentialToJSON(cred) {
   }, true);
 })();
 
+// ---- Theme picker (light / dark / auto) ----
+(function () {
+  var THEME_KEY = 'eo_theme';
+  var ICONS = { light: '☀️', dark: '🌙', auto: '🔆' };
+
+  function getTheme() { return localStorage.getItem(THEME_KEY) || 'auto'; }
+
+  function applyTheme(theme) {
+    if (theme === 'auto') {
+      document.documentElement.removeAttribute('data-theme');
+    } else {
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    var btn = document.getElementById('theme-toggle');
+    if (btn) btn.textContent = ICONS[theme] || ICONS.auto;
+  }
+
+  // Sync icon once DOM is ready (theme attribute already applied by inline script).
+  document.addEventListener('DOMContentLoaded', function () { applyTheme(getTheme()); });
+
+  window.cycleTheme = function () {
+    var cur = getTheme();
+    var next = cur === 'auto' ? 'light' : cur === 'light' ? 'dark' : 'auto';
+    localStorage.setItem(THEME_KEY, next);
+    applyTheme(next);
+  };
+})();
+
 // ---- Focus mode ----
 (function () {
   var FM_KEY = 'eo_focus_mode';
