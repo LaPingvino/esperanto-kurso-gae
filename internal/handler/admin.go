@@ -582,6 +582,10 @@ func (h *AdminHandler) ApproveTranslation(w http.ResponseWriter, r *http.Request
 		return
 	}
 	_ = h.translations.Delete(r.Context(), id)
+	if r.Header.Get("HX-Request") == "true" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
 }
 
@@ -593,6 +597,10 @@ func (h *AdminHandler) DeleteTranslation(w http.ResponseWriter, r *http.Request)
 		return
 	}
 	_ = h.translations.Delete(r.Context(), id)
+	if r.Header.Get("HX-Request") == "true" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
 }
 
@@ -625,6 +633,12 @@ func (h *AdminHandler) ModerateComment(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// HTMX: return empty body so outerHTML swap removes the article from the DOM.
+	// Plain form POST: redirect back to the moderation queue.
+	if r.Header.Get("HX-Request") == "true" {
+		w.WriteHeader(http.StatusOK)
+		return
+	}
 	http.Redirect(w, r, "/admin/moderigo", http.StatusSeeOther)
 }
 

@@ -94,7 +94,7 @@
   {{if .Translations}}
   <div class="moderation-list">
     {{range .Translations}}
-    <article class="moderation-item">
+    <article class="moderation-item" id="traduko-{{.ID}}">
       <header>
         <small>
           Vorto: <a href="/ekzerco/{{.TargetID}}"><code>{{.TargetID}}</code></a>
@@ -108,11 +108,13 @@
       </header>
       <p>{{.Text}}</p>
       <footer style="display:flex;gap:0.5rem;flex-wrap:wrap">
-        <form method="POST" action="/admin/tradukoj/{{.ID}}/aprobi" style="display:inline">
+        <form hx-post="/admin/tradukoj/{{.ID}}/aprobi"
+              hx-target="#traduko-{{.ID}}" hx-swap="outerHTML" style="display:inline">
           <button type="submit" class="approve-btn">&#10003; Aldoni kiel oficialan difinon</button>
         </form>
-        <form method="POST" action="/admin/tradukoj/{{.ID}}/forigi" style="display:inline"
-              onsubmit="return confirm('Forigi tiun ĉi tradukon?')">
+        <form hx-post="/admin/tradukoj/{{.ID}}/forigi"
+              hx-target="#traduko-{{.ID}}" hx-swap="outerHTML" style="display:inline"
+              hx-confirm="Forigi tiun ĉi tradukon?">
           <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
         </form>
       </footer>
