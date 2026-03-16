@@ -762,6 +762,25 @@ nav a[href="/admin/enhavo/nova"] {
   background: var(--pico-background-color, #fff);
 }
 
+/* Datalist-based vocab lang picker */
+.lang-input {
+  font-size: 0.75rem;
+  padding: 0.1em 0.3em;
+  border: 1px solid transparent;
+  border-radius: 0.25em;
+  background: transparent;
+  color: inherit;
+  width: 4rem;
+  margin: 0;
+  min-height: unset;
+  display: inline;
+}
+.lang-input:hover, .lang-input:focus {
+  border-color: var(--pico-muted-border-color, #ccc);
+  background: var(--pico-background-color, #fff);
+  width: 8rem;
+}
+
 /* ---- RTL overrides ---- */
 /* When dir="rtl" is set on <html>, the browser and Pico CSS handle most
    mirroring automatically. We only need to fix explicit left/right properties. */

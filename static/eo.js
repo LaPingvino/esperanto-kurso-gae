@@ -454,6 +454,23 @@ function credentialToJSON(cred) {
   }, true);
 })();
 
+// ---- Vocab language picker (datalist with code or name search) ----
+function vocabLangInput(input) {
+  var dl = document.getElementById('vocab-lang-list');
+  if (!dl) return;
+  var val = input.value.trim().toLowerCase();
+  var options = dl.options;
+  for (var i = 0; i < options.length; i++) {
+    var opt = options[i];
+    // Match by code (value) or by language name (label/text)
+    if (opt.value.toLowerCase() === val || opt.label.toLowerCase() === val) {
+      input.value = opt.value; // normalise to code
+      document.getElementById('vocab-lang-form').submit();
+      return;
+    }
+  }
+}
+
 // ---- Reveal community sections after answer ----
 document.addEventListener('htmx:afterSwap', function (evt) {
   if (evt.detail.target && evt.detail.target.id === 'rezulto') {
