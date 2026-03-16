@@ -527,11 +527,10 @@ function _langInput(input, datalistId, formId) {
 }
 
 function langInputFocus(input) {
-  // Show the code so the user can type to search
+  // Save current code, clear field so the full list is visible immediately
   var code = input.dataset.code || input.value;
   input.dataset.code = code;
-  input.value = code;
-  input.select();
+  input.value = '';
 }
 
 function langInputBlur(input, datalistId) {
