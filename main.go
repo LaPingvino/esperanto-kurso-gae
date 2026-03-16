@@ -58,7 +58,7 @@ func main() {
 	authH := handler.NewAuthHandler(tmpl, userStore, sessionStore, wa)
 	contentH := handler.NewContentHandler(tmpl, contentStore, commentStore, voteStore, translationStore, userStore)
 	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore, voteStore)
-	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore)
+	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore, userStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
 
 	// --- Router ---

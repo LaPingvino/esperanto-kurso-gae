@@ -519,6 +519,7 @@ func (h *AdminHandler) ModerationQueue(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	h.users.ResolveUsernames(r.Context(), comments)
 	allMessages, _ := h.modMessages.ListUnread(r.Context(), 100)
 	translations, _ := h.translations.ListAll(r.Context(), 200)
 
@@ -650,6 +651,7 @@ func (h *AdminHandler) ShowAllComments(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	h.users.ResolveUsernames(r.Context(), comments)
 	// Enrich with content item titles for easy navigation.
 	type EnrichedComment struct {
 		Comment *model.Comment

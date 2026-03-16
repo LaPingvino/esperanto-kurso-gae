@@ -158,6 +158,28 @@ func (s *UserStore) GetByID(ctx context.Context, id string) (*model.User, error)
 	return entityToUser(id, &e)
 }
 
+// ResolveUsernames populates the Username field of each comment by looking up
+// user IDs. Uses a simple cache to avoid redundant lookups.
+func (s *UserStore) ResolveUsernames(ctx context.Context, comments []*model.Comment) {
+	cache := map[string]string{}
+	for _, c := range comments {
+		if c.UserID == "" {
+			continue
+		}
+		if name, ok := cache[c.UserID]; ok {
+			c.Username = name
+			continue
+		}
+		u, err := s.GetByID(ctx, c.UserID)
+		if err == nil && u != nil {
+			cache[c.UserID] = u.Username
+			c.Username = u.Username
+		} else {
+			cache[c.UserID] = ""
+		}
+	}
+}
+
 func (s *UserStore) GetByToken(ctx context.Context, token string) (*model.User, error) {
 	q := datastore.NewQuery(userKind).FilterField("token", "=", token).Limit(1)
 	var entities []userEntity

@@ -6,6 +6,7 @@ import "time"
 type Comment struct {
 	ID            string    `firestore:"-"`
 	UserID        string    `firestore:"user_id"`
+	Username      string    `firestore:"-"` // resolved at render time, not stored
 	ContentItemID string    `firestore:"content_item_id"`
 	Text          string    `firestore:"text"`
 	Approved      bool      `firestore:"approved"`

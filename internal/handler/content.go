@@ -289,6 +289,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 
 	comments, _ := h.comments.ListApprovedByContent(r.Context(), slug)
+	h.users.ResolveUsernames(r.Context(), comments)
 	translations, _ := h.translations.ListByTarget(r.Context(), slug)
 
 	var currentVote *model.Vote

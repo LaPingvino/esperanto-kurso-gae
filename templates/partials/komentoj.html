@@ -6,7 +6,7 @@
   <div class="comment-list">
     {{range .Comments}}
     <article class="comment">
-      <small class="comment-author">{{t $.UILang "comment.author_label"}} {{truncate .UserID 8}}</small>
+      <small class="comment-author">{{t $.UILang "comment.author_label"}} {{if .Username}}<strong>{{.Username}}</strong>{{else}}<code>{{truncate .UserID 8}}</code>{{end}}</small>
       <p>{{.Text}}</p>
     </article>
     {{end}}

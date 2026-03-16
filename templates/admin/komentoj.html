@@ -5,7 +5,7 @@
 {{define "title"}}Ĉiuj komentoj — Administrado{{end}}
 
 {{define "content"}}
-<h1>Ĉiuj aprobita komentoj ({{len .Comments}})</h1>
+<h1>Ĉiuj aprobitaj komentoj ({{len .Comments}})</h1>
 
 <p><a href="/admin/moderigo">&larr; Reen al moderigado</a></p>
 
@@ -14,7 +14,7 @@
   {{range .Comments}}
   <article class="moderation-item" id="comment-{{.Comment.ID}}">
     <header style="display:flex;gap:1rem;flex-wrap:wrap;align-items:baseline">
-      <small>Uzanto: <code>{{truncate .Comment.UserID 8}}</code></small>
+      <small>Uzanto: {{if .Comment.Username}}<strong>{{.Comment.Username}}</strong>{{else}}<code>{{truncate .Comment.UserID 8}}</code>{{end}}</small>
       <small>{{.Comment.CreatedAt.Format "2006-01-02 15:04"}}</small>
       <small>
         Ekzerco:

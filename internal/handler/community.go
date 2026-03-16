@@ -19,6 +19,7 @@ type CommunityHandler struct {
 	comments     *store.CommentStore
 	translations *store.TranslationStore
 	modMessages  *store.ModMessageStore
+	users        *store.UserStore
 }
 
 // NewCommunityHandler creates a CommunityHandler.
@@ -29,6 +30,7 @@ func NewCommunityHandler(
 	comments *store.CommentStore,
 	translations *store.TranslationStore,
 	modMessages *store.ModMessageStore,
+	users *store.UserStore,
 ) *CommunityHandler {
 	return &CommunityHandler{
 		tmpl:         tmpl,
@@ -37,6 +39,7 @@ func NewCommunityHandler(
 		comments:     comments,
 		translations: translations,
 		modMessages:  modMessages,
+		users:        users,
 	}
 }
 
@@ -181,8 +184,10 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 
 	comments, _ := h.comments.ListApprovedByContent(r.Context(), contentID)
 	if autoApprove {
+		comment.Username = u.Username
 		comments = append(comments, comment)
 	}
+	h.users.ResolveUsernames(r.Context(), comments)
 
 	data := map[string]interface{}{
 		"ContentID": contentID,

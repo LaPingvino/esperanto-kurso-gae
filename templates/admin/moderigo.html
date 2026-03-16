@@ -130,14 +130,14 @@
 
 {{/* ── Pending comments ── */}}
 <section>
-  <h2>Komentoj ({{len .Comments}} atendas) — <a href="/admin/komentoj">Vidi ĉiujn aprobita</a></h2>
+  <h2>Komentoj ({{len .Comments}} atendas) — <a href="/admin/komentoj">Vidi ĉiujn aprobitajn</a></h2>
   {{if .Comments}}
   <div class="moderation-list">
     {{range .Comments}}
     <article class="moderation-item" id="comment-{{.ID}}">
       <header>
         <small>
-          Uzanto: <code>{{truncate .UserID 8}}</code>
+          Uzanto: {{if .Username}}<strong>{{.Username}}</strong>{{else}}<code>{{truncate .UserID 8}}</code>{{end}}
           &middot;
           Enhavo: <a href="/ekzerco/{{.ContentItemID}}"><code>{{.ContentItemID}}</code></a>
         </small>
