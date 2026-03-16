@@ -454,6 +454,21 @@ function credentialToJSON(cred) {
   }, true);
 })();
 
+// ---- Focus mode ----
+(function () {
+  var FM_KEY = 'eo_focus_mode';
+  function applyFocusMode(on) {
+    document.body.classList.toggle('focus-mode', on);
+  }
+  // Restore on load.
+  if (localStorage.getItem(FM_KEY) === '1') applyFocusMode(true);
+  window.toggleFocusMode = function () {
+    var on = !document.body.classList.contains('focus-mode');
+    applyFocusMode(on);
+    localStorage.setItem(FM_KEY, on ? '1' : '0');
+  };
+})();
+
 // ---- Language pickers (datalist with code or name search) ----
 function _langInput(input, datalistId, formId) {
   var dl = document.getElementById(datalistId);

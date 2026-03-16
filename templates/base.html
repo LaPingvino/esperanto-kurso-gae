@@ -32,6 +32,7 @@
         {{if .User}}<li><a href="/steloj" title="{{t .UILang "nav.favorites"}}">★</a></li>{{end}}
         <li><a href="/serioj" title="{{t .UILang "nav.serioj"}}">📋</a></li>
         <li><a href="/honorlisto" title="{{t .UILang "nav.honorlisto"}}">🏆</a></li>
+        <li><button class="focus-toggle" onclick="toggleFocusMode()" title="Fokusreĝimo">🎯</button></li>
         <li><a href="/enskribi" class="nav-profile" title="{{t .UILang "nav.profile"}}">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
         {{- /* ── Language switchers ── */}}
         {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
@@ -193,5 +194,7 @@
       .join('') || '<option value="" disabled>— neniu trovita —</option>';
   }
   </script>
+
+  <button class="focus-exit" onclick="toggleFocusMode()" title="Eliri fokusreĝimon" aria-label="Eliri fokusreĝimon">🎯</button>
 </body>
 </html>{{end}}

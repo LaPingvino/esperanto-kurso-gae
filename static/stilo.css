@@ -783,6 +783,48 @@ nav a[href="/admin/enhavo/nova"] {
   width: 9rem !important;
 }
 
+/* ---- Focus mode ---- */
+.focus-toggle {
+  background: none;
+  border: none;
+  padding: 0.1em 0.2em;
+  cursor: pointer;
+  font-size: 1rem;
+  opacity: 0.5;
+  line-height: 1;
+}
+.focus-toggle:hover { opacity: 1; }
+
+/* Floating exit button — only visible in focus mode */
+.focus-exit {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 999;
+  background: rgba(0,0,0,0.15);
+  border: none;
+  border-radius: 50%;
+  width: 2.4rem;
+  height: 2.4rem;
+  font-size: 1.1rem;
+  cursor: pointer;
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.focus-exit:hover { opacity: 1; }
+
+body.focus-mode .focus-exit { display: flex; align-items: center; justify-content: center; }
+body.focus-mode header { display: none; }
+body.focus-mode footer { display: none; }
+body.focus-mode .type-badge,
+body.focus-mode .cefr-badge,
+body.focus-mode .tag { display: none; }
+body.focus-mode .series-pill-details { display: none; }
+body.focus-mode .exercise-actions { display: none; }
+body.focus-mode .contributor-bar { display: none; }
+body.focus-mode .exercise-card { border-top: none; }
+
 /* ---- RTL overrides ---- */
 /* When dir="rtl" is set on <html>, the browser and Pico CSS handle most
    mirroring automatically. We only need to fix explicit left/right properties. */
