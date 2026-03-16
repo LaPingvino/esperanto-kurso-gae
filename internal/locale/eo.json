@@ -115,6 +115,7 @@
   "nav.favorites": "Stelitaj ekzercoj",
   "nav.home": "Hejmo",
   "nav.honorlisto": "Honora Listo",
+  "nav.serioj": "Ekzercaj serioj",
   "nav.mod": "Moderigado",
   "nav.profile": "Profilo",
   "nav.save_progress": "Konservu progreson",
@@ -133,7 +134,7 @@
   "result.judgment_unknown": "Ne sciis.",
   "result.level_label": "Nivelo:",
   "result.level_up_prefix": "Vi atingis novan nivelon:",
-  "result.next_in_series": "Sekva en serio",
+  "result.next_in_series": "Sekva en sinsekvo",
   "result.next_level": "Mia nuna nivelo →",
   "result.streak_title": "Sinsekvo",
   "result.suggest_alternative": "Sugesti mian respondon kiel alternativon",
@@ -164,7 +165,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Ĉiuj vortoj",
   "vortaro.def_lang_note_prefix": "Difino-lingvo:",
-  "vortaro.def_lang_note_suffix": "— ŝanĝu ĝin per la elektilo en la malsupro de la paĝo.",
+  "vortaro.def_lang_note_suffix": "— ŝanĝu ĝin per la 💬-elektilo en la supro de la paĝo.",
   "vortaro.definition_col": "Difino",
   "vortaro.empty": "Ankoraŭ ne estas vortoj en la vortaro.",
   "vortaro.esperanto_col": "Esperante",
@@ -186,5 +187,9 @@
   "exercise.sufikso_prompt": "Kia estas la Esperanta sufikso por:",
   "exercise.sufikso_placeholder": "sufikso…",
   "exercise.prefikso_prompt": "Kia estas la Esperanta prefikso por:",
-  "exercise.prefikso_placeholder": "prefikso…"
+  "exercise.prefikso_placeholder": "prefikso…",
+  "exercise.new_child_series": "Nova ekzerca sinsekvo",
+  "exercise.edit_exercise": "Redakti ekzercon",
+  "exercise.edit_series": "Redakti serion",
+  "result.streak_until": "ĝis"
 }

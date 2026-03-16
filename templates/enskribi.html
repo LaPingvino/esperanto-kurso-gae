@@ -44,7 +44,7 @@
   {{if .SentMsg}}<p class="success">&#10003; {{t .UILang "enskribi.msg_sent"}}</p>{{end}}
   <p>{{t .UILang "enskribi.level_label"}} <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
      <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
-     {{if .User.StreakDays}}<span class="streak-badge">&#128293; {{.User.StreakDays}}d</span>{{end}}</p>
+     {{if .User.StreakDays}}<span class="streak-badge">&#128293; <strong>{{.User.StreakDays}}</strong></span>{{end}}</p>
 
   <h3>{{t .UILang "enskribi.username_title"}}</h3>
   {{if .User.Username}}

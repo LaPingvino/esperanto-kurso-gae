@@ -14,15 +14,15 @@
   <p class="rezulto-ikono">&#10003; {{t .UILang "result.correct"}}</p>
   {{else}}
   <p class="rezulto-ikono">&#10007; {{t .UILang "result.incorrect"}}</p>
-  <p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>
-  <p>{{t .UILang "result.your_answer_label"}} <em>{{.YourAnswer}}</em></p>
+  {{if .CorrectAnswer}}<p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>{{end}}
+  {{if .YourAnswer}}<p>{{t .UILang "result.your_answer_label"}} <em>{{.YourAnswer}}</em></p>{{end}}
   {{if and .User .Item .YourAnswer (ne .Item.Type "multiplechoice")}}
   <div id="suggest-alt-{{.Item.Slug}}">
     <form hx-post="/ekzerco/{{.Item.Slug}}/alternativo"
           hx-target="#suggest-alt-{{.Item.Slug}}"
           hx-swap="innerHTML">
       <input type="hidden" name="answer" value="{{.YourAnswer}}">
-      <button type="submit" class="outline secondary" style="font-size:0.8rem;padding:0.2em 0.6em">
+      <button type="submit" class="outline secondary btn-sm">
         &#128172; {{t .UILang "result.suggest_alternative"}}
       </button>
     </form>
@@ -43,7 +43,8 @@
     <span class="delta-neg">({{printf "%.1f" .RatingDelta}})</span>
     {{end}}
     {{if .StreakDays}}
-    <span class="streak-badge" title="{{t .UILang "result.streak_title"}}">&#128293; {{.StreakDays}}d</span>
+    <span class="streak-badge" title="{{t .UILang "result.streak_title"}}">&#128293; <strong>{{.StreakDays}}</strong></span>
+    <small style="color:var(--pico-muted-color)">&#9201; {{t .UILang "result.streak_until"}} {{.StreakDeadline}}</small>
     {{end}}
   </p>
 

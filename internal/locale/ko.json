@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "모든 단어",
   "vortaro.def_lang_note_prefix": "정의 언어:",
-  "vortaro.def_lang_note_suffix": "— 페이지 하단의 선택기로 변경하세요.",
+  "vortaro.def_lang_note_suffix": "— 상단 내비게이션의 💬 선택기로 변경하세요.",
   "vortaro.definition_col": "정의",
   "vortaro.empty": "사전에 아직 단어가 없습니다.",
   "vortaro.esperanto_col": "에스페란토",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "새 연습 시리즈",
+  "result.streak_until": "keep streak until"
 }

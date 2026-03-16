@@ -50,15 +50,28 @@
 <hr>
 <section>
   <h2>Semado</h2>
-  <p>Ŝarĝu la enkonstruitajn bazazajn ekzercojn (idempotenta — preterlasas jam ekzistantajn).</p>
-  <form method="POST" action="/admin/seed" style="display:inline">
-    <button type="submit">Semi bazajn ekzercojn</button>
-  </form>
-  &nbsp;
-  <form method="POST" action="/admin/patch-seed" style="display:inline">
-    <button type="submit" class="outline">Ĝisdatigi korektitajn semdatumojn</button>
-  </form>
-  <p><small>La dua butono ĝisdatigas nur la enhavon/etikedojn de ekzistantaj ekzercoj, konservante rangigojn kaj voĉdonojn.</small></p>
+  <p>Por ĉiu dosiero: <strong>Semu novajn</strong> aldonas nur mankantajn; <strong>Ĝisdatigu</strong> anstataŭigas enhavon/etikedojn konservante rangigojn.</p>
+  <table>
+    <tbody>
+    {{range .SeedFiles}}
+    <tr>
+      <td><code>{{.}}</code></td>
+      <td>
+        <form method="POST" action="/admin/seed/{{.}}" style="display:inline">
+          <input type="hidden" name="mode" value="create">
+          <button type="submit">Semu novajn</button>
+        </form>
+      </td>
+      <td>
+        <form method="POST" action="/admin/seed/{{.}}" style="display:inline">
+          <input type="hidden" name="mode" value="patch">
+          <button type="submit" class="outline">Ĝisdatigu</button>
+        </form>
+      </td>
+    </tr>
+    {{end}}
+    </tbody>
+  </table>
   {{if .SeedResult}}
   <p><strong>{{.SeedResult}}</strong></p>
   {{end}}

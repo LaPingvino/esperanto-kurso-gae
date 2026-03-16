@@ -1,0 +1,1109 @@
+[
+  {
+    "Slug": "mazi-parto-01",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 1",
+      "video_url": "https://www.youtube.com/embed/fLFbqPBVOTg"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-02",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 2",
+      "video_url": "https://www.youtube.com/embed/pM9lYkBjqM8"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-03",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 3",
+      "video_url": "https://www.youtube.com/embed/_9XxngR3csI"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-04",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 4",
+      "video_url": "https://www.youtube.com/embed/vQaDTmdsHLw"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-05",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 5",
+      "video_url": "https://www.youtube.com/embed/WzkA3NUNhO8"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 5,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-06",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 6",
+      "video_url": "https://www.youtube.com/embed/zdGEBQp8Mwc"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 6,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-07",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 7",
+      "video_url": "https://www.youtube.com/embed/RkZgzjXCFsQ"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 7,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-08",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 8",
+      "video_url": "https://www.youtube.com/embed/KJRwTbIBERQ"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 8,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-09",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 9",
+      "video_url": "https://www.youtube.com/embed/mnKANu62kcM"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 9,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-10",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 10",
+      "video_url": "https://www.youtube.com/embed/Bkq_uxBxNCc"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 10,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-11",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 11",
+      "video_url": "https://www.youtube.com/embed/Oag9u2ilTxA"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 11,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "mazi-parto-12",
+    "Type": "video",
+    "Content": {
+      "title": "Mazi en Gondolando, parto 12",
+      "video_url": "https://www.youtube.com/embed/GScgLQKU9BQ"
+    },
+    "Tags": [
+      "mazi",
+      "video"
+    ],
+    "Source": "Mazi en Gondolando",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1000,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "mazi",
+    "SeriesOrder": 12,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-01",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 1",
+      "video_url": "https://www.youtube.com/embed/OquSnGAKYGc"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-02",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 2",
+      "video_url": "https://www.youtube.com/embed/7BHZdq2A5lM"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-03",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 3",
+      "video_url": "https://www.youtube.com/embed/DAhb9Zej93o"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-04",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 4",
+      "video_url": "https://www.youtube.com/embed/raq3A0WSS1U"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-05",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 5",
+      "video_url": "https://www.youtube.com/embed/iRFNEdVkXcg"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 5,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-06",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 6",
+      "video_url": "https://www.youtube.com/embed/8o5oH1zaj_M"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 6,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-07",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 7",
+      "video_url": "https://www.youtube.com/embed/7M95i0pN66o"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 7,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-08",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 8",
+      "video_url": "https://www.youtube.com/embed/erfCfwjHco8"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 8,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-09",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 9",
+      "video_url": "https://www.youtube.com/embed/wcJ4C9P7u00"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 9,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-10",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 10",
+      "video_url": "https://www.youtube.com/embed/1oWmSY38mUo"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 10,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-11",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 11",
+      "video_url": "https://www.youtube.com/embed/unnDQijvVjI"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 11,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-12",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 12",
+      "video_url": "https://www.youtube.com/embed/zUXkh4goHvc"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 12,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-13",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 13",
+      "video_url": "https://www.youtube.com/embed/QusvdgPQvwQ"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 13,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-14",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 14",
+      "video_url": "https://www.youtube.com/embed/00XI4N2YvZs"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 14,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-15",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 15",
+      "video_url": "https://www.youtube.com/embed/pVDS89uIaWY"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 15,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pasporto-parto-16",
+    "Type": "video",
+    "Content": {
+      "title": "Pasporto al la Tuta Mondo, parto 16",
+      "video_url": "https://www.youtube.com/embed/vOnh09gXBuU"
+    },
+    "Tags": [
+      "pasporto",
+      "video"
+    ],
+    "Source": "Pasporto al la Tuta Mondo",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pasporto",
+    "SeriesOrder": 16,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "muzikv-berlino-sen-vi",
+    "Type": "video",
+    "Content": {
+      "title": "Berlino sen vi (inicialoj dc)",
+      "video_url": "https://www.youtube.com/embed/530Y4a6jomI"
+    },
+    "Tags": [
+      "muziko",
+      "video"
+    ],
+    "Source": "Esperanta muziko",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "muziko",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "muzikv-dankon-jonny-m",
+    "Type": "video",
+    "Content": {
+      "title": "Dankon (Jonny M)",
+      "video_url": "https://www.youtube.com/embed/_T1u5Tq6jsU"
+    },
+    "Tags": [
+      "muziko",
+      "video"
+    ],
+    "Source": "Esperanta muziko",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "muziko",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "muzikv-la-pluvo",
+    "Type": "video",
+    "Content": {
+      "title": "La pluvo (María Villalón)",
+      "video_url": "https://www.youtube.com/embed/fOBkKcbJUAE"
+    },
+    "Tags": [
+      "muziko",
+      "video"
+    ],
+    "Source": "Esperanta muziko",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "muziko",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "muzikv-superbazaro",
+    "Type": "video",
+    "Content": {
+      "title": "Superbazaro (Martin Wiese)",
+      "video_url": "https://www.youtube.com/embed/gWiH8BlpU0U"
+    },
+    "Tags": [
+      "muziko",
+      "video"
+    ],
+    "Source": "Esperanta muziko",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "muziko",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-substantivoj",
+    "Type": "reading",
+    "Content": {
+      "text": "Vorto kun la finaĵo O nomiĝas O-vorto. O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.\n\ntablo = nomo de konkretaĵo\nhundo = nomo de bestospeco\nsaĝo = nomo de kvalito\namo = nomo de sento\nkuro = nomo de ago\nPetro = nomo de persono\nBerlino = nomo de urbo\n\nPost O-finaĵo povas sekvi J-finaĵo por multenombro, kaj N-finaĵo por frazrolo. Oni ankaŭ povas meti ambaŭ, sed ĉiam J antaŭ N: tabloj — tablon — tablojn.\n\nOni povas anstataŭigi la finaĵon O per apostrofo ('), sed nur kiam ne sekvas J aŭ N: hund' = hundo, saĝ' = saĝo, Berlin' = Berlino.\n\nEn Esperanto ne ekzistas gramatika sekso. Sekso estas nur parto de la signifo de iuj O-vortoj. La finaĵo O neniel esprimas sekson. Ekzistas tri signifoklasoj: sekse neŭtraj radikoj (homo, infano, kato, amiko, studento...), virseksaj radikoj (viro, patro, frato, knabo...) kaj inseksaj radikoj (virino, patrino, fratino...).\n\nPor ina formo de sekse neŭtra radiko oni uzas la sufikson IN: instruistino, leonino, hundino. La sufikso GE indikas ambaŭsekse: gepatroj = patro kaj patrino kune, gefratoj = frato kaj fratino kune.",
+      "title": "PMEG – Substantivoj (O-vortoj)"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1450,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-adjektivoj",
+    "Type": "reading",
+    "Content": {
+      "text": "Vorto kun la finaĵo A nomiĝas A-vorto. A-vortoj montras ecojn, kvalitojn, apartenojn, rilatojn ktp., kaj estas uzataj por priskribi. La A-finaĵo aldonas la ĝeneralan ideon «karakterizata de tio, kion esprimas la radiko».\n\nlonga = havanta multe da longo\nruĝa = havanta ruĝon kiel econ\nbona = karakterizata de bono\nhoma = rilata al homoj\n\nPost A-finaĵo povas sekvi J-finaĵo por multenombro, kaj N-finaĵo por frazrolo, ĉiam J antaŭ N: longaj — longan — longajn.\n\nA-vortoj estas uzataj precipe por priskribi O-vortojn. Rekte priskribantaj A-vortoj staras plej ofte antaŭ la priskribata O-vorto, sed povas ankaŭ stari poste:\ngranda domo — domo granda\nla longa tago — la tago longa\nfama Franca verkisto\n\nA-vorto povas ankaŭ priskribi ion pere de verbo (perverba priskribo):\nLa domo estas granda.\nTiuj ĉi verkistoj estas famaj.\nMi farbis mian domon blanka.\n\nAnkaŭ posedaj pronomoj kaj vicordaj nombrovortoj estas A-vortoj: ŝia, nia, sia, dua, sesa, dek-unua.",
+      "title": "PMEG – Adjektivoj (A-vortoj)"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-verboj",
+    "Type": "reading",
+    "Content": {
+      "text": "Verboj kun AS, IS, OS, US aŭ U rolas kiel ĉefverboj de frazo. Verboj kun I-finaĵo ne rolas kiel ĉefverbo, sed havas diversajn aliajn rolojn. I-verbo estas tradicie rigardataj kiel la baza formo de verbo — tial verboj aperas en I-formo en vortaroj.\n\nLa diversaj verbfinaĵoj prezentas agojn en kvar modoj: la neŭtrala modo (I-finaĵo), la reala modo, la vola modo (U-finaĵo) kaj la imaga modo (US-finaĵo). En la reala modo oni distingas inter tri tempoj.\n\nNeŭtrala modo — I-finaĵo: nur nomas agon aŭ staton, sen montri ĉu temas pri realaĵo, volo aŭ imago. Mi volas labori. Estas tede labori.\n\nNun-tempo — AS-finaĵo: la ago estas reala, efektiva, kaj komenciĝis sed ne finiĝis. Mi sidas sur seĝo. Kvar kaj dek ok faras dudek du. En la vintro oni hejtas la fornojn.\n\nPasinta tempo — IS-finaĵo: la ago estas reala, sed okazis iam antaŭ la momento de parolado. Mi sidis tiam sur seĝo. Hieraŭ mi renkontis vian filon, kaj li ĝentile salutis min.\n\nVenonta tempo — OS-finaĵo: la ago estos reala, sed ankoraŭ ne komenciĝis. Mi iros morgaŭ. Ĉu vi estos tie?\n\nVola modo — U-finaĵo: esprimas volon, peton, ordonon aŭ celon. Venu! Ni iru. Mi volas, ke vi legu tion.\n\nImaga modo — US-finaĵo: esprimas ion hipotezan. Se mi havus monon, mi vojaĝus. Mi estus feliĉa.",
+      "title": "PMEG – Verbaj finaĵoj"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1550,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-pronomoj",
+    "Type": "reading",
+    "Content": {
+      "text": "Pronomoj estas vortetoj, kiujn oni uzas por paroli pri tute konataj aferoj. En Esperanto ekzistas dek personaj pronomoj:\n\nmi = la parolanto\nni = la parolanto kaj alia(j) persono(j)\nvi = la alparolato(j)\nli = la priparolata vira persono aŭ persono kun nekonata sekso\nŝi = la priparolata ina persono\nĝi = la priparolata aĵo, besto aŭ infaneto\nili = la priparolataj personoj, aĵoj aŭ bestoj\noni = neprecizigita(j) persono(j)\nsi = la sama persono kiel la subjekto, se tiu ne estas mi, ni aŭ vi\n\nPersonaj pronomoj povas ricevi la finaĵon N: Mi amas vin. Ilin konas Karlo. Ĉu vi ĝin vidas? Elizabeto lavas sin en la lago.\n\nSe oni aldonas la finaĵon A al personaj pronomoj, oni kreas posedajn pronomojn:\nmia = (la)... de mi\nnia = (la)... de ni\nvia = (la)... de vi\nlia = (la)... de li\nŝia = (la)... de ŝi\nĝia = (la)... de ĝi\nilia = (la)... de ili\nsia = (la)... de si\n\nLa pronomo si estas uzata por referi returne al la subjekto de la sama frazo: Petro lavas sin. Li prenis sian ĉapelon. Tio estas alia ol: Petro lavas lin (= iun alian homon).",
+      "title": "PMEG – Pronomoj"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1600,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-prepozicioj",
+    "Type": "reading",
+    "Content": {
+      "text": "Rolvortetoj estas vortetoj, kiujn oni metas antaŭ frazpartoj por montri frazrolojn. Frazparto kun rolvorteto povas roli aŭ kiel komplemento de verbo, aŭ kiel priskribo de alia frazparto.\n\nLokaj rolvortetoj montras pozicion:\nen — interne de io: en la domo, en Berlino\nsur — sur la surfaco de io: sur la tablo\nsub — malsupre de io: sub la lito\nsuper — pli alte ol io, sen tuŝo: super la nuboj\napud — flanke proksime de io: apud la pordo\nĉe — tre proksime de io: ĉe la fenestro\ninter — meze de du aŭ pli da aĵoj: inter la domoj\n\nDirektaj rolvortetoj montras direkton de movo:\nal — direkto al celo: iri al la urbo\nel — direkto el iu loko: veni el la domo\nde — deveno, fonto: letero de la amiko\nĝis — fino de movo aŭ daŭro: iri ĝis la rivero\n\nAliaj gravaj rolvortetoj:\nkun — kuneco: iri kun amiko\nsen — manko: kafi sen sukero\npor — celo aŭ destinulo: libro por infanoj\nper — ilo aŭ rimedo: skribi per krajono\npri — temo: paroli pri la vetero\npro — kaŭzo: danki pro la helpo\ndum — daŭro: labori dum la tuta tago\npost — posteco: veni post li",
+      "title": "PMEG – Rolvortetoj (Prepozicioj)"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1650,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 5,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-nombroj",
+    "Type": "reading",
+    "Content": {
+      "text": "Ĉe O-vortoj kaj A-vortoj oni devas distingi inter ununombro kaj multenombro. Ununombro signifas, ke temas pri unu afero. Multenombron oni montras per la finaĵo J. Manko de J-finaĵo montras ununombron.\n\n(unu) tago — (pluraj) tagoj\n(unu) granda domo — (pluraj) grandaj domoj\nilia granda domo — iliaj grandaj domoj\nla kato estas nigra — la katoj estas nigraj\n\nEventuala N-finaĵo staras post J: tagojn, grandajn, nigrajn, iliajn.\n\nRadikoj estas neŭtralaj pri nombro. Ili povas montri jen unu aferon, jen plurajn:\nokula = rilata al okulo aŭ okuloj\nokulkuracisto = kuracisto de okuloj (ne: okulojkuracisto)\nlibrovendejo = vendejo de libroj (ne: librojvendejo)\n\nOni do ne uzas J-finaĵojn ene de kunmetitaj vortoj.\n\nNombrovortoj en Esperanto: nul, unu, du, tri, kvar, kvin, ses, sep, ok, naŭ, dek, dudek, cent, mil, miliono. Ili ne havas finaĵon propre. Vicordaj nombroj (ordinaloj) estas A-vortoj: unua, dua, tria, kvara... Multioblaj nombroj: duobla, triobla. Frakciaj nombroj: duono, triono, kvarono.",
+      "title": "PMEG – Nombro kaj Multenombro"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 6,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-tabelvortoj",
+    "Type": "reading",
+    "Content": {
+      "text": "45 vortetoj nomiĝas tabelvortoj, ĉar oni povas ilin aranĝi en tabelo laŭ similaj formoj kaj similaj signifoj. Ĉiu tabelvorto konsistas el antaŭparto kaj postparto.\n\nAntaŭpartoj:\nKI- = demandovorto, rilata vorto\nTI- = montrovorto\nI- = nedifinita vorto\nĈI- = tutampleksa vorto\nNENI- = nea vorto\n\nPostpartoj:\n-U = individuo: kiu, tiu, iu, ĉiu, neniu\n-O = afero: kio, tio, io, ĉio, nenio\n-A = eco, speco: kia, tia, ia, ĉia, nenia\n-E = loko: kie, tie, ie, ĉie, nenie\n-AM = tempo: kiam, tiam, iam, ĉiam, neniam\n-AL = kaŭzo: kial, tial, ial, ĉial, nenial\n-EL = maniero: kiel, tiel, iel, ĉiel, neniel\n-OM = kvanto: kiom, tiom, iom, ĉiom, neniom\n\nLa tabelvortoj je U kaj A povas ricevi la finaĵojn J kaj N: kiujn, tiujn, iujn, ĉiujn, neniujn. La tabelvortoj je O povas ricevi N, sed normale ne J: kion, tion, ion, ĉion, nenion.\n\nEkzemploj: Kiu estas tiu homo? Tio estas bela. Mi ne scias, kio okazis. Ĉiuj venis. Li neniam helpas.",
+      "title": "PMEG – Tabelvortoj"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1750,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 7,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-participoj",
+    "Type": "reading",
+    "Content": {
+      "text": "Participoj estas vortoj, kiuj prezentas agon aŭ staton kvazaŭ econ de ĝia subjekto aŭ objekto. Participojn oni formas per specialaj participaj sufiksoj. Ekzistas ses participaj sufiksoj, tri aktivaj kaj tri pasivaj.\n\nAktivaj participoj (priskribas la subjekton de la ago):\nANT — la ago ankoraŭ ne finiĝis: leganta = tia, ke oni ankoraŭ legas\nINT — la ago jam finiĝis: leginta = tia, ke oni antaŭe legis\nONT — la ago ankoraŭ ne komenciĝis: legonta = tia, ke oni poste legos\n\nPasivaj participoj (priskribas la objekton de la ago):\nAT — la ago ankoraŭ ne finiĝis: legata = tia, ke iu ĝin legas\nIT — la ago jam finiĝis: legita = tia, ke iu ĝin jam legis\nOT — la ago ankoraŭ ne komenciĝis: legota = tia, ke iu ĝin poste legos\n\nEkzemploj:\nViro, kiu ankoraŭ legas, estas leganta viro.\nViro, kiu antaŭe legis, estas leginta viro.\nLibro, kiun oni ankoraŭ legas, estas legata libro.\nLibro, kiun oni antaŭe legis, estas legita libro.\n\nParticipoj kun O-finaĵo funkcias kiel substantivoj: leganto = tiu, kiu nun legas; leginto = tiu, kiu legis; legitaro = grupo de legintoj. Participoj kun E-finaĵo funkcias kiel adverboj: li falis kuŝante = li falis dum li kuŝis.",
+      "title": "PMEG – Participoj"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1800,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 8,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "pmeg-vortfarado",
+    "Type": "reading",
+    "Content": {
+      "text": "Malgranda grupo de radikoj (ĉirkaŭ 40) nomiĝas afiksoj. Kelkaj estas sufiksoj (postafiksoj), aliaj estas prefiksoj (antaŭafiksoj). Afiksoj partoprenas en vortfarado laŭ specialaj reguloj.\n\nGravaj prefiksoj:\nmal- = kontraŭo de la baza signifo: bona→malbona, granda→malgranda, ami→malami\nre- = denova ago aŭ reveno: fari→refari, veni→reveni\nek- = komenco de ago: kuri→ekkuri, ridi→ekridi\ndis- = disigo, disiĝo: doni→disdoni, fali→disfali\nmis- = malbona, erara ago: uzi→misuzi, kompreni→miskompreni\nge- = ambaŭ seksoj kune: patro→gepatroj, frato→gefratoj\n\nGravaj sufiksoj:\n-ist = profesiulo pri io: lerni→lernisto, instrui→instruisto, muziko→muzikisto\n-in = ina formo: kato→katino, instruisto→instruistino, leono→leonino\n-et = malgranda: domo→dometo, ridi→rideti, varma→varmeta\n-eg = granda, intensa: domo→domego, varma→varmega, bela→belega\n-aĵ = konkreta manifesto de io: manĝi→manĝaĵo, bela→belaĵo, nova→novaĵo\n-ar = kolekto de similaj aferoj: vorto→vortaro, arbo→arbaro, homo→homaro\n-ej = loko destinita por io: lerni→lernejo, manĝi→manĝejo, libro→librejo\n-il = ilo por fari ion: skribi→skribilo, tranĉi→tranĉilo, kombi→kombilo\n-an = membro de grupo: urbo→urbano, klubo→klubano, Eŭropo→Eŭropano",
+      "title": "PMEG – Afiksoj kaj Vortfarado"
+    },
+    "Tags": [
+      "pmeg",
+      "gramatiko"
+    ],
+    "Source": "PMEG",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1850,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "pmeg",
+    "SeriesOrder": 9,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  }
+]

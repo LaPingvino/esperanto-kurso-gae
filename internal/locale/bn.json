@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "সব শব্দ",
   "vortaro.def_lang_note_prefix": "সংজ্ঞার ভাষা:",
-  "vortaro.def_lang_note_suffix": "— পৃষ্ঠার নিচের নির্বাচক দিয়ে পরিবর্তন করুন।",
+  "vortaro.def_lang_note_suffix": "— উপরের নেভিগেশনে 💬 নির্বাচক দিয়ে পরিবর্তন করুন।",
   "vortaro.definition_col": "সংজ্ঞা",
   "vortaro.empty": "অভিধানে এখনো কোনো শব্দ নেই।",
   "vortaro.esperanto_col": "এস্পেরান্তো",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

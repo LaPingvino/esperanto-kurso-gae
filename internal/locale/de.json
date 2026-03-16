@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Alle Wörter",
   "vortaro.def_lang_note_prefix": "Definitionssprache:",
-  "vortaro.def_lang_note_suffix": "— ändern mit dem Auswahlfeld am Seitenende.",
+  "vortaro.def_lang_note_suffix": "— ändern mit dem 💬-Auswahlfeld oben rechts.",
   "vortaro.definition_col": "Definition",
   "vortaro.empty": "Noch keine Wörter im Wörterbuch.",
   "vortaro.esperanto_col": "Esperanto",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "Neue Uebungsserie",
+  "result.streak_until": "Serie erhalten bis"
 }

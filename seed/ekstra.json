@@ -1,0 +1,462 @@
+[
+  {
+    "Slug": "la-alfabeto-video",
+    "Type": "video",
+    "Content": {
+      "title": "La alfabeto de Esperanto (video)",
+      "video_url": "https://www.youtube.com/embed/OPsdp1M5pjQ"
+    },
+    "Tags": [
+      "alfabeto",
+      "video",
+      "komencanto"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 800,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "gramatiko-mc-01-plurnombro",
+    "Type": "multiplechoice",
+    "Content": {
+      "correct_index": 0,
+      "options": [
+        "libroj",
+        "libros",
+        "library"
+      ],
+      "question": "Kiel oni faras plurnombron el la vorto \"libro\"?"
+    },
+    "Tags": [
+      "gramatiko",
+      "substantivoj"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "gramatiko-mc",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "gramatiko-mc-02-akuzativo",
+    "Type": "multiplechoice",
+    "Content": {
+      "correct_index": 0,
+      "options": [
+        "Mi vidas hundon",
+        "Mi vidas hundo",
+        "Mi vidas de hundo"
+      ],
+      "question": "Kiu frazo estas ĝusta?"
+    },
+    "Tags": [
+      "gramatiko",
+      "akuzativo"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1150,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "gramatiko-mc",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "gramatiko-mc-03-adjektivo",
+    "Type": "multiplechoice",
+    "Content": {
+      "correct_index": 0,
+      "options": [
+        "belaj domoj",
+        "bela domoj",
+        "belaj domo"
+      ],
+      "question": "Kiel oni diras \"bela domo\" en plurnombro?"
+    },
+    "Tags": [
+      "gramatiko",
+      "adjektivoj"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1200,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "gramatiko-mc",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "gramatiko-mc-04-pasinteco",
+    "Type": "multiplechoice",
+    "Content": {
+      "correct_index": 0,
+      "options": [
+        "mi manĝis",
+        "mi manĝas",
+        "mi manĝos"
+      ],
+      "question": "Kiel oni diras la pasintecon de manĝi?"
+    },
+    "Tags": [
+      "gramatiko",
+      "verboj"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1100,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "gramatiko-mc",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "gramatiko-mc-05-prepozicio",
+    "Type": "multiplechoice",
+    "Content": {
+      "correct_index": 0,
+      "options": [
+        "La libro estas sur la tablo",
+        "La libro estas sur la tablon",
+        "La libro estas sur la tablen"
+      ],
+      "question": "Kiu frazo estas ĝusta?"
+    },
+    "Tags": [
+      "gramatiko",
+      "prepozicioj"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1250,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "gramatiko-mc",
+    "SeriesOrder": 5,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-la-eta-princo-komenco",
+    "Type": "reading",
+    "Content": {
+      "text": "Iam, kiam mi estis sesjara, mi vidis belegan bildon en iu libro pri la praarbaro, titolita \"Travivitaj rakontoj\". Tiu bildo prezentis boaon, kiu glutas rabobeston.\n\nEn la libro oni diris: \"La boaj glutas sian rabaĵon unuglute, sen-maĉe. Sekve ili ne plu povas moviĝi kaj dormas dum sia sesmona-ta digestado.\"\n\nEkde tiam mi multe meditis pri la aventuroj en ĝangalo kaj per kolorkrajono mi sukcesis miavice fari mian unuan desegnon. Mian desegnon numero Unu.\n\nMi montris mian ĉefverkon al granduloj kaj ilin demandis, ĉu mia desegno timigis ilin.\n\nIli al mi respondis: \"Kial ĉapelo timigus?\"\n\nMia desegno ne prezentis ĉapelon. Ĝi prezentis boaon, kiu digestadas elefanton. Do, mi desegnis la enhavon de la boao, por komprenigi al granduloj. Ili ĉiam bezonas klarigojn.\n\nLa granduloj konsilis, ke mi flankenlasu desegnojn de boaoj aŭ malfermitaj aŭ ne, kaj prefere interesiĝu pri geografio, historio, kalkularto kaj gramatiko. Kaj tiel, en mia sesjara aĝo, mi rezignis grandiozan pentristan karieron. Mi senkuraĝiĝis pro la fiasko de mia desegno numero Unu kaj de mia desegno numero Du. Neniam la granduloj komprenas tute per si mem kaj al la infanoj estas lacige ĉiam kaj ĉiam donadi al ili klarigojn.\n\nMi do devis elekti alian metion kaj lernis piloti aviadilojn. Mi flugis iom ĉie tra la mondo. Kaj mi tute konsentas, ke geografio multe utilis al mi. Mi scipovis unuavide distingi Ĉinion de Arizono. Tio estas tre taŭga, se oni vojeraris nokte.\n\nKiam mi renkontis inter ili iun, kiu ŝajnis al mi iom klarvida, iam mi provis per mia desegno numero Unu, kiun mi ĉiam konservis. Mi volis scii, ĉu tiu ĉi vere estas komprenema. Sed ĉiam oni respondis al mi: \"Ĝi estas ĉapelo.\" Tiam al tiu mi parolis nek pri boaoj, nek pri praarbaroj, nek pri steloj. Mi adaptiĝis al ties komprenpovo. Mi priparolis briĝon, golfludon, politikon kaj kravatojn. Kaj la grandulo estis ja kontenta koni homon tiel konvenan.",
+      "title": "La Eta Princo — Ĉapitro I (Antoine de Saint-Exupéry)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "La eta princo — Antoine de Saint-Exupéry",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1600,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-la-sep-kapridoj",
+    "Type": "reading",
+    "Content": {
+      "text": "Estis iam maljuna kaprino, kiu havis sep idojn kaj amis ilin, kiel ĉiu patrino amas siajn infanojn. Iam ŝi volis iri en la arbaron por alporti nutraĵon. Ŝi alvokis ĉiujn sep kaj diris:\n\n\"Karaj infanoj, mi iras en la arbaron, gardu vin bone kontraŭ la lupo; ne enlasu ĝin, ĉar alie ĝi manĝos vin kun haŭto kaj haroj. La fripono ofte aliformigas sin, sed vi tuj rekonos ĝin per ĝiaj nigraj piedoj kaj ĝia raŭka voĉo.\"\n\nLa kapridoj diris: \"Kara patrinjo, vi povas trankvile foriri, ni estos singardaj.\"\n\nLa patrino ekblekis kaj foriris.\n\nBaldaŭ iu ekfrapis la pordon kaj ekkriis: \"Malfermu, karaj infanoj, via panjo alportis ion por ĉiu.\"\n\nSed la kapridoj rekonis la lupon per la raŭka voĉo: \"Ni ne malfermos,\" ili ekkriis, \"vi ne estas nia patrino, ŝi havas delikatan voĉon, kaj la via estas raŭka, vi estas la lupo!\"\n\nLa lupo iris en butikon kaj aĉetis grandan pecon da kreto. Ĝi manĝis ĝin kaj ĝia voĉo fariĝis delikata. Ĝi revenis, frapis la pordon kaj ekkriis: \"Malfermu karaj infanoj, via patrino alportis ion por ĉiu.\"\n\nSed ĉar la lupo metis sian nigran piedon en la fenestron, la infanoj rekonis ĝin kaj diris: \"Ni ne malfermos, nia patrino ne havas nigrajn piedojn, kiajn vi: vi estas la lupo.\"\n\nLa lupo kuris al bakisto kaj diris: \"Mi doloriĝis mian piedon, ŝmiru ĝin per pasto.\" Poste ĝi kuris al la muelisto kaj diris: \"Ŝutu blankan farunon sur mian piedon.\" La muelisto ektimis kaj blankigis ĝian piedon.\n\nLa fripono iris trian fojon al la pordo kaj diris: \"Malfermu, infanoj, jen revenis via kara patrinjo.\" La kapridoj ekkriis: \"Antaŭe montru vian piedon, ni volas vidi, ĉu vi estas nia kara panjo.\" La lupo metis la piedon en la fenestron — ĝi estis blanka. Ili kredis kaj malfermis la pordon. Sed tiu, kiu eniris, estis la lupo.",
+      "title": "La Sep Kapridoj (Fratoj Grimm, trad. Kabe)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1400,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-pinokjo-komenco",
+    "Type": "reading",
+    "Content": {
+      "text": "—Ne, geknaboj, vi eraras. Estis iam lignopeco.\n\nĜi ne estis io luksa, sed simpla peco el stako, tia, kian vintre oni metas en la fornon aŭ kamenon por bruligi fajron kaj varmigi la ĉambron.\n\nMi ne scias, kiel okazis, sed fakto estas, ke iun tagon tiu lignopeco venis en la laborejon de maljuna lignaĵisto, kies nomo estis majstro Antono, kvankam ĉiuj nomis lin nur Ĉerizo pro makulo sur la nazopinto, ĉiam brila kaj ruĝa, simile al matura ĉerizo!\n\nKiam majstro Ĉerizo ekvidis la lignopecon, li tre ekĝojis, kontente kunfrotis la manojn, kaj murmuris duonlaŭte:\n\n—Ĉi tiu ligno venis ĝustatempe: mi uzos ĝin por fari el ĝi piedon por tablo.\n\nDirite, farite: senplie li prenis akran adzon por senŝeligi ĝin, sed kiam li ĝuste pretis fari la unuan frapon, lia brako restis en la aero, ĉar li ekaŭdis voĉeton tre mallaŭtetan, kiu diris peteme:\n\n—Ne batu min tiel forte!\n\nVi povas imagi, kia miro frapis tiun bonan maljunulon majstron Ĉerizon.\n\nGape li ĉirkaŭokulis en la ejo por vidi, de kie povis veni la voĉeto, sed neniun li vidis! Li rigardis sub la tablon — neniu; rigardis en la ŝrankon — same neniu; malfermis eĉ la pordon de la laborejo por elrigardi al la strato — ankaŭ neniu!\n\n—Mi jam komprenas, — li diris ridetante, kaj gratis sian perukon, — estas klare: mi ĝin nur imagis. Ni reiru al la laboro.\n\nKaj li reprenis la adzon, donis fortegan frapon sur la lignopecon.\n\n—Oj, vi kaŭzas al mi doloron! — kriis plendeme la sama voĉeto.\n\nĈi-foje la kompatinda majstro Ĉerizo falis sur la plankon, kiel fulmofrapito.",
+      "title": "La Aventuroj de Pinokjo — Ĉapitro 1 (Carlo Collodi)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "La aventuroj de Pinokjo — Carlo Collodi",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 3,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-rego-macxjo-unua",
+    "Type": "reading",
+    "Content": {
+      "text": "Maturaj homoj prefere ne legu mian rakonton, ĉar estas en ĝi malkonvenaj ĉapitroj, kiujn ili ne komprenos kaj pro tio primokos. Sed se ili nepre volas, ili legu — al plenkreskuloj oni ja nenion povas malpermesi — ili ne obeas.\n\nLa rakonto komenciĝas tiel: La doktoro diris, ke se la reĝo dum tri tagoj ne resaniĝos, estos tre malbone. Ĉiuj tre ĉagreniĝis, kaj la plej maljuna ministro surmetis okulvitrojn kaj demandis: \"Do kio okazos, se la reĝo ne resaniĝos?\"\n\nLa doktoro ne volis klare diri tion, sed ĉiuj komprenis, ke la reĝo mortos.\n\nLa plej maljuna ministro tre malĝojis kaj invitis al konferenco la aliajn ministrojn. Ili kolektiĝis en granda salono, lokiĝis en komfortaj apogseĝoj ĉe longa tablo. Antaŭ ĉiu ministro kuŝis paperfolio kaj du krajonoj; unu krajono estis ordinara, kaj la dua estis ĉe unu flanko blua, ĉe la alia ruĝa.\n\nLa ministroj ŝlosis la pordon, por ke neniu malhelpu la kunsidon, ili lumigis elektrajn lampojn kaj parolis nenion. Poste la plej maljuna ministro eksonorigis la sonorileton kaj diris: \"Nun ni interkonsiliĝos, kion fari, ĉar la reĝo estas malsana kaj ne plu povas regi.\"\n\n\"Mi pensas,\" diris la militministro, \"ke oni devas venigi la kuraciston, por ke li klare diru, ĉu li povas sanigi lin.\"",
+      "title": "Reĝo Maĉjo Unua (Janusz Korczak)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Bonhumoraj rakontoj — Janusz Korczak",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1650,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 4,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-1984-komenco",
+    "Type": "reading",
+    "Content": {
+      "text": "Estis hela malvarma tago en aprilo, kaj la horloĝoj sonigis la dektrian horon. Winston Smith, kun la mentono premita en la bruston, por eskapi de la akrega vento, rapide puŝis sin tra la vitrajn pordojn de la Loĝejoj de la Venko, kvankam ne sufiĉe rapide por neebligi la eniron kun li de nebuleto de eroplena polvo.\n\nLa koridoro fetoris pro boligitaj brasikoj kaj malnovaj ĉifonaj matoj. Ĉe unu finaĵo kolorita afiŝo, tro granda por endoma montrado, estis najlita al la muro. Ĝi montris nur enorman vizaĝon, larĝan pli ol metron: la vizaĝon de viro eble kvardekkvinjaraĝa, kun dikaj nigraj lipharoj kaj neglataj, sed belaj, trajtoj.\n\nWinston paŝis al la ŝtuparo. Ne utilus provi la lifton. Eĉ dum la plej bonaj periodoj, ĝi malofte funkciis, kaj nuntempe la elektro estis malŝaltita dum la taghoroj. Tio estis parto de la ekonomi-kampanjo, prepare por la Semajno da Malamo.\n\nLa apartamento estis sur la sepa etaĝo, kaj Winston, kiu estis trideknaŭjaraĝa, kaj havis varikan ulceron super sia dekstra maleolo, grimpis malrapide, haltante plurfoje por ripozeti. Ĉe ĉiu placeto, kontraŭ la liftejo, la afiŝo kun la enorma vizaĝo rigardis de la muro. GRANDA FRATO RIGARDAS VIN, diris la vortoj sub la bildo.\n\nEkstere, eĉ tra la fermita fenestroglaco, la mondo aspektis malvarmega. Malsupre, en la strato, etaj kirloventoj spirale kirladis polvon kaj ŝiritajn paperpecojn. La vizaĝo kun nigraj lipharoj rigardis de ĉiu grava angulo. GRANDA FRATO RIGARDAS VIN.",
+      "title": "Mil Naŭcent Okdek Kvar — Komenco (George Orwell)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Mil Naŭcent Okdek Kvar — George Orwell, trad. Donald Broadribb",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1800,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 5,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-regidino-sur-pizo",
+    "Type": "reading",
+    "Content": {
+      "text": "Estis iam reĝido, kiu volis edziĝi kun reĝidino, sed li nepre volis, ke tio estu vera reĝidino. Li travojaĝis la tutan mondon, por trovi tian, sed ĉie troviĝis ia kontraŭaĵo. Da reĝidinoj estis sufiĉe multe, sed ĉu tio estas veraj reĝidinoj, pri tio li neniel povis konvinkiĝi; ĉiam troviĝis io, kio ne estis tute konforma. Tial li venis returne hejmen kaj estis tre malĝoja, ĉar li tre deziris havi veran reĝidinon.\n\nUnu vesperon fariĝis granda uragano: fulmis kaj tondris, forte pluvegis, estis terure. Subite oni frapetis je la urba pordego, kaj la maljuna reĝo iris, por malfermi. Montriĝis, ke ekstere antaŭ la pordo staras reĝidino. Sed, ho mia Dio, kiel ŝi aspektis pro la pluvo kaj la ventego! La akvo fluis de ŝiaj haroj kaj vestoj, kaj verŝiĝis en ŝiajn ŝuojn kaj elen. Kaj ŝi diris, ke ŝi estas vera reĝidino.\n\n\"Nu, pri tio ni tre baldaŭ konvinkiĝos!\" pensis la maljuna reĝino. Ŝi tamen nenion diris, sed ŝi iris en la dormoĉambron, elprenis ĉiujn litaĵojn kaj metis unu pizon sur la fundon de la lito. Post tio ŝi prenis dudek matracojn, metis ilin sur la pizon, kaj poste ankoraŭ dudek lanugaĵojn sur la matracojn. En tiu lito la reĝidino devis dormi dum la nokto.\n\nMatene oni ŝin demandis, kiel ŝi dormis.\n\n\"Ho, terure malbone!\" diris la reĝidino; \"preskaŭ dum la tuta nokto mi ne povis fermi la okulojn! Dio scias, kio estis en mia lito! Mi kuŝis sur io malmola, kaj mia korpo pro tio fariĝis blua kaj bruna! Estis terure!\"\n\nPer tio oni povis vidi, ke ŝi estas vera reĝidino, ĉar tra la dudek matracoj kaj la dudek lanugaĵojn ŝi sentis la pizon. Tiel delikatsenta povis esti nur vera reĝidino!\n\nTiam la reĝido edziĝis kun ŝi, ĉar nun li sciis, ke li havas veran reĝidinon; kaj la pizon oni metis en la muzeon, kie oni ankoraŭ nun povas ĝin vidi, se neniu ĝin forprenis.\n\nVidu, tio estis vera historio.",
+      "title": "Reĝidino sur Pizo (H. C. Andersen, trad. L. L. Zamenhof)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Fabeloj — H. C. Andersen, trad. L. L. Zamenhof",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1600,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 7,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-vivo-zamenhof-1",
+    "Type": "reading",
+    "Content": {
+      "text": "De la patrino la koro, de la patro la cerbo, de la loko la impreso: jen la tri ĉefaj elementoj en la formado de Zamenhofa genio.\n\nSur la litva tero kvar gentoj malsamaj loĝis en la urboj, kun celoj kontraŭaj, kun lingvoj diversaj, kun kredoj malamikaj. De strato al strato regis malfido, suspekto, sur placoj ofendo ĉiutaga, venĝemo, persekuto kaj malamo. Sur tiu tero malfeliĉa naskiĝis Zamenhof.\n\nLa knabo ja vidis la faktojn ĉirkaŭ si en stratoj Bjalistokoaj. Sur la vendoplaco moviĝis la popolamaso. Bruladis paŝoj kaj paroloj en zumado laŭta. Briladis koloroj inter korboj kaj legomoj: verdaj ŝaloj de virinoj el la kamparo litva, ŝafaj peltoj, grizaj vestoj de soldatoj. Disputis vendistinoj kun germana marĉandulo. Plendis virinoj en dialekto litva. La policanoj ne komprenis. \"Ruse parolu!\" minacis la oficiro, \"nur ruse, ne lingvaĉe! Ĉi tie estas rusa lando!\" Protestis Polo el la amaso — jen lin kaptis la ĝendarmoj. Silentas la vilaĝanoj.\n\nKion scias tiuj homoj unuj pri la aliaj? Ke ankaŭ ili havas koron, konas ĝojon kaj doloron, amas hejmon kun edzino kaj infanoj? Eĉ penso tia ne okazas. Ekzistas nur Hebreoj, Rusoj, Poloj, Germanoj — ne homoj, sole gentoj. En sia domo ĉiu akceptas nur samgentanojn.\n\nPri tiaj kalumnioj indignis jam knabeto Zamenhof en Bjalistoko. Kion fari, por ke la homoj ne eraru tiel abomene? El tiaj kredoj kaj incitoj rezultas iam veraj katastrofoj.\n\nKvardek jarojn pli poste, en 1906, Zamenhof parolis en Ĝenevo pri la Bjalostoka pogromo: \"Ĉu la plej grandaj mensogoj kaj kalumnioj povus doni tiajn terurajn fruktojn, se la gentoj sin reciproke bone konus, se inter ili ne starus altaj kaj dikaj muroj, kiuj malpermesas al ili libere komunikiĝadi inter si kaj vidi, ke la membroj de aliaj gentoj estas tute tiaj samaj homoj kiel la membroj de nia gento? Rompu, rompu la murojn inter la popoloj!\"",
+      "title": "Vivo de Zamenhof — Infano en Bjalistoko (Edmond Privat)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Vivo de Zamenhof — Edmond Privat",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1850,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 8,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "lit-zamenhof-kongreso-1905",
+    "Type": "reading",
+    "Content": {
+      "text": "Estimataj sinjorinoj kaj sinjoroj! Mi salutas vin, karaj samideanoj, fratoj kaj fratinoj el la granda tutmonda homa familio, kiuj kunvenis el landoj proksimaj kaj malproksimaj, el la plej diversaj regnoj de la mondo, por frate premi al si reciproke la manojn pro la nomo de granda ideo, kiu ĉiujn nin ligas.\n\nSankta estas por ni la hodiaŭa tago. Modesta estas nia kunveno; la mondo ekstera ne multe scias pri ĝi, kaj la vortoj, kiuj estas parolataj en nia kunveno, ne flugos telegrafe al ĉiuj urboj kaj urbetoj de la mondo; ne kunvenis regnestroj, nek ministroj, por ŝanĝi la politikan karton de la mondo, ne brilas luksaj vestoj kaj multego da imponantaj ordenoj en nia salono; sed tra la aero de nia salono flugas misteraj sonoj, sonoj tre mallaŭtaj, ne aŭdeblaj por la orelo, sed senteblaj por ĉiu animo sentema: ĝi estas la sono de io granda, kio nun naskiĝas.\n\nEn la plej malproksima antikveco la homa familio disiĝis kaj ĝiaj membroj ĉesis kompreni unu la alian. Fratoj kreitaj ĉiuj laŭ unu modelo, fratoj, kiuj havis ĉiuj egalan korpon, egalan spiriton, egalajn kapablojn, egalajn idealojn, egalan Dion en siaj koroj — tiuj fratoj fariĝis tute fremdaj unuj al aliaj, disiĝis ŝajne por ĉiam en malamikajn grupetojn.\n\nKaj nun la unuan fojon la revo de miljaroj komencas realiĝi. En la malgrandan urbon de la franca marbordo kunvenis homoj el la plej diversaj landoj kaj nacioj, kaj ili renkontas sin reciproke ne mute kaj surde, sed ili komprenas unu la alian, ili parolas unu kun la alia kiel fratoj, kiel membroj de unu nacio.\n\nNi konsciu bone la tutan gravecon de la hodiaŭa tago, ĉar hodiaŭ inter la gastamaj muroj de Bulonjo-sur-Maro kunvenis ne francoj kun angloj, ne rusoj kun poloj, sed homoj kun homoj. Benata estu la tago, kaj grandaj kaj gloraj estu ĝiaj sekvoj!",
+      "title": "Parolado de Zamenhof — Unua Kongreso (Bulonjo, 1905)"
+    },
+    "Tags": [
+      "literatura",
+      "legado"
+    ],
+    "Source": "Paroladoj — L. L. Zamenhof",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "literatura",
+    "SeriesOrder": 9,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "artikolo-filmo-finnlando",
+    "Type": "reading",
+    "Content": {
+      "text": "La finna filmarto atingis novan signifan mejlŝtonon: la unua profesia duonhora filmo tute en Esperanto. \"Patrinoj\", reĝisorita de Aino Suni, prezentos sin en internaciaj festivaloj komencante en 2025.\n\nLa filmo naskiĝis el hazarda renkontiĝo. Suni, konata pro siaj dokumentaj filmoj pri socia justeco, renkontis Esperantiston en helsinka kafejo dum la pandemio. \"Mi neniam pensis pri Esperanto kiel kreiva medio,\" konfesas Suni. \"Sed ju pli mi lernis, des pli mi komprenis ĝian artistikan potencialon.\"\n\nLa rakonto sekvas tri patrinojn el malsamaj generacioj, kiuj komunikas nur tra Esperanto. La filmo esploras temojn de materineco, migrado, kaj intergeneracia kompreno.\n\nLa filmo produktiĝis per miksobendo: Finnish Film Foundation-subvencio, privata investo, kaj amaskolekata financado el la internacia Esperanto-komunumo. La totala buĝeto atingis 180,000 eŭrojn.",
+      "title": "En Finnlando aperas profesia filmo en Esperanto"
+    },
+    "Tags": [
+      "artikolo",
+      "legado",
+      "altnivela"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "artikoloj",
+    "SeriesOrder": 1,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  },
+  {
+    "Slug": "artikolo-sveda-vortaro",
+    "Type": "reading",
+    "Content": {
+      "text": "Post preskaŭ naŭ jardekoj da silento, la Esperanto-sveda vortaro denove vekiĝas. La Sveda Esperanto-Federacio anoncis la ciferecigon de sia fundamenta vortaro, kiu laste aperis en la 1930-aj jaroj.\n\nDr. Anders Löfgren, ĉefredaktoro de la projekto, klarigas: \"Ni ne simple ciferecigas malnovan libron. Ni rekonstruas tutan lingvan rilaton por la 21-a jarcento.\"\n\nLa cifereciga procezo alfrontas plurajn obstakojn: fidela konservado, semantika ĝisdatigo, kaj teknologia integrado. La nova vortaro devos funkcii en modernaj retaj platformoj.\n\nMalpli tradicie, la nova sveda vortaro estos komunumo-redaktata. Uzantoj povos proponi novajn terminojn, korekti erarojn, kaj diskuti nuancojn. \"Lingvoj vivas tra siaj parolantoj\", komentas Löfgren.",
+      "title": "Sveda vortaro migras reten – ĉu aliaj sekvos?"
+    },
+    "Tags": [
+      "artikolo",
+      "legado",
+      "altnivela"
+    ],
+    "Source": "esperanto-kurso.net",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "artikoloj",
+    "SeriesOrder": 2,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "0001-01-01T00:00:00Z",
+    "UpdatedAt": "0001-01-01T00:00:00Z"
+  }
+]

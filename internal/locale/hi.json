@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "सभी शब्द",
   "vortaro.def_lang_note_prefix": "परिभाषा भाषा:",
-  "vortaro.def_lang_note_suffix": "— पृष्ठ के निचले भाग में चयनकर्ता से बदलें।",
+  "vortaro.def_lang_note_suffix": "— शीर्ष नेविगेशन में 💬 चयनकर्ता से बदलें।",
   "vortaro.definition_col": "परिभाषा",
   "vortaro.empty": "शब्दकोश में अभी तक कोई शब्द नहीं।",
   "vortaro.esperanto_col": "एस्पेरांतो",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

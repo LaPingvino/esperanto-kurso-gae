@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "所有单词",
   "vortaro.def_lang_note_prefix": "定义语言：",
-  "vortaro.def_lang_note_suffix": "— 通过页面底部的选择器更改。",
+  "vortaro.def_lang_note_suffix": "— 通过顶部导航栏中的 💬 选择器更改。",
   "vortaro.definition_col": "定义",
   "vortaro.empty": "词典中暂无单词。",
   "vortaro.esperanto_col": "世界语",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "新练习系列",
+  "result.streak_until": "keep streak until"
 }

@@ -5,7 +5,7 @@
 {{define "content"}}
 <h1>★ {{t .UILang "steloj.title"}}</h1>
 
-{{if and (not .Exercises) (not .SeriesSlugs) (not .Tags)}}
+{{if and (not .Exercises) (not .SeriesEntries) (not .Tags)}}
 <p><em>{{t .UILang "steloj.empty"}}</em></p>
 <p><a href="/" role="button">{{t .UILang "steloj.start_btn"}}</a></p>
 {{else}}
@@ -42,14 +42,14 @@
 </table>
 {{end}}
 
-{{if .SeriesSlugs}}
+{{if .SeriesEntries}}
 <h2>Stelitaj serioj</h2>
 <ul>
-  {{range .SeriesSlugs}}
+  {{range .SeriesEntries}}
   <li>
-    <a href="/sercxi?etikedo={{.}}">&#128196; {{.}}</a>
+    <a href="/ekzerco/{{.FirstSlug}}">&#128196; {{.Label}}</a>
     &nbsp;
-    <form method="POST" action="/serio/{{.}}/steli" style="display:inline">
+    <form method="POST" action="/serio/{{.Slug}}/steli" style="display:inline">
       <button type="submit" class="icon-btn" title="Malfavori serion">★</button>
     </form>
   </li>

@@ -24,7 +24,7 @@
       <td><strong>@{{$u.Username}}</strong></td>
       <td><span class="cefr-badge cefr-{{$u.CEFRLevel}}">{{$u.CEFRLevel}}</span></td>
       <td><span class="rating-badge">{{printf "%.0f" $u.Rating}}</span></td>
-      <td>{{if $u.StreakDays}}<span class="streak-badge">{{$u.StreakDays}}d</span>{{else}}<span class="muted">—</span>{{end}}</td>
+      <td>{{if $u.StreakDays}}<span class="streak-badge"><strong>{{$u.StreakDays}}</strong></span>{{else}}<span class="muted">—</span>{{end}}</td>
     </tr>
     {{end}}
   </tbody>

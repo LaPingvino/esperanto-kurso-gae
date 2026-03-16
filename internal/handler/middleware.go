@@ -136,6 +136,19 @@ func RequireMod(next http.Handler) http.Handler {
 	})
 }
 
+// RequireCreator returns 403 if the authenticated user does not have at least the "creator" role.
+// "creator" can manage course content but cannot access user admin data.
+func RequireCreator(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		u := UserFromContext(r.Context())
+		if u == nil || (u.Role != "creator" && u.Role != "mod" && u.Role != "admin") {
+			http.Error(w, "Aliro malpermesita", http.StatusForbidden)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
 // autoCreateUser creates a new anonymous user, stores it, and returns the token.
 func autoCreateUser(ctx context.Context, us *store.UserStore, uiLang string) (string, error) {
 	idB := make([]byte, 16)

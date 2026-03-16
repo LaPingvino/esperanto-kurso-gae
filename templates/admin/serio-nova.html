@@ -1,0 +1,172 @@
+{{define "serio-nova.html"}}
+{{template "base" .}}
+{{end}}
+
+{{define "title"}}Nova serio — Administrado{{end}}
+
+{{define "content"}}
+<h1>Krei novan serion</h1>
+
+<style>
+.series-item {
+  display: grid;
+  grid-template-columns: 2rem 10rem 1fr 1fr auto;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+.series-item input, .series-item select {
+  margin-bottom: 0;
+}
+.series-item .item-num {
+  text-align: right;
+  color: var(--pico-muted-color);
+  font-size: 0.85rem;
+  padding-right: 0.25rem;
+}
+.series-header {
+  display: grid;
+  grid-template-columns: 2rem 10rem 1fr 1fr auto;
+  gap: 0.4rem;
+  margin-bottom: 0.25rem;
+  font-size: 0.8rem;
+  color: var(--pico-muted-color);
+  font-weight: bold;
+}
+@media (max-width: 700px) {
+  .series-item, .series-header {
+    grid-template-columns: 2rem 1fr;
+    grid-template-rows: auto auto auto;
+  }
+  .series-item input, .series-item select { grid-column: 2; }
+}
+</style>
+
+<form method="POST" action="/admin/serio/nova" id="series-form">
+  <div class="grid">
+    <label>
+      Serio-identigilo:
+      <input type="text" name="series_slug" id="series_slug" required
+             pattern="[a-z0-9\-]+"
+             placeholder="ekz. zagr-lekcio-1"
+             title="Nur minusklaj literoj, ciferoj kaj streketo">
+      <small>Slugoj: <code id="slug-preview">{serio}-01</code>, <code>{serio}-02</code>, ktp.</small>
+    </label>
+
+    <label>
+      Defaŭlta tipo:
+      <select name="default_type" id="default_type">
+        <option value="fillin">Plenigi blankon</option>
+        <option value="multiplechoice">Plurelekta</option>
+        <option value="reading">Legado</option>
+        <option value="vocab">Vortaro</option>
+        <option value="phrasebook">Frazaro</option>
+        <option value="image">Bildo</option>
+        <option value="listening">Aŭskulti</option>
+        <option value="video">Video</option>
+      </select>
+    </label>
+  </div>
+
+  <div class="grid">
+    <label>
+      Etikedoj (dividitaj per komo):
+      <input type="text" name="tags" placeholder="saluto, baza, gramatiko">
+    </label>
+    <label>
+      Fonto:
+      <input type="text" name="source" placeholder="Libro, TTT-ejo, ktp.">
+    </label>
+  </div>
+
+  <label>
+    Stato:
+    <select name="status">
+      <option value="draft">Malneto</option>
+      <option value="pending">Atendanta</option>
+      <option value="approved">Aprobita</option>
+    </select>
+  </label>
+
+  <hr>
+  <h3>Ekzercoj</h3>
+
+  <div class="series-header">
+    <span></span>
+    <span>Tipo</span>
+    <span>Demando / teksto</span>
+    <span>Respondo <small>(nedeviga)</small></span>
+    <span></span>
+  </div>
+
+  <div id="items-list">
+    <!-- rows injected by JS -->
+  </div>
+
+  <button type="button" onclick="addItem()" class="outline" style="margin-top:0.5rem">+ Aldoni ekzercon</button>
+
+  <div class="form-actions" style="margin-top:1.5rem">
+    <button type="submit">Krei serion</button>
+    <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+  </div>
+</form>
+
+<script>
+const TYPES = [
+  ['fillin',        'Plenigi blankon'],
+  ['multiplechoice','Plurelekta'],
+  ['reading',       'Legado'],
+  ['vocab',         'Vortaro'],
+  ['phrasebook',    'Frazaro'],
+  ['image',         'Bildo'],
+  ['listening',     'Aŭskulti'],
+  ['video',         'Video'],
+];
+
+function typeOptions(selected) {
+  return TYPES.map(([v, l]) =>
+    `<option value="${v}"${v === selected ? ' selected' : ''}>${l}</option>`
+  ).join('');
+}
+
+function addItem(q='', a='', typ=null) {
+  const list = document.getElementById('items-list');
+  const idx = list.children.length;
+  const defType = typ || document.getElementById('default_type').value || 'fillin';
+  const row = document.createElement('div');
+  row.className = 'series-item';
+  row.innerHTML = `
+    <span class="item-num">${idx + 1}.</span>
+    <select name="item_type">${typeOptions(defType)}</select>
+    <input type="text" name="item_question" value="${escHtml(q)}" placeholder="Demando / teksto" required>
+    <input type="text" name="item_answer"   value="${escHtml(a)}" placeholder="Respondo (nedeviga)">
+    <button type="button" class="outline contrast" style="padding:0.2em 0.6em" onclick="removeItem(this)" title="Forigi">&#10007;</button>
+  `;
+  list.appendChild(row);
+  renumber();
+}
+
+function removeItem(btn) {
+  btn.closest('.series-item').remove();
+  renumber();
+}
+
+function renumber() {
+  document.querySelectorAll('#items-list .item-num').forEach((el, i) => {
+    el.textContent = (i + 1) + '.';
+  });
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Update slug preview
+document.getElementById('series_slug').addEventListener('input', function() {
+  document.getElementById('slug-preview').textContent = (this.value || '{serio}') + '-01';
+});
+
+// Start with 3 empty rows
+addItem(); addItem(); addItem();
+</script>
+{{end}}

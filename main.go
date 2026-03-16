@@ -75,6 +75,8 @@ func main() {
 	mux.HandleFunc("POST /serio/{series_slug}/steli", contentH.ToggleFavoriteSeries)
 	mux.HandleFunc("POST /etikedo/{tag}/steli", contentH.ToggleFavoriteTag)
 	mux.HandleFunc("GET /honorlisto", contentH.ShowHonorListo)
+	mux.HandleFunc("GET /serioj-nav", contentH.SeriesNavOptions)
+	mux.HandleFunc("GET /serioj", contentH.ShowSeriesBrowser)
 	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
@@ -102,19 +104,22 @@ func main() {
 	// Admin routes — registered directly with method+path to avoid ServeMux conflicts.
 	ra := func(h http.HandlerFunc) http.Handler { return handler.RequireAdmin(h) }
 	rm := func(h http.HandlerFunc) http.Handler { return handler.RequireMod(h) }
+	rc := func(h http.HandlerFunc) http.Handler { return handler.RequireCreator(h) }
 	mux.HandleFunc("GET /admin/initial", adminH.InitialSetup)
-	mux.Handle("GET /admin", rm(adminH.Dashboard))
-	// Content editing: mods and admins
-	mux.Handle("GET /admin/enhavo", rm(adminH.ListContent))
-	mux.Handle("GET /admin/enhavo/nova", rm(adminH.NewContentForm))
-	mux.Handle("POST /admin/enhavo", rm(adminH.CreateContent))
-	mux.Handle("GET /admin/enhavo/{slug}/redakti", rm(adminH.EditContentForm))
-	mux.Handle("POST /admin/enhavo/{slug}", rm(adminH.UpdateContent))
-	mux.Handle("POST /admin/enhavo/{slug}/forigi", ra(adminH.DeleteContent))
-	// Series edit routes: mods and admins
-	mux.Handle("GET /admin/serio/{series_slug}/redakti", rm(adminH.SeriesEditForm))
-	mux.Handle("POST /admin/serio/{series_slug}", rm(adminH.UpdateSeries))
-	mux.Handle("POST /admin/serio/{series_slug}/renomi", rm(adminH.RenameSeries))
+	mux.Handle("GET /admin", rc(adminH.Dashboard))
+	// Content editing: creators, mods and admins
+	mux.Handle("GET /admin/enhavo", rc(adminH.ListContent))
+	mux.Handle("GET /admin/enhavo/nova", rc(adminH.NewContentForm))
+	mux.Handle("POST /admin/enhavo", rc(adminH.CreateContent))
+	mux.Handle("GET /admin/enhavo/{slug}/redakti", rc(adminH.EditContentForm))
+	mux.Handle("POST /admin/enhavo/{slug}", rc(adminH.UpdateContent))
+	mux.Handle("POST /admin/enhavo/{slug}/forigi", rm(adminH.DeleteContent))
+	mux.Handle("POST /admin/enhavo/bulk-forigi", rm(adminH.BulkDeleteContent))
+	mux.Handle("POST /admin/enhavo/auto-gepatro", rm(adminH.AutoAssignParents))
+	// Series edit routes: creators, mods and admins
+	mux.Handle("GET /admin/serio/{series_slug}/redakti", rc(adminH.SeriesEditForm))
+	mux.Handle("POST /admin/serio/{series_slug}", rc(adminH.UpdateSeries))
+	mux.Handle("POST /admin/serio/{series_slug}/renomi", rc(adminH.RenameSeries))
 	// Moderation queue: mods and admins
 	mux.Handle("GET /admin/moderigo", rm(adminH.ModerationQueue))
 	mux.Handle("POST /admin/moderigo/{id}", rm(adminH.ModerateComment))
@@ -122,12 +127,11 @@ func main() {
 	mux.Handle("POST /admin/mesagxoj/{id}/legita", rm(adminH.MarkModMessageRead))
 	// Translation deletion: admin only
 	mux.Handle("POST /admin/tradukoj/{id}/forigi", ra(adminH.DeleteTranslation))
-	// Vocabulary generator: mods and admins
-	mux.Handle("GET /admin/enhavo/{slug}/vortaro", rm(adminH.VocabFromReading))
-	mux.Handle("POST /admin/enhavo/{slug}/vortaro", rm(adminH.CreateVocabFromReading))
+	// Vocabulary generator: creators, mods and admins
+	mux.Handle("GET /admin/enhavo/{slug}/vortaro", rc(adminH.VocabFromReading))
+	mux.Handle("POST /admin/enhavo/{slug}/vortaro", rc(adminH.CreateVocabFromReading))
 	// Destructive / bulk operations: admin only
-	mux.Handle("POST /admin/seed", ra(adminH.SeedContent))
-	mux.Handle("POST /admin/patch-seed", ra(adminH.PatchSeedContent))
+	mux.Handle("POST /admin/seed/{filename}", ra(adminH.SeedContent))
 	mux.Handle("GET /admin/eksporti", ra(adminH.ExportContent))
 	mux.Handle("POST /admin/importi", ra(adminH.ImportContent))
 	mux.Handle("POST /admin/forigi-cion", ra(adminH.NukeContent))
@@ -196,6 +200,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"etikedoj.html":         "templates/etikedoj.html",
 		"steloj.html":           "templates/steloj.html",
 		"honorlisto.html":       "templates/honorlisto.html",
+		"serioj.html":           "templates/serioj.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).
@@ -270,7 +275,7 @@ func templateFuncs() template.FuncMap {
 			if u == nil {
 				return false
 			}
-			if u.Role == "admin" || u.Role == "mod" {
+			if u.Role == "admin" || u.Role == "mod" || u.Role == "creator" {
 				return true
 			}
 			return u.Rating >= 1500 && u.RD < 150

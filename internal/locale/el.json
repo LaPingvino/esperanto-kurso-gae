@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Όλες οι λέξεις",
   "vortaro.def_lang_note_prefix": "Γλώσσα ορισμού:",
-  "vortaro.def_lang_note_suffix": "— αλλάξτε τη με τον επιλογέα στο κάτω μέρος της σελίδας.",
+  "vortaro.def_lang_note_suffix": "— αλλάξτε τη με τον επιλογέα 💬 στην επάνω πλοήγηση.",
   "vortaro.definition_col": "Ορισμός",
   "vortaro.empty": "Δεν υπάρχουν ακόμα λέξεις στο λεξικό.",
   "vortaro.esperanto_col": "Εσπεράντο",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

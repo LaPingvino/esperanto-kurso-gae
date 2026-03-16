@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "すべての単語",
   "vortaro.def_lang_note_prefix": "定義言語：",
-  "vortaro.def_lang_note_suffix": "— ページ下部のセレクターで変更できます。",
+  "vortaro.def_lang_note_suffix": "— 上部ナビゲーションの 💬 セレクターで変更できます。",
   "vortaro.definition_col": "定義",
   "vortaro.empty": "辞書にまだ単語がありません。",
   "vortaro.esperanto_col": "エスペラント",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "新しい練習シリーズ",
+  "result.streak_until": "keep streak until"
 }

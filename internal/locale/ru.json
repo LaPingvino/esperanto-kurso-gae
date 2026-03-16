@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Все слова",
   "vortaro.def_lang_note_prefix": "Язык определения:",
-  "vortaro.def_lang_note_suffix": "— измените его с помощью переключателя внизу страницы.",
+  "vortaro.def_lang_note_suffix": "— измените его с помощью переключателя 💬 в верхней навигации.",
   "vortaro.definition_col": "Определение",
   "vortaro.empty": "В словаре ещё нет слов.",
   "vortaro.esperanto_col": "Эсперанто",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "Новая серия упражнений",
+  "result.streak_until": "keep streak until"
 }

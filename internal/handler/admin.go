@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/fs"
 	"net/http"
 	"net/url"
 	"sort"
@@ -14,7 +15,34 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
+	seedpkg "github.com/LaPingvino/esperanto-kurso-gae/seed"
 )
+
+// seedFileNames returns the sorted list of seed JSON filenames.
+func seedFileNames() []string {
+	entries, _ := fs.ReadDir(seedpkg.FS, ".")
+	var names []string
+	for _, e := range entries {
+		if !e.IsDir() && strings.HasSuffix(e.Name(), ".json") {
+			names = append(names, e.Name())
+		}
+	}
+	sort.Strings(names)
+	return names
+}
+
+// loadSeedFile reads and decodes a seed JSON file by bare filename (e.g. "zagr-vortaro.json").
+func loadSeedFile(name string) ([]*model.ContentItem, error) {
+	data, err := seedpkg.FS.ReadFile(name)
+	if err != nil {
+		return nil, err
+	}
+	var items []*model.ContentItem
+	if err := json.Unmarshal(data, &items); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
 
 // AdminHandler bundles all admin HTTP handlers.
 type AdminHandler struct {
@@ -61,6 +89,7 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 		"CommentCount":       len(pendingComments),
 		"ModMessageCount":    len(unreadMessages),
 		"TranslationCount":   len(pendingTranslations),
+		"SeedFiles":          seedFileNames(),
 		"SeedResult":         r.URL.Query().Get("seed"),
 		"ImportResult":       r.URL.Query().Get("import"),
 		"NukeResult":         r.URL.Query().Get("nuke"),
@@ -71,10 +100,13 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// SeriesGroup holds the items belonging to a single series.
+// SeriesGroup holds the items belonging to a single series, plus any child series.
 type SeriesGroup struct {
-	SeriesSlug string
-	Items      []*model.ContentItem
+	SeriesSlug   string
+	SeriesParent string // empty if top-level (parent item slug)
+	SeriesLabel  string
+	Items        []*model.ContentItem
+	Children     []SeriesGroup // child series whose items reference this series' items
 }
 
 // ListContent handles GET /admin/enhavo.
@@ -99,7 +131,15 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 			continue
 		}
 		if _, exists := groupMap[item.SeriesSlug]; !exists {
-			groupMap[item.SeriesSlug] = &SeriesGroup{SeriesSlug: item.SeriesSlug}
+			label := item.SeriesLabel
+			if label == "" {
+				label = item.SeriesSlug
+			}
+			groupMap[item.SeriesSlug] = &SeriesGroup{
+				SeriesSlug:   item.SeriesSlug,
+				SeriesParent: item.SeriesParent,
+				SeriesLabel:  label,
+			}
 			groupOrder = append(groupOrder, item.SeriesSlug)
 		}
 		groupMap[item.SeriesSlug].Items = append(groupMap[item.SeriesSlug].Items, item)
@@ -112,9 +152,46 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 		})
 	}
 
-	groups := make([]SeriesGroup, 0, len(groupOrder))
+	// Build item-slug → series-slug index so we can resolve parent items to series.
+	itemToSeries := make(map[string]string)
+	for slug, g := range groupMap {
+		for _, item := range g.Items {
+			itemToSeries[item.Slug] = slug
+		}
+	}
+	for _, item := range standalone {
+		itemToSeries[item.Slug] = "" // standalone items have no series
+	}
+
+	// Build tree: attach child series to their parent series.
+	// A series is a child if its SeriesParent item belongs to another series.
+	childOf := make(map[string]string) // child series slug → parent series slug
 	for _, slug := range groupOrder {
+		g := groupMap[slug]
+		if g.SeriesParent == "" {
+			continue
+		}
+		parentSeries := itemToSeries[g.SeriesParent]
+		if parentSeries != "" && parentSeries != slug {
+			childOf[slug] = parentSeries
+		}
+	}
+
+	// Collect top-level groups (not a child of any series), then attach children.
+	var groups []SeriesGroup
+	for _, slug := range groupOrder {
+		if _, isChild := childOf[slug]; isChild {
+			continue
+		}
 		groups = append(groups, *groupMap[slug])
+	}
+	// Attach children to their parents (in groupOrder for stable ordering).
+	for i := range groups {
+		for _, slug := range groupOrder {
+			if childOf[slug] == groups[i].SeriesSlug {
+				groups[i].Children = append(groups[i].Children, *groupMap[slug])
+			}
+		}
 	}
 
 	data := map[string]interface{}{
@@ -122,6 +199,9 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 		"Groups":       groups,
 		"Standalone":   standalone,
 		"StatusFilter": statusFilter,
+		"BulkDeleted":   r.URL.Query().Get("bulk_deleted"),
+		"AutoGepatro":   r.URL.Query().Get("auto_gepatro"),
+		"AutoPreterita": r.URL.Query().Get("auto_preterita"),
 		"UILang":       UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "listo.html", data); err != nil {
@@ -132,16 +212,20 @@ func (h *AdminHandler) ListContent(w http.ResponseWriter, r *http.Request) {
 // NewContentForm handles GET /admin/enhavo/nova.
 func (h *AdminHandler) NewContentForm(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
+	seriesParent := r.URL.Query().Get("series_parent")
+	item := &model.ContentItem{
+		Rating:       1500,
+		RD:           350,
+		Volatility:   0.06,
+		Status:       "draft",
+		SeriesParent: seriesParent,
+	}
 	data := map[string]interface{}{
-		"User": u,
-		"Item": &model.ContentItem{
-			Rating:     1500,
-			RD:         350,
-			Volatility: 0.06,
-			Status:     "draft",
-		},
-		"IsNew":  true,
-		"UILang": UILangFor(u),
+		"User":              u,
+		"Item":              item,
+		"IsNew":             true,
+		"DefaultSeriesMode": seriesParent != "",
+		"UILang":            UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "redaktilo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -231,7 +315,12 @@ func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 	if newSlug == "" {
 		newSlug = slug
 	}
-	updated.Rating = existing.Rating
+	// If the form submitted initial_rating, apply it (the hidden field is pre-filled
+	// with the current calibrated value and only changes if the CEFR picker was moved).
+	// Otherwise fall back to the existing Glicko-calibrated rating.
+	if r.FormValue("initial_rating") == "" {
+		updated.Rating = existing.Rating
+	}
 	updated.RD = existing.RD
 	updated.Volatility = existing.Volatility
 	updated.VoteScore = existing.VoteScore
@@ -252,6 +341,12 @@ func (h *AdminHandler) UpdateContent(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
+	}
+
+	// Re-normalize series order if this item belongs to a series,
+	// in case manual edits created duplicate or out-of-range positions.
+	if updated.SeriesSlug != "" {
+		_ = h.content.RenormalizeSeriesOrder(r.Context(), updated.SeriesSlug)
 	}
 
 	http.Redirect(w, r, "/admin/enhavo/"+newSlug+"/redakti", http.StatusSeeOther)
@@ -608,6 +703,14 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 	contentMap["correct_index"] = correctIndex
 
 	seriesOrder, _ := strconv.Atoi(r.FormValue("series_order"))
+
+	initialRating := 1500.0
+	if rv := r.FormValue("initial_rating"); rv != "" {
+		if v, err := strconv.ParseFloat(rv, 64); err == nil && v > 0 {
+			initialRating = v
+		}
+	}
+
 	return &model.ContentItem{
 		Slug:         r.FormValue("slug"),
 		Type:         r.FormValue("type"),
@@ -616,7 +719,7 @@ func buildContentItem(r *http.Request, authorID string) *model.ContentItem {
 		Source:       r.FormValue("source"),
 		AuthorID:     authorID,
 		Status:       r.FormValue("status"),
-		Rating:       1500,
+		Rating:       initialRating,
 		RD:           350,
 		Volatility:   0.06,
 		ImageURL:     r.FormValue("image_url"),
@@ -779,6 +882,12 @@ func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 		}
 
 		slug := fmt.Sprintf("%s-%02d", seriesSlug, order)
+		initialRating := 1500.0
+		if rv := r.FormValue("initial_rating"); rv != "" {
+			if v, err := strconv.ParseFloat(rv, 64); err == nil && v > 0 {
+				initialRating = v
+			}
+		}
 		item := &model.ContentItem{
 			Slug:        slug,
 			Type:        typ,
@@ -786,7 +895,7 @@ func (h *AdminHandler) CreateSeries(w http.ResponseWriter, r *http.Request) {
 			Source:      source,
 			AuthorID:    authorID,
 			Status:      status,
-			Rating:      1500,
+			Rating:      initialRating,
 			RD:          350,
 			Volatility:  0.06,
 			SeriesSlug:  seriesSlug,
@@ -1162,8 +1271,11 @@ func (h *AdminHandler) UpdateSeries(w http.ResponseWriter, r *http.Request) {
 		order++
 	}
 
-	// Delete items that are no longer in the submitted list.
-	currentItems, _ := h.content.ListBySeries(r.Context(), seriesSlug)
+	// Delete items that are no longer in the submitted list (check all statuses).
+	// NOTE: we intentionally do NOT call RenormalizeSeriesOrder here — UpdateSeries
+	// already assigns order 1,2,3... as it saves, and running a query immediately after
+	// deletes risks recreating items due to Datastore eventual consistency on index reads.
+	currentItems, _ := h.content.ListBySeriesForAdmin(r.Context(), seriesSlug)
 	submittedSet := make(map[string]bool)
 	for _, s := range submittedSlugs {
 		submittedSet[s] = true
@@ -1191,51 +1303,210 @@ func (h *AdminHandler) DeleteContent(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, "/admin/enhavo", http.StatusSeeOther)
 }
 
-// SeedContent handles POST /admin/seed — loads embedded seed data into Datastore.
-// Idempotent: skips items that already exist. Redirects back to dashboard with result.
-func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
-	loaded, skipped, failed := 0, 0, 0
-	allSeedItems := append(seedItems(), seedContentItems()...)
-	allSeedItems = append(allSeedItems, seedVideoItems()...)
-	allSeedItems = append(allSeedItems, seedExtraItems()...)
-	allSeedItems = append(allSeedItems, seedFillinItems()...)
-	for _, item := range allSeedItems {
-		existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
-		if existing != nil {
+// BulkDeleteContent handles POST /admin/enhavo/bulk-forigi — deletes multiple items by slug.
+func (h *AdminHandler) BulkDeleteContent(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+	slugs := r.Form["slugs"]
+	deleted := 0
+	for _, slug := range slugs {
+		if slug == "" {
+			continue
+		}
+		if err := h.content.Delete(r.Context(), slug); err == nil {
+			deleted++
+		}
+	}
+	redirectURL := "/admin/enhavo?bulk_deleted=" + fmt.Sprintf("%d", deleted)
+	http.Redirect(w, r, redirectURL, http.StatusSeeOther)
+}
+
+// AutoAssignParents handles POST /admin/enhavo/auto-gepatro.
+// It assigns series_parent to vocab items that have none, using a cascade:
+//  1. series_slug matches "voc-auto-{X}" → parent = X
+//  2. slug matches "voc-auto-{X}-{digits}" → parent = X
+//  3. fallback: find the first reading/fillin/multiplechoice item whose text
+//     contains the vocab word (or its Esperanto root = word minus last char)
+func (h *AdminHandler) AutoAssignParents(w http.ResponseWriter, r *http.Request) {
+	ctx := r.Context()
+
+	all, err := h.content.ListForAdmin(ctx, "", 50000)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Build lookup: slug → item (for cascade steps 1–2 validation)
+	slugSet := make(map[string]bool, len(all))
+	for _, item := range all {
+		slugSet[item.Slug] = true
+	}
+
+	// Build text candidates for fallback: items with readable text, sorted by slug.
+	var candidates []textCandidate
+	for _, item := range all {
+		t := strings.ToLower(item.Text() + " " + item.Question() + " " + item.Title())
+		if strings.TrimSpace(t) != "" {
+			candidates = append(candidates, textCandidate{item.Slug, t})
+		}
+	}
+	sort.Slice(candidates, func(i, j int) bool {
+		return candidates[i].slug < candidates[j].slug
+	})
+
+	updated := 0
+	skipped := 0
+	for _, item := range all {
+		if item.SeriesParent != "" {
+			continue
+		}
+		parent := inferParent(item.Slug, item.SeriesSlug, slugSet, item.Word(), candidates)
+		if parent == "" {
 			skipped++
 			continue
 		}
-		if err := h.content.Create(r.Context(), item); err != nil {
-			failed++
-			continue
-		}
-		loaded++
-	}
-	msg := fmt.Sprintf("Semo: %d ŝargitaj, %d preterlasitaj, %d malsukcesaj", loaded, skipped, failed)
-	http.Redirect(w, r, "/admin?seed="+url.QueryEscape(msg), http.StatusSeeOther)
-}
-
-// PatchSeedContent handles POST /admin/patch-seed — updates only the content/tags fields
-// of existing seed items (preserving ratings, votes, etc.) and creates missing ones.
-func (h *AdminHandler) PatchSeedContent(w http.ResponseWriter, r *http.Request) {
-	updated, created, failed := 0, 0, 0
-	allSeedItems := append(seedItems(), seedContentItems()...)
-	allSeedItems = append(allSeedItems, seedVideoItems()...)
-	allSeedItems = append(allSeedItems, seedExtraItems()...)
-	allSeedItems = append(allSeedItems, seedFillinItems()...)
-	for _, item := range allSeedItems {
-		existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
-		if err := h.content.PatchContentFields(r.Context(), item); err != nil {
-			failed++
-			continue
-		}
-		if existing == nil {
-			created++
-		} else {
+		if err := h.content.SetSeriesParent(ctx, item.Slug, parent); err == nil {
 			updated++
 		}
 	}
-	msg := fmt.Sprintf("Flikaĵo: %d ĝisdatigitaj, %d novaj, %d malsukcesaj", updated, created, failed)
+
+	http.Redirect(w, r, fmt.Sprintf("/admin/enhavo?auto_gepatro=%d&auto_preterita=%d", updated, skipped), http.StatusSeeOther)
+}
+
+type textCandidate struct {
+	slug string
+	text string
+}
+
+// inferParent determines the best series_parent using a cascade of heuristics.
+func inferParent(slug, seriesSlug string, slugSet map[string]bool, word string, candidates []textCandidate) string {
+	// 1. series_slug pattern: "voc-auto-{X}" → parent = X (if that slug exists)
+	for _, prefix := range []string{"voc-auto-", "voc-"} {
+		if strings.HasPrefix(seriesSlug, prefix) {
+			candidate := seriesSlug[len(prefix):]
+			if candidate != "" && candidate != slug && slugSet[candidate] {
+				return candidate
+			}
+		}
+	}
+
+	// 2. slug pattern: "voc-auto-{X}-{digits}" → parent = X
+	for _, prefix := range []string{"voc-auto-", "voc-"} {
+		if strings.HasPrefix(slug, prefix) {
+			rest := slug[len(prefix):]
+			if i := strings.LastIndex(rest, "-"); i > 0 {
+				suffix := rest[i+1:]
+				allDigits := len(suffix) > 0
+				for _, c := range suffix {
+					if c < '0' || c > '9' {
+						allDigits = false
+						break
+					}
+				}
+				if allDigits {
+					candidate := rest[:i]
+					if candidate != "" && candidate != slug && slugSet[candidate] {
+						return candidate
+					}
+				}
+			}
+		}
+	}
+
+	// 3. Text fallback: find a content item whose text contains the vocab word.
+	// Try full word first, then root (word minus Esperanto grammatical ending).
+	if word == "" {
+		return ""
+	}
+	wordLower := strings.ToLower(word)
+	// Esperanto root: strip last char (covers -o, -a, -e, -i endings).
+	root := ""
+	if len(wordLower) > 2 {
+		root = wordLower[:len(wordLower)-1]
+	}
+
+	for _, c := range candidates {
+		if c.slug == slug {
+			continue
+		}
+		if strings.Contains(c.text, wordLower) {
+			return c.slug
+		}
+	}
+	// Try root match if no exact match.
+	if root != "" {
+		for _, c := range candidates {
+			if c.slug == slug {
+				continue
+			}
+			if strings.Contains(c.text, root) {
+				return c.slug
+			}
+		}
+	}
+
+	return ""
+}
+
+// SeedContent handles POST /admin/seed/{filename} — seeds a single JSON file.
+// mode=create skips existing items (idempotent create).
+// mode=patch updates content/tags/series of existing items and creates missing ones.
+func (h *AdminHandler) SeedContent(w http.ResponseWriter, r *http.Request) {
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+	filename := r.PathValue("filename")
+	if filename == "" || strings.Contains(filename, "/") || strings.Contains(filename, "..") {
+		http.Error(w, "Nevalida dosiernomo", http.StatusBadRequest)
+		return
+	}
+	mode := r.FormValue("mode") // "create" or "patch"
+
+	items, err := loadSeedFile(filename)
+	if err != nil {
+		http.Error(w, "Ne povas legi dosieron: "+err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	loaded, updated, skipped, failed := 0, 0, 0, 0
+	for _, item := range items {
+		if item.Slug == "" {
+			failed++
+			continue
+		}
+		if mode == "patch" {
+			existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
+			if err := h.content.PatchContentFields(r.Context(), item); err != nil {
+				failed++
+				continue
+			}
+			if existing == nil {
+				loaded++
+			} else {
+				updated++
+			}
+		} else {
+			existing, _ := h.content.GetBySlug(r.Context(), item.Slug)
+			if existing != nil {
+				skipped++
+				continue
+			}
+			if err := h.content.Create(r.Context(), item); err != nil {
+				failed++
+				continue
+			}
+			loaded++
+		}
+	}
+	var msg string
+	if mode == "patch" {
+		msg = fmt.Sprintf("%s: %d novaj, %d ĝisdatigitaj, %d malsukcesaj", filename, loaded, updated, failed)
+	} else {
+		msg = fmt.Sprintf("%s: %d ŝargitaj, %d preterlasitaj, %d malsukcesaj", filename, loaded, skipped, failed)
+	}
 	http.Redirect(w, r, "/admin?seed="+url.QueryEscape(msg), http.StatusSeeOther)
 }
 
@@ -1354,7 +1625,7 @@ func (h *AdminHandler) MarkModMessageRead(w http.ResponseWriter, r *http.Request
 	w.WriteHeader(http.StatusOK)
 }
 
-// SetUserRole handles POST /admin/uzantoj/{id}/rolo — sets role to "user", "mod", or "admin".
+// SetUserRole handles POST /admin/uzantoj/{id}/rolo — sets role to "user", "creator", "mod", or "admin".
 func (h *AdminHandler) SetUserRole(w http.ResponseWriter, r *http.Request) {
 	userID := r.PathValue("id")
 	if err := r.ParseForm(); err != nil {
@@ -1362,7 +1633,7 @@ func (h *AdminHandler) SetUserRole(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	role := r.FormValue("rolo")
-	if role != "user" && role != "mod" && role != "admin" {
+	if role != "user" && role != "creator" && role != "mod" && role != "admin" {
 		http.Error(w, "Nevalida rolo", http.StatusBadRequest)
 		return
 	}

@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Maneno yote",
   "vortaro.def_lang_note_prefix": "Lugha ya ufafanuzi:",
-  "vortaro.def_lang_note_suffix": "— ibadilishe kwa kichaguzi chini ya ukurasa.",
+  "vortaro.def_lang_note_suffix": "— ibadilishe kwa kichaguzi 💬 katika urambazaji wa juu.",
   "vortaro.definition_col": "Ufafanuzi",
   "vortaro.empty": "Bado hakuna maneno kwenye kamusi.",
   "vortaro.esperanto_col": "Kiesperanto",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

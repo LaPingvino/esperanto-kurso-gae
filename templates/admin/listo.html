@@ -4,97 +4,26 @@
 
 {{define "title"}}Enhavo — Administrado{{end}}
 
-{{define "content"}}
-<h1>Enhavo</h1>
-
-<div class="admin-toolbar">
-  <a href="/admin/enhavo/nova" role="button">+ Nova enhavo</a>
-  <form method="GET" action="/admin/enhavo" class="filter-form">
-    <select name="status" onchange="this.form.submit()">
-      <option value="">Ĉiuj statoj</option>
-      <option value="draft" {{if eq .StatusFilter "draft"}}selected{{end}}>Malneto</option>
-      <option value="pending" {{if eq .StatusFilter "pending"}}selected{{end}}>Atendanta</option>
-      <option value="approved" {{if eq .StatusFilter "approved"}}selected{{end}}>Aprobita</option>
-      <option value="rejected" {{if eq .StatusFilter "rejected"}}selected{{end}}>Malakceptita</option>
-    </select>
-  </form>
-  <input type="search" id="content-search" placeholder="Serĉi laŭ identigilo, tipo…" style="max-width:20rem" oninput="filterContent(this.value)">
-</div>
-
-{{if or .Groups .Standalone}}
-
-{{range .Groups}}
-<details class="series-group" style="margin-bottom:0.75rem">
-  <summary style="cursor:pointer;font-weight:bold">
-    &#128196; {{.SeriesSlug}}
-    <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj)</small>
-    &nbsp;
-    <a href="/admin/serio/{{.SeriesSlug}}/redakti" style="font-size:0.85em" onclick="event.stopPropagation()">Redakti serion</a>
-  </summary>
-  <div class="table-responsive">
-    <table>
-      <thead>
-        <tr>
-          <th>Identigilo</th>
-          <th>Tipo</th>
-          <th>Stato</th>
-          <th>Nivelo</th>
-          <th>Voĉoj</th>
-          <th>Agoj</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{range .Items}}
-        <tr data-search="{{.Slug}} {{.Type}} {{.Status}}">
-          <td><code>{{.Slug}}</code></td>
-          <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
-          <td>
-            <span class="status-badge status-{{.Status}}">
-              {{if eq .Status "draft"}}Malneto
-              {{else if eq .Status "pending"}}Atendanta
-              {{else if eq .Status "approved"}}Aprobita
-              {{else if eq .Status "rejected"}}Malakceptita
-              {{else}}{{.Status}}{{end}}
-            </span>
-          </td>
-          <td>{{printf "%.0f" .Rating}} &plusmn;{{printf "%.0f" .RD}}</td>
-          <td>{{.VoteScore}}</td>
-          <td>
-            <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
-            &middot;
-            <a href="/ekzerco/{{.Slug}}">Vidi</a>
-            &middot;
-            <form method="POST" action="/admin/enhavo/{{.Slug}}/forigi" style="display:inline"
-                  onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Slug}}»?')">
-              <button type="submit" class="outline danger-btn" style="padding:0.1em 0.4em;font-size:0.85em">Forigi</button>
-            </form>
-          </td>
-        </tr>
-        {{end}}
-      </tbody>
-    </table>
-  </div>
-</details>
-{{end}}
-
-{{if .Standalone}}
-<h2 style="margin-top:1.5rem">Solaj eroj</h2>
+{{define "series-group-table"}}
 <div class="table-responsive">
   <table>
     <thead>
       <tr>
-        <th>Identigilo</th>
+        <th style="width:1.5rem"><input type="checkbox" class="col-check" data-series="{{.SeriesSlug}}" onchange="toggleSeriesRows(this)" style="width:auto"></th>
+        <th>Identigilo / Teksto</th>
         <th>Tipo</th>
         <th>Stato</th>
+        <th>Gepatro</th>
         <th>Nivelo</th>
         <th>Voĉoj</th>
         <th>Agoj</th>
       </tr>
     </thead>
     <tbody>
-      {{range .Standalone}}
-      <tr data-search="{{.Slug}} {{.Type}} {{.Status}}">
-        <td><code>{{.Slug}}</code></td>
+      {{range .Items}}
+      <tr data-search="{{.Slug}} {{.Type}} {{.Status}}" data-type="{{.Type}}" data-parent="{{.SeriesParent}}">
+        <td><input type="checkbox" name="slugs" value="{{.Slug}}" class="row-check" onchange="updateBulkBar()" style="width:auto"></td>
+        <td><code style="font-size:0.8em">{{.Slug}}</code>{{if .Word}}<br><span style="font-size:0.85em">{{.Word}}</span>{{else if .Title}}<br><span style="font-size:0.85em">{{.Title}}</span>{{else if .Question}}<br><span style="font-size:0.85em;color:var(--pico-muted-color)">{{truncate .Question 50}}</span>{{end}}</td>
         <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
         <td>
           <span class="status-badge status-{{.Status}}">
@@ -105,6 +34,150 @@
             {{else}}{{.Status}}{{end}}
           </span>
         </td>
+        <td>{{if .SeriesParent}}<code style="font-size:0.8em">{{.SeriesParent}}</code>{{else}}<span style="color:var(--pico-muted-color)">—</span>{{end}}</td>
+        <td>{{printf "%.0f" .Rating}} &plusmn;{{printf "%.0f" .RD}}</td>
+        <td>{{.VoteScore}}</td>
+        <td>
+          <a href="/admin/enhavo/{{.Slug}}/redakti">Redakti</a>
+          &middot;
+          <a href="/ekzerco/{{.Slug}}">Vidi</a>
+          &middot;
+          <form method="POST" action="/admin/enhavo/{{.Slug}}/forigi" style="display:inline"
+                onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Slug}}»?')">
+            <button type="submit" class="outline danger-btn" style="padding:0.1em 0.4em;font-size:0.85em">Forigi</button>
+          </form>
+        </td>
+      </tr>
+      {{end}}
+    </tbody>
+  </table>
+</div>
+{{end}}
+
+{{define "content"}}
+<h1>Enhavo</h1>
+
+{{if .BulkDeleted}}<p><strong>Forigitaj: {{.BulkDeleted}} eroj.</strong></p>{{end}}
+{{if .AutoGepatro}}<p><strong>Aŭtomate asignitaj gepatroj: {{.AutoGepatro}} eroj{{if .AutoPreterita}} ({{.AutoPreterita}} preterlasitaj — neniu gepatro trovita){{end}}.</strong></p>{{end}}
+
+<form method="POST" action="/admin/enhavo/bulk-forigi" id="bulk-form">
+
+<div class="admin-toolbar">
+  <a href="/admin/enhavo/nova" role="button">+ Nova enhavo</a>
+
+  <form method="GET" action="/admin/enhavo" class="filter-form" id="filter-get-form">
+    <select name="status" onchange="this.form.submit()">
+      <option value="">Ĉiuj statoj</option>
+      <option value="draft" {{if eq .StatusFilter "draft"}}selected{{end}}>Malneto</option>
+      <option value="pending" {{if eq .StatusFilter "pending"}}selected{{end}}>Atendanta</option>
+      <option value="approved" {{if eq .StatusFilter "approved"}}selected{{end}}>Aprobita</option>
+      <option value="rejected" {{if eq .StatusFilter "rejected"}}selected{{end}}>Malakceptita</option>
+    </select>
+    <select id="type-filter" onchange="applyFilters()">
+      <option value="">Ĉiuj tipoj</option>
+      <option value="multiplechoice">Plurelekta</option>
+      <option value="fillin">Plenigi blankon</option>
+      <option value="vocab">Vortaro</option>
+      <option value="reading">Legado</option>
+      <option value="phrasebook">Frazaro</option>
+      <option value="image">Bildo</option>
+      <option value="listening">Aŭskulti</option>
+      <option value="video">Video</option>
+    </select>
+    <label style="margin:0;white-space:nowrap">
+      <input type="checkbox" id="no-parent-filter" onchange="applyFilters()" style="width:auto;margin:0 0.3rem 0 0">
+      Sen gepatro
+    </label>
+  </form>
+
+  <input type="search" id="content-search" placeholder="Serĉi laŭ identigilo, tipo…" style="max-width:20rem" oninput="applyFilters()">
+</div>
+
+<div style="margin-bottom:0.75rem">
+  <form method="POST" action="/admin/enhavo/auto-gepatro" style="display:inline"
+        onsubmit="return confirm('Ĉu aŭtomate asigni gepatrojn al ĉiuj sen-gepatra vortaro-eroj?')">
+    <button type="submit" class="outline" style="margin:0;padding:0.25em 0.75em;font-size:0.9em">Aŭto-gepatro</button>
+  </form>
+</div>
+
+<div class="bulk-bar" id="bulk-bar" style="display:none;margin-bottom:0.75rem;padding:0.5rem;background:var(--pico-card-background-color);border-radius:6px;display:flex;align-items:center;gap:0.75rem">
+  <span id="sel-count">0 elektitaj</span>
+  <button type="submit" form="bulk-form" class="outline danger-btn" style="margin:0;padding:0.2em 0.75em"
+          onclick="return confirmBulk()">Forigi elektitajn</button>
+  <button type="button" onclick="clearAll()" style="margin:0;padding:0.2em 0.75em" class="outline">Malselekti ĉiujn</button>
+</div>
+
+{{if or .Groups .Standalone}}
+
+{{range .Groups}}
+<details class="series-group" id="sg-{{.SeriesSlug}}" style="margin-bottom:0.75rem">
+  <summary style="cursor:pointer;font-weight:bold">
+    &#128196; {{.SeriesLabel}}
+    {{if ne .SeriesLabel .SeriesSlug}}<small style="font-weight:normal;opacity:0.6">({{.SeriesSlug}})</small>{{end}}
+    <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj{{if .Children}}, {{len .Children}} subseroj{{end}})</small>
+    &nbsp;
+    <a href="/admin/serio/{{.SeriesSlug}}/redakti" style="font-size:0.85em" onclick="event.stopPropagation()">Redakti serion</a>
+    &nbsp;
+    <label onclick="event.stopPropagation()" style="font-size:0.85em;font-weight:normal;margin:0">
+      <input type="checkbox" class="series-check" data-series="{{.SeriesSlug}}"
+             onchange="toggleSeries(this)" style="width:auto;margin:0 0.25rem 0 0">Elekti seriajn
+    </label>
+  </summary>
+  {{template "series-group-table" .}}
+
+  {{/* Child series — shown nested and indented */}}
+  {{range .Children}}
+  <details class="series-group series-group-child" id="sg-{{.SeriesSlug}}" style="margin:0.5rem 0 0.5rem 1.5rem">
+    <summary style="cursor:pointer;font-weight:bold">
+      &#8627; &#128196; {{.SeriesLabel}}
+      {{if ne .SeriesLabel .SeriesSlug}}<small style="font-weight:normal;opacity:0.6">({{.SeriesSlug}})</small>{{end}}
+      <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj)</small>
+      &nbsp;
+      <a href="/admin/serio/{{.SeriesSlug}}/redakti" style="font-size:0.85em" onclick="event.stopPropagation()">Redakti serion</a>
+      &nbsp;
+      <label onclick="event.stopPropagation()" style="font-size:0.85em;font-weight:normal;margin:0">
+        <input type="checkbox" class="series-check" data-series="{{.SeriesSlug}}"
+               onchange="toggleSeries(this)" style="width:auto;margin:0 0.25rem 0 0">Elekti seriajn
+      </label>
+    </summary>
+    {{template "series-group-table" .}}
+  </details>
+  {{end}}
+</details>
+{{end}}
+
+{{if .Standalone}}
+<h2 style="margin-top:1.5rem">Solaj eroj</h2>
+<div class="table-responsive">
+  <table>
+    <thead>
+      <tr>
+        <th style="width:1.5rem"><input type="checkbox" id="check-standalone-all" onchange="toggleStandaloneRows(this)" style="width:auto"></th>
+        <th>Identigilo / Teksto</th>
+        <th>Tipo</th>
+        <th>Stato</th>
+        <th>Gepatro</th>
+        <th>Nivelo</th>
+        <th>Voĉoj</th>
+        <th>Agoj</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{range .Standalone}}
+      <tr data-search="{{.Slug}} {{.Type}} {{.Status}}" data-type="{{.Type}}" data-parent="{{.SeriesParent}}">
+        <td><input type="checkbox" name="slugs" value="{{.Slug}}" class="row-check" onchange="updateBulkBar()" style="width:auto"></td>
+        <td><code style="font-size:0.8em">{{.Slug}}</code>{{if .Word}}<br><span style="font-size:0.85em">{{.Word}}</span>{{else if .Title}}<br><span style="font-size:0.85em">{{.Title}}</span>{{else if .Question}}<br><span style="font-size:0.85em;color:var(--pico-muted-color)">{{truncate .Question 50}}</span>{{end}}</td>
+        <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+        <td>
+          <span class="status-badge status-{{.Status}}">
+            {{if eq .Status "draft"}}Malneto
+            {{else if eq .Status "pending"}}Atendanta
+            {{else if eq .Status "approved"}}Aprobita
+            {{else if eq .Status "rejected"}}Malakceptita
+            {{else}}{{.Status}}{{end}}
+          </span>
+        </td>
+        <td>{{if .SeriesParent}}<code style="font-size:0.8em">{{.SeriesParent}}</code>{{else}}<span style="color:var(--pico-muted-color)">—</span>{{end}}</td>
         <td>{{printf "%.0f" .Rating}} &plusmn;{{printf "%.0f" .RD}}</td>
         <td>{{.VoteScore}}</td>
         <td>
@@ -130,22 +203,101 @@
 <p>Neniu enhavo trovita{{if .StatusFilter}} por la stato "{{.StatusFilter}}"{{end}}.</p>
 {{end}}
 
+</form>{{/* end bulk-form */}}
+
+{{/* Top-level series jump — only series without a parent */}}
+<div id="series-nav-float" style="position:fixed;bottom:1rem;right:1rem;z-index:100;background:var(--pico-card-background-color);border:1px solid var(--pico-muted-border-color);border-radius:8px;padding:0.5rem 0.75rem;box-shadow:0 2px 8px rgba(0,0,0,0.15);max-width:22rem">
+  <label style="margin:0;font-size:0.85em;font-weight:bold">Salti al serio:
+    <select id="series-jump" onchange="jumpToSeries(this.value)" style="margin:0.25rem 0 0;font-size:0.85em">
+      <option value="">— elektu serion —</option>
+      {{range .Groups}}
+      <option value="sg-{{.SeriesSlug}}">{{.SeriesLabel}}</option>
+      {{end}}
+    </select>
+  </label>
+</div>
+
 <script>
-function filterContent(q) {
-  q = q.toLowerCase();
-  // Filter table rows.
+function jumpToSeries(id) {
+  if (!id) return;
+  var det = document.getElementById(id);
+  if (!det) return;
+  det.open = true;
+  det.scrollIntoView({behavior: 'smooth', block: 'start'});
+  document.getElementById('series-jump').value = '';
+}
+
+// ── Filtering ───────────────────────────────────────────────────────
+function applyFilters() {
+  var q = (document.getElementById('content-search').value || '').toLowerCase();
+  var typeF = (document.getElementById('type-filter').value || '').toLowerCase();
+  var noParent = document.getElementById('no-parent-filter').checked;
+
   document.querySelectorAll('tr[data-search]').forEach(function(row) {
-    var match = !q || row.dataset.search.toLowerCase().indexOf(q) >= 0;
-    row.style.display = match ? '' : 'none';
+    var matchQ = !q || row.dataset.search.toLowerCase().indexOf(q) >= 0;
+    var matchType = !typeF || row.dataset.type === typeF;
+    var matchParent = !noParent || row.dataset.parent === '';
+    var show = matchQ && matchType && matchParent;
+    row.style.display = show ? '' : 'none';
   });
-  // Open details groups that have visible rows; close empty ones.
+
   document.querySelectorAll('details.series-group').forEach(function(det) {
-    var visible = Array.from(det.querySelectorAll('tr[data-search]')).some(function(r){ return r.style.display !== 'none'; });
-    if (q) {
-      det.open = visible;
-    }
-    det.style.display = visible || !q ? '' : 'none';
+    var visible = Array.from(det.querySelectorAll('tr[data-search]')).some(function(r) {
+      return r.style.display !== 'none';
+    });
+    if (q || typeF || noParent) { det.open = visible; }
+    det.style.display = visible || (!q && !typeF && !noParent) ? '' : 'none';
   });
+}
+
+// ── Bulk select ─────────────────────────────────────────────────────
+function updateBulkBar() {
+  var checked = document.querySelectorAll('input.row-check:checked').length;
+  var bar = document.getElementById('bulk-bar');
+  bar.style.display = checked > 0 ? 'flex' : 'none';
+  document.getElementById('sel-count').textContent = checked + ' elektitaj';
+}
+
+function toggleSeriesRows(cb) {
+  var series = cb.dataset.series;
+  var rows = document.querySelectorAll('tr[data-search] input.row-check');
+  // find rows in this series' table
+  var det = document.getElementById('sg-' + series);
+  if (!det) return;
+  det.querySelectorAll('input.row-check').forEach(function(c) {
+    if (c.closest('tr').style.display !== 'none') c.checked = cb.checked;
+  });
+  updateBulkBar();
+}
+
+function toggleSeries(cb) {
+  var series = cb.dataset.series;
+  var det = document.getElementById('sg-' + series);
+  if (!det) return;
+  det.querySelectorAll('input.row-check').forEach(function(c) {
+    if (c.closest('tr').style.display !== 'none') c.checked = cb.checked;
+  });
+  updateBulkBar();
+}
+
+function toggleStandaloneRows(cb) {
+  document.querySelectorAll('#check-standalone-all').forEach(function() {});
+  // find standalone table rows
+  var tbl = cb.closest('table');
+  tbl.querySelectorAll('input.row-check').forEach(function(c) {
+    if (c.closest('tr').style.display !== 'none') c.checked = cb.checked;
+  });
+  updateBulkBar();
+}
+
+function clearAll() {
+  document.querySelectorAll('input.row-check').forEach(function(c) { c.checked = false; });
+  updateBulkBar();
+}
+
+function confirmBulk() {
+  var n = document.querySelectorAll('input.row-check:checked').length;
+  return n > 0 && confirm('Ĉu vi certas, ke vi volas forigi ' + n + ' erojn?');
 }
 </script>
 {{end}}

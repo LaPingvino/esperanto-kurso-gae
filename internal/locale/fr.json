@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Tous les mots",
   "vortaro.def_lang_note_prefix": "Langue de définition :",
-  "vortaro.def_lang_note_suffix": "— modifiez-la avec le sélecteur en bas de page.",
+  "vortaro.def_lang_note_suffix": "— modifiez-la avec le sélecteur 💬 dans la navigation en haut.",
   "vortaro.definition_col": "Définition",
   "vortaro.empty": "Pas encore de mots dans le dictionnaire.",
   "vortaro.esperanto_col": "Espéranto",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "Nouvelle serie exercices",
+  "result.streak_until": "maintenir serie jusqu a"
 }

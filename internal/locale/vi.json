@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Tất cả các từ",
   "vortaro.def_lang_note_prefix": "Ngôn ngữ định nghĩa:",
-  "vortaro.def_lang_note_suffix": "— thay đổi bằng bộ chọn ở cuối trang.",
+  "vortaro.def_lang_note_suffix": "— thay đổi bằng bộ chọn 💬 trên thanh điều hướng.",
   "vortaro.definition_col": "Định nghĩa",
   "vortaro.empty": "Từ điển chưa có từ nào.",
   "vortaro.esperanto_col": "Esperanto",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

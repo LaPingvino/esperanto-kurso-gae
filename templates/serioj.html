@@ -1,0 +1,24 @@
+{{template "base" .}}
+
+{{define "title"}}Serioj — Esperanto-kurso{{end}}
+
+{{define "content"}}
+<h1>&#128218; Ekzercaj serioj</h1>
+<p>Elektu serion laŭ via CEFR-nivelo kaj komencu lerni.</p>
+
+{{range .Groups}}
+<section>
+  <h2><span class="cefr-badge cefr-{{.Level}}">{{.Level}}</span></h2>
+  <div class="series-browser-grid">
+    {{range .Entries}}
+    <a href="/ekzerco/{{.FirstSlug}}" class="series-browser-card">
+      <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
+      <strong>{{.Label}}</strong>
+    </a>
+    {{end}}
+  </div>
+</section>
+{{else}}
+<p>Neniu aprobita serio trovita.</p>
+{{end}}
+{{end}}

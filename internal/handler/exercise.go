@@ -114,6 +114,7 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
 	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+	streakDeadline := time.Now().UTC().Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -127,23 +128,32 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	ratingDelta := newUserR - u.Rating
 	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
 
+	correctAnswer := item.Answer()
+	switch item.Type {
+	case "fillin":
+		correctAnswer = strings.Join(item.GapAnswers(), " / ")
+	case "vocab":
+		correctAnswer = item.Word()
+	}
+
 	data := map[string]interface{}{
-		"User":          u,
-		"Item":          item,
-		"Correct":       correct,
-		"CorrectAnswer": strings.Join(item.GapAnswers(), " / "),
-		"YourAnswer":    answer,
-		"NextSlug":      nextSlug,
-		"HarderSlug":    harderSlug,
-		"EasierSlug":    easierSlug,
-		"NextInSeries":  nextInSeries,
-		"UserRating":    newUserR,
-		"RatingDelta":   ratingDelta,
-		"CEFRLevel":     model.RatingToCEFR(newUserR),
-		"LevelUp":       levelUp,
-		"StreakDays":    streak,
-		"NewToken":      newToken,
-		"UILang":        u.UILangOrDefault(),
+		"User":           u,
+		"Item":           item,
+		"Correct":        correct,
+		"CorrectAnswer":  correctAnswer,
+		"YourAnswer":     answer,
+		"NextSlug":       nextSlug,
+		"HarderSlug":     harderSlug,
+		"EasierSlug":     easierSlug,
+		"NextInSeries":   nextInSeries,
+		"UserRating":     newUserR,
+		"RatingDelta":    ratingDelta,
+		"CEFRLevel":      model.RatingToCEFR(newUserR),
+		"LevelUp":        levelUp,
+		"StreakDays":     streak,
+		"StreakDeadline": streakDeadline,
+		"NewToken":       newToken,
+		"UILang":         u.UILangOrDefault(),
 	}
 
 	if newToken != "" {
@@ -310,6 +320,7 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
 	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+	streakDeadline := time.Now().UTC().Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -329,22 +340,23 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	}
 
 	data := map[string]interface{}{
-		"User":          u,
-		"Item":          item,
-		"Correct":       correct,
-		"Judgment":      r.FormValue("judgment"),
-		"CorrectAnswer": correctAnswer,
-		"NextSlug":     nextSlug,
-		"HarderSlug":   harderSlug,
-		"EasierSlug":   easierSlug,
-		"NextInSeries": nextInSeries,
-		"UserRating":   newUserR,
-		"RatingDelta":  newUserR - u.Rating,
-		"CEFRLevel":    model.RatingToCEFR(newUserR),
-		"LevelUp":      levelUp,
-		"StreakDays":   streak,
-		"NewToken":     newToken,
-		"UILang":       u.UILangOrDefault(),
+		"User":           u,
+		"Item":           item,
+		"Correct":        correct,
+		"Judgment":       r.FormValue("judgment"),
+		"CorrectAnswer":  correctAnswer,
+		"NextSlug":       nextSlug,
+		"HarderSlug":     harderSlug,
+		"EasierSlug":     easierSlug,
+		"NextInSeries":   nextInSeries,
+		"UserRating":     newUserR,
+		"RatingDelta":    newUserR - u.Rating,
+		"CEFRLevel":      model.RatingToCEFR(newUserR),
+		"LevelUp":        levelUp,
+		"StreakDays":     streak,
+		"StreakDeadline": streakDeadline,
+		"NewToken":       newToken,
+		"UILang":         u.UILangOrDefault(),
 	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)

@@ -345,6 +345,54 @@ func (s *ContentStore) UpdateVoteScore(ctx context.Context, slug string, delta i
 	return err
 }
 
+// RenormalizeSeriesOrder loads all items in a series (any status), sorts them
+// by their current series_order, and re-assigns 1, 2, 3... to remove gaps and
+// duplicates. Items whose order is already correct are skipped.
+func (s *ContentStore) RenormalizeSeriesOrder(ctx context.Context, seriesSlug string) error {
+	items, err := s.ListBySeriesForAdmin(ctx, seriesSlug)
+	if err != nil || len(items) == 0 {
+		return err
+	}
+	// Already sorted by series_order from the query; re-assign sequentially.
+	var keys []*datastore.Key
+	var entities []*contentEntity
+	for i, item := range items {
+		want := i + 1
+		if item.SeriesOrder == want {
+			continue
+		}
+		item.SeriesOrder = want
+		e, err := contentToEntity(item)
+		if err != nil {
+			continue
+		}
+		e.UpdatedAt = time.Now()
+		keys = append(keys, s.contentKey(item.Slug))
+		entities = append(entities, e)
+	}
+	if len(keys) == 0 {
+		return nil
+	}
+	_, err = s.db.PutMulti(ctx, keys, entities)
+	return err
+}
+
+// SetSeriesParent updates only the series_parent field of a content item.
+func (s *ContentStore) SetSeriesParent(ctx context.Context, slug, parent string) error {
+	key := s.contentKey(slug)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e contentEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		e.SeriesParent = parent
+		e.UpdatedAt = time.Now()
+		_, err := tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
 func (s *ContentStore) runContentQuery(ctx context.Context, q *datastore.Query) ([]*model.ContentItem, error) {
 	var entities []contentEntity
 	keys, err := s.db.GetAll(ctx, q, &entities)

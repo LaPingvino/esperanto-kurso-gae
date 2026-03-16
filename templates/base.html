@@ -30,7 +30,7 @@
           </form>
         </li>
         {{if .User}}<li><a href="/steloj" title="{{t .UILang "nav.favorites"}}">★</a></li>{{end}}
-        <li><a href="/etikedoj" title="{{t .UILang "tags.title"}}">🏷️</a></li>
+        <li><a href="/serioj" title="{{t .UILang "nav.serioj"}}">📋</a></li>
         <li><a href="/honorlisto" title="{{t .UILang "nav.honorlisto"}}">🏆</a></li>
         <li><a href="/enskribi" class="nav-profile" title="{{t .UILang "nav.profile"}}">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
         {{- /* ── Language switchers ── */}}
@@ -137,13 +137,51 @@
       {{if .User}}
         <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
         <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
-        {{if .User.StreakDays}}<span class="streak-badge" title="{{t .UILang "footer.streak_title"}}">&#128293; {{.User.StreakDays}}d</span>{{end}}
+        {{if .User.StreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.StreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}
         <span class="user-id-badge" title="via uzant-ID"><a href="/enskribi">{{if .User.Username}}@{{.User.Username}}{{else}}<code>{{.User.ID}}</code>{{end}}</a></span>
       {{else}}
         <em><a href="/enskribi">{{t .UILang "footer.login_link"}}</a> {{t .UILang "footer.login_prompt"}}</em>
       {{end}}
       &mdash; Esperanto-kurso &copy; 2026
     </small>
+    <small style="margin-left:0.5rem"><a href="/etikedoj">🏷️ {{t .UILang "tags.title"}}</a></small>
+    <details id="series-nav-details" style="margin-top:0.5rem">
+      <summary style="cursor:pointer;font-size:0.8em;color:var(--pico-muted-color);list-style:none;display:inline">&#9776; serioj</summary>
+      <div style="margin-top:0.35rem;max-width:24rem">
+        <input type="search" id="series-nav-search" placeholder="Serĉi serion…"
+               style="margin-bottom:0.25rem;font-size:0.85em" oninput="filterSeriesNav(this.value)" autocomplete="off">
+        <select id="series-nav-select" size="6" style="width:100%;font-size:0.85em"
+                onchange="if(this.value){window.location=this.value;this.value=''}">
+          <option value="" disabled>— ŝarĝas —</option>
+        </select>
+      </div>
+    </details>
   </footer>
+
+  <script>
+  var _seriesNavOptions = [];
+  var _seriesNavLoaded = false;
+  document.getElementById('series-nav-details').addEventListener('toggle', function(e) {
+    if (!e.target.open || _seriesNavLoaded) return;
+    _seriesNavLoaded = true;
+    fetch('/serioj-nav').then(function(r){ return r.text(); }).then(function(html) {
+      var sel = document.getElementById('series-nav-select');
+      sel.innerHTML = html;
+      _seriesNavOptions = Array.from(sel.options).map(function(o){ return {v:o.value,t:o.text}; });
+      var q = document.getElementById('series-nav-search').value;
+      if (q) filterSeriesNav(q);
+    });
+  });
+
+  function filterSeriesNav(q) {
+    if (!_seriesNavOptions.length) return;
+    var sel = document.getElementById('series-nav-select');
+    q = q.toLowerCase();
+    sel.innerHTML = _seriesNavOptions
+      .filter(function(o){ return !q || o.t.toLowerCase().indexOf(q) >= 0; })
+      .map(function(o){ return '<option value="'+o.v+'">'+o.t+'</option>'; })
+      .join('') || '<option value="" disabled>— neniu trovita —</option>';
+  }
+  </script>
 </body>
 </html>{{end}}

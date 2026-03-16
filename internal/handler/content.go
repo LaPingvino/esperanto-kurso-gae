@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"math/rand"
 	"net/http"
 	"sort"
@@ -324,11 +325,14 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	// Series navigation.
 	var prevInSeries, nextInSeries *model.ContentItem
 	seriesTotal := 0
+	seriesPos := item.SeriesOrder // fallback to stored order
+	var seriesItems []*model.ContentItem
 	if item.SeriesSlug != "" {
-		seriesItems, _ := h.content.ListBySeries(r.Context(), item.SeriesSlug)
+		seriesItems, _ = h.content.ListBySeries(r.Context(), item.SeriesSlug)
 		seriesTotal = len(seriesItems)
 		for i, si := range seriesItems {
 			if si.Slug == slug {
+				seriesPos = i + 1 // actual position in sorted list
 				if i > 0 {
 					prevInSeries = seriesItems[i-1]
 				}
@@ -410,15 +414,27 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
+	// Parent item: the reading/lesson this exercise belongs to (if SeriesParent is set).
+	var parentItem *model.ContentItem
+	if item.SeriesParent != "" {
+		parentItem, _ = h.content.GetBySlug(r.Context(), item.SeriesParent)
+	}
+
 	// Child series: series whose SeriesParent == this item's slug (e.g. vocab/quiz series for a reading).
 	childSeries, _ := h.content.ListBySeriesParent(r.Context(), slug)
 	// Deduplicate to one entry per series slug (the first item of each series).
+	// Split into vocab children (shown near vocab trainer) and other children.
 	seenChildSeries := map[string]bool{}
 	var uniqueChildSeries []*model.ContentItem
+	var vocabChildSeries []*model.ContentItem
 	for _, cs := range childSeries {
 		if !seenChildSeries[cs.SeriesSlug] {
 			seenChildSeries[cs.SeriesSlug] = true
-			uniqueChildSeries = append(uniqueChildSeries, cs)
+			if cs.Type == "vocab" {
+				vocabChildSeries = append(vocabChildSeries, cs)
+			} else {
+				uniqueChildSeries = append(uniqueChildSeries, cs)
+			}
 		}
 	}
 
@@ -433,6 +449,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"VocabTag":         vocabTag,
 		"VocabItems":       vocabItems,
 		"SeriesTotal":      seriesTotal,
+		"SeriesPos":        seriesPos,
 		"VocabModo":        vocabModo,
 		"IsFavorite":       isFavorite,
 		"IsFavoriteSeries": isFavoriteSeries,
@@ -441,6 +458,9 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"DoltEoDef":        doltEoDef,
 		"DoltSource":       doltSource,
 		"ChildSeries":      uniqueChildSeries,
+		"VocabChildSeries": vocabChildSeries,
+		"ParentItem":       parentItem,
+		"SeriesItems":      seriesItems,
 		"UILang":           UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
@@ -594,12 +614,27 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/enskribi", http.StatusSeeOther)
 		return
 	}
+	type seriesEntry struct {
+		Slug      string
+		Label     string
+		FirstSlug string
+	}
 	var exercises []*model.ContentItem
-	var seriesSlugs []string
+	var seriesEntries []seriesEntry
 	var tags []string
 	for _, fav := range u.Favorites {
 		if strings.HasPrefix(fav, "series:") {
-			seriesSlugs = append(seriesSlugs, strings.TrimPrefix(fav, "series:"))
+			slug := strings.TrimPrefix(fav, "series:")
+			items, _ := h.content.ListBySeries(r.Context(), slug)
+			label := slug
+			firstSlug := slug
+			if len(items) > 0 {
+				if items[0].SeriesLabel != "" {
+					label = items[0].SeriesLabel
+				}
+				firstSlug = items[0].Slug
+			}
+			seriesEntries = append(seriesEntries, seriesEntry{Slug: slug, Label: label, FirstSlug: firstSlug})
 		} else if strings.HasPrefix(fav, "tag:") {
 			tags = append(tags, strings.TrimPrefix(fav, "tag:"))
 		} else {
@@ -610,9 +645,9 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	data := map[string]interface{}{
-		"User":        u,
-		"Exercises":   exercises,
-		"SeriesSlugs": seriesSlugs,
+		"User":          u,
+		"Exercises":     exercises,
+		"SeriesEntries": seriesEntries,
 		"Tags":        tags,
 		"UILang":      UILangFor(u),
 	}
@@ -622,6 +657,125 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 }
 
 // ShowHonorListo handles GET /honorlisto — hall of fame, top rated named users.
+// SeriesNavOptions handles GET /serioj-nav — returns <option> HTML for top-level series.
+// Used by base.html footer to populate the quick-navigation select asynchronously.
+func (h *ContentHandler) SeriesNavOptions(w http.ResponseWriter, r *http.Request) {
+	items, err := h.content.ListForAdmin(r.Context(), "approved", 50000)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	// Collect top-level series: series_slug set, series_parent empty.
+	// Preserve first-seen order; track first item slug per series.
+	type seriesEntry struct {
+		slug       string
+		firstItem  string
+		label      string
+	}
+	seen := make(map[string]bool)
+	var entries []seriesEntry
+
+	for _, item := range items {
+		if item.SeriesSlug == "" || item.SeriesParent != "" {
+			continue
+		}
+		if seen[item.SeriesSlug] {
+			continue
+		}
+		seen[item.SeriesSlug] = true
+		label := item.SeriesLabel
+		if label == "" {
+			label = item.SeriesSlug
+		}
+		entries = append(entries, seriesEntry{
+			slug:      item.SeriesSlug,
+			firstItem: item.Slug,
+			label:     label,
+		})
+	}
+
+	sort.Slice(entries, func(i, j int) bool {
+		return entries[i].slug < entries[j].slug
+	})
+
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	for _, e := range entries {
+		// value = first item slug so clicking navigates directly to the exercise
+		fmt.Fprintf(w, `<option value="/ekzerco/%s" data-slug="%s">%s</option>`+"\n",
+			e.firstItem, e.slug, e.label)
+	}
+}
+
+// ShowSeriesBrowser handles GET /serioj — public series browser grouped by CEFR level.
+func (h *ContentHandler) ShowSeriesBrowser(w http.ResponseWriter, r *http.Request) {
+	u := UserFromContext(r.Context())
+	items, err := h.content.ListForAdmin(r.Context(), "approved", 50000)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	type SeriesEntry struct {
+		Slug      string
+		Label     string
+		FirstSlug string
+		Rating    float64
+		CEFR      string
+	}
+
+	seen := make(map[string]*SeriesEntry)
+	var order []string
+	for _, item := range items {
+		if item.SeriesSlug == "" || item.SeriesParent != "" {
+			continue
+		}
+		if _, ok := seen[item.SeriesSlug]; ok {
+			continue
+		}
+		label := item.SeriesLabel
+		if label == "" {
+			label = item.SeriesSlug
+		}
+		seen[item.SeriesSlug] = &SeriesEntry{
+			Slug:      item.SeriesSlug,
+			Label:     label,
+			FirstSlug: item.Slug,
+			Rating:    item.Rating,
+			CEFR:      model.RatingToCEFR(item.Rating),
+		}
+		order = append(order, item.SeriesSlug)
+	}
+
+	// Group by CEFR in level order.
+	cefrOrder := []string{"A0", "A1", "A2", "B1", "B2", "C1", "C2"}
+	type CEFRGroup struct {
+		Level   string
+		Entries []*SeriesEntry
+	}
+	byLevel := make(map[string][]*SeriesEntry)
+	for _, slug := range order {
+		e := seen[slug]
+		byLevel[e.CEFR] = append(byLevel[e.CEFR], e)
+	}
+	var groups []CEFRGroup
+	for _, lvl := range cefrOrder {
+		if entries, ok := byLevel[lvl]; ok {
+			sort.Slice(entries, func(i, j int) bool { return entries[i].Label < entries[j].Label })
+			groups = append(groups, CEFRGroup{Level: lvl, Entries: entries})
+		}
+	}
+
+	data := map[string]interface{}{
+		"User":   u,
+		"Groups": groups,
+		"UILang": UILangFor(u),
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "serioj.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 func (h *ContentHandler) ShowHonorListo(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 	top, err := h.users.ListTopUsers(r.Context(), 100)

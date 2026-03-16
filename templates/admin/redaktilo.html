@@ -219,7 +219,10 @@
     .sc-header .item-num { font-weight:bold; color:var(--pico-muted-color); min-width:1.5rem; }
     .sc-header select { flex:0 0 11rem; margin-bottom:0; }
     .sc-header button { margin-bottom:0; }
-    .series-card { border:1px solid var(--pico-muted-border-color); border-radius:6px; padding:0.75rem; margin-bottom:0.6rem; }
+    .series-card { border:1px solid var(--pico-muted-border-color); border-radius:6px; padding:0.75rem; margin-bottom:0.6rem; cursor:default; }
+    .series-card.drag-over { border-color:var(--pico-primary); background:var(--pico-primary-background); }
+    .drag-handle { cursor:grab; font-size:1.1em; color:var(--pico-muted-color); user-select:none; padding:0 0.2em; }
+    .drag-handle:active { cursor:grabbing; }
     .sc-body label { margin-bottom:0.4rem; }
     .sc-body textarea { min-height:4rem; }
     </style>
@@ -239,7 +242,25 @@
         <input type="text" name="series_label" placeholder="ekz. Ekzercoj pri Leciono 1">
       </label>
       <label>Gepatra ekzerco <small>(identigilo de la teksto/leciono)</small>:
-        <input type="text" name="series_parent" placeholder="ekz. zagr-l01-teksto">
+        <input type="text" name="series_parent" id="sm-series-parent" value="{{.Item.SeriesParent}}" placeholder="ekz. zagr-l01-teksto">
+      </label>
+    </div>
+
+    <div class="grid">
+      <label>Malfacileco (CEFR) por ĉiuj eroj:
+        <select onchange="cefrToRating(this.value)">
+          <option value="900">A0 — Neniu antaŭa kono</option>
+          <option value="1100">A1 — Enirnivela uzanto</option>
+          <option value="1300">A2 — Elementa uzanto</option>
+          <option value="1500" selected>B1 — Meza uzanto (defaŭlta)</option>
+          <option value="1700">B2 — Supra meza uzanto</option>
+          <option value="1900">C1 — Sperta uzanto</option>
+          <option value="2100">C2 — Majstra uzanto</option>
+        </select>
+      </label>
+      <label>Preciza ratingpunkto:
+        <input type="number" name="initial_rating" id="rating-field"
+               value="1500" min="500" max="3000" step="50">
       </label>
     </div>
 
@@ -285,6 +306,24 @@
     </label>
   </div>
 
+  <div class="grid">
+    <label>Malfacileco (CEFR-nivelo):
+      <select id="cefr-picker" onchange="cefrToRating(this.value)">
+        <option value="900"  {{if lt .Item.Rating 1000.0}}selected{{end}}>A0 — Neniu antaŭa kono</option>
+        <option value="1100" {{if and (ge .Item.Rating 1000.0) (lt .Item.Rating 1200.0)}}selected{{end}}>A1 — Enirnivela uzanto</option>
+        <option value="1300" {{if and (ge .Item.Rating 1200.0) (lt .Item.Rating 1400.0)}}selected{{end}}>A2 — Elementa uzanto</option>
+        <option value="1500" {{if and (ge .Item.Rating 1400.0) (lt .Item.Rating 1600.0)}}selected{{end}}>B1 — Meza uzanto (defaŭlta)</option>
+        <option value="1700" {{if and (ge .Item.Rating 1600.0) (lt .Item.Rating 1800.0)}}selected{{end}}>B2 — Supra meza uzanto</option>
+        <option value="1900" {{if and (ge .Item.Rating 1800.0) (lt .Item.Rating 2000.0)}}selected{{end}}>C1 — Sperta uzanto</option>
+        <option value="2100" {{if ge .Item.Rating 2000.0}}selected{{end}}>C2 — Majstra uzanto</option>
+      </select>
+    </label>
+    <label>Preciza ratingpunkto <small>(aŭtomate kalibriĝas)</small>:
+      <input type="number" name="initial_rating" id="rating-field"
+             value="{{printf "%.0f" .Item.Rating}}" min="500" max="3000" step="50">
+    </label>
+  </div>
+
   {{/* Series fields only shown when not in series-mode (single item can still be part of a series) */}}
   <div id="single-series-fields">
     <div class="grid">
@@ -308,6 +347,9 @@
   <div class="form-actions" style="display:flex;align-items:center;flex-wrap:wrap;gap:0.5rem">
     <button type="submit" id="submit-btn">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
     <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
+    {{if and (not .IsNew) .Item.SeriesSlug}}
+    <a href="/admin/serio/{{.Item.SeriesSlug}}/redakti" role="button" class="outline">&#128196; Redakti serion</a>
+    {{end}}
     {{if and (not .IsNew) (eq .Item.Type "reading")}}
     <a href="/admin/enhavo/{{.Item.Slug}}/vortaro" role="button" class="outline">Krei vortaron</a>
     {{end}}
@@ -331,11 +373,23 @@
 // ── Single-item mode ──────────────────────────────────────────────
 var _seriesMode = false;
 
+function setDivInputsDisabled(divId, disabled) {
+  var el = document.getElementById(divId);
+  if (!el) return;
+  el.querySelectorAll('input, textarea, select').forEach(function(f) {
+    if (disabled) f.setAttribute('disabled', '');
+    else          f.removeAttribute('disabled');
+  });
+}
+
 function toggleSeriesMode() {
   _seriesMode = !_seriesMode;
   document.getElementById('single-mode').style.display          = _seriesMode ? 'none' : '';
   document.getElementById('series-mode').style.display          = _seriesMode ? '' : 'none';
   document.getElementById('single-series-fields').style.display = _seriesMode ? 'none' : '';
+
+  setDivInputsDisabled('series-mode',          !_seriesMode);
+  setDivInputsDisabled('single-series-fields',  _seriesMode);
 
   var btn       = document.getElementById('series-toggle-btn');
   var submitBtn = document.getElementById('submit-btn');
@@ -357,6 +411,17 @@ function toggleSeriesMode() {
     if (typeSelect) typeSelect.setAttribute('required', '');
   }
 }
+
+// Disable series-mode inputs on page load — it starts hidden and its inputs
+// must not shadow single-series-fields values (series_slug etc.) on submit.
+document.addEventListener('DOMContentLoaded', function() {
+  {{if .DefaultSeriesMode}}
+  // Pre-opened in series mode (e.g. from "create child series" button)
+  toggleSeriesMode();
+  {{else}}
+  setDivInputsDisabled('series-mode', true);
+  {{end}}
+});
 
 function syncDefaultType(val) {
   document.querySelectorAll('#series-items-list .sc-type').forEach(function(sel) {
@@ -395,9 +460,10 @@ function esc(s) {
 function siCardHTML(idx, typ, existingSlug) {
   var p = 'item_'+idx+'_';
   var esSlug = existingSlug || '';
-  return '<div class="series-card">'
+  return '<div class="series-card" draggable="true">'
     +'<input type="hidden" name="'+p+'existing_slug" value="'+esc(esSlug)+'">'
     +'<div class="sc-header">'
+    +'<span class="drag-handle" title="Treni por reordigi">⠿</span>'
     +'<span class="item-num">'+(idx+1)+'.</span>'
     +'<select name="'+p+'type" class="sc-type" onchange="this.dataset.userChanged=1;siTypeChange(this)">'+siTypeOptions(typ)+'</select>'
     +'<button type="button" class="outline contrast" style="padding:0.2em 0.5em;margin-left:auto" onclick="siRemove(this)" title="Forigi">✕</button>'
@@ -449,6 +515,10 @@ function siTypeChange(sel) {
   card.querySelectorAll('.sc-f').forEach(function(f) {
     var show = Array.from(f.classList).some(function(c){ return visible.indexOf(c) >= 0; });
     f.style.display = show ? '' : 'none';
+    f.querySelectorAll('input, textarea, select').forEach(function(inp) {
+      if (show) inp.removeAttribute('disabled');
+      else      inp.setAttribute('disabled', '');
+    });
   });
 }
 
@@ -479,8 +549,9 @@ function siAddWithData(idx, typ, existingSlug, vals) {
   var p = 'item_' + realIdx + '_';
   function setVal(name, val) {
     if (val === undefined || val === null) return;
-    var el = card.querySelector('[name="'+p+name+'"]');
-    if (el) el.value = val;
+    card.querySelectorAll('[name="'+p+name+'"]').forEach(function(el) {
+      el.value = val;
+    });
   }
   setVal('title',         vals.title);
   setVal('question',      vals.question);
@@ -519,6 +590,44 @@ function siReindex() {
 
 function siRenumber() { siReindex(); }
 
+// ── Drag-to-reorder for series cards ────────────────────────────────
+var _dragSrc = null;
+document.getElementById('series-items-list').addEventListener('dragstart', function(e) {
+  var card = e.target.closest('.series-card');
+  if (!card) return;
+  _dragSrc = card;
+  e.dataTransfer.effectAllowed = 'move';
+  setTimeout(function(){ card.style.opacity = '0.4'; }, 0);
+});
+document.getElementById('series-items-list').addEventListener('dragend', function(e) {
+  var card = e.target.closest('.series-card');
+  if (card) card.style.opacity = '';
+  document.querySelectorAll('.series-card.drag-over').forEach(function(c){ c.classList.remove('drag-over'); });
+});
+document.getElementById('series-items-list').addEventListener('dragover', function(e) {
+  e.preventDefault();
+  e.dataTransfer.dropEffect = 'move';
+  var card = e.target.closest('.series-card');
+  if (!card || card === _dragSrc) return;
+  document.querySelectorAll('.series-card.drag-over').forEach(function(c){ c.classList.remove('drag-over'); });
+  card.classList.add('drag-over');
+});
+document.getElementById('series-items-list').addEventListener('drop', function(e) {
+  e.preventDefault();
+  var target = e.target.closest('.series-card');
+  if (!target || target === _dragSrc) return;
+  var list = document.getElementById('series-items-list');
+  var cards = Array.from(list.children);
+  var srcIdx = cards.indexOf(_dragSrc);
+  var tgtIdx = cards.indexOf(target);
+  if (srcIdx < tgtIdx) {
+    list.insertBefore(_dragSrc, target.nextSibling);
+  } else {
+    list.insertBefore(_dragSrc, target);
+  }
+  siReindex();
+});
+
 // Series slug preview
 var ssf = document.getElementById('series_slug_field');
 if (ssf) ssf.addEventListener('input', function() {
@@ -536,6 +645,24 @@ if (contentForm) contentForm.addEventListener('submit', function() {
 document.addEventListener('DOMContentLoaded', function() {
   var sel = document.getElementById('type-select');
   if (sel && sel.value) showContentFields(sel.value);
+});
+
+// CEFR picker ↔ rating field sync
+function cefrToRating(val) {
+  var rf = document.getElementById('rating-field');
+  if (rf) rf.value = val;
+}
+document.addEventListener('DOMContentLoaded', function() {
+  var rf = document.getElementById('rating-field');
+  var cp = document.getElementById('cefr-picker');
+  if (!rf || !cp) return;
+  // Keep CEFR picker in sync when rating is typed manually.
+  rf.addEventListener('change', function() {
+    var v = parseFloat(this.value);
+    var opt = v < 1000 ? '900' : v < 1200 ? '1100' : v < 1400 ? '1300' :
+              v < 1600 ? '1500' : v < 1800 ? '1700' : v < 2000 ? '1900' : '2100';
+    cp.value = opt;
+  });
 });
 </script>
 

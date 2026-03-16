@@ -164,7 +164,7 @@
   "vortaro.all_tag": "All",
   "vortaro.all_words_link": "Toate cuvintele",
   "vortaro.def_lang_note_prefix": "Limba definiției:",
-  "vortaro.def_lang_note_suffix": "— schimb-o cu selectorul din josul paginii.",
+  "vortaro.def_lang_note_suffix": "— schimb-o cu selectorul 💬 din navigarea de sus.",
   "vortaro.definition_col": "Definiție",
   "vortaro.empty": "Încă nu există cuvinte în dicționar.",
   "vortaro.esperanto_col": "Esperanto",
@@ -186,5 +186,7 @@
   "exercise.sufikso_prompt": "What is the Esperanto suffix for:",
   "exercise.sufikso_placeholder": "suffix…",
   "exercise.prefikso_prompt": "What is the Esperanto prefix for:",
-  "exercise.prefikso_placeholder": "prefix…"
+  "exercise.prefikso_placeholder": "prefix…",
+  "exercise.new_child_series": "New exercise series",
+  "result.streak_until": "keep streak until"
 }

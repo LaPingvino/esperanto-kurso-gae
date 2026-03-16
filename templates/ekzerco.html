@@ -19,18 +19,41 @@
         <button type="submit" class="icon-btn" title="{{if .IsFavorite}}Malfavori{{else}}Steli ĉi tiun ekzercon{{end}}">{{if .IsFavorite}}★{{else}}☆{{end}}</button>
       </form>
       {{end}}
-      {{if .User}}{{if eq .User.Role "admin"}}
-      <a href="/admin/enhavo/{{.Item.Slug}}/redakti" class="icon-btn" title="Redakti ekzercon">✏️</a>
-      {{end}}{{end}}
+      {{/* edit buttons moved to bottom of card */}}
     </span>
     {{if .Item.SeriesSlug}}
-    <small class="series-badge">&#128196; {{.Item.SeriesSlug}} #{{.Item.SeriesOrder}}</small>
+    <details class="series-pill-details" id="series-pill-details">
+      <summary class="series-badge" title="Montri serion">&#128196; {{if .Item.SeriesLabel}}{{.Item.SeriesLabel}}{{else}}{{.Item.SeriesSlug}}{{end}} <span class="series-pos">#{{.SeriesPos}}{{if .SeriesTotal}}/{{.SeriesTotal}}{{end}}</span></summary>
+      <div class="series-pill-popover">
+        {{if .SeriesItems}}
+        <ol class="series-item-list">
+          {{range .SeriesItems}}
+          <li class="{{if eq .Slug $.Item.Slug}}series-item-current{{end}}">
+            <a href="/ekzerco/{{.Slug}}">{{if .Word}}{{.Word}}{{else if .Title}}{{.Title}}{{else if .Question}}{{truncate .Question 40}}{{else}}{{.Slug}}{{end}}</a>
+          </li>
+          {{end}}
+        </ol>
+        {{end}}
+      </div>
+    </details>
     {{end}}
   </header>
 
   {{/* Series progress bar */}}
   {{if and .Item.SeriesSlug .SeriesTotal}}
-  <p class="series-progress" title="{{.Item.SeriesOrder}} el {{.SeriesTotal}} en serio">{{seriesBar .Item.SeriesOrder .SeriesTotal}}</p>
+  <p class="series-progress" title="{{.SeriesPos}} el {{.SeriesTotal}} en serio">{{seriesBar .SeriesPos .SeriesTotal}}</p>
+  {{end}}
+
+  {{/* Parent item panel — collapsible reference text while doing exercises */}}
+  {{if .ParentItem}}
+  <details class="parent-panel" id="parent-panel">
+    <summary>&#128196; {{if .ParentItem.Title}}{{.ParentItem.Title}}{{else}}{{.ParentItem.Slug}}{{end}}</summary>
+    <article style="margin-top:0.5rem;max-height:40vh;overflow-y:auto">
+      {{if .ParentItem.Text}}<div style="white-space:pre-wrap">{{.ParentItem.Text}}</div>{{end}}
+      {{if .ParentItem.Question}}<p><em>{{.ParentItem.Question}}</em></p>{{end}}
+    </article>
+    <p style="margin:0.25rem 0 0"><a href="/ekzerco/{{.ParentItem.Slug}}" style="font-size:0.85em">→ Iri al gepatra ekzerco</a></p>
+  </details>
   {{end}}
 
   {{if or .PrevInSeries .NextInSeries}}
@@ -67,9 +90,21 @@
     {{end}}
   </nav>
   {{end}}
-  {{if .VocabTag}}
-  <p><a href="/vortaro?tag={{.VocabTag}}" role="button" class="outline">&#128218; {{t .UILang "exercise.vocab_practice_link"}}</a></p>
-  {{end}}
+  {{if or .VocabTag .VocabChildSeries}}
+  <nav class="child-series-nav vocab-trainer-nav">
+    {{if .VocabTag}}<a href="/vortaro?tag={{.VocabTag}}" role="button" class="outline">&#128218; {{t .UILang "exercise.vocab_practice_link"}}</a>{{end}}
+    {{range .VocabChildSeries}}
+    <a href="/ekzerco/{{.Slug}}" role="button" class="outline">
+      &#128218; {{if .SeriesLabel}}{{.SeriesLabel}}{{else}}{{.SeriesSlug}}{{end}}
+    </a>
+    {{end}}
+    {{if .User}}{{if canContribute .User}}
+    <a href="/admin/enhavo/nova?series_parent={{.Item.Slug}}" role="button" class="outline btn-sm">+ {{t .UILang "exercise.new_child_series"}}</a>
+    {{end}}{{end}}
+  </nav>
+  {{else if .User}}{{if canContribute .User}}
+  <p><a href="/admin/enhavo/nova?series_parent={{.Item.Slug}}" role="button" class="outline btn-sm">+ {{t .UILang "exercise.new_child_series"}}</a></p>
+  {{end}}{{end}}
   {{else if eq .Item.Type "video"}}
   {{if .Item.Title}}<h2>{{.Item.Title}}</h2>{{end}}
   {{if .Item.VideoURL}}
@@ -131,7 +166,7 @@
                  style="flex:1;min-width:8rem"
                  onkeydown="if(event.key==='Enter'){event.preventDefault();addVocabDef('{{.Item.Slug}}','{{$lang}}','fc');}">
           <button type="button" onclick="addVocabDef('{{.Item.Slug}}','{{$lang}}','fc')"
-                  class="outline" style="padding:0.2em 0.6em;font-size:0.85rem">
+                  class="outline btn-sm">
             + {{t .UILang "exercise.add_def_button"}}
           </button>
         </div>
@@ -253,7 +288,7 @@
              onkeydown="if(event.key==='Enter'){event.preventDefault();addVocabDef('{{.Item.Slug}}','{{$lang}}');}">
       <button type="button"
               onclick="addVocabDef('{{.Item.Slug}}','{{$lang}}')"
-              class="outline" style="padding:0.2em 0.6em;font-size:0.85rem">
+              class="outline btn-sm">
         + {{t .UILang "exercise.add_def_button"}}
       </button>
     </div>
@@ -311,6 +346,13 @@
   {{end}}
 
   <div id="rezulto"></div>
+
+  {{if .User}}{{if canContribute .User}}
+  <nav class="contributor-bar">
+    <a href="/admin/enhavo/{{.Item.Slug}}/redakti" role="button" class="outline btn-sm">✏️ {{t .UILang "exercise.edit_exercise"}}</a>
+    {{if .Item.SeriesSlug}}<a href="/admin/serio/{{.Item.SeriesSlug}}/redakti" role="button" class="outline btn-sm">&#128196; {{t .UILang "exercise.edit_series"}}</a>{{end}}
+  </nav>
+  {{end}}{{end}}
 </article>
 
 <div id="post-answer" class="post-answer-hidden">

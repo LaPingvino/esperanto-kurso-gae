@@ -337,7 +337,10 @@ func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int
 		yesterday := today.Add(-24 * time.Hour)
 		switch {
 		case lastDay.Equal(today):
-			// already practiced today — streak unchanged
+			// already practiced today — ensure streak is at least 1
+			if e.StreakDays == 0 {
+				e.StreakDays = 1
+			}
 			newStreak = e.StreakDays
 		case lastDay.Equal(yesterday):
 			// practiced yesterday — extend streak

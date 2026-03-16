@@ -57,6 +57,31 @@ func (u *User) UILangOrDefault() string {
 	return u.UILang
 }
 
+// StreakDeadline returns the UTC time by which the user must practice to preserve
+// their current streak (midnight at the end of the day after their last practice day).
+// Returns zero time if no streak is established.
+func (u *User) StreakDeadline() time.Time {
+	if u.StreakDays == 0 || u.LastSeenAt.IsZero() {
+		return time.Time{}
+	}
+	lastDay := u.LastSeenAt.UTC().Truncate(24 * time.Hour)
+	return lastDay.Add(48 * time.Hour)
+}
+
+// StreakExpiresInHours returns how many whole hours remain before the streak expires.
+// Returns -1 if no streak, 0 if already expired, positive if still active.
+func (u *User) StreakExpiresInHours() int {
+	deadline := u.StreakDeadline()
+	if deadline.IsZero() {
+		return -1
+	}
+	remaining := time.Until(deadline)
+	if remaining <= 0 {
+		return 0
+	}
+	return int(remaining.Hours())
+}
+
 // DisplayName returns the username if set, otherwise a short anonymous ID.
 func (u *User) DisplayName() string {
 	if u.Username != "" {
