@@ -99,6 +99,8 @@
   "flag.button": "Rapporter en fejl",
   "flag.sent": "Rapport sendt!",
   "flag.title": "Rapporter en fejl",
+  "focus.exit": "Forlad fokusmodus",
+  "focus.toggle": "Fokusmodus",
   "footer.def_lang_label": "Vælg sprog for ordbogsdefinitioner",
   "footer.login_link": "Log ind",
   "footer.login_prompt": "for at gemme dine fremskridt.",

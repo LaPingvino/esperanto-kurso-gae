@@ -99,6 +99,8 @@
   "flag.button": "Сообщить об ошибке",
   "flag.sent": "Сообщение отправлено!",
   "flag.title": "Сообщить об ошибке",
+  "focus.exit": "Выйти из режима фокуса",
+  "focus.toggle": "Режим фокуса",
   "footer.def_lang_label": "Выбрать язык для определений словаря",
   "footer.login_link": "Войти",
   "footer.login_prompt": "чтобы сохранить прогресс.",

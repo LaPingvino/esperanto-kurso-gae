@@ -99,6 +99,8 @@
   "flag.button": "Reportar un error",
   "flag.sent": "¡Reporte enviado!",
   "flag.title": "Reportar un error",
+  "focus.exit": "Salir del modo enfoque",
+  "focus.toggle": "Modo enfoque",
   "footer.def_lang_label": "Seleccionar idioma para las definiciones del diccionario",
   "footer.login_link": "Iniciar sesión",
   "footer.login_prompt": "para guardar tu progreso.",

@@ -99,6 +99,8 @@
   "flag.button": "Report an error",
   "flag.sent": "Report sent!",
   "flag.title": "Report an error",
+  "focus.exit": "Exit focus mode",
+  "focus.toggle": "Focus mode",
   "footer.def_lang_label": "Select language for dictionary definitions",
   "footer.login_link": "Log in",
   "footer.login_prompt": "to save your progress.",

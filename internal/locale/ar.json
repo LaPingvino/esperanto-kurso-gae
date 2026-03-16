@@ -99,6 +99,8 @@
   "flag.button": "الإبلاغ عن خطأ",
   "flag.sent": "تم إرسال التقرير!",
   "flag.title": "الإبلاغ عن خطأ",
+  "focus.exit": "الخروج من وضع التركيز",
+  "focus.toggle": "وضع التركيز",
   "footer.def_lang_label": "اختر لغة تعريفات القاموس",
   "footer.login_link": "تسجيل الدخول",
   "footer.login_prompt": "لحفظ تقدمك.",

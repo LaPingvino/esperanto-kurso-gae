@@ -99,6 +99,8 @@
   "flag.button": "ত্রুটি রিপোর্ট করুন",
   "flag.sent": "রিপোর্ট পাঠানো হয়েছে!",
   "flag.title": "ত্রুটি রিপোর্ট করুন",
+  "focus.exit": "ফোকাস মোড থেকে বের হন",
+  "focus.toggle": "ফোকাস মোড",
   "footer.def_lang_label": "অভিধান সংজ্ঞার জন্য ভাষা নির্বাচন করুন",
   "footer.login_link": "লগ ইন করুন",
   "footer.login_prompt": "আপনার অগ্রগতি সংরক্ষণ করতে।",

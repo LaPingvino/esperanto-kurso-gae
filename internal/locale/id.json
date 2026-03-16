@@ -99,6 +99,8 @@
   "flag.button": "Laporkan kesalahan",
   "flag.sent": "Laporan terkirim!",
   "flag.title": "Laporkan kesalahan",
+  "focus.exit": "Keluar dari mode fokus",
+  "focus.toggle": "Mode fokus",
   "footer.def_lang_label": "Pilih bahasa untuk definisi kamus",
   "footer.login_link": "Masuk",
   "footer.login_prompt": "untuk menyimpan kemajuan Anda.",

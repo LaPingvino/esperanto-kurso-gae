@@ -99,6 +99,8 @@
   "flag.button": "Hiba bejelentése",
   "flag.sent": "Bejelentés elküldve!",
   "flag.title": "Hiba bejelentése",
+  "focus.exit": "Kilépés a fókusz módból",
+  "focus.toggle": "Fókusz mód",
   "footer.def_lang_label": "Válassz nyelvet a szótári definíciókhoz",
   "footer.login_link": "Bejelentkezés",
   "footer.login_prompt": "a haladásod mentéséhez.",

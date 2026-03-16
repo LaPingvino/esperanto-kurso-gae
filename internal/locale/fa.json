@@ -99,6 +99,8 @@
   "flag.button": "گزارش خطا",
   "flag.sent": "گزارش ارسال شد!",
   "flag.title": "گزارش خطا",
+  "focus.exit": "خروج از حالت تمرکز",
+  "focus.toggle": "حالت تمرکز",
   "footer.def_lang_label": "زبان تعریف‌های فرهنگ لغت را انتخاب کنید",
   "footer.login_link": "ورود",
   "footer.login_prompt": "برای ذخیره پیشرفت خود.",

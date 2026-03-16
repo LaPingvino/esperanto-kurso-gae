@@ -99,6 +99,8 @@
   "flag.button": "Nahlásit chybu",
   "flag.sent": "Hlášení odesláno!",
   "flag.title": "Nahlásit chybu",
+  "focus.exit": "Opustit soustředěný režim",
+  "focus.toggle": "Soustředěný režim",
   "footer.def_lang_label": "Vybrat jazyk pro definice ve slovníku",
   "footer.login_link": "Přihlásit se",
   "footer.login_prompt": "pro uložení pokroku.",

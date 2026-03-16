@@ -99,6 +99,8 @@
   "flag.button": "エラーを報告",
   "flag.sent": "報告を送信しました！",
   "flag.title": "エラーを報告",
+  "focus.exit": "フォーカスモードを終了",
+  "focus.toggle": "フォーカスモード",
   "footer.def_lang_label": "辞書の定義言語を選択",
   "footer.login_link": "ログイン",
   "footer.login_prompt": "して進捗を保存しましょう。",

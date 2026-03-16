@@ -99,6 +99,8 @@
   "flag.button": "Signaler une erreur",
   "flag.sent": "Signalement envoyé !",
   "flag.title": "Signaler une erreur",
+  "focus.exit": "Quitter le mode concentration",
+  "focus.toggle": "Mode concentration",
   "footer.def_lang_label": "Choisir la langue pour les définitions du dictionnaire",
   "footer.login_link": "Se connecter",
   "footer.login_prompt": "pour sauvegarder votre progression.",

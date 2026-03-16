@@ -99,6 +99,8 @@
   "flag.button": "Rapportera ett fel",
   "flag.sent": "Rapport skickad!",
   "flag.title": "Rapportera ett fel",
+  "focus.exit": "Avsluta fokusläge",
+  "focus.toggle": "Fokusläge",
   "footer.def_lang_label": "Välj språk för ordbokets definitioner",
   "footer.login_link": "Logga in",
   "footer.login_prompt": "för att spara dina framsteg.",

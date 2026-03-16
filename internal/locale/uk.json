@@ -99,6 +99,8 @@
   "flag.button": "Повідомити про помилку",
   "flag.sent": "Повідомлення надіслано!",
   "flag.title": "Повідомити про помилку",
+  "focus.exit": "Вийти з режиму фокусу",
+  "focus.toggle": "Режим фокусу",
   "footer.def_lang_label": "Вибрати мову для визначень словника",
   "footer.login_link": "Увійти",
   "footer.login_prompt": "щоб зберегти прогрес.",

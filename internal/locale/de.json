@@ -99,6 +99,8 @@
   "flag.button": "Fehler melden",
   "flag.sent": "Meldung gesendet!",
   "flag.title": "Fehler melden",
+  "focus.exit": "Fokusmodus beenden",
+  "focus.toggle": "Fokusmodus",
   "footer.def_lang_label": "Sprache für Wörterbuchdefinitionen wählen",
   "footer.login_link": "Anmelden",
   "footer.login_prompt": "um deinen Fortschritt zu speichern.",

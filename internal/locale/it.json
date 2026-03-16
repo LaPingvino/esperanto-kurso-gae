@@ -99,6 +99,8 @@
   "flag.button": "Segnala un errore",
   "flag.sent": "Segnalazione inviata!",
   "flag.title": "Segnala un errore",
+  "focus.exit": "Esci dalla modalità focus",
+  "focus.toggle": "Modalità focus",
   "footer.def_lang_label": "Seleziona la lingua per le definizioni del dizionario",
   "footer.login_link": "Accedi",
   "footer.login_prompt": "per salvare i tuoi progressi.",

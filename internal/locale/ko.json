@@ -99,6 +99,8 @@
   "flag.button": "오류 신고",
   "flag.sent": "신고가 전송되었습니다!",
   "flag.title": "오류 신고",
+  "focus.exit": "집중 모드 종료",
+  "focus.toggle": "집중 모드",
   "footer.def_lang_label": "사전 정의 언어 선택",
   "footer.login_link": "로그인",
   "footer.login_prompt": "하여 진도를 저장하세요.",

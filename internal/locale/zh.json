@@ -99,6 +99,8 @@
   "flag.button": "举报错误",
   "flag.sent": "举报已发送！",
   "flag.title": "举报错误",
+  "focus.exit": "退出专注模式",
+  "focus.toggle": "专注模式",
   "footer.def_lang_label": "选择词典定义的语言",
   "footer.login_link": "登录",
   "footer.login_prompt": "以保存进度。",

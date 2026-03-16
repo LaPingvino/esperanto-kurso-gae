@@ -99,6 +99,8 @@
   "flag.button": "Hata bildir",
   "flag.sent": "Bildirim gönderildi!",
   "flag.title": "Hata bildir",
+  "focus.exit": "Odak modundan çık",
+  "focus.toggle": "Odak modu",
   "footer.def_lang_label": "Sözlük tanımları için dil seçin",
   "footer.login_link": "Giriş yap",
   "footer.login_prompt": "ilerlemenizi kaydetmek için.",
