@@ -154,7 +154,7 @@
       {{if .User}}
         <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
         <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
-        {{if .User.StreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.StreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}
+        <span id="footer-streak">{{if .User.StreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.StreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}</span>
         <span class="user-id-badge" title="via uzant-ID"><a href="/enskribi">{{if .User.Username}}@{{.User.Username}}{{else}}<code>{{.User.ID}}</code>{{end}}</a></span>
       {{else}}
         <em><a href="/enskribi">{{t .UILang "footer.login_link"}}</a> {{t .UILang "footer.login_prompt"}}</em>

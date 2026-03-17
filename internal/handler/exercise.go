@@ -117,7 +117,11 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
 	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
-	streakDeadline := time.Now().UTC().Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
+	now := time.Now().UTC()
+	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
+	// Reflect new streak in the User object so OOB footer swap is accurate.
+	u.StreakDays = streak
+	u.LastSeenAt = now
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -327,7 +331,11 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
 	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
-	streakDeadline := time.Now().UTC().Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
+	now := time.Now().UTC()
+	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
+	// Reflect new streak in the User object so OOB footer swap is accurate.
+	u.StreakDays = streak
+	u.LastSeenAt = now
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {

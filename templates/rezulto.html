@@ -93,4 +93,7 @@
     {{end}}
   </div>
 </div>
+{{if .User}}
+<span id="footer-streak" hx-swap-oob="true">{{if .User.StreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.StreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}</span>
+{{end}}
 {{end}}
