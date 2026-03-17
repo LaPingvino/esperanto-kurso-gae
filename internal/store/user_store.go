@@ -28,6 +28,7 @@ type userEntity struct {
 	FavoritesJSON []byte    `datastore:"favorites_json,noindex"`
 	KeepDataDays  int       `datastore:"keep_data_days"`
 	StreakDays    int       `datastore:"streak_days"`
+	StreakStartAt time.Time `datastore:"streak_start_at"`
 	CreatedAt    time.Time `datastore:"created_at"`
 	LastSeenAt   time.Time `datastore:"last_seen_at"`
 }
@@ -67,6 +68,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		FavoritesJSON: favJSON,
 		KeepDataDays:  u.KeepDataDays,
 		StreakDays:    u.StreakDays,
+		StreakStartAt: u.StreakStartAt,
 		CreatedAt:    u.CreatedAt,
 		LastSeenAt:   u.LastSeenAt,
 	}, nil
@@ -102,10 +104,11 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		Role:       e.Role,
 		Lang:       lang,
 		UILang:     uiLang,
-		KeepDataDays: e.KeepDataDays,
-		StreakDays:   e.StreakDays,
-		CreatedAt:   e.CreatedAt,
-		LastSeenAt: e.LastSeenAt,
+		KeepDataDays:  e.KeepDataDays,
+		StreakDays:    e.StreakDays,
+		StreakStartAt: e.StreakStartAt,
+		CreatedAt:    e.CreatedAt,
+		LastSeenAt:   e.LastSeenAt,
 		Progress:   make(map[string]bool),
 	}
 	if len(e.PasskeysJSON) > 0 {
@@ -344,6 +347,7 @@ func (s *UserStore) UpdateRating(ctx context.Context, userID string, rating, rd,
 }
 
 // UpdateStreakAndSeen updates last_seen_at and recalculates the streak.
+// StreakStartAt is the canonical anchor; StreakDays is always derived from it.
 // Call after every exercise attempt.
 func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int, error) {
 	key := s.userKey(userID)
@@ -353,26 +357,39 @@ func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int
 		if err := tx.Get(key, &e); err != nil {
 			return err
 		}
-		now := time.Now()
-		lastDay := e.LastSeenAt.Truncate(24 * time.Hour)
+		now := time.Now().UTC()
+		lastDay := e.LastSeenAt.UTC().Truncate(24 * time.Hour)
 		today := now.Truncate(24 * time.Hour)
 		yesterday := today.Add(-24 * time.Hour)
+
 		switch {
 		case lastDay.Equal(today):
-			// already practiced today — ensure streak is at least 1
-			if e.StreakDays == 0 {
-				e.StreakDays = 1
+			// Already practiced today — ensure StreakStartAt is set (migration).
+			if e.StreakStartAt.IsZero() {
+				days := e.StreakDays
+				if days < 1 {
+					days = 1
+				}
+				e.StreakStartAt = today.Add(-time.Duration(days-1) * 24 * time.Hour)
 			}
-			newStreak = e.StreakDays
 		case lastDay.Equal(yesterday):
-			// practiced yesterday — extend streak
-			e.StreakDays++
-			newStreak = e.StreakDays
+			// Practiced yesterday — streak continues into today.
+			if e.StreakStartAt.IsZero() {
+				// Migrate: backfill start from stored count + yesterday.
+				days := e.StreakDays
+				if days < 1 {
+					days = 1
+				}
+				e.StreakStartAt = yesterday.Add(-time.Duration(days-1) * 24 * time.Hour)
+			}
 		default:
-			// gap of more than one day — reset
-			e.StreakDays = 1
-			newStreak = 1
+			// Gap of more than one day — reset streak.
+			e.StreakStartAt = today
 		}
+
+		// StreakDays is always derived from the start anchor (1-indexed).
+		e.StreakDays = int(today.Sub(e.StreakStartAt).Hours()/24) + 1
+		newStreak = e.StreakDays
 		e.LastSeenAt = now
 		_, err := tx.Put(key, &e)
 		return err

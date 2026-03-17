@@ -25,6 +25,7 @@ type User struct {
 	Favorites      []string           `firestore:"favorites"`
 	KeepDataDays   int                `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
 	StreakDays      int                `firestore:"streak_days"`
+	StreakStartAt   time.Time          `firestore:"streak_start_at"`
 	CreatedAt    time.Time          `firestore:"created_at"`
 	LastSeenAt   time.Time          `firestore:"last_seen_at"`
 }
