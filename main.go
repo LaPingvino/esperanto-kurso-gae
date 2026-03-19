@@ -101,6 +101,7 @@ func main() {
 	mux.HandleFunc("POST /komentoj/{contentID}", communityH.AddComment)
 	mux.HandleFunc("POST /tradukoj/{contentID}", communityH.AddTranslation)
 	mux.HandleFunc("POST /tradukoj/{contentID}/vochdoni/{id}", communityH.VoteTranslation)
+	mux.HandleFunc("POST /tradukoj/{contentID}/redakti/{id}", communityH.EditTranslation)
 
 	// Admin routes — registered directly with method+path to avoid ServeMux conflicts.
 	ra := func(h http.HandlerFunc) http.Handler { return handler.RequireAdmin(h) }

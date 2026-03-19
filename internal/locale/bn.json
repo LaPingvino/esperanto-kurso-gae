@@ -194,5 +194,7 @@
   "vote.login_link": "লগ ইন করুন",
   "vote.login_prompt": "ভোট দিতে।",
   "vote.useful": "উপকারী",
-  "vote.useless": "অকার্যকর"
+  "vote.useless": "অকার্যকর",
+  "translate.edit": "সম্পাদনা",
+  "translate.save": "সংরক্ষণ"
 }

@@ -194,5 +194,7 @@
   "vote.login_link": "Iniciar sesión",
   "vote.login_prompt": "para votar.",
   "vote.useful": "Útil",
-  "vote.useless": "No útil"
+  "vote.useless": "No útil",
+  "translate.edit": "Editar",
+  "translate.save": "Guardar"
 }

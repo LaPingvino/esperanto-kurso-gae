@@ -194,5 +194,7 @@
   "vote.login_link": "Logga in",
   "vote.login_prompt": "för att rösta.",
   "vote.useful": "Användbart",
-  "vote.useless": "Inte användbart"
+  "vote.useless": "Inte användbart",
+  "translate.edit": "Redigera",
+  "translate.save": "Spara"
 }

@@ -194,5 +194,7 @@
   "vote.login_link": "Σύνδεση",
   "vote.login_prompt": "για να ψηφίσετε.",
   "vote.useful": "Χρήσιμο",
-  "vote.useless": "Άχρηστο"
+  "vote.useless": "Άχρηστο",
+  "translate.edit": "Επεξεργασία",
+  "translate.save": "Αποθήκευση"
 }

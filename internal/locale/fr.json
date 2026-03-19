@@ -194,5 +194,7 @@
   "vote.login_link": "Se connecter",
   "vote.login_prompt": "pour voter.",
   "vote.useful": "Utile",
-  "vote.useless": "Inutile"
+  "vote.useless": "Inutile",
+  "translate.edit": "Modifier",
+  "translate.save": "Enregistrer"
 }

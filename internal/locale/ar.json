@@ -194,5 +194,7 @@
   "vote.login_link": "تسجيل الدخول",
   "vote.login_prompt": "للتصويت.",
   "vote.useful": "مفيد",
-  "vote.useless": "غير مفيد"
+  "vote.useless": "غير مفيد",
+  "translate.edit": "تعديل",
+  "translate.save": "حفظ"
 }

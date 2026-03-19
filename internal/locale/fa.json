@@ -194,5 +194,7 @@
   "vote.login_link": "ورود",
   "vote.login_prompt": "برای رأی دادن.",
   "vote.useful": "مفید",
-  "vote.useless": "غیرمفید"
+  "vote.useless": "غیرمفید",
+  "translate.edit": "ویرایش",
+  "translate.save": "ذخیره"
 }

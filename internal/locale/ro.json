@@ -194,5 +194,7 @@
   "vote.login_link": "Conectează-te",
   "vote.login_prompt": "pentru a vota.",
   "vote.useful": "Util",
-  "vote.useless": "Inutil"
+  "vote.useless": "Inutil",
+  "translate.edit": "Editare",
+  "translate.save": "Salvare"
 }

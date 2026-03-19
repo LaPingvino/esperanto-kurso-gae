@@ -194,5 +194,7 @@
   "vote.login_link": "Masuk",
   "vote.login_prompt": "untuk memilih.",
   "vote.useful": "Berguna",
-  "vote.useless": "Tidak berguna"
+  "vote.useless": "Tidak berguna",
+  "translate.edit": "Edit",
+  "translate.save": "Simpan"
 }

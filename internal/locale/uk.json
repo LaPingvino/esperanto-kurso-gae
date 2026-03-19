@@ -194,5 +194,7 @@
   "vote.login_link": "Увійти",
   "vote.login_prompt": "щоб проголосувати.",
   "vote.useful": "Корисно",
-  "vote.useless": "Некорисно"
+  "vote.useless": "Некорисно",
+  "translate.edit": "Редагувати",
+  "translate.save": "Зберегти"
 }

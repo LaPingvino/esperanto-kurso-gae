@@ -152,6 +152,25 @@ func (s *TranslationStore) GetByID(ctx context.Context, id string) (*model.Trans
 	}, nil
 }
 
+// UpdateText updates the text of an existing translation.
+func (s *TranslationStore) UpdateText(ctx context.Context, id, newText string) error {
+	n, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return fmt.Errorf("translation_store: bad id %q: %w", id, err)
+	}
+	key := datastore.IDKey(translationKind, n, nil)
+	_, err = s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e translationEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		e.Text = newText
+		_, err := tx.Put(key, &e)
+		return err
+	})
+	return err
+}
+
 // Delete removes a translation by ID.
 func (s *TranslationStore) Delete(ctx context.Context, id string) error {
 	n, err := strconv.ParseInt(id, 10, 64)

@@ -194,5 +194,7 @@
   "vote.login_link": "Log ind",
   "vote.login_prompt": "for at stemme.",
   "vote.useful": "Nyttigt",
-  "vote.useless": "Ikke nyttigt"
+  "vote.useless": "Ikke nyttigt",
+  "translate.edit": "Rediger",
+  "translate.save": "Gem"
 }

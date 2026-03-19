@@ -194,5 +194,7 @@
   "vote.login_link": "登录",
   "vote.login_prompt": "以投票。",
   "vote.useful": "有用",
-  "vote.useless": "无用"
+  "vote.useless": "无用",
+  "translate.edit": "编辑",
+  "translate.save": "保存"
 }

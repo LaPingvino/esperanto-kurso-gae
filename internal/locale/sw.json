@@ -194,5 +194,7 @@
   "vote.login_link": "Ingia",
   "vote.login_prompt": "ili kupiga kura.",
   "vote.useful": "Muhimu",
-  "vote.useless": "Si muhimu"
+  "vote.useless": "Si muhimu",
+  "translate.edit": "Hariri",
+  "translate.save": "Hifadhi"
 }

@@ -194,5 +194,7 @@
   "vote.login_link": "Bejelentkezés",
   "vote.login_prompt": "a szavazáshoz.",
   "vote.useful": "Hasznos",
-  "vote.useless": "Nem hasznos"
+  "vote.useless": "Nem hasznos",
+  "translate.edit": "Szerkesztés",
+  "translate.save": "Mentés"
 }

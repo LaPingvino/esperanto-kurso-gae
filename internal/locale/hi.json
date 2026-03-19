@@ -194,5 +194,7 @@
   "vote.login_link": "लॉग इन करें",
   "vote.login_prompt": "वोट देने के लिए।",
   "vote.useful": "उपयोगी",
-  "vote.useless": "अनुपयोगी"
+  "vote.useless": "अनुपयोगी",
+  "translate.edit": "संपादित करें",
+  "translate.save": "सहेजें"
 }

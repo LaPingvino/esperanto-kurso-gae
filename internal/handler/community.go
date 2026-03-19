@@ -345,6 +345,63 @@ func (h *CommunityHandler) VoteTranslation(w http.ResponseWriter, r *http.Reques
 	}
 }
 
+// EditTranslation handles POST /tradukoj/{contentID}/redakti/{id}.
+// The author of the translation (or a mod/admin) can update its text.
+func (h *CommunityHandler) EditTranslation(w http.ResponseWriter, r *http.Request) {
+	contentID := r.PathValue("contentID")
+	translationID := r.PathValue("id")
+	if contentID == "" || translationID == "" {
+		http.NotFound(w, r)
+		return
+	}
+
+	u := UserFromContext(r.Context())
+	if u == nil {
+		http.Error(w, "Bonvolu ensaluti", http.StatusUnauthorized)
+		return
+	}
+
+	// Check ownership or mod/admin role.
+	existing, err := h.translations.GetByID(r.Context(), translationID)
+	if err != nil {
+		http.Error(w, "Traduko ne trovita", http.StatusNotFound)
+		return
+	}
+	if existing.AuthorID != u.ID && u.Role != "mod" && u.Role != "admin" {
+		http.Error(w, "Vi ne rajtas redakti ĉi tiun tradukon", http.StatusForbidden)
+		return
+	}
+
+	if err := r.ParseForm(); err != nil {
+		http.Error(w, "Malĝusta formularo", http.StatusBadRequest)
+		return
+	}
+	newText := strings.TrimSpace(r.FormValue("text"))
+	if newText == "" {
+		http.Error(w, "Teksto ne povas esti malplena", http.StatusBadRequest)
+		return
+	}
+
+	if err := h.translations.UpdateText(r.Context(), translationID, newText); err != nil {
+		http.Error(w, "Ne eblis konservi ŝanĝon", http.StatusInternalServerError)
+		return
+	}
+
+	// Re-render the translation section.
+	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
+	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
+	userLang := "en"
+	if u != nil {
+		userLang = u.Lang
+	}
+	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
+	data["User"] = u
+	data["UILang"] = UILangFor(u)
+	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
 // SuggestAlternative handles POST /ekzerco/{slug}/alternativo.
 // Any logged-in user can suggest their wrong answer should be accepted as correct.
 // The suggestion is queued as a mod message for admin review.

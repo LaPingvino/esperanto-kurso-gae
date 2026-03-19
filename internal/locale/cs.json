@@ -194,5 +194,7 @@
   "vote.login_link": "Přihlásit se",
   "vote.login_prompt": "pro hlasování.",
   "vote.useful": "Užitečné",
-  "vote.useless": "Neužitečné"
+  "vote.useless": "Neužitečné",
+  "translate.edit": "Upravit",
+  "translate.save": "Uložit"
 }

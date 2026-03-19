@@ -194,5 +194,7 @@
   "vote.login_link": "Entrar",
   "vote.login_prompt": "para votar.",
   "vote.useful": "Útil",
-  "vote.useless": "Não útil"
+  "vote.useless": "Não útil",
+  "translate.edit": "Editar",
+  "translate.save": "Salvar"
 }

@@ -194,5 +194,7 @@
   "vote.login_link": "התחבר",
   "vote.login_prompt": "כדי להצביע.",
   "vote.useful": "שימושי",
-  "vote.useless": "לא שימושי"
+  "vote.useless": "לא שימושי",
+  "translate.edit": "עריכה",
+  "translate.save": "שמירה"
 }

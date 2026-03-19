@@ -194,5 +194,7 @@
   "vote.login_link": "ログイン",
   "vote.login_prompt": "して投票しましょう。",
   "vote.useful": "役立つ",
-  "vote.useless": "役立たない"
+  "vote.useless": "役立たない",
+  "translate.edit": "編集",
+  "translate.save": "保存"
 }

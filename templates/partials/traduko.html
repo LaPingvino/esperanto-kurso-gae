@@ -27,6 +27,18 @@
                   class="vote-btn{{if eq $myVote -1}} active{{end}}"
                   title="{{if eq $myVote -1}}{{t $uiLang "vote.aria_cancel"}}{{else}}{{t $uiLang "vote.useless"}}{{end}}">▼</button>
         </form>
+        {{if or (eq $.User.ID .AuthorID) (eq $.User.Role "mod") (eq $.User.Role "admin")}}
+        <details style="display:inline-block;margin-left:0.5rem">
+          <summary class="btn-sm" style="cursor:pointer;font-size:0.8rem">✏️ {{t $uiLang "translate.edit"}}</summary>
+          <form hx-post="/tradukoj/{{$contentID}}/redakti/{{.ID}}"
+                hx-target="#tradukoj-{{$contentID}}"
+                hx-swap="outerHTML"
+                style="margin-top:0.3rem">
+            <textarea name="text" rows="2" required style="font-size:0.9rem">{{.Text}}</textarea>
+            <button type="submit" class="btn-sm">{{t $uiLang "translate.save"}}</button>
+          </form>
+        </details>
+        {{end}}
         {{else}}
         <span class="vote-score">{{.VoteScore}}</span>
         {{end}}

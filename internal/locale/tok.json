@@ -194,5 +194,7 @@
   "vote.login_link": "o kama lon",
   "vote.login_prompt": "tawa pana e pona.",
   "vote.useful": "pona",
-  "vote.useless": "ike"
+  "vote.useless": "ike",
+  "translate.edit": "ante",
+  "translate.save": "awen"
 }

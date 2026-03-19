@@ -194,5 +194,7 @@
   "vote.login_link": "Đăng nhập",
   "vote.login_prompt": "để bình chọn.",
   "vote.useful": "Hữu ích",
-  "vote.useless": "Không hữu ích"
+  "vote.useless": "Không hữu ích",
+  "translate.edit": "Chỉnh sửa",
+  "translate.save": "Lưu"
 }
