@@ -319,10 +319,17 @@
       </select>
     </label>
     <label>Preciza ratingpunkto <small>(aŭtomate kalibriĝas)</small>:
-      <input type="number" name="initial_rating" 
-             value="{{printf "%.0f" .Item.Rating}}" min="500" max="3000" step="50">
+      <input type="number" name="initial_rating" id="initial-rating-edit"
+             value="{{printf "%.0f" .Item.Rating}}" min="500" max="3000" step="50"{{if not .IsNew}} disabled{{end}}>
     </label>
   </div>
+  {{if not .IsNew}}
+  <label>
+    <input type="checkbox" id="keep-rating-check" checked
+           onchange="var ri=document.getElementById('initial-rating-edit'); ri.disabled=this.checked;">
+    Konservi nunan ratingon (ne ŝanĝi)
+  </label>
+  {{end}}
 
   {{/* Series fields only shown when not in series-mode (single item can still be part of a series) */}}
   <div id="single-series-fields">
