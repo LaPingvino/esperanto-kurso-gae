@@ -258,7 +258,7 @@
           <option value="2100">C2 — Majstra uzanto</option>
         </select>
       </label>
-      <label>Preciza ratingpunkto:
+      <label>Preciza poentaro:
         <input type="number" name="initial_rating" 
                value="1500" min="500" max="3000" step="50">
       </label>
@@ -318,7 +318,7 @@
         <option value="2100" {{if ge .Item.Rating 2000.0}}selected{{end}}>C2 — Majstra uzanto</option>
       </select>
     </label>
-    <label>Preciza ratingpunkto <small>(aŭtomate kalibriĝas)</small>:
+    <label>Preciza poentaro <small>(aŭtomate kalibriĝas)</small>:
       <input type="number" name="initial_rating" id="initial-rating-edit"
              value="{{printf "%.0f" .Item.Rating}}" min="500" max="3000" step="50"{{if not .IsNew}} disabled{{end}}>
     </label>
@@ -327,7 +327,7 @@
   <label>
     <input type="checkbox" id="keep-rating-check" checked
            onchange="var ri=document.getElementById('initial-rating-edit'); ri.disabled=this.checked;">
-    Konservi nunan ratingon (ne ŝanĝi)
+    Konservi nunan poentaron (ne ŝanĝi)
   </label>
   {{end}}
 
