@@ -364,23 +364,14 @@ func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int
 
 		switch {
 		case lastDay.Equal(today):
-			// Already practiced today — ensure StreakStartAt is set (migration).
+			// Already practiced today — keep StreakStartAt as-is.
 			if e.StreakStartAt.IsZero() {
-				days := e.StreakDays
-				if days < 1 {
-					days = 1
-				}
-				e.StreakStartAt = today.Add(-time.Duration(days-1) * 24 * time.Hour)
+				e.StreakStartAt = today
 			}
 		case lastDay.Equal(yesterday):
 			// Practiced yesterday — streak continues into today.
 			if e.StreakStartAt.IsZero() {
-				// Migrate: backfill start from stored count + yesterday.
-				days := e.StreakDays
-				if days < 1 {
-					days = 1
-				}
-				e.StreakStartAt = yesterday.Add(-time.Duration(days-1) * 24 * time.Hour)
+				e.StreakStartAt = yesterday
 			}
 		default:
 			// Gap of more than one day — reset streak.
