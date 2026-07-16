@@ -560,3 +560,24 @@ document.addEventListener('htmx:afterSwap', function (evt) {
     }
   }
 });
+
+// ---- Account nudge banner ----
+// Server renders it (hidden) for users with progress but no username/passkey;
+// we reveal it unless snoozed, and never on the profile page itself.
+const NUDGE_SNOOZE_KEY = 'eo_nudge_until';
+
+document.addEventListener('DOMContentLoaded', function () {
+  const nudge = document.getElementById('account-nudge');
+  if (!nudge) return;
+  if (window.location.pathname === '/enskribi') return;
+  const until = parseInt(localStorage.getItem(NUDGE_SNOOZE_KEY) || '0', 10);
+  if (Date.now() < until) return;
+  nudge.hidden = false;
+});
+
+function dismissAccountNudge() {
+  const nudge = document.getElementById('account-nudge');
+  if (nudge) nudge.hidden = true;
+  // Snooze for 7 days.
+  localStorage.setItem(NUDGE_SNOOZE_KEY, String(Date.now() + 7 * 24 * 60 * 60 * 1000));
+}

@@ -145,6 +145,16 @@
     </nav>
   </header>
 
+  {{if .User}}{{if .User.NeedsAccountNudge}}
+  <div class="container">
+    <div class="account-nudge" id="account-nudge" hidden>
+      <span class="account-nudge-text">&#128273; <strong>{{t .UILang "nudge.title"}}</strong> {{t .UILang "nudge.text"}}</span>
+      <a href="/enskribi" role="button" class="account-nudge-cta">{{t .UILang "nudge.cta"}}</a>
+      <button type="button" class="account-nudge-close" onclick="dismissAccountNudge()" aria-label="{{t .UILang "nudge.dismiss"}}" title="{{t .UILang "nudge.dismiss"}}">&times;</button>
+    </div>
+  </div>
+  {{end}}{{end}}
+
   <main class="container">
     {{block "content" .}}{{end}}
   </main>

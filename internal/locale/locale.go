@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-//go:embed *.json
+//go:embed [a-z]*.json
 var localeFiles embed.FS
 
 // translations maps lang code → key → translated string.

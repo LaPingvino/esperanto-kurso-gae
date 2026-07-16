@@ -157,6 +157,18 @@ func (u *User) CEFRProgressPercent() int {
 	return 100
 }
 
+// NeedsAccountNudge reports whether the user should be nudged to secure their
+// account: they have invested real effort (RD drops from 350 toward ~250 after
+// a handful of exercises) but have no username (account auto-deletes after 7
+// idle days and stays off the leaderboard) or no passkey (no way back in from
+// another device).
+func (u *User) NeedsAccountNudge() bool {
+	if u.RD > 250 {
+		return false
+	}
+	return u.Username == "" || len(u.Passkeys) == 0
+}
+
 // DisplayName returns the username if set, otherwise a short anonymous ID.
 func (u *User) DisplayName() string {
 	if u.Username != "" {
