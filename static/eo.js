@@ -581,3 +581,14 @@ function dismissAccountNudge() {
   // Snooze for 7 days.
   localStorage.setItem(NUDGE_SNOOZE_KEY, String(Date.now() + 7 * 24 * 60 * 60 * 1000));
 }
+
+// ---- Support corner: copy helper ----
+function copySupport(id, btn) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+    const old = btn.textContent;
+    btn.textContent = '✓';
+    setTimeout(function () { btn.textContent = old; }, 1500);
+  });
+}
