@@ -28,6 +28,9 @@ type User struct {
 	StreakStartAt   time.Time          `firestore:"streak_start_at"`
 	CreatedAt    time.Time          `firestore:"created_at"`
 	LastSeenAt   time.Time          `firestore:"last_seen_at"`
+	// LastPracticeAt is when the user last completed an exercise. Unlike
+	// LastSeenAt (bumped on every page view), only this drives the streak.
+	LastPracticeAt time.Time `firestore:"last_practice_at"`
 }
 
 // IsFavorite returns true if the given slug is in the user's favorites.
@@ -58,15 +61,37 @@ func (u *User) UILangOrDefault() string {
 	return u.UILang
 }
 
+// lastPractice returns LastPracticeAt, falling back to LastSeenAt for
+// accounts from before practice time was tracked separately.
+func (u *User) lastPractice() time.Time {
+	if !u.LastPracticeAt.IsZero() {
+		return u.LastPracticeAt
+	}
+	return u.LastSeenAt
+}
+
 // StreakDeadline returns the UTC time by which the user must practice to preserve
 // their current streak (midnight at the end of the day after their last practice day).
 // Returns zero time if no streak is established.
 func (u *User) StreakDeadline() time.Time {
-	if u.StreakDays == 0 || u.LastSeenAt.IsZero() {
+	last := u.lastPractice()
+	if u.StreakDays == 0 || last.IsZero() {
 		return time.Time{}
 	}
-	lastDay := u.LastSeenAt.UTC().Truncate(24 * time.Hour)
+	lastDay := last.UTC().Truncate(24 * time.Hour)
 	return lastDay.Add(48 * time.Hour)
+}
+
+// CurrentStreakDays returns the streak to display: the stored count while the
+// streak is still alive, 0 once its deadline has passed. The stored StreakDays
+// is only recalculated on practice, so without this an expired streak would
+// keep showing its old count.
+func (u *User) CurrentStreakDays() int {
+	deadline := u.StreakDeadline()
+	if deadline.IsZero() || time.Now().After(deadline) {
+		return 0
+	}
+	return u.StreakDays
 }
 
 // StreakExpiresInHours returns how many whole hours remain before the streak expires.

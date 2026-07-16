@@ -31,6 +31,7 @@ type userEntity struct {
 	StreakStartAt time.Time `datastore:"streak_start_at"`
 	CreatedAt    time.Time `datastore:"created_at"`
 	LastSeenAt   time.Time `datastore:"last_seen_at"`
+	LastPracticeAt time.Time `datastore:"last_practice_at"`
 }
 
 func userToEntity(u *model.User) (*userEntity, error) {
@@ -71,6 +72,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		StreakStartAt: u.StreakStartAt,
 		CreatedAt:    u.CreatedAt,
 		LastSeenAt:   u.LastSeenAt,
+		LastPracticeAt: u.LastPracticeAt,
 	}, nil
 }
 
@@ -109,6 +111,7 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		StreakStartAt: e.StreakStartAt,
 		CreatedAt:    e.CreatedAt,
 		LastSeenAt:   e.LastSeenAt,
+		LastPracticeAt: e.LastPracticeAt,
 		Progress:   make(map[string]bool),
 	}
 	if len(e.PasskeysJSON) > 0 {
@@ -298,9 +301,13 @@ func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 			dst.Progress[k] = true
 		}
 	}
-	// Keep higher streak.
-	if src.StreakDays > dst.StreakDays {
+	// Keep the better live streak. StreakDays is derived from StreakStartAt
+	// and LastPracticeAt, so the whole tuple must move together — an expired
+	// streak (CurrentStreakDays 0) never beats a live one.
+	if src.CurrentStreakDays() > dst.CurrentStreakDays() {
 		dst.StreakDays = src.StreakDays
+		dst.StreakStartAt = src.StreakStartAt
+		dst.LastPracticeAt = src.LastPracticeAt
 	}
 	// Keep username from src if dst has none.
 	if dst.Username == "" && src.Username != "" {
@@ -346,8 +353,42 @@ func (s *UserStore) UpdateRating(ctx context.Context, userID string, rating, rd,
 	return err
 }
 
-// UpdateStreakAndSeen updates last_seen_at and recalculates the streak.
-// StreakStartAt is the canonical anchor; StreakDays is always derived from it.
+// advanceStreak computes the streak state for a practice happening at now,
+// given the previous anchor and the time of the previous practice. It returns
+// the (possibly reset) anchor day and the derived 1-indexed day count.
+func advanceStreak(startAt, lastPractice, now time.Time) (time.Time, int) {
+	today := now.UTC().Truncate(24 * time.Hour)
+	yesterday := today.Add(-24 * time.Hour)
+	lastDay := lastPractice.UTC().Truncate(24 * time.Hour)
+
+	switch {
+	case lastDay.Equal(today):
+		// Already practiced today — keep the anchor as-is.
+		if startAt.IsZero() {
+			startAt = today
+		}
+	case lastDay.Equal(yesterday):
+		// Practiced yesterday — streak continues into today.
+		if startAt.IsZero() {
+			startAt = yesterday
+		}
+	default:
+		// Gap of more than one day (or first practice ever) — reset.
+		startAt = today
+	}
+
+	startDay := startAt.UTC().Truncate(24 * time.Hour)
+	if startDay.After(today) {
+		startDay = today
+	}
+	return startDay, int(today.Sub(startDay).Hours()/24) + 1
+}
+
+// UpdateStreakAndSeen records a practice: updates last_practice_at and
+// last_seen_at and recalculates the streak. StreakStartAt is the canonical
+// anchor; StreakDays is always derived from it. The streak is keyed off
+// LastPracticeAt, not LastSeenAt — the latter is bumped by the middleware on
+// every page view, so merely browsing must not keep a streak alive.
 // Call after every exercise attempt.
 func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int, error) {
 	key := s.userKey(userID)
@@ -358,29 +399,14 @@ func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int
 			return err
 		}
 		now := time.Now().UTC()
-		lastDay := e.LastSeenAt.UTC().Truncate(24 * time.Hour)
-		today := now.Truncate(24 * time.Hour)
-		yesterday := today.Add(-24 * time.Hour)
-
-		switch {
-		case lastDay.Equal(today):
-			// Already practiced today — keep StreakStartAt as-is.
-			if e.StreakStartAt.IsZero() {
-				e.StreakStartAt = today
-			}
-		case lastDay.Equal(yesterday):
-			// Practiced yesterday — streak continues into today.
-			if e.StreakStartAt.IsZero() {
-				e.StreakStartAt = yesterday
-			}
-		default:
-			// Gap of more than one day — reset streak.
-			e.StreakStartAt = today
+		lastPractice := e.LastPracticeAt
+		if lastPractice.IsZero() {
+			// Pre-migration account: LastSeenAt is the only proxy we have.
+			lastPractice = e.LastSeenAt
 		}
-
-		// StreakDays is always derived from the start anchor (1-indexed).
-		e.StreakDays = int(today.Sub(e.StreakStartAt).Hours()/24) + 1
+		e.StreakStartAt, e.StreakDays = advanceStreak(e.StreakStartAt, lastPractice, now)
 		newStreak = e.StreakDays
+		e.LastPracticeAt = now
 		e.LastSeenAt = now
 		_, err := tx.Put(key, &e)
 		return err

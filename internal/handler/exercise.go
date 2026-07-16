@@ -122,6 +122,7 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	// Reflect new streak in the User object so OOB footer swap is accurate.
 	u.StreakDays = streak
 	u.LastSeenAt = now
+	u.LastPracticeAt = now
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -336,6 +337,7 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	// Reflect new streak in the User object so OOB footer swap is accurate.
 	u.StreakDays = streak
 	u.LastSeenAt = now
+	u.LastPracticeAt = now
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
