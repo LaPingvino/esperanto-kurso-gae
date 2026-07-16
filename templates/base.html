@@ -171,33 +171,36 @@
       {{end}}
       &mdash; Esperanto-kurso &copy; 2026
     </small>
-    <small style="margin-left:0.5rem"><a href="/etikedoj">🏷️ {{t .UILang "tags.title"}}</a></small>
-    <details class="support-corner" style="margin-top:0.5rem">
-      <summary style="cursor:pointer;font-size:0.8em;color:var(--pico-muted-color);list-style:none;display:inline">&#128154; {{t .UILang "support.title"}}</summary>
-      <div class="support-options">
-        <p><small>{{t .UILang "support.text"}}</small></p>
-        <ul>
-          <li><small>bunq: <a href="https://bunq.me/lapingvino" target="_blank" rel="noopener">bunq.me/lapingvino</a></small></li>
-          <li><small>PayPal: <a href="https://www.paypal.com/paypalme/lapingvino" target="_blank" rel="noopener">paypal.me/lapingvino</a></small></li>
-          <li><small>Bitcoin Cash: <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20" id="support-bch" data-copy="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><code>qrrqxuwd&hellip;ju53j7glf20</code></a> <button type="button" class="support-copy" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">&#128203;</button>
-            <details class="bch-qr">
-              <summary title="QR">&#128241; QR</summary>
-              <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><img src="/static/bch-qr.png" alt="Bitcoin Cash QR" width="185" height="185" loading="lazy"></a>
-            </details></small></li>
-        </ul>
-      </div>
-    </details>
-    <details id="series-nav-details" style="margin-top:0.5rem">
-      <summary style="cursor:pointer;font-size:0.8em;color:var(--pico-muted-color);list-style:none;display:inline">&#9776; serioj</summary>
-      <div style="margin-top:0.35rem;max-width:24rem">
-        <input type="search" id="series-nav-search" placeholder="Serĉi serion…"
-               style="margin-bottom:0.25rem;font-size:0.85em" oninput="filterSeriesNav(this.value)" autocomplete="off">
-        <select id="series-nav-select" size="6" style="width:100%;font-size:0.85em"
-                onchange="if(this.value){window.location=this.value;this.value=''}">
-          <option value="" disabled>— ŝarĝas —</option>
-        </select>
-      </div>
-    </details>
+    <div class="footer-tools">
+      <small><a href="/etikedoj" class="footer-tool-link">🏷️ {{t .UILang "tags.title"}}</a></small>
+      <details class="footer-widget support-corner">
+        <summary>&#128154; {{t .UILang "support.title"}}</summary>
+        <div class="footer-panel support-options">
+          <p>{{t .UILang "support.text"}}</p>
+          <ul>
+            <li><span class="support-method">bunq</span><a href="https://bunq.me/lapingvino" target="_blank" rel="noopener">bunq.me/lapingvino</a></li>
+            <li><span class="support-method">PayPal</span><a href="https://www.paypal.com/paypalme/lapingvino" target="_blank" rel="noopener">paypal.me/lapingvino</a></li>
+            <li><span class="support-method">Bitcoin Cash</span><a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20" id="support-bch" data-copy="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><code>qrrqxuwd&hellip;ju53j7glf20</code></a>
+              <button type="button" class="support-copy" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">&#128203;</button>
+              <details class="bch-qr">
+                <summary title="QR">&#128241; QR</summary>
+                <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><img src="/static/bch-qr.png" alt="Bitcoin Cash QR" width="185" height="185" loading="lazy"></a>
+              </details></li>
+          </ul>
+        </div>
+      </details>
+      <details id="series-nav-details" class="footer-widget">
+        <summary>&#9776; serioj</summary>
+        <div class="footer-panel series-nav-panel">
+          <input type="search" id="series-nav-search" placeholder="Serĉi serion…"
+                 oninput="filterSeriesNav(this.value)" autocomplete="off">
+          <select id="series-nav-select" size="6"
+                  onchange="if(this.value){window.location=this.value;this.value=''}">
+            <option value="" disabled>— ŝarĝas —</option>
+          </select>
+        </div>
+      </details>
+    </div>
   </footer>
 
   <script>
