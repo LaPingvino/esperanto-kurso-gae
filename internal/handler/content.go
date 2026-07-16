@@ -23,6 +23,7 @@ type ContentHandler struct {
 	votes        *store.VoteStore
 	translations *store.TranslationStore
 	users        *store.UserStore
+	attempts     *store.AttemptStore
 }
 
 // NewContentHandler creates a ContentHandler.
@@ -33,6 +34,7 @@ func NewContentHandler(
 	votes *store.VoteStore,
 	translations *store.TranslationStore,
 	users *store.UserStore,
+	attempts *store.AttemptStore,
 ) *ContentHandler {
 	return &ContentHandler{
 		tmpl:         tmpl,
@@ -41,10 +43,13 @@ func NewContentHandler(
 		votes:        votes,
 		translations: translations,
 		users:        users,
+		attempts:     attempts,
 	}
 }
 
-// ShowHome handles GET /. Redirects immediately to the top recommended exercise.
+// ShowHome handles GET /. Visitors who have never answered anything are
+// dropped straight into a recommended exercise (zero-friction first contact);
+// returning learners get the goal dashboard with their learning path.
 func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 	u := UserFromContext(r.Context())
 
@@ -59,17 +64,39 @@ func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
 		items, _ = h.content.ListApproved(r.Context(), 10)
 	}
 
-	if len(items) > 0 {
+	var attempts []*model.Attempt
+	if u != nil {
+		attempts, _ = h.attempts.ListByUser(r.Context(), u.ID, 500)
+	}
+
+	if len(attempts) == 0 && len(items) > 0 {
 		pick := items[rand.Intn(len(items))]
 		http.Redirect(w, r, "/ekzerco/"+pick.Slug, http.StatusSeeOther)
 		return
 	}
 
-	// Fallback: no exercises yet.
+	path := h.buildLearningPath(r.Context(), attempts, rating)
+
+	// The primary CTA follows the path: continue the most advanced series,
+	// else start the best-fitting new one, else fall back to a recommendation.
+	practiceSlug := ""
+	switch {
+	case len(path.Continue) > 0:
+		practiceSlug = path.Continue[0].NextSlug
+	case len(path.Suggested) > 0:
+		practiceSlug = path.Suggested[0].NextSlug
+	case len(items) > 0:
+		practiceSlug = items[rand.Intn(len(items))].Slug
+	}
+
 	data := map[string]interface{}{
-		"User":   u,
-		"Items":  items,
-		"UILang": UILangFor(u),
+		"User":            u,
+		"Items":           items,
+		"UILang":          UILangFor(u),
+		"PracticeSlug":    practiceSlug,
+		"ContinueSeries":  path.Continue,
+		"SuggestedSeries": path.Suggested,
+		"CompletedSeries": path.Completed,
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "hejmo.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

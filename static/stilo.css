@@ -1395,3 +1395,37 @@ body.focus-mode .exercise-card { border-top: none; }
 @media (max-width: 600px) {
   .hero-dash .hero-practice { margin-left: 0; width: 100%; }
 }
+
+/* ── Learning path cards (home dashboard) ── */
+.path-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.path-card {
+  display: block;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 0.5rem;
+  background: var(--pico-card-background-color);
+  color: var(--pico-color);
+  text-decoration: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.path-card:hover {
+  border-color: var(--eo-green);
+  background: var(--pico-primary-background, rgba(0,128,0,0.05));
+  color: var(--pico-color);
+}
+.path-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-bottom: 0.4rem;
+}
+.path-card .level-progress { width: 100%; margin-bottom: 0.3rem; }
+.path-card small { color: var(--pico-muted-color); }
+.hero-done { color: var(--eo-green, #2e7d32); white-space: nowrap; }
+h2 .muted { color: var(--pico-muted-color); font-weight: normal; }

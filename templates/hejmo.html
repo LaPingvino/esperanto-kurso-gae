@@ -30,10 +30,48 @@
     <small class="level-progress-label">{{.User.CEFRProgressPercent}}% {{t $lang "home.progress_to"}} {{.User.NextCEFRLevel}}</small>
     {{end}}
   </div>
-  {{if .Items}}
-  <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button" class="hero-practice">&#9654; {{t $lang "home.practice_now"}}</a>
+  {{if .CompletedSeries}}
+  <small class="hero-done" title="{{t $lang "home.series_done"}}">&#10003; {{.CompletedSeries}} {{t $lang "home.series_done"}}</small>
+  {{end}}
+  {{if .PracticeSlug}}
+  <a href="/ekzerco/{{.PracticeSlug}}" role="button" class="hero-practice">&#9654; {{t $lang "home.practice_now"}}</a>
   {{end}}
 </section>
+
+{{if .ContinueSeries}}
+<section>
+  <h2>&#128218; {{t $lang "home.continue_title"}}</h2>
+  <div class="path-list">
+    {{range .ContinueSeries}}
+    <a class="path-card" href="/ekzerco/{{.NextSlug}}">
+      <div class="path-card-top">
+        <strong>{{.Label}}</strong>
+        <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
+      </div>
+      <div class="level-progress"><div class="level-progress-fill" style="width:{{.Percent}}%"></div></div>
+      <small>{{.Done}}/{{.Total}} &middot; {{t $lang "home.continue_cta"}}</small>
+    </a>
+    {{end}}
+  </div>
+</section>
+{{end}}
+
+{{if .SuggestedSeries}}
+<section>
+  <h2>&#127919; {{t $lang "home.suggested_title"}}{{if .User.NextCEFRLevel}} <small class="muted">({{t $lang "home.toward"}} {{.User.NextCEFRLevel}})</small>{{end}}</h2>
+  <div class="path-list">
+    {{range .SuggestedSeries}}
+    <a class="path-card" href="/ekzerco/{{.NextSlug}}">
+      <div class="path-card-top">
+        <strong>{{.Label}}</strong>
+        <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
+      </div>
+      <small>{{.Total}} {{t $lang "home.exercises_label"}} &middot; {{t $lang "home.start_cta"}}</small>
+    </a>
+    {{end}}
+  </div>
+</section>
+{{end}}
 {{end}}
 
 {{if .Items}}
