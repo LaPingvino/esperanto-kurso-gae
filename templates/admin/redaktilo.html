@@ -247,7 +247,7 @@
     </div>
 
     <div class="grid">
-      <label>Malfacileco (CEFR) por ĉiuj eroj:
+      <label>Malfacileco (KER) por ĉiuj eroj:
         <select onchange="cefrToRating(this)">
           <option value="900">A0 — Neniu antaŭa kono</option>
           <option value="1100">A1 — Enirnivela uzanto</option>
@@ -307,7 +307,7 @@
   </div>
 
   <div class="grid">
-    <label>Malfacileco (CEFR-nivelo):
+    <label>Malfacileco (KER-nivelo):
       <select onchange="cefrToRating(this)">
         <option value="900"  {{if lt .Item.Rating 1000.0}}selected{{end}}>A0 — Neniu antaŭa kono</option>
         <option value="1100" {{if and (ge .Item.Rating 1000.0) (lt .Item.Rating 1200.0)}}selected{{end}}>A1 — Enirnivela uzanto</option>
