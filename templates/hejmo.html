@@ -7,6 +7,35 @@
 <h1>{{t $lang "home.title"}}</h1>
 <p>{{t $lang "home.subtitle"}}</p>
 
+{{if .User}}
+<section class="hero-dash">
+  <div class="hero-streak">
+    {{if .User.CurrentStreakDays}}
+    <span class="streak-badge">&#128293; <strong>{{.User.CurrentStreakDays}}</strong></span>
+    {{if .User.PracticedToday}}
+    <small class="streak-status ok">&#10003; {{t $lang "home.streak_done"}}</small>
+    {{else}}
+    <small class="streak-status warn">{{t $lang "home.streak_keep"}}</small>
+    {{end}}
+    {{else}}
+    <small class="streak-status">{{t $lang "home.streak_start"}}</small>
+    {{end}}
+  </div>
+  <div class="hero-level">
+    <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
+    {{if .User.NextCEFRLevel}}
+    <div class="level-progress" role="progressbar" aria-valuenow="{{.User.CEFRProgressPercent}}" aria-valuemin="0" aria-valuemax="100">
+      <div class="level-progress-fill" style="width:{{.User.CEFRProgressPercent}}%"></div>
+    </div>
+    <small class="level-progress-label">{{.User.CEFRProgressPercent}}% {{t $lang "home.progress_to"}} {{.User.NextCEFRLevel}}</small>
+    {{end}}
+  </div>
+  {{if .Items}}
+  <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button" class="hero-practice">&#9654; {{t $lang "home.practice_now"}}</a>
+  {{end}}
+</section>
+{{end}}
+
 {{if .Items}}
 <section>
   <h2>{{t $lang "home.recommended"}}</h2>

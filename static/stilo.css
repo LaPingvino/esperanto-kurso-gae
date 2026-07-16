@@ -1351,3 +1351,47 @@ body.focus-mode .exercise-card { border-top: none; }
   padding-top: 0.75rem;
   border-top: 1px solid var(--pico-muted-border-color, #dee2e6);
 }
+
+/* ── Home dashboard hero (streak + level progress + practice CTA) ── */
+.hero-dash {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  padding: 0.9rem 1.1rem;
+  margin: 0.75rem 0 1.25rem;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 0.5rem;
+  background: var(--pico-card-background-color);
+}
+.hero-dash .hero-streak,
+.hero-dash .hero-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.hero-dash .hero-practice {
+  margin: 0;
+  margin-left: auto;
+  white-space: nowrap;
+}
+.streak-status { color: var(--pico-muted-color); }
+.streak-status.ok { color: var(--eo-green, #2e7d32); }
+.streak-status.warn { color: #b26a00; font-weight: bold; }
+.level-progress {
+  width: 8rem;
+  height: 0.5rem;
+  border-radius: 0.25rem;
+  background: var(--pico-muted-border-color);
+  overflow: hidden;
+}
+.level-progress-fill {
+  height: 100%;
+  border-radius: 0.25rem;
+  background: linear-gradient(90deg, var(--eo-green, #2e7d32), #00c853);
+}
+.level-progress-label { color: var(--pico-muted-color); white-space: nowrap; }
+@media (max-width: 600px) {
+  .hero-dash .hero-practice { margin-left: 0; width: 100%; }
+}

@@ -34,6 +34,10 @@
   <p class="level-up-banner">&#127881; {{t .UILang "result.level_up_prefix"}} <strong>{{.CEFRLevel}}</strong>!</p>
   {{end}}
 
+  {{if .StreakMilestone}}
+  <p class="level-up-banner">&#127942; {{t .UILang "result.milestone_prefix"}} <strong>{{.StreakDays}}</strong>{{t .UILang "result.milestone_suffix"}}</p>
+  {{end}}
+
   <p class="rating-change">
     {{t .UILang "result.level_label"}} <span class="cefr-badge cefr-{{.CEFRLevel}}">{{.CEFRLevel}}</span>
     <span class="rating-badge">{{printf "%.0f" .UserRating}}</span>

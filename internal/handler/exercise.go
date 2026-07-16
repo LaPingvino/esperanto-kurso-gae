@@ -15,6 +15,16 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
+// isStreakMilestone reports whether a streak length deserves a celebration:
+// early wins (3, 7, 14 days), then round marks up to every 100 days.
+func isStreakMilestone(days int) bool {
+	switch days {
+	case 3, 7, 14, 30, 50, 365:
+		return true
+	}
+	return days > 0 && days%100 == 0
+}
+
 // ExerciseHandler handles exercise submission and result rendering.
 type ExerciseHandler struct {
 	tmpl     Renderer
@@ -116,13 +126,17 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	// Persist updated ratings.
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
-	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+	// Milestones celebrate only the attempt that extends the streak, so check
+	// the pre-update practice day before it is overwritten below.
 	now := time.Now().UTC()
+	firstToday := u.LastPracticeAt.UTC().Truncate(24 * time.Hour).Before(now.Truncate(24 * time.Hour))
+	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
 	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
 	// Reflect new streak in the User object so OOB footer swap is accurate.
 	u.StreakDays = streak
 	u.LastSeenAt = now
 	u.LastPracticeAt = now
+	streakMilestone := firstToday && isStreakMilestone(streak)
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -160,8 +174,9 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 		"RatingDelta":    ratingDelta,
 		"CEFRLevel":      model.RatingToCEFR(newUserR),
 		"LevelUp":        levelUp,
-		"StreakDays":     streak,
-		"StreakDeadline": streakDeadline,
+		"StreakDays":      streak,
+		"StreakDeadline":  streakDeadline,
+		"StreakMilestone": streakMilestone,
 		"NewToken":       newToken,
 		"UILang":         u.UILangOrDefault(),
 		"CurrentVote":    currentVote,
@@ -331,13 +346,17 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 
 	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
 	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
-	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
+	// Milestones celebrate only the attempt that extends the streak, so check
+	// the pre-update practice day before it is overwritten below.
 	now := time.Now().UTC()
+	firstToday := u.LastPracticeAt.UTC().Truncate(24 * time.Hour).Before(now.Truncate(24 * time.Hour))
+	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
 	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
 	// Reflect new streak in the User object so OOB footer swap is accurate.
 	u.StreakDays = streak
 	u.LastSeenAt = now
 	u.LastPracticeAt = now
+	streakMilestone := firstToday && isStreakMilestone(streak)
 
 	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
 	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
@@ -372,8 +391,9 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 		"RatingDelta":    newUserR - u.Rating,
 		"CEFRLevel":      model.RatingToCEFR(newUserR),
 		"LevelUp":        levelUp,
-		"StreakDays":     streak,
-		"StreakDeadline": streakDeadline,
+		"StreakDays":      streak,
+		"StreakDeadline":  streakDeadline,
+		"StreakMilestone": streakMilestone,
 		"NewToken":       newToken,
 		"UILang":         u.UILangOrDefault(),
 		"CurrentVote":    currentVote,
