@@ -330,21 +330,6 @@ func (s *ContentStore) UpdateRating(ctx context.Context, slug string, rating, rd
 	return err
 }
 
-func (s *ContentStore) UpdateVoteScore(ctx context.Context, slug string, delta int) error {
-	key := s.contentKey(slug)
-	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
-		var e contentEntity
-		if err := tx.Get(key, &e); err != nil {
-			return err
-		}
-		e.VoteScore += delta
-		e.UpdatedAt = time.Now()
-		_, err := tx.Put(key, &e)
-		return err
-	})
-	return err
-}
-
 // RenormalizeSeriesOrder loads all items in a series (any status), sorts them
 // by their current series_order, and re-assigns 1, 2, 3... to remove gaps and
 // duplicates. Items whose order is already correct are skipped.

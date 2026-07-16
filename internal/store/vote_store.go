@@ -3,6 +3,7 @@ package store
 import (
 	"context"
 	"fmt"
+	"time"
 
 	"cloud.google.com/go/datastore"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
@@ -28,17 +29,62 @@ func voteKey(userID, contentItemID string) *datastore.Key {
 	return datastore.NameKey(voteKind, userID+"_"+contentItemID, nil)
 }
 
-func (s *VoteStore) Upsert(ctx context.Context, v *model.Vote) error {
-	e := &voteEntity{
-		UserID:        v.UserID,
-		ContentItemID: v.ContentItemID,
-		Value:         v.Value,
-	}
-	_, err := s.db.Put(ctx, voteKey(v.UserID, v.ContentItemID), e)
+// Toggle applies an up/down vote with toggle-off semantics: voting the same
+// value again removes the vote. The vote entity and the content item's score
+// are updated in a single transaction so rapid repeat clicks cannot drift the
+// score. Returns the user's effective vote value and the new total score.
+func (s *VoteStore) Toggle(ctx context.Context, userID, contentID string, newValue int) (int, int, error) {
+	vKey := voteKey(userID, contentID)
+	cKey := datastore.NameKey(contentKind, contentID, nil)
+	var effective, score int
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		existing := 0
+		var ve voteEntity
+		switch err := tx.Get(vKey, &ve); err {
+		case nil:
+			existing = ve.Value
+		case datastore.ErrNoSuchEntity:
+		default:
+			return err
+		}
+
+		var delta int
+		if existing == newValue {
+			// Toggle off: remove existing vote.
+			effective, delta = 0, -existing
+		} else {
+			effective, delta = newValue, newValue-existing
+		}
+
+		if effective == 0 {
+			if err := tx.Delete(vKey); err != nil {
+				return err
+			}
+		} else {
+			ve := &voteEntity{UserID: userID, ContentItemID: contentID, Value: effective}
+			if _, err := tx.Put(vKey, ve); err != nil {
+				return err
+			}
+		}
+
+		var ce contentEntity
+		if err := tx.Get(cKey, &ce); err != nil {
+			return err
+		}
+		if delta != 0 {
+			ce.VoteScore += delta
+			ce.UpdatedAt = time.Now()
+			if _, err := tx.Put(cKey, &ce); err != nil {
+				return err
+			}
+		}
+		score = ce.VoteScore
+		return nil
+	})
 	if err != nil {
-		return fmt.Errorf("vote_store: Upsert: %w", err)
+		return 0, 0, fmt.Errorf("vote_store: Toggle: %w", err)
 	}
-	return nil
+	return effective, score, nil
 }
 
 func (s *VoteStore) GetByUserAndContent(ctx context.Context, userID, contentID string) (*model.Vote, error) {

@@ -291,6 +291,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	comments, _ := h.comments.ListApprovedByContent(r.Context(), slug)
 	h.users.ResolveUsernames(r.Context(), comments)
 	translations, _ := h.translations.ListByTarget(r.Context(), slug)
+	h.users.ResolveTranslationAuthors(r.Context(), translations)
 
 	var currentVote *model.Vote
 	userLang := "en"
@@ -304,7 +305,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		userID = u.ID
 	}
 	votes := buildVoteMap(r.Context(), h.translations, userID, translations)
-	tradukData := buildTradukData(slug, userLang, userID, translations, votes)
+	tradukData := buildTradukData(slug, userLang, translations, votes)
 	tradukData["User"] = u
 	tradukData["UILang"] = UILangFor(u)
 
@@ -337,7 +338,13 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 			if !already {
+				// Only the display name: leaving AuthorID/ID empty keeps the
+				// edit/vote controls (which need a real ID) hidden until the
+				// stored entry becomes queryable.
 				synthetic := &model.Translation{Language: addedLang, Text: addedDef}
+				if u != nil {
+					synthetic.AuthorUsername = u.DisplayName()
+				}
 				tradukData["MyLangTranslations"] = append([]*model.Translation{synthetic}, existing...)
 			}
 		}

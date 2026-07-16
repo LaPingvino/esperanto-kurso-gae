@@ -13,15 +13,6 @@ import (
 const translationKind = "Translation"
 const translationVoteKind = "TranslationVote"
 
-type translationEntity struct {
-	TargetID  string    `datastore:"target_id"`
-	Language  string    `datastore:"language"`
-	Text      string    `datastore:"text,noindex"`
-	AuthorID  string    `datastore:"author_id"`
-	VoteScore int       `datastore:"vote_score"`
-	CreatedAt time.Time `datastore:"created_at"`
-}
-
 type translationVoteEntity struct {
 	UserID        string `datastore:"user_id"`
 	TranslationID string `datastore:"translation_id"`
@@ -36,18 +27,21 @@ func NewTranslationStore(db *datastore.Client) *TranslationStore {
 	return &TranslationStore{db: db}
 }
 
+func translationKey(id string) (*datastore.Key, error) {
+	n, err := strconv.ParseInt(id, 10, 64)
+	if err != nil {
+		return nil, fmt.Errorf("translation_store: bad id %q: %w", id, err)
+	}
+	return datastore.IDKey(translationKind, n, nil), nil
+}
+
+func translationVoteKey(userID, translationID string) *datastore.Key {
+	return datastore.NameKey(translationVoteKind, userID+"_"+translationID, nil)
+}
+
 func (s *TranslationStore) Create(ctx context.Context, t *model.Translation) error {
 	t.CreatedAt = time.Now()
-	e := &translationEntity{
-		TargetID:  t.TargetID,
-		Language:  t.Language,
-		Text:      t.Text,
-		AuthorID:  t.AuthorID,
-		VoteScore: 0,
-		CreatedAt: t.CreatedAt,
-	}
-	key := datastore.IncompleteKey(translationKind, nil)
-	key, err := s.db.Put(ctx, key, e)
+	key, err := s.db.Put(ctx, datastore.IncompleteKey(translationKind, nil), t)
 	if err != nil {
 		return fmt.Errorf("translation_store: Create: %w", err)
 	}
@@ -65,9 +59,8 @@ func (s *TranslationStore) ListByTarget(ctx context.Context, targetID string) ([
 
 // GetVote returns the current user vote value for a translation (0 if none).
 func (s *TranslationStore) GetVote(ctx context.Context, userID, translationID string) (int, error) {
-	key := datastore.NameKey(translationVoteKind, userID+"_"+translationID, nil)
 	var e translationVoteEntity
-	if err := s.db.Get(ctx, key, &e); err != nil {
+	if err := s.db.Get(ctx, translationVoteKey(userID, translationID), &e); err != nil {
 		if err == datastore.ErrNoSuchEntity {
 			return 0, nil
 		}
@@ -76,96 +69,124 @@ func (s *TranslationStore) GetVote(ctx context.Context, userID, translationID st
 	return e.Value, nil
 }
 
-// Vote records or toggles a vote (+1/-1) on a translation and updates its score.
-// Returns the effective vote value after the action.
+// GetVotes returns the user's vote values for the given translations in one
+// batched lookup, keyed by translation ID. Translations without a vote are
+// absent from the map.
+func (s *TranslationStore) GetVotes(ctx context.Context, userID string, translations []*model.Translation) (map[string]int, error) {
+	votes := map[string]int{}
+	if len(translations) == 0 {
+		return votes, nil
+	}
+	keys := make([]*datastore.Key, len(translations))
+	for i, t := range translations {
+		keys[i] = translationVoteKey(userID, t.ID)
+	}
+	entities := make([]translationVoteEntity, len(keys))
+	err := s.db.GetMulti(ctx, keys, entities)
+	if err != nil {
+		me, ok := err.(datastore.MultiError)
+		if !ok {
+			return nil, fmt.Errorf("translation_store: GetVotes: %w", err)
+		}
+		for i, e := range me {
+			if e == nil && entities[i].Value != 0 {
+				votes[translations[i].ID] = entities[i].Value
+			} else if e != nil && e != datastore.ErrNoSuchEntity {
+				return nil, fmt.Errorf("translation_store: GetVotes: %w", e)
+			}
+		}
+		return votes, nil
+	}
+	for i, e := range entities {
+		if e.Value != 0 {
+			votes[translations[i].ID] = e.Value
+		}
+	}
+	return votes, nil
+}
+
+// Vote records or toggles a vote (+1/-1) on a translation. The vote entity and
+// the translation's score are updated in a single transaction so rapid repeat
+// clicks cannot drift the score. Returns the effective vote value after the action.
 func (s *TranslationStore) Vote(ctx context.Context, userID, translationID string, newValue int) (int, error) {
-	existing, err := s.GetVote(ctx, userID, translationID)
+	tKey, err := translationKey(translationID)
 	if err != nil {
 		return 0, err
 	}
-
-	var effectiveValue, delta int
-	if existing == newValue {
-		effectiveValue = 0
-		delta = -existing
-	} else {
-		effectiveValue = newValue
-		delta = newValue - existing
-	}
-
-	voteKey := datastore.NameKey(translationVoteKind, userID+"_"+translationID, nil)
-	if effectiveValue == 0 {
-		_ = s.db.Delete(ctx, voteKey)
-	} else {
-		ve := &translationVoteEntity{
-			UserID:        userID,
-			TranslationID: translationID,
-			Value:         effectiveValue,
+	voteKey := translationVoteKey(userID, translationID)
+	var effectiveValue int
+	_, err = s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		existing := 0
+		var ve translationVoteEntity
+		switch err := tx.Get(voteKey, &ve); err {
+		case nil:
+			existing = ve.Value
+		case datastore.ErrNoSuchEntity:
+		default:
+			return err
 		}
-		if _, err := s.db.Put(ctx, voteKey, ve); err != nil {
-			return 0, err
-		}
-	}
 
-	if delta != 0 {
-		n, parseErr := strconv.ParseInt(translationID, 10, 64)
-		if parseErr != nil {
-			return effectiveValue, fmt.Errorf("translation_store: bad id %s: %w", translationID, parseErr)
+		var delta int
+		if existing == newValue {
+			// Toggle off: remove existing vote.
+			effectiveValue, delta = 0, -existing
+		} else {
+			effectiveValue, delta = newValue, newValue-existing
 		}
-		tKey := datastore.IDKey(translationKind, n, nil)
-		_, txErr := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
-			var e translationEntity
-			if err := tx.Get(tKey, &e); err != nil {
+
+		if effectiveValue == 0 {
+			if err := tx.Delete(voteKey); err != nil {
 				return err
 			}
-			e.VoteScore += delta
-			_, err := tx.Put(tKey, &e)
-			return err
-		})
-		if txErr != nil {
-			return effectiveValue, txErr
+		} else {
+			ve := &translationVoteEntity{UserID: userID, TranslationID: translationID, Value: effectiveValue}
+			if _, err := tx.Put(voteKey, ve); err != nil {
+				return err
+			}
 		}
-	}
 
-	return effectiveValue, nil
+		if delta != 0 {
+			var t model.Translation
+			if err := tx.Get(tKey, &t); err != nil {
+				return err
+			}
+			t.VoteScore += delta
+			if _, err := tx.Put(tKey, &t); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	return effectiveValue, err
 }
 
 // GetByID returns a single translation by its numeric string ID.
 func (s *TranslationStore) GetByID(ctx context.Context, id string) (*model.Translation, error) {
-	n, err := strconv.ParseInt(id, 10, 64)
+	key, err := translationKey(id)
 	if err != nil {
-		return nil, fmt.Errorf("translation_store: bad id %q: %w", id, err)
-	}
-	key := datastore.IDKey(translationKind, n, nil)
-	var e translationEntity
-	if err := s.db.Get(ctx, key, &e); err != nil {
 		return nil, err
 	}
-	return &model.Translation{
-		ID:        id,
-		TargetID:  e.TargetID,
-		Language:  e.Language,
-		Text:      e.Text,
-		AuthorID:  e.AuthorID,
-		VoteScore: e.VoteScore,
-		CreatedAt: e.CreatedAt,
-	}, nil
+	var t model.Translation
+	if err := s.db.Get(ctx, key, &t); err != nil {
+		return nil, err
+	}
+	t.ID = id
+	return &t, nil
 }
 
 // UpdateText updates the text of an existing translation.
 func (s *TranslationStore) UpdateText(ctx context.Context, id, newText string) error {
-	n, err := strconv.ParseInt(id, 10, 64)
+	key, err := translationKey(id)
 	if err != nil {
-		return fmt.Errorf("translation_store: bad id %q: %w", id, err)
+		return err
 	}
-	key := datastore.IDKey(translationKind, n, nil)
 	_, err = s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
-		var e translationEntity
-		if err := tx.Get(key, &e); err != nil {
+		var t model.Translation
+		if err := tx.Get(key, &t); err != nil {
 			return err
 		}
-		e.Text = newText
-		_, err := tx.Put(key, &e)
+		t.Text = newText
+		_, err := tx.Put(key, &t)
 		return err
 	})
 	return err
@@ -173,11 +194,11 @@ func (s *TranslationStore) UpdateText(ctx context.Context, id, newText string) e
 
 // Delete removes a translation by ID.
 func (s *TranslationStore) Delete(ctx context.Context, id string) error {
-	n, err := strconv.ParseInt(id, 10, 64)
+	key, err := translationKey(id)
 	if err != nil {
-		return fmt.Errorf("translation_store: bad id %q: %w", id, err)
+		return err
 	}
-	return s.db.Delete(ctx, datastore.IDKey(translationKind, n, nil))
+	return s.db.Delete(ctx, key)
 }
 
 // ListAll returns the most-recently-added translations up to limit.
@@ -189,22 +210,13 @@ func (s *TranslationStore) ListAll(ctx context.Context, limit int) ([]*model.Tra
 }
 
 func (s *TranslationStore) runQuery(ctx context.Context, q *datastore.Query) ([]*model.Translation, error) {
-	var entities []translationEntity
-	keys, err := s.db.GetAll(ctx, q, &entities)
+	var out []*model.Translation
+	keys, err := s.db.GetAll(ctx, q, &out)
 	if err != nil {
 		return nil, fmt.Errorf("translation_store: query: %w", err)
 	}
-	out := make([]*model.Translation, len(entities))
-	for i, e := range entities {
-		out[i] = &model.Translation{
-			ID:        strconv.FormatInt(keys[i].ID, 10),
-			TargetID:  e.TargetID,
-			Language:  e.Language,
-			Text:      e.Text,
-			AuthorID:  e.AuthorID,
-			VoteScore: e.VoteScore,
-			CreatedAt: e.CreatedAt,
-		}
+	for i, k := range keys {
+		out[i].ID = strconv.FormatInt(k.ID, 10)
 	}
 	return out, nil
 }

@@ -53,6 +53,17 @@ func (h *CommunityHandler) Vote(w http.ResponseWriter, r *http.Request) {
 	h.vote(w, r, "vochdonado.html")
 }
 
+// parseVoteValue reads the "value" form field; only +1 and -1 are valid.
+func parseVoteValue(r *http.Request) (int, bool) {
+	switch r.FormValue("value") {
+	case "1":
+		return 1, true
+	case "-1":
+		return -1, true
+	}
+	return 0, false
+}
+
 func (h *CommunityHandler) vote(w http.ResponseWriter, r *http.Request, tmplName string) {
 	contentID := r.PathValue("contentID")
 	if contentID == "" {
@@ -71,58 +82,21 @@ func (h *CommunityHandler) vote(w http.ResponseWriter, r *http.Request, tmplName
 		return
 	}
 
-	valueStr := r.FormValue("value")
-	var newValue int
-	switch valueStr {
-	case "1":
-		newValue = 1
-	case "-1":
-		newValue = -1
-	default:
+	newValue, ok := parseVoteValue(r)
+	if !ok {
 		http.Error(w, "Nevalida voĉo", http.StatusBadRequest)
 		return
 	}
 
-	// Determine delta from existing vote.
-	// Clicking the same button again removes the vote (toggle to 0).
-	existing, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, contentID)
-	var delta int
-	var effectiveValue int
-	if existing != nil && existing.Value == newValue {
-		// Toggle off: remove existing vote.
-		effectiveValue = 0
-		delta = -existing.Value
-	} else if existing != nil {
-		effectiveValue = newValue
-		delta = newValue - existing.Value
-	} else {
-		effectiveValue = newValue
-		delta = newValue
-	}
-
-	vote := &model.Vote{
-		UserID:        u.ID,
-		ContentItemID: contentID,
-		Value:         effectiveValue,
-	}
-	if err := h.votes.Upsert(r.Context(), vote); err != nil {
+	effectiveValue, voteScore, err := h.votes.Toggle(r.Context(), u.ID, contentID, newValue)
+	if err != nil {
 		http.Error(w, "Ne eblis konservi voĉon", http.StatusInternalServerError)
 		return
 	}
 
-	if delta != 0 {
-		_ = h.content.UpdateVoteScore(r.Context(), contentID, delta)
-	}
-
-	item, _ := h.content.GetBySlug(r.Context(), contentID)
-	var voteScore int
-	if item != nil {
-		voteScore = item.VoteScore + delta
-	}
-
 	var currentVote *model.Vote
 	if effectiveValue != 0 {
-		currentVote = vote
+		currentVote = &model.Vote{UserID: u.ID, ContentItemID: contentID, Value: effectiveValue}
 	}
 
 	data := map[string]interface{}{
@@ -184,8 +158,19 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 
 	comments, _ := h.comments.ListApprovedByContent(r.Context(), contentID)
 	if autoApprove {
+		// The listing query is eventually consistent, so the new comment is
+		// usually missing — but guard against showing it twice when it isn't.
 		comment.Username = u.Username
-		comments = append(comments, comment)
+		alreadyListed := false
+		for _, c := range comments {
+			if c.ID == comment.ID {
+				alreadyListed = true
+				break
+			}
+		}
+		if !alreadyListed {
+			comments = append(comments, comment)
+		}
 	}
 	h.users.ResolveUsernames(r.Context(), comments)
 
@@ -202,17 +187,12 @@ func (h *CommunityHandler) AddComment(w http.ResponseWriter, r *http.Request) {
 
 // buildVoteMap returns a map of translationID → current user vote value.
 func buildVoteMap(ctx context.Context, ts *store.TranslationStore, userID string, translations []*model.Translation) map[string]int {
-	votes := map[string]int{}
-	for _, t := range translations {
-		if v, _ := ts.GetVote(ctx, userID, t.ID); v != 0 {
-			votes[t.ID] = v
-		}
-	}
+	votes, _ := ts.GetVotes(ctx, userID, translations)
 	return votes
 }
 
 // buildTradukData builds the data map for the traduko.html partial.
-func buildTradukData(contentID, userLang, userID string, translations []*model.Translation, votes map[string]int) map[string]interface{} {
+func buildTradukData(contentID, userLang string, translations []*model.Translation, votes map[string]int) map[string]interface{} {
 	var mine, other []*model.Translation
 	for _, t := range translations {
 		if t.Language == userLang {
@@ -227,6 +207,23 @@ func buildTradukData(contentID, userLang, userID string, translations []*model.T
 		"MyLangTranslations":   mine,
 		"OtherTranslations":    other,
 		"TranslationVotes":     votes,
+	}
+}
+
+// renderTraduko re-renders the community-translation section for a content item.
+func (h *CommunityHandler) renderTraduko(w http.ResponseWriter, r *http.Request, u *model.User, contentID string) {
+	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
+	h.users.ResolveTranslationAuthors(r.Context(), translations)
+	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
+	userLang := u.Lang
+	if userLang == "" {
+		userLang = "en"
+	}
+	data := buildTradukData(contentID, userLang, translations, votes)
+	data["User"] = u
+	data["UILang"] = UILangFor(u)
+	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
@@ -280,18 +277,7 @@ func (h *CommunityHandler) AddTranslation(w http.ResponseWriter, r *http.Request
 		return
 	}
 
-	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
-	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
-	userLang := "en"
-	if u != nil {
-		userLang = u.Lang
-	}
-	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
-	data["User"] = u
-	data["UILang"] = UILangFor(u)
-	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+	h.renderTraduko(w, r, u, contentID)
 }
 
 // VoteTranslation handles POST /tradukoj/{contentID}/vochdoni/{id}.
@@ -314,14 +300,8 @@ func (h *CommunityHandler) VoteTranslation(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	valueStr := r.FormValue("value")
-	var newValue int
-	switch valueStr {
-	case "1":
-		newValue = 1
-	case "-1":
-		newValue = -1
-	default:
+	newValue, ok := parseVoteValue(r)
+	if !ok {
 		http.Error(w, "Nevalida voĉo", http.StatusBadRequest)
 		return
 	}
@@ -331,18 +311,7 @@ func (h *CommunityHandler) VoteTranslation(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
-	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
-	userLang := "en"
-	if u != nil {
-		userLang = u.Lang
-	}
-	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
-	data["User"] = u
-	data["UILang"] = UILangFor(u)
-	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+	h.renderTraduko(w, r, u, contentID)
 }
 
 // EditTranslation handles POST /tradukoj/{contentID}/redakti/{id}.
@@ -387,19 +356,7 @@ func (h *CommunityHandler) EditTranslation(w http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	// Re-render the translation section.
-	translations, _ := h.translations.ListByTarget(r.Context(), contentID)
-	votes := buildVoteMap(r.Context(), h.translations, u.ID, translations)
-	userLang := "en"
-	if u != nil {
-		userLang = u.Lang
-	}
-	data := buildTradukData(contentID, userLang, u.ID, translations, votes)
-	data["User"] = u
-	data["UILang"] = UILangFor(u)
-	if err := h.tmpl.ExecuteTemplate(w, "traduko.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+	h.renderTraduko(w, r, u, contentID)
 }
 
 // SuggestAlternative handles POST /ekzerco/{slug}/alternativo.

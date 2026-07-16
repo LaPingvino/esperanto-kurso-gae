@@ -164,24 +164,50 @@ func (s *UserStore) GetByID(ctx context.Context, id string) (*model.User, error)
 	return entityToUser(id, &e)
 }
 
+// lookupNames returns a userID → current username map for the given IDs,
+// looking each distinct ID up once. Missing users map to "".
+func (s *UserStore) lookupNames(ctx context.Context, ids []string) map[string]string {
+	names := map[string]string{}
+	for _, id := range ids {
+		if id == "" {
+			continue
+		}
+		if _, ok := names[id]; ok {
+			continue
+		}
+		names[id] = ""
+		if u, err := s.GetByID(ctx, id); err == nil && u != nil {
+			names[id] = u.Username
+		}
+	}
+	return names
+}
+
 // ResolveUsernames populates the Username field of each comment by looking up
-// user IDs. Uses a simple cache to avoid redundant lookups.
+// user IDs.
 func (s *UserStore) ResolveUsernames(ctx context.Context, comments []*model.Comment) {
-	cache := map[string]string{}
+	ids := make([]string, len(comments))
+	for i, c := range comments {
+		ids[i] = c.UserID
+	}
+	names := s.lookupNames(ctx, ids)
 	for _, c := range comments {
-		if c.UserID == "" {
-			continue
-		}
-		if name, ok := cache[c.UserID]; ok {
-			c.Username = name
-			continue
-		}
-		u, err := s.GetByID(ctx, c.UserID)
-		if err == nil && u != nil {
-			cache[c.UserID] = u.Username
-			c.Username = u.Username
-		} else {
-			cache[c.UserID] = ""
+		c.Username = names[c.UserID]
+	}
+}
+
+// ResolveTranslationAuthors fills AuthorUsername with each author's current
+// username. The stored snapshot is kept when the author no longer exists or
+// has not picked a username.
+func (s *UserStore) ResolveTranslationAuthors(ctx context.Context, translations []*model.Translation) {
+	ids := make([]string, len(translations))
+	for i, t := range translations {
+		ids[i] = t.AuthorID
+	}
+	names := s.lookupNames(ctx, ids)
+	for _, t := range translations {
+		if name := names[t.AuthorID]; name != "" {
+			t.AuthorUsername = name
 		}
 	}
 }
