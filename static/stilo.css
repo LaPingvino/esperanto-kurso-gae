@@ -1485,3 +1485,21 @@ h2 .muted { color: var(--pico-muted-color); font-weight: normal; }
   border-radius: 0.25rem;
 }
 .support-copy:hover { background: rgba(128,128,128,0.2); }
+
+/* BCH QR toggle inside the support corner */
+.support-corner .bch-qr { display: inline-block; margin-left: 0.3rem; }
+.support-corner .bch-qr summary {
+  cursor: pointer;
+  list-style: none;
+  display: inline;
+  color: var(--pico-primary);
+  font-size: 0.9em;
+}
+.support-corner .bch-qr img {
+  display: block;
+  margin-top: 0.35rem;
+  background: #fff;
+  padding: 0.35rem;
+  border-radius: 0.35rem;
+  image-rendering: pixelated;
+}

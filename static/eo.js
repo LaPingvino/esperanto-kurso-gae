@@ -586,7 +586,9 @@ function dismissAccountNudge() {
 function copySupport(id, btn) {
   const el = document.getElementById(id);
   if (!el) return;
-  navigator.clipboard.writeText(el.textContent.trim()).then(function () {
+  // data-copy wins over the (possibly truncated) display text.
+  const text = (el.dataset.copy || el.textContent).trim();
+  navigator.clipboard.writeText(text).then(function () {
     const old = btn.textContent;
     btn.textContent = '✓';
     setTimeout(function () { btn.textContent = old; }, 1500);

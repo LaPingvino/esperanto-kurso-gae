@@ -179,7 +179,11 @@
         <ul>
           <li><small>bunq: <a href="https://bunq.me/lapingvino" target="_blank" rel="noopener">bunq.me/lapingvino</a></small></li>
           <li><small>PayPal: <a href="https://www.paypal.com/paypalme/lapingvino" target="_blank" rel="noopener">paypal.me/lapingvino</a></small></li>
-          <li><small>Bitcoin Cash: <code id="support-bch">bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20</code> <button type="button" class="support-copy" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">&#128203;</button></small></li>
+          <li><small>Bitcoin Cash: <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20" id="support-bch" data-copy="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><code>qrrqxuwd&hellip;ju53j7glf20</code></a> <button type="button" class="support-copy" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">&#128203;</button>
+            <details class="bch-qr">
+              <summary title="QR">&#128241; QR</summary>
+              <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><img src="/static/bch-qr.png" alt="Bitcoin Cash QR" width="185" height="185" loading="lazy"></a>
+            </details></small></li>
         </ul>
       </div>
     </details>
