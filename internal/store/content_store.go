@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"sort"
 	"time"
 
 	"cloud.google.com/go/datastore"
@@ -90,7 +91,8 @@ func entityToContent(slug string, e *contentEntity) (*model.ContentItem, error) 
 }
 
 type ContentStore struct {
-	db *datastore.Client
+	db    *datastore.Client
+	cache contentCache
 }
 
 func NewContentStore(db *datastore.Client) *ContentStore {
@@ -109,8 +111,11 @@ func (s *ContentStore) Create(ctx context.Context, item *model.ContentItem) erro
 	if err != nil {
 		return fmt.Errorf("content_store: marshal: %w", err)
 	}
-	_, err = s.db.Put(ctx, s.contentKey(item.Slug), e)
-	return err
+	if _, err = s.db.Put(ctx, s.contentKey(item.Slug), e); err != nil {
+		return err
+	}
+	s.bumpVersion(ctx)
+	return nil
 }
 
 func (s *ContentStore) GetBySlug(ctx context.Context, slug string) (*model.ContentItem, error) {
@@ -130,8 +135,11 @@ func (s *ContentStore) Update(ctx context.Context, item *model.ContentItem) erro
 	if err != nil {
 		return fmt.Errorf("content_store: marshal: %w", err)
 	}
-	_, err = s.db.Put(ctx, s.contentKey(item.Slug), e)
-	return err
+	if _, err = s.db.Put(ctx, s.contentKey(item.Slug), e); err != nil {
+		return err
+	}
+	s.bumpVersion(ctx)
+	return nil
 }
 
 // PatchContentFields updates content JSON, tags, source, status, type, image URL,
@@ -162,8 +170,11 @@ func (s *ContentStore) PatchContentFields(ctx context.Context, item *model.Conte
 	existing.SeriesLabel  = item.SeriesLabel
 	existing.SeriesParent = item.SeriesParent
 	existing.UpdatedAt    = time.Now()
-	_, err = s.db.Put(ctx, key, &existing)
-	return err
+	if _, err = s.db.Put(ctx, key, &existing); err != nil {
+		return err
+	}
+	s.bumpVersion(ctx)
+	return nil
 }
 
 // UpdateDefinition writes text into content["definitions"]["lang"] for a vocab item.
@@ -197,35 +208,31 @@ func (s *ContentStore) UpdateDefinition(ctx context.Context, slug, lang, text st
 		_, err = tx.Put(key, &e)
 		return err
 	})
+	if err == nil {
+		s.bumpVersion(ctx)
+	}
 	return err
 }
 
 func (s *ContentStore) ListByType(ctx context.Context, typ string, limit int) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("type", "=", typ).
-		Limit(limit)
-	return s.runContentQuery(ctx, q)
+	return s.filterApproved(ctx, limit, func(it *model.ContentItem) bool { return it.Type == typ })
 }
 
 // ListByTypeAndRatingRange returns approved items of a given type within a rating range.
 func (s *ContentStore) ListByTypeAndRatingRange(ctx context.Context, typ string, minR, maxR float64, limit int) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("type", "=", typ).
-		FilterField("rating", ">=", minR).
-		FilterField("rating", "<=", maxR).
-		Limit(limit)
-	return s.runContentQuery(ctx, q)
+	return s.filterApproved(ctx, limit, func(it *model.ContentItem) bool {
+		return it.Type == typ && it.Rating >= minR && it.Rating <= maxR
+	})
 }
 
 // ListBySeries returns all approved items in a series, sorted by series_order.
 func (s *ContentStore) ListBySeries(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("series_slug", "=", seriesSlug).
-		Order("series_order")
-	return s.runContentQuery(ctx, q)
+	items, err := s.filterApproved(ctx, 0, func(it *model.ContentItem) bool { return it.SeriesSlug == seriesSlug })
+	if err != nil {
+		return nil, err
+	}
+	sort.SliceStable(items, func(i, j int) bool { return items[i].SeriesOrder < items[j].SeriesOrder })
+	return items, nil
 }
 
 // ListBySeriesForAdmin returns all items (any status) in a series, sorted by series_order.
@@ -239,19 +246,12 @@ func (s *ContentStore) ListBySeriesForAdmin(ctx context.Context, seriesSlug stri
 // ListBySeriesParent returns approved items whose series_parent equals parentSlug.
 // Used to show related series buttons on an exercise page.
 func (s *ContentStore) ListBySeriesParent(ctx context.Context, parentSlug string) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("series_parent", "=", parentSlug)
-	return s.runContentQuery(ctx, q)
+	return s.filterApproved(ctx, 0, func(it *model.ContentItem) bool { return it.SeriesParent == parentSlug })
 }
 
 // ListByTag returns approved items that have the given tag.
 func (s *ContentStore) ListByTag(ctx context.Context, tag string, limit int) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("tags", "=", tag).
-		Limit(limit)
-	return s.runContentQuery(ctx, q)
+	return s.filterApproved(ctx, limit, func(it *model.ContentItem) bool { return hasTag(it, tag) })
 }
 
 // ListAllTags scans all approved items and returns a map of tag → count.
@@ -270,25 +270,29 @@ func (s *ContentStore) ListAllTags(ctx context.Context) (map[string]int, error) 
 }
 
 func (s *ContentStore) Delete(ctx context.Context, slug string) error {
-	return s.db.Delete(ctx, s.contentKey(slug))
+	if err := s.db.Delete(ctx, s.contentKey(slug)); err != nil {
+		return err
+	}
+	s.bumpVersion(ctx)
+	return nil
 }
 
 func (s *ContentStore) ListApproved(ctx context.Context, limit int) ([]*model.ContentItem, error) {
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		Limit(limit)
-	return s.runContentQuery(ctx, q)
+	return s.filterApproved(ctx, limit, nil)
 }
 
 func (s *ContentStore) ListByRatingRange(ctx context.Context, minR, maxR float64, limit int) ([]*model.ContentItem, error) {
-	// Datastore allows equality on one field + range on another with a composite index.
-	q := datastore.NewQuery(contentKind).
-		FilterField("status", "=", "approved").
-		FilterField("rating", ">=", minR).
-		FilterField("rating", "<=", maxR).
-		Order("rating").
-		Limit(limit)
-	return s.runContentQuery(ctx, q)
+	items, err := s.filterApproved(ctx, 0, func(it *model.ContentItem) bool {
+		return it.Rating >= minR && it.Rating <= maxR
+	})
+	if err != nil {
+		return nil, err
+	}
+	sort.SliceStable(items, func(i, j int) bool { return items[i].Rating < items[j].Rating })
+	if limit > 0 && len(items) > limit {
+		items = items[:limit]
+	}
+	return items, nil
 }
 
 // CountByStatus returns the number of ContentItems with the given status.
@@ -327,6 +331,9 @@ func (s *ContentStore) UpdateRating(ctx context.Context, slug string, rating, rd
 		_, err := tx.Put(key, &e)
 		return err
 	})
+	if err == nil {
+		s.patchCachedRating(slug, rating, rd, volatility)
+	}
 	return err
 }
 
@@ -358,8 +365,11 @@ func (s *ContentStore) RenormalizeSeriesOrder(ctx context.Context, seriesSlug st
 	if len(keys) == 0 {
 		return nil
 	}
-	_, err = s.db.PutMulti(ctx, keys, entities)
-	return err
+	if _, err = s.db.PutMulti(ctx, keys, entities); err != nil {
+		return err
+	}
+	s.bumpVersion(ctx)
+	return nil
 }
 
 // SetSeriesParent updates only the series_parent field of a content item.
@@ -375,6 +385,9 @@ func (s *ContentStore) SetSeriesParent(ctx context.Context, slug, parent string)
 		_, err := tx.Put(key, &e)
 		return err
 	})
+	if err == nil {
+		s.bumpVersion(ctx)
+	}
 	return err
 }
 

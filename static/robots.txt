@@ -1,0 +1,25 @@
+# SEO/backlink crawlers: no value for a course site, heavy traffic.
+User-agent: SERankingBacklinksBot
+User-agent: SemrushBot
+User-agent: AhrefsBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: DataForSeoBot
+User-agent: PetalBot
+Disallow: /
+
+# Everyone else: exercises and the home page are welcome; skip the
+# dynamic/filter pages whose query strings form an endless URL space.
+User-agent: *
+Crawl-delay: 5
+Disallow: /vortaro
+Disallow: /sercxi
+Disallow: /vorto
+Disallow: /etikedoj
+Disallow: /steloj
+Disallow: /honorlisto
+Disallow: /serioj-nav
+Disallow: /enskribi
+Disallow: /auth/
+Disallow: /admin

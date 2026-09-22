@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"net/http"
+	"regexp"
 	"time"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
@@ -76,10 +77,21 @@ func AuthMiddleware(us *store.UserStore, next http.Handler) http.Handler {
 				}
 				ctx = context.WithValue(ctx, UserContextKey, u)
 				r = r.WithContext(ctx)
-				go func() { _ = us.UpdateLastSeen(context.Background(), u.ID) }()
+				// LastSeenAt only drives day-granular streaks and inactivity
+				// cleanup, so one write per hour is plenty.
+				if time.Since(u.LastSeenAt) > time.Hour {
+					go func() { _ = us.UpdateLastSeen(context.Background(), u.ID) }()
+				}
 				next.ServeHTTP(w, r)
 				return
 			}
+		}
+
+		// Crawlers never send the cookie back, so auto-creating would store a
+		// fresh User on every request. Serve them anonymously instead.
+		if IsBot(r) {
+			next.ServeHTTP(w, r)
+			return
 		}
 
 		// No valid token — auto-create an anonymous user and set the cookie.
@@ -177,4 +189,15 @@ func UILangFor(u *model.User) string {
 		return "eo"
 	}
 	return u.UILang
+}
+
+// botUA matches self-identified crawlers and common scripted clients.
+var botUA = regexp.MustCompile(`(?i)bot|crawl|spider|slurp|scrape|fetch|curl|wget|python|go-http-client|java/|headless|httpclient|axios|node-fetch|okhttp|libwww|facebookexternalhit|preview`)
+
+// IsBot reports whether the request looks like it comes from an automated
+// client. Real browsers always send an Accept-Language header; most scrapers
+// posing as Chrome don't.
+func IsBot(r *http.Request) bool {
+	ua := r.UserAgent()
+	return ua == "" || botUA.MatchString(ua) || r.Header.Get("Accept-Language") == ""
 }

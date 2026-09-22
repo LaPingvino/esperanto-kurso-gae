@@ -51,6 +51,12 @@ func NewContentHandler(
 // dropped straight into a recommended exercise (zero-friction first contact);
 // returning learners get the goal dashboard with their learning path.
 func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
+	// "GET /" is the mux catch-all; don't render (and query for) the home
+	// page for every probed path like /wp-login.php.
+	if r.URL.Path != "/" {
+		http.NotFound(w, r)
+		return
+	}
 	u := UserFromContext(r.Context())
 
 	var rating, rd float64 = 1500, 350
@@ -169,7 +175,7 @@ func (h *ContentHandler) ShowVortaro(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
-		if len(taggedVocab) == 0 {
+		if len(taggedVocab) == 0 && !IsBot(r) {
 			if reading, _ := h.content.GetBySlug(r.Context(), tag); reading != nil && reading.Type == "reading" {
 				text := reading.Text()
 				if text != "" {
