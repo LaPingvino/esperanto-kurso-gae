@@ -1,6 +1,10 @@
-runtime: go122
+runtime: go127
 service: default
 app_engine_apis: true
+
+# Cap scale-out so a crawler surge can't run up instance hours.
+automatic_scaling:
+  max_instances: 3
 
 env_variables:
   FIRESTORE_PROJECT_ID: "esperanto-kurso"
