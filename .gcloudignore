@@ -23,3 +23,5 @@
 *.test
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+# The game (game/, a GameViber project) and its web build: not part of the App Engine app
+game/
