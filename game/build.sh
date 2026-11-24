@@ -14,3 +14,11 @@ go -C "$root" run ./cmd/export-game \
   -out "$here/scripts/course_data.gml"
 "$gv" check "$here"
 env -C "${GAMEVIBER_SRC:?set GAMEVIBER_SRC to GameViber's source folder}" "$gv" web "$here" "$out"
+# The page around the game in the course's colours and language (GameViber's
+# page is dark and English); the loading line is the site's own (eo.json).
+sed -i \
+  -e 's/<html lang="en">/<html lang="eo">/' \
+  -e 's/<title>.*<\/title>/<title>Esperanto-kurso: la ludo<\/title>/' \
+  -e 's/background:#111;color:#ddd/background:#F6F1E7;color:#222D36/' \
+  -e 's/>loading…</>Ŝarĝas…</' \
+  "$out/index.html"
