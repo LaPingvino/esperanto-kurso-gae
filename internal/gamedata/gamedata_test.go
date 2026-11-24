@@ -59,3 +59,15 @@ func TestTilesHoldTheAnswer(t *testing.T) {
 		}
 	}
 }
+
+func TestShown(t *testing.T) {
+	for _, c := range []struct{ base, root, show, seen string }{
+		{"amiko", "amik", "amiko", ""}, {"patrino", "patr", "patr-", "patrino"},
+		{"lern", "lern", "lern-", ""}, {"mia", "mia", "mia", ""}, {"ankaŭ", "ankaŭ", "ankaŭ", ""},
+	} {
+		show, seen := (&Word{Base: c.base, Root: c.root}).Shown()
+		if show != c.show || seen != c.seen {
+			t.Errorf("%s/%s: %q %q", c.base, c.root, show, seen)
+		}
+	}
+}

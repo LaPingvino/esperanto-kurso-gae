@@ -18,7 +18,7 @@ cw = w / col;
 rows = floor((global.H - 100 - y) / 26);
 for (k = 0; k < global.l_nw[global.les] && k < rows * col; k += 1) {
   wi = global.l_word[global.les, k];
-  txt(x + (k mod col) * cw, y + (k div col) * 26, global.w_base[wi] + " — " + global.w_def[wi, global.lang_i], 15, 0, global.C_text);
+  txt(x + (k mod col) * cw, y + (k div col) * 26, global.w_show[wi] + " — " + global.w_def[wi, global.lang_i], 15, 0, global.C_text);
 }
 button(global.W - global.m - bw(global.t_continue_cta) - 24, global.H - 72, global.W - global.m, global.H - 20, global.t_continue_cta, 11, 1);
 global.def_act = 11;

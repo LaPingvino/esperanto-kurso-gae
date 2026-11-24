@@ -147,7 +147,21 @@ func MakeCourse(items []*model.ContentItem) (*Course, error) {
 			}
 			l.Build = append(l.Build, &Build{Sentence: strings.Join(s, " "), Tiles: shuffled(s, r.Slug)})
 		}
-		for _, base := range eo.ExtractWords(l.Text) {
+		// the plain forms first (patro before patrino), so a root shows as
+		// the word it makes when the text has that word
+		bases := eo.ExtractWords(l.Text)
+		rank := func(base string) int { // 0 root + ending, 1 the root alone, 2 with affixes
+			r, _ := findRoot(base, vocab)
+			switch n := len(base) - len(r); {
+			case n == 1:
+				return 0
+			case n == 0:
+				return 1
+			}
+			return 2
+		}
+		sort.SliceStable(bases, func(i, j int) bool { return rank(bases[i]) < rank(bases[j]) })
+		for _, base := range bases {
 			root, v := findRoot(base, vocab)
 			if v == nil || seenWord[root] || definitions(v)["en"] == "" { // a card needs a definition to show
 				continue
@@ -228,6 +242,25 @@ func fillTiles(ls []*Lesson) {
 			}
 		}
 	}
+}
+
+// Shown is how a word card names the word: the form met in the text when it
+// is the root with an ending (amik → amiko), else the root itself (patr- —
+// "father" — for patrino, so the meaning shown is the root's), with the
+// text's form beside it (seen).
+func (w *Word) Shown() (show, seen string) {
+	if w.Base == w.Root {
+		if strings.ContainsAny(w.Root[len(w.Root)-1:], "aeiou") || strings.HasSuffix(w.Root, "ŭ") {
+			return w.Root, "" // a whole word (mia, ankaŭ)
+		}
+		return w.Root + "-", "" // a root met only in a participle (lern- from lernanto)
+	}
+	for _, end := range []string{"o", "a", "i", "e"} {
+		if w.Base == w.Root+end {
+			return w.Base, ""
+		}
+	}
+	return w.Root + "-", w.Base
 }
 
 // wordOptions gives each word card four meanings to choose from: its own and
@@ -489,7 +522,8 @@ func GML(c *Course, ui map[string]string) string {
 	}
 	w("global.nwords = %d", len(c.Words))
 	for i, x := range c.Words {
-		w("global.w_base[%d] = %s; global.w_root[%d] = %s; global.w_lesson[%d] = %d", i, gmlStr(x.Base), i, gmlStr(x.Root), i, x.Lesson)
+		show, seen := x.Shown()
+		w("global.w_show[%d] = %s; global.w_seen[%d] = %s; global.w_root[%d] = %s; global.w_lesson[%d] = %d", i, gmlStr(show), i, gmlStr(seen), i, gmlStr(x.Root), i, x.Lesson)
 		for k, o := range x.Options {
 			w("global.w_opt[%d,%d] = %d", i, k, o)
 		}

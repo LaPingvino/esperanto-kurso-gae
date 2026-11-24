@@ -1,7 +1,8 @@
 #!/bin/sh
 # build.sh [OUT]: the game's data from the site's seed (cmd/export-game), then
 # the web build (gameviber web) into OUT (default: game/web, git-ignored).
-# Needs Go and the gameviber command (GAMEVIBER, or on PATH).
+# Needs Go, the gameviber command (GAMEVIBER, or on PATH) and GameViber's
+# source (GAMEVIBER_SRC: gameviber web builds the player there).
 set -e
 here=$(dirname "$(readlink -f "$0")")
 root=$(dirname "$here")
@@ -12,4 +13,4 @@ go -C "$root" run ./cmd/export-game \
   -locale "$root/internal/locale/eo.json" \
   -out "$here/scripts/course_data.gml"
 "$gv" check "$here"
-"$gv" web "$here" "$out"
+env -C "${GAMEVIBER_SRC:?set GAMEVIBER_SRC to GameViber's source folder}" "$gv" web "$here" "$out"

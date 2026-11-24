@@ -16,8 +16,8 @@ shown = 0;
 for (k = global.page * per; k < n && shown < per; k += 1) {
   i = global.coll[k];
   font(15, 1, 0);
-  txt(x + (shown div rows) * cw, y + (shown mod rows) * 28, global.w_base[i], 15, 1, global.C_text);
-  txt(x + (shown div rows) * cw + string_width(global.w_base[i]) + 8, y + (shown mod rows) * 28, "— " + global.w_def[i, global.lang_i], 15, 0, global.C_muted);
+  txt(x + (shown div rows) * cw, y + (shown mod rows) * 28, global.w_show[i], 15, 1, global.C_text);
+  txt(x + (shown div rows) * cw + string_width(global.w_show[i]) + 8, y + (shown mod rows) * 28, "— " + global.w_def[i, global.lang_i], 15, 0, global.C_muted);
   shown += 1;
 }
 y = global.H - 72;

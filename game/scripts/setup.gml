@@ -2,7 +2,7 @@
 var i;
 global.C_bg = rgb(246, 241, 231);     // warm paper
 global.C_panel = rgb(255, 253, 248);  // cards and tiles
-global.C_line = rgb(201, 189, 168);   // their edges
+global.C_line = rgb(150, 136, 112);   // their edges (3:1 on the paper, WCAG 1.4.11)
 global.C_text = rgb(34, 45, 54);
 global.C_muted = rgb(88, 98, 106);
 global.C_main = rgb(26, 102, 84);     // the course's green: buttons, the open path
@@ -14,7 +14,8 @@ global.C_okbg = rgb(224, 242, 228);
 global.C_bad = rgb(168, 50, 38);
 global.C_badbg = rgb(251, 229, 224);
 global.C_star = rgb(222, 160, 34);
-global.C_lock = rgb(196, 190, 180);
+global.C_lock = rgb(214, 208, 198);   // a lesson not open yet
+global.C_path = rgb(190, 182, 168);   // the path to it
 global.C_focus = rgb(36, 84, 196);    // the keyboard's ring
 global.C_gap = rgb(232, 242, 238);    // an open gap
 course_data();

@@ -5,9 +5,9 @@ if (global.wide) { w = min(w, 720); x = (global.W - w) / 2; }
 y = argument0;
 txt(x, y, global.t_what_means, 17, 0, global.C_muted);
 y += 34;
-txtc(global.W / 2, y, global.w_base[global.idx], 40, 1, global.C_text);
+txtc(global.W / 2, y, global.w_show[global.idx], 40, 1, global.C_text);
 y += 58;
-if (global.w_root[global.idx] != global.w_base[global.idx]) txtc(global.W / 2, y, "radiko: " + global.w_root[global.idx] + "-", 15, 0, global.C_muted);
+if (global.w_seen[global.idx] != "") txtc(global.W / 2, y, "en la teksto: " + global.w_seen[global.idx], 15, 0, global.C_muted);
 y += 36;
 h = 54; if (!global.wide) h = 50;
 for (k = 0; k < 4; k += 1) {
