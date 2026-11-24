@@ -1,0 +1,7 @@
+# A build variant for checking the game's answers against the site's:
+# gameviber play -variant parity -steps 1 game writes parity.txt (in the
+# working folder) — every exercise's answer as the game judges it; the Go
+# test internal/handler/game_parity_test.go judges the same with the site's
+# own checkAnswer.
+[constants]
+  PARITY = "1"

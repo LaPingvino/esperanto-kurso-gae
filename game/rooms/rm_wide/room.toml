@@ -1,0 +1,13 @@
+caption = "Esperanto-kurso: la ludo"
+width = 1280
+height = 720
+speed = 30
+persistent = false
+background_colour = "#F6F1E7"
+draw_background_colour = true
+views_enabled = false
+
+[[instance]]
+  object = "obj_game"
+  x = 0
+  y = 0

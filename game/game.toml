@@ -1,0 +1,11 @@
+name = "Esperanto-kurso: la ludo"
+gm_version = 530
+room_order = ["rm_wide", "rm_tall"]
+
+[settings]
+  author = "esperanto-kurso.net"
+  touch = "tap"
+  typing = true
+
+[constants]
+  PARITY = "0"
