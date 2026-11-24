@@ -17,7 +17,7 @@ has no JSON reader; the same approach as Sidenote's game). The file is generated
 | Fill-ins (62) | each reading's child series (`zagr-lNN`) | `Question()`, `GapAnswers()` through the site's own `model.ContentItem` |
 | The interface words the site has ("Elektu la ĝustan respondon:", "Kion signifas tiu ĉi vorto?", "Mi ne scias", "Komenci", "Daŭrigi", "Sekva", "Antaŭa", "Tajpi", "Via respondo…") | `internal/locale/eo.json` | as is |
 | A lesson's words (263) | `eo.ExtractWords` on the lesson text (the site's "practise the words of this text"), matched to the `zagr-vok` roots and their definitions | **derived**: the course links no words to lessons; the game's matching strips the ending and common suffixes (instruistino → instru) |
-| Meanings in 20 languages | the `zagr-vok` definitions, limited to the site's interface languages the game's font draws (Latin, Greek, Cyrillic) and that are really translated (Hindi, Lao, Kazakh copy the English) | as is |
+| Meanings in 20 languages | the `zagr-vok` definitions in the languages that are among the site's interface languages (`internal/locale`), complete for every word, drawable by the game's font (Latin, Greek, Cyrillic scripts), and not mostly copies of the English (as the Hindi ones are) | as is |
 | Four tiles per gap | other gap answers of the same kind (an ending like *-oj*, or a word), the same lesson first | **derived** from the answers, never made up |
 | Sentences to build (2 per lesson) | the lesson text's plain sentences of 3–7 words | **derived**, the words shuffled |
 | Word cards: four meanings | other words of the same lesson | **derived** |
@@ -69,9 +69,10 @@ would stay local.
 ## Look and input
 
 - Calm and friendly: warm paper, one green from the course, gold stars; no timers, no lives.
-- Contrast (WCAG): text 12.5:1 on the paper; muted text 5.5:1; white on green 6.8:1; the green as text or
-  link 7.0:1; right 5.4:1 and wrong 5.5:1 on their tints; locked lesson numbers 4.1:1; tile and button edges
-  3.1:1 (1.4.11); the keyboard's focus ring 5.9:1.
+- Contrast (WCAG): text 12.5:1 on the paper; muted text 5.5:1; white on green 6.8:1; the green as text
+  6.1:1 (the quieter link green 7.0:1); right 5.4:1 and wrong 5.5:1 on their tints; locked lesson numbers
+  4.1:1; tile and button edges 3.1:1 (1.4.11); earned stars 3.5:1 on the paper (unearned ones are the pale
+  lock colour); the keyboard's focus ring 5.9:1.
 - A wide room (1280×720) and a tall one (420×860), switched by the window's shape, as Sidenote's game does;
   the text is drawn at the screen's real resolution.
 - Keyboard: arrows move the focus, Enter presses (or the screen's main button), 1–4 pick a choice, typing
@@ -79,19 +80,23 @@ would stay local.
 
 ## GameViber changes this needed (branch `web-extras`, generic)
 
-- `[settings] touch = "tap"`: a finger is the left mouse button where it touches, with no arrow pads. Before,
-  Ebitengine's touch handling meant a tap never reached a mouse event in the browser.
+- `[settings] touch = "tap"`: a finger is the left mouse button where it touches, with no arrow pads. Without
+  it (checked in headless Chromium with phone emulation) a tap on lesson 1 opens nothing and the first touch
+  shrinks the game for arrow pads: Ebitengine cancels the browser's touch-to-mouse emulation.
 - Typed characters reach `keyboard_string` (nothing fed it before). Backspace works, and
   `[settings] typing = true` makes M a letter rather than the sound shortcut.
-- The margin round the frame takes the room's background colour instead of black.
+- The margin round the frame takes the room's background colour instead of black; the player's sound and
+  full-screen buttons and the pads draw dark on a light margin.
 
 ## Checks
 
 - `internal/handler/game_parity_test.go`: the game's parity variant (`game/parity.toml`) answers every exercise
   through its own GML. The site's `checkAnswer` must agree on all 62 fill-ins, right and wrong; every gap must
   offer its answer exactly once; 24 sentences and 263 word cards must accept their answer and reject another.
-- `internal/gamedata/play_test.go`: lessons 1–3 played headless through the real keys, in both rooms. Each ends
-  with three stars and opens the next lesson.
+- `internal/gamedata/play_test.go`: the lessons played headless through the real keys (focus and Enter) — 1, 1–2
+  and all 12 in one go — in both rooms. Each ends with three stars and opens the next lesson.
+- In headless Chromium (desktop 1366×768 and 1920×969; a phone 390×844 at 3× with touch): keyboard, typing
+  with the x-system, mouse, taps, the phone's prompt for typing, the progress kept over a reload.
 - Both need `GAMEVIBER=/path/to/gameviber` and are skipped without it.
 
 ## Next
