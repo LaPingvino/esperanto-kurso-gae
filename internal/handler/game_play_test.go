@@ -30,6 +30,7 @@ type stubSite struct {
 	attempts []*model.Attempt
 	posts    []string
 	refuse   int
+	rating   float64 // the account's (settled): 0, A0
 	api      *GameAPI
 	srv      *httptest.Server
 }
@@ -63,7 +64,7 @@ func newStubSite(t *testing.T) *stubSite {
 	gh.Course = s.api.Course
 	withUser := func(h http.HandlerFunc) http.HandlerFunc {
 		return func(w http.ResponseWriter, r *http.Request) {
-			h(w, r.WithContext(context.WithValue(r.Context(), UserContextKey, &model.User{ID: "u1", Lang: "en"})))
+			h(w, r.WithContext(context.WithValue(r.Context(), UserContextKey, &model.User{ID: "u1", Lang: "en", Rating: s.rating})))
 		}
 	}
 	mux.HandleFunc("GET /ludo-progreso", withUser(gh.Progress))

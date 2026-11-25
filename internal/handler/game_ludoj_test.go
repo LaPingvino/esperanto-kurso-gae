@@ -71,17 +71,17 @@ func steps(keys []string) int {
 	return n
 }
 
-// wordsServer is the stub site with the day's A0 word made word (a word
-// with a picture, so the picture hint shows).
-func wordsServer(t *testing.T, s *stubSite, word string) string {
+// wordsServer is the stub site with the day's word of level made word (for
+// A0 a word with a picture, so the picture hint shows).
+func wordsServer(t *testing.T, s *stubSite, level, word string) string {
 	u, _ := url.Parse(s.srv.URL)
 	proxy := httputil.NewSingleHostReverseProxy(u)
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /ludo-api/vortoj", func(w http.ResponseWriter, r *http.Request) {
 		var out []string
 		for _, l := range strings.Split(s.get(t, "/ludo-api/vortoj?"+r.URL.RawQuery), "\n") {
-			if strings.HasPrefix(l, "T\tA0\t") {
-				l = "T\tA0\t" + word
+			if strings.HasPrefix(l, "T\t"+level+"\t") {
+				l = "T\t" + level + "\t" + word
 			}
 			out = append(out, l)
 		}
@@ -103,7 +103,7 @@ func TestPlayVortludo(t *testing.T) {
 	gameviber(t)
 	s := newStubSite(t)
 	c := s.api.Course(t.Context())
-	pool := gamedata.FivePool(c.Words(), "A0")
+	pool := gamedata.Pool(c.Words(), "A0")
 	word, def := "", false
 	for _, l := range strings.Split(s.get(t, "/ludo-api/vortoj?lingvo=en"), "\n") {
 		if f := strings.Split(l, "\t"); f[0] == "W" && f[3] == "1" && f[2] == "A0" && f[6] != "" && word == "" && f[1] != "abelo" {
@@ -113,7 +113,7 @@ func TestPlayVortludo(t *testing.T) {
 	if word == "" {
 		t.Fatal("no A0 word with a picture")
 	}
-	base := wordsServer(t, s, word)
+	base := wordsServer(t, s, "A0", word)
 	misses := []string{"abelo"}
 	for _, w := range pool {
 		if w != word && w != "abelo" && len(misses) < 3 {
@@ -158,6 +158,38 @@ func TestPlayVortludo(t *testing.T) {
 	os.WriteFile(kept, []byte(strings.ReplaceAll(string(b), "T\tA0\t"+word, "T\tA0\t"+misses[1])), 0o644)
 	playArgs(t, dir, []string{"play", "-base", deadURL + "/ludo/", "-steps", "50", "-keys", strings.Join(open, ",")},
 		`global.scr == 8 && !global.vl_daily && global.vl_state == 0`)
+	if len(s.posts) != 0 {
+		t.Errorf("Vortludo posted %q", s.posts)
+	}
+}
+
+// TestPlayVortludoLong: a B1 learner's Vortludo — the day's word long
+// (komputilo, nine letters: the widest board), its affix (il) beside the
+// board; two misses (and a row too short, refused), then the word on the third row, in both rooms, every
+// text fitting. Then Nova vorto: another long word with its affix, free.
+func TestPlayVortludoLong(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	s.rating = 1500 // B1
+	c := s.api.Course(t.Context())
+	word := "komputilo"
+	if !strings.Contains(" "+strings.Join(gamedata.Pool(c.Words(), "B1"), " ")+" ", " "+word+" ") {
+		t.Fatalf("%s not in the B1 pool", word)
+	}
+	base := wordsServer(t, s, "B1", word)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		keys := []string{":30", "down:1", ":1", "enter:1", ":4"}
+		for _, m := range []string{"kantistoj", "lernejo", "tranĉiloj", "komputilo"} {
+			keys = append(keys, "text="+xSpell(m)+":1", ":1", "enter:1", ":2")
+		}
+		dir := gameDir(t, c)
+		args := append([]string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")}, shot("vortludo-long-"+room)...)
+		// lernejo is too short: not a row
+		playArgs(t, dir, args, fmt.Sprintf(`global.scr == 8 && global.vl_word == "%s" && global.vl_daily && global.vl_long && global.vl_n == 9 && global.vl_aff == "il" && global.vl_state == 1 && global.vl_row == 3 && global.ovf == 0`, word))
+		keys = append(keys, "enter:1", ":2") // Nova vorto
+		playArgs(t, dir, []string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")},
+			`global.scr == 8 && !global.vl_daily && global.vl_long && global.vl_aff != "" && global.vl_n >= 6 && global.vl_n <= 9 && global.vl_state == 0 && global.ovf == 0`)
+	}
 	if len(s.posts) != 0 {
 		t.Errorf("Vortludo posted %q", s.posts)
 	}
@@ -215,6 +247,33 @@ return n;
 	keys = append(append([]string{}, start...), ":5")
 	playArgs(t, dir, []string{"play", "-base", s.srv.URL + "/ludo/", "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys)), "-keys", strings.Join(keys, ",")},
 		`global.nw > 500 && rccheck() == 0 && global.ovf == 0`)
+	// the questions go by the word, not the learner's language: a picture,
+	// else the masked definition, else the meaning marked with its language
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "rccues.gml"), []byte(`// rccues(): 1 when the race's pool asks rightly — pictures among them, a
+// translation only where a word has neither picture nor definition, and
+// marked; else 0.
+var i, j, k, pics;
+pics = 0;
+for (k = 0; k < global.rp_n; k += 1) {
+  j = -1; for (i = 0; i < global.nw; i += 1) if (global.w_word[i] == global.rp_word[k]) j = i;
+  if (global.rp_pic[k] >= 0) { pics += 1; continue; }
+  if (j >= 0 && global.w_def[j] != "") { if (global.rp_tr[k] || global.rp_q[k] != global.w_def[j]) return 0; continue; }
+  if (!global.rp_tr[k] || string_char_at(global.rp_q[k], 1) != "(") return 0;
+}
+return pics > 0;
+`), 0o644)
+	playArgs(t, dir, []string{"play", "-base", s.srv.URL + "/ludo/", "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys)), "-keys", strings.Join(keys, ",")},
+		`global.scr == 9 && rccues() && global.ovf == 0`)
+	// a picture question, a definition one: shown, every text fitting
+	for name, pick := range map[string]string{"bildo": "global.rp_pic[q] >= 0", "difino": "global.rp_pic[q] < 0 && !global.rp_tr[q]"} {
+		d := gameDir(t, c)
+		f := filepath.Join(d, "game", "scripts", "rc_next.gml")
+		b, _ := os.ReadFile(f)
+		os.WriteFile(f, []byte(strings.Replace(string(b), "q = floor(random(global.rp_n));", "for (q = 0; q < global.rp_n - 1; q += 1) if ("+pick+") break;", 1)), 0o644)
+		keys := append(append([]string{}, start...), ":40")
+		playArgs(t, d, append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys)), "-keys", strings.Join(keys, ",")}, shot("vetkuro-"+name+"-rm_tall")...),
+			`global.scr == 9 && global.rc_state == 1 && (`+strings.ReplaceAll(pick, "[q]", "[global.rc_q]")+`) && global.ovf == 0`)
+	}
 	if len(s.posts) != 0 {
 		t.Errorf("Vetkuro posted %q", s.posts)
 	}

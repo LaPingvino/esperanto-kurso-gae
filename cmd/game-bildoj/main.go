@@ -1,6 +1,6 @@
-// Command game-bildoj writes the pictures Vortludo can offer as a hint: the
-// site's word pictures (internal/bildoj, OpenMoji, CC BY-SA 4.0) of every
-// five-letter word, rendered from static/bildoj/ at the size the game draws
+// Command game-bildoj writes the word pictures of the bonus games (Vortludo's
+// hint, Vetkuro's question): the site's word pictures (internal/bildoj,
+// OpenMoji, CC BY-SA 4.0), every one, rendered from static/bildoj/ at the size the game draws
 // them (GameViber has no SVG and loads no pictures at run time), as one
 // sprite, game/sprites/spr_bildo, and game/scripts/bildo_frame.gml, which
 // finds a picture's frame by the name /ludo-api/vortoj gives it. Needs
@@ -35,7 +35,7 @@ func main() {
 	seen := map[string]bool{}
 	for _, p := range bildoj.All() {
 		key := gamedata.PictureKey(p.Word)
-		if !gamedata.IsFive(p.Word) || key == "" || seen[key] {
+		if key == "" || seen[key] {
 			continue
 		}
 		seen[key] = true

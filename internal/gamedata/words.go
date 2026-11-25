@@ -8,6 +8,7 @@ import (
 	"unicode"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/bildoj"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 )
 
 // The bonus games (Vortludo, a Wordle; Vetkuro, a race) learn the same list
@@ -17,22 +18,25 @@ import (
 //	GET /ludo-api/vortoj?lingvo=xx
 //
 //	VORTOJ <version> <day>
-//	W <word> <level> <five> <meaning in xx> <eo definition> <picture>
+//	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix>
 //	T <level> <word>      the day's Vortludo word for a learner of that level
 //	FINO
 //
 // five: 1 when the word is a Vortludo word (five letters, ĉ ĝ ĥ ĵ ŝ ŭ one
 // each, small letters only, a whole word rather than a bare root). The eo
 // definition (the course's, else ReVo's) has the word itself masked (~), so
-// a hint never gives the answer. picture: the word's picture (bildoj), by
+// a hint never gives the answer. affix: for a Vortludo word past the A
+// levels (six to nine letters, a root, one affix and the ending, read alike
+// by ReVo and by the pieces alone: legvortoj.OneAffix), that affix (the
+// clue shown beside the board), else "". picture: the word's picture (bildoj), by
 // its file's name without folder or extension ("1f415"); the game carries
-// the five-letter ones (cmd/game-bildoj), and goes by the definition for
-// any it doesn't have.
+// all of them (cmd/game-bildoj).
 
 // WordEntry is one vocabulary word of the course.
 type WordEntry struct {
 	Word, Level string
 	Five        bool
+	Affix       string // a long Vortludo word's affix (B1 and up), else ""
 	Ex          *Exercise
 }
 
@@ -51,7 +55,11 @@ func (c *Course) Words() []*WordEntry {
 					continue
 				}
 				seen[w] = true
-				out = append(out, &WordEntry{Word: w, Level: s.Level, Five: !e.Bare && IsFive(w), Ex: e})
+				we := &WordEntry{Word: w, Level: s.Level, Five: !e.Bare && IsFive(w), Ex: e}
+				if n := len([]rune(w)); !e.Bare && n >= 6 && n <= 9 && letters(w) {
+					we.Affix = legvortoj.OneAffix(w)
+				}
+				out = append(out, we)
 			}
 		}
 	}
@@ -59,33 +67,38 @@ func (c *Course) Words() []*WordEntry {
 }
 
 // IsFive: five Esperanto letters, small (no names, no spaces or hyphens).
-func IsFive(w string) bool {
-	rs := []rune(w)
-	if len(rs) != 5 {
-		return false
-	}
-	for _, r := range rs {
+func IsFive(w string) bool { return len([]rune(w)) == 5 && letters(w) }
+
+// letters: only the alphabet's 28 small letters.
+func letters(w string) bool {
+	for _, r := range w {
 		if !strings.ContainsRune("abcĉdefgĝhĥijĵklmnoprsŝtuŭvz", r) {
 			return false
 		}
 	}
-	return true
+	return w != ""
 }
 
-// FivePool is the Vortludo words for a learner of level: that level's, and
-// while there are fewer than ten, the levels below it, then above it; sorted.
-// The game builds the same pool for free play (vl_pool.gml).
-func FivePool(ws []*WordEntry, level string) []string {
+// LongFrom is the first level whose Vortludo plays the long words with an
+// affix (B1); the A levels play the five-letter ones.
+const LongFrom = 3
+
+// Pool is the Vortludo words for a learner of level — the five-letter words
+// in the A levels, the long ones with an affix from B1 — that level's, and
+// while there are fewer than ten, the levels below it, then above it;
+// sorted. The game builds the same pool for free play (vl_pool.gml).
+func Pool(ws []*WordEntry, level string) []string {
 	li := 0
 	for i, l := range Levels {
 		if l == level {
 			li = i
 		}
 	}
+	long := li >= LongFrom
 	var out []string
 	add := func(l string) {
 		for _, w := range ws {
-			if w.Five && w.Level == l {
+			if w.Level == l && ((!long && w.Five) || (long && w.Affix != "")) {
 				out = append(out, w.Word)
 			}
 		}
@@ -161,10 +174,10 @@ func WriteWords(w io.Writer, c *Course, lang, day string) {
 	ws := c.Words()
 	line(w, "VORTOJ", c.Version, day)
 	for _, e := range ws {
-		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word))
+		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word), e.Affix)
 	}
 	for _, l := range Levels {
-		if d := Daily(FivePool(ws, l), day, l); d != "" {
+		if d := Daily(Pool(ws, l), day, l); d != "" {
 			line(w, "T", l, d)
 		}
 	}

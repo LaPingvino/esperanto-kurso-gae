@@ -197,3 +197,15 @@ func TestSentences(t *testing.T) {
 		t.Errorf("%q", s)
 	}
 }
+
+// TestOneAffix: a root, one affix and the ending, read alike by ReVo and by
+// the pieces alone; anything else has none.
+func TestOneAffix(t *testing.T) {
+	for w, want := range map[string]string{
+		"lernejo": "ej", "malbona": "mal", "lernanto": "ant", "malsanulejo": "", "knabo": "", "lernolibro": "", "gefratoj": "",
+	} {
+		if got := OneAffix(w); got != want {
+			t.Errorf("OneAffix(%q) = %q, want %q", w, got, want)
+		}
+	}
+}

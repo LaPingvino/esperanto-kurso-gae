@@ -16,7 +16,14 @@ func TestWords(t *testing.T) {
 	c := Build(items)
 	ws := c.Words()
 	n, pics := 0, 0
+	aff := map[string]string{}
 	for _, w := range ws {
+		if w.Affix != "" {
+			aff[w.Word] = w.Affix
+			if n := len([]rune(w.Word)); n < 6 || n > 9 || !strings.Contains(w.Word[1:len(w.Word)-1], w.Affix) && !strings.HasPrefix(w.Word, w.Affix) {
+				t.Errorf("%s: affix %q", w.Word, w.Affix)
+			}
+		}
 		if w.Five {
 			n++
 			if PictureKey(w.Word) != "" {
@@ -29,14 +36,16 @@ func TestWords(t *testing.T) {
 	}
 	t.Logf("%d words, %d for Vortludo, %d with a picture", len(ws), n, pics)
 	for _, l := range Levels {
-		p := FivePool(ws, l)
+		p := Pool(ws, l)
 		if len(p) < 10 {
 			t.Errorf("%s: a pool of %d", l, len(p))
 		}
 		d := Daily(p, "2026-11-25", l)
-		if !IsFive(d) || Daily(p, "2026-11-25", l) != d {
+		long := l >= Levels[LongFrom]
+		if (!long && !IsFive(d)) || (long && aff[d] == "") || Daily(p, "2026-11-25", l) != d {
 			t.Errorf("%s: day's word %q", l, d)
 		}
+		t.Logf("%s: %d words, %v", l, len(p), p)
 	}
 	if IsFive("Hundo") || IsFive("hund") || !IsFive("ŝtono") || !IsFive("aĉeti") {
 		t.Error("IsFive")

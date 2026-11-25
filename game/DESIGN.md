@@ -64,15 +64,21 @@ answers no item's question and a gate is a choice, so the ratings still move onl
 
 - **The learner's level:** the account's, from its rating once settled (RD < 200: `/ludo-progreso`'s `R` line),
   else the level the map is at.
-- **Vortludo** (`vl_*.gml`): a Wordle on the course's five-letter words (ĉ ĝ ĥ ĵ ŝ ŭ one letter each; no bare
-  roots). The day's word is the site's (`T` lines: the same for every learner of a level, by the UTC date);
-  *Nova vorto* plays a word of the level's pool at random (the level, then below, then above, to ten:
-  `gamedata.FivePool`, mirrored by `vl_pool.gml`). Any five letters may be tried: the course's list is far
-  shorter than the language. Six rows; typed (x- and h-systems) or on the screen's keyboard of the 28 letters.
-  In its place: the accent fill; elsewhere in the word: the note tint and a dot under the letter; not in it:
-  sunk. After three misses it offers the word's picture (`spr_bildo`, the site's own word pictures) or its
-  Esperanto definition with the word masked (~), else its meaning.
-- **Vetkuro** (`rc_*.gml`): a road of three lanes; the question is a meaning, and a gate of three words comes
+- **Vortludo** (`vl_*.gml`): a Wordle on the course's words: in the A levels the five-letter ones (ĉ ĝ ĥ ĵ ŝ
+  ŭ one letter each; no bare roots); from B1 longer ones, six to nine letters, each a root, one affix and the
+  ending, read alike by ReVo and by the pieces alone (`legvortoj.OneAffix`: *komput·il·o*, *lern·ej·o*). The
+  affix alone (never the ending) is the clue, shown **beside** the board, not in its place: in a long word it may
+  sit anywhere, and the player works out where; its letters count as any others. The day's word is the site's
+  (`T` lines: the same for every learner of a level, by the UTC date); *Nova vorto* plays a word of the level's
+  pool at random (the level, then below, then above, to ten: `gamedata.Pool`, mirrored by `vl_pool.gml`), the
+  board showing its length. Any letters of the word's length may be tried: the course's list is far shorter
+  than the language. Six rows; typed (x- and h-systems) or on the screen's keyboard of the 28 letters; the cells
+  shrink to fit nine on a phone. In its place: the accent fill; elsewhere in the word: the note tint and a dot
+  under the letter; not in it: sunk. After three misses it offers the word's picture (`spr_bildo`, the site's
+  own word pictures) or its Esperanto definition with the word masked (~), else its meaning.
+- **Vetkuro** (`rc_*.gml`): a road of three lanes; the question goes by the word, not the learner's language:
+  its picture (the same as Vortludo's hint), else its Esperanto definition (masked), and only for a word with
+  neither its meaning, marked with its language ("(en) car"); two words asking the same never share a race. A gate of three words comes
   down it; steer into the right one (arrow keys, a tap on a lane, a swipe). A wrong gate is a crash: a life of
   three, the right word shown with ✓. A gate takes 9 s down the road at a rating of 1000, 5 s at 2000, a little
   less with each point. The bonus after a place races with that place's words (four or more), else the

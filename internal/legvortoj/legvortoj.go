@@ -181,6 +181,41 @@ func Parts(lemma string) []Part {
 	return ps
 }
 
+// OneAffix is the one affix of a word that is a root, that affix and a
+// dictionary ending (lern|ej|o: "ej"; mal|bon|a: "mal"), when the word's two
+// readings agree on it: ReVo's (around the root its marker names) and the
+// split into known pieces alone. "" for any other word, and for the pet
+// names' ĉj and nj.
+func OneAffix(lemma string) string {
+	w := revo.Normalize(lemma)
+	h := revo.Exact(w)
+	if h == nil {
+		return ""
+	}
+	if root, before, after, ok := revo.MrkRoot(h.Mrk); !ok || before+root+after != w || root == "" {
+		return ""
+	}
+	byRevo := Parts(w)
+	alone, ok := split(w, true, false)
+	if !ok || len(byRevo) != 3 || len(alone) != 3 {
+		return ""
+	}
+	affix := ""
+	for i, p := range byRevo {
+		if p != alone[i] {
+			return ""
+		}
+		if p.Kind == "prefikso" || p.Kind == "sufikso" {
+			affix = p.Text
+		}
+	}
+	end := byRevo[2]
+	if affix == "" || affix == "ĉj" || affix == "nj" || end.Kind != "finaĵo" || !strings.Contains("oaei", end.Text) || len(end.Text) != 1 {
+		return ""
+	}
+	return affix
+}
+
 // ---- dictionary forms ----
 
 // classes: an inflectional ending, its word class's dictionary ending.

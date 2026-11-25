@@ -1,5 +1,6 @@
-// draw_vetkuro(): Vetkuro — the question card (the meaning; points and
-// lives), the road of three lanes with its gate of words coming down, the
+// draw_vetkuro(): Vetkuro — the question card (the word's picture, else
+// its Esperanto definition, else its meaning marked with its language;
+// points and lives), the road of three lanes with its gate of words coming down, the
 // car; before the start and after the end, a card over the road. A judged
 // gate shows the right word with ✓ and a crash's word with ✗ (a cue
 // besides the colour), and the card says which was right.
@@ -18,12 +19,22 @@ font(15, 1, 0); txt(x1 - 80 - string_width(t), y + 11, t, 15, 1, global.C_text);
 if (global.rc_state == 1 || global.rc_state == 2) {
   l = "Kiu vorto?";
   if (global.rc_state == 2) { if (global.rc_hit == global.rc_right) l = "Ĝuste!"; else l = "Ne tute: " + global.rp_word[global.rc_q]; }
-  if (global.rc_state == 2 && global.rc_hit != global.rc_right) txt(x0 + 14, y + 11, fit(l, x1 - x0 - 200, 15, 1), 15, 1, global.C_bad);
-  else txt(x0 + 14, y + 11, fit(l, x1 - x0 - 200, 15, 1), 15, 1, global.C_link);
-  t = global.rp_mean[global.rc_q];
-  while (th(t, x1 - x0 - 28, 19, 1) > global.qh - 46 && string_length(t) > 12) t = string_copy(t, 1, string_length(t) - 8) + "…";
-  fits(t, x1 - x0 - 28, 19, 1);
-  tw(x0 + 14, y + 38, t, x1 - x0 - 28, 19, 1, global.C_text);
+  cx = x0 + 14; py = y + 11; cw = x1 - x0 - 200; // the label: top left, beside the points
+  if (global.rp_pic[global.rc_q] >= 0) { // the picture at the left, the label and its credit beside it
+    box(x0 + 6, y + 6, x0 + 106, y + 106, global.C_pic, global.C_edge, 1);
+    draw_sprite(spr_bildo, global.rp_pic[global.rc_q], x0 + 8, y + 8);
+    cx = x0 + 120; py = y + 44; cw = x1 - cx - 14;
+    txt(cx, y + global.qh - 26, fit("Bildo: OpenMoji, CC BY-SA 4.0", cw, 13, 0), 13, 0, global.C_muted);
+  }
+  if (global.rc_state == 2 && global.rc_hit != global.rc_right) txt(cx, py, fit(l, cw, 15, 1), 15, 1, global.C_bad);
+  else txt(cx, py, fit(l, cw, 15, 1), 15, 1, global.C_link);
+  if (global.rp_pic[global.rc_q] < 0) {
+    t = global.rp_q[global.rc_q]; // the definition (16, plain), else the meaning (19, bold)
+    k = 16; if (global.rp_tr[global.rc_q]) k = 19;
+    while (th(t, x1 - x0 - 28, k, k == 19) > global.qh - 46 && string_length(t) > 12) t = string_copy(t, 1, string_length(t) - 8) + "…";
+    fits(t, x1 - x0 - 28, k, k == 19);
+    tw(x0 + 14, y + 38, t, x1 - x0 - 28, k, k == 19, global.C_text);
+  }
 } else txt(x0 + 14, y + 11, "Vetkuro", 15, 1, global.C_link);
 // the road, its lane marks running with the race
 fill(x0, global.ry0, x1, global.H, global.C_sunk);

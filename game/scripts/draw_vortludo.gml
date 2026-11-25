@@ -1,5 +1,7 @@
-// draw_vortludo(): Vortludo (a Wordle on the course's five-letter words):
-// six rows of five cells, the screen's keyboard of the 28 letters, and a
+// draw_vortludo(): Vortludo (a Wordle on the course's words): six rows of
+// the word's cells (five; six to nine from B1, their size fitted to the
+// screen), with a long word's affix beside the board (never in its place:
+// it may sit anywhere in the word), the screen's keyboard of the 28 letters, and a
 // panel (below the grid on a phone, beside it when wide) with the message,
 // the hint after three misses (the word's picture, its Esperanto
 // definition, else its meaning) and the round's buttons. Each letter's
@@ -14,12 +16,15 @@ t = "la vorto de la tago"; if (!global.vl_daily) t = "libera ludo";
 txt(x0, y, fit("Vortludo · " + t + " · " + lv, x1 - x0, 17, 1), 17, 1, global.C_text);
 y += 34;
 c = 52; g = 6; if (global.wide) c = 50;
-gw = 5 * c + 4 * g; gh = 6 * c + 5 * g;
+n = global.vl_n;
+if (global.wide) c = min(c, floor((global.W / 2 - 30 - x0 - (n - 1) * g) / n));
+else c = min(c, floor((x1 - x0 - (n - 1) * g) / n));
+gw = n * c + (n - 1) * g; gh = 6 * c + 5 * g;
 gx = (global.W - gw) / 2; if (global.wide) gx = global.W / 2 - gw - 30;
 gy = y;
-for (r = 0; r < 6; r += 1) for (k = 0; k < 5; k += 1) {
+for (r = 0; r < 6; r += 1) for (k = 0; k < n; k += 1) {
   l = ""; st = -2;
-  if (r < global.vl_row) { l = string_char_at(global.vl_g[r], k + 1); st = global.vl_s[r * 5 + k]; }
+  if (r < global.vl_row) { l = string_char_at(global.vl_g[r], k + 1); st = global.vl_s[r * 10 + k]; }
   else if (r == global.vl_row && global.vl_state == 0) { l = string_char_at(global.vl_cur, k + 1); st = -1; }
   vl_cell(gx + k * (c + g), gy + r * (c + g), c, l, st);
 }
@@ -47,10 +52,18 @@ px0 = x0; py0 = gy + gh + 12; px1 = x1; py1 = kt - 12;
 if (global.wide) { px0 = global.W / 2 + 10; py0 = gy; px1 = min(x1, px0 + 520); py1 = gy + gh; }
 by = py1 - 44;
 y = py0;
+if (global.vl_aff != "") { // the clue: the affix alone, beside the board
+  t = "Afikso en la vorto:";
+  txt(px0, y + 5, t, 16, 0, global.C_muted);
+  font(16, 0, 0); x = px0 + string_width(t) + 10;
+  font(18, 1, 0); box(x, y, x + string_width(global.vl_aff) + 24, y + 32, global.C_panel, global.C_main, 2);
+  txt(x + 12, y + 4, global.vl_aff, 18, 1, global.C_main);
+  y += 42;
+}
 if (global.vl_state == 0) {
   if (global.vl_msg != "") { txt(px0, y, fit(global.vl_msg, px1 - px0, 16, 1), 16, 1, global.C_bad); y += 26; }
   else if (global.vl_row >= 3 && global.vl_hint == 0) { txt(px0, y, fit("Tri provoj: ĉu iom da helpo?", px1 - px0, 16, 0), 16, 0, global.C_muted); y += 26; }
-  else if (global.vl_row == 0) { txt(px0, y, fit("Tajpu vorton de kvin literoj (cx aŭ ch: ĉ).", px1 - px0, 16, 0), 16, 0, global.C_muted); y += 26; }
+  else if (global.vl_row == 0) { txt(px0, y, fit("Tajpu vorton de " + vl_count(global.vl_n) + " (cx aŭ ch: ĉ).", px1 - px0, 16, 0), 16, 0, global.C_muted); y += 26; }
 } else {
   if (global.vl_state == 1) { mark(px0 + 12, y + 12, 12, 1); txt(px0 + 32, y, "Ĝuste!", 20, 1, global.C_ok); }
   else { mark(px0 + 12, y + 12, 12, 0); txt(px0 + 32, y, "Ne tute.", 20, 1, global.C_bad); }
@@ -79,7 +92,7 @@ if (global.vl_state == 0) {
   if (pend && global.vl_pic >= 0 && global.vl_hint != 1) { button(x, by, x + bw("Bildo"), by + 44, "Bildo", 732, 0); x += bw("Bildo") + 8; }
   if (pend && global.vl_def != "" && global.vl_hint != 2) { button(x, by, x + bw("Difino"), by + 44, "Difino", 733, 0); x += bw("Difino") + 8; }
   if (pend && global.vl_pic < 0 && global.vl_def == "" && global.vl_hint != 3) { button(x, by, x + bw("Signifo"), by + 44, "Signifo", 734, 0); x += bw("Signifo") + 8; }
-  if (string_length(global.vl_cur) == 5) button(px1 - bw("Provi"), by, px1, by + 44, "Provi", 731, 1);
+  if (string_length(global.vl_cur) == global.vl_n) button(px1 - bw("Provi"), by, px1, by + 44, "Provi", 731, 1);
   else button(px1 - bw("Provi"), by, px1, by + 44, "Provi", -1, 6);
   if (x > px1 - bw("Provi")) overflow("Vortludo's buttons");
   global.def_act = 731;
