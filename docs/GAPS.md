@@ -69,32 +69,35 @@ excerpts (8, B1–C1), Mazi and Pasporto videos, two articles (C1).
    official letters, discussion and argument), no Esperanto culture/history
    series beyond a few readings.
 
-## What the builder has prepared (content/builder/, 190 items, all pending)
+## What the builder has added (content/builder/, 218 items, live)
 
-Load after the deploy with `scripts/builder.sh load content/builder`; it all
-goes in pending, nothing is live until published (see docs/BUILDER.md).
+The first 190 items were loaded and published on 2026-11-25; the
+Krestomatio set (28) follows. `scripts/builder.sh load content/builder`
+reloads everything (updates keep status and learned ratings).
 
-| Level | Readings | Fill-in | Multiple choice | Vocab |
-|---|---:|---:|---:|---:|
-| A2 | – | 8 | 3 | 18 |
-| B1 | – | 36 | 16 | 36 |
-| B2 | – | 8 | 2 | – |
-| C1 | 2 | 2 | 19 | – |
-| C2 | 5 | 8 | 27 | – |
+**The old texts are not C2.** Their vocabulary is a century old, and Glicko
+would pull them down anyway (Joop). So they sit by kind, not by level, and
+start at an honest B2/C1 that the attempts then settle:
 
-- **C2: five authentic texts with 35 exercises** (comprehension, irony and
-  register, rare roots, affixes in context, poetic style):
-  - Zamenhof, *Antaŭparolo* of the Fundamento (1905), excerpt;
-  - Zamenhof, *Letero pri la deveno de Esperanto* (to Borovko, c. 1895),
-    excerpt;
-  - Zamenhof, *Esenco kaj estonteco de la ideo de lingvo internacia* (1900),
-    the opening;
-  - Gogol, *La Revizoro*, transl. Zamenhof (1907), from act one;
-  - Mickiewicz, *Sinjoro Tadeo*, transl. Antoni Grabowski (1918), the first
-    22 lines.
-- **C1:** the Bulonja Deklaracio (1905, excerpt) and Zamenhof's *La Espero*,
-  with 11 exercises; 10 nuance questions (ja, ol, si/lia, de/da, kvankam,
-  ek-, ne povas ne, tro…por, poetic elision).
+- **Fundamentaj dokumentoj pri Esperanto** (`fundamentaj-dokumentoj`):
+  Zamenhof's *Antaŭparolo* of the Fundamento (1905, start C1), his *Letero
+  pri la deveno de Esperanto* (to Borovko, c. 1895, B2), *Esenco kaj
+  estonteco de la ideo de lingvo internacia* (1900, C1), the Bulonja
+  Deklaracio (1905, B2) and *La Espero* (B2), with 46 exercises.
+- **Klasikaĵoj de la literaturo** (`literaturaj-klasikajxoj`): Gogol's *La
+  Revizoro*, transl. Zamenhof (1907, C1), and Mickiewicz's *Sinjoro Tadeo*,
+  transl. Grabowski (1918, C1), with 12 exercises.
+- **Fundamenta Krestomatio: scienco kaj eseoj** (`krestomatio-scienco`):
+  *La loĝejoj de la termitoj* (natural history), L. Einstein's lecture on the
+  history of world-language projects (1884), *Kronika katara konjunktivito*
+  (ophthalmology, after E. Fuchs) and L.-J. Gruey's *La sunhorloĝo en Dijon*
+  (astronomy), B2–C1, with 24 exercises.
+- **Nuancoj de la lingvo** (C1): 10 questions (ja, ol, si/lia, de/da,
+  kvankam, ek-, ne povas ne, tro…por, poetic elision).
+
+Item slugs stayed as first published (`c2-…`, `c1-…`), so stars are kept;
+only series, labels and ratings moved (`rerate`, docs/BUILDER.md).
+
 - **Grammar series (A2–B2), self-written:** correlatives (14), participles
   (10), the accusative of direction (8), tenses and moods with relative tense
   (11), word-building affixes (18), grammar terms in use (12).
@@ -114,6 +117,14 @@ public domain:
 | Sinjoro Tadeo, Libro I (1918) | Mickiewicz (1855), transl. Antoni Grabowski (1921) | Sinjoro_Tadeo/Libro_I | 58617 |
 | Bulonja deklaracio (1905) | Zamenhof and the 1st World Congress | Bulonja_deklaracio | 68280 |
 | La Espero, in Fundamenta Krestomatio (1903) | Zamenhof (1917) | Fundamenta_Krestomatio_(1903)/La_espero | 68501 |
+| La loĝejoj de la termitoj, in Fundamenta Krestomatio (1903) | author not named | Fundamenta_Krestomatio_(1903)/La_loĝejoj_de_la_termitoj | 65247 |
+| Al la historio de la provoj de lingvoj tutmondaj (lecture 1884) | Leopold Einstein (1890); translator not named | Fundamenta_Krestomatio_(1903)/Al_la_historio_de_la_provoj_… | 68536 |
+| Kronika katara konjunktivito | after Ernst Fuchs (1930); translator not named | Fundamenta_Krestomatio_(1903)/Kronika_katara_konjunktivito | 65249 |
+| La sunhorloĝo en Dijon | L.-J. Gruey (1902) | Fundamenta_Krestomatio_(1903)/La_sunhorloĝo_en_Dijon | 68503 |
+
+Unnamed authors and translators: a work published anonymously is protected
+for 70 years from publication (EU term directive, art. 1(3)), so these, all
+published by 1903 (the Borovko letter by 1925), are public domain.
 
 (Revision: of the wrapper page; the text itself is transcluded from the scan's Paĝo: pages.)
 
@@ -126,6 +137,28 @@ has a one-line introduction and the Letter a note on the two Russian shop
 signs, both marked as the site's own. (Grabowski died in 1921, not 1930 as the
 brief had it; PD either way. Death dates checked on Esperanto Wikipedia. Hamlet, transl. Zamenhof, would have been a good
 C2 text but Wikisource has act III untranscribed.)
+
+## Modern C1–C2 vocabulary: Esperanto Wikipedia
+
+The old texts don't carry modern C1–C2 vocabulary (science, politics,
+technology, economics). Good Esperanto Wikipedia articles (the "elstaraj" and
+"legindaj" ones) do, under **CC BY-SA 4.0**. The licence fits the site if
+each excerpt carries:
+
+- the article's title, a link to it and its revision (`content.source_url`
+  pointing at `?oldid=…`, which also leads to the authors through its
+  history);
+- the licence by name and link (`content.license`: "CC BY-SA 4.0");
+- a note that it is an excerpt and what was changed (`content.note`);
+- ShareAlike: the excerpt, and the exercises built on it, are offered under
+  CC BY-SA 4.0 too. That is fine for a course that wants to be reused, but
+  it means those items can't later be relicensed more narrowly.
+
+The reading page shows "Fonto: <source> · <licence>" with the link since
+dfac599. Not added yet: wait until that template change is deployed, so
+no CC BY-SA text is live without its attribution. Then pick 4–6 featured
+articles in different fields (e.g. medicine, economics, climate, computing,
+law) for C1–C2, with vocab cards for their key terms.
 
 ## Copyright: already on the site, worth a look
 

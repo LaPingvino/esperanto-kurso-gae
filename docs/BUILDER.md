@@ -29,7 +29,11 @@ builder API. Code: `internal/handler/builder.go`; client: `scripts/builder.sh`.
 An item: `{"slug", "type", "content", "tags", "source", "series_slug",
 "series_order", "series_label", "series_parent", "level" | "rating", "trusted"}`.
 `level` (A0…C2) sets a new item's starting rating at the middle of that level;
-an update keeps the rating the item has learned from attempts. A batch is
+an update keeps the rating the item has learned from attempts, unless it
+sends `"rerate": true`: then the rating starts again from its `level` or
+`rating` (RD 200), for an item first filed at the wrong level. Rerating is a
+one-off, so the content files don't carry it: add it when loading, e.g.
+`jq 'map(. + {rerate: true})' FILE > /tmp/x.json && scripts/builder.sh add /tmp/x.json`. A batch is
 checked whole first, with the site's answer rules (multiple-choice options
 differ, `correct_index` is among them; a fill-in has one answer per `___`);
 one bad item and nothing is written.

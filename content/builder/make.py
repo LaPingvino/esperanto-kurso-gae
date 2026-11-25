@@ -585,6 +585,127 @@ for n, line in enumerate(TERMS.split("\n"), 1):
             "tags": ["vortaro", "gramatika-termino"], "source": SELF,
             "series_slug": "vortaro-gramatikaj-terminoj", "series_order": n, "series_label": "Gramatikaj terminoj"})
 
+# ---------------------------------------------------------------- Fundamenta Krestomatio: science and essays
+F = "50-fundamenta-krestomatio.json"
+KR = ("krestomatio-scienco", "Fundamenta Krestomatio: scienco kaj eseoj")
+KRURL = "https://eo.wikisource.org/wiki/Fundamenta_Krestomatio_(1903)/"
+PLACE.update({
+    "kr-termitoj": KR + (1800,),
+    "kr-sunhorlogxo": KR + (1800,),
+    "kr-einstein-lingvoj-tutmondaj": KR + (1900,),
+    "kr-konjunktivito": KR + (1950,),
+})
+KRSRC = "Fundamenta Krestomatio (1903)"
+
+t = read("kr-termitoj.txt")
+te = between(t, "La diversaj specoj de termitoj", "per la perdo de la libereco.") + "\n\n[…]\n\n" + \
+    between(t, "Por krei tiujn ĉi efektive gigantajn konstruojn", "ol ĝiaj konstruantoj.")
+te = tidy(te).replace("le gereĝoj", "la gereĝoj").replace("Phisos. Transactions", "Philos. Transactions")
+reading(F, "kr-termitoj", "C1", "La loĝejoj de la termitoj (eltiro)", te,
+        KRSRC + ", „La loĝejoj de la termitoj“ (aŭtoro ne nomita)", KRURL + "La_lo%C4%9Dejoj_de_la_termitoj",
+        ["legado", "scienco", "naturo", "krestomatio"],
+        "La komenco kaj la fino; preseraroj korektitaj („le gereĝoj“ → „la gereĝoj“, „Phisos.“ → „Philos.“); tipografio modernigita.")
+exercises(F, "kr-termitoj", "kr-termitoj-ekz", "Ekzercoj: La loĝejoj de la termitoj", "C1",
+          ["scienco", "kompreno"], [
+    ("mc", "Al kio similas la nesto de tiuj termitoj, kiuj konstruas tureton el tero kun konusa tegmento?", [
+        "Al fungo", "Al barelo de sukero", "Al vilaĝo", "Al preĝejo"]),
+    ("mc", "Kial oni povas preni amason da nestoj de „Termes fatalis“ por vilaĝo?", [
+        "Ĉar la nestoj estas 3–4 metrojn altaj kaj ofte pli grandaj ol la dometoj de la tieaj homoj",
+        "Ĉar homoj loĝas en ili", "Ĉar ili estas konstruitaj el ligno", "Ĉar ili havas fenestrojn"]),
+    ("mc", "Kial la reĝo kaj la reĝino neniel povas eliri el sia ĉambro?", [
+        "Ĉar la eniroj apenaŭ sufiĉas por tralasi la plej malgrandajn regatojn",
+        "Ĉar la soldatoj malpermesas tion", "Ĉar la ĉambro havas neniun eniron", "Ĉar ili timas la malamikojn"]),
+    ("mc", "„…tiel ili, simile je multaj niaj potenculoj, kare pagas por la reĝado per la perdo de la libereco.“ Kion faras la aŭtoro per tiu komparo?", [
+        "Li ironie komparas la insektojn kun homaj regantoj", "Li donas sciencan mezuron",
+        "Li riproĉas la termitojn", "Li klarigas, kiel la reĝino kreskas"]),
+    ("mc", "Kiom da fojoj la nesto estas pli alta ol ĝiaj konstruantoj, laŭ la kalkulo de la aŭtoro?", [
+        "Okcent fojojn", "133 fojojn", "Kvar fojojn", "Mil fojojn"]),
+    ("fi", "La supra parto aŭ la kupolo … servas precipe kiel defendo kontraŭ la ŝanĝoj de la ___.", "vetero", "vorto el la teksto"),
+    ("fi", "La reĝo kaj la reĝino kune estas la ___.", "gereĝoj", "vorto el la teksto: ge-reĝ-o-j"),
+])
+
+t = read("kr-einstein.txt")
+ei = between(t, "Jam de 200 jaroj kun rilate malgrandaj", "per la Azia pazigrafio")
+ei = tidy(re.sub(r"\s*\[\d+\]", "", ei)) + "."
+reading(F, "kr-einstein-lingvoj-tutmondaj", "C1", "Al la historio de la provoj de lingvoj tutmondaj (komenco)", ei,
+        KRSRC + ", „Al la historio de la provoj de lingvoj tutmondaj de Leibnitz ĝis la nuna tempo“ — Leopold Einstein (parolado 1884; tradukinto ne nomita)",
+        KRURL + "Al_la_historio_de_la_provoj_de_lingvoj_tutmondaj_de_Leibnitz_%C4%9Dis_la_nuna_tempo",
+        ["legado", "eseo", "historio", "krestomatio"],
+        "La unuaj kvar alineoj; piednotaj numeroj forigitaj; tipografio modernigita.")
+exercises(F, "kr-einstein-lingvoj-tutmondaj", "kr-einstein-ekz", "Ekzercoj: La provoj de lingvoj tutmondaj", "C1",
+          ["eseo", "kompreno"], [
+    ("mc", "Kiu, laŭ la parolanto, esprimis la deziron de komuna lingvo jam antaŭ pli ol 2000 jaroj?", [
+        "La profeto Zefaniah", "Leibnitz", "John Wilkins", "Max Müller"]),
+    ("mc", "Kial, laŭ la teksto, la lernado de multaj lingvoj fariĝis bezono en la tempo de la parolanto?", [
+        "Ĉar telegrafoj, vaporŝipoj kaj fervojoj multe pligrandigis la interkomunikiĝon de la popoloj",
+        "Ĉar la lernejoj postulis tion", "Ĉar la latina malaperis", "Ĉar ĉiuj volis legi ĥinajn librojn"]),
+    ("mc", "Kio estas „pazigrafio“, laŭ la teksto?", [
+        "Skribo per komunaj signoj, kiujn ĉiuj nacioj povas kompreni, kiel ajn ili parolas",
+        "Lingvo nur parolata, sen skribo", "La arto traduki rapide", "Nova alfabeto por la latina"]),
+    ("mc", "Kial la ĥinaj skribsignoj estas kvazaŭ „Azia pazigrafio“?", [
+        "Ĉar ĉiu popolo legas la samajn signojn en sia propra lingvo", "Ĉar ĉiuj aziaj popoloj parolas la ĥinan",
+        "Ĉar ili estas nur kvardek", "Ĉar ili estas facile lerneblaj"]),
+    ("mc", "Kiun instruon montras, laŭ la parolanto, la ĉirkaŭ 60 provoj?", [
+        "Ke al tio, kion oni fine nomas „mirinde simpla“, oni venas nur malrapide, paŝo post paŝo",
+        "Ke lingvo internacia estas neebla", "Ke unu genio sufiĉas por krei ĝin", "Ke la plej malnova provo estis la plej bona"]),
+    ("fi", "…la postulado de unu lingvo komuna … montras sin ___ pli pravigita.", "des", "la kutima vorteto post „ju pli …“"),
+])
+
+t = read("kr-konjunktivito.txt")
+kj = between(t, "Simptomoj. Ĉe la kronika kataro", "apenaŭ rimarkas iajn ŝanĝetojn en la konjunktivo.")
+kj = tidy(kj).replace("piendoj", "plendoj")
+reading(F, "kr-konjunktivito", "C1", "Kronika katara konjunktivito: la simptomoj", kj,
+        KRSRC + ", „Kronika katara konjunktivito“ — el la libro de prof. Ernst Fuchs (tradukinto ne nomita)",
+        KRURL + "Kronika_katara_konjunktivito",
+        ["legado", "scienco", "medicino", "krestomatio"],
+        "La alineo „Simptomoj“; OCR-eraro „piendoj“ → „plendoj“; tipografio modernigita.")
+exercises(F, "kr-konjunktivito", "kr-konjunktivito-ekz", "Ekzercoj: Kronika katara konjunktivito", "C1",
+          ["medicino", "kompreno", "fakvortoj"], [
+    ("mc", "Laŭ la teksto, per kio oni facile povas meti la diagnozon de kronika kataro de la konjunktivo?", [
+        "Per la subjektivaj plendoj de la paciento", "Per forta ŝvelo de la konjunktivo",
+        "Per granda sekrecio", "Per la ruĝeco de la haŭto"]),
+    ("mc", "Kiam la plendoj estas ordinare la plej grandaj?", ["Vespere", "Matene", "Tagmeze", "Nokte, dum la dormo"]),
+    ("mc", "Kio estas „palpebrumado“?", [
+        "Ofta, rapida fermado kaj malfermado de la palpebroj", "Forta larmado", "Ŝvelado de la palpebroj", "Brulado en la okulo"]),
+    ("mc", "Kion la teksto diras pri la rilato inter la plendoj kaj la objektiva stato?", [
+        "Ili ne kongruas: iuj kun forte ruĝa konjunktivo plendas pri nenio, aliaj multe plendas kun apenaŭ videblaj ŝanĝoj",
+        "Ju pli ruĝa la konjunktivo, des pli grandaj la plendoj",
+        "La plendoj ĉiam montras la gradon de la malsano",
+        "La pacientoj neniam plendas"]),
+    ("mc", "Kiu el la jenaj vortoj el la teksto estas faka medicina termino, ne ĉiutaga vorto?", [
+        "hipertrofio", "matene", "kandelo", "okulo"]),
+    ("fi", "…naskiĝas teda sento de fremda korpo, kvazaŭ en la okulo estus ___.", "polvero", "vorto el la teksto: polv-er-o"),
+])
+
+t = read("kr-sunhorlogxo.txt")
+sh = "\n\n".join([
+    between(t, "Multaj homoj en ĉiu lando laboras", "de la beleta rivero nomata Ouche."),
+    between(t, "Sur la tero horizonta estas desegnitaj", "markita per la horo serĉata."),
+    between(t, "Komparante la sunhorloĝon", "ĝusteco de la unua."),
+    between(t, "Mi scias nek la epokon", "kiel en matematiko."),
+])
+reading(F, "kr-sunhorlogxo", "B2", "La sunhorloĝo en Dijon (eltiro)", tidy(sh),
+        KRSRC + ", „La sunhorloĝo en Dijon“ — L.-J. Gruey (el la Revue Bourguignonne)",
+        KRURL + "La_sunhorlo%C4%9Do_en_Dijon",
+        ["legado", "scienco", "astronomio", "krestomatio"],
+        "Sen la formuloj kaj la figuro; tipografio modernigita.")
+exercises(F, "kr-sunhorlogxo", "kr-sunhorlogxo-ekz", "Ekzercoj: La sunhorloĝo en Dijon", "B2",
+          ["scienco", "kompreno"], [
+    ("mc", "Kion, laŭ la aŭtoro, povas pruvi la maljunaj esperantistoj kiel li?", [
+        "Ke Esperanto taŭgas ankaŭ por sciencaj temoj", "Ke ili parolas pli bone ol la junuloj",
+        "Ke sunhorloĝoj estas pli bonaj ol poŝhorloĝoj", "Ke la junuloj ne devus amuziĝi"]),
+    ("mc", "Kiel promenanto en la Parko povas ekscii la horon?", [
+        "Li staru sur la zodiaka punkto de la tago kaj rigardu, al kiu horomarko direktiĝas lia ombro",
+        "Li rigardu la ombron de ŝtona kolono", "Li demandu la parkogardiston", "Li kalkulu laŭ la formuloj"]),
+    ("mc", "Kion la aŭtoro petas de Charles Méray?", [
+        "Ke li skribu en Esperanto la historion de la sunhorloĝo", "Ke li konstruu novan sunhorloĝon",
+        "Ke li kontrolu la formulojn", "Ke li traduku la artikolon en la francan"]),
+    ("mc", "„…malgraŭ malfortiĝo pro laceco kaj klopodoj…“ Kion la aŭtoro diras pri si?", [
+        "Ke li estas laca kaj malfortiĝinta, sed tamen skribas", "Ke li ne volas skribi",
+        "Ke la sunhorloĝo estas difektita", "Ke li estas juna kaj forta"]),
+    ("fi", "Sur la tero horizonta estas desegnitaj la du linioj NS kaj EO sin kruciĝantaj ___ en I.", "rektangule", "e-vorto el la teksto: rekt-angul-e"),
+])
+
 os.makedirs(OUT, exist_ok=True)
 for f, its in items.items():
     with open(os.path.join(OUT, f), "w", encoding="utf-8") as fh:

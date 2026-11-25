@@ -19,4 +19,12 @@ for t in "Fundamento de Esperanto/Antaŭparolo" \
   e=$(python -c "import urllib.parse,sys;print(urllib.parse.quote(sys.argv[1].replace(' ','_')))" "$t")
   curl -sS -A "$ua" "https://eo.wikisource.org/w/api.php?action=parse&format=json&prop=text&page=$e" -o "$d/h$i.json"
 done
-python -I "$here/h2t.py" "$d"/h*.json
+# Fundamenta Krestomatio (1903): science and essays
+for pair in "termitoj|La loĝejoj de la termitoj" \
+            "einstein|Al la historio de la provoj de lingvoj tutmondaj de Leibnitz ĝis la nuna tempo" \
+            "konjunktivito|Kronika katara konjunktivito" \
+            "sunhorlogxo|La sunhorloĝo en Dijon"; do
+  e=$(python -c "import urllib.parse,sys;print(urllib.parse.quote(('Fundamenta Krestomatio (1903)/'+sys.argv[1]).replace(' ','_')))" "${pair#*|}")
+  curl -sS -A "$ua" "https://eo.wikisource.org/w/api.php?action=parse&format=json&prop=text&page=$e" -o "$d/kr-${pair%%|*}.json"
+done
+python -I "$here/h2t.py" "$d"/h*.json "$d"/kr-*.json
