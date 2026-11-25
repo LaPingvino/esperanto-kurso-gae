@@ -21,7 +21,9 @@ global.C_gap = rgb(232, 242, 238);    // an open gap
 course_data();
 for (i = 0; i < global.nl; i += 1) global.stars[i] = 0;
 global.lang_i = 0;
+global.ob_n = 0;      // typed answers waiting to go to the site (sync_tick)
 load_progress();
+sync_init();
 global.scr = 0;       // 0 map, 1 reading, 2 exercises, 3 lesson done, 4 words
 global.les = -1;
 global.focus = -1;
@@ -34,3 +36,4 @@ global.fb = 0; global.kind = 0; global.idx = 0; global.qi = 0; global.qn = 0; gl
 global.def_act = -1; global.np = 0; global.cg = 0; global.ngap = 0; global.bn = 0; global.pick = -1;
 keyboard_string = "";
 global.ready = 1;
+open_from_url();

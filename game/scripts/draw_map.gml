@@ -1,7 +1,11 @@
 // draw_map(): the lessons as places on a path; each finished one opens the next.
 var l, x, y, x2, y2, k, c, r, open, lx, ly, nm, cur;
 txt(global.m, global.hh + 18, global.course_name + " — " + string(global.nl) + " lecionoj", 18, 1, global.C_text);
-if (global.wide) txt(global.m, global.H - 40, "Ĉiu finita leciono malfermas la sekvan. Via progreso restas en ĉi tiu retumilo.", 14, 0, global.C_muted);
+if (global.wide) {
+  if (!global.site) txt(global.m, global.H - 40, "Ĉiu finita leciono malfermas la sekvan. Via progreso restas en ĉi tiu retumilo.", 14, 0, global.C_muted);
+  else if (global.sync_ok && global.ob_n == 0) txt(global.m, global.H - 40, "Ĉiu finita leciono malfermas la sekvan. Via progreso estas konservita ankaŭ en via konto ĉe la retejo.", 14, 0, global.C_muted);
+  else txt(global.m, global.H - 40, "Ĉiu finita leciono malfermas la sekvan. Via progreso estas konservata; ĝi iros al via konto, kiam la retejo respondos.", 14, 0, global.C_muted);
+}
 r = 26; if (!global.wide) r = 22;
 cur = -1;
 for (l = 0; l < global.nl; l += 1) if (cur < 0 && lesson_open_ok(l) && global.stars[l] == 0) cur = l;

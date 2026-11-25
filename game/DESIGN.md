@@ -51,20 +51,41 @@ there: an exercise kind "listen and answer" can play a sound per item (GameViber
 finds an `audio_url`. The natural source is the esperanto-voice Piper voice once it is released (rendered at build
 time per sentence of the lesson texts) — a question for Joop, not done here.
 
-## Progress, and a site account later
+## In the site: /ludo/, and progress on the account
 
-Progress is local: a small file (`esperanto-kurso-ludo.txt`: version, language, the stars per lesson) through
-GameViber's `file_*` functions, which in the browser live in the page's localStorage
-(`gameviber/0/files/…`); on the desktop it is a file in the working folder.
+**Served by the site.** `make ludo` builds the game into `static/ludo/` (git-ignored, not gcloud-ignored), and
+app.yaml serves it at `/ludo/` as static files (the .wasm as `application/wasm`; 24.9 MB, under App Engine's
+32 MB per file; 6.2 MB gzipped). The site links it from the menu (🎲, "Ludo: la kurso kiel ludo" in all 31
+interface languages) and from every Zagreb lesson and its fill-ins ("Ludi ĉi tiun lecionon kiel ludon" →
+`/ludo/?leciono=zagr-lNN-teksto`, which opens that lesson's text in the game). The game's way back: "Retejo"
+and "Vidi en la retejo" open the site in the same tab. When the app runs by itself (`go run`), it serves
+`/ludo/` from `static/ludo` too.
 
-Linking to an account later, if served from esperanto-kurso.net itself (e.g. `/ludo/`): the site already
-keeps its token in that origin's localStorage (`eo_token`) and accepts attempts at
-`POST /ekzerco/{slug}/provo` with `X-Auth-Token`. Every fill-in in the game carries its site slug, so a right or
-wrong answer could be sent as an attempt, and the site's progress could fill the map's stars. What that needs:
-a way out of the game to the page (GameViber has no HTTP function; a small generic `page_call` / JS bridge on
-the web build would do), and a decision on whether game attempts should move the Glicko ratings (the tiles make
-a fill-in easier than typing it). The game's own exercises (word cards, sentences) have no site slug and
-would stay local.
+**Progress, both ways, in the background.** Every visitor of the site has an account (anonymous until they
+sign in), carried by the site's `token` cookie; the game's requests are same-origin, so they carry it too.
+GameViber's generic `http_post` / `http_get` (answers in the `other-62` event) do the talking; nothing in the
+engine knows the site.
+
+- *Typed answers → the site's own `POST /ekzerco/{slug}/provo`.* A fill-in typed in every gap is queued
+  (kept in the progress file), sent one at a time, and taken off the queue only when the site has it.
+  **Rule: only typed answers go to the site, so only they move the Glicko ratings; an answer built from
+  tiles never does** (choosing is easier than typing, and the ratings are calibrated on typing). The game's
+  own exercises (word cards, sentences) stay in the game.
+- *Stars ↔ `/ludo-progreso`.* The game posts its stars per lesson; the site keeps them on the account
+  (`User.GameStars`) and answers with the account's state: the stars kept there, and every exercise answered
+  rightly on the site. **Merge rule: the larger per lesson, both on the account and in the game**, so a
+  sync can be repeated, cross another device's, or arrive late, and nothing is ever lost. A lesson whose
+  fill-ins were all answered rightly on the site counts in the game as done with one star.
+- *When.* At the start, after each finished lesson and each delivered answer, and every 20 seconds, which
+  covers coming back to the tab after working on the site (GameViber has no focus event yet).
+- *Offline and failures.* No answer (status 0) or a server error: tried again after 1 s, then 2 s, 4 s … at
+  most a minute. The queue lives in the progress file, so it survives a reload and goes the next time the
+  game opens with the site reachable. A 4xx for an answer (no such exercise) drops it.
+- *Signed out, signing in.* Playing without signing in fills the anonymous account; signing in merges
+  accounts (`UserStore.MergeUsers`, the stars by the same larger-wins rule), and the game's own copy is
+  pushed again on its next sync, so nothing is lost either way.
+- *Outside the site* (the desktop, another host): `page_url()` is empty, so the game keeps its progress only
+  in its own file (`esperanto-kurso-ludo.txt`, in the browser in localStorage).
 
 ## Look and input
 
@@ -79,6 +100,12 @@ would stay local.
   fills a gap, Esc clears or goes back to the map. Mouse and touch: press what you see.
 
 ## GameViber changes this needed (branch `web-extras`, generic)
+
+- Asynchronous HTTP from GML: `http_get(url)`, `http_post(url, name, value, …)` return an id; the answer
+  runs `other-62.gml` (Studio's Async HTTP event) with `http_id()`, `http_status()` (0: no answer),
+  `http_result()`. In the browser a same-origin fetch; elsewhere net/http with a cookie jar.
+  `page_url()`; `url_open_ext(url, target)`; `gameviber play -base URL` and `text=WORD` in key scripts, so a
+  game that talks to its site can be played through headless.
 
 - `[settings] touch = "tap"`: a finger is the left mouse button where it touches, with no arrow pads. Without
   it (checked in headless Chromium with phone emulation) a tap on lesson 1 opens nothing and the first touch
@@ -97,12 +124,18 @@ would stay local.
   and all 12 in one go — in both rooms. Each ends with three stars and opens the next lesson.
 - In headless Chromium (desktop 1366×768 and 1920×969; a phone 390×844 at 3× with touch): keyboard, typing
   with the x-system, mouse, taps, the phone's prompt for typing, the progress kept over a reload.
-- Both need `GAMEVIBER=/path/to/gameviber` and are skipped without it.
+- `internal/gamedata/sync_test.go`: the game headless against a stub of the site (the real `/ludo-progreso`
+  handler over an in-memory account): the site's progress comes into the game; a lesson played with one
+  fill-in by tiles and the others typed sends exactly the typed ones, all judged right, the first after one
+  refusal (retry); the stars end on the account. And offline: the queue waits in the progress file and goes
+  when the game is opened again with the site up.
+- `internal/handler/game_test.go`: the merge rule, the endpoint's format and its handler, the lesson links.
+- The whole site run locally (`go run` + the Datastore emulator, seeded), played in headless Chromium.
+- The game-playing tests need `GAMEVIBER=/path/to/gameviber` and are skipped without it.
 
 ## Next
 
 1. The rest of the A0–A2 material as further regions of the map (the A0 readings on the alphabet and
    greetings come before lesson 1; `gramatiko-mc` multiple choice; the phrasebook).
 2. Audio with the esperanto-voice voice, and with it a listening exercise.
-3. The account link above, once the hosting is settled.
-4. Spaced review: words from finished lessons coming back as cards on the map.
+3. Spaced review: words from finished lessons coming back as cards on the map.

@@ -9,5 +9,6 @@ if (r >= 0.9) s = 3;
 global.got = s;
 if (s > global.stars[global.les]) global.stars[global.les] = s;
 save_progress();
+global.sync_due = 1; // the stars to the account
 global.scr = 3;
 global.focus = -1;

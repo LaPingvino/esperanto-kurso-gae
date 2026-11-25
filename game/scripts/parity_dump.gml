@@ -15,15 +15,15 @@ for (l = 0; l < global.nl; l += 1) {
     global.les = l;
     // the right answers, through the same fill_pick the tiles and typing use
     px_begin(1, k); s = "";
-    for (g = 0; g < global.ngap; g += 1) { s += chr(9) + global.f_ans[e, g mod n]; fill_pick(global.f_ans[e, g mod n]); }
+    for (g = 0; g < global.ngap; g += 1) { s += chr(9) + global.f_ans[e, g mod n]; fill_pick(global.f_ans[e, g mod n], 0); }
     file_write_string("F" + chr(9) + global.f_slug[l, k] + chr(9) + string(global.fb == 1) + s); file_writeln();
     // a wrong tile in the first gap, the right answers in the others
     wrong = "";
     for (t = 0; t < global.f_nt[e, 0]; t += 1) if (wrong == "" && !fill_ok(l, k, 0, global.f_tile[e, t])) wrong = global.f_tile[e, t];
     px_begin(1, k); s = "";
     for (g = 0; g < global.ngap; g += 1) {
-      if (g == 0) { s += chr(9) + wrong; fill_pick(wrong); }
-      else { s += chr(9) + global.f_ans[e, g mod n]; fill_pick(global.f_ans[e, g mod n]); }
+      if (g == 0) { s += chr(9) + wrong; fill_pick(wrong, 0); }
+      else { s += chr(9) + global.f_ans[e, g mod n]; fill_pick(global.f_ans[e, g mod n], 0); }
     }
     file_write_string("W" + chr(9) + global.f_slug[l, k] + chr(9) + string(global.fb == 1) + s); file_writeln();
     for (g = 0; g < global.f_ngap[l, k]; g += 1) {
