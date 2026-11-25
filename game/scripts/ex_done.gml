@@ -5,7 +5,7 @@ if (argument0) {
   if (global.q_again[global.qi] == 0) global.qfirst += 1;
 } else {
   global.fb = 2;
-  global.q_kind[global.qn] = global.kind; global.q_idx[global.qn] = global.idx; global.q_again[global.qn] = 1;
+  global.q_idx[global.qn] = global.idx; global.q_again[global.qn] = 1;
   global.qn += 1;
 }
 global.focus = -1;

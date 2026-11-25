@@ -16,7 +16,7 @@ if (global.ob_n > 0) {
 }
 if (!global.sync_due) exit;
 s = "";
-for (l = 0; l < global.nl; l += 1) if (global.stars[l] > 0) { if (s != "") s += ","; s += global.l_slug[l] + "=" + string(global.stars[l]); }
+for (l = 0; l < global.nst; l += 1) if (global.st_n[l] > 0) { if (s != "") s += ","; s += global.st_slug[l] + "=" + string(global.st_n[l]); }
 global.sync_req = http_post("/ludo-progreso", "steloj", s);
 global.sync_kind = 2;
 global.sync_due = 0;

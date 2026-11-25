@@ -1,21 +1,20 @@
 // draw_reading(): the lesson's text first (as on the site), then the exercises.
-var l, x, y, w, h, p, bot, more, fs;
-l = global.les;
+var x, y, w, h, p, bot, more, fs;
 x = global.m; w = global.W - 2 * global.m;
 if (global.wide) { w = min(w, 900); x = (global.W - w) / 2; }
 y = global.hh + 20;
-y += tw(x, y, global.l_title[l], w, 24, 1, global.C_text) + 12;
+y += tw(x, y, global.les_title, w, 24, 1, global.C_text) + 12;
 fs = 18; if (!global.wide) fs = 16;
 bot = global.H - 96;
 // what fits on this page, measured first: the card is as tall as its text
 more = 0; h = 14;
-for (p = global.page; p < global.np; p += 1) {
+for (p = global.page; p < global.npara; p += 1) {
   if (y + h + th(global.para[p], w - 40, fs, 0) > bot - 14 && p > global.page) { more = 1; break; }
   h += th(global.para[p], w - 40, fs, 0) + 12;
 }
 rfill(x - 4, y - 4, x + w + 4, y + h + 4, global.C_panel, global.C_line);
 y += 14;
-for (p = global.page; p < global.np; p += 1) {
+for (p = global.page; p < global.npara; p += 1) {
   h = th(global.para[p], w - 40, fs, 0);
   if (y + h > bot - 14 && p > global.page) break;
   tw(x + 20, y, global.para[p], w - 40, fs, 0, global.C_text);

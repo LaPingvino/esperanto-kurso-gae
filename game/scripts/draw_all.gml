@@ -7,8 +7,11 @@ global.H = room_height;
 global.wide = (room_width > room_height);
 if (global.wide) { global.m = 40; global.hh = 64; } else { global.m = 16; global.hh = 104; }
 fill(0, 0, global.W, global.H, global.C_bg);
+if (global.scr == 5) draw_levels();
 if (global.scr == 0) draw_map();
+if (global.scr == 6) draw_loading();
 if (global.scr == 1) draw_reading();
+if (global.scr == 7) draw_video();
 if (global.scr == 2) draw_exercise();
 if (global.scr == 3) draw_result();
 if (global.scr == 4) draw_words();

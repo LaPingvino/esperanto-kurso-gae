@@ -1,45 +1,66 @@
 # Esperanto-kurso: la ludo — design note
 
 A GameViber version of esperanto-kurso.net: **another way into the same course, beside the site, not a
-replacement.** The site stays the place for the adaptive path, accounts, comments and every series; the game
-takes one well-shaped part of it, the Zagreb method's lessons, and plays it as a journey.
+replacement** — the whole course, loaded from the site while it plays.
 
-## Where the content comes from
+## The whole course, loaded at run time
 
-The game never carries its own copy of the course. `cmd/export-game` (code in `internal/gamedata`) reads the
-site's seed data at build time and writes `game/scripts/course_data.gml`, a GML script of global arrays (GML
-has no JSON reader; the same approach as Sidenote's game). The file is generated and git-ignored;
-`game/build.sh` makes it, then the web build.
+The game carries no copy of the course. The site serves it (`internal/handler/game_api.go`), built by
+`internal/gamedata` from the same approved content the site shows (the content store's in-memory cache, so no
+Datastore reads of its own; built again only when that cache reloads):
 
-| In the game | From the site | How |
+- `GET /ludo-api/kurso` — the map: levels, series, places;
+- `GET /ludo-api/leciono/{slug}?lingvo=xx` — a place: its text and exercises, meanings in xx (else English).
+
+Plain text lines of tab-separated fields (`gamedata/text.go`; GML has no JSON reader), each ending in `FINO`
+so a cut-off text is never taken for a whole one. Mounted outside AuthMiddleware: the same for everyone, no
+user looked up or created, no cookie, `Cache-Control: public, max-age=300` and an ETag by the course's
+version (304 when unchanged). **New or changed content on the site shows up in the game without a rebuild.**
+
+In the game: the map is asked for at the start, a place's lesson when it opens; each is kept in the
+browser (localStorage files `ludo-kurso.txt`, `ludo-L-<place>-<lang>.txt`) and the cached copy used at once
+when its version is the current one. Offline: the cached copies; with nothing cached, a built-in part (the
+Zagreb lessons, `scripts/course_data.gml`, made from the seed by `cmd/export-game`), else "try again".
+
+**The shape is the site's:** levels (KER A0 …), each series in the level of its first item's rating, sorted
+by label — as `/serioj` groups them. A reading is a place (its text, its child series' exercises, word cards
+from its text, two sentences to build); a video is a place (watched on the site, one star); other exercises
+come in places of ten (`<series>.<n>`); items in no series go, by level, into an "Aliaj" series (vocabulary
+tagged with a reading is that reading's words). Zagreb places keep their reading slugs (`zagr-lNN-teksto`),
+so the stars already on accounts stay theirs. The "play as a game" link on every exercise page leads to the
+place showing that item.
+
+**Inventory (the seed; production has the same kinds, with its own labels):** 1633 items — 1454
+vocabulary items (14 `vortaro-*` series, 507; the Zagreb vocabulary, 597; words attached to readings, 329;
+a few loose), 67 readings (Zagreb 12, Fundamenta Ekzercaro 31, PMEG 9, literature 8 + 4, articles 2, A0 2,
+A2 1, loose 2), 64 fill-ins (Zagreb 62, loose 2), 7 multiple choice (`gramatiko-mc` 5, loose 2), 2
+phrasebook, 33 videos (Mazi 12, Pasporto 16, music 4, the alphabet 1). In the game: 32 series, 226 places;
+64 fill-ins, 7 multiple choice, 1127 vocabulary words, 2 typed answers, 304 word cards, 77 sentences.
+
+| Encounter | From | Judged |
 |---|---|---|
-| 12 lessons, in order, with their texts | `zagr-metodo` readings in `seed/ekzercoj-zagr-restructured.json` | as is |
-| Fill-ins (62) | each reading's child series (`zagr-lNN`) | `Question()`, `GapAnswers()` through the site's own `model.ContentItem` |
-| The interface words the site has ("Elektu la ĝustan respondon:", "Kion signifas tiu ĉi vorto?", "Mi ne scias", "Komenci", "Daŭrigi", "Sekva", "Antaŭa", "Tajpi", "Via respondo…") | `internal/locale/eo.json` | as is |
-| A lesson's words (263) | `eo.ExtractWords` on the lesson text (the site's "practise the words of this text"), matched to the `zagr-vok` roots and their definitions | **derived**: the course links no words to lessons; the game's matching strips the ending and common suffixes (instruistino → instru) |
-| Meanings in 20 languages | the `zagr-vok` definitions in the languages that are among the site's interface languages (`internal/locale`), complete for every word, drawable by the game's font (Latin, Greek, Cyrillic scripts), and not mostly copies of the English (as the Hindi ones are) | as is |
-| Four tiles per gap | other gap answers of the same kind (an ending like *-oj*, or a word), the same lesson first | **derived** from the answers, never made up |
-| Sentences to build (2 per lesson) | the lesson text's plain sentences of 3–7 words | **derived**, the words shuffled |
-| Word cards: four meanings | other words of the same lesson | **derived** |
+| fill-in: a tile per gap, or typed | the site's fill-ins | as `checkAnswer`: an answer per gap or one for all, no alternatives |
+| multiple choice | the site's (`gramatiko-mc`, A0 basics) | the chosen option's text against the right one's, or an alternative |
+| vocabulary: the meaning given, the word? tiles or typed | the site's vocabulary items | the word or an alternative |
+| typed answer: the question, tiles or typed | the phrasebook (and any type with a question and an answer) | the answer or an alternative |
+| word card: which meaning? | **derived**: words of a reading (`eo.ExtractWords`, matched by root) | the game's own |
+| sentence to build | **derived**: a reading's plain sentences | the game's own |
+| video | the site's videos | watched on the site |
 
-The answers are judged as the site judges them (`checkAnswer`): ends trimmed, capitals ignored, an answer per
-gap or one answer cycled over every gap; the site checks no alternatives for fill-ins, so the game doesn't
-either. Typed answers get the x-system exactly as the site's answer field does (`static/eo.js`).
+Tiles are **derived** from the other answers of the same kind (same place, then series, then all), never made
+up. Typed answers get the x-system as the site's answer field does (`static/eo.js`).
 
 ## How the course becomes a game
 
-- **The map:** the lessons are places on a path (two rows on a wide screen, a winding column on a phone). The
-  first is open; each finished lesson opens the next and keeps its stars.
-- **A lesson** opens with its text, as on the site ("Vidi en la retejo" opens the same reading there), then its
-  exercises in a row:
-  1. up to five of its words: *which meaning is this word's?* (four choices),
-  2. the site's own fill-ins: a tile per gap, or typed (desktop keyboard, or "Tajpi", which brings up the phone's
-     keyboard),
-  3. two sentences of its text to put back in order.
+- **The levels:** the first screen shows the course by level, each series a tile with its places done.
+- **A series' map:** its places on a path (two rows on a wide screen, a winding column on a phone; twelve to a
+  page). The first is open; each finished place opens the next and keeps its stars.
+- **A place** opens with its text when it has one, as on the site ("Vidi en la retejo" opens the same page
+  there), then its exercises in a row (see the table above); a video place is watched on the site.
   A wrong answer shows the right one and comes back at the end of the row, as the site keeps a series open until
   each item is right. Stars count the first tries (3: 90 %, 2: 60 %).
-- **The collection:** the words of finished lessons ("Vortoj N" on the map), each with its meaning in the
-  chosen language ("Signifoj: EN" cycles through the 20).
+- **The collection:** the words of the word cards of places done ("Vortoj N"), with their meaning in the
+  language chosen then ("Signifoj: EN" cycles through the 20; the account's language is the default).
 - **Words with affixes** show as their root (*sport-*, "en la teksto: sportisto"), so the meaning shown is
   the root's: *patrino* never appears as "father".
 
@@ -55,9 +76,10 @@ time per sentence of the lesson texts) — a question for Joop, not done here.
 
 **Served by the site.** `make ludo` builds the game into `static/ludo/` (git-ignored, not gcloud-ignored), and
 app.yaml serves it at `/ludo/` as static files (the .wasm as `application/wasm`; 24.9 MB, under App Engine's
-32 MB per file; 6.2 MB gzipped). The site links it from the menu (🎲, "Ludo: la kurso kiel ludo" in all 31
-interface languages) and from every Zagreb lesson and its fill-ins ("Ludi ĉi tiun lecionon kiel ludon" →
-`/ludo/?leciono=zagr-lNN-teksto`, which opens that lesson's text in the game). The game's way back: "Retejo"
+32 MB per file; 6.2 MB gzipped; the built-in part of the course, 33 KB, in project.tar — the rest comes from
+/ludo-api/). The site links it from the menu (🎲, "Ludo: la kurso kiel ludo" in all 31 interface languages)
+and from every exercise page the game shows ("Ludi ĉi tiun lecionon kiel ludon" → `/ludo/?leciono=<place>`,
+which opens that place in the game). The game's way back: "Retejo"
 and "Vidi en la retejo" open the site in the same tab. When the app runs by itself (`go run`), it serves
 `/ludo/` from `static/ludo` too.
 
@@ -66,16 +88,21 @@ sign in), carried by the site's `token` cookie; the game's requests are same-ori
 GameViber's generic `http_post` / `http_get` (answers in the `other-62` event) do the talking; nothing in the
 engine knows the site.
 
-- *Typed answers → the site's own `POST /ekzerco/{slug}/provo`.* A fill-in typed in every gap is queued
+- *Typed answers → the site's own `POST /ekzerco/{slug}/provo`.* A fill-in, vocabulary word or typed answer
+  typed in every gap is queued
   (kept in the progress file), sent one at a time, and taken off the queue only when the site has it.
   **Rule: only typed answers go to the site, so only they move the Glicko ratings; an answer built from
-  tiles never does** (choosing is easier than typing, and the ratings are calibrated on typing). The game's
-  own exercises (word cards, sentences) stay in the game.
+  tiles never does** (choosing is easier than typing, and the ratings are calibrated on typing). Multiple
+  choice isn't sent either, though the site asks for a choice there too: a question for Joop. The game's own
+  exercises (word cards, sentences) stay in the game.
 - *Stars ↔ `/ludo-progreso`.* The game posts its stars per lesson; the site keeps them on the account
   (`User.GameStars`) and answers with the account's state: the stars kept there, and every exercise answered
-  rightly on the site. **Merge rule: the larger per lesson, both on the account and in the game**, so a
-  sync can be repeated, cross another device's, or arrive late, and nothing is ever lost. A lesson whose
-  fill-ins were all answered rightly on the site counts in the game as done with one star.
+  rightly on the site. **Merge rule: the larger per place, both on the account and in the game**, so a
+  sync can be repeated, cross another device's, or arrive late, and nothing is ever lost. A place whose site
+  exercises were all answered rightly on the site (the site works it out: "D" lines) counts in the game as
+  done with one star.
+- *The old progress file* (versions 1–2: stars by Zagreb lesson number, the language by its place in that
+  game's list, the queue) is read into the new one (version 3: stars by place slug, the collection).
 - *When.* At the start, after each finished lesson and each delivered answer, and every 20 seconds, which
   covers coming back to the tab after working on the site (GameViber has no focus event yet).
 - *Offline and failures.* No answer (status 0) or a server error: tried again after 1 s, then 2 s, 4 s … at
@@ -117,25 +144,25 @@ engine knows the site.
 
 ## Checks
 
-- `internal/handler/game_parity_test.go`: the game's parity variant (`game/parity.toml`) answers every exercise
-  through its own GML. The site's `checkAnswer` must agree on all 62 fill-ins, right and wrong; every gap must
-  offer its answer exactly once; 24 sentences and 263 word cards must accept their answer and reject another.
-- `internal/gamedata/play_test.go`: the lessons played headless through the real keys (focus and Enter) — 1, 1–2
-  and all 12 in one go — in both rooms. Each ends with three stars and opens the next lesson.
-- In headless Chromium (desktop 1366×768 and 1920×969; a phone 390×844 at 3× with touch): keyboard, typing
-  with the x-system, mouse, taps, the phone's prompt for typing, the progress kept over a reload.
-- `internal/gamedata/sync_test.go`: the game headless against a stub of the site (the real `/ludo-progreso`
-  handler over an in-memory account): the site's progress comes into the game; a lesson played with one
-  fill-in by tiles and the others typed sends exactly the typed ones, all judged right, the first after one
-  refusal (retry); the stars end on the account. And offline: the queue waits in the progress file and goes
-  when the game is opened again with the site up.
-- `internal/handler/game_test.go`: the merge rule, the endpoint's format and its handler, the lesson links.
-- The whole site run locally (`go run` + the Datastore emulator, seeded), played in headless Chromium.
+- `internal/handler/game_parity_test.go`: the parity variant (`game/parity.toml`) fetches the map and every
+  place's lesson from the real `/ludo-api/` (over the seed) and answers every exercise through the game's own
+  GML; the site's `checkAnswer` must judge alike — all 1200 site exercises (fill-in, multiple choice,
+  vocabulary, typed answer), right and wrong; every gap offers its answer once among its tiles; 77 sentences
+  and 304 word cards take their answer and refuse another.
+- `internal/handler/game_play_test.go`: played headless through the real keys against a stub of the site (the
+  real API and progress handlers, provo judged by `checkAnswer`): a place of every kind — a Zagreb lesson,
+  another reading, vocabulary, multiple choice, the phrasebook, a video — each to its stars, the Zagreb lesson
+  in the tall room too. Sync: the site's progress comes in (a place done on the site, the account's stars);
+  only the typed answers go out (one refused first: retried), all right by `checkAnswer`; the stars end on
+  the account. Offline: from the built-in part, the queue waits and goes on the next opening; the old
+  progress file is read into the new one.
+- `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
+  once per content set, the items' places, a course built from items without series fields.
+- `internal/handler/game_test.go`: the merge rule, the progress format and handler.
+- The whole site run locally (the Datastore emulator, seeded) and played in headless Chromium.
 - The game-playing tests need `GAMEVIBER=/path/to/gameviber` and are skipped without it.
 
 ## Next
 
-1. The rest of the A0–A2 material as further regions of the map (the A0 readings on the alphabet and
-   greetings come before lesson 1; `gramatiko-mc` multiple choice; the phrasebook).
-2. Audio with the esperanto-voice voice, and with it a listening exercise.
-3. Spaced review: words from finished lessons coming back as cards on the map.
+1. Audio with the esperanto-voice voice, and with it a listening exercise.
+2. Spaced review: words from finished lessons coming back as cards on the map.

@@ -1,13 +1,13 @@
-// lesson_open(l): lesson l's text, cut into its paragraphs.
-var t, p;
-global.les = argument0;
-global.np = 0;
-t = global.l_text[argument0] + "#";
-while (string_length(t) > 0) {
-  p = string_pos("#", t);
-  if (p > 1) { global.para[global.np] = string_copy(t, 1, p - 1); global.np += 1; }
-  t = string_delete(t, 1, p);
+// lesson_open(p): place p — from the site when it plays in it (the cached
+// copy at once when its version is the course's), else from the cache or
+// the built-in part.
+var t, i;
+global.pl = argument0;
+global.ser = global.p_series[argument0];
+global.page = 0; global.focus = -1; global.les_fail = 0;
+t = file_read_all(lesson_file(global.p_slug[argument0]));
+if (t != "" && (!global.site || string_pos(chr(9) + global.course_ver + chr(9), t) > 0)) {
+  if (lesson_parse(t)) { lesson_ready(); exit; }
 }
-global.page = 0;
-global.scr = 1;
-global.focus = -1;
+if (global.site) { global.les_want = argument0; global.scr = 6; exit; }
+lesson_offline_load(argument0);

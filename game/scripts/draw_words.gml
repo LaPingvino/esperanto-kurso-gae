@@ -1,10 +1,9 @@
-// draw_words(): the collection: the words of every finished lesson.
-var x, y, w, k, n, col, cw, rows, per, i, shown;
+// draw_words(): the collection: the words of the places done.
+var x, y, w, k, n, col, cw, rows, per, shown;
 x = global.m; w = global.W - 2 * global.m;
 y = global.hh + 20;
-n = 0;
-for (i = 0; i < global.nwords; i += 1) if (global.stars[global.w_lesson[i]] > 0) { global.coll[n] = i; n += 1; }
-txt(x, y, "Viaj vortoj (" + string(n) + " el " + string(global.nwords) + ")", 22, 1, global.C_text);
+n = global.nword;
+txt(x, y, "Viaj vortoj (" + string(n) + ")", 22, 1, global.C_text);
 y += 44;
 if (n == 0) { tw(x, y, "Finu lecionon por kolekti ĝiajn vortojn.", w, 17, 0, global.C_muted); exit; }
 col = 1; if (global.wide) col = 3;
@@ -14,10 +13,9 @@ per = rows * col;
 if (global.page * per >= n) global.page = 0;
 shown = 0;
 for (k = global.page * per; k < n && shown < per; k += 1) {
-  i = global.coll[k];
   font(15, 1, 0);
-  txt(x + (shown div rows) * cw, y + (shown mod rows) * 28, global.w_show[i], 15, 1, global.C_text);
-  txt(x + (shown div rows) * cw + string_width(global.w_show[i]) + 8, y + (shown mod rows) * 28, "— " + global.w_def[i, global.lang_i], 15, 0, global.C_muted);
+  txt(x + (shown div rows) * cw, y + (shown mod rows) * 28, global.word_show[k], 15, 1, global.C_text);
+  txt(x + (shown div rows) * cw + string_width(global.word_show[k]) + 8, y + (shown mod rows) * 28, "— " + global.word_mean[k], 15, 0, global.C_muted);
   shown += 1;
 }
 y = global.H - 72;

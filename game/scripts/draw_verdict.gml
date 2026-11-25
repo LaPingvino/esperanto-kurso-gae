@@ -1,9 +1,10 @@
 // draw_verdict(): right, or wrong with the right answer; then on.
 var y, x, w, s, h, b;
 s = "";
-if (global.kind == 0) s = global.w_show[global.idx] + " = " + global.w_def[global.idx, global.lang_i];
-if (global.kind == 1) s = fill_answer(global.les, global.idx);
-if (global.kind == 2) s = global.b_sent[global.les, global.idx] + ".";
+if (global.kind == 0) s = global.x_show[global.idx] + " = " + global.x_opt[global.idx, global.x_right[global.idx]];
+if (global.kind == 3) s = global.x_opt[global.idx, global.x_right[global.idx]];
+if (global.kind == 1 || global.kind == 4 || global.kind == 5) s = gap_answer(global.idx);
+if (global.kind == 2) s = global.x_sent[global.idx] + ".";
 x = global.m; w = global.W - 2 * global.m;
 h = 150; if (!global.wide) h = 190;
 y = global.H - h;
