@@ -89,6 +89,9 @@ func main() {
 		http.Redirect(w, r, "/ludo/", http.StatusMovedPermanently)
 	})
 	mux.Handle("GET /ludo/", http.StripPrefix("/ludo/", http.FileServer(http.Dir("static/ludo"))))
+	// app.yaml serves /static/ on App Engine; this serves it when the app runs
+	// by itself (go run), so a local run has its stylesheet and pictures.
+	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	mux.HandleFunc("GET /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
