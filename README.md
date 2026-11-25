@@ -70,11 +70,28 @@ The A0 picture series are in `seed/bildvortaro.json`: seed it from the admin
 page like the other seed files. Sources and licences: `static/bildoj/ASSETS.md`
 and the site's `/fontoj` page.
 
+## Dictionaries
+
+A vocab card shows its meaning in the learner's meaning language (the 💬 picker, 101 languages) by a
+fallback chain: the course's own definition → a community translation → [Reta Vortaro](https://reta-vortaro.de)'s
+translation → English → ReVo's Esperanto definition. ReVo's text is an extract embedded in the app
+(`internal/revo/revo.json.gz`): nothing is fetched from ReVo at run time. Every card also links to its ReVo
+article and to [PIV](https://vortaro.net) (Esperanto only; linked, never copied).
+
+Refresh the extract from ReVo's sources (git clones, no scraping):
+
+```bash
+make revo SRC=~/Projects/.cache/revo   # clones or pulls revo-fonto and voko-grundo there, rebuilds the extract
+go test -v -run MeaningCoverage ./internal/handler   # cards with a meaning, per language
+```
+
 ## License
 
-MIT — see [LICENSE](LICENSE). The pictures under `static/bildoj/` keep their
-own licences: the word pictures are OpenMoji's (CC BY-SA 4.0, attribution on
-`/fontoj`), the lesson and kind icons Kenney's (CC0 1.0); see
-`static/bildoj/ASSETS.md`.
+MIT — see [LICENSE](LICENSE), with two exceptions that keep their own licences:
+
+- the pictures under `static/bildoj/`: the word pictures are OpenMoji's (CC BY-SA 4.0, attribution on
+  `/fontoj`), the lesson and kind icons Kenney's (CC0 1.0); see `static/bildoj/ASSETS.md`;
+- `internal/revo/revo.json.gz`, an extract of Reta Vortaro (github.com/revuloj/revo-fonto), licensed under
+  the GNU GPL 2.0 (`internal/revo/LICENSE-REVO`). The site credits ReVo wherever it shows its text.
 
 Contributions welcome. If you build a course for another language on top of this, please let us know!

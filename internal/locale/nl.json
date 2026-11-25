@@ -204,7 +204,7 @@
   "translate.add_prefix": "+ Vertaling toevoegen in",
   "translate.author_label": "gebruiker",
   "translate.community_header": "Community-vertalingen",
-  "translate.dolt_hint": "Suggesties uit het woordenboek",
+  "translate.dolt_hint": "Suggesties uit Reta Vortaro",
   "translate.edit": "Bewerken",
   "translate.login_link": "Log in",
   "translate.login_prompt_prefix": "om een vertaling toe te voegen in",
@@ -235,5 +235,13 @@
   "vote.login_link": "Log in",
   "vote.login_prompt": "om te stemmen.",
   "vote.useful": "Nuttig",
-  "vote.useless": "Niet nuttig"
+  "vote.useless": "Niet nuttig",
+  "dict.fallback_in": "Taal:",
+  "dict.from": "uit",
+  "dict.related": "betekenis van een verwant woord",
+  "dict.look_up": "Opzoeken:",
+  "dict.search": "zoeken",
+  "dict.revo_title": "Reta Vortaro: definities en vertalingen in veel talen",
+  "dict.piv_title": "Plena Ilustrita Vortaro (vortaro.net): alleen Esperanto",
+  "dict.credit": "Betekenissen met ReVo komen uit Reta Vortaro (reta-vortaro.de), onder de GPL 2.0-licentie."
 }

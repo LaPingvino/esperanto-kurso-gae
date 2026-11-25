@@ -64,7 +64,13 @@ excerpts (8, B1–C1), Mazi and Pasporto videos, two articles (C1).
    image items, only 2 phrasebook items (and those ask in English).
 6. **Vocab without meanings:** 335 vocab cards have no definition in any
    language (auto-made from literature readings: Zamenhof's speeches 97,
-   Privat 87, PMEG 78, Grimm/Kabe 46, others 27); a learner can't answer them.
+   Privat 87, PMEG 78, Grimm/Kabe 46, others 27). Since the Reta Vortaro
+   extract (internal/revo), 327 of them show ReVo's meaning (in the learner's
+   language where ReVo has it, else English); 8 only link to ReVo's search.
+   Many cards' generated definitions are copies of another language
+   (Romanian and Swahili = French, Belarusian = Russian, Kurdish = Persian,
+   Hindi, Lao, Burmese, Yoruba, Toki Pona… = English); the site now treats
+   those as missing and shows ReVo's translation instead.
 7. **Topics:** no everyday-situation series past A2 (health, work, travel,
    official letters, discussion and argument), no Esperanto culture/history
    series beyond a few readings.

@@ -17,13 +17,16 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/config"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/handler"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 func main() {
 	cfg := config.Load()
+	go revo.Warm() // the embedded Reta Vortaro extract takes about a second to load
 	ctx := context.Background()
 
 	// --- Datastore ---
@@ -257,6 +260,7 @@ func parseTemplates() (*pageTemplates, error) {
 			"templates/partials/vochdonado.html",
 			"templates/partials/komentoj.html",
 			"templates/partials/traduko.html",
+			"templates/partials/vortaroj.html",
 			path,
 		)
 		if err != nil {
@@ -579,27 +583,8 @@ func templateFuncs() template.FuncMap {
 			}
 			return template.HTML(fmt.Sprintf(`<span title="%d">%s</span>`, n, short))
 		},
-		"langName": func(code string) string {
-			names := map[string]string{
-				"ar": "العربية", "be": "Беларуская", "bn": "বাংলা", "ca": "Català",
-				"cs": "Čeština", "da": "Dansk", "de": "Deutsch", "el": "Ελληνικά",
-				"en": "English", "eo": "Esperanto", "es": "Español", "fa": "فارسی",
-				"fr": "Français", "frp": "Arpitan", "ga": "Gaeilge", "he": "עברית",
-				"hi": "हिन्दी", "hr": "Hrvatski", "hu": "Magyar", "id": "Bahasa Indonesia",
-				"it": "Italiano", "ja": "日本語", "kk": "Қазақша", "km": "ខ្មែរ",
-				"ko": "한국어", "ku": "Kurdî", "lo": "ລາວ", "mg": "Malagasy",
-				"ms": "Bahasa Melayu", "my": "မြန်မာဘာသာ", "nl": "Nederlands",
-				"pl": "Polski", "pt": "Português", "ro": "Română", "ru": "Русский",
-				"sk": "Slovenčina", "sl": "Slovenščina", "sv": "Svenska", "sw": "Kiswahili",
-				"th": "ไทย", "tok": "Toki Pona", "tr": "Türkçe", "uk": "Українська",
-				"ur": "اردو", "vi": "Tiếng Việt", "yo": "Yorùbá", "zh": "中文",
-				"zh-tw": "繁體中文",
-			}
-			if n, ok := names[code]; ok {
-				return n
-			}
-			return code
-		},
+		"langName":   lingvoj.Name,
+		"vocabLangs": lingvoj.Vocab,
 	}
 }
 

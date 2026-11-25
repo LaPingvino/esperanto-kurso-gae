@@ -205,7 +205,7 @@
   "translate.add_prefix": "+ Aldoni tradukon en",
   "translate.author_label": "uzanto",
   "translate.community_header": "Komunumaj tradukoj",
-  "translate.dolt_hint": "Sugestoj el la vortaro",
+  "translate.dolt_hint": "Sugestoj el Reta Vortaro",
   "translate.edit": "Redakti",
   "translate.login_link": "Ensalitu",
   "translate.login_prompt_prefix": "por aldoni tradukon en",
@@ -236,5 +236,13 @@
   "vote.login_link": "Ensalitu",
   "vote.login_prompt": "por voĉdoni.",
   "vote.useful": "Utila",
-  "vote.useless": "Senutila"
+  "vote.useless": "Senutila",
+  "dict.fallback_in": "Lingvo:",
+  "dict.from": "laŭ",
+  "dict.related": "signifo de parenca vorto",
+  "dict.look_up": "Serĉu en:",
+  "dict.search": "serĉo",
+  "dict.revo_title": "Reta Vortaro: difinoj kaj tradukoj en multaj lingvoj",
+  "dict.piv_title": "Plena Ilustrita Vortaro (vortaro.net): nur Esperante",
+  "dict.credit": "Signifoj markitaj per ReVo venas el Reta Vortaro (reta-vortaro.de), laŭ la permesilo GPL 2.0."
 }

@@ -9,7 +9,6 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/dolthub"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
@@ -292,10 +291,19 @@ func (h *ContentHandler) ShowVortaro(w http.ResponseWriter, r *http.Request) {
 		end = total
 	}
 	pageItems := filtered[start:end]
+	userLang := "en"
+	if u != nil && u.Lang != "" {
+		userLang = u.Lang
+	}
+	meanings := make(map[string]Meaning, len(pageItems))
+	for _, it := range pageItems {
+		meanings[it.Slug] = MeaningFor(it, userLang, "")
+	}
 
 	data := map[string]interface{}{
 		"User":       u,
 		"Items":      pageItems,
+		"Meanings":   meanings,
 		"Tag":        tag,
 		"Search":     q.Get("s"),
 		"Page":       page,
@@ -346,21 +354,6 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	tradukData["User"] = u
 	tradukData["UILang"] = UILangFor(u)
 
-	// For vocab items, query DoltHub for both the Esperanto definition and
-	// user-lang translation suggestions in a single request.
-	var doltEoDef, doltSource string
-	if item.Type == "vocab" {
-		if word := item.Word(); word != "" {
-			if result, err := dolthub.LookupVocab(word, userLang); err == nil && result != nil {
-				doltEoDef = result.EoDefinition
-				doltSource = result.Source
-				if len(tradukData["MyLangTranslations"].([]*model.Translation)) == 0 && len(result.Suggestions) > 0 {
-					tradukData["DoltSuggestions"] = result.Suggestions
-				}
-			}
-		}
-	}
-
 	// Inject a just-added community translation passed via query params (avoids
 	// eventual-consistency gap where the Datastore query misses the new entry).
 	if addedLang := r.URL.Query().Get("added_lang"); addedLang == userLang {
@@ -384,6 +377,20 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 				}
 				tradukData["MyLangTranslations"] = append([]*model.Translation{synthetic}, existing...)
 			}
+		}
+	}
+
+	// The meaning in the learner's language, by the fallback chain (course →
+	// community → Reta Vortaro → English → Esperanto), and the dictionary links.
+	var meaning Meaning
+	if item.Type == "vocab" {
+		community := ""
+		if trs, _ := tradukData["MyLangTranslations"].([]*model.Translation); len(trs) > 0 {
+			community = trs[0].Text
+		}
+		meaning = MeaningFor(item, userLang, community)
+		if community == "" && len(meaning.Suggestions) > 0 {
+			tradukData["Suggestions"] = meaning.Suggestions
 		}
 	}
 
@@ -552,8 +559,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"IsFavoriteSeries": isFavoriteSeries,
 		"IsRadiko":         isRadiko,
 		"VocabKind":        vocabKind,
-		"DoltEoDef":        doltEoDef,
-		"DoltSource":       doltSource,
+		"Meaning":          meaning,
 		"ChildSeries":      uniqueChildSeries,
 		"VocabChildSeries": vocabChildSeries,
 		"ParentItem":       parentItem,

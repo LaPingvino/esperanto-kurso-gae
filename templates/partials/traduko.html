@@ -68,10 +68,10 @@
           hx-target="#tradukoj-{{$contentID}}"
           hx-swap="outerHTML">
       <input type="hidden" name="language" value="{{$lang}}">
-      {{if .DoltSuggestions}}
+      {{if .Suggestions}}
       <p><small>💡 {{t $uiLang "translate.dolt_hint"}}:</small></p>
       <div class="dolt-suggestions">
-        {{range .DoltSuggestions}}
+        {{range .Suggestions}}
         <button type="button" class="outline secondary dolt-suggestion-btn"
                 onclick="this.closest('form').querySelector('textarea').value='{{.Text}}'">{{.Text}} <small class="def-source">— {{.Source}}</small></button>
         {{end}}
@@ -91,44 +91,7 @@
     <form method="POST" action="/lingvo" class="inline-lang-form">
       <label>&#128172;
         <select name="lang" onchange="this.form.submit()" class="lang-select-inline">
-          <option value="ar"    {{if eq $lang "ar"   }}selected{{end}}>العربية</option>
-          <option value="be"    {{if eq $lang "be"   }}selected{{end}}>Беларуская</option>
-          <option value="bn"    {{if eq $lang "bn"   }}selected{{end}}>বাংলা</option>
-          <option value="ca"    {{if eq $lang "ca"   }}selected{{end}}>Català</option>
-          <option value="cs"    {{if eq $lang "cs"   }}selected{{end}}>Čeština</option>
-          <option value="da"    {{if eq $lang "da"   }}selected{{end}}>Dansk</option>
-          <option value="de"    {{if eq $lang "de"   }}selected{{end}}>Deutsch</option>
-          <option value="el"    {{if eq $lang "el"   }}selected{{end}}>Ελληνικά</option>
-          <option value="en"    {{if eq $lang "en"   }}selected{{end}}>English</option>
-          <option value="eo"    {{if eq $lang "eo"   }}selected{{end}}>Esperanto</option>
-          <option value="es"    {{if eq $lang "es"   }}selected{{end}}>Español</option>
-          <option value="fa"    {{if eq $lang "fa"   }}selected{{end}}>فارسی</option>
-          <option value="fr"    {{if eq $lang "fr"   }}selected{{end}}>Français</option>
-          <option value="frp"   {{if eq $lang "frp"  }}selected{{end}}>Arpitan</option>
-          <option value="ga"    {{if eq $lang "ga"   }}selected{{end}}>Gaeilge</option>
-          <option value="he"    {{if eq $lang "he"   }}selected{{end}}>עברית</option>
-          <option value="hi"    {{if eq $lang "hi"   }}selected{{end}}>हिन्दी</option>
-          <option value="hr"    {{if eq $lang "hr"   }}selected{{end}}>Hrvatski</option>
-          <option value="hu"    {{if eq $lang "hu"   }}selected{{end}}>Magyar</option>
-          <option value="id"    {{if eq $lang "id"   }}selected{{end}}>Bahasa Indonesia</option>
-          <option value="it"    {{if eq $lang "it"   }}selected{{end}}>Italiano</option>
-          <option value="ja"    {{if eq $lang "ja"   }}selected{{end}}>日本語</option>
-          <option value="kk"    {{if eq $lang "kk"   }}selected{{end}}>Қазақша</option>
-          <option value="ko"    {{if eq $lang "ko"   }}selected{{end}}>한국어</option>
-          <option value="ms"    {{if eq $lang "ms"   }}selected{{end}}>Bahasa Melayu</option>
-          <option value="nl"    {{if eq $lang "nl"   }}selected{{end}}>Nederlands</option>
-          <option value="pl"    {{if eq $lang "pl"   }}selected{{end}}>Polski</option>
-          <option value="pt"    {{if eq $lang "pt"   }}selected{{end}}>Português</option>
-          <option value="ro"    {{if eq $lang "ro"   }}selected{{end}}>Română</option>
-          <option value="ru"    {{if eq $lang "ru"   }}selected{{end}}>Русский</option>
-          <option value="sv"    {{if eq $lang "sv"   }}selected{{end}}>Svenska</option>
-          <option value="sw"    {{if eq $lang "sw"   }}selected{{end}}>Kiswahili</option>
-          <option value="tr"    {{if eq $lang "tr"   }}selected{{end}}>Türkçe</option>
-          <option value="uk"    {{if eq $lang "uk"   }}selected{{end}}>Українська</option>
-          <option value="ur"    {{if eq $lang "ur"   }}selected{{end}}>اردو</option>
-          <option value="vi"    {{if eq $lang "vi"   }}selected{{end}}>Tiếng Việt</option>
-          <option value="zh"    {{if eq $lang "zh"   }}selected{{end}}>中文</option>
-          <option value="zh-tw" {{if eq $lang "zh-tw"}}selected{{end}}>繁體中文</option>
+          {{range vocabLangs}}<option value="{{.Code}}"{{if eq $lang .Code}} selected{{end}}>{{.Name}}</option>{{end}}
         </select>
       </label>
     </form>

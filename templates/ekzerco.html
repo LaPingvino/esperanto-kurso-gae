@@ -140,12 +140,7 @@
   {{else if $vocabKarto}}
   {{/* ── Vocab flashcard mode ── */}}
   {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
-  {{$def := defForLang .Item.Content $lang}}
-  {{$communityDef := ""}}
-  {{with .TradukData}}
-    {{range .MyLangTranslations}}{{if eq $communityDef ""}}{{$communityDef = .Text}}{{end}}{{end}}
-  {{end}}
-  {{$shownDef := $def}}{{if and (eq $shownDef "") $communityDef}}{{$shownDef = $communityDef}}{{end}}
+  {{$m := .Meaning}}
   {{$modo := .VocabModo}}
   <nav class="vocab-mode-switch">
     <a href="?modo=tipi">{{t .UILang "exercise.vocab_mode_type"}}</a>
@@ -156,8 +151,9 @@
     <div class="flashcard-front" id="fc-front-{{.Item.Slug}}">
       {{if eq $modo "karto-eo"}}{{with vortBildo $.Item}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="" width="128" height="128" decoding="async"></span></div>{{end}}{{end}}
       {{if eq $modo "karto-eo"}}
-        {{if $shownDef}}
-        <h2 class="vocab-word">{{$shownDef}}</h2>
+        {{if $m.Text}}
+        <h2 class="vocab-word">{{$m.Text}}</h2>
+        {{template "signifo-fonto" map "M" $m "UILang" .UILang "Hide" true}}
         {{else}}
         <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
         <h2 class="vocab-word">{{.Item.Word}}</h2>
@@ -176,14 +172,16 @@
       {{if eq $modo "karto-eo"}}
       <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
       <h2 class="vocab-word">{{.Item.Word}}</h2>
-      {{if $.DoltEoDef}}<blockquote class="eo-definition"><em>{{$.DoltEoDef}}</em> <small class="def-source">— {{$.DoltSource}}</small></blockquote>
-      {{else if $.Item.Definition}}<blockquote class="eo-definition"><em>{{$.Item.Definition}}</em></blockquote>{{end}}
+      {{if and $m.EoDef (ne $m.Lang "eo")}}<blockquote class="eo-definition"><em>{{$m.EoDef}}</em> <small class="def-source">— <a href="{{$m.ReVoURL}}" target="_blank" rel="noopener">Reta Vortaro</a></small></blockquote>{{end}}
+      {{if $m.Via}}<p class="def-source"><small>{{t .UILang "dict.related"}}: <em>{{$m.Via}}</em></small></p>{{end}}
       {{else}}
-        {{if $shownDef}}
-        <h2 class="vocab-word">{{$shownDef}}</h2>
+        {{if $m.Text}}
+        <h2 class="vocab-word">{{$m.Text}}</h2>
+        {{template "signifo-fonto" map "M" $m "UILang" .UILang}}
         {{else}}
         <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
-        {{if .User}}
+        {{end}}
+        {{if and .User (or (not $m.Text) $m.Fallback)}}
         <div style="margin:0.5rem 0;display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap">
           <input type="text" id="add-def-input-fc-{{.Item.Slug}}"
                  placeholder="{{t .UILang "exercise.add_def_placeholder"}}"
@@ -195,8 +193,8 @@
           </button>
         </div>
         {{end}}
-        {{end}}
       {{end}}
+      {{template "vortaroj-ligiloj" map "M" $m "UILang" .UILang}}
       <form hx-post="/ekzerco/{{.Item.Slug}}/jugxo"
             hx-target="#rezulto"
             hx-swap="innerHTML transition:true">
@@ -271,12 +269,7 @@
 
     {{else if eq .Item.Type "vocab"}}
     {{$lang := "en"}}{{if .User}}{{$lang = .User.Lang}}{{end}}
-    {{$def := defForLang .Item.Content $lang}}
-    {{$communityDef := ""}}
-    {{with .TradukData}}
-      {{range .MyLangTranslations}}{{if eq $communityDef ""}}{{$communityDef = .Text}}{{end}}{{end}}
-    {{end}}
-    {{$shownDef := $def}}{{if and (eq $shownDef "") $communityDef}}{{$shownDef = $communityDef}}{{end}}
+    {{$m := .Meaning}}
     {{$modo := .VocabModo}}
     <nav class="vocab-mode-switch">
       <a href="?modo=tipi"{{if or (eq $modo "") (eq $modo "tipi")}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_type"}}</a>
@@ -284,19 +277,15 @@
       <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
     </nav>
     {{$pic := vortBildo .Item}}
-    {{with $pic}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{if or $def $communityDef}}{{else}}{{t $.UILang "pictures.prompt_alt"}}{{end}}" width="128" height="128" decoding="async"></span></div>{{end}}
-    {{if $def}}
-    {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span></p>
-    {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span></p>
-    {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span></p>
-    {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}}</p>{{end}}
-    <h2 class="vocab-word">{{$def}}</h2>
-    {{else if $communityDef}}
-    {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
-    {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
-    {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
-    {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}} <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
-    <h2 class="vocab-word">{{$communityDef}}</h2>
+    {{with $pic}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{if $m.Text}}{{else}}{{t $.UILang "pictures.prompt_alt"}}{{end}}" width="128" height="128" decoding="async"></span></div>{{end}}
+    {{if and $m.Text (or (not $m.Fallback) (not $pic))}}
+    {{$note := ""}}{{if eq $m.Source "community"}}{{$note = printf "(%s %s)" (t $.UILang "exercise.vocab_community_note") (langName $lang)}}{{end}}
+    {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span> {{if $note}}<small>{{$note}}</small>{{end}}</p>
+    {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span> {{if $note}}<small>{{$note}}</small>{{end}}</p>
+    {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> {{if $note}}<small>{{$note}}</small>{{end}}</p>
+    {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}} {{if $note}}<small>{{$note}}</small>{{end}}</p>{{end}}
+    <h2 class="vocab-word">{{$m.Text}}</h2>
+    {{template "signifo-fonto" map "M" $m "UILang" .UILang "Hide" true}}
     {{else if $pic}}
     {{- /* No shared language needed: the picture asks for the word (for a
          Zagreb root, the root: the answer stays the item's word). */}}
@@ -313,7 +302,9 @@
     {{end}}
     <p>{{t .UILang "exercise.what_means"}}</p>
     <h2 class="vocab-word">{{.Item.Word}}</h2>
-    {{if .User}}
+    {{template "vortaroj-ligiloj" map "M" $m "UILang" .UILang}}
+    {{end}}
+    {{if and .User (or (not $m.Text) $m.Fallback)}}
     <div id="add-def-{{.Item.Slug}}" style="margin:0.5rem 0;display:flex;gap:0.4rem;align-items:center;flex-wrap:wrap">
       <input type="text" id="add-def-input-{{.Item.Slug}}"
              placeholder="{{t .UILang "exercise.add_def_placeholder"}}"
@@ -326,11 +317,8 @@
       </button>
     </div>
     {{end}}
-    {{end}}
-    {{if .DoltEoDef}}
-    <blockquote class="eo-definition"><em>{{.DoltEoDef}}</em> <small class="def-source">— {{.DoltSource}}</small></blockquote>
-    {{else if .Item.Definition}}
-    <blockquote class="eo-definition"><em>{{.Item.Definition}}</em></blockquote>
+    {{if and $m.EoDef (ne $m.Lang "eo")}}
+    <blockquote class="eo-definition"><em>{{$m.EoDef}}</em> <small class="def-source">— Reta Vortaro</small></blockquote>
     {{end}}
     <input type="text" name="answer" placeholder="{{if eq .VocabKind "sufikso"}}{{t .UILang "exercise.sufikso_placeholder"}}{{else if eq .VocabKind "prefikso"}}{{t .UILang "exercise.prefikso_placeholder"}}{{else if .IsRadiko}}{{t .UILang "exercise.radiko_placeholder"}}{{else}}{{t .UILang "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
 
@@ -399,6 +387,12 @@
 </article>
 
 <div id="post-answer" class="post-answer-hidden">
+{{if and (eq .Item.Type "vocab") (not $vocabKarto)}}
+<section class="dict-after">
+{{template "signifo-fonto" map "M" .Meaning "UILang" .UILang}}
+{{template "vortaroj-ligiloj" map "M" .Meaning "UILang" .UILang}}
+</section>
+{{end}}
 {{template "vochdonado.html" map "ContentID" .Item.Slug "VoteScore" .Item.VoteScore "CurrentVote" .CurrentVote "User" .User "UILang" .UILang}}
 
 {{template "komentoj.html" map "ContentID" .Item.Slug "Comments" .Comments "User" .User "UILang" .UILang}}

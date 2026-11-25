@@ -205,7 +205,7 @@
   "translate.add_prefix": "+ Add translation in",
   "translate.author_label": "user",
   "translate.community_header": "Community translations",
-  "translate.dolt_hint": "Suggestions from the dictionary",
+  "translate.dolt_hint": "Suggestions from Reta Vortaro",
   "translate.edit": "Edit",
   "translate.login_link": "Log in",
   "translate.login_prompt_prefix": "to add a translation in",
@@ -236,5 +236,13 @@
   "vote.login_link": "Log in",
   "vote.login_prompt": "to vote.",
   "vote.useful": "Useful",
-  "vote.useless": "Not useful"
+  "vote.useless": "Not useful",
+  "dict.fallback_in": "Language:",
+  "dict.from": "from",
+  "dict.related": "meaning of a related word",
+  "dict.look_up": "Look it up:",
+  "dict.search": "search",
+  "dict.revo_title": "Reta Vortaro: definitions and translations into many languages",
+  "dict.piv_title": "Plena Ilustrita Vortaro (vortaro.net): Esperanto only",
+  "dict.credit": "Meanings marked ReVo come from Reta Vortaro (reta-vortaro.de), under the GPL 2.0 licence."
 }
