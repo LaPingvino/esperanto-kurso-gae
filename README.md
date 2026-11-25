@@ -62,8 +62,19 @@ make ludo     # builds into static/ludo (git-ignored, deployed); needs GAMEVIBER
 make deploy   # make ludo, then gcloud app deploy
 ```
 
+## Pictures
+
+Words, Zagreb lessons and exercise kinds have pictures, mapped through data
+(`internal/bildoj/vortbildoj.json`; the format in `internal/bildoj/README.md`).
+The A0 picture series are in `seed/bildvortaro.json`: seed it from the admin
+page like the other seed files. Sources and licences: `static/bildoj/ASSETS.md`
+and the site's `/fontoj` page.
+
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see [LICENSE](LICENSE). The pictures under `static/bildoj/` keep their
+own licences: the word pictures are OpenMoji's (CC BY-SA 4.0, attribution on
+`/fontoj`), the lesson and kind icons Kenney's (CC0 1.0); see
+`static/bildoj/ASSETS.md`.
 
 Contributions welcome. If you build a course for another language on top of this, please let us know!
