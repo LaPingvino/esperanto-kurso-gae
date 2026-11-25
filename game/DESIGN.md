@@ -138,7 +138,7 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   series tiles, the dock. There is no scrolling, so a multiple-choice screen steps its type down
   (`draw_choice`, measured by `choice_h`) until question and options fit above the dock; after the verdict only
   the right option and a wrong pick stay. Anything that still doesn't fit counts in `global.ovf` (the
-  tests expect 0). Checked on every live place of the site (186, in English and German, both rooms, wrong
+  tests expect 0). Checked on every live place of the site (212, in English and German, both rooms, wrong
   answers first so every verdict dock shows), e.g. "„da“ diras kvanton (glaso plena de vino); „de“
   montras alian rilaton, ekz. glaso por vino (vinglaso)".
 - **The levels** as KER chips (the current level filled, the others tinted), series as tiles with their

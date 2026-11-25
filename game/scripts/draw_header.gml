@@ -30,7 +30,7 @@ if (global.scr == 2 || global.scr == 1) { // an activity: sign, progress, n/N, Ã
 sign(global.m, by + b / 2, 14);
 txt(global.m + 40, by + 10, "Esperanto-kurso", 20, 1, global.C_link);
 font(20, 1, 0);
-txt(global.m + 40 + string_width("Esperanto-kurso") + 10, by + 14, "la ludo", 15, 0, global.C_muted);
+if (global.wide || global.scr == 5) txt(global.m + 40 + string_width("Esperanto-kurso") + 10, by + 14, "la ludo", 15, 0, global.C_muted); // a phone: no room beside the way back
 if (global.scr == 5) {
   if (!global.wide) { y = 60; x = global.W - global.m; } else y = by;
   w = bw("Retejo"); button(x - w, y, x, y + b, "Retejo", 4, 2); x -= w + 10;
