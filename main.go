@@ -60,6 +60,7 @@ func main() {
 	exerciseH := handler.NewExerciseHandler(tmpl, contentStore, userStore, attemptStore, voteStore)
 	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore, userStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
+	gameH := handler.NewGameHandler(userStore, attemptStore)
 
 	// --- Router ---
 	mux := http.NewServeMux()
@@ -78,6 +79,15 @@ func main() {
 	mux.HandleFunc("GET /serioj-nav", contentH.SeriesNavOptions)
 	mux.HandleFunc("GET /serioj", contentH.ShowSeriesBrowser)
 	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
+	// The course as a game (game/; built into static/ludo by `make ludo`). On
+	// App Engine app.yaml serves /ludo/ as static files; these serve them when
+	// the app runs by itself (go run). The progress endpoint is the app's.
+	mux.HandleFunc("GET /ludo", func(w http.ResponseWriter, r *http.Request) {
+		http.Redirect(w, r, "/ludo/", http.StatusMovedPermanently)
+	})
+	mux.Handle("GET /ludo/", http.StripPrefix("/ludo/", http.FileServer(http.Dir("static/ludo"))))
+	mux.HandleFunc("GET /ludo-progreso", gameH.Progress)
+	mux.HandleFunc("POST /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
 	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)

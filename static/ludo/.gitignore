@@ -1,0 +1,3 @@
+# The game's web build (make ludo): built before each deploy, never committed.
+*
+!.gitignore

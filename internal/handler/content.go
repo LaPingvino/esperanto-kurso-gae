@@ -537,6 +537,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"PrevInSeries":     prevInSeries,
 		"NextInSeries":     nextInSeries,
 		"VocabTag":         vocabTag,
+		"GameLesson":       GameLesson(item),
 		"VocabItems":       vocabItems,
 		"SeriesTotal":      seriesTotal,
 		"SeriesPos":        seriesPos,

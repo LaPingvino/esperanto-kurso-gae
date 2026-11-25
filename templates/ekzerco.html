@@ -72,6 +72,10 @@
   </nav>
   {{end}}
 
+  {{if .GameLesson}}
+  <p class="game-link"><a href="/ludo/?leciono={{.GameLesson}}">&#127922; {{t .UILang "exercise.play_as_game"}}</a></p>
+  {{end}}
+
   {{/* ── Passive types + vocab flashcard: Anki judgment, no text input ── */}}
   {{if or (eq .Item.Type "reading") (eq .Item.Type "phrasebook") (eq .Item.Type "video") $vocabKarto}}
 

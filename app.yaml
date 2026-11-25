@@ -15,6 +15,18 @@ handlers:
   - url: /robots.txt
     static_files: static/robots.txt
     upload: static/robots.txt
+  # The course as a game (game/), built into static/ludo by `make ludo`
+  # before deploying; App Engine serves it as static files.
+  - url: /ludo/
+    static_files: static/ludo/index.html
+    upload: static/ludo/index\.html
+  - url: /ludo/(.*\.wasm)
+    static_files: static/ludo/\1
+    upload: static/ludo/.*\.wasm
+    mime_type: application/wasm
+  - url: /ludo/(.+)
+    static_files: static/ludo/\1
+    upload: static/ludo/.+
   - url: /static
     static_dir: static
   - url: /admin/initial

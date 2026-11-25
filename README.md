@@ -29,7 +29,7 @@ This codebase is generic enough to run a course for any language. To adapt it:
 1. Replace seed data in `seed/` with exercises for your target language
 2. Update the locale strings in `internal/locale/` (the Esperanto UI strings are in `eo.json`; pick the closest existing language or add a new one)
 3. Update `app.yaml` with your own GAE project ID
-4. Deploy to GAE with `gcloud app deploy`
+4. Build the game (below), then deploy to GAE with `gcloud app deploy` (or both at once: `make deploy`)
 
 The only Esperanto-specific logic is in the seed data and locale strings — the engine itself is language-agnostic.
 
@@ -47,6 +47,18 @@ With the Datastore emulator:
 gcloud beta emulators datastore start &
 $(gcloud beta emulators datastore env-init)
 go run main.go
+```
+
+## The course as a game (/ludo/)
+
+`game/` is the same course played as a game (a [GameViber](https://github.com/LaPingvino/gameviber) project,
+built to WebAssembly); its content is exported from `seed/` at build time, and it answers by the site's own
+rules. The site serves it at `/ludo/` and links it from the menu (🎲) and from each Zagreb lesson. Progress
+syncs with the player's account in the background (see `game/DESIGN.md`).
+
+```bash
+make ludo     # builds into static/ludo (git-ignored, deployed); needs GAMEVIBER and GAMEVIBER_SRC
+make deploy   # make ludo, then gcloud app deploy
 ```
 
 ## License
