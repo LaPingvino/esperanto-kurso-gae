@@ -1595,13 +1595,19 @@ h2 .muted { color: var(--pico-muted-color); font-weight: normal; }
 }
 .pic-tile { width: 4.25rem; height: 4.25rem; }
 .pic-tile img { width: 3.5rem; height: 3.5rem; }
+/* .exercise-card img (a card's cover picture) must not stretch these */
+.pic-tile img, img.series-pic, img.lesson-pic {
+  object-fit: contain;
+  margin: 0;
+  border-radius: 0;
+}
 .pic-tile-lg { width: 9rem; height: 9rem; border-radius: 0.75rem; }
 .pic-tile-lg img { width: 8rem; height: 8rem; }
 .pic-tile-sm { width: 2.5rem; height: 2.5rem; border-radius: 0.35rem; }
 .pic-tile-sm img { width: 2rem; height: 2rem; }
-.series-pic { width: 2.5rem; height: 2.5rem; padding: 0.2rem; border-radius: 0.4rem; }
-.lesson-pic {
-  width: 3rem; height: 3rem; padding: 0.2rem;
+img.series-pic { width: 2.5rem; height: 2.5rem; padding: 0.2rem; border-radius: 0.4rem; }
+img.lesson-pic {
+  width: 3rem; height: 3rem; padding: 0.2rem; border-radius: 0.4rem;
   margin-inline-end: 0.6rem; vertical-align: middle;
 }
 .reading-title { display: flex; align-items: center; }

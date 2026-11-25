@@ -111,6 +111,9 @@ func TestForSeries(t *testing.T) {
 	if got := ForSeries("bildoj-bestoj"); got == "" {
 		t.Error("bildoj-bestoj: no picture")
 	}
+	if got := ForReading("bildoj-bestoj-teksto", "bildoj-bestoj"); got != "" {
+		t.Errorf("an A0 picture reading has a lesson picture: %q", got)
+	}
 	if got := ForReading("zagr-l05-teksto", ""); got != Base+"lokoj/l05.png" {
 		t.Errorf("zagr-l05-teksto: %q", got)
 	}

@@ -162,10 +162,12 @@ func ForSeries(slug string) string {
 // ForReading returns the lesson picture of a Zagreb lesson's reading text
 // (slug zagr-lNN-teksto, or series zagr-lNN), or "".
 func ForReading(slug, series string) string {
-	if u := ForSeries(series); u != "" && strings.HasPrefix(series, "zagr-l") {
-		return u
+	if strings.HasPrefix(series, "zagr-l") {
+		if u := ForSeries(series); u != "" {
+			return u
+		}
 	}
-	if s, ok := strings.CutSuffix(slug, "-teksto"); ok {
+	if s, ok := strings.CutSuffix(slug, "-teksto"); ok && strings.HasPrefix(s, "zagr-l") {
 		return ForSeries(s)
 	}
 	return ""
