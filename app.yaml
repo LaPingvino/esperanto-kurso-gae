@@ -10,6 +10,9 @@ env_variables:
   FIRESTORE_PROJECT_ID: "esperanto-kurso"
   WEBAUTHN_RPID: "esperanto-kurso.net"
   WEBAUTHN_ORIGIN: "https://esperanto-kurso.net"
+  # The builder's key's SHA-256 only (internal/handler/builder.go; the key is on
+  # the VPS, ~/.config/esperanto-kurso-builder/key). Empty: the API is off.
+  EK_BUILDER_KEY_SHA256: "9ab2e3bd8c1fbd89456660c755fed32d4b07ce0343ce311ad4fd9f41a7fb857f"
 
 handlers:
   - url: /robots.txt

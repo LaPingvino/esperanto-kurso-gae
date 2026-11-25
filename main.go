@@ -160,6 +160,9 @@ func main() {
 	mux.Handle("POST /admin/uzantoj/{id}/nomo-forigi", ra(adminH.UnlinkUsername))
 	mux.HandleFunc("GET /admin/purigxi", adminH.CleanupInactiveUsers)
 
+	// The builder's API, by key (handler/builder.go; scripts/builder.sh).
+	handler.NewBuilderAPI(contentStore, cfg.BuilderKeyHash).Routes(mux)
+
 	// Profile routes (logged-in users).
 	mux.HandleFunc("POST /profilo/nomo", authH.SetUsername)
 	mux.HandleFunc("POST /profilo/nomo/forigi", authH.ClearUsername)

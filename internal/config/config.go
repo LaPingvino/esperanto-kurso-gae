@@ -1,12 +1,18 @@
 package config
 
-import "os"
+import (
+	"os"
+	"strings"
+)
 
 type Config struct {
-	ProjectID    string
-	Port         string
-	WebAuthnRPID string
+	ProjectID      string
+	Port           string
+	WebAuthnRPID   string
 	WebAuthnOrigin string
+	// BuilderKeyHash: the SHA-256 (hex) of the builder's key, from
+	// EK_BUILDER_KEY_SHA256 ("" the builder API is off; handler/builder.go).
+	BuilderKeyHash string
 }
 
 func Load() *Config {
@@ -31,5 +37,6 @@ func Load() *Config {
 		Port:           port,
 		WebAuthnRPID:   rpID,
 		WebAuthnOrigin: origin,
+		BuilderKeyHash: strings.ToLower(strings.TrimSpace(os.Getenv("EK_BUILDER_KEY_SHA256"))),
 	}
 }
