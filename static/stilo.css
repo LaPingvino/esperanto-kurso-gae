@@ -302,6 +302,8 @@ body.on-stage { background: var(--paper); }
 .tile[data-s="wrong"] .badge, .gap-mark.wrong { background: var(--wrong-edge); }
 .tile[data-s="done"] .badge { background: transparent; color: var(--ink-muted); position: static; width: auto; height: auto; }
 .tiles[data-answered] .tile { cursor: default; }
+/* Pico sizes a label with a radio to its content; a tile fills its cell. */
+.tiles > label.tile:has(input) { width: 100%; margin-bottom: var(--tile-lift); }
 
 /* Text answers: one field, or the gaps of a fill-in, in the reading face */
 .answer-input, .stage-body input[type="text"].answer-input { width: 100%; min-height: var(--tile-min); font: 400 var(--text-lg) var(--font-read); color: var(--ink); background: var(--surface); border: var(--tile-border) solid var(--edge); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); margin: 0; }
@@ -599,3 +601,5 @@ table td, table th { padding: var(--space-2) var(--space-3); }
   .verdict-in { animation: rise 180ms var(--ease); }
   @keyframes rise { from { transform: translateY(6px); opacity: .4; } to { transform: none; opacity: 1; } }
 }
+.after-stage .vochdonado > .vote-inline { display: none; } /* the dock already holds the votes */
+.kind + h1, .kind + h2 { margin-top: var(--space-2); }

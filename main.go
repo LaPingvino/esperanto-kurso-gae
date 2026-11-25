@@ -6,12 +6,12 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"os"
 	"html"
 	"html/template"
 	"io"
 	"log"
 	"net/http"
+	"os"
 	"path/filepath"
 	"strings"
 
@@ -224,26 +224,26 @@ func parseTemplates() (*pageTemplates, error) {
 	// Pages that use base.html layout.
 	// key = name used in ExecuteTemplate calls; value = template file path.
 	pages := map[string]string{
-		"hejmo.html":            "templates/hejmo.html",
-		"ekzerco.html":          "templates/ekzerco.html",
-		"vortaro.html":          "templates/vortaro.html",
-		"enskribi.html":         "templates/enskribi.html",
-		"admin_dashboard.html":  "templates/admin/dashboard.html",
-		"listo.html":            "templates/admin/listo.html",
-		"redaktilo.html":        "templates/admin/redaktilo.html",
-		"moderigo.html":         "templates/admin/moderigo.html",
-		"admin_uzantoj.html":    "templates/admin/uzantoj.html",
-		"admin_vortaro_gen.html": "templates/admin/vortaro-gen.html",
-		"sercxi.html":           "templates/sercxi.html",
-		"etikedoj.html":         "templates/etikedoj.html",
-		"steloj.html":           "templates/steloj.html",
-		"mapo.html":             "templates/mapo.html",
-		"gramatiko.html":        "templates/gramatiko.html",
-		"gramatikero.html":      "templates/gramatikero.html",
-		"vojkrucigxo.html":      "templates/vojkrucigxo.html",
-		"fontoj.html":           "templates/fontoj.html",
-		"admin-komentoj.html":       "templates/admin/komentoj.html",
-		"admin-seed-rigardi.html":   "templates/admin/seed-rigardi.html",
+		"hejmo.html":              "templates/hejmo.html",
+		"ekzerco.html":            "templates/ekzerco.html",
+		"vortaro.html":            "templates/vortaro.html",
+		"enskribi.html":           "templates/enskribi.html",
+		"admin_dashboard.html":    "templates/admin/dashboard.html",
+		"listo.html":              "templates/admin/listo.html",
+		"redaktilo.html":          "templates/admin/redaktilo.html",
+		"moderigo.html":           "templates/admin/moderigo.html",
+		"admin_uzantoj.html":      "templates/admin/uzantoj.html",
+		"admin_vortaro_gen.html":  "templates/admin/vortaro-gen.html",
+		"sercxi.html":             "templates/sercxi.html",
+		"etikedoj.html":           "templates/etikedoj.html",
+		"steloj.html":             "templates/steloj.html",
+		"mapo.html":               "templates/mapo.html",
+		"gramatiko.html":          "templates/gramatiko.html",
+		"gramatikero.html":        "templates/gramatikero.html",
+		"vojkrucigxo.html":        "templates/vojkrucigxo.html",
+		"fontoj.html":             "templates/fontoj.html",
+		"admin-komentoj.html":     "templates/admin/komentoj.html",
+		"admin-seed-rigardi.html": "templates/admin/seed-rigardi.html",
 	}
 
 	// Standalone partials (returned as HTMX fragments — no base layout).
@@ -353,7 +353,7 @@ func templateFuncs() template.FuncMap {
 			}
 			return nil
 		},
-		"tekstBildoj":  bildoj.InText,
+		"tekstBildoj": bildoj.InText,
 		"hasTag": func(item *model.ContentItem, tag string) bool {
 			for _, t := range item.Tags {
 				if t == tag {
@@ -362,8 +362,8 @@ func templateFuncs() template.FuncMap {
 			}
 			return false
 		},
-		"serioBildo":   bildoj.ForSeries,
-		"legadoBildo":  bildoj.ForReading,
+		"serioBildo":  bildoj.ForSeries,
+		"legadoBildo": bildoj.ForReading,
 		"t": func(lang, key string) string {
 			return locale.T(lang, key)
 		},

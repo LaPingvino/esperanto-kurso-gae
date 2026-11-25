@@ -9,26 +9,26 @@ import (
 
 // User represents a learner on the platform.
 type User struct {
-	ID         string               `firestore:"-"`
-	Token      string               `firestore:"token"`
-	Rating     float64              `firestore:"rating"`
-	RD         float64              `firestore:"rd"`
-	Volatility float64              `firestore:"volatility"`
-	Username   string               `firestore:"username"`  // optional, unique display name
-	Role       string               `firestore:"role"` // "user"|"mod"|"admin"
-	Lang       string               `firestore:"lang"`    // preferred language for definitions, e.g. "en"
-	UILang     string               `datastore:"ui_lang"` // preferred interface language, e.g. "en", "nl", "eo"
+	ID         string  `firestore:"-"`
+	Token      string  `firestore:"token"`
+	Rating     float64 `firestore:"rating"`
+	RD         float64 `firestore:"rd"`
+	Volatility float64 `firestore:"volatility"`
+	Username   string  `firestore:"username"` // optional, unique display name
+	Role       string  `firestore:"role"`     // "user"|"mod"|"admin"
+	Lang       string  `firestore:"lang"`     // preferred language for definitions, e.g. "en"
+	UILang     string  `datastore:"ui_lang"`  // preferred interface language, e.g. "en", "nl", "eo"
 	// Passkeys are serialized as JSON bytes in Firestore.
-	PasskeysJSON []byte             `firestore:"passkeys_json"`
-	Passkeys     []webauthn.Credential `firestore:"-"`
-	Progress     map[string]bool    `firestore:"progress"`
-	GameStars    map[string]int     `firestore:"-"` // the game's stars per lesson (gamestars.go)
-	Favorites      []string           `firestore:"favorites"`
-	KeepDataDays   int                `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
-	StreakDays      int                `firestore:"streak_days"`
-	StreakStartAt   time.Time          `firestore:"streak_start_at"`
-	CreatedAt    time.Time          `firestore:"created_at"`
-	LastSeenAt   time.Time          `firestore:"last_seen_at"`
+	PasskeysJSON  []byte                `firestore:"passkeys_json"`
+	Passkeys      []webauthn.Credential `firestore:"-"`
+	Progress      map[string]bool       `firestore:"progress"`
+	GameStars     map[string]int        `firestore:"-"` // the game's stars per lesson (gamestars.go)
+	Favorites     []string              `firestore:"favorites"`
+	KeepDataDays  int                   `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
+	StreakDays    int                   `firestore:"streak_days"`
+	StreakStartAt time.Time             `firestore:"streak_start_at"`
+	CreatedAt     time.Time             `firestore:"created_at"`
+	LastSeenAt    time.Time             `firestore:"last_seen_at"`
 	// LastPracticeAt is when the user last completed an exercise. Unlike
 	// LastSeenAt (bumped on every page view), only this drives the streak.
 	LastPracticeAt time.Time `firestore:"last_practice_at"`

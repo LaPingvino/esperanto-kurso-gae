@@ -26,6 +26,7 @@ func main() {
 	projectID := flag.String("project", "esperanto-kurso", "GCP project ID")
 	seedDir := flag.String("dir", "./seed", "Directory containing JSON seed files")
 	promote := flag.String("promote", "", "Token of user to promote to admin role")
+	flag.StringVar(&defaultStatus, "status", defaultStatus, "status of items whose file gives none")
 	flag.Parse()
 
 	ctx := context.Background()
@@ -89,7 +90,20 @@ type seedItem struct {
 	RD         float64                `json:"rd"`
 	Volatility float64                `json:"volatility"`
 	ImageURL   string                 `json:"image_url"`
+	// The series, under both spellings the files use: the builder's
+	// snake_case and the export's Go field names.
+	SeriesSlug    string `json:"series_slug"`
+	SeriesOrder   int    `json:"series_order"`
+	SeriesLabel   string `json:"series_label"`
+	SeriesParent  string `json:"series_parent"`
+	XSeriesSlug   string `json:"SeriesSlug"`
+	XSeriesOrder  int    `json:"SeriesOrder"`
+	XSeriesLabel  string `json:"SeriesLabel"`
+	XSeriesParent string `json:"SeriesParent"`
 }
+
+// defaultStatus is the status of items whose file gives none (-status).
+var defaultStatus = "draft"
 
 func seedFile(ctx context.Context, cs *store.ContentStore, path string) error {
 	f, err := os.Open(path)
@@ -120,25 +134,38 @@ func seedFile(ctx context.Context, cs *store.ContentStore, path string) error {
 			si.Volatility = 0.06
 		}
 		if si.Status == "" {
-			si.Status = "draft"
+			si.Status = defaultStatus
+		}
+		pick := func(a, b string) string {
+			if a != "" {
+				return a
+			}
+			return b
+		}
+		if si.SeriesOrder == 0 {
+			si.SeriesOrder = si.XSeriesOrder
 		}
 
 		item := &model.ContentItem{
-			Slug:       si.Slug,
-			Type:       si.Type,
-			Content:    si.Content,
-			Tags:       si.Tags,
-			Source:     si.Source,
-			AuthorID:   "seed",
-			Status:     si.Status,
-			Rating:     si.Rating,
-			RD:         si.RD,
-			Volatility: si.Volatility,
-			VoteScore:  0,
-			Version:    1,
-			ImageURL:   si.ImageURL,
-			CreatedAt:  time.Now(),
-			UpdatedAt:  time.Now(),
+			Slug:         si.Slug,
+			Type:         si.Type,
+			Content:      si.Content,
+			Tags:         si.Tags,
+			Source:       si.Source,
+			AuthorID:     "seed",
+			Status:       si.Status,
+			Rating:       si.Rating,
+			RD:           si.RD,
+			Volatility:   si.Volatility,
+			VoteScore:    0,
+			Version:      1,
+			ImageURL:     si.ImageURL,
+			SeriesSlug:   pick(si.SeriesSlug, si.XSeriesSlug),
+			SeriesOrder:  si.SeriesOrder,
+			SeriesLabel:  pick(si.SeriesLabel, si.XSeriesLabel),
+			SeriesParent: pick(si.SeriesParent, si.XSeriesParent),
+			CreatedAt:    time.Now(),
+			UpdatedAt:    time.Now(),
 		}
 
 		if err := cs.Create(ctx, item); err != nil {

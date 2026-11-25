@@ -55,6 +55,10 @@ func TestPictureExercisesRender(t *testing.T) {
 		t.Errorf("picture exercise has no picture %s", dog)
 	}
 	assertNoLeak(t, html, "hundo")
+	// An activity runs on the stage, without the site header and footer.
+	if strings.Contains(html, `class="sh"`) || strings.Contains(html, `class="vojo"`) || !strings.Contains(html, `id="dock"`) {
+		t.Error("the exercise is not on the stage alone")
+	}
 	// with definitions, the alt is the word in the learner's language
 	mc.Content["definitions"] = map[string]interface{}{"en": "dog"}
 	if html = render(t, "ekzerco.html", map[string]interface{}{"Item": mc}); !strings.Contains(html, `alt="dog"`) {

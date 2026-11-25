@@ -178,7 +178,7 @@ async function loginPasskey(mediation) {
 // On page load: if the user has no token and the browser supports conditional
 // mediation, silently prompt for a saved passkey via the autofill UI.
 document.addEventListener('DOMContentLoaded', async function () {
-  if (getToken()) return; // already have a session
+  if (window.getEoToken && window.getEoToken()) return; // already have a session
   if (!window.PublicKeyCredential) return;
   try {
     const supported = await PublicKeyCredential.isConditionalMediationAvailable?.();

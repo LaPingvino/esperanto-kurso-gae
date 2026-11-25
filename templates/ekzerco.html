@@ -2,8 +2,8 @@
 
 {{define "title"}}{{with .Item}}{{if .Title}}{{.Title}}{{else if .Word}}{{.Word}}{{else}}{{itemKind .}}{{end}}{{end}} — Esperanto-kurso{{end}}
 {{define "korpo"}}on-stage{{end}}
-{{define "kapo"}}{{end}}
-{{define "piedo"}}{{end}}
+{{define "kapo"}}<!-- the stage runs without the site header -->{{end}}
+{{define "piedo"}}<!-- and without the footer -->{{end}}
 {{define "mainclass"}} class="stage"{{end}}
 
 {{- /* The activity stage (kurso-design DESIGN.md "The activity stage"): top

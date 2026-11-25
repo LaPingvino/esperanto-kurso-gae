@@ -159,6 +159,10 @@ func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *
 		correctAnswer = strings.Join(item.GapAnswers(), " / ")
 	case "vocab":
 		correctAnswer = item.Word()
+	case "multiplechoice":
+		if opts, i := item.Options(), item.CorrectIndex(); i >= 0 && i < len(opts) {
+			correctAnswer = opts[i]
+		}
 	}
 	// The gloss: the word in the learner's language, for words and pictures.
 	gloss := ""
