@@ -101,6 +101,7 @@
     {{end}}
     {{$uiLang := "en"}}{{if .User}}{{$uiLang = .User.Lang}}{{end}}
     <p>{{linkifyText .Item.Text .VocabItems $uiLang}}</p>
+    {{with index .Item.Content "source_url"}}<p class="reading-source"><small>{{t $.UILang "exercise.source_label"}} <a href="{{.}}" rel="noopener">{{if $.Item.Source}}{{$.Item.Source}}{{else}}{{.}}{{end}}</a>{{with index $.Item.Content "license"}} · {{.}}{{end}}</small></p>{{end}}
   </article>
   {{if .ChildSeries}}
   <nav class="child-series-nav">

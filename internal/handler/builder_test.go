@@ -40,6 +40,12 @@ func (f *fakeContent) PatchContentFields(_ context.Context, it *model.ContentIte
 	f.m[it.Slug] = &c
 	return nil
 }
+func (f *fakeContent) UpdateRating(_ context.Context, slug string, r, rd, vol float64) error {
+	if it, ok := f.m[slug]; ok {
+		it.Rating, it.RD, it.Volatility = r, rd, vol
+	}
+	return nil
+}
 func (f *fakeContent) ListForAdmin(_ context.Context, status string, _ int) ([]*model.ContentItem, error) {
 	var out []*model.ContentItem
 	for _, it := range f.m {
@@ -193,6 +199,14 @@ func TestBuilderApprovalFlow(t *testing.T) {
 	}
 	if it := fc.m["c2-test-mc1"]; it.Status != "pending" || it.Rating != 2345 || it.Content["question"] != "Kio do?" {
 		t.Errorf("updated: %+v", it)
+	}
+	// rerate: the item starts again at its (new) level
+	rer := strings.Replace(upd, `"level":"C2"`, `"level":"B2","rerate":true`, 1)
+	if w := call(mux, "POST", "/builder-api/content", testKey, rer); w.Code != 200 {
+		t.Fatalf("rerate: %d %s", w.Code, w.Body)
+	}
+	if it := fc.m["c2-test-mc1"]; it.Rating != 1700 || it.RD != 200 || it.Status != "pending" {
+		t.Errorf("rerated: %+v", it)
 	}
 	// an approved item updated without trusted stays approved (no silent unpublish)
 	if w := call(mux, "POST", "/builder-api/content", testKey, readingJSON); w.Code != 200 || fc.m["c2-test-teksto"].Status != "approved" {

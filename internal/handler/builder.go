@@ -59,6 +59,7 @@ type builderStore interface {
 	Create(ctx context.Context, item *model.ContentItem) error
 	PatchContentFields(ctx context.Context, item *model.ContentItem) error
 	ListForAdmin(ctx context.Context, statusFilter string, limit int) ([]*model.ContentItem, error)
+	UpdateRating(ctx context.Context, slug string, rating, rd, volatility float64) error
 }
 
 // BuilderAPI serves /builder-api/….
@@ -174,6 +175,10 @@ type BuilderItem struct {
 	Rating float64 `json:"rating,omitempty"`
 	// Trusted: publish at once (approved) instead of pending.
 	Trusted bool `json:"trusted,omitempty"`
+	// Rerate: on an update, start the rating again from Level or Rating
+	// (RD 200), for an item whose first level was wrong; Glicko then
+	// settles it again.
+	Rerate bool `json:"rerate,omitempty"`
 	// read back only
 	Status    string    `json:"status,omitempty"`
 	AuthorID  string    `json:"author_id,omitempty"`
@@ -195,6 +200,16 @@ func builderItemOf(it *model.ContentItem) BuilderItem {
 // (content.go cefrToRatingRange; C2 has no top, so 2100).
 var builderLevelRating = map[string]float64{
 	"A0": 900, "A1": 1100, "A2": 1300, "B1": 1500, "B2": 1700, "C1": 1900, "C2": 2100,
+}
+
+// builderStartRating: the rating an item asks to start at (Rating, else its
+// Level's), and whether it asks.
+func builderStartRating(it *BuilderItem) (float64, bool) {
+	if it.Rating > 0 {
+		return it.Rating, true
+	}
+	r, ok := builderLevelRating[it.Level]
+	return r, ok
 }
 
 var builderSlugRE = regexp.MustCompile(`^[a-z0-9][a-z0-9-]{0,119}$`)
@@ -413,8 +428,8 @@ func (b *BuilderAPI) get(w http.ResponseWriter, r *http.Request) {
 }
 
 // put: one item or an array — each added (pending, or approved if trusted),
-// or, if it is already the builder's, updated (its status and learned rating
-// kept unless trusted publishes it). The whole batch is checked first: one
+// or, if it is already the builder's, updated (its status kept unless trusted
+// publishes it; its learned rating kept unless rerate). The whole batch is checked first: one
 // bad item and nothing is written.
 func (b *BuilderAPI) put(w http.ResponseWriter, r *http.Request) {
 	if !b.allowed(w, r) {
@@ -503,6 +518,17 @@ func (b *BuilderAPI) put(w http.ResponseWriter, r *http.Request) {
 				status = old.Status
 			}
 			item.Status = status
+			if it.Rerate { // before the patch, whose version bump makes every instance reload
+				r, ok := builderStartRating(it)
+				if !ok {
+					builderJSON(w, http.StatusBadRequest, map[string]any{"error": it.Slug + ": rerate needs a level or a rating", "written": results})
+					return
+				}
+				if err := b.content.UpdateRating(ctx, it.Slug, r, 200, 0.06); err != nil {
+					builderJSON(w, http.StatusInternalServerError, map[string]any{"error": err.Error(), "written": results})
+					return
+				}
+			}
 			if err := b.content.PatchContentFields(ctx, item); err != nil {
 				builderJSON(w, http.StatusInternalServerError, map[string]any{"error": err.Error(), "written": results})
 				return
@@ -512,10 +538,8 @@ func (b *BuilderAPI) put(w http.ResponseWriter, r *http.Request) {
 		}
 		item.Status = status
 		item.Rating, item.RD, item.Volatility = 1500, 200, 0.06
-		if it.Rating > 0 {
-			item.Rating = it.Rating
-		} else if lr, ok := builderLevelRating[it.Level]; ok {
-			item.Rating = lr
+		if r, ok := builderStartRating(it); ok {
+			item.Rating = r
 		}
 		if err := b.content.Create(ctx, item); err != nil {
 			builderJSON(w, http.StatusInternalServerError, map[string]any{"error": err.Error(), "written": results})
