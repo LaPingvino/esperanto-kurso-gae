@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"context"
 	"fmt"
 	"math/rand"
 	"net/http"
@@ -24,6 +25,9 @@ type ContentHandler struct {
 	translations *store.TranslationStore
 	users        *store.UserStore
 	attempts     *store.AttemptStore
+	// GamePlace is the game's place showing an item, for the "play as a
+	// game" link (GameAPI.PlaceOf); nil: GameLesson's Zagreb rule.
+	GamePlace func(ctx context.Context, itemSlug string) string
 }
 
 // NewContentHandler creates a ContentHandler.
@@ -537,7 +541,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"PrevInSeries":     prevInSeries,
 		"NextInSeries":     nextInSeries,
 		"VocabTag":         vocabTag,
-		"GameLesson":       GameLesson(item),
+		"GameLesson":       h.gameLesson(r.Context(), item),
 		"VocabItems":       vocabItems,
 		"SeriesTotal":      seriesTotal,
 		"SeriesPos":        seriesPos,

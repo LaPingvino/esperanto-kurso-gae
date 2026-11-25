@@ -170,3 +170,11 @@ func hasTag(it *model.ContentItem, tag string) bool {
 	}
 	return false
 }
+
+// ApprovedShared is the cached approved content itself, for read-only use
+// by a caller that keeps something built from it (the game's course): the
+// same slice comes back until the cache reloads, so the caller can rebuild
+// only then. Callers must not modify the slice or its items.
+func (s *ContentStore) ApprovedShared(ctx context.Context) ([]*model.ContentItem, error) {
+	return s.approved(ctx)
+}

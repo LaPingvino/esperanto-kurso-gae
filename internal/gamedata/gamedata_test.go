@@ -32,28 +32,34 @@ func TestTokens(t *testing.T) {
 	}
 }
 
-// Every gap's tiles hold its right answer exactly once.
+// Every exercise's tiles hold its right answer exactly once, and there are
+// at most four.
 func TestTilesHoldTheAnswer(t *testing.T) {
-	items, err := ReadSeed("../../seed/ekzercoj-zagr-restructured.json")
+	items, err := ReadSeedDir("../../seed")
 	if err != nil {
 		t.Fatal(err)
 	}
-	c, err := MakeCourse(items)
-	if err != nil {
-		t.Fatal(err)
-	}
-	for _, l := range c.Lessons {
-		for _, f := range l.Fill {
-			for g, ts := range f.Tiles {
-				right := f.Answers[g%len(f.Answers)]
+	c := Build(items)
+	for _, p := range c.Places {
+		for _, e := range p.Ex {
+			for g, ts := range e.Tiles {
+				right := ""
+				switch e.Kind {
+				case 'F':
+					right = e.Answers[g%len(e.Answers)]
+				case 'Q', 'H':
+					right = e.Answers[0]
+				case 'B':
+					continue
+				}
 				n := 0
 				for _, x := range ts {
 					if x == right {
 						n++
 					}
 				}
-				if n != 1 || len(ts) != 4 {
-					t.Errorf("%s gap %d: tiles %q, answer %q", f.Slug, g, ts, right)
+				if n != 1 || len(ts) > 4 {
+					t.Errorf("%s %c gap %d: tiles %q, answer %q", e.Slug, e.Kind, g, ts, right)
 				}
 			}
 		}

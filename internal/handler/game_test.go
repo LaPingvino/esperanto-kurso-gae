@@ -76,7 +76,7 @@ func TestGameProgressHandler(t *testing.T) {
 	req = req.WithContext(context.WithValue(req.Context(), UserContextKey, &model.User{ID: "u"}))
 	w := httptest.NewRecorder()
 	h.Progress(w, req)
-	if got := w.Body.String(); got != "S zagr-l01-teksto 3\nS zagr-l03-teksto 2\nF zagr-l02-fi01\n" || w.Code != http.StatusOK {
+	if got := w.Body.String(); got != "L en\nS zagr-l01-teksto 3\nS zagr-l03-teksto 2\nF zagr-l02-fi01\n" || w.Code != http.StatusOK {
 		t.Errorf("%d %q", w.Code, got)
 	}
 	w = httptest.NewRecorder()

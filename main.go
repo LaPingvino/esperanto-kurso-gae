@@ -61,6 +61,9 @@ func main() {
 	communityH := handler.NewCommunityHandler(tmpl, contentStore, voteStore, commentStore, translationStore, modMessageStore, userStore)
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
 	gameH := handler.NewGameHandler(userStore, attemptStore)
+	gameAPI := handler.NewGameAPI(contentStore)
+	contentH.GamePlace = gameAPI.PlaceOf
+	gameH.Course = gameAPI.Course
 
 	// --- Router ---
 	mux := http.NewServeMux()
@@ -163,8 +166,11 @@ func main() {
 	mux.HandleFunc("POST /profilo/konservado", authH.UpdateKeepDataDays)
 	mux.HandleFunc("POST /kontaktu", communityH.SendModMessage)
 
-	// Apply auth middleware to all routes.
-	root := handler.AuthMiddleware(userStore, mux)
+	// Apply auth middleware to all routes — but the game's content API, the
+	// same for everyone and publicly cacheable, needs no user (game_api.go).
+	root := http.NewServeMux()
+	gameAPI.Routes(root)
+	root.Handle("/", handler.AuthMiddleware(userStore, mux))
 
 	addr := ":" + cfg.Port
 	log.Printf("Listening on %s", addr)

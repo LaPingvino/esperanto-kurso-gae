@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/gamedata"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -23,8 +24,10 @@ import (
 //     account by taking the larger per lesson (model.MergeGameStars); both
 //     answer with the account's state, so one request syncs both ways:
 //
-//     S <reading slug> <stars>   the game's stars on the account
+//     L <lang>                   the player's language for meanings
+//     S <place slug> <stars>     the game's stars on the account
 //     F <exercise slug>          an exercise answered rightly on the site
+//     D <place slug>             a place whose site exercises all were
 //
 // The game merges that into its own (the larger again), so progress made on
 // the site — every fill-in of a lesson answered rightly — shows in the game,
@@ -44,6 +47,8 @@ type attemptLister interface {
 type GameHandler struct {
 	users    gameStarStore
 	attempts attemptLister
+	// Course is the game's course (GameAPI.Course), for the D lines; nil: none.
+	Course func(ctx context.Context) *gamedata.Course
 }
 
 func NewGameHandler(users gameStarStore, attempts attemptLister) *GameHandler {
@@ -77,7 +82,17 @@ func (h *GameHandler) Progress(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
+	lang := u.Lang
+	if lang == "" {
+		lang = "en"
+	}
+	fmt.Fprintf(w, "L %s\n", lang) // the player's language for meanings (the game's default)
 	fmt.Fprint(w, FormatGameProgress(stars, right))
+	if h.Course != nil {
+		if c := h.Course(r.Context()); c != nil {
+			fmt.Fprint(w, FormatPlacesDone(c, right))
+		}
+	}
 }
 
 // ParseGameStars reads the game's "slug=n" values (n 1–3), each value
@@ -116,6 +131,39 @@ func FormatGameProgress(stars map[string]int, right []string) string {
 	sort.Strings(right)
 	for _, s := range right {
 		fmt.Fprintf(&b, "F %s\n", s)
+	}
+	return b.String()
+}
+
+// gameLesson is the game's place for an exercise page: the course's own
+// mapping when the handler has it, else GameLesson.
+func (h *ContentHandler) gameLesson(ctx context.Context, item *model.ContentItem) string {
+	if h.GamePlace != nil && item != nil {
+		return h.GamePlace(ctx, item.Slug)
+	}
+	return GameLesson(item)
+}
+
+// FormatPlacesDone: "D <place slug>" for each place of the game whose site
+// exercises were all answered rightly on the site — progress made on the
+// site, shown in the game as the place done (one star).
+func FormatPlacesDone(c *gamedata.Course, right []string) string {
+	ok := map[string]bool{}
+	for _, s := range right {
+		ok[s] = true
+	}
+	var b strings.Builder
+	for _, p := range c.Places {
+		n, all := 0, true
+		for _, e := range p.Ex {
+			if e.Slug != "" {
+				n++
+				all = all && ok[e.Slug]
+			}
+		}
+		if n > 0 && all {
+			fmt.Fprintf(&b, "D %s\n", p.Slug)
+		}
 	}
 	return b.String()
 }

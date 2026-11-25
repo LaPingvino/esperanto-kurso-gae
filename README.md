@@ -52,8 +52,9 @@ go run main.go
 ## The course as a game (/ludo/)
 
 `game/` is the same course played as a game (a [GameViber](https://github.com/LaPingvino/gameviber) project,
-built to WebAssembly); its content is exported from `seed/` at build time, and it answers by the site's own
-rules. The site serves it at `/ludo/` and links it from the menu (🎲) and from each Zagreb lesson. Progress
+built to WebAssembly). It loads the course from the site while it plays (`/ludo-api/`, built from the approved
+content), so new content shows up without a rebuild, and it answers by the site's own rules. The site serves it
+at `/ludo/` and links it from the menu (🎲) and from every exercise page it shows. Progress
 syncs with the player's account in the background (see `game/DESIGN.md`).
 
 ```bash
