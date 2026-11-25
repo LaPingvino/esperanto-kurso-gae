@@ -11,7 +11,7 @@
 {{end}}{{end}}{{end}}
 
 {{define "vortaroj-ligiloj"}}{{with .M}}
-<p class="dict-links"><small>&#128214; {{t $.UILang "dict.look_up"}}
+<p class="dict-links"><small>{{ico "book"}} {{t $.UILang "dict.look_up"}}
   <a href="{{.ReVoURL}}" target="_blank" rel="noopener" title="{{t $.UILang "dict.revo_title"}}">Reta Vortaro{{if not .ReVoFound}} ({{t $.UILang "dict.search"}}){{end}}</a>
   &middot; <a href="{{.PIVURL}}" target="_blank" rel="noopener" title="{{t $.UILang "dict.piv_title"}}">PIV</a>
 </small></p>
