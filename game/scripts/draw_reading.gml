@@ -28,4 +28,4 @@ button(x + w - bw(global.t_start_cta) - 20, y, x + w, y + 52, global.t_start_cta
 global.def_act = 5;
 if (more) { button(x + w - bw(global.t_start_cta) - 32 - bw(global.t_series_next_fallback), y, x + w - bw(global.t_start_cta) - 32, y + 52, global.t_series_next_fallback, 9, 0); global.def_act = 9; }
 if (global.page > 0) button(x, y, x + bw(global.t_series_prev_fallback), y + 52, global.t_series_prev_fallback, 10, 0);
-else button(x, y, x + bw("Vidi en la retejo"), y + 52, "Vidi en la retejo", 12, 5);
+else if (global.wide || !more) button(x, y, x + bw("Vidi en la retejo"), y + 52, "Vidi en la retejo", 12, 5); // a phone: no room beside Sekva
