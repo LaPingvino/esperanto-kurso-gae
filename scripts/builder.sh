@@ -7,6 +7,9 @@
 #   scripts/builder.sh load DIR                # add every content/builder/*.json-like file in DIR, in name order
 #   scripts/builder.sh publish SLUG...|--series S|--all     # → approved (live)
 #   scripts/builder.sh unpublish SLUG...|--series S|--all   # → pending (off the site again: the undo)
+#   scripts/builder.sh legvortoj               # the plan for the old voc-auto-* word cards (changes nothing)
+#   scripts/builder.sh legvortoj-apply FP      # carry out the plan with that fingerprint → a run id
+#   scripts/builder.sh legvortoj-undo RUN      # put back what that run changed
 # The key stays in its file (never on the command line): $EK_BUILDER_KEY_FILE,
 # default ~/.config/esperanto-kurso-builder/key. Site: $EK_SITE (default https://esperanto-kurso.net).
 set -euo pipefail
@@ -32,5 +35,8 @@ add) for f in "${@:?a file}"; do echo "== $f"; post content @"$f"; done ;;
 load) for f in "${1:?a directory}"/*.json; do echo "== $f"; post content @"$f"; done ;;
 publish) post publish "$(target "$@")" ;;
 unpublish) post unpublish "$(target "$@")" ;;
-*) echo "usage: $0 read [QUERY] | get SLUG | add FILE... | load DIR | publish|unpublish SLUG...|--series S|--all" >&2; exit 2 ;;
+legvortoj) curl -sS --fail-with-body "${ua[@]}" -H @"$hdr" "$site/builder-api/legvortoj" | jq '{fingerprint, counts, actions: (.actions | group_by(.kind) | map({key: .[0].kind, value: map(.slug + (if .into then " → " + .into else "" end))}) | from_entries)}' ;;
+legvortoj-apply) post legvortoj/apply "$(jq -n --arg f "${1:?the fingerprint from: builder.sh legvortoj}" '{fingerprint: $f}')" ;;
+legvortoj-undo) post legvortoj/undo "$(jq -n --arg r "${1:?a run id, lv-…}" '{run: $r}')" ;;
+*) echo "usage: $0 read [QUERY] | get SLUG | add FILE... | load DIR | publish|unpublish SLUG...|--series S|--all | legvortoj | legvortoj-apply FP | legvortoj-undo RUN" >&2; exit 2 ;;
 esac

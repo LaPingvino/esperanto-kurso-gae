@@ -170,3 +170,27 @@ func dumpFlag() bool {
 	}
 	return false
 }
+
+// TestBoaoMainSense: La eta princo's boao is the snake. Its translations
+// are the main sense's, not the fur scarf's (TEKS) as well; the senses are
+// kept apart for a text to name the one it means.
+func TestBoaoMainSense(t *testing.T) {
+	h := Lookup("boaon", false)
+	if h == nil || !h.HasHead("boao") {
+		t.Fatalf("boaon: %+v", h)
+	}
+	for lang, bad := range map[string]string{"de": "Schal", "ru": "шарф", "sk": "kožušina", "pl": "szal"} {
+		if tr := h.Translation(lang); strings.Contains(tr, bad) {
+			t.Errorf("%s: %q has the scarf", lang, tr)
+		}
+	}
+	if len(h.Senses) != 3 || h.Sense("boa.0o.TEKS") == nil || !h.Sense("boa.0o.TEKS").Fak {
+		t.Fatalf("senses: %+v", h.Senses)
+	}
+	if tr := h.Sense("boa.0o.TEKS").Translation("de"); tr != "Boa (Schal)" {
+		t.Errorf("TEKS de %q", tr)
+	}
+	if o := h.Ofc; o != "*" {
+		t.Errorf("ofc %q", o)
+	}
+}

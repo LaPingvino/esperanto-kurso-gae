@@ -1,0 +1,1992 @@
+{
+ "bildoj-koloroj-teksto": {
+  "arbo": {
+   "senco": "arb.0o.BOT",
+   "frazo": "La arbo estas verda.",
+   "elektoj": [
+    "arb.0o.BOT: Ligna daŭra planto kun alta trunko supre disbranĉiĝanta.",
+    "arb.0o.grafeo: Koneksa kaj sencikla grafeo.",
+    "arb.0o.KOMP: Finia aro, en kiu unu elementon oni rigardas radiko, kaj la ceteraj formas disajn arojn (nomatajn subarboj), ĉiu el kiuj mem estas arbo."
+   ]
+  },
+  "ĉapelo": {
+   "senco": "cxapel.0o.kapvesto",
+   "frazo": "La ĉapelo estas nigra.",
+   "elektoj": [
+    "cxapel.0o.kapvesto: Kapvesto kun elstara ĉirkaŭrando.",
+    "cxapel.0o.BOT: Supra, ĉapeloforma parto de la fruktokorpo de fungo.",
+    "cxapel.0o.supersigno: Diakritilo, tegmentoforma supersigno, uzata en diversaj alfabetoj (interalie en esperanta, por formi la literojn ĉ, ĝ, ĥ, ĵ, ŝ), en matematikaj simboloj kaj en programlingvoj (en tiuj lastaj ĝi aperas kiel memstara signo, kies Askia numero estas 94)."
+   ]
+  }
+ },
+ "c1-bulonja-deklaracio": {
+  "diversa": {
+   "senco": "divers.0a.malsamspeca",
+   "frazo": "La Esperantismo estas penado disvastigi en la tuta mondo la uzadon de lingvo neŭtrale homa, kiu \"ne entrudante sin en la internan vivon de la popoloj kaj neniom celante elpuŝi la ekzistantajn lingvojn naciajn\", donus al la homoj de malsamaj nacioj la eblon kompreniĝadi inter si, kiu povus servi kiel paciga lingvo de publikaj institucioj en tiuj landoj, kie diversaj nacioj batalas inter si pri la lingvo, kaj en kiu povus esti publikigataj tiuj verkoj, kiuj havas egalan intereson por ĉiuj popoloj.",
+   "elektoj": [
+    "divers.0a.malsamspeca: Havanta plurajn, eĉ multajn, malsamajn trajtojn, ecojn, karakterizaĵojn.",
+    "divers.0a.kelkaj: Kelke da malsamaj."
+   ]
+  },
+  "egala": {
+   "senco": "egal.0a.MEZ",
+   "frazo": "La Esperantismo estas penado disvastigi en la tuta mondo la uzadon de lingvo neŭtrale homa, kiu \"ne entrudante sin en la internan vivon de la popoloj kaj neniom celante elpuŝi la ekzistantajn lingvojn naciajn\", donus al la homoj de malsamaj nacioj la eblon kompreniĝadi inter si, kiu povus servi kiel paciga lingvo de publikaj institucioj en tiuj landoj, kie diversaj nacioj batalas inter si pri la lingvo, kaj en kiu povus esti publikigataj tiuj verkoj, kiuj havas egalan intereson por ĉiuj popoloj.",
+   "elektoj": [
+    "egal.0a.MEZ: Havanta saman grandon, samajn dimensiojn, saman kvanton, saman valoron, kiel tio, kun kio oni ĝin komparas.",
+    "egal.0a.simila: Simila, sama.",
+    "egal.0a.MAT: (p.p. du aroj) Tiaj, ke ĉiu elemento de unu estas elemento de alia."
+   ]
+  },
+  "espero": {
+   "senco": "esper.0o.ado",
+   "frazo": "Ĉiu alia ideo aŭ espero, kiun tiu aŭ alia Esperantisto ligas kun la Esperantismo, estos lia afero pure privata, por kiu la Esperantismo ne respondas.",
+   "elektoj": [
+    "esper.0o.ado: Ago esperi.",
+    "esper.0o.sento: Io, kion oni esperas.",
+    "esper.0o.priesperajxo: Persono aŭ afero, pri kiu oni multe esperas."
+   ]
+  },
+  "intereso": {
+   "senco": "intere.0o.eco",
+   "frazo": "La Esperantismo estas penado disvastigi en la tuta mondo la uzadon de lingvo neŭtrale homa, kiu \"ne entrudante sin en la internan vivon de la popoloj kaj neniom celante elpuŝi la ekzistantajn lingvojn naciajn\", donus al la homoj de malsamaj nacioj la eblon kompreniĝadi inter si, kiu povus servi kiel paciga lingvo de publikaj institucioj en tiuj landoj, kie diversaj nacioj batalas inter si pri la lingvo, kaj en kiu povus esti publikigataj tiuj verkoj, kiuj havas egalan intereson por ĉiuj popoloj.",
+   "elektoj": [
+    "intere.0o.eco: Eco de tio, kio.",
+    "intere.0o.sento: Sento de tiu, kiu estas.",
+    "intere.0o.pro_graveco: Tio, kio promesas utilon, profiton ktp."
+   ]
+  },
+  "interna": {
+   "senco": "intern.0a.malekstera",
+   "frazo": "La Esperantismo estas penado disvastigi en la tuta mondo la uzadon de lingvo neŭtrale homa, kiu \"ne entrudante sin en la internan vivon de la popoloj kaj neniom celante elpuŝi la ekzistantajn lingvojn naciajn\", donus al la homoj de malsamaj nacioj la eblon kompreniĝadi inter si, kiu povus servi kiel paciga lingvo de publikaj institucioj en tiuj landoj, kie diversaj nacioj batalas inter si pri la lingvo, kaj en kiu povus esti publikigataj tiuj verkoj, kiuj havas egalan intereson por ĉiuj popoloj.",
+   "elektoj": [
+    "intern.0a.malekstera: Ena de la limoj de objekto, de korpo aŭ de iu fermita spaco; malekstera.",
+    "intern.0a.enlanda: Ena de la limoj de lando, kontraste al la eksterlando.",
+    "intern.0a.mensa: Koncernanta la spiritajn, moralajn ecojn, kontraste kun la korpaj, materiaj.",
+    "intern.0a.punkto: (p.p. punkto en topologia spaco, rilate al subaro A) Tia, ke A inkluzivas ĉirkaŭaĵon de ĝi."
+   ]
+  },
+  "ligi": {
+   "senco": "lig.0i.malhelpimovon",
+   "frazo": "Ĉiu alia ideo aŭ espero, kiun tiu aŭ alia Esperantisto ligas kun la Esperantismo, estos lia afero pure privata, por kiu la Esperantismo ne respondas.",
+   "elektoj": [
+    "lig.0i.malhelpimovon: Fiksi, ĉirkaŭvolvi per ŝnuro, ĉeno aŭ alia rimedo, malhelpante liberan movon aŭ disiĝon.",
+    "lig.0i.FIG: Limigi ies liberan agadon, ekz-e kreante al li moralajn devojn.",
+    "lig.0i.interrilatigi: Proksime interrilatigi plurajn aferojn."
+   ]
+  },
+  "materiala": {
+   "senco": "materi1.0a.krudajxa",
+   "frazo": "Ĉar la aŭtoro de la lingvo Esperanto tuj en la komenco rifuzis unu fojon por ĉiam ĉiujn personajn rajtojn kaj privilegiojn rilate tiun lingvon, tial Esperanto estas \"nenies propraĵo\", nek en rilato materiala, nek en rilato morala.",
+   "elektoj": [
+    "materi1.0a.krudajxa: Rilata al materialo.",
+    "materi1.0a.mona: Rilata al la monrimedoj.",
+    "materi1.0a.materia: Materia, perceptebla por la sentumoj, videbla kaj palpebla."
+   ]
+  },
+  "persona": {
+   "senco": "person.0a.KOMUNE",
+   "frazo": "Ĉar la aŭtoro de la lingvo Esperanto tuj en la komenco rifuzis unu fojon por ĉiam ĉiujn personajn rajtojn kaj privilegiojn rilate tiun lingvon, tial Esperanto estas \"nenies propraĵo\", nek en rilato materiala, nek en rilato morala.",
+   "elektoj": [
+    "person.0a.KOMUNE: Propra al persono; rilata al difinita persono kaj ne al aliaj.",
+    "person.0a.GRA: Rilata al persono."
+   ]
+  },
+  "persono": {
+   "senco": "person.0o.homo",
+   "frazo": "Materiala mastro de tiu ĉi lingvo estas la tuta mondo kaj ĉiu deziranto povas eldonadi en aŭ pri tiu ĉi lingvo ĉiajn verkojn, kiajn li deziras, kaj uzadi la lingvon por ĉiaj eblaj celoj; kiel spiritaj mastroj de tiu ĉi lingvo estos ĉiam rigardataj tiuj personoj, kiuj de la mondo Esperantista estos konfesataj kiel la plej bonaj kaj plej talentaj verkistoj en tiu ĉi lingvo.",
+   "elektoj": [
+    "person.0o.homo: Homa individuo konsiderata kiel konscia, respondeca kaj havanta devojn kaj rajtojn.",
+    "person.0o.rolanto: Imagita rolanto de rakonto, romano, teatraĵo, filmo aŭ alia verko fikcia.",
+    "person.0o.KRI: Hipostazo.",
+    "person.0o.GRA: Konjugacia aŭ pronoma formo servanta por distingi la personon, kiu parolas, tiun, al kiu oni parolas, kaj tiun, pri kiu oni parolas."
+   ]
+  },
+  "rilato": {
+   "senco": "rilat.0o.interpersona",
+   "frazo": "Ĉar la aŭtoro de la lingvo Esperanto tuj en la komenco rifuzis unu fojon por ĉiam ĉiujn personajn rajtojn kaj privilegiojn rilate tiun lingvon, tial Esperanto estas \"nenies propraĵo\", nek en rilato materiala, nek en rilato morala.",
+   "elektoj": [
+    "rilat.0o.interpersona: Ligiteco kaj reciproka konduto inter du aŭ pluraj personoj, interrilato.",
+    "rilat.0o.interligo: Ia ajn ligiteco aŭ interefiko inter du aŭ pluraj aferoj.",
+    "rilat.0o.3: Juĝmaniero de iu pri io; vidpunkto.",
+    "rilat.0o.4: Nombro, kiu montras, kiomfoje iu kvanto estas pli granda ol alia."
+   ]
+  },
+  "vivo": {
+   "senco": "viv.0o.BIO",
+   "frazo": "La Esperantismo estas penado disvastigi en la tuta mondo la uzadon de lingvo neŭtrale homa, kiu \"ne entrudante sin en la internan vivon de la popoloj kaj neniom celante elpuŝi la ekzistantajn lingvojn naciajn\", donus al la homoj de malsamaj nacioj la eblon kompreniĝadi inter si, kiu povus servi kiel paciga lingvo de publikaj institucioj en tiuj landoj, kie diversaj nacioj batalas inter si pri la lingvo, kaj en kiu povus esti publikigataj tiuj verkoj, kiuj havas egalan intereson por ĉiuj popoloj.",
+   "elektoj": [
+    "viv.0o.BIO: Spontanea aktiveco propra al organizitaj estaĵoj.",
+    "viv.0o.ialonga: Sinsekvo de la agoj, per kiuj evidentiĝas tiu aktiveco.",
+    "viv.0o.iamaniera: Uzado de tiu aktiveco laŭ iaj kondiĉoj, ia maniero.",
+    "viv.0o.vigleco: Vigleco, viveco."
+   ]
+  }
+ },
+ "c1-la-espero": {
+  "flugilo": {
+   "senco": "flug.0ilo.fizika",
+   "frazo": "Per flugiloj de facila vento",
+   "elektoj": [
+    "flug.0ilo.fizika: Solida surfaco, per kiu io portiĝas en aero.",
+    "flug.0ilo.POE: Movilo ebliganta facilan kaj rapidan flugon, fizikan aŭ metaforan.",
+    "flug.0ilo.alo: Io forme simila al birda flugilo, precipe pri objektoj etendiĝantaj duope aŭ kvarope ĉe ambaŭ flankoj de iu aĵo.",
+    "flug.0ilo.svingigxi: Tio, kio povas svingiĝi kiel flugilo."
+   ]
+  }
+ },
+ "c2-esenco-pioniroj": {
+  "alta": {
+   "senco": "alt.0a.FIG",
+   "frazo": "Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj.",
+   "elektoj": [
+    "alt.0a.dimensio: Granda laŭ la dimensio alto; havanta difinitan grandon laŭ tiu dimensio.",
+    "alt.0a.distanco: Troviĝanta je granda distanco super la tero.",
+    "alt.0a.FIG: Granda laŭ metafora senco; nobla, supera.",
+    "alt.0a.MUZ: Enhavanta multajn vibrojn en difinita tempodaŭro, altfrekvenca, akuta."
+   ]
+  },
+  "egala": {
+   "senco": "egal.0a.MEZ",
+   "frazo": "Ĉiuj ideoj, kiuj estas ludontaj gravan rolon en la historio de la homaro, havas ĉiam tiun saman egalan sorton: kiam ili ekaperas, la samtempuloj renkontas ilin ne sole kun rimarkinde obstina malkonfido, sed eĉ kun ia neklarigebla malamikeco; la pioniroj de tiuj ĉi ideoj devas multe batali kaj multe suferi; oni rigardas ilin kiel homojn frenezajn, infane malsaĝajn, aŭ fine eĉ rekte kiel homojn tre malutilajn.",
+   "elektoj": [
+    "egal.0a.MEZ: Havanta saman grandon, samajn dimensiojn, saman kvanton, saman valoron, kiel tio, kun kio oni ĝin komparas.",
+    "egal.0a.simila: Simila, sama.",
+    "egal.0a.MAT: (p.p. du aroj) Tiaj, ke ĉiu elemento de unu estas elemento de alia."
+   ]
+  },
+  "nomo": {
+   "senco": "nom.0o.de_io",
+   "frazo": "Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj.",
+   "elektoj": [
+    "nom.0o.de_io: Komuna nomo.",
+    "nom.0o.propra: Propra nomo.",
+    "nom.0o.antaux: Vorto tradicie uzata estkiel individua nomo.",
+    "nom.0o.renomo: Renomo, reputacio reprezentata de nomo aŭ.",
+    "nom.0o.LIN: En la skolastika tradicio, supernocio por substantivo, adjektivo, numeralo ; la gramatikaj klasoj, kiuj en la klasikaj lingvoj posedas kazojn, kontraste al la verboj kaj adverboj."
+   ]
+  },
+  "nova": {
+   "senco": "nov.0a.eka",
+   "frazo": "Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj.",
+   "elektoj": [
+    "nov.0a.eka: Antaŭe ne ekzistanta aŭ ne konata, unuafoje aperanta.",
+    "nov.0a.sxangxita: Aperanta post aliaĵo, kiun ĝi anstataŭas.",
+    "nov.0a.fresxa: Ĵus farita, komenciĝanta, ankoraŭ ne uzita aŭ malmulte uzita."
+   ]
+  },
+  "provi": {
+   "senco": "prov.0i.kontroli_tauxgecon",
+   "frazo": "Pri tiuj ĉi ideoj „estas modo“ paroli ne alie, ol kun ironia kaj malestima rideto, tial tiel agas ankaŭ A kaj B kaj C, kaj ĉiu el ili timas enpensiĝi serioze eĉ unu minuton pri la mokata ideo, ĉar li „scias antaŭe“, ke „ĝi krom malsaĝaĵo enhavas ja nenion“, kaj li timas, ke oni iel alkalkulos lin mem al la nombro de „tiuj malsaĝuloj“, se li eĉ en la daŭro de unu minuto provos rilati serioze al tiu ĉi malsaĝaĵo.",
+   "elektoj": [
+    "prov.0i.kontroli_tauxgecon: Apliki objekton al ĝia destino, por kontroli, ĉu ĝi taŭgas, ĉu ĝi plaĉas.",
+    "prov.0i.elmeti_al_pritaksado: Elmeti al pritaksado de la valoro.",
+    "prov.0i.peni_sukcese_fari: Peni fari ion malgraŭ necerta sukceso, ekz-e pro tio, ke oni antaŭe neniam ĝin faris ĝisfine."
+   ]
+  },
+  "rilati": {
+   "senco": "rilat.0i.persone",
+   "frazo": "Pri tiuj ĉi ideoj „estas modo“ paroli ne alie, ol kun ironia kaj malestima rideto, tial tiel agas ankaŭ A kaj B kaj C, kaj ĉiu el ili timas enpensiĝi serioze eĉ unu minuton pri la mokata ideo, ĉar li „scias antaŭe“, ke „ĝi krom malsaĝaĵo enhavas ja nenion“, kaj li timas, ke oni iel alkalkulos lin mem al la nombro de „tiuj malsaĝuloj“, se li eĉ en la daŭro de unu minuto provos rilati serioze al tiu ĉi malsaĝaĵo.",
+   "elektoj": [
+    "rilat.0i.persone: Havi inter si ligitecon kaj kondut-reciprokecon.",
+    "rilat.0i.lige: Havi inter si ian ajn ligitecon aŭ interefikon.",
+    "rilat.0i.kondute: Iel juĝi pri io; konsideri de ia vidpunkto.",
+    "rilat.0i.proporcie: Esti tiomfoje pli granda ol alia kvanto, kiom tria kvanto estas pli granda ol kvara."
+   ]
+  },
+  "sole": {
+   "senco": "sol.0e.senkompanie",
+   "frazo": "Ĉiuj ideoj, kiuj estas ludontaj gravan rolon en la historio de la homaro, havas ĉiam tiun saman egalan sorton: kiam ili ekaperas, la samtempuloj renkontas ilin ne sole kun rimarkinde obstina malkonfido, sed eĉ kun ia neklarigebla malamikeco; la pioniroj de tiuj ĉi ideoj devas multe batali kaj multe suferi; oni rigardas ilin kiel homojn frenezajn, infane malsaĝajn, aŭ fine eĉ rekte kiel homojn tre malutilajn.",
+   "elektoj": [
+    "sol.0e.senkompanie: Izolite, neakompanate aŭ nehelpate.",
+    "sol.0e.nur: Estante ne pli multa aŭ konsiderate sen iu aŭ io alia; esceptante la aliajn; nur."
+   ]
+  },
+  "super": {
+   "senco": "super.0.loko",
+   "frazo": "Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj.",
+   "elektoj": [
+    "super.0.loko: Lokon pli altan ol la indikita per la dependa vorto.",
+    "super.0.grado: Pozicion de io aŭ iu, kies forto, grado aŭ rango estas pli alta ol tiu de alia.",
+    "super.0.atento: Staton de iu, kies atento direktiĝas al ia laboro."
+   ]
+  },
+  "vico": {
+   "senco": "vic.0o.spaca",
+   "frazo": "Post longa vico da batalado kaj suferoj la „buboj-fantaziuloj“ atingis la celon.",
+   "elektoj": [
+    "vic.0o.spaca: Sinsekvo da personoj aŭ objektoj aranĝitaj laŭ unu linio, unu apud aŭ post alia.",
+    "vic.0o.tempa: Longa sinsekvo da okazoj aŭ momentoj en la tempo.",
+    "vic.0o.vicero: En serio da alternaj movoj aŭ agoj, momento, je kiu ĉiu el ili plenumiĝas.",
+    "vic.0o.MAT: (en aro E) Bildigo de iu subaro de la aro de entjeroj al E."
+   ]
+  },
+  "ĝui": {
+   "senco": "gxu.0i.senti",
+   "frazo": "Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj.",
+   "elektoj": [
+    "gxu.0i.senti: Senti plezuregon, precipe sentuman.",
+    "gxu.0i.posedi: Posedi aferon, de kiu oni havas utilon aŭ plezuron."
+   ]
+  }
+ },
+ "c2-fundamento-antauxparolo": {
+  "arĥaismo": {
+   "senco": "arhxaism.0o.LIN",
+   "frazo": "Kun la tempo la formo nova iom post iom elpuŝos la formon malnovan, kiu fariĝos arĥaismo, kiel ni tion ĉi vidas en ĉiu natura lingvo.",
+   "elektoj": [
+    "arhxaism.0o.LIN: Vorto aŭ esprimo, kiu ne plu estas kutima en la nuntempa lingvo.",
+    "arhxaism.0o.stilo: Intenca imitado de malnova maniero aŭ stilo."
+   ]
+  },
+  "disputo": {
+   "senco": "disput.0o.polemiko",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "disput.0o.polemiko: Vorta konkuro (buŝa aŭ skriba), en kiu ĉiu el la partoprenantaj partioj defendas siajn tezojn (regule prezentitajn), argumentas pri ilia pravo kaj kontestas la tezojn de la kontraŭuloj.",
+    "disput.0o.jura: Reciproka pretendado je iu rajto, posedaĵo ktp."
+   ]
+  },
+  "ekzistado": {
+   "senco": "ekzist.0ado.estado",
+   "frazo": "Por ke lingvo internacia povu bone kaj regule progresadi kaj por ke ĝi havu plenan certecon, ke ĝi neniam disfalos kaj ia facilanima paŝo de ĝiaj amikoj estontaj ne detruos la laborojn de ĝiaj amikoj estintaj, — estas plej necesa antaŭ ĉio unu kondiĉo: la ekzistado de klare difinita, neniam tuŝebla kaj neniam ŝanĝebla Fundamento de la lingvo.",
+   "elektoj": [
+    "ekzist.0ado.estado: Stato de tio, kio ekzistas.",
+    "ekzist.0ado.vivado: Vivo de l' homo, precipe el la perspektivo de ĝiaj bazaj bezonoj kaj kondiĉoj kaj la peno vivteni sin."
+   ]
+  },
+  "garantii": {
+   "senco": "garant.0i.promesi",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "garant.0i.promesi: Promesi la fariĝon de io sub sia propra respondeco.",
+    "garant.0i.aserti: Firme aserti ion vera kaj certa.",
+    "garant.0i.igi_certa: Igi ion certa."
+   ]
+  },
+  "kaŭzo": {
+   "senco": "kauxz.0o.kialo",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "kauxz.0o.kialo: Tio, pro kio io okazas; kialo.",
+    "kauxz.0o.motivo: Tio, pro kio oni faras ian agon, havas iun senton ks.",
+    "kauxz.0o.FIL: Tio, pro kio io estas aŭ iĝas tia, kiel ĝi estas."
+   ]
+  },
+  "kondiĉo": {
+   "senco": "kondic1.0o.dependiga",
+   "frazo": "Por ke lingvo internacia povu bone kaj regule progresadi kaj por ke ĝi havu plenan certecon, ke ĝi neniam disfalos kaj ia facilanima paŝo de ĝiaj amikoj estontaj ne detruos la laborojn de ĝiaj amikoj estintaj, — estas plej necesa antaŭ ĉio unu kondiĉo: la ekzistado de klare difinita, neniam tuŝebla kaj neniam ŝanĝebla Fundamento de la lingvo.",
+   "elektoj": [
+    "kondic1.0o.dependiga: Cirkonstanco, fakto, de kiu dependas la efektiviĝo de io.",
+    "kondic1.0o.interkonsentitajxo: Deviga interkonsentita aranĝo, de kies respekto dependas la valideco de kontrakto aŭ alia interkonsento.",
+    "kondic1.0o.cirkonstanco: Ekstera cirkonstanco, al kiu persono aŭ objekto estas submetata, kaj de kiu dependas lia aŭ ĝia stato.",
+    "kondic1.0o.KOMP: En programlingvoj, bulea esprimo je kies valoro dependas (ne)plenumo de iuj agoj, precipe en seo kaj iteracio."
+   ]
+  },
+  "leĝo": {
+   "senco": "legx.0o.JUR",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "legx.0o.JUR: Deviga decido, proklamita de plej supera ŝtata aŭtoritato, ordonanta aŭ malpermesanta ion.",
+    "legx.0o.komune: Deviga regulo.",
+    "legx.0o.SCI: Natura principo; naturleĝo."
+   ]
+  },
+  "libro": {
+   "senco": "libr.0o.presajxo",
+   "frazo": "Havante la karakteron de fundamento, la tri verkoj represitaj en tiu ĉi libro devas antaŭ ĉio esti netuŝeblaj.",
+   "elektoj": [
+    "libr.0o.presajxo: Bindita aŭ broŝurita paperfoliaro kun presita teksto.",
+    "libr.0o.notilo: Samforma paperfoliaro destinita por ke oni skribu en ĝi.",
+    "libr.0o.divido: Parto de literatura verko, ordinare grupo de ĉapitroj."
+   ]
+  },
+  "malnova": {
+   "senco": "nov.mal0a.praa",
+   "frazo": "2) Se ia aŭtoritata centra institucio trovos, ke tiu aŭ alia vorto aŭ regulo en nia lingvo estas tro neoportuna, ĝi ne devos forigi aŭ ŝanĝi la diritan formon, sed ĝi povos proponi formon novan, kiun ĝi rekomendos uzadi paralele kun la formo malnova.",
+   "elektoj": [
+    "nov.mal0a.praa: Jam de longe ekzistanta aŭ konata.",
+    "nov.mal0a.antauxa: Antaŭa.",
+    "nov.mal0a.kaduka: Longe uzita kaj do subkomprenante: difektita de la longa uzado."
+   ]
+  },
+  "plena": {
+   "senco": "plen.0a.tuta",
+   "frazo": "Por ke lingvo internacia povu bone kaj regule progresadi kaj por ke ĝi havu plenan certecon, ke ĝi neniam disfalos kaj ia facilanima paŝo de ĝiaj amikoj estontaj ne detruos la laborojn de ĝiaj amikoj estintaj, — estas plej necesa antaŭ ĉio unu kondiĉo: la ekzistado de klare difinita, neniam tuŝebla kaj neniam ŝanĝebla Fundamento de la lingvo.",
+   "elektoj": [
+    "plen.0a.tuta: Enhavanta la tutan enhaveblan kvanton.",
+    "plen.0a.kompleta: Kompleta; al kiu mankas nenia necesa parto aŭ eco.",
+    "plen.0a.multa: Enhavanta grandan kvanton.",
+    "plen.0a.angulo: (p.p. angulo) Situanta ekster du egalaj lateroj, do ampleksanta la tutan ebenon; kies mezuro egalas al 360˚."
+   ]
+  },
+  "prezenti": {
+   "senco": "prezen1.0i.proponi",
+   "frazo": "Sed, prezentante parton de la fundamento, tiuj ĉi arĥaismoj neniam estos elĵetitaj, sed ĉiam estos presataj en ĉiuj lernolibroj kaj vortaroj samtempe kun la formoj novaj, kaj tiamaniere ni havos la certecon, ke eĉ ĉe la plej granda perfektiĝado la unueco de Esperanto neniam estos rompata kaj neniu verko Esperanta eĉ el la plej frua tempo iam perdos sian valoron kaj kompreneblecon por la estontaj generacioj.",
+   "elektoj": [
+    "prezen1.0i.proponi: Meti ion antaŭ iu, por ke li ĝin prenu, vidu aŭ juĝu.",
+    "prezen1.0i.iun: Konduki iun antaŭ aliajn personojn, precipe superuloj.",
+    "prezen1.0i.imagigi: Starigi antaŭ ies imago la bildon de iu aŭ io.",
+    "prezen1.0i.bildigi: Meti antaŭ ies okuloj imitaĵon de io, faritan per parolo, pentrado aŭ alia arto.",
+    "prezen1.0i.spektaklon: Ludi antaŭ publiko teatraĵon, scenon, spektaĵon.",
+    "prezen1.0i.aspekton: Montri specialan aspekton de si mem; liveri okazon al io; estigi.",
+    "prezen1.0i.esti: Montri la formon karakterizan de io; formi, konsistigi.",
+    "prezen1.0i.SCI: Fari el informo trakteblan datumon."
+   ]
+  },
+  "regno": {
+   "senco": "regn.0o.POL",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "regn.0o.POL: Ŝtato kondukanta sian propran, sendependan eksteran politikon, subjekto de la internacia juro.",
+    "regn.0o.FIG: Loko en la spaco aŭ en hierarkio de ideoj kie regas iu specio, principo ktp.",
+    "regn.0o.klasifika: Iu el la plej ĝeneralaj grupoj en la naturscienca, aŭ pli speciale biologia, klasifiko, tradicie la animala, fungoj, plantoj."
+   ]
+  },
+  "regula": {
+   "senco": "regul.0a.konforma",
+   "frazo": "Por ke lingvo internacia povu bone kaj regule progresadi kaj por ke ĝi havu plenan certecon, ke ĝi neniam disfalos kaj ia facilanima paŝo de ĝiaj amikoj estontaj ne detruos la laborojn de ĝiaj amikoj estintaj, — estas plej necesa antaŭ ĉio unu kondiĉo: la ekzistado de klare difinita, neniam tuŝebla kaj neniam ŝanĝebla Fundamento de la lingvo.",
+   "elektoj": [
+    "regul.0a.konforma: Konforma al unu aŭ pluraj reguloj; laŭregula.",
+    "regul.0a.perioda: Obeanta al firma, ripetiĝanta ritmo aŭ ordo.",
+    "regul.0a.MAT: (p.p. plurlatero) Tia, ke ĝi estas enskribita en cirklo, kaj ke ĝiaj lateroj estas samlongaj."
+   ]
+  },
+  "societo": {
+   "senco": "societ.0o.institucio",
+   "frazo": "Neniu persono kaj neniu societo devas havi la rajton arbitre fari en nia Fundamento iun eĉ plej malgrandan ŝanĝon!",
+   "elektoj": [
+    "societ.0o.institucio: Daŭra kuniĝo de pli malpli multaj personoj sub komuna regularo por atingi komunan celon, ĉu plezuran, ĉu profitan, ĉu komercan.",
+    "societ.0o.medio: Grupo aŭ klaso da homoj interrilatantaj surbaze de komuna socia rango, kutimoj aŭ moroj; kunularo.",
+    "societ.0o.JUR: Jura persono kun laŭleĝe difinitaj rajtoj kaj devoj.",
+    "societ.0o.socio: Socio."
+   ]
+  },
+  "tempo": {
+   "senco": "temp.0o.cxiamo",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "temp.0o.cxiamo: Universala interrilato, laŭ kiu ordiĝas la sinsekvaj okazaĵoj, laŭ kiu okazas evoluo.",
+    "temp.0o.GRA: Fleksio de verbo montranta, ke la priparolata ago estas estanta (prezenco, finaĵo -as), pasinta (preterito, finaĵo -is) aŭ venonta (futuro, finaĵo -os).",
+    "temp.0o.MUZ: "
+   ]
+  },
+  "unueco": {
+   "senco": "unu.0eco.unikeco",
+   "frazo": "Sed, prezentante parton de la fundamento, tiuj ĉi arĥaismoj neniam estos elĵetitaj, sed ĉiam estos presataj en ĉiuj lernolibroj kaj vortaroj samtempe kun la formoj novaj, kaj tiamaniere ni havos la certecon, ke eĉ ĉe la plej granda perfektiĝado la unueco de Esperanto neniam estos rompata kaj neniu verko Esperanta eĉ el la plej frua tempo iam perdos sian valoron kaj kompreneblecon por la estontaj generacioj.",
+   "elektoj": [
+    "unu.0eco.unikeco: Eco de tio, kio estas nur unu.",
+    "unu.0eco.kohero: Karaktero de tio, kies ĉiuj partoj kunligiĝas por konsistigi nur unu tuton."
+   ]
+  },
+  "vivo": {
+   "senco": "viv.0o.BIO",
+   "frazo": "Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta.",
+   "elektoj": [
+    "viv.0o.BIO: Spontanea aktiveco propra al organizitaj estaĵoj.",
+    "viv.0o.ialonga: Sinsekvo de la agoj, per kiuj evidentiĝas tiu aktiveco.",
+    "viv.0o.iamaniera: Uzado de tiu aktiveco laŭ iaj kondiĉoj, ia maniero.",
+    "viv.0o.vigleco: Vigleco, viveco."
+   ]
+  }
+ },
+ "c2-letero-deveno": {
+  "certa": {
+   "senco": "cert.0a.nedubanta",
+   "frazo": "Mi komencis kompari vortojn, serĉi inter ili konstantajn, difinitajn rilatojn kaj ĉiutage mi forĵetadis el la vortaro novan grandegan serion da vortoj, anstataŭigante tiun ĉi grandegon per unu sufikso, kiu signifis certan rilaton.",
+   "elektoj": [
+    "cert.0a.nedubanta: Nedubanta.",
+    "cert.0a.nedubebla: Nedubebla.",
+    "cert.0a.sekura: Tia, ke oni ne povas perdi aŭ eviti ĝin; garantiita.",
+    "cert.0a.difinebla: Difinebla sed ne difinita, ĉar oni ne volas aŭ ne bezonas difini."
+   ]
+  },
+  "dividi": {
+   "senco": "divid.0i.partigi",
+   "frazo": "En tia urbo pli ol ie la impresema naturo sentas la multepezan malfeliĉon de diverslingveco kaj konvinkiĝas ĉe ĉiu paŝo, ke la diverseco de lingvoj estas la sola, aŭ almenaŭ la ĉefa kaŭzo, kiu disigas la homan familion kaj dividas ĝin en malamikaj partoj.",
+   "elektoj": [
+    "divid.0i.partigi: Fari partojn el tuto, apartigi partojn de tuto, partigi.",
+    "divid.0i.disdoni: Disdoni al ĉiu lian parton.",
+    "divid.0i.preni: Ricevi, preni ĉiu sian parton el komuna tuto.",
+    "divid.0i.kunhavi: Partumi, kunhavi, kunsperti.",
+    "divid.0i.MAT: Plenumi la operacion divido."
+   ]
+  },
+  "forte": {
+   "senco": "fort.0e.maniero",
+   "frazo": "Tio ĉi ĉiam forte turmentis mian infanan animon, kvankam multaj eble ridetos pri tiu ĉi „doloro pro la mondo“ ĉe la infano.",
+   "elektoj": [
+    "fort.0e.maniero: En forta maniero.",
+    "fort.0e.multe: Multe, tre."
+   ]
+  },
+  "franca": {
+   "senco": "franc.0a.1",
+   "frazo": "Germanan kaj francan lingvojn mi ellernadis en infaneco, kiam oni ne povas ankoraŭ kompari kaj fari konkludojn; sed kiam, estante en la 5-a klaso de gimnazio, mi komencis ellernadi lingvon anglan, la simpleco de la angla gramatiko ĵetiĝis en miajn okulojn, precipe dank’al la kruta transiro al ĝi de la gramatikoj latina kaj greka.",
+   "elektoj": [
+    "franc.0a.1: Rilatanta al francoj, ilia nacieco aŭ ŝtato.",
+    "franc.0a.2: La franca lingvo."
+   ]
+  },
+  "gramatiko": {
+   "senco": "gramat.0o.SCI",
+   "frazo": "Germanan kaj francan lingvojn mi ellernadis en infaneco, kiam oni ne povas ankoraŭ kompari kaj fari konkludojn; sed kiam, estante en la 5-a klaso de gimnazio, mi komencis ellernadi lingvon anglan, la simpleco de la angla gramatiko ĵetiĝis en miajn okulojn, precipe dank’al la kruta transiro al ĝi de la gramatikoj latina kaj greka.",
+   "elektoj": [
+    "gramat.0o.SCI: Sufiĉe kompleta aro da reguloj de lingvo homa aŭ de lingvo formala.",
+    "gramat.0o.libro: Prigramatika verko aŭ lernilo, prezentanta tiajn lingvajn regulojn."
+   ]
+  },
+  "greka": {
+   "senco": "grek.0a.1",
+   "frazo": "Germanan kaj francan lingvojn mi ellernadis en infaneco, kiam oni ne povas ankoraŭ kompari kaj fari konkludojn; sed kiam, estante en la 5-a klaso de gimnazio, mi komencis ellernadi lingvon anglan, la simpleco de la angla gramatiko ĵetiĝis en miajn okulojn, precipe dank’al la kruta transiro al ĝi de la gramatikoj latina kaj greka.",
+   "elektoj": [
+    "grek.0a.1: Rilatanta al grekoj, ilia nacieco aŭ ŝtato.",
+    "grek.0a.2: La greka lingvo."
+   ]
+  },
+  "kaŭzo": {
+   "senco": "kauxz.0o.kialo",
+   "frazo": "En tia urbo pli ol ie la impresema naturo sentas la multepezan malfeliĉon de diverslingveco kaj konvinkiĝas ĉe ĉiu paŝo, ke la diverseco de lingvoj estas la sola, aŭ almenaŭ la ĉefa kaŭzo, kiu disigas la homan familion kaj dividas ĝin en malamikaj partoj.",
+   "elektoj": [
+    "kauxz.0o.kialo: Tio, pro kio io okazas; kialo.",
+    "kauxz.0o.motivo: Tio, pro kio oni faras ian agon, havas iun senton ks.",
+    "kauxz.0o.FIL: Tio, pro kio io estas aŭ iĝas tia, kiel ĝi estas."
+   ]
+  },
+  "komenci": {
+   "senco": "komenc.0i.fari_unuan_parton",
+   "frazo": "Germanan kaj francan lingvojn mi ellernadis en infaneco, kiam oni ne povas ankoraŭ kompari kaj fari konkludojn; sed kiam, estante en la 5-a klaso de gimnazio, mi komencis ellernadi lingvon anglan, la simpleco de la angla gramatiko ĵetiĝis en miajn okulojn, precipe dank’al la kruta transiro al ĝi de la gramatikoj latina kaj greka.",
+   "elektoj": [
+    "komenc.0i.fari_unuan_parton: Fari la unuan parton de afero aŭ de ago.",
+    "komenc.0i.transiri: Transiri en novan staton.",
+    "komenc.0i.esti_unua_parto: Konsistigi la unuan parton de io."
+   ]
+  },
+  "kompreni": {
+   "senco": "kompre.0i.koni_signifon",
+   "frazo": "Mi komprenis, kian grandan signifon povas havi por la lingvo konscie kreata la plena uzado de tiu forto, kiu en lingvoj naturaj efikis nur parte, blinde, neregule kaj neplene.",
+   "elektoj": [
+    "kompre.0i.koni_signifon: (vorton, parolon) Koni ĝian signifon.",
+    "kompre.0i.havi_gxustan_ideon: Havi ĝustan ideon.",
+    "kompre.0i.kompetenti: Kompetenti.",
+    "kompre.0i.celi: (sub iu esprimo) Doni al tiu esprimo alian signifon."
+   ]
+  },
+  "lingvo": {
+   "senco": "lingv.0o.homa",
+   "frazo": "En Bjelostoko la loĝantaro konsistas el kvar diversaj elementoj: rusoj, poloj, germanoj kaj hebreoj; ĉiu el ĉi tiuj elementoj parolas apartan lingvon kaj neamike rilatas la aliajn elementojn.",
+   "elektoj": [
+    "lingv.0o.homa: Sistemo da vortoj uzata de etno aŭ alia homgrupo por interkompreniĝo.",
+    "lingv.0o.speciala: Tiu sistemo rigardata kiel karakterizo de speciala grupo da individuoj aŭ de aparta fako.",
+    "lingv.0o.signosistema: Ĉio servanta por esprimi pensojn aŭ sentojn.",
+    "lingv.0o.formala: Formala lingvo."
+   ]
+  },
+  "parto": {
+   "senco": "part.0o.KOMUNE",
+   "frazo": "En tia urbo pli ol ie la impresema naturo sentas la multepezan malfeliĉon de diverslingveco kaj konvinkiĝas ĉe ĉiu paŝo, ke la diverseco de lingvoj estas la sola, aŭ almenaŭ la ĉefa kaŭzo, kiu disigas la homan familion kaj dividas ĝin en malamikaj partoj.",
+   "elektoj": [
+    "part.0o.KOMUNE: Io, kio povas esti facile apartigita de tuto aŭ per penso, aŭ per vido, aŭ per efektiva disigo.",
+    "part.0o.porcio: Io, kion iu rajtas postuli el tuto, kiun oni dividas inter pluraj personoj."
+   ]
+  },
+  "plena": {
+   "senco": "plen.0a.tuta",
+   "frazo": "Mi komprenis, kian grandan signifon povas havi por la lingvo konscie kreata la plena uzado de tiu forto, kiu en lingvoj naturaj efikis nur parte, blinde, neregule kaj neplene.",
+   "elektoj": [
+    "plen.0a.tuta: Enhavanta la tutan enhaveblan kvanton.",
+    "plen.0a.kompleta: Kompleta; al kiu mankas nenia necesa parto aŭ eco.",
+    "plen.0a.multa: Enhavanta grandan kvanton.",
+    "plen.0a.angulo: (p.p. angulo) Situanta ekster du egalaj lateroj, do ampleksanta la tutan ebenon; kies mezuro egalas al 360˚."
+   ]
+  },
+  "solvi": {
+   "senco": "solv.0i.KOMUNE",
+   "frazo": "„La problemo estas solvita!“ — diris mi tiam.",
+   "elektoj": [
+    "solv.0i.KOMUNE: Trovi nekonaton de problemo, respondon al demando, rimedon por eliri el malfacilaĵo.",
+    "solv.0i.KEM: Tiamaniere miksi kun likvo solidon, gason aŭ alian likvon, ke la rezulto estas stabila kaj homogena likvo."
+   ]
+  },
+  "sufikso": {
+   "senco": "sufiks.0o.propre",
+   "frazo": "Unu fojon, kiam mi estis en la 6-a aŭ 7-a klaso de la gimnazio, mi okaze turnis la atenton al la surskribo „ŝvejcarskaja“*, kiun mi jam multajn fojojn vidis, kaj poste al la elpendaĵo „Konditorskaja“.** Tiu ĉi „skaja“ ekinteresis min kaj montris al mi, ke la sufiksoj donas la eblon el unu vorto fari aliajn vortojn, kiujn oni ne devas aparte ellernadi.",
+   "elektoj": [
+    "sufiks.0o.komune: Vortero uzata kutime metante ĝin post aliaj vorteroj por formi kunmetitan vorton.",
+    "sufiks.0o.propre: Afikso, kiu metite post aliaj vorteroj ŝanĝas ties sencon; postafikso."
+   ]
+  }
+ },
+ "c2-revizoro-urbestro": {
+  "fumi": {
+   "senco": "fum.0i.ntr",
+   "frazo": "Ne bone estas, ke ĉe vi la malsanuloj fumas tian fortan tabakon, ke oni ĉiam ekternas, kiam oni eniras.",
+   "elektoj": [
+    "fum.0i.ntr: Ellasi fumon.",
+    "fum.0i.tabakon: En- kaj elspiri tabakan aŭ aroman fumon."
+   ]
+  },
+  "kaŭzo": {
+   "senco": "kauxz.0o.kialo",
+   "frazo": "— Mi opinias, Anton Antonoviĉ, ke tie ĉi estas kaŭzo delikata kaj pli politika.",
+   "elektoj": [
+    "kauxz.0o.kialo: Tio, pro kio io okazas; kialo.",
+    "kauxz.0o.motivo: Tio, pro kio oni faras ian agon, havas iun senton ks.",
+    "kauxz.0o.FIL: Tio, pro kio io estas aŭ iĝas tia, kiel ĝi estas."
+   ]
+  },
+  "pura": {
+   "senco": "pur.0a.neniu_fremda",
+   "frazo": "Sendube la traveturanta oficisto volos antaŭ ĉio ĉirkaŭrigardi la kadukulejojn, kiuj estas sub via estreco, kaj tial faru tiamaniere, ke ĉio estu konvena: ke la noktaj ĉapoj estu puraj kaj la malsanuloj ne similu forĝistojn en la senĝenaj ĉiutagaj vestoj.",
+   "elektoj": [
+    "pur.0a.neniu_fremda: Karakterizas ion, kies naturo estas miksita je neniu fremda elemento.",
+    "pur.0a.neniu_malbona: Karakterizas ion, kies naturo estas difektita de neniu malbona elemento.",
+    "pur.0a.ne_makulita: Ne makulita de naŭza substanco (polvo, graso, koto, ktp)."
+   ]
+  }
+ },
+ "ekc-literaturo-la-eta-princo-komen": {
+  "prezenti": {
+   "senco": "prezen1.0i.proponi",
+   "frazo": "Tiu bildo prezentis boaon, kiu glutis sovaĝan beston.",
+   "elektoj": [
+    "prezen1.0i.proponi: Meti ion antaŭ iu, por ke li ĝin prenu, vidu aŭ juĝu.",
+    "prezen1.0i.iun: Konduki iun antaŭ aliajn personojn, precipe superuloj.",
+    "prezen1.0i.imagigi: Starigi antaŭ ies imago la bildon de iu aŭ io.",
+    "prezen1.0i.bildigi: Meti antaŭ ies okuloj imitaĵon de io, faritan per parolo, pentrado aŭ alia arto.",
+    "prezen1.0i.spektaklon: Ludi antaŭ publiko teatraĵon, scenon, spektaĵon.",
+    "prezen1.0i.aspekton: Montri specialan aspekton de si mem; liveri okazon al io; estigi.",
+    "prezen1.0i.esti: Montri la formon karakterizan de io; formi, konsistigi.",
+    "prezen1.0i.SCI: Fari el informo trakteblan datumon."
+   ]
+  },
+  "ĝangalo": {
+   "senco": "gxanga.0o.GEOG",
+   "frazo": "Tiam mi multe primeditis la aventurojn de la ĝangalo, kaj mi sukcesis fari, per koloro, mian unuan desegnaĵon.",
+   "elektoj": [
+    "gxanga.0o.GEOG: Densa arbaro de varma, malseka klimato, precipe de musonaj landoj.",
+    "gxanga.0o.FIG: Pro multaj diversaj eroj implika, eventuala danĝera, loko aŭ medio."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-04": {
+  "pura": {
+   "senco": "pur.0a.neniu_fremda",
+   "frazo": "— La mano de Johano estas pura.",
+   "elektoj": [
+    "pur.0a.neniu_fremda: Karakterizas ion, kies naturo estas miksita je neniu fremda elemento.",
+    "pur.0a.neniu_malbona: Karakterizas ion, kies naturo estas difektita de neniu malbona elemento.",
+    "pur.0a.ne_makulita: Ne makulita de naŭza substanco (polvo, graso, koto, ktp)."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-06": {
+  "historio": {
+   "senco": "histor.0o.okazajxoj",
+   "frazo": "— Rakontu al mia juna amiko belan historion.",
+   "elektoj": [
+    "histor.0o.okazajxoj: Tuto aŭ parto de la okazaĵoj, kiujn travivis la homaro tra la tempo.",
+    "histor.0o.SCI: Scienca prezento pri historio.",
+    "histor.0o.rakonto: Rakonta prezento de memorindaj okazaĵoj realaj aŭ fikciaj.",
+    "histor.0o.BIO: Tuto de la sinsekvaj statoj de iu ŝanĝiĝanta afero."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-07": {
+  "horo": {
+   "senco": "hor.0o.tempopunkto",
+   "frazo": "— Sesdek minutoj faras unu horon, kaj unu minuto konsistas el sesdek sekundoj.",
+   "elektoj": [
+    "hor.0o.tempopunkto: Ĉiu el la 24 egaldistancaj numeritaj tempopunktoj en diurno, indikataj per vicmontraj numeraloj, inter kiuj la noktomezo estas la la 24a, kaj la tagmezo, la 12a.",
+    "hor.0o.mezurunuo: Komunuza mezurunuo de tempo, egala al 3600 sekundoj.",
+    "hor.0o.tagmomento: Difinita momento de la tago."
+   ]
+  },
+  "naski": {
+   "senco": "nask.0i.BIO",
+   "frazo": "— Georgo Vaŝington estis naskita la dudek duan de Februaro de la jaro mil sepcent tridek dua.",
+   "elektoj": [
+    "nask.0i.BIO: Produkti idon p.p. ino.",
+    "nask.0i.estigi: Estigi, kaŭzi, okazigi.",
+    "nask.0i.MAT: Diri, ke aro A naskas aron B signifas, ke aro B inkluzivas A kaj ĉiujn rezultojn de iuj operacioj inter elementoj de B, sed nenion pli. Oni nomas aron A la naskanta aro, ĝiajn elementojn la naskantoj, kaj aron B la naskita aro."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-09": {
+  "riĉa": {
+   "senco": "ricx.0a.EKON",
+   "frazo": "— Kiam oni estas riĉa (aŭ riĉaj), oni havas multajn amikojn.",
+   "elektoj": [
+    "ricx.0a.EKON: Posedanta multajn havaĵojn, multan monon, multajn bienojn.",
+    "ricx.0a.je_io: Havanta multe da io ajn.",
+    "ricx.0a.valora: Multvalora, konvena por riĉa homo.",
+    "ricx.0a.abunda: Multnombra, abunda."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-12": {
+  "pura": {
+   "senco": "pur.0a.neniu_fremda",
+   "frazo": "Fluanta akvo estas pli pura, ol akvo, staranta senmove.",
+   "elektoj": [
+    "pur.0a.neniu_fremda: Karakterizas ion, kies naturo estas miksita je neniu fremda elemento.",
+    "pur.0a.neniu_malbona: Karakterizas ion, kies naturo estas difektita de neniu malbona elemento.",
+    "pur.0a.ne_makulita: Ne makulita de naŭza substanco (polvo, graso, koto, ktp)."
+   ]
+  },
+  "stari": {
+   "senco": "star.0i.senmove",
+   "frazo": "Fluanta akvo estas pli pura, ol akvo, staranta senmove.",
+   "elektoj": [
+    "star.0i.senmove: Resti senmove kaj vertikale sur la piedoj.",
+    "star.0i.altigxante: Daŭre resti, vertikale altiĝante.",
+    "star.0i.sensxangxe: Fortike senŝanĝe resti.",
+    "star.0i.stagni: Resti senmove, senire, senflue; stagni.",
+    "star.0i.senage: Resti senage, senprogrese.",
+    "star.0i.kusxi: Daŭre resti, esti en daŭra stato, esti."
+   ]
+  },
+  "tempo": {
+   "senco": "temp.0o.cxiamo",
+   "kontrolita": true,
+   "frazo": "— La tempo pasinta jam neniam revenos; la tempon venontan neniu ankoraŭ konas.",
+   "elektoj": [
+    "temp.0o.cxiamo: Universala interrilato, laŭ kiu ordiĝas la sinsekvaj okazaĵoj, laŭ kiu okazas evoluo.",
+    "temp.0o.GRA: Fleksio de verbo montranta, ke la priparolata ago estas estanta (prezenco, finaĵo -as), pasinta (preterito, finaĵo -is) aŭ venonta (futuro, finaĵo -os).",
+    "temp.0o.MUZ: "
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-14": {
+  "jaro": {
+   "senco": "jar.0o.AST",
+   "frazo": "— Laŭ la projekto de la inĝenieroj tiu ĉi fervojo estas konstruota en la daŭro de du jaroj; sed mi pensas, ke ĝi estos konstruata pli ol tri jarojn.",
+   "elektoj": [
+    "jar.0o.AST: Daŭro dum kiu la tero faras kompletan rondiron ĉirkaŭ la suno, proksimume 365 tagoj kaj 1 kvarono.",
+    "jar.0o.KAL: Kalendara periodo de proksimuma daŭro de unu tera ĉirkaŭsunado kun fiksitaj komenca kaj fina tagoj."
+   ]
+  },
+  "projekto": {
+   "senco": "projek1.0o.propono",
+   "frazo": "— Laŭ la projekto de la inĝenieroj tiu ĉi fervojo estas konstruota en la daŭro de du jaroj; sed mi pensas, ke ĝi estos konstruata pli ol tri jarojn.",
+   "elektoj": [
+    "projek1.0o.propono: Propono prezentata al instanco aŭ al la publiko kiel plano por efektivigi ideon; priskribo de tia propono.",
+    "projek1.0o.entrepreno: Entrepreno por realigi konstruaĵon, verkon ks kun konkreta kadro de daŭro, buĝeto kaj laŭ detale ellaborita plano.",
+    "projek1.0o.intenco: Ideo proponata kiel efektivigota."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-15": {
+  "aero": {
+   "senco": "aer.0o.KEM",
+   "frazo": "— Super la tero sin trovas aero.",
+   "elektoj": [
+    "aer.0o.KEM: Spirebla nesimpla gaso, kiu ĉirkaŭas la teron.",
+    "aer.0o.spaco: Libera spaco super la tero, ofte konsiderata kiel medio por flugado kaj aviado."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-16": {
+  "kunmeti": {
+   "senco": "met.kun0i.GRA",
+   "kontrolita": true,
+   "frazo": "— Vortoj kunmetitaj estas kreataj per simpla kunligado de vortoj; oni prenas ordinare la purajn radikojn, sed, se la bonsoneco aŭ la klareco postulas, oni povas ankaŭ preni la tutan vorton, t.",
+   "elektoj": [
+    "met.kun0i.KOMUNE: Kunigi.",
+    "met.kun0i.GRA: Kunmeti vortojn kaj vorterojn por formi novajn vortojn."
+   ]
+  },
+  "objekto": {
+   "senco": "objekt.0o.ajxo",
+   "frazo": "La artikolo « la » estas uzata tiam, kiam ni parolas pri personoj aŭ objektoj konataj.",
+   "elektoj": [
+    "objekt.0o.ajxo: Ĉio, kio estas videbla, tuŝebla, perceptebla per sentumoj; aĵo.",
+    "objekt.0o.2: Ĉio ajn abstrakta, kio estas konceptebla de la spirito; afero.",
+    "objekt.0o.temo: Temo.",
+    "objekt.0o.deago: Ĉio, kio estigas ian senton, kio liveras okazon al ia ago.",
+    "objekt.0o.FIL: La ekstera aĵo, kiu estas pensata de la pensanta subjekto.",
+    "objekt.0o.GRA: Tio, kion atingas la ago de la subjekto."
+   ]
+  },
+  "persono": {
+   "senco": "person.0o.homo",
+   "frazo": "La artikolo « la » estas uzata tiam, kiam ni parolas pri personoj aŭ objektoj konataj.",
+   "elektoj": [
+    "person.0o.homo: Homa individuo konsiderata kiel konscia, respondeca kaj havanta devojn kaj rajtojn.",
+    "person.0o.rolanto: Imagita rolanto de rakonto, romano, teatraĵo, filmo aŭ alia verko fikcia.",
+    "person.0o.KRI: Hipostazo.",
+    "person.0o.GRA: Konjugacia aŭ pronoma formo servanta por distingi la personon, kiu parolas, tiun, al kiu oni parolas, kaj tiun, pri kiu oni parolas."
+   ]
+  },
+  "pura": {
+   "senco": "pur.0a.neniu_fremda",
+   "frazo": "— Vortoj kunmetitaj estas kreataj per simpla kunligado de vortoj; oni prenas ordinare la purajn radikojn, sed, se la bonsoneco aŭ la klareco postulas, oni povas ankaŭ preni la tutan vorton, t.",
+   "elektoj": [
+    "pur.0a.neniu_fremda: Karakterizas ion, kies naturo estas miksita je neniu fremda elemento.",
+    "pur.0a.neniu_malbona: Karakterizas ion, kies naturo estas difektita de neniu malbona elemento.",
+    "pur.0a.ne_makulita: Ne makulita de naŭza substanco (polvo, graso, koto, ktp)."
+   ]
+  },
+  "radiko": {
+   "senco": "radik.0o.GRA",
+   "kontrolita": true,
+   "frazo": "— Vortoj kunmetitaj estas kreataj per simpla kunligado de vortoj; oni prenas ordinare la purajn radikojn, sed, se la bonsoneco aŭ la klareco postulas, oni povas ankaŭ preni la tutan vorton, t.",
+   "elektoj": [
+    "radik.0o.BOT: Malsupren kreskanta parto de vegetaĵo, tute sen folioj, kaj servanta por fiksado kaj nutrado de la tigo.",
+    "radik.0o.ANAT: Parto de organo, per kiu ĝi estas fiksita en alia.",
+    "radik.0o.FIG: Esenca fundamento, kerna principo.",
+    "radik.0o.GRA: Primitiva vorto, de kiu oni derivas aliajn vortojn per almetado de aliaj radikoj aŭ afiksoj.",
+    "radik.0o.radikalo: Radikalo.",
+    "radik.0o.MAT: (de polinomo) Nuliganto de la responda polinoma funkcio."
+   ]
+  },
+  "simpla": {
+   "senco": "simpl.0a.facila",
+   "frazo": "— Vortoj kunmetitaj estas kreataj per simpla kunligado de vortoj; oni prenas ordinare la purajn radikojn, sed, se la bonsoneco aŭ la klareco postulas, oni povas ankaŭ preni la tutan vorton, t.",
+   "elektoj": [
+    "simpl.0a.facila: Nekomplikita, facile komprenebla, uzebla, solvebla.",
+    "simpl.0a.nura: Nura.",
+    "simpl.0a.PSI: Simplanima, senartifika, senruza, eventuale naiva.",
+    "simpl.0a.MAT: (p.p. grupo G) Tia, ke ĝiaj nuraj invariantaj subgrupoj estas G kaj {1}."
+   ]
+  },
+  "skribi": {
+   "senco": "skrib.0i.signojn",
+   "frazo": "Ekzemploj : skribtablo aŭ skribotablo (=tablo, sur kiu oni skribas); internacia (=kiu estas inter diversaj nacioj); tutmonda (=de la tuta mondo); unutaga (=kiu daŭras unu tagon); unuataga (=kiu estas en la unua tago); vaporŝipo (=ŝipo, kiu sin movas per vaporo); matenmanĝi, tagmanĝi, vespermanĝi; abonpago (=pago por la abono).",
+   "elektoj": [
+    "skrib.0i.signojn: Prezenti parolojn per vico de konvenciaj signoj.",
+    "skrib.0i.TEK: Registri datumojn sur daŭran materialon por konservo.",
+    "skrib.0i.KOMP: Sendi datumon el pli alta nivelo de la memorhierarkio al malpli alta (periferia), ekzemple el la ĉefmemoro sur diskon."
+   ]
+  },
+  "tempo": {
+   "senco": "temp.0o.cxiamo",
+   "frazo": "La personoj, kiuj ne komprenas la uzadon de la artikolo (ekzemple rusoj aŭ poloj, kiuj ne scias alian lingvon krom sia propra), povas en la unua tempo tute ne uzi la artikolon, ĉar ĝi estas oportuna, sed ne necesa.",
+   "elektoj": [
+    "temp.0o.cxiamo: Universala interrilato, laŭ kiu ordiĝas la sinsekvaj okazaĵoj, laŭ kiu okazas evoluo.",
+    "temp.0o.GRA: Fleksio de verbo montranta, ke la priparolata ago estas estanta (prezenco, finaĵo -as), pasinta (preterito, finaĵo -is) aŭ venonta (futuro, finaĵo -os).",
+    "temp.0o.MUZ: "
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-17": {
+  "tempo": {
+   "senco": "temp.0o.cxiamo",
+   "frazo": "— Jam estas tempo iri domen.",
+   "elektoj": [
+    "temp.0o.cxiamo: Universala interrilato, laŭ kiu ordiĝas la sinsekvaj okazaĵoj, laŭ kiu okazas evoluo.",
+    "temp.0o.GRA: Fleksio de verbo montranta, ke la priparolata ago estas estanta (prezenco, finaĵo -as), pasinta (preterito, finaĵo -is) aŭ venonta (futuro, finaĵo -os).",
+    "temp.0o.MUZ: "
+   ]
+  },
+  "trovi": {
+   "senco": "trov.0i.elsercxi",
+   "frazo": "montri, ke la birdo sin ne trovis antaŭe en la ĝardeno aŭ sur la tablo kaj tie flugis, sed ke ĝi de alia loko flugis al la ĝardeno, al la tablo (ni volas montri, ke la ĝardeno kaj tablo ne estis la loko de la flugado, sed nur la celo de la flugado); en tiaj okazoj ni uzus la finiĝon « n » tute egale, ĉu ia prepozicio starus aŭ ne.",
+   "elektoj": [
+    "trov.0i.elsercxi: Per serĉado (aŭ per okazo) renkonti ion, iun.",
+    "trov.0i.sperti: Sperti ian okazon, travivi ian senton, impreson.",
+    "trov.0i.taksi: Opinii ion aŭ iun tia."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-19": {
+  "kial": {
+   "senco": "kial.0.adverbo",
+   "frazo": "Se ni aldonas al ili la literon « k », ni ricevas vortojn demandajn aŭ rilatajn : kia, kial, kiam, kie, kiel, kies, kio, kiom, kiu.",
+   "elektoj": [
+    "kial.0.adverbo: Demanda adverbo signifanta „pro kia kaŭzo?“.",
+    "kial.0.konjunkcio: Demanda dependiga konjunkcio, kun sama signifo."
+   ]
+  },
+  "pronomo": {
+   "senco": "pronom.0o.noma",
+   "frazo": "— La montritajn naŭ vortojn ni konsilas bone ellerni, ĉar el ili ĉiu povas jam fari al si grandan serion da aliaj pronomoj kaj adverboj.",
+   "elektoj": [
+    "pronom.0o.noma: Speciala vorto servanta por anstataŭi nomon, t.e. substantiva aŭ adjektiva pronomo.",
+    "pronom.0o.substantiva: Vorto anstataŭanta subkomprenatan substantivon.",
+    "pronom.0o.gxenerala: Vorto el fermita leksika-semantika aro da parolsituaciaj rolvortoj, ricevantaj sian sencon rilate al la situacio de la parolantoj (personaj pronomoj, montraj pronomoj), aŭ al la kunteksto (referenco al io jam menciita: ĝi, tiu, tie), aŭ al la gramatika rolo en la frazo (sia, mem, kiun), logikaj kvantoroj (iu, ĉiu, nenie)."
+   ]
+  },
+  "sufikso": {
+   "senco": "sufiks.0o.propre",
+   "frazo": "Ekster tio el la diritaj vortoj ni povas ankoraŭ fari aliajn vortojn, per helpo de gramatikaj finiĝoj kaj aliaj vortoj (sufiksoj); ekzemple : tiama, ĉiama, kioma, tiea, ĉi-tiea, tieulo, tiamulo k.",
+   "elektoj": [
+    "sufiks.0o.komune: Vortero uzata kutime metante ĝin post aliaj vorteroj por formi kunmetitan vorton.",
+    "sufiks.0o.propre: Afikso, kiu metite post aliaj vorteroj ŝanĝas ties sencon; postafikso."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-20": {
+  "bruli": {
+   "senco": "brul.0i.konsumigxi",
+   "frazo": "kio brulas?",
+   "elektoj": [
+    "brul.0i.konsumigxi: Oksidiĝi produktante varmon kaj lumon.",
+    "brul.0i.konsumi: Elmontri varmon kaj lumon de io, kio brulas.",
+    "brul.0i.varmi: Esti varmega, doloriga kiel io brulanta.",
+    "brul.0i.FIG: Esti en forta eksciteco."
+   ]
+  },
+  "daŭri": {
+   "senco": "dauxr.0i.estadi",
+   "frazo": "Lia kolero longe daŭris.",
+   "elektoj": [
+    "dauxr.0i.estadi: Fariĝi dum ia tempo, konsumi ian tempon, estadi.",
+    "dauxr.0i.konservigxadi: Konserviĝadi dum longa tempo, ne forpasi dum longa tempo.",
+    "dauxr.0i.restadi: Esti plue, ne esti finita, plue fariĝi kiel antaŭe, restadi en sama stato, ne ĉesi, ne halti."
+   ]
+  },
+  "korpo": {
+   "senco": "korp.0o.ANA",
+   "frazo": "— La korpo estas morta, la animo estas senmorta.",
+   "elektoj": [
+    "korp.0o.ANA: Ĉe homoj kaj bestoj, aro de la materiaj partoj, kiuj konsistigas la organaron.",
+    "korp.0o.persono: La tuta persono.",
+    "korp.0o.objekto: Ĉiu aro da materiaj eroj; materia objekto.",
+    "korp.0o.MAT: Tia unuhava ringo (E,†,×), ke krom la neŭtra elemento de † ĉiuj aliaj elementoj estas neŭtrigeblaj rilate al ×.",
+    "korp.0o.solido: "
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-22": {
+  "kurba": {
+   "senco": "kurb.0a.FORM",
+   "frazo": "— Rekta vojo estas pli mallonga, ol kurba.",
+   "elektoj": [
+    "kurb.0a.FORM: Havanta formon nek rektan, nek konsistantan el rektaj partoj.",
+    "kurb.0a.FIG: Ne evidente, klare, sincere aŭ rekte iranta al sia celo."
+   ]
+  },
+  "naski": {
+   "senco": "nask.0i.BIO",
+   "frazo": "— Li sentis sin tiel malfeliĉa, ke li malbenis la tagon, en kiu li estis naskita.",
+   "elektoj": [
+    "nask.0i.BIO: Produkti idon p.p. ino.",
+    "nask.0i.estigi: Estigi, kaŭzi, okazigi.",
+    "nask.0i.MAT: Diri, ke aro A naskas aron B signifas, ke aro B inkluzivas A kaj ĉiujn rezultojn de iuj operacioj inter elementoj de B, sed nenion pli. Oni nomas aron A la naskanta aro, ĝiajn elementojn la naskantoj, kaj aron B la naskita aro."
+   ]
+  },
+  "nokto": {
+   "senco": "nokt.0o.KAL",
+   "frazo": "— La nokto estis tiel malluma, ke ni nenion povis vidi eĉ antaŭ nia nazo.",
+   "elektoj": [
+    "nokt.0o.KAL: Tiu parto de la diurno, dum kiu la suno estas sub horizonto kaj ne lumas al ni.",
+    "nokt.0o.FIG: Mallumo materia aŭ spirita."
+   ]
+  },
+  "pordo": {
+   "senco": "pord.0o.spaco",
+   "frazo": "— Li estas tiel dika, ke li ne povas trairi tra nia mallarĝa pordo.",
+   "elektoj": [
+    "pord.0o.spaco: Malfermaĵo en muro de konstruaĵo, en barilo, en flanko de veturilo aŭ maŝino por trairo.",
+    "pord.0o.fermajxo: Plato, kiu fermas pordan spacon, kaj klape aŭ glite formoviĝas por ebligi trairon."
+   ]
+  },
+  "ŝtono": {
+   "senco": "sxton.0o.MIN",
+   "frazo": "— Tiu ĉi malfreŝa pano estas malmola, kiel ŝtono.",
+   "elektoj": [
+    "sxton.0o.MIN: Malmola pli malpli granda minerala maso.",
+    "sxton.0o.KON: Tia malmola mineralo rigardanta kiel materialo.",
+    "sxton.0o.FIG: Ĝenaĵo, malhelpaĵo, rezistaĵo.",
+    "sxton.0o.SPO: Malgranda malmola ludpeco de du aŭ pluraj koloroj, kiujn oni metas sur la poziciojn de tabulludo.",
+    "sxton.0o.MED: Negranda ŝtoneca konkremento kiu fojfoje formiĝas en glandoj aŭ iliaj duktoj."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-23": {
+  "hispana": {
+   "senco": "hispan.0a.nacia",
+   "frazo": "— Mi ne scias la lingvon hispanan, sed per helpo de vortaro hispana-germana mi tamen komprenis iom vian leteron.",
+   "elektoj": [
+    "hispan.0a.nacia: Rilatanta al hispanoj, ilia nacieco aŭ ŝtato.",
+    "hispan.0a.lingvo: (la hispana) La hispana lingvo."
+   ]
+  },
+  "veturi": {
+   "senco": "vetur.0i.TRA",
+   "frazo": "— En somero ni veturas per diversaj veturiloj, kaj en vintro ni veturas per glitveturilo.",
+   "elektoj": [
+    "vetur.0i.TRA: Iri ne paŝante sed transportate per diversaj rimedoj.",
+    "vetur.0i.TRA_veturilo: (pp veturiloj) Translokiĝi."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-24": {
+  "objekto": {
+   "senco": "objekt.0o.ajxo",
+   "frazo": "— Ĉemizojn, kolumojn, manumojn kaj ceterajn similajn objektojn ni nomas tolaĵo, kvankam ili ne ĉiam estas faritaj el tolo.",
+   "elektoj": [
+    "objekt.0o.ajxo: Ĉio, kio estas videbla, tuŝebla, perceptebla per sentumoj; aĵo.",
+    "objekt.0o.2: Ĉio ajn abstrakta, kio estas konceptebla de la spirito; afero.",
+    "objekt.0o.temo: Temo.",
+    "objekt.0o.deago: Ĉio, kio estigas ian senton, kio liveras okazon al ia ago.",
+    "objekt.0o.FIL: La ekstera aĵo, kiu estas pensata de la pensanta subjekto.",
+    "objekt.0o.GRA: Tio, kion atingas la ago de la subjekto."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-25": {
+  "bofratino": {
+   "senco": "frat.bo0ino.frataedzino",
+   "frazo": "— Ĉiuj parenooj de mia edzino estas miaj boparencoj, sekve ŝia frato estas mia bofrato, ŝia fratino estas mia bofratino; mia frato kaj fratino (gefratoj) estas la bogefratoj de mia edzino.",
+   "elektoj": [
+    "frat.bo0ino.edza: Fratino de la propra edzo aŭ edzino.",
+    "frat.bo0ino.frataedzino: La edzino de frato aŭ fratino rilate al ties gefratoj.",
+    "frat.bo0ino.bofrataedzino: La edzino de bofrato aŭ bofratino."
+   ]
+  },
+  "bofrato": {
+   "senco": "frat.bo0o.edza",
+   "frazo": "— Ĉiuj parenooj de mia edzino estas miaj boparencoj, sekve ŝia frato estas mia bofrato, ŝia fratino estas mia bofratino; mia frato kaj fratino (gefratoj) estas la bogefratoj de mia edzino.",
+   "elektoj": [
+    "frat.bo0o.edza: Frato de la propra edzo aŭ edzino.",
+    "frat.bo0o.frataedzo: La edzo de frato aŭ fratino rilate al ties gefratoj.",
+    "frat.bo0o.bofrataedzo: La edzo de bofrato aŭ bofratino."
+   ]
+  },
+  "koko": {
+   "senco": "kok.0o.AGR",
+   "frazo": "— Ĉevalido estas nematura ĉevalo, kokido — nematura koko, bovido — nematura bovo, birdido — nematura birdo.",
+   "elektoj": [
+    "kok.0o.AGR: Subspecio (Gallus gallus domesticus) el la genro koko, bredata kiel kortobirdo en multaj rasoj pro la viando kaj la ovoj.",
+    "kok.0o.ZOO: Genro el familio fazanedoj (Gallus), birdo kun ruĝa kresto sur la kapo."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-27": {
+  "malvarma": {
+   "senco": "varm.mal0a.fizike",
+   "frazo": "— Tuj post la hejto la forno estis varmega, post unu horo ĝi estis jam nur varma, post du horoj ĝi estis nur iom varmeta, kaj post tri horoj ĝi estis jam tute malvarma.",
+   "elektoj": [
+    "varm.mal0a.fizike: Produktanta sur la palporganojn la karakterizan sentumon, kiun kaŭzas glacio.",
+    "varm.mal0a.varmomanka: Senvarma, nevarmigita, ne produktanta aŭ ne entenanta varmon, havanta tro malaltan temperaturon.",
+    "varm.mal0a.senemocia: Senemocia, senpasia, senpartia.",
+    "varm.mal0a.malafabla: Ne montranta fervoron, favoron al iu aŭ io."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-28": {
+  "alia": {
+   "senco": "ali.0a.diferenca",
+   "frazo": "— Ŝi edziniĝis kun sia kuzo, kvankam ŝiaj gepatroj volis ŝin edzinigi kun alia persono.",
+   "elektoj": [
+    "ali.0a.diferenca: Diferenca, malsama.",
+    "ali.0a.dua: Dua el du personoj aŭ grupoj.",
+    "ali.0a.pron: Aliulo."
+   ]
+  },
+  "ruĝiĝi": {
+   "senco": "rugx.0igxi.ajne",
+   "frazo": "— Li paliĝis de timo kaj poste li ruĝiĝis de honto.",
+   "elektoj": [
+    "rugx.0igxi.ajne: Iĝi ruĝa.",
+    "rugx.0igxi.vizagxe: Ricevi ruĝan vizaĝhaŭton per emocia sangalfluo, ekzemple pro honto, pudoro, kolero."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-29": {
+  "bruli": {
+   "senco": "brul.0i.konsumigxi",
+   "frazo": "— En la kandelingo sidis brulanta kandelo.",
+   "elektoj": [
+    "brul.0i.konsumigxi: Oksidiĝi produktante varmon kaj lumon.",
+    "brul.0i.konsumi: Elmontri varmon kaj lumon de io, kio brulas.",
+    "brul.0i.varmi: Esti varmega, doloriga kiel io brulanta.",
+    "brul.0i.FIG: Esti en forta eksciteco."
+   ]
+  },
+  "daŭri": {
+   "senco": "dauxr.0i.estadi",
+   "frazo": "— La pafado daŭris tre longe.",
+   "elektoj": [
+    "dauxr.0i.estadi: Fariĝi dum ia tempo, konsumi ian tempon, estadi.",
+    "dauxr.0i.konservigxadi: Konserviĝadi dum longa tempo, ne forpasi dum longa tempo.",
+    "dauxr.0i.restadi: Esti plue, ne esti finita, plue fariĝi kiel antaŭe, restadi en sama stato, ne ĉesi, ne halti."
+   ]
+  },
+  "fulmo": {
+   "senco": "fulm.0o.atmosfera",
+   "frazo": "— Du ekbriloj de fulmo trakuris tra la malluma ĉielo.",
+   "elektoj": [
+    "fulm.0o.atmosfera: Atmosfera fenomeno konsistanta el elektra malŝargo inter nuboj aŭ nuboj kaj tero, akompanata de branĉiĝanta, rapide pasanta, fajra kanalo.",
+    "fulm.0o.ekbrilo: Subita kaj maldaŭra ekbrilo."
+   ]
+  },
+  "objekto": {
+   "senco": "objekt.0o.ajxo",
+   "frazo": "— Magazeno, en kiu oni vendas cigarojn, aŭ ĉambro, en kiu oni tenas cigarojn, estas cigarejo; skatoleto aŭ alia objekto, en kiu oni tenas cigarojn, estas cigarujo; tubeto, en kiun oni metas cigaron, kiam oni ĝin fumas, estas cigaringo.",
+   "elektoj": [
+    "objekt.0o.ajxo: Ĉio, kio estas videbla, tuŝebla, perceptebla per sentumoj; aĵo.",
+    "objekt.0o.2: Ĉio ajn abstrakta, kio estas konceptebla de la spirito; afero.",
+    "objekt.0o.temo: Temo.",
+    "objekt.0o.deago: Ĉio, kio estigas ian senton, kio liveras okazon al ia ago.",
+    "objekt.0o.FIL: La ekstera aĵo, kiu estas pensata de la pensanta subjekto.",
+    "objekt.0o.GRA: Tio, kion atingas la ago de la subjekto."
+   ]
+  },
+  "paperujo": {
+   "senco": "paper.0ujo.biletujo",
+   "frazo": "— En la poŝo de mia pantalono mi portas monujon, kaj en la poŝo de mia surtuto mi portas paperujon; pli grandan paperujon mi portas sub la brako.",
+   "elektoj": [
+    "paper.0ujo.biletujo: Koverto el firma materialo, ekz. leda, plasta, portebla en poŝo por konservi biletojn, legitimilojn ks; monpaperujo.",
+    "paper.0ujo.dosiera: Pli granda poŝo aŭ kovrilo por konservi dokumentojn, disajn paperofoliojn, dosieron."
+   ]
+  },
+  "parolado": {
+   "senco": "parol.0ado.ago",
+   "frazo": "— Lia hieraŭa parolo estis tre bela, sed la tro multa parolado lacigas lin.",
+   "elektoj": [
+    "parol.0ado.ago: Ago longe paroli.",
+    "parol.0ado.publika: Longedaŭra parolo antaŭ publiko."
+   ]
+  },
+  "plumo": {
+   "senco": "plum.0o.ZOO",
+   "frazo": "— Skatolo, en kiu oni tenas plumojn, estas plumujo, kaj bastoneto, sur kiu oni tenas plumon por skribado, estas plumingo.",
+   "elektoj": [
+    "plum.0o.ZOO: Ĉiu el la kornecaj tubetoj garnitaj per lanugo, kiuj kovras la korpon de birdoj.",
+    "plum.0o.skribilo: Skribilo farita el tubeto de plumo, kies ekstremon oni pintigis, aŭ el similforma metallameno tenata per plumingo.",
+    "plum.0o.FIG: Aŭtoreco, verkmaniero de iu."
+   ]
+  },
+  "poŝo": {
+   "senco": "posx.0o.saketo",
+   "frazo": "— En la poŝo de mia pantalono mi portas monujon, kaj en la poŝo de mia surtuto mi portas paperujon; pli grandan paperujon mi portas sub la brako.",
+   "elektoj": [
+    "posx.0o.saketo: Speco de saketo alkudrita al vestaĵo.",
+    "posx.0o.monujo: Monujo.",
+    "posx.0o.simila: Ia similforma ujo el fleksebla materialo; sako ks."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-30": {
+  "longe": {
+   "senco": "long.0e.tempe",
+   "frazo": "— Li estas tre ekkolerema kaj ekscitiĝas ofte ĉe la plej malgranda bagatelo; tamen li estas tre pardonema, li ne portas longe la koleron kaj li tute ne estas venĝema.",
+   "elektoj": [
+    "long.0e.tempe: Dum multe da tempo.",
+    "long.0e.delonge: Delonge.",
+    "long.0e.space: Tiel, ke la koncernaĵo estas longa."
+   ]
+  }
+ },
+ "fundamenta-ekzercaro-31": {
+  "akvo": {
+   "senco": "akv.0o.KOMUNE",
+   "frazo": "— La suno rebrilas en la klara akvo de la rivero.",
+   "elektoj": [
+    "akv.0o.KOMUNE: Fluaĵo, el kiu konsistas la riveroj, lagoj kaj maroj.",
+    "akv.0o.amaso: Ia amaso de tia fluaĵo rigardata kiel tuto, ekz-e lago, rivero ks; akvujo.",
+    "akv.0o.KEM: Kombinaĵo de hidrogeno kaj oksigeno (H2O), precipe la likva stato.",
+    "akv.0o.simila: Ia klara fluaĵo similanta akvon."
+   ]
+  },
+  "sana": {
+   "senco": "san.0a.bonfarta",
+   "frazo": "— Sano, sana, sane, sani, sanu, saniga, saneco, sanilo, sanigi, saniĝi, sanejo, sanisto, sanulo, malsano, malsana, malsane, malsani, malsanulo, malsaniga, malsaniĝi, malsaneta, malsanema, malsanulejo, malsanulisto, malsanero, malsaneraro, sanigebla, sanigisto, sanigilo, sanilo, resanigi, resaniĝanto, sanigilejo, sanigejo, malsanemulo, sanilaro, malsanaro, malsanulido, nesana, malsanado, sanilaĵo, malsaneco, malsanemeco, saniginda, sanilujo, sanigilujo, remalsano, remalsaniĝo, malsanulino, sanigista, sanigilista, sanilista, malsanulista k.",
+   "elektoj": [
+    "san.0a.bonfarta: Havanta korpon, organaron, menson, kiuj bone kaj normale funkcias.",
+    "san.0a.saniga: Sanfavora.",
+    "san.0a.sanrilata: Rilata al saneco, al konservado de saneco.",
+    "san.0a.instruo: Karakterizanta instruon, kiu certigu ekvilibran, bone funkciantan socion."
+   ]
+  },
+  "sufikso": {
+   "senco": "sufiks.0o.propre",
+   "frazo": "— La sufikso « um » ne havas difinitan signifon, kaj tial la (tre malmultajn) vortojn kun « um » oni devas lerni, kiel simplajn vortojn.",
+   "elektoj": [
+    "sufiks.0o.komune: Vortero uzata kutime metante ĝin post aliaj vorteroj por formi kunmetitan vorton.",
+    "sufiks.0o.propre: Afikso, kiu metite post aliaj vorteroj ŝanĝas ties sencon; postafikso."
+   ]
+  }
+ },
+ "kr-einstein-lingvoj-tutmondaj": {
+  "antaŭiri": {
+   "senco": "ir.antaux0i.KOMUNE",
+   "frazo": "Cetere mi trovis, ke vera kompreno de tiu ĉi objekto nur tiam povas esti atingita kun utilo, kiam ni antaŭe okupos nin iom je la preparaj laboroj, kiuj antaŭiris al la nuna sistemo de lingvo tutmonda.",
+   "elektoj": [
+    "ir.antaux0i.KOMUNE: Iri antaŭ io aŭ iu.",
+    "ir.antaux0i.antauxen: Antaŭen iri, progresi."
+   ]
+  },
+  "detala": {
+   "senco": "detal.0a.0hava",
+   "frazo": "Tie ĉi ne estas al mi eble doni detalan priskribon de tiuj ĉi ĉirkaŭ 60 provoj; estas sufiĉe, se ni nur enkomune vidos, kio ĉio estis farita en tiu ĉi rilato, kaj kiajn rimedojn oni ĉiufoje volis uzi, por ĉiujn homojn lingve unuigi.",
+   "elektoj": [
+    "detal.0a.0hava: Enhavanta ĉiujn detalojn, preciza kaj kompleta.",
+    "detal.0a.EKON: Rilata al pomalgranda vendado."
+   ]
+  },
+  "komuna": {
+   "senco": "komun.0a.rilata_al_pluraj",
+   "frazo": "Jam de 200 jaroj kun rilate malgrandaj interrompoj estis farataj provoj krei lingvon internacian, kaj la deziro de komuna lingvo por ĉiuj homoj estis esprimita eĉ jam antaŭ pli ol 2000 jaroj de la profeto Zefaniah.",
+   "elektoj": [
+    "komun.0a.rilata_al_pluraj: Samtempe uzata de pluraj, apartenanta al pluraj, en kiu pluraj partoprenas.",
+    "komun.0a.rilata_al_plejmulto: Rilata al la plejmulto de homoj."
+   ]
+  },
+  "rilato": {
+   "senco": "rilat.0o.interpersona",
+   "frazo": "Tie ĉi ne estas al mi eble doni detalan priskribon de tiuj ĉi ĉirkaŭ 60 provoj; estas sufiĉe, se ni nur enkomune vidos, kio ĉio estis farita en tiu ĉi rilato, kaj kiajn rimedojn oni ĉiufoje volis uzi, por ĉiujn homojn lingve unuigi.",
+   "elektoj": [
+    "rilat.0o.interpersona: Ligiteco kaj reciproka konduto inter du aŭ pluraj personoj, interrilato.",
+    "rilat.0o.interligo: Ia ajn ligiteco aŭ interefiko inter du aŭ pluraj aferoj.",
+    "rilat.0o.3: Juĝmaniero de iu pri io; vidpunkto.",
+    "rilat.0o.4: Nombro, kiu montras, kiomfoje iu kvanto estas pli granda ol alia."
+   ]
+  },
+  "sama": {
+   "senco": "sam.0a.tiu",
+   "frazo": "Ĉar tiu ĉi idea skribado, konsistanta el ĉirkaŭ 40 000 signoj, en kiu per unu komuna simbola signo estas esprimata tiu sama penso aŭ komprenaĵo, kiu, estante elparolata, en ĉiu lingvo sonus alie, povas tial esti legata en ĉiu lingvo, kaj la Ĥino tial ankaŭ legas siajn skribajn signojn ĉiam en sia dialekto, kaj la aliaj popoloj de Azio legas tiujn samajn signojn en ilia lingvo.",
+   "elektoj": [
+    "sam.0a.tiu: Estanta de sama identeco; estanta la antaŭe menciita mem kvankam eble kun alia ŝajno.",
+    "sam.0a.tia: Estanta ĉiel simila al alia; neniel distingebla de alia."
+   ]
+  },
+  "sistemo": {
+   "senco": "sistem.0o.tuto",
+   "frazo": "Cetere mi trovis, ke vera kompreno de tiu ĉi objekto nur tiam povas esti atingita kun utilo, kiam ni antaŭe okupos nin iom je la preparaj laboroj, kiuj antaŭiris al la nuna sistemo de lingvo tutmonda.",
+   "elektoj": [
+    "sistem.0o.tuto: Harmonia tuto da interdependaj aĵoj kunordigitaj laŭ malmultaj fiksitaj principoj.",
+    "sistem.0o.plano: Antaŭe pripensita plano aŭ direktanta ideo, laŭ kiu oni konstante agas por trafi difinitan celon.",
+    "sistem.0o.ekvacioj: (de ekvacioj) Ekvaciaro."
+   ]
+  },
+  "tempo": {
+   "senco": "temp.0o.cxiamo",
+   "frazo": "En nia tempo, kiam la interkomunikiĝo de la popoloj per la telegrafoj, vaporŝipoj kaj fervojoj grandiĝis en maniero neniam supozita, ankaŭ la ellernado de la lingvoj de ĉiuj tiuj ĉi popoloj fariĝis bezono de la bone edukitaj kaj precipe de la komercistoj; sed tiu ĉi lernado estas tiel malfacila kaj tempon deprenanta, ke ĝi pleje devas esti farata kun perdo por la aliaj regionoj de scienco, kaj tial la postulado de unu lingvo komuna, akceptita de ĉiuj edukitaj homoj, anstataŭanta ĉiujn aliajn fremdajn lingvojn, montras sin des pli pravigita.",
+   "elektoj": [
+    "temp.0o.cxiamo: Universala interrilato, laŭ kiu ordiĝas la sinsekvaj okazaĵoj, laŭ kiu okazas evoluo.",
+    "temp.0o.GRA: Fleksio de verbo montranta, ke la priparolata ago estas estanta (prezenco, finaĵo -as), pasinta (preterito, finaĵo -is) aŭ venonta (futuro, finaĵo -os).",
+    "temp.0o.MUZ: "
+   ]
+  }
+ },
+ "kr-konjunktivito": {
+  "formo": {
+   "senco": "form.0o.aspekto",
+   "frazo": "Per la nemulta eligaĵo, kiu en formo de mukaj fadenoj restas en la konjunktiva sako, naskiĝas teda sento de fremda korpo, kvazaŭ en la okulo estus polvero; kiam tiaj mukaj fadenoj metiĝas sur la korneon, tiam la vidado malklariĝas aŭ tiam ĉirkaŭ la flamo de kandelo montriĝas ĉielarkaj koloroj; krom tio la pacientoj rakontas pri malagrablaj sentoj de diversaj specoj, nome pri brulado kaj jukado, pri blinduliĝado per lumo, rapida laciĝado de la okuloj ĉe la laborado, ofta palpebrumado k.",
+   "elektoj": [
+    "form.0o.aspekto: Ekstera aspekto de objekto en spaco.",
+    "form.0o.maniero: Ekstera maniero, kiel io montriĝas aŭ efikas.",
+    "form.0o.ekstero: Ekstera aspekto kontraste al la enhavo, al la esenco.",
+    "form.0o.deco: Ekstera maniero, kiel oni agas, konforme al komunaj reguloj.",
+    "form.0o.formilo: Formilo.",
+    "form.0o.bildigo: Bildigo de vektora spaco E super korpo K (aŭ kartezia produto de E kun si mem) al K."
+   ]
+  },
+  "forte": {
+   "senco": "fort.0e.maniero",
+   "frazo": "Ĉe multaj homoj oni vidas la konjunktivon sufiĉe forte ruĝiĝinta kaj tamen ili plendas pri nenio eĉ plej malgranda, dum ĉe aliaj, kiuj la kuraciston simple elturmentas per siaj plendoj, oni ofte apenaŭ rimarkas iajn ŝanĝetojn en la konjunktivo.",
+   "elektoj": [
+    "fort.0e.maniero: En forta maniero.",
+    "fort.0e.multe: Multe, tre."
+   ]
+  },
+  "lumo": {
+   "senco": "lum.0o.FIZ",
+   "frazo": "Per la nemulta eligaĵo, kiu en formo de mukaj fadenoj restas en la konjunktiva sako, naskiĝas teda sento de fremda korpo, kvazaŭ en la okulo estus polvero; kiam tiaj mukaj fadenoj metiĝas sur la korneon, tiam la vidado malklariĝas aŭ tiam ĉirkaŭ la flamo de kandelo montriĝas ĉielarkaj koloroj; krom tio la pacientoj rakontas pri malagrablaj sentoj de diversaj specoj, nome pri brulado kaj jukado, pri blinduliĝado per lumo, rapida laciĝado de la okuloj ĉe la laborado, ofta palpebrumado k.",
+   "elektoj": [
+    "lum.0o.FIZ: Radioj (elektromagnetaj ondoj), kiuj estas perceptataj per la okuloj kaj igas la objektojn videblaj.",
+    "lum.0o.0ajxo: Io lumanta (precipe plurnombre kaj se ne konvenas precizigi la naturon de la koncernaj lumaĵoj).",
+    "lum.0o.klareco: Aldonaj informoj, kiuj klarigas iun aferon.",
+    "lum.0o.vero: La bono, la pravo, Dio, la vera scio ks.",
+    "lum.0o.optimismo: Optimisma sento: ĝojo, feliĉo, espero.",
+    "lum.0o.vidkapablo: Vidkapablo."
+   ]
+  },
+  "multa": {
+   "senco": "mult.0a.ununombre",
+   "frazo": "Pro la tre malgranda aŭ eĉ tute mankanta pliiĝo de la sekrecio kelkaj aŭtoroj difinas multajn okazojn de kronika kataro ne kiel tian, sed kiel hiperemion de la konjunktivo.",
+   "elektoj": [
+    "mult.0a.ununombre: Grandan nedifinitan kvanton el tuto, kies partojn oni ne povas aŭ ne bezonas esprimi per precizaj nombroj.",
+    "mult.0a.plurnombre: Grandan nedifinitan kvanton da nombreblaj aferoj kontraste kun pli malgranda kvanto."
+   ]
+  },
+  "nome": {
+   "senco": "nom.0e.lauxnome",
+   "frazo": "Per la nemulta eligaĵo, kiu en formo de mukaj fadenoj restas en la konjunktiva sako, naskiĝas teda sento de fremda korpo, kvazaŭ en la okulo estus polvero; kiam tiaj mukaj fadenoj metiĝas sur la korneon, tiam la vidado malklariĝas aŭ tiam ĉirkaŭ la flamo de kandelo montriĝas ĉielarkaj koloroj; krom tio la pacientoj rakontas pri malagrablaj sentoj de diversaj specoj, nome pri brulado kaj jukado, pri blinduliĝado per lumo, rapida laciĝado de la okuloj ĉe la laborado, ofta palpebrumado k.",
+   "elektoj": [
+    "nom.0e.lauxnome: Laŭ la nomo.",
+    "nom.0e.t_e: Pli precize difinante tion, kio estas antaŭe dirita sub ĝenerala formo.",
+    "nom.0e.fakte: Adverbo servanta por anonci, ke tio, kio sekvas, estas pruvo, klarigo aŭ motivigo de tio, kio estas ĵus dirita; fakte."
+   ]
+  },
+  "okulo": {
+   "senco": "okul.0o.ANA",
+   "frazo": "La pezeco de la palpebroj, tage apenaŭ rimarkebla, vespere estas tiel granda, ke al la pacientoj estas tre malfacile teni la okulojn nefermitaj; ili havas la senton, kvazaŭ ili volus dormi.",
+   "elektoj": [
+    "okul.0o.ANA: Organo de la vidkapablo.",
+    "okul.0o.FIG: Tiu sama organo, konsiderata kiel ilo de atento kaj intereso.",
+    "okul.0o.rigardo: Tiu organo, konsiderata kiel esprimanta diversajn animajn sentojn."
+   ]
+  },
+  "super": {
+   "senco": "super.0.loko",
+   "frazo": "Estas modera ruĝeco de la konjunktivo, aŭ nur super la tarso, aŭ ankaŭ en la parto transira.",
+   "elektoj": [
+    "super.0.loko: Lokon pli altan ol la indikita per la dependa vorto.",
+    "super.0.grado: Pozicion de io aŭ iu, kies forto, grado aŭ rango estas pli alta ol tiu de alia.",
+    "super.0.atento: Staton de iu, kies atento direktiĝas al ia laboro."
+   ]
+  }
+ },
+ "kr-sunhorlogxo": {
+  "konstruo": {
+   "senco": "konstr.0o.ado",
+   "frazo": "Mi scias nek la epokon nek la uzitan manieron de la konstruo de tiu ĉi sunhorloĝo; kaj mi ne konas, alian ekzempleron de tia en iaj urboj aŭ libroj.",
+   "elektoj": [
+    "konstr.0o.ado: Ago konstrui.",
+    "konstr.0o.strukturo: Maniero, laŭ kiu io estas konstruita.",
+    "konstr.0o.ajxo: Konstruaĵo."
+   ]
+  },
+  "punkto": {
+   "senco": "punkt.0o.makuleto",
+   "frazo": "Sur ŝtono laŭlonge de la linio SN estas markitaj punktoj kun la signoj de la zodiako, de kankro al kapro, sur unu flanko de SN, kaj de kapro al kankro sur la alia flanko.",
+   "elektoj": [
+    "punkt.0o.makuleto: Malgranda makulo sur supraĵo.",
+    "punkt.0o.interpunkcia: Interpunkcia signo (.) uzata precipe por marki frazfinon kaj mallongigon.",
+    "punkt.0o.loko: Preciza loko aŭ tempo, kie io okazas.",
+    "punkt.0o.temo: Speciala temo, kiun oni atentas.",
+    "punkt.0o.MAT: Senlime malvasta spacero, konsiderata kiel havanta nek larĝon, nek longon.",
+    "punkt.0o.longo: Malgranda enpaĝiga mezurunuo de longo, kies valoro varias laŭ landoj."
+   ]
+  },
+  "zodiako": {
+   "senco": "zodiak.0o.astronomia",
+   "frazo": "Sur ŝtono laŭlonge de la linio SN estas markitaj punktoj kun la signoj de la zodiako, de kankro al kapro, sur unu flanko de SN, kaj de kapro al kankro sur la alia flanko.",
+   "elektoj": [
+    "zodiak.0o.astronomia: Ĉiela zono, kies mezon okupas la ekliptiko, kaj kiu enhavas ĉiujn poziciojn de la planedoj, kaj krome la 13 stelarojn, kiujn ŝajnas trairi la suno dum sia jara rondiro.",
+    "zodiak.0o.astrologia: La sama ĉiela zono, dividata ekde la printempa ekvinokso en 12 samlarĝajn partojn (signoj de zodiako) uzatajn en astrologio."
+   ]
+  }
+ },
+ "kr-termitoj": {
+  "barelo": {
+   "senco": "barel.0o.TEK",
+   "frazo": "Aliaj preferas staton pli altan kaj konstruas siajn nestojn, kiuj havas diversan grandecon, de la grandeco de ĉapelo ĝis la grandeco de barelo de sukero, kaj konsistas el kungluitaj pecetoj da ligno—en branĉoj de arboj, ofte en la alteco de 20-25 metroj.",
+   "elektoj": [
+    "barel.0o.TEK: Ronda ventroforma ujo el lignaj kurbaj tabuletoj (daŭboj) kunfirmigitaj per feraj aŭ lignaj ringoj kun du plataj fundoj, uzata por enteni akvon, vinon aŭ alian fluaĵon.",
+    "barel.0o.similforma: Similforma aŭ cilindra granda ujo.",
+    "barel.0o.MEZ: Mezurunuo responda al la enhavo de barelo kun diversaj historiaj valoroj, interalie por nafto kaj tiam valoranta 159 litrojn."
+   ]
+  },
+  "dika": {
+   "senco": "dik.0a.KOMUNE",
+   "frazo": "Tiuj ĉi prezentas la trabaron de la estonta konstruo, ili baldaŭ fariĝas pli multaj kaj pli altaj, poste oni ilin malsupre pli larĝigas, supre ligas en kupolon, ĉirkaŭe fortikigas per dika muro el tero, kaj tiel ili prezentas loĝejon de la grandeco kaj formo de amaso da fojno, je kiu ili en kelka malproksimeco estas tre similaj, kiam ili kovriĝas per herbo, kio baldaŭ fariĝas.",
+   "elektoj": [
+    "dik.0a.KOMUNE: Granda laŭ la dimensio diko; havanta difinitan grandon laŭ tiu dimensio.",
+    "dik.0a.viskoza: Densa, viskoza, malfluema (simile al dika ŝtofo)."
+   ]
+  },
+  "direkto": {
+   "senco": "direkt.0o.kien",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "direkt.0o.kien: Alcela linio.",
+    "direkt.0o.instrukcio: Instrukcio pri la rimedoj, kiuj kondukas al difinita celo.",
+    "direkt.0o.gvido: Ago de tiu, kiu direktas.",
+    "direkt.0o.afinaspaco: (de afina (sub)spaco) La vektora (sub)spaco, kiu operacias super ĝi."
+   ]
+  },
+  "egala": {
+   "senco": "egal.0a.MEZ",
+   "frazo": "En la mezo de la konstruo, rekte sub la supro kaj pli-malpli sur egala alteco kun la tero, sin trovas la reĝa ĉambro, arkaĵo de duone ovala formo aŭ simila je forno de bakado.",
+   "elektoj": [
+    "egal.0a.MEZ: Havanta saman grandon, samajn dimensiojn, saman kvanton, saman valoron, kiel tio, kun kio oni ĝin komparas.",
+    "egal.0a.simila: Simila, sama.",
+    "egal.0a.MAT: (p.p. du aroj) Tiaj, ke ĉiu elemento de unu estas elemento de alia."
+   ]
+  },
+  "fortika": {
+   "senco": "fortik.0a.materialo",
+   "frazo": "La supra parto aŭ la kupolo, kiu estas tre dika kaj fortika, restas malplena kaj servas precipe kiel defendo kontraŭ la ŝanĝoj de la vetero kaj kontraŭ la atakoj de naturaj kaj okazaj malamikoj, kiel ankaŭ por konservi al la malsupra parto la necesan varmecon kaj malsekecon por la disvolviĝo de la ovoj kaj por la flegado de la idoj.",
+   "elektoj": [
+    "fortik.0a.materialo: Havanta firman, rezistan konsiston.",
+    "fortik.0a.FIG: Malfacile rompebla, difektebla, venkebla.",
+    "fortik.0a.MIL: Provizita je defendaj rimedoj, remparoj ks."
+   ]
+  },
+  "granda": {
+   "senco": "grand.0a.dimensio",
+   "frazo": "Tiuj ĉi nestoj estas farataj tute el tero, havas ordinare la altecon de 3-4 metroj kaj respondan larĝecon, tiel ke, se amaso da tiaj nestoj sin trovas kune, kio ofte havas lokon, oni povas ĝin preni por vilaĝo de la sovaĝuloj; kaj efektive tiuj ĉi nestoj ofte estas pli grandaj, ol la dometoj de la tieaj homoj.",
+   "elektoj": [
+    "grand.0a.dimensio: Superanta la ordinarajn dimensiojn.",
+    "grand.0a.grado: Superanta la ordinaran gradon, intensa, altkvalita."
+   ]
+  },
+  "konstrui": {
+   "senco": "konstr.0i.domon",
+   "frazo": "La diversaj specoj de termitoj (ekzistas multaj specoj) konstruas nestojn de tre diversa formo.",
+   "elektoj": [
+    "konstr.0i.domon: Firme kunigi el iuj partoj laŭ plano ion daŭran por utiligo.",
+    "konstr.0i.arangxi: Aranĝi erojn de tuto laŭ ia ordo.",
+    "konstr.0i.organizi: Organizi ion abstraktan laŭ difinita formo.",
+    "konstr.0i.GRA: Regule kunmeti vorton kun alia vorto aŭ speciala formo de vorto."
+   ]
+  },
+  "konstruo": {
+   "senco": "konstr.0o.ado",
+   "frazo": "Kelkaj konstruas tureton el tero, de alteco iom pli ol 50 centimetroj, ĉirkaŭitan de elstaranta konusa tegmento, tiel ke la konstruo estas tre simila je fungo; interne sin trovas multego da ĉeloj de diversa formo kaj grandeco.",
+   "elektoj": [
+    "konstr.0o.ado: Ago konstrui.",
+    "konstr.0o.strukturo: Maniero, laŭ kiu io estas konstruita.",
+    "konstr.0o.ajxo: Konstruaĵo."
+   ]
+  },
+  "konuso": {
+   "senco": "konus.0o.KOMUNE",
+   "frazo": "En la komenco ili konstruas du aŭ tri turetojn el tero, havantajn la altecon de preskaŭ 30 centimetroj kaj la formon de konuso da sukero.",
+   "elektoj": [
+    "konus.0o.MAT: Surfaco, naskita de ĉiuj rektoj (ĝiaj naskantoj), kiuj havas unu komunan punkton (la verticon de la konuso), kaj sekcas fiksan linion (ĝian direktanton).",
+    "konus.0o.KOMUNE: Objekto, havanta formon de konuso.",
+    "konus.0o.BOT: Strobilo."
+   ]
+  },
+  "laboro": {
+   "senco": "labor.0o.KOMUNE",
+   "kontrolita": true,
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "labor.0o.KOMUNE: Ago labori; rezulto de tia ago.",
+    "labor.0o.FIZ: Fizika grando, egala al la integralo de skalara produto de forto, aplikita al korpo, per la infinitezima movo, kiun ĝia efiko produktas sur la korpo."
+   ]
+  },
+  "materialo": {
+   "senco": "materi1.0o.substanco",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "materi1.0o.substanco: Ĉio materia, kio estas necesa por iu ago.",
+    "materi1.0o.datumoj: Ĉiuspecaj sciigoj, faktoj, datumoj necesaj por verki libron, raporton kaj ceterajn aŭ por fari spiritan laboron."
+   ]
+  },
+  "mezo": {
+   "senco": "mez.0o.punkto_inter_du",
+   "frazo": "En la mezo de la konstruo, rekte sub la supro kaj pli-malpli sur egala alteco kun la tero, sin trovas la reĝa ĉambro, arkaĵo de duone ovala formo aŭ simila je forno de bakado.",
+   "elektoj": [
+    "mez.0o.punkto_inter_du: Punkto pli malpli egaldistanca de la eksteraj limoj de io, en spaco aŭ tempo.",
+    "mez.0o.punkto_inter_ekstremoj: Tio, kio estas egale malproksima de kontraŭaj ekstremaj gradoj.",
+    "mez.0o.punkto: (de streko) Punkto de ĝi egaldistanca de ĝiaj du randoj."
+   ]
+  },
+  "miriado": {
+   "senco": "miriad.0o.nombro",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "miriad.0o.nombro: Dek mil.",
+    "miriad.0o.KOMUNE: Nenombreble granda nombro."
+   ]
+  },
+  "muro": {
+   "senco": "mur.0o.ARKI",
+   "frazo": "Tiuj ĉi prezentas la trabaron de la estonta konstruo, ili baldaŭ fariĝas pli multaj kaj pli altaj, poste oni ilin malsupre pli larĝigas, supre ligas en kupolon, ĉirkaŭe fortikigas per dika muro el tero, kaj tiel ili prezentas loĝejon de la grandeco kaj formo de amaso da fojno, je kiu ili en kelka malproksimeco estas tre similaj, kiam ili kovriĝas per herbo, kio baldaŭ fariĝas.",
+   "elektoj": [
+    "mur.0o.ARKI: Vertikala, pli larĝa ol dika konstruo, masonita aŭ alie kunmetita el blokoj aŭ tabulegoj (de ŝtono, betono, vitro, ligno k.a.), subportanta plafonojn kaj tegmenton de domo aŭ apartiganta iun spacon (ĝardenon, bienon, urbon k.a.).",
+    "mur.0o.metafora: Io simila al muro.",
+    "mur.0o.FIG: Malfacile transirebla baro, apenaŭ forigebla malhelpaĵo, kontraŭstaro."
+   ]
+  },
+  "naturo": {
+   "senco": "natur.0o.mondo",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "natur.0o.mondo: Ĉio en la universo, precipe en la homa mondo, kio spontane estas, kion ne faris homa arto.",
+    "natur.0o.karaktero: Esenco de estulo aŭ aĵo, plej ofte konsiderata kontraste kun la ecoj akiritaj per homa laboro kaj arto."
+   ]
+  },
+  "piramido": {
+   "senco": "pirami.0o.ARKI",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "pirami.0o.ARKI: Monumento kun kvarangula bazo, kvar triangulaj facoj kaj pinto, laŭ plej fama ekzemplo funkciinta kiel tombo de antikvaj reĝoj de Egiptujo.",
+    "pirami.0o.figuro: Pluredro, kies unu faco (ĝia bazo) estas ajna n-latero kaj ĉiuj n aliaj facoj estas trianguloj kun po unu komuna latero kun la bazo.",
+    "pirami.0o.FIG: Malsimpla tuto de kundependaj, vice sinapogaj aferoj."
+   ]
+  },
+  "plano": {
+   "senco": "plan.0o.realigota",
+   "frazo": "La parto loĝata enhavas la palacon reĝan aŭ la loĝejon de la reĝo kaj reĝino, la nutrejon por la idoj, la provizejon aŭ konservejon de la manĝaĵo kaj sennombrajn irojn, pasojn kaj malplenajn lokojn, aranĝitajn laŭ la sekvanta plano.",
+   "elektoj": [
+    "plan.0o.realigota: Antaŭe pripensita kaj ordigita aranĝo de efektivigota verko aŭ entrepreno.",
+    "plan.0o.desegnajxo: Desegno prezentanta konstruon, urbon aŭ regionon kaj montranta la situacion, la proporciojn kaj la rilatojn de la diversaj partoj.",
+    "plan.0o.distanco: Rilata malproksimeco en kiu troviĝas vidaĵoj aŭ en kiu estas perspektive metataj reprezentaĵoj en desegno aŭ pentraĵo."
+   ]
+  },
+  "ponto": {
+   "senco": "pont.0o.ARKI",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "pont.0o.ARKI: Konstruaĵo ebliganta trairon de rivero, fosaĵo, kavo ks.",
+    "pont.0o.MAR: Navigaciejo, stirejo de ŝipo.",
+    "pont.0o.MUZ: Parto de kordinstrumento, subtenilo, sur kiu estas streĉitaj la kordoj.",
+    "pont.0o.FIG: Interkomunikilo; rimedo de transiro."
+   ]
+  },
+  "prezenti": {
+   "senco": "prezen1.0i.proponi",
+   "frazo": "Tiuj ĉi prezentas la trabaron de la estonta konstruo, ili baldaŭ fariĝas pli multaj kaj pli altaj, poste oni ilin malsupre pli larĝigas, supre ligas en kupolon, ĉirkaŭe fortikigas per dika muro el tero, kaj tiel ili prezentas loĝejon de la grandeco kaj formo de amaso da fojno, je kiu ili en kelka malproksimeco estas tre similaj, kiam ili kovriĝas per herbo, kio baldaŭ fariĝas.",
+   "elektoj": [
+    "prezen1.0i.proponi: Meti ion antaŭ iu, por ke li ĝin prenu, vidu aŭ juĝu.",
+    "prezen1.0i.iun: Konduki iun antaŭ aliajn personojn, precipe superuloj.",
+    "prezen1.0i.imagigi: Starigi antaŭ ies imago la bildon de iu aŭ io.",
+    "prezen1.0i.bildigi: Meti antaŭ ies okuloj imitaĵon de io, faritan per parolo, pentrado aŭ alia arto.",
+    "prezen1.0i.spektaklon: Ludi antaŭ publiko teatraĵon, scenon, spektaĵon.",
+    "prezen1.0i.aspekton: Montri specialan aspekton de si mem; liveri okazon al io; estigi.",
+    "prezen1.0i.esti: Montri la formon karakterizan de io; formi, konsistigi.",
+    "prezen1.0i.SCI: Fari el informo trakteblan datumon."
+   ]
+  },
+  "resti": {
+   "senco": "rest.0i.neforiri",
+   "frazo": "La supra parto aŭ la kupolo, kiu estas tre dika kaj fortika, restas malplena kaj servas precipe kiel defendo kontraŭ la ŝanĝoj de la vetero kaj kontraŭ la atakoj de naturaj kaj okazaj malamikoj, kiel ankaŭ por konservi al la malsupra parto la necesan varmecon kaj malsekecon por la disvolviĝo de la ovoj kaj por la flegado de la idoj.",
+   "elektoj": [
+    "rest.0i.neforiri: Ne foriri, ne malaperi, estadi en koncerna loko.",
+    "rest.0i.konservigxi: Konserviĝi, plu esti en sama stato.",
+    "rest.0i.parto: Konserviĝi, ankoraŭ esti, post kiam foriĝis unu aŭ pluraj aliaj partoj, post konsumo, uzo, morto aŭ faro.",
+    "rest.0i.sintrovi: Sin trovi ia, en iu situacio, post okazo, faro, travivaĵo."
+   ]
+  },
+  "super": {
+   "senco": "super.0.loko",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "super.0.loko: Lokon pli altan ol la indikita per la dependa vorto.",
+    "super.0.grado: Pozicion de io aŭ iu, kies forto, grado aŭ rango estas pli alta ol tiu de alia.",
+    "super.0.atento: Staton de iu, kies atento direktiĝas al ia laboro."
+   ]
+  },
+  "vojo": {
+   "senco": "voj.0o.KOMUNE",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "voj.0o.KOMUNE: Spaco trairata por sin movi de unu loko al alia.",
+    "voj.0o.FIG_konduto: Agmaniero, kondutregulo, per kiu oni povas atingi celon.",
+    "voj.0o.FIG_rimedo: Rimedo.",
+    "voj.0o.MAT: (en topologia spaco E) Kontinua bildigo φ de la reela intervalo [0,1] al E."
+   ]
+  },
+  "ĉapelo": {
+   "senco": "cxapel.0o.kapvesto",
+   "frazo": "Aliaj preferas staton pli altan kaj konstruas siajn nestojn, kiuj havas diversan grandecon, de la grandeco de ĉapelo ĝis la grandeco de barelo de sukero, kaj konsistas el kungluitaj pecetoj da ligno—en branĉoj de arboj, ofte en la alteco de 20-25 metroj.",
+   "elektoj": [
+    "cxapel.0o.kapvesto: Kapvesto kun elstara ĉirkaŭrando.",
+    "cxapel.0o.BOT: Supra, ĉapeloforma parto de la fruktokorpo de fungo.",
+    "cxapel.0o.supersigno: Diakritilo, tegmentoforma supersigno, uzata en diversaj alfabetoj (interalie en esperanta, por formi la literojn ĉ, ĝ, ĥ, ĵ, ŝ), en matematikaj simboloj kaj en programlingvoj (en tiuj lastaj ĝi aperas kiel memstara signo, kies Askia numero estas 94)."
+   ]
+  },
+  "ĉelo": {
+   "senco": "cxel.0o.fako",
+   "frazo": "Kelkaj konstruas tureton el tero, de alteco iom pli ol 50 centimetroj, ĉirkaŭitan de elstaranta konusa tegmento, tiel ke la konstruo estas tre simila je fungo; interne sin trovas multego da ĉeloj de diversa formo kaj grandeco.",
+   "elektoj": [
+    "cxel.0o.cxambreto: Ĉambreto por unu persono, malgranda ejo ĉiuflanke fermita.",
+    "cxel.0o.fako: Malgranda kavo aŭ truo, precipe tia kiu estas unu el multaj similaj kaj regule aranĝitaj.",
+    "cxel.0o.BIO: Elementa viva sistemo, kapabla je memstara aŭ aŭtonoma ekzistado, reproduktado kaj evoluo; la baza ero de la strukturo de la vegetaĵoj kaj bestoj.",
+    "cxel.0o.partia: La unuaŝtupa, plej malgranda organizaĵo en iuj politikaj partioj."
+   ]
+  },
+  "ŝtono": {
+   "senco": "sxton.0o.MIN",
+   "frazo": "Ke tiaj malgrandaj insektoj, kiuj havas apenaŭ la longecon de duono da centimetro, povas en tri aŭ kvar jaroj pretigi konstruon de kvar metroj de alteco kaj de responda dikeco, ornamitan per multego da turetoj, kun miriadoj da ĉambroj de diversa grandeco kaj el diversaj materialoj, konstruitaj sub ĝiaj grandegaj arkaĵoj; ke ili en diversaj direktoj kaj diversa profundeco elfosas sennombrajn subterajn vojojn, el kiuj multaj havas dudek kvin centimetrojn en la diametro, aŭ disŝiras arkaĵon el ŝtono super aliaj vojoj, kiuj kondukas de la ĉefurbo en la malproksimecon de kelkaj centoj da metroj; ke ili aranĝas en la ĉirkaŭaĵo kaj en la internaĵo grandegajn ŝtuparojn aŭ pontojn, kaj fine, ke la milionoj, kiuj estas necesaj por tiaj herkulesaj laboroj kaj senĉese iras kaj reiras en diversaj direktoj, neniam malhelpas unu al la alia,—estas mirindaĵo de la naturo, aŭ pli ĝuste de la Kreinto de la naturo, kiu multe superas la plej glorajn kreitaĵojn kaj konstruojn de la homo; ĉar se tiuj ĉi bestetoj estus egale grandaj, kiel li, kaj konservus sian ordinaran instinkton kaj laboremecon, tiam iliaj konstruoj atingus la miregindan altecon de tuta kilometro, iliaj trakondukoj prezentus belegan cilindron kun diametro de cent metroj, per kio la piramidoj de Egiptujo kaj la akvokondukoj de Romo perdus sian tutan gloron kaj fariĝus nuloj.",
+   "elektoj": [
+    "sxton.0o.MIN: Malmola pli malpli granda minerala maso.",
+    "sxton.0o.KON: Tia malmola mineralo rigardanta kiel materialo.",
+    "sxton.0o.FIG: Ĝenaĵo, malhelpaĵo, rezistaĵo.",
+    "sxton.0o.SPO: Malgranda malmola ludpeco de du aŭ pluraj koloroj, kiujn oni metas sur la poziciojn de tabulludo.",
+    "sxton.0o.MED: Negranda ŝtoneca konkremento kiu fojfoje formiĝas en glandoj aŭ iliaj duktoj."
+   ]
+  }
+ },
+ "lit-la-eta-princo-komenco": {
+  "boao": {
+   "senco": "boa.0o.KOMUNE",
+   "kontrolita": true,
+   "frazo": "Tiu bildo prezentis boaon, kiu glutas rabobeston.",
+   "elektoj": [
+    "boa.0o.KOMUNE: la serpento",
+    "boa.0o.ZOO: la genro",
+    "boa.0o.TEKS: la pelta ŝalo"
+   ]
+  },
+  "piloti": {
+   "senco": "pilot.0i.AVI",
+   "kontrolita": true,
+   "frazo": "Mi do devis elekti alian metion kaj lernis piloti aviadilojn.",
+   "elektoj": [
+    "pilot.0i.MAR: Gvidi ŝipon kiel piloto.",
+    "pilot.0i.AVI: Konduki aviadilon."
+   ]
+  },
+  "prezenti": {
+   "senco": "prezen1.0i.proponi",
+   "frazo": "Tiu bildo prezentis boaon, kiu glutas rabobeston.",
+   "elektoj": [
+    "prezen1.0i.proponi: Meti ion antaŭ iu, por ke li ĝin prenu, vidu aŭ juĝu.",
+    "prezen1.0i.iun: Konduki iun antaŭ aliajn personojn, precipe superuloj.",
+    "prezen1.0i.imagigi: Starigi antaŭ ies imago la bildon de iu aŭ io.",
+    "prezen1.0i.bildigi: Meti antaŭ ies okuloj imitaĵon de io, faritan per parolo, pentrado aŭ alia arto.",
+    "prezen1.0i.spektaklon: Ludi antaŭ publiko teatraĵon, scenon, spektaĵon.",
+    "prezen1.0i.aspekton: Montri specialan aspekton de si mem; liveri okazon al io; estigi.",
+    "prezen1.0i.esti: Montri la formon karakterizan de io; formi, konsistigi.",
+    "prezen1.0i.SCI: Fari el informo trakteblan datumon."
+   ]
+  },
+  "ĝangalo": {
+   "senco": "gxanga.0o.GEOG",
+   "frazo": "Ekde tiam mi multe meditis pri la aventuroj en ĝangalo kaj per kolorkrajono mi sukcesis miavice fari mian unuan desegnon.",
+   "elektoj": [
+    "gxanga.0o.GEOG: Densa arbaro de varma, malseka klimato, precipe de musonaj landoj.",
+    "gxanga.0o.FIG: Pro multaj diversaj eroj implika, eventuala danĝera, loko aŭ medio."
+   ]
+  }
+ },
+ "lit-pinokjo-komenco": {
+  "bati": {
+   "senco": "bat.0i.ektusxegi",
+   "frazo": "—Ne batu min tiel forte!",
+   "elektoj": [
+    "bat.0i.ektusxegi: Ektuŝegi iun aŭ ion per rapida forta movo (ordinare per mano, piedo aŭ objekto permane tenata), abrupte trafi.",
+    "bat.0i.movi: Esti forte kaj ripete movata.",
+    "bat.0i.puni: Punbati, punfrapi, mortigi."
+   ]
+  }
+ },
+ "lit-regidino-sur-pizo": {
+  "terure": {
+   "senco": "terur.0e.timige",
+   "frazo": "Unu vesperon fariĝis granda uragano: fulmis kaj tondris, forte pluvegis, estis terure.",
+   "elektoj": [
+    "terur.0e.timige: En maniero terura.",
+    "terur.0e.FIG: Tre forte, ekstreme, eksterordinare."
+   ]
+  }
+ },
+ "lit-rego-macxjo-unua": {
+  "longa": {
+   "senco": "long.0a.space",
+   "frazo": "Ili kolektiĝis en granda salono, lokiĝis en komfortaj apogseĝoj ĉe longa tablo.",
+   "elektoj": [
+    "long.0a.space: Granda laŭ la dimensio longo; havanta difinitan grandon laŭ tiu dimensio.",
+    "long.0a.tempe: Havanta grandan daŭron.",
+    "long.0a.silabo: (p.p. silabo) Fermita aŭ akcenta."
+   ]
+  },
+  "ŝlosi": {
+   "senco": "sxlos.0i.seruro",
+   "frazo": "La ministroj ŝlosis la pordon, por ke neniu malhelpu la kunsidon, ili lumigis elektrajn lampojn kaj parolis nenion.",
+   "elektoj": [
+    "sxlos.0i.seruro: Fermi per seruro.",
+    "sxlos.0i.malhelpi: Malhelpi eliron de iu aŭ elmontriĝon de io."
+   ]
+  }
+ },
+ "lit-vivo-zamenhof-1": {
+  "alta": {
+   "senco": "alt.0a.dimensio",
+   "frazo": "Kvardek jarojn pli poste, en 1906, Zamenhof parolis en Ĝenevo pri la Bjalostoka pogromo: \"Ĉu la plej grandaj mensogoj kaj kalumnioj povus doni tiajn terurajn fruktojn, se la gentoj sin reciproke bone konus, se inter ili ne starus altaj kaj dikaj muroj, kiuj malpermesas al ili libere komunikiĝadi inter si kaj vidi, ke la membroj de aliaj gentoj estas tute tiaj samaj homoj kiel la membroj de nia gento?",
+   "elektoj": [
+    "alt.0a.dimensio: Granda laŭ la dimensio alto; havanta difinitan grandon laŭ tiu dimensio.",
+    "alt.0a.distanco: Troviĝanta je granda distanco super la tero.",
+    "alt.0a.FIG: Granda laŭ metafora senco; nobla, supera.",
+    "alt.0a.MUZ: Enhavanta multajn vibrojn en difinita tempodaŭro, altfrekvenca, akuta."
+   ]
+  },
+  "diversa": {
+   "senco": "divers.0a.malsamspeca",
+   "frazo": "Sur la litva tero kvar gentoj malsamaj loĝis en la urboj, kun celoj kontraŭaj, kun lingvoj diversaj, kun kredoj malamikaj.",
+   "elektoj": [
+    "divers.0a.malsamspeca: Havanta plurajn, eĉ multajn, malsamajn trajtojn, ecojn, karakterizaĵojn.",
+    "divers.0a.kelkaj: Kelke da malsamaj."
+   ]
+  },
+  "ĉefa": {
+   "senco": "cxef.0a.KOMUNE",
+   "frazo": "De la patrino la koro, de la patro la cerbo, de la loko la impreso: jen la tri ĉefaj elementoj en la formado de Zamenhofa genio.",
+   "elektoj": [
+    "cxef.0a.KOMUNE: Precipa, plej grava.",
+    "cxef.0a.MAT: (p.p. idealo) Tia, ke sufiĉas unu elemento por ĝin naski."
+   ]
+  }
+ },
+ "lit-zamenhof-kongreso-1905": {
+  "brili": {
+   "senco": "bril.0i.lumo",
+   "frazo": "Modesta estas nia kunveno; la mondo ekstera ne multe scias pri ĝi, kaj la vortoj, kiuj estas parolataj en nia kunveno, ne flugos telegrafe al ĉiuj urboj kaj urbetoj de la mondo; ne kunvenis regnestroj, nek ministroj, por ŝanĝi la politikan karton de la mondo, ne brilas luksaj vestoj kaj multego da imponantaj ordenoj en nia salono; sed tra la aero de nia salono flugas misteraj sonoj, sonoj tre mallaŭtaj, ne aŭdeblaj por la orelo, sed senteblaj por ĉiu animo sentema: ĝi estas la sono de io granda, kio nun naskiĝas.",
+   "elektoj": [
+    "bril.0i.lumo: Eligi aŭ resendi helan lumon.",
+    "bril.0i.FIG: Altiri la atenton per sia prospereco, eleganteco, lukso, spriteco."
+   ]
+  },
+  "lando": {
+   "senco": "land.0o.GEOG",
+   "frazo": "Mi salutas vin, karaj samideanoj, fratoj kaj fratinoj el la granda tutmonda homa familio, kiuj kunvenis el landoj proksimaj kaj malproksimaj, el la plej diversaj regnoj de la mondo, por frate premi al si reciproke la manojn pro la nomo de granda ideo, kiu ĉiujn nin ligas.",
+   "elektoj": [
+    "land.0o.GEOG: Surtera difinita regiono konsiderata kiel formanta apartan tuton laŭ geografia vidpunkto.",
+    "land.0o.pejzagxo: Natura regiono.",
+    "land.0o.POL: Regno."
+   ]
+  },
+  "ligi": {
+   "senco": "lig.0i.malhelpimovon",
+   "frazo": "Mi salutas vin, karaj samideanoj, fratoj kaj fratinoj el la granda tutmonda homa familio, kiuj kunvenis el landoj proksimaj kaj malproksimaj, el la plej diversaj regnoj de la mondo, por frate premi al si reciproke la manojn pro la nomo de granda ideo, kiu ĉiujn nin ligas.",
+   "elektoj": [
+    "lig.0i.malhelpimovon: Fiksi, ĉirkaŭvolvi per ŝnuro, ĉeno aŭ alia rimedo, malhelpante liberan movon aŭ disiĝon.",
+    "lig.0i.FIG: Limigi ies liberan agadon, ekz-e kreante al li moralajn devojn.",
+    "lig.0i.interrilatigi: Proksime interrilatigi plurajn aferojn."
+   ]
+  },
+  "membro": {
+   "senco": "membr.0o.ano",
+   "kontrolita": true,
+   "frazo": "En la plej malproksima antikveco la homa familio disiĝis kaj ĝiaj membroj ĉesis kompreni unu la alian.",
+   "elektoj": [
+    "membr.0o.ANA: Ĉiu el la moveblaj pecoj de la korpo ― krom kapo ― kunigitaj kun la trunko per artiko.",
+    "membr.0o.korpoparto: Ĉiu movebla parto de korpo, krom kapo.",
+    "membr.0o.ano: Ano de societo, partio, familio kc.",
+    "membr.0o.4: Aparta difinita ero de tutaĵo.",
+    "membr.0o.ekvacio: (de egalaĵo, neegalaĵo aŭ ekvacio) Ĉiu el la du esprimoj, situantaj ambaŭflanke de la signo de egaleco aŭ neegaleco."
+   ]
+  },
+  "spirito": {
+   "senco": "spirit.0o.menso",
+   "frazo": "Fratoj kreitaj ĉiuj laŭ unu modelo, fratoj, kiuj havis ĉiuj egalan korpon, egalan spiriton, egalajn kapablojn, egalajn idealojn, egalan Dion en siaj koroj — tiuj fratoj fariĝis tute fremdaj unuj al aliaj, disiĝis ŝajne por ĉiam en malamikajn grupetojn.",
+   "elektoj": [
+    "spirit.0o.menso: Tuto de la mensaj kapabloj kaj inklinoj; menso.",
+    "spirit.0o.etoso: Propra karaktero, karakteriza tendencaro.",
+    "spirit.0o.senkorpa: Nevidebla kaj netuŝebla estaĵo, kiu havas nek korpon nek figuron.",
+    "spirit.0o.reaperanto: Fantomo."
+   ]
+  }
+ },
+ "pmeg-adjektivoj": {
+  "finaĵo": {
+   "senco": "fin.0ajxo.GRA",
+   "kontrolita": true,
+   "frazo": "Vorto kun la finaĵo A nomiĝas A-vorto.",
+   "elektoj": [
+    "fin.0ajxo.KOMUNE: Fino.",
+    "fin.0ajxo.GRA: Lasta parto de vorto, varianta laŭ ties gramatika rolo (deklinacio aŭ konjugacio)."
+   ]
+  },
+  "longa": {
+   "senco": "long.0a.space",
+   "frazo": "longa = havanta multe da longo",
+   "elektoj": [
+    "long.0a.space: Granda laŭ la dimensio longo; havanta difinitan grandon laŭ tiu dimensio.",
+    "long.0a.tempe: Havanta grandan daŭron.",
+    "long.0a.silabo: (p.p. silabo) Fermita aŭ akcenta."
+   ]
+  },
+  "pronomo": {
+   "senco": "pronom.0o.noma",
+   "frazo": "Ankaŭ posedaj pronomoj kaj vicordaj nombrovortoj estas A-vortoj: ŝia, nia, sia, dua, sesa, dek-unua.",
+   "elektoj": [
+    "pronom.0o.noma: Speciala vorto servanta por anstataŭi nomon, t.e. substantiva aŭ adjektiva pronomo.",
+    "pronom.0o.substantiva: Vorto anstataŭanta subkomprenatan substantivon.",
+    "pronom.0o.gxenerala: Vorto el fermita leksika-semantika aro da parolsituaciaj rolvortoj, ricevantaj sian sencon rilate al la situacio de la parolantoj (personaj pronomoj, montraj pronomoj), aŭ al la kunteksto (referenco al io jam menciita: ĝi, tiu, tie), aŭ al la gramatika rolo en la frazo (sia, mem, kiun), logikaj kvantoroj (iu, ĉiu, nenie)."
+   ]
+  },
+  "rilato": {
+   "senco": "rilat.0o.4",
+   "frazo": "A-vortoj montras ecojn, kvalitojn, apartenojn, rilatojn ktp., kaj estas uzataj por priskribi.",
+   "elektoj": [
+    "rilat.0o.interpersona: Ligiteco kaj reciproka konduto inter du aŭ pluraj personoj, interrilato.",
+    "rilat.0o.interligo: Ia ajn ligiteco aŭ interefiko inter du aŭ pluraj aferoj.",
+    "rilat.0o.3: Juĝmaniero de iu pri io; vidpunkto.",
+    "rilat.0o.4: Nombro, kiu montras, kiomfoje iu kvanto estas pli granda ol alia."
+   ]
+  }
+ },
+ "pmeg-nombroj": {
+  "kunmeti": {
+   "senco": "met.kun0i.GRA",
+   "kontrolita": true,
+   "frazo": "Oni do ne uzas J-finaĵojn ene de kunmetitaj vortoj.",
+   "elektoj": [
+    "met.kun0i.KOMUNE: Kunigi.",
+    "met.kun0i.GRA: Kunmeti vortojn kaj vorterojn por formi novajn vortojn."
+   ]
+  },
+  "temi": {
+   "senco": "tem.0i.1",
+   "frazo": "Ununombro signifas, ke temas pri unu afero.",
+   "elektoj": [
+    "tem.0i.1: Havi kiel temon.",
+    "tem.0i.2: La temo, la demando estas pri, la afero koncernas."
+   ]
+  }
+ },
+ "pmeg-participoj": {
+  "objekto": {
+   "senco": "objekt.0o.GRA",
+   "kontrolita": true,
+   "frazo": "Participoj estas vortoj, kiuj prezentas agon aŭ staton kvazaŭ econ de ĝia subjekto aŭ objekto.",
+   "elektoj": [
+    "objekt.0o.ajxo: Ĉio, kio estas videbla, tuŝebla, perceptebla per sentumoj; aĵo.",
+    "objekt.0o.2: Ĉio ajn abstrakta, kio estas konceptebla de la spirito; afero.",
+    "objekt.0o.temo: Temo.",
+    "objekt.0o.deago: Ĉio, kio estigas ian senton, kio liveras okazon al ia ago.",
+    "objekt.0o.FIL: La ekstera aĵo, kiu estas pensata de la pensanta subjekto.",
+    "objekt.0o.GRA: Tio, kion atingas la ago de la subjekto."
+   ]
+  },
+  "subjekto": {
+   "senco": "subjek.0o.GRA",
+   "kontrolita": true,
+   "frazo": "Participoj estas vortoj, kiuj prezentas agon aŭ staton kvazaŭ econ de ĝia subjekto aŭ objekto.",
+   "elektoj": [
+    "subjek.0o.FIL: La aganto, la plenumanto de agado aŭ ekkono (menso, individuo, socia grupo), la fonto de ago direktata al objekto.",
+    "subjek.0o.GRA: La ĉefa frazmembro, gramatike sendependa je la aliaj frazmembroj, prezentanta aganton de tiu ago, aŭ portanton de tiu eco, kiun esprimas la predikato.",
+    "subjek.0o.temo: Temo, objekto."
+   ]
+  }
+ },
+ "pmeg-prepozicioj": {
+  "alta": {
+   "senco": "alt.0a.dimensio",
+   "frazo": "super — pli alte ol io, sen tuŝo: super la nuboj",
+   "elektoj": [
+    "alt.0a.dimensio: Granda laŭ la dimensio alto; havanta difinitan grandon laŭ tiu dimensio.",
+    "alt.0a.distanco: Troviĝanta je granda distanco super la tero.",
+    "alt.0a.FIG: Granda laŭ metafora senco; nobla, supera.",
+    "alt.0a.MUZ: Enhavanta multajn vibrojn en difinita tempodaŭro, altfrekvenca, akuta."
+   ]
+  },
+  "fonto": {
+   "senco": "font.0o.loko",
+   "frazo": "de — deveno, fonto: letero de la amiko",
+   "elektoj": [
+    "font.0o.loko: Loko, kie akvo aŭ alia fluaĵo eliras el la tero.",
+    "font.0o.elfluajxo: La elfluaĵo mem.",
+    "font.0o.origino: Origino, deveno, kaŭzo."
+   ]
+  }
+ },
+ "pmeg-pronomoj": {
+  "alia": {
+   "senco": "ali.0a.diferenca",
+   "frazo": "ni = la parolanto kaj alia(j) persono(j)",
+   "elektoj": [
+    "ali.0a.diferenca: Diferenca, malsama.",
+    "ali.0a.dua: Dua el du personoj aŭ grupoj.",
+    "ali.0a.pron: Aliulo."
+   ]
+  }
+ },
+ "pmeg-substantivoj": {
+  "afero": {
+   "senco": "afer.0o.tasko",
+   "frazo": "O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.",
+   "elektoj": [
+    "afer.0o.tasko: Okupo, laboro aŭ tasko kiun oni faras aŭ intencas fari.",
+    "afer.0o.SOC: Socia interago.",
+    "afer.0o.cxio: Io estanta en la mondo, konkreta aŭ abstrakta objekto, cirkonstanco, fenomeno."
+   ]
+  },
+  "fenomeno": {
+   "senco": "fenome.0o.FIL",
+   "frazo": "O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.",
+   "elektoj": [
+    "fenome.0o.FIL: Perceptebla per la sentumoj apero; natura okazo.",
+    "fenome.0o.FIG: Malofta, eksterordinara, stranga afero."
+   ]
+  },
+  "finaĵo": {
+   "senco": "fin.0ajxo.GRA",
+   "kontrolita": true,
+   "frazo": "Vorto kun la finaĵo O nomiĝas O-vorto.",
+   "elektoj": [
+    "fin.0ajxo.KOMUNE: Fino.",
+    "fin.0ajxo.GRA: Lasta parto de vorto, varianta laŭ ties gramatika rolo (deklinacio aŭ konjugacio)."
+   ]
+  },
+  "homo": {
+   "senco": "hom.0o.unu",
+   "frazo": "O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.",
+   "elektoj": [
+    "hom.0o.ZOO: Genro el familio homedoj (Homo), el kiu plu nur vivas la specio Homo sapiens, plej evoluinta vivaĵo de la tero, karakterizata per vertikala teniĝo, racia inteligenteco kaj parolkapablo.",
+    "hom.0o.unu: Ĉiu reprezentanto de tiu genro, precipe de la moderna homo, Homo sapiens.",
+    "hom.0o.servisto: (plurale) Akompanantaro, servistaro de iu estro."
+   ]
+  },
+  "nomo": {
+   "senco": "nom.0o.de_io",
+   "kontrolita": true,
+   "frazo": "O-vortoj estas nomoj de aferoj, konkretaĵoj, abstraktaĵoj, homoj, bestoj, fenomenoj, agoj, kvalitoj, specoj, individuoj ktp.",
+   "elektoj": [
+    "nom.0o.de_io: Komuna nomo.",
+    "nom.0o.propra: Propra nomo.",
+    "nom.0o.antaux: Vorto tradicie uzata estkiel individua nomo.",
+    "nom.0o.renomo: Renomo, reputacio reprezentata de nomo aŭ.",
+    "nom.0o.LIN: En la skolastika tradicio, supernocio por substantivo, adjektivo, numeralo ; la gramatikaj klasoj, kiuj en la klasikaj lingvoj posedas kazojn, kontraste al la verboj kaj adverboj."
+   ]
+  },
+  "sufikso": {
+   "senco": "sufiks.0o.propre",
+   "frazo": "Por ina formo de sekse neŭtra radiko oni uzas la sufikson IN: instruistino, leonino, hundino.",
+   "elektoj": [
+    "sufiks.0o.komune: Vortero uzata kutime metante ĝin post aliaj vorteroj por formi kunmetitan vorton.",
+    "sufiks.0o.propre: Afikso, kiu metite post aliaj vorteroj ŝanĝas ties sencon; postafikso."
+   ]
+  },
+  "virino": {
+   "senco": "vir.0ino.homo",
+   "frazo": "Ekzistas tri signifoklasoj: sekse neŭtraj radikoj (homo, infano, kato, amiko, studento...), virseksaj radikoj (viro, patro, frato, knabo...) kaj inseksaj radikoj (virino, patrino, fratino...).",
+   "elektoj": [
+    "vir.0ino.homo: Homino, kontraste kun virhomo.",
+    "vir.0ino.maturagxa: Maturaĝa homino, kontraste kun infano."
+   ]
+  },
+  "viro": {
+   "senco": "vir.0o.sekso",
+   "frazo": "Ekzistas tri signifoklasoj: sekse neŭtraj radikoj (homo, infano, kato, amiko, studento...), virseksaj radikoj (viro, patro, frato, knabo...) kaj inseksaj radikoj (virino, patrino, fratino...).",
+   "elektoj": [
+    "vir.0o.sekso: Homo aŭ besto de la sekso organizita por demeti en aliseksan animalon la semon de ido (kontraste kun ino).",
+    "vir.0o.matura: Maturaĝa virseksa homo (kontraste kun infano)."
+   ]
+  }
+ },
+ "pmeg-tabelvortoj": {
+  "tabelo": {
+   "senco": "tabel.0o.HIS",
+   "frazo": "45 vortetoj nomiĝas tabelvortoj, ĉar oni povas ilin aranĝi en tabelo laŭ similaj formoj kaj similaj signifoj.",
+   "elektoj": [
+    "tabel.0o.HIS: En la antikva tempo, tabuleto por surskribi.",
+    "tabel.0o.TIP: Metoda aranĝo de nomoj, nombroj aŭ signoj, hierarkia aŭ laŭ kolumnoj kaj linioj, faciliganta supervidon kaj retrovon de ĉiu ero.",
+    "tabel.0o.KOMP: Malsimpla datumo kies komponantoj (kutime samtipaj) estas atingeblaj per unu aŭ pluraj indicoj (plej ofte, entjeraj numeroj)."
+   ]
+  }
+ },
+ "pmeg-verboj": {
+  "baza": {
+   "senco": "baz.0a.rilata",
+   "frazo": "I-verbo estas tradicie rigardataj kiel la baza formo de verbo — tial verboj aperas en I-formo en vortaroj.",
+   "elektoj": [
+    "baz.0a.rilata: Rilata al bazo.",
+    "baz.0a.KOMUNE: Kiu konsistigas bazon, unuan ŝtupon, kiu estas elementa."
+   ]
+  },
+  "finiĝi": {
+   "senco": "fin.0igxi.cxesi",
+   "frazo": "Nun-tempo — AS-finaĵo: la ago estas reala, efektiva, kaj komenciĝis sed ne finiĝis.",
+   "elektoj": [
+    "fin.0igxi.cxesi: Ĉesi.",
+    "fin.0igxi.per: Havi kiel finan parton, en la tempo aŭ spaco."
+   ]
+  },
+  "prezenti": {
+   "senco": "prezen1.0i.proponi",
+   "frazo": "La diversaj verbfinaĵoj prezentas agojn en kvar modoj: la neŭtrala modo (I-finaĵo), la reala modo, la vola modo (U-finaĵo) kaj la imaga modo (US-finaĵo).",
+   "elektoj": [
+    "prezen1.0i.proponi: Meti ion antaŭ iu, por ke li ĝin prenu, vidu aŭ juĝu.",
+    "prezen1.0i.iun: Konduki iun antaŭ aliajn personojn, precipe superuloj.",
+    "prezen1.0i.imagigi: Starigi antaŭ ies imago la bildon de iu aŭ io.",
+    "prezen1.0i.bildigi: Meti antaŭ ies okuloj imitaĵon de io, faritan per parolo, pentrado aŭ alia arto.",
+    "prezen1.0i.spektaklon: Ludi antaŭ publiko teatraĵon, scenon, spektaĵon.",
+    "prezen1.0i.aspekton: Montri specialan aspekton de si mem; liveri okazon al io; estigi.",
+    "prezen1.0i.esti: Montri la formon karakterizan de io; formi, konsistigi.",
+    "prezen1.0i.SCI: Fari el informo trakteblan datumon."
+   ]
+  }
+ },
+ "pmeg-vortfarado": {
+  "intensa": {
+   "senco": "intens.0a.strecxa",
+   "frazo": "-eg = granda, intensa: domo→domego, varma→varmega, bela→belega",
+   "elektoj": [
+    "intens.0a.strecxa: Plenumata aŭ funkcianta energie, vigle, fortostreĉe.",
+    "intens.0a.impresa: Klare, forte sentata.",
+    "intens.0a.rendimenta: Rezultiganta grandan rendimenton, efika."
+   ]
+  },
+  "libro": {
+   "senco": "libr.0o.presajxo",
+   "frazo": "-ej = loko destinita por io: lerni→lernejo, manĝi→manĝejo, libro→librejo",
+   "elektoj": [
+    "libr.0o.presajxo: Bindita aŭ broŝurita paperfoliaro kun presita teksto.",
+    "libr.0o.notilo: Samforma paperfoliaro destinita por ke oni skribu en ĝi.",
+    "libr.0o.divido: Parto de literatura verko, ordinare grupo de ĉapitroj."
+   ]
+  },
+  "radiko": {
+   "senco": "radik.0o.GRA",
+   "kontrolita": true,
+   "frazo": "Malgranda grupo de radikoj (ĉirkaŭ 40) nomiĝas afiksoj.",
+   "elektoj": [
+    "radik.0o.BOT: Malsupren kreskanta parto de vegetaĵo, tute sen folioj, kaj servanta por fiksado kaj nutrado de la tigo.",
+    "radik.0o.ANAT: Parto de organo, per kiu ĝi estas fiksita en alia.",
+    "radik.0o.FIG: Esenca fundamento, kerna principo.",
+    "radik.0o.GRA: Primitiva vorto, de kiu oni derivas aliajn vortojn per almetado de aliaj radikoj aŭ afiksoj.",
+    "radik.0o.radikalo: Radikalo.",
+    "radik.0o.MAT: (de polinomo) Nuliganto de la responda polinoma funkcio."
+   ]
+  }
+ },
+ "zagr-l12-teksto": {
+  "alia": {
+   "senco": "ali.0a.diferenca",
+   "frazo": "Apud tiu viro, en vestaĵo de policano, staris alia persono, en simila vestaĵo.",
+   "elektoj": [
+    "ali.0a.diferenca: Diferenca, malsama.",
+    "ali.0a.dua: Dua el du personoj aŭ grupoj.",
+    "ali.0a.pron: Aliulo."
+   ]
+  },
+  "doni": {
+   "senco": "don.0i.disponigi",
+   "frazo": "Tio donis al li havindan korpoforton, kaj lia grandula aspekto ludis ne etan rolon en la fakto, ke la plimulto el la homoj, se ne lin timis, certe respektis kaj almenaŭ pripensis antaŭ ol decidi malkontentigi lin.",
+   "elektoj": [
+    "don.0i.disponigi: Meti en posedon aŭ je dispono de iu, ĉu provizore, ĉu definitive.",
+    "don.0i.prezenti: Prezenti al ies percepto; montri eblecon.",
+    "don.0i.sciigi: Sciigi decidon, instrukcion ks.",
+    "don.0i.estigi: Estigi, rezultigi, kaŭzi."
+   ]
+  },
+  "malfacila": {
+   "senco": "facil.mal0a.pena",
+   "frazo": "La dika, peza, alta larĝa korpo ne sukcesis pasi senbrue inter la arbetoj; krome tuŝi la naturaĵojn, ĝenerale malsekajn, meze de kiuj li malfacile paŝis, estis travivaĵo ne malofte doloriga kaj ĉiam malagrabla.",
+   "elektoj": [
+    "facil.mal0a.pena: Kaŭzanta penon.",
+    "facil.mal0a.peza: Peza, malagrable intensa."
+   ]
+  },
+  "preta": {
+   "senco": "pret.0a.io",
+   "frazo": "En ĉi tiu aĉa situacio, kie arboj sovaĝe ĵetis siajn malsekajn branĉojn rekte en la vizaĝon de la industriisto, kie multpiedaj bestetoj prenis liajn piedojn por promenejo, kie naturo faligis lian piedon plej dolorige en kavon plenan de akvo aĉodora, Adriano Pipelbom rapide alvenis al la penso, ke oni devas ĉi tie esti preta por iu ajn malplaĉa renkonto.",
+   "elektoj": [
+    "pret.0a.io: Plene preparita; disponebla por tuja uzo.",
+    "pret.0a.por_agi: Farinta taŭgajn aranĝojn por agi.",
+    "pret.0a.por_decidi: Plene preparita kaj volonte konsentanta por tuja ago."
+   ]
+  },
+  "resti": {
+   "senco": "rest.0i.neforiri",
+   "frazo": "Li sciis, ke nur malfacile li povos trovi akcepteblan klarigon pri sia ĉeesto, kaj la ideo, ke la grafino ĉion scios, perdigis al li la malmulton da espero, kiu restis post la unuaj vortoj de la policano.",
+   "elektoj": [
+    "rest.0i.neforiri: Ne foriri, ne malaperi, estadi en koncerna loko.",
+    "rest.0i.konservigxi: Konserviĝi, plu esti en sama stato.",
+    "rest.0i.parto: Konserviĝi, ankoraŭ esti, post kiam foriĝis unu aŭ pluraj aliaj partoj, post konsumo, uzo, morto aŭ faro.",
+    "rest.0i.sintrovi: Sin trovi ia, en iu situacio, post okazo, faro, travivaĵo."
+   ]
+  },
+  "surhavi": {
+   "senco": "hav.sur0i.KOMUNE",
+   "frazo": "Krome, ŝajnis al li, ke la homformo, kiu tenis la lampon, surhavas vestojn policajn.",
+   "elektoj": [
+    "hav.sur0i.KOMUNE: Havi, porti sur si.",
+    "hav.sur0i.veston: Havi kiel veston; porti."
+   ]
+  },
+  "ĵeti": {
+   "senco": "jxet.0i.tra_aero",
+   "frazo": "En ĉi tiu aĉa situacio, kie arboj sovaĝe ĵetis siajn malsekajn branĉojn rekte en la vizaĝon de la industriisto, kie multpiedaj bestetoj prenis liajn piedojn por promenejo, kie naturo faligis lian piedon plej dolorige en kavon plenan de akvo aĉodora, Adriano Pipelbom rapide alvenis al la penso, ke oni devas ĉi tie esti preta por iu ajn malplaĉa renkonto.",
+   "elektoj": [
+    "jxet.0i.tra_aero: Rapide formovi ion tra la aero en alian lokon.",
+    "jxet.0i.sia_korpo: Rapide direkti parton de sia korpo al iu direkto.",
+    "jxet.0i.agon: Rapide direkti ian agon, efikon al io.",
+    "jxet.0i.pusxi: Malmilde, vivege puŝi.",
+    "jxet.0i.MAT: Rilatigi la fontan aron kun la cela aro per funkcio ktp."
+   ]
+  }
+ }
+}

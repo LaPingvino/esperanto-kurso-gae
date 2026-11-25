@@ -2566,34 +2566,6 @@
     "UpdatedAt": "2026-03-15T08:39:57.4322Z"
   },
   {
-    "Slug": "voc-auto-abomene",
-    "Type": "vocab",
-    "Content": {
-      "word": "abomene"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1873.4955077103762,
-    "RD": 179.3328785357865,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.623342Z",
-    "UpdatedAt": "2026-03-15T07:53:07.220603Z"
-  },
-  {
     "Slug": "voc-auto-abstraktajxo",
     "Type": "vocab",
     "Content": {
@@ -2605,16 +2577,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1308.3555363072446,
-    "RD": 179.94920960780613,
-    "Volatility": 0,
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2626,34 +2598,6 @@
     "UpdatedAt": "2026-03-15T16:11:56.294005Z"
   },
   {
-    "Slug": "voc-auto-acxeti",
-    "Type": "vocab",
-    "Content": {
-      "word": "aĉeti"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:26.204492Z",
-    "UpdatedAt": "2026-03-15T09:18:26.204492Z"
-  },
-  {
     "Slug": "voc-auto-aero",
     "Type": "vocab",
     "Content": {
@@ -2661,16 +2605,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-15",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2682,94 +2629,6 @@
     "UpdatedAt": "2026-03-15T07:19:32.536701Z"
   },
   {
-    "Slug": "voc-auto-afero",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "en": "thing",
-        "nl": "ding, zaak"
-      },
-      "word": "afero"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1399.591425962671,
-    "RD": 183.41953209503677,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:33.81104Z",
-    "UpdatedAt": "2026-03-15T16:11:53.087976Z"
-  },
-  {
-    "Slug": "voc-auto-ago",
-    "Type": "vocab",
-    "Content": {
-      "word": "ago"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:33.858268Z",
-    "UpdatedAt": "2026-03-15T08:57:33.858268Z"
-  },
-  {
-    "Slug": "voc-auto-akcepti",
-    "Type": "vocab",
-    "Content": {
-      "word": "akcepti"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.734195Z",
-    "UpdatedAt": "2026-03-15T07:19:49.734195Z"
-  },
-  {
     "Slug": "voc-auto-akcxento",
     "Type": "vocab",
     "Content": {
@@ -2777,17 +2636,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1096.8471464650706,
-    "RD": 190.5731136405904,
-    "Volatility": 0,
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2806,17 +2664,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 774.2369808985368,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2828,62 +2685,6 @@
     "UpdatedAt": "2026-03-15T16:19:13.022161Z"
   },
   {
-    "Slug": "voc-auto-alia",
-    "Type": "vocab",
-    "Content": {
-      "word": "alia"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:32.635152Z",
-    "UpdatedAt": "2026-03-15T07:19:32.635152Z"
-  },
-  {
-    "Slug": "voc-auto-alie",
-    "Type": "vocab",
-    "Content": {
-      "word": "alie"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:25.691228Z",
-    "UpdatedAt": "2026-03-15T09:18:25.691228Z"
-  },
-  {
     "Slug": "voc-auto-aliformigi",
     "Type": "vocab",
     "Content": {
@@ -2891,16 +2692,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2919,16 +2720,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "zagr-l03-teksto",
+      "zagr-l03-teksto",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -2940,34 +2747,6 @@
     "UpdatedAt": "2026-03-15T09:18:25.926835Z"
   },
   {
-    "Slug": "voc-auto-alta",
-    "Type": "vocab",
-    "Content": {
-      "word": "alta"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1799.0090307594587,
-    "RD": 179.34910099508485,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.769631Z",
-    "UpdatedAt": "2026-03-15T07:23:36.833416Z"
-  },
-  {
     "Slug": "voc-auto-alvoki",
     "Type": "vocab",
     "Content": {
@@ -2975,16 +2754,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3003,16 +2782,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-21",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3024,118 +2804,6 @@
     "UpdatedAt": "2026-03-15T07:19:49.794616Z"
   },
   {
-    "Slug": "voc-auto-ambauxsekse",
-    "Type": "vocab",
-    "Content": {
-      "word": "ambaŭsekse"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:33.89665Z",
-    "UpdatedAt": "2026-03-15T08:57:33.89665Z"
-  },
-  {
-    "Slug": "voc-auto-ami",
-    "Type": "vocab",
-    "Content": {
-      "word": "ami"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.821829Z",
-    "UpdatedAt": "2026-03-15T07:19:49.821829Z"
-  },
-  {
-    "Slug": "voc-auto-amiko",
-    "Type": "vocab",
-    "Content": {
-      "word": "amiko"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:33.932431Z",
-    "UpdatedAt": "2026-03-15T08:57:33.932431Z"
-  },
-  {
-    "Slug": "voc-auto-amo",
-    "Type": "vocab",
-    "Content": {
-      "word": "amo"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:33.972366Z",
-    "UpdatedAt": "2026-03-15T08:57:33.972366Z"
-  },
-  {
     "Slug": "voc-auto-anglo",
     "Type": "vocab",
     "Content": {
@@ -3143,16 +2811,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3174,16 +2842,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-20",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1848.7026781521581,
-    "RD": 179.6379013762827,
-    "Volatility": 0,
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3202,16 +2871,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3233,17 +2902,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1043.9275288385868,
-    "RD": 160.6812174249066,
-    "Volatility": 0,
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3262,16 +2930,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3290,16 +2958,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3318,16 +2986,24 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
+      "fundamenta-ekzercaro-23",
+      "fundamenta-ekzercaro-27",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l12-teksto",
+      "zagr-l12-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3346,16 +3022,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3374,16 +3050,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3395,34 +3071,6 @@
     "UpdatedAt": "2026-03-15T09:18:26.280248Z"
   },
   {
-    "Slug": "voc-auto-besto",
-    "Type": "vocab",
-    "Content": {
-      "word": "besto"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.06647Z",
-    "UpdatedAt": "2026-03-15T08:57:34.06647Z"
-  },
-  {
     "Slug": "voc-auto-bestospeco",
     "Type": "vocab",
     "Content": {
@@ -3430,16 +3078,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3458,16 +3106,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3486,16 +3134,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-01",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3514,16 +3163,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3545,16 +3194,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-17",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1",
+      "pmeg-prepozicioj",
+      "pmeg-prepozicioj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1794.3610704654939,
-    "RD": 179.29164824621353,
-    "Volatility": 0,
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3573,16 +3227,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3592,37 +3246,6 @@
     "SeriesParent": "",
     "CreatedAt": "2026-03-15T07:19:49.884688Z",
     "UpdatedAt": "2026-03-15T07:19:49.884688Z"
-  },
-  {
-    "Slug": "voc-auto-cxefa",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "en": "main"
-      },
-      "word": "ĉefa"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1787.8852726731761,
-    "RD": 178.5898889257943,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:52.145425Z",
-    "UpdatedAt": "2026-03-15T08:06:38.770502Z"
   },
   {
     "Slug": "voc-auto-cxesi",
@@ -3635,16 +3258,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-11",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1849.4196967324606,
-    "RD": 179.29670995546286,
-    "Volatility": 0,
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3663,16 +3287,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1799.420489488571,
-    "RD": 180.09248386643333,
-    "Volatility": 0,
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3691,16 +3315,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3722,16 +3346,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1781.6001862820635,
-    "RD": 178.84851222832077,
-    "Volatility": 0,
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3741,34 +3365,6 @@
     "SeriesParent": "",
     "CreatedAt": "2026-03-15T07:19:49.911475Z",
     "UpdatedAt": "2026-03-15T08:06:40.718966Z"
-  },
-  {
-    "Slug": "voc-auto-dika",
-    "Type": "vocab",
-    "Content": {
-      "word": "dika"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.940131Z",
-    "UpdatedAt": "2026-03-15T07:19:49.940131Z"
   },
   {
     "Slug": "voc-auto-disigxi",
@@ -3781,16 +3377,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-17",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1821.982346388003,
-    "RD": 167.41677606178888,
-    "Volatility": 0,
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3809,16 +3406,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-la-eta-princo-komenco",
+      "lit-la-eta-princo-komenco",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3837,16 +3438,25 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-17",
+      "fundamenta-ekzercaro-23",
+      "fundamenta-ekzercaro-24",
+      "fundamenta-ekzercaro-26",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3865,16 +3475,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -3886,96 +3496,6 @@
     "UpdatedAt": "2026-03-15T09:18:26.633341Z"
   },
   {
-    "Slug": "voc-auto-doloro",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "en": "pain"
-      },
-      "word": "doloro"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1803.0228585739856,
-    "RD": 180.473778455417,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.968649Z",
-    "UpdatedAt": "2026-03-15T10:49:30.303507Z"
-  },
-  {
-    "Slug": "voc-auto-domo",
-    "Type": "vocab",
-    "Content": {
-      "word": "domo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:49.996662Z",
-    "UpdatedAt": "2026-03-15T07:19:49.996662Z"
-  },
-  {
-    "Slug": "voc-auto-doni",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "en": "to give"
-      },
-      "word": "doni"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1803.4916919369996,
-    "RD": 180.9036424098162,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.028918Z",
-    "UpdatedAt": "2026-03-15T08:28:35.343196Z"
-  },
-  {
     "Slug": "voc-auto-dua",
     "Type": "vocab",
     "Content": {
@@ -3983,16 +3503,24 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-07",
+      "fundamenta-ekzercaro-31",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj",
+      "zagr-l10-teksto",
+      "zagr-l10-teksto"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4011,16 +3539,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-08",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4039,16 +3568,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-08",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4067,16 +3597,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-17",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4095,16 +3626,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4123,16 +3654,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4151,16 +3682,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4179,16 +3712,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-20",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4207,16 +3741,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4235,16 +3769,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4263,16 +3799,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4291,16 +3827,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4322,16 +3858,31 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
+      "fundamenta-ekzercaro-20",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "zagr-l02-teksto",
+      "zagr-l02-teksto",
+      "zagr-l03-teksto",
+      "zagr-l03-teksto",
+      "zagr-l04-teksto",
+      "zagr-l04-teksto",
+      "zagr-l05-teksto",
+      "zagr-l05-teksto",
+      "zagr-l07-teksto",
+      "zagr-l07-teksto",
+      "zagr-l08-teksto",
+      "zagr-l08-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1345.4261496213855,
-    "RD": 187.0735863743415,
-    "Volatility": 0,
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4350,16 +3901,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-17",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4371,97 +3927,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.1599Z"
   },
   {
-    "Slug": "voc-auto-fakto",
-    "Type": "vocab",
-    "Content": {
-      "word": "fakto"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.084173Z",
-    "UpdatedAt": "2026-03-15T07:19:50.084173Z"
-  },
-  {
-    "Slug": "voc-auto-fali",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "de": "fallen"
-      },
-      "word": "fali"
-    },
-    "Tags": [
-      "vortaro",
-      "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
-    ],
-    "Source": "esperanto-kurso.net",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 897.6080141709106,
-    "RD": 141.68847884045366,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T16:19:13.104253Z",
-    "UpdatedAt": "2026-03-15T19:45:14.019399Z"
-  },
-  {
-    "Slug": "voc-auto-familio",
-    "Type": "vocab",
-    "Content": {
-      "definitions": {
-        "en": "family"
-      },
-      "word": "familio"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1813.7865530730514,
-    "RD": 165.88533855230742,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:32.941816Z",
-    "UpdatedAt": "2026-03-15T10:49:33.918714Z"
-  },
-  {
     "Slug": "voc-auto-farigxi",
     "Type": "vocab",
     "Content": {
@@ -4469,16 +3934,23 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-22",
+      "lit-la-sep-kapridoj",
+      "lit-la-sep-kapridoj",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "zagr-l04-teksto",
+      "zagr-l04-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4497,16 +3969,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4525,16 +3997,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4553,16 +4025,30 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-1984-komenco",
+      "lit-1984-komenco",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
+      "pmeg-nombroj",
+      "pmeg-nombroj",
+      "pmeg-participoj",
+      "pmeg-participoj",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-tabelvortoj",
+      "pmeg-tabelvortoj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4581,16 +4067,23 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-05",
+      "fundamenta-ekzercaro-15",
+      "fundamenta-ekzercaro-17",
+      "fundamenta-ekzercaro-21",
+      "fundamenta-ekzercaro-28",
+      "lit-la-eta-princo-komenco",
+      "lit-la-eta-princo-komenco",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4602,34 +4095,6 @@
     "UpdatedAt": "2026-03-15T07:19:32.992736Z"
   },
   {
-    "Slug": "voc-auto-fojo",
-    "Type": "vocab",
-    "Content": {
-      "word": "fojo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.019816Z",
-    "UpdatedAt": "2026-03-15T07:19:33.019816Z"
-  },
-  {
     "Slug": "voc-auto-fonetika",
     "Type": "vocab",
     "Content": {
@@ -4637,17 +4102,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 774.2369808985368,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4666,16 +4130,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-31",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "zagr-l10-teksto",
+      "zagr-l10-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4694,16 +4161,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4715,34 +4182,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.115196Z"
   },
   {
-    "Slug": "voc-auto-formo",
-    "Type": "vocab",
-    "Content": {
-      "word": "formo"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.269579Z",
-    "UpdatedAt": "2026-03-15T08:57:34.269579Z"
-  },
-  {
     "Slug": "voc-auto-franca",
     "Type": "vocab",
     "Content": {
@@ -4750,16 +4189,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4778,16 +4217,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-26",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4806,16 +4246,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4827,34 +4269,6 @@
     "UpdatedAt": "2026-03-15T09:18:27.177314Z"
   },
   {
-    "Slug": "voc-auto-frate",
-    "Type": "vocab",
-    "Content": {
-      "word": "frate"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.102176Z",
-    "UpdatedAt": "2026-03-15T07:19:33.102176Z"
-  },
-  {
     "Slug": "voc-auto-frazrolo",
     "Type": "vocab",
     "Content": {
@@ -4862,16 +4276,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
+      "pmeg-prepozicioj",
+      "pmeg-prepozicioj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4890,16 +4308,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4918,16 +4336,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4949,16 +4367,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1768.5088255995718,
-    "RD": 179.20939647259877,
-    "Volatility": 0,
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -4977,16 +4395,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5005,16 +4423,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "bildoj-familio-teksto",
+      "fundamenta-ekzercaro-25",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l02-teksto",
+      "zagr-l02-teksto"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5033,16 +4457,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5061,16 +4485,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5089,16 +4513,24 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "bildoj-familio-teksto",
+      "fundamenta-ekzercaro-25",
+      "fundamenta-ekzercaro-27",
+      "fundamenta-ekzercaro-28",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l02-teksto",
+      "zagr-l02-teksto"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5117,16 +4549,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-23",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5145,16 +4578,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5173,16 +4606,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-19",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5194,34 +4629,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.396087Z"
   },
   {
-    "Slug": "voc-auto-granda",
-    "Type": "vocab",
-    "Content": {
-      "word": "granda"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.220929Z",
-    "UpdatedAt": "2026-03-15T07:19:33.220929Z"
-  },
-  {
     "Slug": "voc-auto-graveco",
     "Type": "vocab",
     "Content": {
@@ -5229,16 +4636,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5257,16 +4664,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5285,16 +4692,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5306,34 +4713,6 @@
     "UpdatedAt": "2026-03-15T07:19:52.198541Z"
   },
   {
-    "Slug": "voc-auto-gxojo",
-    "Type": "vocab",
-    "Content": {
-      "word": "ĝojo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:52.22243Z",
-    "UpdatedAt": "2026-03-15T07:19:52.22243Z"
-  },
-  {
     "Slug": "voc-auto-haro",
     "Type": "vocab",
     "Content": {
@@ -5341,16 +4720,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
+      "fundamenta-ekzercaro-23",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5369,16 +4753,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5390,34 +4776,6 @@
     "UpdatedAt": "2026-03-15T09:18:27.339982Z"
   },
   {
-    "Slug": "voc-auto-hejmo",
-    "Type": "vocab",
-    "Content": {
-      "word": "hejmo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.258766Z",
-    "UpdatedAt": "2026-03-15T07:19:50.258766Z"
-  },
-  {
     "Slug": "voc-auto-hodiauxa",
     "Type": "vocab",
     "Content": {
@@ -5425,16 +4783,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-08",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5446,62 +4805,6 @@
     "UpdatedAt": "2026-03-15T07:19:33.303712Z"
   },
   {
-    "Slug": "voc-auto-homa",
-    "Type": "vocab",
-    "Content": {
-      "word": "homa"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.328513Z",
-    "UpdatedAt": "2026-03-15T07:19:33.328513Z"
-  },
-  {
-    "Slug": "voc-auto-homo",
-    "Type": "vocab",
-    "Content": {
-      "word": "homo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.353458Z",
-    "UpdatedAt": "2026-03-15T07:19:33.353458Z"
-  },
-  {
     "Slug": "voc-auto-hundino",
     "Type": "vocab",
     "Content": {
@@ -5509,16 +4812,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5530,34 +4833,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.429254Z"
   },
   {
-    "Slug": "voc-auto-hundo",
-    "Type": "vocab",
-    "Content": {
-      "word": "hundo"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.463352Z",
-    "UpdatedAt": "2026-03-15T08:57:34.463352Z"
-  },
-  {
     "Slug": "voc-auto-idealo",
     "Type": "vocab",
     "Content": {
@@ -5565,16 +4840,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5586,90 +4861,6 @@
     "UpdatedAt": "2026-03-15T07:19:33.380292Z"
   },
   {
-    "Slug": "voc-auto-ideo",
-    "Type": "vocab",
-    "Content": {
-      "word": "ideo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.406614Z",
-    "UpdatedAt": "2026-03-15T07:19:33.406614Z"
-  },
-  {
-    "Slug": "voc-auto-ido",
-    "Type": "vocab",
-    "Content": {
-      "word": "ido"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:27.404231Z",
-    "UpdatedAt": "2026-03-15T09:18:27.404231Z"
-  },
-  {
-    "Slug": "voc-auto-impon",
-    "Type": "vocab",
-    "Content": {
-      "word": "impon"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.444183Z",
-    "UpdatedAt": "2026-03-15T07:19:33.444183Z"
-  },
-  {
     "Slug": "voc-auto-impreso",
     "Type": "vocab",
     "Content": {
@@ -5677,16 +4868,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5698,34 +4889,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.286234Z"
   },
   {
-    "Slug": "voc-auto-ina",
-    "Type": "vocab",
-    "Content": {
-      "word": "ina"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.497843Z",
-    "UpdatedAt": "2026-03-15T08:57:34.497843Z"
-  },
-  {
     "Slug": "voc-auto-incito",
     "Type": "vocab",
     "Content": {
@@ -5733,16 +4896,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5761,16 +4924,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5789,16 +4952,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5817,16 +4980,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-tabelvortoj",
+      "pmeg-tabelvortoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5845,16 +5010,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5873,16 +5038,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l01-teksto",
+      "zagr-l01-teksto",
+      "zagr-l07-teksto",
+      "zagr-l07-teksto"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5894,34 +5065,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.636358Z"
   },
   {
-    "Slug": "voc-auto-jaro",
-    "Type": "vocab",
-    "Content": {
-      "word": "jaro"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.375008Z",
-    "UpdatedAt": "2026-03-15T07:19:50.375008Z"
-  },
-  {
     "Slug": "voc-auto-kalumnio",
     "Type": "vocab",
     "Content": {
@@ -5929,16 +5072,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5957,16 +5100,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -5978,34 +5121,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.428295Z"
   },
   {
-    "Slug": "voc-auto-kapablo",
-    "Type": "vocab",
-    "Content": {
-      "word": "kapablo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.471045Z",
-    "UpdatedAt": "2026-03-15T07:19:33.471045Z"
-  },
-  {
     "Slug": "voc-auto-kaprido",
     "Type": "vocab",
     "Content": {
@@ -6013,16 +5128,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6041,16 +5156,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6062,62 +5179,6 @@
     "UpdatedAt": "2026-03-15T09:18:27.510747Z"
   },
   {
-    "Slug": "voc-auto-kapti",
-    "Type": "vocab",
-    "Content": {
-      "word": "kapti"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.46031Z",
-    "UpdatedAt": "2026-03-15T07:19:50.46031Z"
-  },
-  {
-    "Slug": "voc-auto-kara",
-    "Type": "vocab",
-    "Content": {
-      "word": "kara"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.496839Z",
-    "UpdatedAt": "2026-03-15T07:19:33.496839Z"
-  },
-  {
     "Slug": "voc-auto-karto",
     "Type": "vocab",
     "Content": {
@@ -6125,16 +5186,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6153,16 +5214,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6174,34 +5235,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.485616Z"
   },
   {
-    "Slug": "voc-auto-kato",
-    "Type": "vocab",
-    "Content": {
-      "word": "kato"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.661306Z",
-    "UpdatedAt": "2026-03-15T08:57:34.661306Z"
-  },
-  {
     "Slug": "voc-auto-knabeto",
     "Type": "vocab",
     "Content": {
@@ -6209,16 +5242,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6230,118 +5263,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.5121Z"
   },
   {
-    "Slug": "voc-auto-knabo",
-    "Type": "vocab",
-    "Content": {
-      "word": "knabo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.540714Z",
-    "UpdatedAt": "2026-03-15T07:19:50.540714Z"
-  },
-  {
-    "Slug": "voc-auto-koloro",
-    "Type": "vocab",
-    "Content": {
-      "word": "koloro"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.568607Z",
-    "UpdatedAt": "2026-03-15T07:19:50.568607Z"
-  },
-  {
-    "Slug": "voc-auto-komenci",
-    "Type": "vocab",
-    "Content": {
-      "word": "komenci"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.563784Z",
-    "UpdatedAt": "2026-03-15T07:19:33.563784Z"
-  },
-  {
-    "Slug": "voc-auto-kompreni",
-    "Type": "vocab",
-    "Content": {
-      "word": "kompreni"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.591711Z",
-    "UpdatedAt": "2026-03-15T07:19:33.591711Z"
-  },
-  {
     "Slug": "voc-auto-komunikigxadi",
     "Type": "vocab",
     "Content": {
@@ -6349,16 +5270,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6370,34 +5291,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.596108Z"
   },
   {
-    "Slug": "voc-auto-koni",
-    "Type": "vocab",
-    "Content": {
-      "word": "koni"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.625856Z",
-    "UpdatedAt": "2026-03-15T07:19:50.625856Z"
-  },
-  {
     "Slug": "voc-auto-konkretajxo",
     "Type": "vocab",
     "Content": {
@@ -6405,16 +5298,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6433,16 +5326,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6461,16 +5354,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6482,146 +5375,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.677786Z"
   },
   {
-    "Slug": "voc-auto-koro",
-    "Type": "vocab",
-    "Content": {
-      "word": "koro"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.617608Z",
-    "UpdatedAt": "2026-03-15T07:19:33.617608Z"
-  },
-  {
-    "Slug": "voc-auto-korpo",
-    "Type": "vocab",
-    "Content": {
-      "word": "korpo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.646324Z",
-    "UpdatedAt": "2026-03-15T07:19:33.646324Z"
-  },
-  {
-    "Slug": "voc-auto-kredi",
-    "Type": "vocab",
-    "Content": {
-      "word": "kredi"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:27.555184Z",
-    "UpdatedAt": "2026-03-15T09:18:27.555184Z"
-  },
-  {
-    "Slug": "voc-auto-kredo",
-    "Type": "vocab",
-    "Content": {
-      "word": "kredo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.703193Z",
-    "UpdatedAt": "2026-03-15T07:19:50.703193Z"
-  },
-  {
-    "Slug": "voc-auto-kreita",
-    "Type": "vocab",
-    "Content": {
-      "word": "kreita"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.677117Z",
-    "UpdatedAt": "2026-03-15T07:19:33.677117Z"
-  },
-  {
     "Slug": "voc-auto-kreto",
     "Type": "vocab",
     "Content": {
@@ -6629,16 +5382,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6657,16 +5410,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-04",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-25",
+      "fundamenta-ekzercaro-28",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6678,34 +5437,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.718788Z"
   },
   {
-    "Slug": "voc-auto-kunmetita",
-    "Type": "vocab",
-    "Content": {
-      "word": "kunmetita"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1700,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T10:33:43.172819Z",
-    "UpdatedAt": "2026-03-15T10:33:43.172819Z"
-  },
-  {
     "Slug": "voc-auto-kunveni",
     "Type": "vocab",
     "Content": {
@@ -6713,16 +5444,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-31",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "zagr-l10-teksto",
+      "zagr-l10-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6741,16 +5475,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6769,16 +5503,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-25",
+      "fundamenta-ekzercaro-28",
+      "fundamenta-ekzercaro-29",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6790,62 +5529,6 @@
     "UpdatedAt": "2026-03-15T10:33:43.206391Z"
   },
   {
-    "Slug": "voc-auto-kuri",
-    "Type": "vocab",
-    "Content": {
-      "word": "kuri"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:27.653758Z",
-    "UpdatedAt": "2026-03-15T09:18:27.653758Z"
-  },
-  {
-    "Slug": "voc-auto-kuro",
-    "Type": "vocab",
-    "Content": {
-      "word": "kuro"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.755076Z",
-    "UpdatedAt": "2026-03-15T08:57:34.755076Z"
-  },
-  {
     "Slug": "voc-auto-kvalito",
     "Type": "vocab",
     "Content": {
@@ -6853,16 +5536,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6881,16 +5566,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-07",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6909,16 +5595,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -6930,62 +5616,6 @@
     "UpdatedAt": "2026-03-15T10:33:43.301231Z"
   },
   {
-    "Slug": "voc-auto-lando",
-    "Type": "vocab",
-    "Content": {
-      "word": "lando"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.759571Z",
-    "UpdatedAt": "2026-03-15T07:19:33.759571Z"
-  },
-  {
-    "Slug": "voc-auto-lauxta",
-    "Type": "vocab",
-    "Content": {
-      "word": "laŭta"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.730787Z",
-    "UpdatedAt": "2026-03-15T07:19:50.730787Z"
-  },
-  {
     "Slug": "voc-auto-legomo",
     "Type": "vocab",
     "Content": {
@@ -6993,16 +5623,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7021,16 +5651,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7042,34 +5674,6 @@
     "UpdatedAt": "2026-03-15T08:57:34.812931Z"
   },
   {
-    "Slug": "voc-auto-libere",
-    "Type": "vocab",
-    "Content": {
-      "word": "libere"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.78411Z",
-    "UpdatedAt": "2026-03-15T07:19:50.78411Z"
-  },
-  {
     "Slug": "voc-auto-librojvendejo",
     "Type": "vocab",
     "Content": {
@@ -7077,16 +5681,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7105,16 +5709,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7133,16 +5737,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7161,16 +5765,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7189,16 +5793,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-la-alfabeto-de-esperanto",
+      "ekc-la-alfabeto-de-esperanto",
+      "fundamenta-ekzercaro-12",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-23",
+      "legado-la-stelo",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7217,17 +5827,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto",
+      "fundamenta-ekzercaro-19"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 774.2369808985368,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7246,16 +5856,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7274,16 +5884,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-14",
+      "fundamenta-ekzercaro-20",
+      "fundamenta-ekzercaro-26",
+      "fundamenta-ekzercaro-29",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7295,34 +5909,6 @@
     "UpdatedAt": "2026-03-15T07:19:50.916342Z"
   },
   {
-    "Slug": "voc-auto-loko",
-    "Type": "vocab",
-    "Content": {
-      "word": "loko"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:50.889994Z",
-    "UpdatedAt": "2026-03-15T07:19:50.889994Z"
-  },
-  {
     "Slug": "voc-auto-luksa",
     "Type": "vocab",
     "Content": {
@@ -7330,16 +5916,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7358,16 +5946,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7386,16 +5976,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7414,16 +6006,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7442,16 +6034,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-22",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7470,16 +6063,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-22",
+      "fundamenta-ekzercaro-27",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7498,16 +6097,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7526,16 +6125,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-22",
+      "fundamenta-ekzercaro-30",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7554,16 +6159,24 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7582,16 +6195,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "zagr-l12-teksto",
+      "zagr-l12-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7610,16 +6225,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-18",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7638,16 +6256,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-19",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7666,16 +6287,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-filmo-finnlando",
+      "artikolo-filmo-finnlando",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7687,62 +6310,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.058045Z"
   },
   {
-    "Slug": "voc-auto-mangxi",
-    "Type": "vocab",
-    "Content": {
-      "word": "manĝi"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:27.870236Z",
-    "UpdatedAt": "2026-03-15T09:18:27.870236Z"
-  },
-  {
-    "Slug": "voc-auto-mano",
-    "Type": "vocab",
-    "Content": {
-      "word": "mano"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:33.962808Z",
-    "UpdatedAt": "2026-03-15T07:19:33.962808Z"
-  },
-  {
     "Slug": "voc-auto-marbordo",
     "Type": "vocab",
     "Content": {
@@ -7750,16 +6317,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7778,16 +6345,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7806,16 +6373,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7834,16 +6405,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7855,34 +6426,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.112455Z"
   },
   {
-    "Slug": "voc-auto-meti",
-    "Type": "vocab",
-    "Content": {
-      "word": "meti"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:34.85447Z",
-    "UpdatedAt": "2026-03-15T08:57:34.85447Z"
-  },
-  {
     "Slug": "voc-auto-miljaro",
     "Type": "vocab",
     "Content": {
@@ -7890,16 +6433,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-08",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7918,16 +6462,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7946,16 +6490,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -7974,16 +6520,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8002,16 +6548,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8023,62 +6569,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.127183Z"
   },
   {
-    "Slug": "voc-auto-mondo",
-    "Type": "vocab",
-    "Content": {
-      "word": "mondo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.156146Z",
-    "UpdatedAt": "2026-03-15T07:19:34.156146Z"
-  },
-  {
-    "Slug": "voc-auto-montri",
-    "Type": "vocab",
-    "Content": {
-      "word": "montri"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1700,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T10:33:43.398859Z",
-    "UpdatedAt": "2026-03-15T10:33:43.398859Z"
-  },
-  {
     "Slug": "voc-auto-movigxi",
     "Type": "vocab",
     "Content": {
@@ -8086,16 +6576,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-la-eta-princo-komenco",
+      "lit-la-eta-princo-komenco",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8114,16 +6608,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8142,16 +6636,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8170,16 +6664,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
+      "pmeg-nombroj",
+      "pmeg-nombroj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8198,16 +6696,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-1984-komenco",
+      "lit-1984-komenco",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8219,62 +6721,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.210824Z"
   },
   {
-    "Slug": "voc-auto-mute",
-    "Type": "vocab",
-    "Content": {
-      "word": "mute"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.235196Z",
-    "UpdatedAt": "2026-03-15T07:19:34.235196Z"
-  },
-  {
-    "Slug": "voc-auto-nacio",
-    "Type": "vocab",
-    "Content": {
-      "word": "nacio"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.262937Z",
-    "UpdatedAt": "2026-03-15T07:19:34.262937Z"
-  },
-  {
     "Slug": "voc-auto-naskigxi",
     "Type": "vocab",
     "Content": {
@@ -8282,16 +6728,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-filmo-finnlando",
+      "artikolo-filmo-finnlando",
+      "legado-zamenhof",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8310,16 +6761,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8338,16 +6789,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8366,16 +6819,38 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-10",
+      "fundamenta-ekzercaro-14",
+      "fundamenta-ekzercaro-20",
+      "fundamenta-ekzercaro-22",
+      "fundamenta-ekzercaro-23",
+      "fundamenta-ekzercaro-26",
+      "fundamenta-ekzercaro-27",
+      "fundamenta-ekzercaro-28",
+      "lit-la-sep-kapridoj",
+      "lit-la-sep-kapridoj",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj",
+      "zagr-l10-teksto",
+      "zagr-l10-teksto",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto",
+      "zagr-l12-teksto",
+      "zagr-l12-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8394,16 +6869,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8422,16 +6897,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-tabelvortoj",
+      "pmeg-tabelvortoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8443,34 +6924,6 @@
     "UpdatedAt": "2026-03-15T08:57:35.06269Z"
   },
   {
-    "Slug": "voc-auto-nomo",
-    "Type": "vocab",
-    "Content": {
-      "word": "nomo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.346925Z",
-    "UpdatedAt": "2026-03-15T07:19:34.346925Z"
-  },
-  {
     "Slug": "voc-auto-nutrajxo",
     "Type": "vocab",
     "Content": {
@@ -8478,16 +6931,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8506,16 +6959,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8534,16 +6987,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8555,90 +7008,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.222573Z"
   },
   {
-    "Slug": "voc-auto-ofte",
-    "Type": "vocab",
-    "Content": {
-      "word": "ofte"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:28.033909Z",
-    "UpdatedAt": "2026-03-15T09:18:28.033909Z"
-  },
-  {
-    "Slug": "voc-auto-okazi",
-    "Type": "vocab",
-    "Content": {
-      "word": "okazi"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.250318Z",
-    "UpdatedAt": "2026-03-15T07:19:51.250318Z"
-  },
-  {
-    "Slug": "voc-auto-okula",
-    "Type": "vocab",
-    "Content": {
-      "word": "okula"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1700,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T10:33:43.508999Z",
-    "UpdatedAt": "2026-03-15T10:33:43.508999Z"
-  },
-  {
     "Slug": "voc-auto-okulkuracisto",
     "Type": "vocab",
     "Content": {
@@ -8646,16 +7015,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8667,34 +7036,6 @@
     "UpdatedAt": "2026-03-15T10:33:43.54504Z"
   },
   {
-    "Slug": "voc-auto-okulo",
-    "Type": "vocab",
-    "Content": {
-      "word": "okulo"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1700,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T10:33:43.569738Z",
-    "UpdatedAt": "2026-03-15T10:33:43.569738Z"
-  },
-  {
     "Slug": "voc-auto-okulojkuracisto",
     "Type": "vocab",
     "Content": {
@@ -8702,16 +7043,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8730,16 +7071,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8758,16 +7099,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8779,34 +7120,6 @@
     "UpdatedAt": "2026-03-15T10:33:43.619007Z"
   },
   {
-    "Slug": "voc-auto-orelo",
-    "Type": "vocab",
-    "Content": {
-      "word": "orelo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.39931Z",
-    "UpdatedAt": "2026-03-15T07:19:34.39931Z"
-  },
-  {
     "Slug": "voc-auto-panjo",
     "Type": "vocab",
     "Content": {
@@ -8814,16 +7127,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8835,118 +7148,6 @@
     "UpdatedAt": "2026-03-15T09:18:28.079024Z"
   },
   {
-    "Slug": "voc-auto-parolata",
-    "Type": "vocab",
-    "Content": {
-      "word": "parolata"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.42749Z",
-    "UpdatedAt": "2026-03-15T07:19:34.42749Z"
-  },
-  {
-    "Slug": "voc-auto-paroli",
-    "Type": "vocab",
-    "Content": {
-      "word": "paroli"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.45183Z",
-    "UpdatedAt": "2026-03-15T07:19:34.45183Z"
-  },
-  {
-    "Slug": "voc-auto-parolo",
-    "Type": "vocab",
-    "Content": {
-      "word": "parolo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.279704Z",
-    "UpdatedAt": "2026-03-15T07:19:51.279704Z"
-  },
-  {
-    "Slug": "voc-auto-parto",
-    "Type": "vocab",
-    "Content": {
-      "word": "parto"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.164188Z",
-    "UpdatedAt": "2026-03-15T08:57:35.164188Z"
-  },
-  {
     "Slug": "voc-auto-pasto",
     "Type": "vocab",
     "Content": {
@@ -8954,16 +7155,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -8975,34 +7176,6 @@
     "UpdatedAt": "2026-03-15T09:18:28.121116Z"
   },
   {
-    "Slug": "voc-auto-pasxo",
-    "Type": "vocab",
-    "Content": {
-      "word": "paŝo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.305802Z",
-    "UpdatedAt": "2026-03-15T07:19:51.305802Z"
-  },
-  {
     "Slug": "voc-auto-patrinjo",
     "Type": "vocab",
     "Content": {
@@ -9010,16 +7183,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9038,16 +7211,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9066,16 +7241,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9087,34 +7262,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.336877Z"
   },
   {
-    "Slug": "voc-auto-penso",
-    "Type": "vocab",
-    "Content": {
-      "word": "penso"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.363655Z",
-    "UpdatedAt": "2026-03-15T07:19:51.363655Z"
-  },
-  {
     "Slug": "voc-auto-persekuto",
     "Type": "vocab",
     "Content": {
@@ -9122,16 +7269,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9143,90 +7290,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.390206Z"
   },
   {
-    "Slug": "voc-auto-persono",
-    "Type": "vocab",
-    "Content": {
-      "word": "persono"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.260305Z",
-    "UpdatedAt": "2026-03-15T08:57:35.260305Z"
-  },
-  {
-    "Slug": "voc-auto-piedo",
-    "Type": "vocab",
-    "Content": {
-      "word": "piedo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:28.263194Z",
-    "UpdatedAt": "2026-03-15T09:18:28.263194Z"
-  },
-  {
-    "Slug": "voc-auto-placo",
-    "Type": "vocab",
-    "Content": {
-      "word": "placo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.41876Z",
-    "UpdatedAt": "2026-03-15T07:19:51.41876Z"
-  },
-  {
     "Slug": "voc-auto-plura",
     "Type": "vocab",
     "Content": {
@@ -9234,16 +7297,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-sveda-vortaro",
+      "artikolo-sveda-vortaro",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9262,16 +7327,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9290,16 +7355,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-26",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1",
+      "zagr-l12-teksto",
+      "zagr-l12-teksto"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9318,16 +7386,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9346,16 +7414,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9374,16 +7443,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9402,16 +7471,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9430,16 +7499,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-1984-komenco",
+      "lit-1984-komenco",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9451,34 +7522,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.607272Z"
   },
   {
-    "Slug": "voc-auto-proksima",
-    "Type": "vocab",
-    "Content": {
-      "word": "proksima"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.63842Z",
-    "UpdatedAt": "2026-03-15T07:19:34.63842Z"
-  },
-  {
     "Slug": "voc-auto-propre",
     "Type": "vocab",
     "Content": {
@@ -9486,16 +7529,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9514,16 +7557,21 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9542,16 +7590,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9570,16 +7618,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9598,16 +7646,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9626,16 +7676,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9654,16 +7706,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-26",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9682,16 +7735,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-26",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9710,16 +7764,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "ekc-literatura-la-sep-kapridoj",
+      "ekc-literaturo-la-sep-kapridoj",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9731,34 +7787,6 @@
     "UpdatedAt": "2026-03-15T09:18:28.362709Z"
   },
   {
-    "Slug": "voc-auto-renkonti",
-    "Type": "vocab",
-    "Content": {
-      "word": "renkonti"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.803102Z",
-    "UpdatedAt": "2026-03-15T07:19:34.803102Z"
-  },
-  {
     "Slug": "voc-auto-reveni",
     "Type": "vocab",
     "Content": {
@@ -9766,16 +7794,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-12",
+      "fundamenta-ekzercaro-31",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado",
+      "zagr-l04-teksto",
+      "zagr-l04-teksto"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9794,16 +7828,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9822,16 +7856,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9843,34 +7877,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.593037Z"
   },
   {
-    "Slug": "voc-auto-rilata",
-    "Type": "vocab",
-    "Content": {
-      "word": "rilata"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1700,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T10:33:43.73302Z",
-    "UpdatedAt": "2026-03-15T10:33:43.73302Z"
-  },
-  {
     "Slug": "voc-auto-rusa",
     "Type": "vocab",
     "Content": {
@@ -9878,16 +7884,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9899,34 +7905,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.616399Z"
   },
   {
-    "Slug": "voc-auto-ruse",
-    "Type": "vocab",
-    "Content": {
-      "word": "ruse"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.644765Z",
-    "UpdatedAt": "2026-03-15T07:19:51.644765Z"
-  },
-  {
     "Slug": "voc-auto-ruso",
     "Type": "vocab",
     "Content": {
@@ -9934,16 +7912,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-09",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-26",
+      "fundamenta-ekzercaro-29",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -9955,34 +7937,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.867019Z"
   },
   {
-    "Slug": "voc-auto-sagxo",
-    "Type": "vocab",
-    "Content": {
-      "word": "saĝo"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.552302Z",
-    "UpdatedAt": "2026-03-15T08:57:35.552302Z"
-  },
-  {
     "Slug": "voc-auto-salono",
     "Type": "vocab",
     "Content": {
@@ -9990,16 +7944,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-13",
+      "fundamenta-ekzercaro-15",
+      "lit-rego-macxjo-unua",
+      "lit-rego-macxjo-unua",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10011,62 +7969,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.893197Z"
   },
   {
-    "Slug": "voc-auto-saluti",
-    "Type": "vocab",
-    "Content": {
-      "word": "saluti"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.923812Z",
-    "UpdatedAt": "2026-03-15T07:19:34.923812Z"
-  },
-  {
-    "Slug": "voc-auto-sama",
-    "Type": "vocab",
-    "Content": {
-      "word": "sama"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.669836Z",
-    "UpdatedAt": "2026-03-15T07:19:51.669836Z"
-  },
-  {
     "Slug": "voc-auto-samgentano",
     "Type": "vocab",
     "Content": {
@@ -10074,16 +7976,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10102,16 +8004,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10123,34 +8025,6 @@
     "UpdatedAt": "2026-03-15T07:19:34.948866Z"
   },
   {
-    "Slug": "voc-auto-sekse",
-    "Type": "vocab",
-    "Content": {
-      "word": "sekse"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.583218Z",
-    "UpdatedAt": "2026-03-15T08:57:35.583218Z"
-  },
-  {
     "Slug": "voc-auto-sekso",
     "Type": "vocab",
     "Content": {
@@ -10158,16 +8032,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10179,62 +8057,6 @@
     "UpdatedAt": "2026-03-15T08:57:35.660398Z"
   },
   {
-    "Slug": "voc-auto-sekvi",
-    "Type": "vocab",
-    "Content": {
-      "word": "sekvi"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.854385Z",
-    "UpdatedAt": "2026-03-15T08:57:35.854385Z"
-  },
-  {
-    "Slug": "voc-auto-sekvo",
-    "Type": "vocab",
-    "Content": {
-      "word": "sekvo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:34.975861Z",
-    "UpdatedAt": "2026-03-15T07:19:34.975861Z"
-  },
-  {
     "Slug": "voc-auto-sentebla",
     "Type": "vocab",
     "Content": {
@@ -10242,16 +8064,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10270,16 +8092,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10291,34 +8113,6 @@
     "UpdatedAt": "2026-03-15T07:19:35.028142Z"
   },
   {
-    "Slug": "voc-auto-sento",
-    "Type": "vocab",
-    "Content": {
-      "word": "sento"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:35.965839Z",
-    "UpdatedAt": "2026-03-15T08:57:35.965839Z"
-  },
-  {
     "Slug": "voc-auto-signifi",
     "Type": "vocab",
     "Content": {
@@ -10326,16 +8120,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-21",
+      "legado-zamenhof",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10354,16 +8150,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-21",
+      "fundamenta-ekzercaro-31",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-tabelvortoj",
+      "pmeg-tabelvortoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10382,16 +8184,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10410,17 +8212,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
+      "ekc-la-alfabeto-de-esperanto"
     ],
     "Source": "esperanto-kurso.net",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 774.2369808985368,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10439,16 +8240,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10467,16 +8268,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "zagr-l05-teksto",
+      "zagr-l05-teksto",
+      "zagr-l11-teksto",
+      "zagr-l11-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10488,63 +8293,6 @@
     "UpdatedAt": "2026-03-15T07:19:35.059205Z"
   },
   {
-    "Slug": "voc-auto-sinjoro",
-    "Type": "vocab",
-    "Content": {
-      "word": "sinjoro"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.085593Z",
-    "UpdatedAt": "2026-03-15T07:19:35.085593Z"
-  },
-  {
-    "Slug": "voc-auto-skribi",
-    "Type": "vocab",
-    "Content": {
-      "word": "skribi"
-    },
-    "Tags": [
-      "vortaro",
-      "ekc-la-alfabeto-de-esperanto",
-      "alfabeto",
-      "elparolo",
-      "A0"
-    ],
-    "Source": "esperanto-kurso.net",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 774.2369808985368,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T16:19:13.467509Z",
-    "UpdatedAt": "2026-03-15T16:19:13.467509Z"
-  },
-  {
     "Slug": "voc-auto-soldato",
     "Type": "vocab",
     "Content": {
@@ -10552,16 +8300,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-12",
+      "fundamenta-ekzercaro-26",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10573,62 +8323,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.723854Z"
   },
   {
-    "Slug": "voc-auto-sole",
-    "Type": "vocab",
-    "Content": {
-      "word": "sole"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.751859Z",
-    "UpdatedAt": "2026-03-15T07:19:51.751859Z"
-  },
-  {
-    "Slug": "voc-auto-sono",
-    "Type": "vocab",
-    "Content": {
-      "word": "sono"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.113216Z",
-    "UpdatedAt": "2026-03-15T07:19:35.113216Z"
-  },
-  {
     "Slug": "voc-auto-speco",
     "Type": "vocab",
     "Content": {
@@ -10636,16 +8330,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-tabelvortoj",
+      "pmeg-tabelvortoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10664,16 +8360,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10685,62 +8381,6 @@
     "UpdatedAt": "2026-03-15T07:19:35.139749Z"
   },
   {
-    "Slug": "voc-auto-stari",
-    "Type": "vocab",
-    "Content": {
-      "word": "stari"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.779776Z",
-    "UpdatedAt": "2026-03-15T07:19:51.779776Z"
-  },
-  {
-    "Slug": "voc-auto-strato",
-    "Type": "vocab",
-    "Content": {
-      "word": "strato"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:51.805466Z",
-    "UpdatedAt": "2026-03-15T07:19:51.805466Z"
-  },
-  {
     "Slug": "voc-auto-studento",
     "Type": "vocab",
     "Content": {
@@ -10748,16 +8388,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10776,16 +8416,22 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-19",
+      "fundamenta-ekzercaro-31",
+      "pmeg-participoj",
+      "pmeg-participoj",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj",
+      "pmeg-vortfarado",
+      "pmeg-vortfarado"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10797,34 +8443,6 @@
     "UpdatedAt": "2026-03-15T08:57:36.169008Z"
   },
   {
-    "Slug": "voc-auto-surde",
-    "Type": "vocab",
-    "Content": {
-      "word": "surde"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.168533Z",
-    "UpdatedAt": "2026-03-15T07:19:35.168533Z"
-  },
-  {
     "Slug": "voc-auto-suspekto",
     "Type": "vocab",
     "Content": {
@@ -10832,16 +8450,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10860,16 +8478,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10881,34 +8499,6 @@
     "UpdatedAt": "2026-03-15T07:19:52.249636Z"
   },
   {
-    "Slug": "voc-auto-sxajne",
-    "Type": "vocab",
-    "Content": {
-      "word": "ŝajne"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.50828Z",
-    "UpdatedAt": "2026-03-15T07:19:35.50828Z"
-  },
-  {
     "Slug": "voc-auto-sxalo",
     "Type": "vocab",
     "Content": {
@@ -10916,16 +8506,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -10937,62 +8527,6 @@
     "UpdatedAt": "2026-03-15T07:19:52.275825Z"
   },
   {
-    "Slug": "voc-auto-sxangxi",
-    "Type": "vocab",
-    "Content": {
-      "word": "ŝanĝi"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.537209Z",
-    "UpdatedAt": "2026-03-15T07:19:35.537209Z"
-  },
-  {
-    "Slug": "voc-auto-tago",
-    "Type": "vocab",
-    "Content": {
-      "word": "tago"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.195568Z",
-    "UpdatedAt": "2026-03-15T07:19:35.195568Z"
-  },
-  {
     "Slug": "voc-auto-telegrafe",
     "Type": "vocab",
     "Content": {
@@ -11000,16 +8534,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-25",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11028,16 +8563,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj",
+      "pmeg-verboj",
+      "pmeg-verboj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11056,16 +8593,18 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-02",
+      "fundamenta-ekzercaro-15",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11084,16 +8623,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11105,34 +8644,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.886943Z"
   },
   {
-    "Slug": "voc-auto-trankvile",
-    "Type": "vocab",
-    "Content": {
-      "word": "trankvile"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:28.492341Z",
-    "UpdatedAt": "2026-03-15T09:18:28.492341Z"
-  },
-  {
     "Slug": "voc-auto-tria",
     "Type": "vocab",
     "Content": {
@@ -11140,16 +8651,19 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-31",
       "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
+      "lit-la-sep-kapridoj",
+      "pmeg-nombroj",
+      "pmeg-nombroj"
     ],
     "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1400,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11168,16 +8682,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11196,16 +8710,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11224,16 +8738,33 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-sveda-vortaro",
+      "artikolo-sveda-vortaro",
+      "ekc-literatura-la-eta-princo-komen",
+      "ekc-literaturo-la-eta-princo-komen",
+      "fundamenta-ekzercaro-08",
+      "fundamenta-ekzercaro-12",
+      "fundamenta-ekzercaro-14",
+      "fundamenta-ekzercaro-15",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-22",
+      "fundamenta-ekzercaro-24",
+      "fundamenta-ekzercaro-29",
+      "legado-la-stelo",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-prepozicioj",
+      "pmeg-prepozicioj"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11252,16 +8783,33 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-filmo-finnlando",
+      "artikolo-filmo-finnlando",
+      "fundamenta-ekzercaro-10",
+      "fundamenta-ekzercaro-12",
+      "fundamenta-ekzercaro-16",
+      "fundamenta-ekzercaro-17",
+      "fundamenta-ekzercaro-27",
+      "fundamenta-ekzercaro-28",
+      "fundamenta-ekzercaro-30",
+      "lit-la-eta-princo-komenco",
+      "lit-la-eta-princo-komenco",
+      "lit-regidino-sur-pizo",
+      "lit-regidino-sur-pizo",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11280,16 +8828,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11308,16 +8857,34 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "artikolo-filmo-finnlando",
+      "artikolo-filmo-finnlando",
+      "ekc-literatura-la-eta-princo-komen",
+      "ekc-literaturo-la-eta-princo-komen",
+      "fundamenta-ekzercaro-07",
+      "fundamenta-ekzercaro-10",
+      "fundamenta-ekzercaro-16",
+      "legado-zamenhof",
+      "lit-la-eta-princo-komenco",
+      "lit-la-eta-princo-komenco",
+      "lit-pinokjo-komenco",
+      "lit-pinokjo-komenco",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-adjektivoj",
+      "pmeg-adjektivoj",
+      "pmeg-nombroj",
+      "pmeg-nombroj",
+      "zagr-l12-teksto",
+      "zagr-l12-teksto"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11336,16 +8903,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1700,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11364,16 +8931,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
+      "lit-zamenhof-kongreso-1905"
     ],
     "Source": "Paroladoj — L. L. Zamenhof",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1900,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11385,62 +8952,6 @@
     "UpdatedAt": "2026-03-15T07:19:35.370939Z"
   },
   {
-    "Slug": "voc-auto-urbo",
-    "Type": "vocab",
-    "Content": {
-      "word": "urbo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.398601Z",
-    "UpdatedAt": "2026-03-15T07:19:35.398601Z"
-  },
-  {
-    "Slug": "voc-auto-uzi",
-    "Type": "vocab",
-    "Content": {
-      "word": "uzi"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:36.200908Z",
-    "UpdatedAt": "2026-03-15T08:57:36.200908Z"
-  },
-  {
     "Slug": "voc-auto-vendejo",
     "Type": "vocab",
     "Content": {
@@ -11448,16 +8959,20 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-nombroj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-nombroj",
+      "zagr-l05-teksto",
+      "zagr-l05-teksto",
+      "zagr-l10-teksto",
+      "zagr-l10-teksto"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
     "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11476,16 +8991,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1900,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11504,16 +9019,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11532,16 +9047,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11553,90 +9068,6 @@
     "UpdatedAt": "2026-03-15T07:19:51.977149Z"
   },
   {
-    "Slug": "voc-auto-vera",
-    "Type": "vocab",
-    "Content": {
-      "word": "vera"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:52.005643Z",
-    "UpdatedAt": "2026-03-15T07:19:52.005643Z"
-  },
-  {
-    "Slug": "voc-auto-vesto",
-    "Type": "vocab",
-    "Content": {
-      "word": "vesto"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.42326Z",
-    "UpdatedAt": "2026-03-15T07:19:35.42326Z"
-  },
-  {
-    "Slug": "voc-auto-vidi",
-    "Type": "vocab",
-    "Content": {
-      "word": "vidi"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:52.036833Z",
-    "UpdatedAt": "2026-03-15T07:19:52.036833Z"
-  },
-  {
     "Slug": "voc-auto-vilagxano",
     "Type": "vocab",
     "Content": {
@@ -11644,16 +9075,17 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-26",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1500,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11665,62 +9097,6 @@
     "UpdatedAt": "2026-03-15T07:19:52.066777Z"
   },
   {
-    "Slug": "voc-auto-virino",
-    "Type": "vocab",
-    "Content": {
-      "word": "virino"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Vivo de Zamenhof — Edmond Privat",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1850,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:52.093723Z",
-    "UpdatedAt": "2026-03-15T07:19:52.093723Z"
-  },
-  {
-    "Slug": "voc-auto-viro",
-    "Type": "vocab",
-    "Content": {
-      "word": "viro"
-    },
-    "Tags": [
-      "vortaro",
-      "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
-    ],
-    "Source": "PMEG",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1450,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T08:57:36.23517Z",
-    "UpdatedAt": "2026-03-15T08:57:36.23517Z"
-  },
-  {
     "Slug": "voc-auto-virseksa",
     "Type": "vocab",
     "Content": {
@@ -11728,16 +9104,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "pmeg-substantivoj",
-      "pmeg",
-      "gramatiko"
+      "pmeg-substantivoj"
     ],
     "Source": "PMEG",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1450,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -11749,62 +9125,6 @@
     "UpdatedAt": "2026-03-15T08:57:36.263324Z"
   },
   {
-    "Slug": "voc-auto-vocxo",
-    "Type": "vocab",
-    "Content": {
-      "word": "voĉo"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-la-sep-kapridoj",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Elektitaj fabeloj — Fratoj Grimm, trad. Kabe (1906)",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1400,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T09:18:28.611365Z",
-    "UpdatedAt": "2026-03-15T09:18:28.611365Z"
-  },
-  {
-    "Slug": "voc-auto-vorto",
-    "Type": "vocab",
-    "Content": {
-      "word": "vorto"
-    },
-    "Tags": [
-      "vortaro",
-      "lit-zamenhof-kongreso-1905",
-      "literatura",
-      "legado"
-    ],
-    "Source": "Paroladoj — L. L. Zamenhof",
-    "AuthorID": "",
-    "Status": "approved",
-    "Rating": 1900,
-    "RD": 200,
-    "Volatility": 0,
-    "VoteScore": 0,
-    "Version": 0,
-    "ImageURL": "",
-    "SeriesSlug": "",
-    "SeriesOrder": 0,
-    "SeriesLabel": "",
-    "SeriesParent": "",
-    "CreatedAt": "2026-03-15T07:19:35.454604Z",
-    "UpdatedAt": "2026-03-15T07:19:35.454604Z"
-  },
-  {
     "Slug": "voc-auto-zumado",
     "Type": "vocab",
     "Content": {
@@ -11812,16 +9132,16 @@
     },
     "Tags": [
       "vortaro",
+      "legvorto",
       "lit-vivo-zamenhof-1",
-      "literatura",
-      "legado"
+      "lit-vivo-zamenhof-1"
     ],
     "Source": "Vivo de Zamenhof — Edmond Privat",
     "AuthorID": "",
     "Status": "approved",
-    "Rating": 1850,
+    "Rating": 1700,
     "RD": 200,
-    "Volatility": 0,
+    "Volatility": 0.06,
     "VoteScore": 0,
     "Version": 0,
     "ImageURL": "",
@@ -93178,5 +90498,238 @@
     "SeriesParent": "",
     "CreatedAt": "2026-03-15T07:11:21.635833Z",
     "UpdatedAt": "2026-03-15T08:39:55.298287Z"
+  },
+  {
+    "Slug": "voc-auto-abomena",
+    "Type": "vocab",
+    "Content": {
+      "word": "abomena"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-15",
+      "fundamenta-ekzercaro-24",
+      "lit-vivo-zamenhof-1",
+      "lit-vivo-zamenhof-1"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-ambauxseksa",
+    "Type": "vocab",
+    "Content": {
+      "word": "ambaŭseksa"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "pmeg-substantivoj",
+      "pmeg-substantivoj"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-imponi",
+    "Type": "vocab",
+    "Content": {
+      "word": "imponi"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "lit-zamenhof-kongreso-1905",
+      "lit-zamenhof-kongreso-1905"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1900,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-krei",
+    "Type": "vocab",
+    "Content": {
+      "word": "krei"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-07",
+      "fundamenta-ekzercaro-16",
+      "lit-zamenhof-kongreso-1905",
+      "lit-zamenhof-kongreso-1905",
+      "pmeg-pronomoj",
+      "pmeg-pronomoj"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-kunmeti",
+    "Type": "vocab",
+    "Content": {
+      "word": "kunmeti"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-16",
+      "pmeg-nombroj",
+      "pmeg-nombroj"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-muta",
+    "Type": "vocab",
+    "Content": {
+      "word": "muta"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-11",
+      "lit-zamenhof-kongreso-1905",
+      "lit-zamenhof-kongreso-1905"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-seksa",
+    "Type": "vocab",
+    "Content": {
+      "word": "seksa"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "pmeg-substantivoj",
+      "pmeg-substantivoj"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1700,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
+  },
+  {
+    "Slug": "voc-auto-surda",
+    "Type": "vocab",
+    "Content": {
+      "word": "surda"
+    },
+    "Tags": [
+      "vortaro",
+      "legvorto",
+      "fundamenta-ekzercaro-11",
+      "lit-zamenhof-kongreso-1905",
+      "lit-zamenhof-kongreso-1905"
+    ],
+    "Source": "",
+    "AuthorID": "",
+    "Status": "approved",
+    "Rating": 1500,
+    "RD": 200,
+    "Volatility": 0.06,
+    "VoteScore": 0,
+    "Version": 0,
+    "ImageURL": "",
+    "SeriesSlug": "",
+    "SeriesOrder": 0,
+    "SeriesLabel": "",
+    "SeriesParent": "",
+    "CreatedAt": "2026-03-15T07:19:52.119758Z",
+    "UpdatedAt": "2026-03-15T07:19:52.119758Z"
   }
 ]

@@ -25,6 +25,9 @@ builder API. Code: `internal/handler/builder.go`; client: `scripts/builder.sh`.
 | `POST /builder-api/publish` | `{"slugs": […]}`, `{"series": "…"}` or `{"all": true}` → approved |
 | `POST /builder-api/unpublish` | the same → pending |
 | `POST /builder-api/review` | the same as unpublish ("mark for review") |
+| `GET /builder-api/legvortoj` | the plan for the old `voc-auto-*` word cards, and its fingerprint (changes nothing) |
+| `POST /builder-api/legvortoj/apply` | `{"fingerprint": "…"}`: carry out exactly that plan → `{"run": "lv-…"}` |
+| `POST /builder-api/legvortoj/undo` | `{"run": "lv-…"}`: put back what that run changed |
 
 An item: `{"slug", "type", "content", "tags", "source", "series_slug",
 "series_order", "series_label", "series_parent", "level" | "rating", "trusted"}`.
@@ -81,3 +84,22 @@ override the site and key file. The script needs `curl` and `jq`.
 fetches and converts them; then `python content/builder/make.py DIR content/builder`) (sources and licences in
 `docs/GAPS.md`). `TestBuilderContentFiles` runs the files through the API's own
 checks and makes sure no slug collides with the seed.
+
+## The reading-word cleanup (`voc-auto-*`)
+
+The one path by which the builder changes items that are not its own, and
+only the old per-text word cards (`voc-auto-*`; code:
+`internal/handler/builder_legvortoj.go`, plan: `legvortoj.Plan`). Each card
+is kept as the one shared card of its word (re-rated by the word, tagged
+`vortaro`, `legvorto` and the readings it occurs in), folded into the core
+card of its word (`core`), folded into the card of its dictionary form
+(`lemma`; the card is made when missing: `create`), or retired as no word
+(`junk`: "ami→malami", "dek-dua"). Folding hides the card (status `merged`,
+`content.merged_into`); its page leads to the card it folded into. Nothing is
+deleted: each card keeps what the run changed under `content.legvortoj_undo`.
+
+```sh
+scripts/builder.sh legvortoj                 # the plan: counts, actions, fingerprint
+scripts/builder.sh legvortoj-apply FP        # carry it out; prints the run id (also in the App Engine log)
+scripts/builder.sh legvortoj-undo lv-…       # the undo
+```

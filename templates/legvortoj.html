@@ -1,0 +1,46 @@
+{{template "base" .}}
+
+{{define "title"}}{{t .UILang "words.practice"}} — {{.Reading.Title}} — Esperanto-kurso{{end}}
+{{define "korpo"}}on-stage{{end}}
+{{define "kapo"}}<!-- the stage runs without the site header -->{{end}}
+{{define "piedo"}}<!-- and without the footer -->{{end}}
+{{define "mainclass"}} class="stage"{{end}}
+
+{{- /* Vortoj el la teksto: the words of a reading put back into their own
+     sentences (handler.Practice). Answerable in Esperanto alone: the
+     sentence, the definition (the word itself shown as ~), a picture where
+     there is one; the translation is folded away. */}}
+{{define "content"}}
+{{$L := .UILang}}
+{{$w := .Q.Word}}
+<div class="stage-top">
+  <a class="home-mark" href="/" aria-label="Esperanto-kurso"><svg class="mark" aria-hidden="true"><use href="#m-eo"/></svg></a>
+  <div class="bar" role="progressbar" aria-label="{{t $L "stage.progress"}}" aria-valuemin="0" aria-valuemax="{{.Total}}" aria-valuenow="{{.N}}"><i style="width:{{percent .N .Total}}%"></i></div>
+  <span class="count">{{.N}}/{{.Total}}</span>
+  <a class="icon-btn" href="/ekzerco/{{.Reading.Slug}}" aria-label="{{t $L "words.back_to_text"}}" title="{{t $L "words.back_to_text"}}">{{ico "x"}}</a>
+</div>
+
+<div class="stage-body">
+  <p class="kind">{{ico "book"}}{{t $L "words.title"}}</p>
+  <form id="answer-form" hx-post="/legado/{{.Reading.Slug}}/vortoj" hx-target="#dock" hx-swap="innerHTML" hx-indicator="#dock">
+    <input type="hidden" name="n" value="{{.N}}">
+    <p class="ask">{{t $L "words.fill_prompt"}}</p>
+    <p class="fillin-question words-gap" lang="eo">{{.Q.Before}}<span class="gap-slot">___</span>{{.Q.After}}</p>
+    {{with $w.Pic}}<div class="pic-frame small"><img src="{{.URL}}" alt="" width="96" height="96" decoding="async"></div>{{end}}
+    {{with $w.HintDef}}<p class="hint-line">{{ico "bulb"}}<span lang="eo">{{.}}</span></p>{{end}}
+    <fieldset class="tiles" lang="eo">
+      <legend class="vh">{{t $L "exercise.choose_answer"}}</legend>
+      {{range $i, $o := .Q.Options}}<label class="tile"><input type="radio" name="answer" value="{{$o}}" required data-key="{{add $i 1}}">{{$o}}</label>
+      {{end}}
+    </fieldset>
+    {{if and $w.M.Text (ne $w.M.Lang "eo")}}<details class="gl-tr"><summary>{{t $L "words.translation"}}</summary><span lang="{{$w.M.Lang}}">{{$w.M.Text}}</span>{{if $w.M.Fallback}} <small class="gl-lang">({{$w.M.Lang}})</small>{{end}}</details>{{end}}
+  </form>
+</div>
+
+<div class="dock" id="dock" role="status" aria-live="polite">
+  <div class="row">
+    <a class="btn quiet" href="/ekzerco/{{.Reading.Slug}}">{{t $L "words.back_to_text"}}</a>
+    <button type="submit" form="answer-form" class="btn big" data-check disabled>{{t $L "stage.check"}}</button>
+  </div>
+</div>
+{{end}}

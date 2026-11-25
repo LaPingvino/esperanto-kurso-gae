@@ -30,6 +30,8 @@ package handler
 //	POST /builder-api/publish    {"slugs"|"series"|"all"} → approved   (builder items only)
 //	POST /builder-api/unpublish  {"slugs"|"series"|"all"} → pending    (builder items only)
 //	POST /builder-api/review     the same as unpublish, by its other name: "mark for review"
+//	GET  /builder-api/legvortoj, POST …/apply, …/undo   the cleanup of the old voc-auto-* cards
+//	                             (builder_legvortoj.go): the one path to items not the builder's
 
 import (
 	"context"
@@ -86,6 +88,7 @@ func (b *BuilderAPI) Routes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /builder-api/publish", b.setStatus("approved"))
 	mux.HandleFunc("POST /builder-api/unpublish", b.setStatus("pending"))
 	mux.HandleFunc("POST /builder-api/review", b.setStatus("pending"))
+	b.legvortojRoutes(mux)
 }
 
 // builderLimiter counts wrong keys per address.

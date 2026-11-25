@@ -97,14 +97,22 @@
     </details>
     {{end}}
     {{end}}
-    <p>{{linkifyText .Item.Text .VocabItems $lang}}</p>
+    <p>{{glossText .Item.Text .Glossary}}</p>
     {{with index .Item.Content "source_url"}}<p class="reading-source"><small>{{t $L "exercise.source_label"}} <a href="{{.}}" rel="noopener">{{if $.Item.Source}}{{$.Item.Source}}{{else}}{{.}}{{end}}</a>{{with index $.Item.Content "license"}} · {{.}}{{end}}</small></p>{{end}}
   </article>
-  {{if or .ChildSeries .VocabTag .VocabChildSeries}}
+  {{if .NewWords}}
+  <section class="glossary" id="vortoj" aria-labelledby="vortoj-h">
+    <h2 id="vortoj-h">{{t $L "words.title"}} <small>{{len .NewWords}}</small></h2>
+    <dl class="gl-list">{{range .NewWords}}{{template "gl-entry" map "G" . "L" $L}}{{end}}</dl>
+    {{if .KnownWords}}<details class="gl-known"><summary>{{t $L "words.known"}} ({{len .KnownWords}})</summary>
+    <dl class="gl-list">{{range .KnownWords}}{{template "gl-entry" map "G" . "L" $L}}{{end}}</dl></details>{{end}}
+  </section>
+  {{end}}
+  {{if or .ChildSeries .Practice .VocabChildSeries}}
   <section class="practice-list" aria-label="{{t $L "stage.exercises_for_text"}}">
     {{range .ChildSeries}}<a class="practice" href="/ekzerco/{{.Slug}}"><span class="k">{{kindIco .}}</span><p><b>{{if .SeriesLabel}}{{.SeriesLabel}}{{else}}{{.SeriesSlug}}{{end}}</b><small>{{itemKind .}}</small></p></a>{{end}}
     {{range .VocabChildSeries}}<a class="practice" href="/ekzerco/{{.Slug}}"><span class="k">{{ico "card"}}</span><p><b>{{if .SeriesLabel}}{{.SeriesLabel}}{{else}}{{.SeriesSlug}}{{end}}</b><small>{{tipNomo "vocab"}}</small></p></a>{{end}}
-    {{if .VocabTag}}<a class="practice" href="/vortaro?tag={{.VocabTag}}"><span class="k">{{ico "card"}}</span><p><b>{{t $L "exercise.vocab_practice_link"}}</b><small>{{tipNomo "vocab"}}</small></p></a>{{end}}
+    {{if .Practice}}<a class="practice" href="/legado/{{.Item.Slug}}/vortoj"><span class="k">{{ico "card"}}</span><p><b>{{t $L "words.practice"}}</b><small>{{.Practice}} {{t $L "words.questions"}}</small></p></a>{{end}}
   </section>
   {{end}}
 

@@ -31,6 +31,9 @@ type Data struct {
 	Date   string         `json:"date,omitempty"`
 	Drv    []Entry        `json:"drv"`
 	Roots  map[string]int `json:"roots"` // root → index of its article's first drv
+	// RootOfc is the root's official mark (<ofc> in the article's head):
+	// "*" the Fundamento, "1"… "10" the Official Additions.
+	RootOfc map[string]string `json:"root_ofc,omitempty"`
 }
 
 // Entry is one ReVo derivation (drv).
@@ -42,6 +45,66 @@ type Entry struct {
 	// "\n" (text: "w1, w2; sense2"): one string per entry instead of a
 	// map keeps the loaded extract small. Use Translation.
 	Trd string `json:"t,omitempty"`
+	// Ofc is the derivation's official mark: "*" in the Fundamento, "1"…
+	// "10" in that Official Addition (Akademio de Esperanto), "" neither.
+	Ofc string `json:"o,omitempty"`
+	// Senses: a word of several senses has each here, so a text's use of
+	// it can name the one meant (Trd above is the main sense's).
+	Senses []Sense `json:"s,omitempty"`
+}
+
+// Sense is one ReVo sense (snc) of a derivation.
+type Sense struct {
+	Mrk string `json:"m"`           // "boa.0o.ZOO"
+	Def string `json:"d,omitempty"` // its Esperanto definition
+	Fak bool   `json:"f,omitempty"` // of a special field (<uzo tip="fak">: ZOO, TEKS…)
+	Stl bool   `json:"y,omitempty"` // a styled use (<uzo tip="stl">: FIG, ARK, POE…)
+	Tax bool   `json:"x,omitempty"` // the biological taxon ("Genro el…"), not the everyday word
+	Trd string `json:"t,omitempty"` // as Entry.Trd
+}
+
+// Main is the index of the entry's main sense: ReVo's first that is not a
+// styled use; when that is the taxon, a later plain sense (homo: the genus
+// Homo, then the human being), if there is one (muso: the animal before
+// the computer mouse, a special field).
+func (e *Entry) Main() int {
+	main := 0
+	for i, s := range e.Senses {
+		if !s.Stl {
+			main = i
+			break
+		}
+	}
+	if main < len(e.Senses) && e.Senses[main].Tax {
+		for i := main + 1; i < len(e.Senses); i++ {
+			if s := e.Senses[i]; !s.Stl && !s.Tax && !s.Fak {
+				return i
+			}
+		}
+	}
+	return main
+}
+
+// Translation returns the sense's translation in a site language code.
+func (s *Sense) Translation(lang string) string {
+	if s == nil {
+		return ""
+	}
+	e := Entry{Trd: s.Trd}
+	return e.Translation(ReVoLang(lang))
+}
+
+// Sense finds a sense by its marker, or nil.
+func (e *Entry) Sense(mrk string) *Sense {
+	if e == nil || mrk == "" {
+		return nil
+	}
+	for i := range e.Senses {
+		if e.Senses[i].Mrk == mrk {
+			return &e.Senses[i]
+		}
+	}
+	return nil
 }
 
 // Translation returns the entry's translation in a ReVo language code, or "".
@@ -365,4 +428,43 @@ func (e *Entry) HasHead(w string) bool {
 		}
 	}
 	return false
+}
+
+// Exact returns the derivation whose headword is w (no inflection, no
+// related word, no root), or nil: whether w is itself a dictionary word.
+func Exact(w string) *Hit {
+	once.Do(load)
+	if is, ok := heads[Normalize(w)]; ok {
+		return &Hit{Entry: &data.Drv[is[0]]}
+	}
+	return nil
+}
+
+// IsRoot reports whether r is a ReVo root (an article's <rad>).
+func IsRoot(r string) bool {
+	once.Do(load)
+	_, ok := data.Roots[Normalize(r)]
+	return ok
+}
+
+// RootOfc is a root's official mark ("*", "1"… "10"), or "".
+func RootOfc(r string) string {
+	once.Do(load)
+	return data.RootOfc[Normalize(r)]
+}
+
+// MrkRoot splits a derivation marker into the article's root and the
+// derivation around it: "san.mal0ulejo" → "san", "mal", "ulejo"; ok false
+// when the marker has no "0" (the root's place).
+func MrkRoot(mrk string) (root, before, after string, ok bool) {
+	file, drv, found := strings.Cut(mrk, ".")
+	if !found {
+		return "", "", "", false
+	}
+	before, after, ok = strings.Cut(drv, "0")
+	if !ok {
+		return "", "", "", false
+	}
+	root = Normalize(strings.TrimRight(file, "0123456789"))
+	return root, Normalize(strings.ReplaceAll(before, "_", " ")), Normalize(strings.ReplaceAll(after, "_", " ")), true
 }

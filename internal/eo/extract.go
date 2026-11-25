@@ -47,6 +47,11 @@ var stopwords = map[string]bool{
 	// common verbs (infinitive forms — conjugated forms are handled by normaliser)
 	"esti": true, "havi": true, "fari": true, "iri": true, "veni": true,
 	"diri": true, "povi": true, "devi": true, "voli": true, "scii": true,
+	// possessives and the rest of the table words
+	"mia": true, "via": true, "lia": true, "ŝia": true, "ĝia": true, "nia": true,
+	"ilia": true, "sia": true, "onia": true,
+	"ties": true, "kies": true, "ĉies": true, "ies": true, "nenies": true,
+	"nek": true, "ol": true, "ĉi": true, "ambaŭ": true,
 	// common discourse words
 	"kompreneble": true, "pardonu": true, "dankon": true, "bonvolu": true,
 	"saluton": true, "adiaŭ": true, "jes": true, "ne": true,
@@ -205,3 +210,7 @@ func tokenize(text string) []string {
 	}
 	return tokens
 }
+
+// IsStopword reports whether w (lower case) is a function word that never
+// becomes a vocabulary item: pronouns, prepositions, table words, numbers.
+func IsStopword(w string) bool { return stopwords[w] }

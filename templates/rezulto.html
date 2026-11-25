@@ -32,7 +32,7 @@
     {{if .EasierSlug}}<a href="/ekzerco/{{.EasierSlug}}">{{ico "down"}} {{t $L "result.easier"}}</a>{{end}}
     {{if .HarderSlug}}<a href="/ekzerco/{{.HarderSlug}}">{{ico "up"}} {{t $L "result.harder"}}</a>{{end}}
     <span class="sep"></span>
-    {{if and .User .Item .YourAnswer (not .Correct) (ne .Item.Type "multiplechoice")}}
+    {{if and .User .Item .YourAnswer (not .Correct) (not .NoAlt) (ne .Item.Type "multiplechoice")}}
     <span id="suggest-alt-{{.Item.Slug}}">
       <form hx-post="/ekzerco/{{.Item.Slug}}/alternativo" hx-target="#suggest-alt-{{.Item.Slug}}" hx-swap="innerHTML" style="display:inline;margin:0">
         <input type="hidden" name="answer" value="{{.YourAnswer}}">
@@ -40,7 +40,7 @@
       </form>
     </span>
     {{end}}
-    {{if .User}}{{template "vote-kompakta.html" map "ContentID" .Item.Slug "VoteScore" .VoteScore "CurrentVote" .CurrentVote "UILang" $L}}{{end}}
+    {{if and .User .Item}}{{template "vote-kompakta.html" map "ContentID" .Item.Slug "VoteScore" .VoteScore "CurrentVote" .CurrentVote "UILang" $L}}{{end}}
   </div>
 </div>
 {{end}}

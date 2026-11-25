@@ -585,3 +585,60 @@ function copySupport(id, btn) {
     setTimeout(function () { btn.innerHTML = old; }, 1500);
   });
 }
+
+// ---- The words of a reading: the panel of a tapped word ----
+// A word in the text (a.eo-word[data-v]) opens its glossary entry's body
+// (.gl-entry#id .gl-body) in a small panel under it; Escape, ×, or a tap
+// elsewhere closes it. Without JavaScript the link leads to the entry.
+(function () {
+  'use strict';
+  var pop = null, from = null;
+  function close() {
+    if (pop) { pop.remove(); pop = null; }
+    if (from) { from.setAttribute('aria-expanded', 'false'); from.focus(); from = null; }
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.eo-word[data-v]');
+    if (!a) {
+      if (pop && !pop.contains(e.target)) close();
+      return;
+    }
+    var entry = document.getElementById(a.getAttribute('data-v'));
+    if (!entry) return;
+    e.preventDefault();
+    var again = from === a;
+    close();
+    if (again) return;
+    pop = document.createElement('div');
+    pop.className = 'gl-pop';
+    pop.setAttribute('role', 'dialog');
+    var head = document.createElement('div');
+    head.className = 'gl-head';
+    head.setAttribute('lang', 'eo');
+    var dt = entry.querySelector('dt');
+    head.innerHTML = dt ? dt.innerHTML : '';
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.className = 'gl-close';
+    x.setAttribute('aria-label', document.documentElement.lang === 'eo' ? 'Fermi' : 'Close');
+    x.textContent = '×';
+    x.addEventListener('click', close);
+    head.appendChild(x);
+    pop.appendChild(head);
+    var body = entry.querySelector('.gl-body');
+    if (body) pop.appendChild(body.cloneNode(true));
+    document.body.appendChild(pop);
+    // fixed to the viewport, under the word (above it near the bottom)
+    var r = a.getBoundingClientRect();
+    var vw = window.innerWidth, vh = window.innerHeight;
+    pop.style.left = Math.max(8, Math.min(r.left, vw - pop.offsetWidth - 8)) + 'px';
+    var top = r.bottom + 6;
+    if (top + pop.offsetHeight > vh - 8 && r.top - pop.offsetHeight - 6 > 8) top = r.top - pop.offsetHeight - 6;
+    pop.style.top = Math.max(8, top) + 'px';
+    from = a;
+    a.setAttribute('aria-expanded', 'true');
+    x.focus();
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pop) close(); });
+  window.addEventListener('scroll', function () { if (pop) close(); }, { passive: true });
+})();

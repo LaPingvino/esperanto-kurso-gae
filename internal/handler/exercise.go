@@ -97,15 +97,11 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	h.verdict(w, r, item, u, newToken, score, correct, answer, "")
 }
 
-// verdict records an answer or a self-judgement, updates both Glicko-2
-// ratings and the streak, and renders the verdict into the stage's dock.
-func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *model.ContentItem, u *model.User, newToken string, score float64, correct bool, answer, judgment string) {
-	ctx := r.Context()
+// rate records an answer (or a self-judgement) on an item: the attempt,
+// both Glicko-2 ratings and the streak. It returns the learner's new
+// rating, the streak and whether it reached a milestone just now.
+func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.ContentItem, score float64, correct bool, recorded string) (float64, float64, int, bool) {
 	slug := item.Slug
-	recorded := answer
-	if judgment != "" {
-		recorded, answer = judgment, "" // a self-judgement is no answer to show
-	}
 	_ = h.attempts.Create(ctx, &model.Attempt{
 		UserID:        u.ID,
 		ContentItemID: slug,
@@ -131,6 +127,19 @@ func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *
 	u.LastSeenAt = now
 	u.LastPracticeAt = now
 
+	return newUserR, newUserRD, streak, firstToday && isStreakMilestone(streak)
+}
+
+// verdict records an answer or a self-judgement, updates both Glicko-2
+// ratings and the streak, and renders the verdict into the stage's dock.
+func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *model.ContentItem, u *model.User, newToken string, score float64, correct bool, answer, judgment string) {
+	ctx := r.Context()
+	slug := item.Slug
+	recorded := answer
+	if judgment != "" {
+		recorded, answer = judgment, "" // a self-judgement is no answer to show
+	}
+	newUserR, newUserRD, streak, milestone := h.rate(ctx, u, item, score, correct, recorded)
 	after := &model.User{Rating: newUserR, RD: newUserRD}
 	// The interface switches itself to Esperanto once the learner is established.
 	if after.Established() && u.UILang != "eo" && u.UILang != "" {
@@ -188,7 +197,7 @@ func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *
 		"CEFRLevel":       model.RatingToCEFR(newUserR),
 		"LevelUp":         levelUp,
 		"StreakDays":      streak,
-		"StreakMilestone": firstToday && isStreakMilestone(streak),
+		"StreakMilestone": milestone,
 		"UILang":          u.UILangOrDefault(),
 		"CurrentVote":     currentVote,
 		"VoteScore":       item.VoteScore,

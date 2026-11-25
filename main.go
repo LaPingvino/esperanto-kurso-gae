@@ -6,7 +6,6 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"html"
 	"html/template"
 	"io"
 	"log"
@@ -18,7 +17,6 @@ import (
 	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/bildoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/config"
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/handler"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
@@ -110,6 +108,8 @@ func main() {
 	mux.HandleFunc("POST /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
 	mux.HandleFunc("POST /ekzerco/{slug}/jugxo", exerciseH.JudgeExercise)
+	mux.HandleFunc("GET /legado/{slug}/vortoj", contentH.ShowReadingPractice)
+	mux.HandleFunc("POST /legado/{slug}/vortoj", exerciseH.SubmitReadingPractice)
 	mux.HandleFunc("POST /ekzerco/{slug}/alternativo", communityH.SuggestAlternative)
 	mux.HandleFunc("POST /ekzerco/{slug}/flagi", communityH.FlagExercise)
 	mux.HandleFunc("GET /enskribi", authH.ShowEnskribi)
@@ -162,8 +162,6 @@ func main() {
 	// Translation deletion: admin only
 	mux.Handle("POST /admin/tradukoj/{id}/forigi", ra(adminH.DeleteTranslation))
 	// Vocabulary generator: creators, mods and admins
-	mux.Handle("GET /admin/enhavo/{slug}/vortaro", rc(adminH.VocabFromReading))
-	mux.Handle("POST /admin/enhavo/{slug}/vortaro", rc(adminH.CreateVocabFromReading))
 	// Destructive / bulk operations: admin only
 	mux.Handle("GET /admin/seed/{filename}/rigardi", ra(adminH.PeekSeed))
 	mux.Handle("POST /admin/seed/{filename}", ra(adminH.SeedContent))
@@ -229,6 +227,7 @@ func parseTemplates() (*pageTemplates, error) {
 	pages := map[string]string{
 		"hejmo.html":              "templates/hejmo.html",
 		"ekzerco.html":            "templates/ekzerco.html",
+		"legvortoj.html":          "templates/legvortoj.html",
 		"vortaro.html":            "templates/vortaro.html",
 		"enskribi.html":           "templates/enskribi.html",
 		"admin_dashboard.html":    "templates/admin/dashboard.html",
@@ -236,7 +235,6 @@ func parseTemplates() (*pageTemplates, error) {
 		"redaktilo.html":          "templates/admin/redaktilo.html",
 		"moderigo.html":           "templates/admin/moderigo.html",
 		"admin_uzantoj.html":      "templates/admin/uzantoj.html",
-		"admin_vortaro_gen.html":  "templates/admin/vortaro-gen.html",
 		"sercxi.html":             "templates/sercxi.html",
 		"etikedoj.html":           "templates/etikedoj.html",
 		"steloj.html":             "templates/steloj.html",
@@ -273,6 +271,7 @@ func parseTemplates() (*pageTemplates, error) {
 			"templates/partials/komentoj.html",
 			"templates/partials/traduko.html",
 			"templates/partials/vortaroj.html",
+			"templates/partials/glosaro.html",
 			path,
 		)
 		if err != nil {
@@ -466,117 +465,8 @@ func templateFuncs() template.FuncMap {
 			}
 			return m
 		},
-		// linkifyText wraps known Esperanto words in reading texts with links to
-		// their vocab exercise. Returns safe HTML. vocabItems should be the vocab
-		// items tagged with this reading's slug.
-		"linkifyText": func(text string, vocabItems []*model.ContentItem, lang string) template.HTML {
-			// Build lookup: base_form → (slug, best_def)
-			type vocabEntry struct {
-				slug string
-				def  string
-			}
-			lookup := map[string]vocabEntry{}
-			for _, item := range vocabItems {
-				if item.Type != "vocab" {
-					continue
-				}
-				word := ""
-				if w, ok := item.Content["word"].(string); ok {
-					word = strings.ToLower(strings.TrimSpace(w))
-				}
-				if word == "" {
-					continue
-				}
-				def := ""
-				if defs, ok := item.Content["definitions"].(map[string]interface{}); ok {
-					if v, ok := defs[lang].(string); ok {
-						def = v
-					}
-					if def == "" {
-						if v, ok := defs["en"].(string); ok {
-							def = v
-						}
-					}
-				}
-				if def == "" {
-					if v, ok := item.Content["definition"].(string); ok {
-						def = v
-					}
-				}
-				entry := vocabEntry{slug: item.Slug, def: def}
-				lookup[word] = entry
-				// Register root forms and all inflected variants so any word form
-				// in a reading text matches, regardless of whether the stored
-				// word is a full form (amiko) or a bare root (amik).
-				// Strip common endings to get the root, then re-register.
-				root := word
-				for _, sfx := range []string{
-					// Noun/adj plural+acc, singular+acc
-					"ojn", "ajn", "oj", "aj", "on", "an",
-					// Verb tenses/moods
-					"as", "is", "os", "us",
-					// Single-vowel endings
-					"en", "o", "a", "e", "i", "u",
-				} {
-					if strings.HasSuffix(word, sfx) && len(word)-len(sfx) >= 2 {
-						root = word[:len(word)-len(sfx)]
-						break
-					}
-				}
-				// Register all grammatical forms under the same entry.
-				nounAdj := []string{"o", "oj", "on", "ojn", "a", "aj", "an", "ajn", "e"}
-				verbForms := []string{"i", "as", "is", "os", "us", "u"}
-				for _, ending := range append(nounAdj, verbForms...) {
-					form := root + ending
-					if _, exists := lookup[form]; !exists {
-						lookup[form] = entry
-					}
-				}
-				// Also register the bare root itself.
-				if _, exists := lookup[root]; !exists {
-					lookup[root] = entry
-				}
-			}
-
-			// Tokenize text preserving whitespace and punctuation.
-			var out strings.Builder
-			// Process character by character, collecting word tokens.
-			runes := []rune(text)
-			i := 0
-			for i < len(runes) {
-				// Collect a word (Esperanto letters only).
-				j := i
-				for j < len(runes) && isEoLetter(runes[j]) {
-					j++
-				}
-				if j > i {
-					token := string(runes[i:j])
-					base := eo.ToBaseForm(strings.ToLower(token))
-					if entry, ok := lookup[base]; ok && entry.slug != "" {
-						escaped := html.EscapeString(token)
-						link := `/ekzerco/` + entry.slug
-						if entry.def != "" {
-							out.WriteString(`<a href="` + link + `" class="eo-word" data-def="` + html.EscapeString(entry.def) + `">` + escaped + `</a>`)
-						} else {
-							out.WriteString(`<a href="` + link + `" class="eo-word">` + escaped + `</a>`)
-						}
-					} else {
-						out.WriteString(html.EscapeString(token))
-					}
-					i = j
-				} else {
-					// Non-word character: emit as-is (escaped).
-					ch := runes[i]
-					if ch == '\n' {
-						out.WriteString("<br>")
-					} else {
-						out.WriteString(html.EscapeString(string(ch)))
-					}
-					i++
-				}
-			}
-			return template.HTML(out.String())
-		},
+		// glossText: a reading's text with its words tappable (handler.GlossText).
+		"glossText": handler.GlossText,
 		"jsStr": func(s string) template.JS {
 			b, _ := json.Marshal(s)
 			return template.JS(b)
@@ -623,10 +513,3 @@ func assetVersion() string {
 	return hex.EncodeToString(h.Sum(nil))[:10]
 }
 
-// isEoLetter reports whether r is an Esperanto letter (Latin + special chars).
-func isEoLetter(r rune) bool {
-	return (r >= 'a' && r <= 'z') || (r >= 'A' && r <= 'Z') ||
-		r == 'ĉ' || r == 'Ĉ' || r == 'ĝ' || r == 'Ĝ' ||
-		r == 'ĥ' || r == 'Ĥ' || r == 'ĵ' || r == 'Ĵ' ||
-		r == 'ŝ' || r == 'Ŝ' || r == 'ŭ' || r == 'Ŭ'
-}

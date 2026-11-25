@@ -56,8 +56,9 @@ func main() {
 	}
 
 	d := &revo.Data{
-		Source: "Reta Vortaro (reta-vortaro.de), github.com/revuloj/revo-fonto, GPL-2.0",
-		Roots:  map[string]int{},
+		Source:  "Reta Vortaro (reta-vortaro.de), github.com/revuloj/revo-fonto, GPL-2.0",
+		Roots:   map[string]int{},
+		RootOfc: map[string]string{},
 	}
 	if c, err := exec.Command("git", "-C", *fonto, "log", "-1", "--format=%H %cs").Output(); err == nil {
 		if f := strings.Fields(string(c)); len(f) == 2 {
@@ -84,7 +85,7 @@ func main() {
 					trd[lng] = s
 				}
 			}
-			e := revo.Entry{Mrk: dv.mrk, Heads: dv.heads, Def: dv.def, Trd: revo.EncodeTrd(trd)}
+			e := revo.Entry{Mrk: dv.mrk, Heads: dv.heads, Def: dv.def, Trd: revo.EncodeTrd(trd), Ofc: dv.ofc, Senses: dv.senses}
 			if len(e.Heads) == 0 {
 				continue
 			}
@@ -94,6 +95,9 @@ func main() {
 			for _, r := range art.roots {
 				if _, ok := d.Roots[r]; !ok {
 					d.Roots[r] = first
+					if art.ofc != "" {
+						d.RootOfc[r] = art.ofc
+					}
 				}
 			}
 		}
@@ -172,13 +176,18 @@ func loadEntities(dir string, names ...string) (map[string]string, error) {
 }
 
 type drv struct {
+	ofc   string // <ofc> in the drv's <kap>: "*" Fundamento, "1"… an Official Addition
 	mrk   string
 	heads []string
 	def   string
 	trd   map[string][][]string // lng → senses → words
+	// senses: the drv's senses, when it has more than one, each with its
+	// own definition and translations, so a text can name the one it means.
+	senses []revo.Sense
 }
 
 type article struct {
+	ofc   string // the root's <ofc>, in the article's <kap>
 	roots []string
 	drvs  []*drv
 }
@@ -234,6 +243,9 @@ func parseArticle(raw []byte, ent map[string]string) (*article, error) {
 		return nil, fmt.Errorf("no <rad>")
 	}
 	radText := strings.TrimSpace(plain(rad))
+	if o := child(kap, "ofc"); o != nil {
+		a.ofc = strings.TrimSpace(plain(o))
+	}
 	a.roots = append(a.roots, revo.Normalize(radText))
 	// Variant roots: <var><kap><rad var="…">…</rad>…</kap></var>.
 	walk(kap, func(n *node) bool {
@@ -254,9 +266,13 @@ func parseArticle(raw []byte, ent map[string]string) (*article, error) {
 				d := &drv{mrk: k.attr["mrk"], trd: map[string][][]string{}}
 				if h := child(k, "kap"); h != nil {
 					d.heads = heads(h, radText)
+					if o := find(h, "ofc"); o != nil {
+						d.ofc = strings.TrimSpace(plain(o))
+					}
 				}
 				d.def = firstDef(k, radText)
-				addSenses(k, d)
+				addSenses(k, d, radText)
+				d.senses = senseList(k, radText)
 				a.drvs = append(a.drvs, d)
 			case "subart":
 				collect(k)
@@ -267,16 +283,27 @@ func parseArticle(raw []byte, ent map[string]string) (*article, error) {
 	return a, nil
 }
 
-// addSenses fills d.trd: one sense bucket per snc/subsnc that has
-// translations, plus one for translations directly under the drv.
-func addSenses(dn *node, d *drv) {
+// addSenses fills d.trd: per language, the translations of the word's
+// main sense. ReVo puts translations directly under the drv (they name
+// the word as a whole) and under each sense (snc/subsnc); a word's senses
+// can be far apart (boao: the snake, and a fur scarf, TEKS). The main
+// sense is ReVo's first sense that is not a figurative or other styled
+// use (FIG, ARK, POE: <uzo tip="stl">). A language gets its drv-level
+// translations and the main sense's; without drv-level ones, the first
+// sense (main first, styled ones last) that has one in it. Later senses are
+// left out — they are other meanings — and so is a drv-level translation
+// narrowed by a clarification ("boa (kožušina)") in a word of several
+// senses, since it names one sense, not the word.
+func addSenses(dn *node, d *drv, rad string) {
 	var visit func(n *node, bucket int)
 	order := 0
 	type key struct {
 		lng    string
 		bucket int
 	}
-	fak := map[int]bool{}
+	styled := map[int]bool{}
+	taxon := map[int]bool{}
+	fakTop := map[int]bool{}
 	got := map[key][]string{}
 	var keys []key
 	add := func(lng string, bucket int, words []string) {
@@ -289,20 +316,39 @@ func addSenses(dn *node, d *drv) {
 		}
 		got[k] = append(got[k], words...)
 	}
+	senses := 0
+	top := map[int]int{}          // bucket → its top-level sense's bucket
+	narrowed := map[string]bool{} // drv-level translations with a clarification
 	visit = func(n *node, bucket int) {
 		for _, k := range n.kids {
 			switch k.name {
 			case "snc", "subsnc":
 				order++
-				fak[order] = fak[bucket] || isFak(k)
+				if bucket == 0 {
+					senses++
+					top[order] = order
+				} else {
+					top[order] = top[bucket]
+				}
+				styled[order] = styled[bucket] || isStyled(k)
+				taxon[order] = isTaxon(k, rad)
+				fakTop[order] = isFak(k)
 				visit(k, order)
 			case "trd":
-				add(k.attr["lng"], bucket, []string{trdText(k)})
+				t := trdText(k)
+				if bucket == 0 && clarified(k) {
+					narrowed[t] = true
+				}
+				add(k.attr["lng"], bucket, []string{t})
 			case "trdgrp":
 				var ws []string
 				for _, t := range k.kids {
 					if t.name == "trd" {
-						ws = append(ws, trdText(t))
+						w := trdText(t)
+						if bucket == 0 && clarified(t) {
+							narrowed[w] = true
+						}
+						ws = append(ws, w)
 					}
 				}
 				add(k.attr["lng"], bucket, ws)
@@ -315,18 +361,67 @@ func addSenses(dn *node, d *drv) {
 		}
 	}
 	visit(dn, 0)
-	// Drv-level translations (bucket 0) come first, then the general senses
-	// in ReVo's order, then the senses of a special field.
-	sort.SliceStable(keys, func(i, j int) bool {
-		if fak[keys[i].bucket] != fak[keys[j].bucket] {
-			return !fak[keys[i].bucket]
+	// the main sense: ReVo's first not styled; when that is the taxon, a
+	// later plain sense (homo: the genus Homo, then the human being), if any
+	main := 0
+	for b := 1; b <= order; b++ {
+		if top[b] == b && !styled[b] {
+			main = b
+			break
 		}
-		return keys[i].bucket < keys[j].bucket
+	}
+	if main != 0 && taxon[main] {
+		for b := main + 1; b <= order; b++ {
+			if top[b] == b && !styled[b] && !taxon[b] && !fakTop[b] {
+				main = b
+				break
+			}
+		}
+	}
+	// drv-level first, then the main sense, then the others in ReVo's
+	// order, styled ones last
+	rank := func(b int) int {
+		switch {
+		case b == 0:
+			return 0
+		case main != 0 && top[b] == main:
+			return 1
+		case styled[b]:
+			return 3
+		}
+		return 2
+	}
+	sort.SliceStable(keys, func(i, j int) bool {
+		bi, bj := keys[i].bucket, keys[j].bucket
+		if rank(bi) != rank(bj) {
+			return rank(bi) < rank(bj)
+		}
+		return bi < bj
 	})
+	drvLevel := map[string]bool{}
 	for _, k := range keys {
+		if k.bucket == 0 {
+			drvLevel[k.lng] = true
+		}
+	}
+	chosen := map[string]int{} // lang → the top-level sense its translation comes from
+	for _, k := range keys {
+		if k.bucket != 0 {
+			t := top[k.bucket]
+			if c, ok := chosen[k.lng]; ok && c != t {
+				continue // another sense: another meaning
+			}
+			if drvLevel[k.lng] && main != 0 && t != main {
+				continue // the drv-level translation names the word; only the main sense adds to it
+			}
+			chosen[k.lng] = t
+		}
 		var ws []string
 		seen := map[string]bool{}
 		for _, w := range got[k] {
+			if k.bucket == 0 && senses > 1 && narrowed[w] {
+				continue
+			}
 			if w != "" && !seen[w] {
 				seen[w] = true
 				ws = append(ws, w)
@@ -336,6 +431,101 @@ func addSenses(dn *node, d *drv) {
 			d.trd[k.lng] = append(d.trd[k.lng], ws)
 		}
 	}
+}
+
+// senseList lists a drv's senses (its snc, also those inside a subdrv),
+// each with its definition and its translations (of the sense and its
+// subsenses, not of examples); nil for a word of one sense.
+func senseList(dn *node, rad string) []revo.Sense {
+	var out []revo.Sense
+	var sncs []*node
+	walk(dn, func(n *node) bool {
+		switch n.name {
+		case "snc":
+			sncs = append(sncs, n)
+			return false
+		case "subdrv":
+			return true
+		}
+		return false
+	})
+	if len(sncs) < 2 {
+		return nil
+	}
+	for i, sn := range sncs {
+		mrk := sn.attr["mrk"]
+		if mrk == "" {
+			mrk = fmt.Sprintf("%s.%d", dn.attr["mrk"], i+1)
+		}
+		trd := map[string][]string{}
+		var visit func(n *node)
+		visit = func(n *node) {
+			for _, k := range n.kids {
+				switch k.name {
+				case "trd":
+					if t := trdText(k); t != "" {
+						trd[k.attr["lng"]] = append(trd[k.attr["lng"]], t)
+					}
+				case "trdgrp":
+					for _, t := range k.kids {
+						if t.name == "trd" {
+							if w := trdText(t); w != "" {
+								trd[k.attr["lng"]] = append(trd[k.attr["lng"]], w)
+							}
+						}
+					}
+				case "subsnc", "dif":
+					visit(k) // a translation may sit in the definition (boao: "Boa", la)
+				}
+			}
+		}
+		visit(sn)
+		m := map[string]string{}
+		for l, ws := range trd {
+			if l != "" {
+				m[l] = revo.JoinSenses([][]string{ws})
+			}
+		}
+		out = append(out, revo.Sense{Mrk: mrk, Def: firstDef(sn, rad), Fak: isFak(sn), Stl: isStyled(sn), Tax: isTaxon(sn, rad), Trd: revo.EncodeTrd(m)})
+	}
+	return out
+}
+
+// isTaxon reports whether a sense is the biological taxon (homo: "Genro
+// el…", the genus Homo) rather than the everyday word, which ReVo often
+// lists first.
+func isTaxon(snc *node, rad string) bool {
+	def := firstDef(snc, rad)
+	for _, p := range []string{"Genro", "Familio", "Ordo", "Subordo", "Klaso", "Specio", "Subspecio", "Tribo", "Subfamilio"} {
+		if strings.HasPrefix(def, p+" ") || strings.HasPrefix(def, p+",") {
+			return true
+		}
+	}
+	return false
+}
+
+// isStyled reports whether a sense carries a style mark (<uzo tip="stl">:
+// FIG, ARK, POE, EVI…): not the plain meaning.
+func isStyled(snc *node) bool {
+	for _, k := range snc.kids {
+		if k.name == "uzo" && k.attr["tip"] == "stl" {
+			return true
+		}
+	}
+	return false
+}
+
+// clarified reports whether a translation carries a shown clarification
+// (<klr> other than the index-only and ambiguity notes).
+func clarified(trd *node) bool {
+	found := false
+	walk(trd, func(n *node) bool {
+		if n.name == "klr" && n.attr["tip"] != "ind" && n.attr["tip"] != "amb" {
+			found = true
+		}
+		return !found
+	})
+	return found
 }
 
 // isFak reports whether a sense belongs to a special field (<uzo tip="fak">).

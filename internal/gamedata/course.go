@@ -139,8 +139,8 @@ func Build(all []*model.ContentItem) *Course {
 		}
 		slug := it.SeriesSlug
 		if slug == "" {
-			if it.Type == "vocab" && taggedReading(it, readings) {
-				continue // a reading's words
+			if it.Type == "vocab" && (taggedReading(it, readings) || strings.HasPrefix(it.Slug, "voc-auto-")) {
+				continue // a reading's words (internal/legvortoj): in its text, not on their own
 			}
 			if !usable(it) {
 				continue

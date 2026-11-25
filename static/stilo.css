@@ -343,7 +343,39 @@ input.is-wrong { border-color: var(--wrong-edge) !important; background: var(--w
 .reading-source { font-family: var(--font-ui); }
 .reading-text a.eo-word { color: inherit; text-decoration: underline dotted var(--accent-line); text-underline-offset: 3px; position: relative; }
 .reading-text a.eo-word:hover { color: var(--accent-text); }
-.reading-text a.eo-word[data-def]:hover::after { content: attr(data-def); position: absolute; bottom: 125%; inset-inline-start: 50%; transform: translateX(-50%); background: var(--ink); color: var(--paper); padding: 0.25em 0.5em; border-radius: 4px; white-space: nowrap; font: 400 var(--text-sm)/1.3 var(--font-ui); pointer-events: none; z-index: 10; }
+
+/* The words of a reading (internal/legvortoj): the glossary under the text,
+   and the panel of a word tapped in it (eo.js), Esperanto first. */
+.glossary { font-family: var(--font-ui); margin: var(--space-5) 0 var(--space-4); }
+.glossary h2 { font-size: var(--text-xl); margin: 0 0 var(--space-3); }
+.glossary h2 small { color: var(--ink-muted); font-weight: 600; font-size: var(--text-sm); }
+.gl-list { margin: 0; display: grid; gap: var(--space-2); }
+.gl-entry { background: var(--surface); border: var(--border) solid var(--line); border-radius: var(--radius-lg); padding: var(--space-3) var(--space-4); scroll-margin-top: var(--space-6); }
+.gl-entry:target { border-color: var(--accent-line); box-shadow: 0 0 0 var(--focus-width) var(--accent-tint); }
+.gl-entry dt { font: 650 var(--text-lg)/1.3 var(--font-read); margin: 0; }
+.gl-form { font-weight: 400; color: var(--ink-muted); font-size: var(--text-md); }
+.gl-body { margin: var(--space-1) 0 0; display: grid; gap: var(--space-1); }
+.gl-body p { margin: 0; }
+.gl-pic { float: inline-end; margin: 0 0 var(--space-2) var(--space-3); border-radius: var(--radius-md); background: var(--pic-bg, var(--sunk)); }
+.gl-parts { font: 600 var(--text-md) var(--font-read); display: flex; flex-wrap: wrap; align-items: center; gap: 2px; }
+.gl-part { padding: 0 0.35em; border-radius: var(--radius-sm); background: var(--sunk); color: var(--ink); text-decoration: none; }
+a.gl-part { background: var(--accent-tint); text-decoration: underline dotted var(--accent-line); text-underline-offset: 3px; }
+.gl-part.finaĵo, .gl-part.ligilo { background: transparent; color: var(--ink-muted); }
+.gl-dot { color: var(--ink-muted); }
+.gl-def { font: 400 var(--text-md)/1.45 var(--font-read); }
+.gl-tr { font-size: var(--text-sm); }
+.gl-tr summary { color: var(--ink-muted); cursor: pointer; min-height: var(--tap); display: inline-flex; align-items: center; }
+.gl-lang { color: var(--ink-muted); }
+.gl-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 var(--space-3); }
+.gl-tr[open] { flex-basis: 100%; }
+.gl-links { color: var(--ink-muted); }
+.gl-known { margin-top: var(--space-3); }
+.gl-known > summary { color: var(--ink-muted); min-height: var(--tap); display: flex; align-items: center; cursor: pointer; }
+.gl-pop { position: fixed; z-index: 40; width: min(22rem, calc(100vw - 2 * var(--gutter))); background: var(--surface); color: var(--ink); border: var(--border) solid var(--line); border-radius: var(--radius-lg); box-shadow: var(--shadow-card), 0 16px 32px -16px rgb(0 0 0 / .35); padding: var(--space-3) var(--space-4); font-family: var(--font-ui); }
+.gl-pop .gl-head { display: flex; align-items: center; justify-content: space-between; gap: var(--space-2); font: 650 var(--text-lg)/1.3 var(--font-read); }
+.gl-pop .gl-close { min-width: var(--tap); min-height: var(--tap); border: 0; background: transparent; color: var(--ink-muted); font-size: var(--text-xl); cursor: pointer; }
+.words-gap .gap-slot { display: inline-block; min-width: 4ch; border-bottom: var(--border-strong) dashed var(--accent-line); color: transparent; }
+.pic-frame.small img { width: 96px; height: 96px; }
 .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius-lg); background: var(--sunk); }
 .video-wrapper iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 

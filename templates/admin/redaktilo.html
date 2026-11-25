@@ -358,7 +358,7 @@
     <a href="/admin/serio/{{.Item.SeriesSlug}}/redakti" role="button" class="outline">{{ico "list"}} Redakti serion</a>
     {{end}}
     {{if and (not .IsNew) (eq .Item.Type "reading")}}
-    <a href="/admin/enhavo/{{.Item.Slug}}/vortaro" role="button" class="outline">Krei vortaron</a>
+    <a href="/ekzerco/{{.Item.Slug}}#vortoj" role="button" class="outline">Vortoj el la teksto</a>
     {{end}}
     {{if .IsNew}}
     <button type="button" id="series-toggle-btn" onclick="toggleSeriesMode()"

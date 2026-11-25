@@ -187,7 +187,7 @@ These are on the live site now, from before the builder:
 Candidates only: nothing is deleted yet. A redesign pass comes after the
 current branches land.
 
-- **The 335 vocab cards without definitions** — they cannot be answered; give them meanings or drop them.
+- ~~**The 335 vocab cards without definitions**~~ — the `voc-auto-*` cards: restructured (internal/legvortoj): one card per word, a reading's words glossed in the reading, shown on their own only after the text is read; the old cards fold away through `scripts/builder.sh legvortoj` (docs/BUILDER.md).
 - **The Privat and Kabe excerpts and their auto-vocab** — in copyright (above); replace with Zamenhof/Grabowski PD texts.
 - **The duplicate series `literatura` / `literaturo`** — one is enough (8 + 8 readings, overlapping).
 - **Duplicate tags** (`grava-esprimo`/`grava_esprimo`, `tago-en-la-semajno`/`tago_en_la_semajno`) — one spelling.
@@ -195,4 +195,4 @@ current branches land.
 - **The legacy `question`/`answer` keys on readings** (21 readings, mostly empty) — dead data.
 - **The Honorlisto (hall of fame)** — a rating leaderboard serves neither the course nor the path to English.
 - **Video items without exercises** (Mazi 24, Pasporto 32, music 8) — they are passive; keep them only if they get comprehension questions, and check that the YouTube embeds still play.
-- **`voc-auto-*` cards from literature excerpts in general** — even with meanings, a card per rare word of one text is noise next to the core vocabulary.
+- ~~**`voc-auto-*` cards from literature excerpts in general**~~ — done as above: no card per word per text any more.

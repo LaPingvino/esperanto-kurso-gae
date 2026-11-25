@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
@@ -73,12 +73,14 @@ func (h *ContentHandler) RandomVocab(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 	}
-	if len(items) == 0 {
-		items, _ = h.content.ListByTypeAndRatingRange(r.Context(), "vocab", rating-300, rating+300, 20)
+	read := h.readSet(r.Context(), u)
+	if len(keepStandalone(items, read)) == 0 {
+		items, _ = h.content.ListByTypeAndRatingRange(r.Context(), "vocab", rating-300, rating+300, 0)
 	}
-	if len(items) == 0 {
-		items, _ = h.content.ListByType(r.Context(), "vocab", 20)
+	if len(keepStandalone(items, read)) == 0 {
+		items, _ = h.content.ListByType(r.Context(), "vocab", 0)
 	}
+	items = keepStandalone(items, read)
 	if len(items) > 0 {
 		http.Redirect(w, r, "/ekzerco/"+items[rand.Intn(len(items))].Slug, http.StatusSeeOther)
 		return
@@ -101,64 +103,11 @@ func (h *ContentHandler) ShowVortaro(w http.ResponseWriter, r *http.Request) {
 
 	// Fetch all vocab items in one pass — used for both the tag-filter UI and
 	// the filtered result set.
-	allVocab, _ := h.content.ListByType(r.Context(), "vocab", 2000)
+	allVocab, _ := h.content.ListByType(r.Context(), "vocab", 0)
 
-	// Auto-generate vocab items when the tag is a reading slug and nothing exists yet.
-	if tag != "" {
-		var taggedVocab []*model.ContentItem
-		for _, it := range allVocab {
-			for _, t := range it.Tags {
-				if t == tag {
-					taggedVocab = append(taggedVocab, it)
-					break
-				}
-			}
-		}
-		if len(taggedVocab) == 0 && !IsBot(r) {
-			if reading, _ := h.content.GetBySlug(r.Context(), tag); reading != nil && reading.Type == "reading" {
-				text := reading.Text()
-				if text != "" {
-					existing := make(map[string]bool)
-					for _, v := range allVocab {
-						if w, ok := v.Content["word"].(string); ok {
-							existing[strings.ToLower(strings.TrimSpace(w))] = true
-						}
-					}
-					for _, word := range eo.ExtractWords(text) {
-						if existing[word] {
-							continue
-						}
-						vocSlug := "voc-auto-" + eo.WordToSlug(word)
-						if ex, _ := h.content.GetBySlug(r.Context(), vocSlug); ex != nil {
-							continue
-						}
-						iTags := append([]string{"vortaro", reading.Slug}, reading.Tags...)
-						seen := make(map[string]bool)
-						var uniqueTags []string
-						for _, t := range iTags {
-							if !seen[t] {
-								seen[t] = true
-								uniqueTags = append(uniqueTags, t)
-							}
-						}
-						voc := &model.ContentItem{
-							Slug:    vocSlug,
-							Type:    "vocab",
-							Content: map[string]interface{}{"word": word},
-							Tags:    uniqueTags,
-							Source:  reading.Source,
-							Status:  "approved",
-							Rating:  reading.Rating,
-							RD:      200,
-						}
-						_ = h.content.Create(r.Context(), voc)
-					}
-					// Refresh after generation.
-					allVocab, _ = h.content.ListByType(r.Context(), "vocab", 2000)
-				}
-			}
-		}
-	}
+	// A shared reading-word card is listed for a learner who has read its
+	// text (internal/legvortoj); nothing here makes cards any more.
+	allVocab = keepStandalone(allVocab, h.readSet(r.Context(), u))
 
 	// Build tag counts from full vocab set for the filter UI.
 	tagCounts := make(map[string]int)
@@ -266,6 +215,16 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
+	// An old per-text word card folded into the word's one card (the
+	// legvortoj cleanup): its links and stars lead there.
+	if item.Status == legvortoj.MergedStatus {
+		to := "/vortaro"
+		if into, _ := item.Content[legvortoj.MergedIntoKey].(string); into != "" {
+			to = "/ekzerco/" + into
+		}
+		http.Redirect(w, r, to, http.StatusFound)
+		return
+	}
 
 	u := UserFromContext(r.Context())
 
@@ -354,24 +313,13 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	// For reading exercises, link to vocab training using the reading's slug as tag.
-	vocabTag := ""
-	var vocabItems []*model.ContentItem
+	// A reading's words: tappable in the text, the new ones in a glossary,
+	// and a practice round of them (internal/legvortoj).
+	var glossary []*GlossWord
+	practice := 0
 	if item.Type == "reading" {
-		vocabTag = item.Slug
-		// Combine reading-specific vocab (tagged with slug) and global zagr roots.
-		specific, _ := h.content.ListByTag(r.Context(), item.Slug, 500)
-		zagr, _ := h.content.ListByTag(r.Context(), "zagr", 700)
-		seen := make(map[string]bool)
-		for _, v := range specific {
-			seen[v.Slug] = true
-			vocabItems = append(vocabItems, v)
-		}
-		for _, v := range zagr {
-			if !seen[v.Slug] {
-				vocabItems = append(vocabItems, v)
-			}
-		}
+		glossary = Glossary(item, wordIndex(r.Context(), h.content), userLang)
+		practice = len(Practice(item.Slug, glossary))
 	}
 
 	vocabModo := r.URL.Query().Get("modo")
@@ -478,31 +426,33 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	}
 
 	data := map[string]interface{}{
-		"User":             u,
-		"Item":             item,
-		"Comments":         sortedComments,
-		"CommentCount":     len(comments),
+		"User":               u,
+		"Item":               item,
+		"Comments":           sortedComments,
+		"CommentCount":       len(comments),
 		"CommentCountMyLang": commentCountMyLang,
-		"CurrentVote":      currentVote,
-		"TradukData":       tradukData,
-		"PrevInSeries":     prevInSeries,
-		"NextInSeries":     nextInSeries,
-		"VocabTag":         vocabTag,
-		"GameLesson":       h.gameLesson(r.Context(), item),
-		"VocabItems":       vocabItems,
-		"SeriesTotal":      seriesTotal,
-		"SeriesPos":        seriesPos,
-		"VocabModo":        vocabModo,
-		"IsFavorite":       isFavorite,
-		"IsFavoriteSeries": isFavoriteSeries,
-		"IsRadiko":         isRadiko,
-		"VocabKind":        vocabKind,
-		"Meaning":          meaning,
-		"ChildSeries":      uniqueChildSeries,
-		"VocabChildSeries": vocabChildSeries,
-		"ParentItem":       parentItem,
-		"SeriesItems":      seriesItems,
-		"UILang":           UILangFor(u),
+		"CurrentVote":        currentVote,
+		"TradukData":         tradukData,
+		"PrevInSeries":       prevInSeries,
+		"NextInSeries":       nextInSeries,
+		"Glossary":           glossary,
+		"NewWords":           newWords(glossary),
+		"KnownWords":         knownWords(glossary),
+		"Practice":           practice,
+		"GameLesson":         h.gameLesson(r.Context(), item),
+		"SeriesTotal":        seriesTotal,
+		"SeriesPos":          seriesPos,
+		"VocabModo":          vocabModo,
+		"IsFavorite":         isFavorite,
+		"IsFavoriteSeries":   isFavoriteSeries,
+		"IsRadiko":           isRadiko,
+		"VocabKind":          vocabKind,
+		"Meaning":            meaning,
+		"ChildSeries":        uniqueChildSeries,
+		"VocabChildSeries":   vocabChildSeries,
+		"ParentItem":         parentItem,
+		"SeriesItems":        seriesItems,
+		"UILang":             UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "ekzerco.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -523,9 +473,13 @@ func (h *ContentHandler) Browse(w http.ResponseWriter, r *http.Request) {
 
 	switch {
 	case tag != "":
-		items, err = h.content.ListByTag(r.Context(), tag, 200)
+		items, err = h.content.ListByTag(r.Context(), tag, 0)
 		if err != nil {
 			items = nil
+		}
+		items = keepStandalone(items, h.readSet(r.Context(), u))
+		if len(items) > 200 {
+			items = items[:200]
 		}
 		data := map[string]interface{}{
 			"User":   u,
@@ -539,15 +493,16 @@ func (h *ContentHandler) Browse(w http.ResponseWriter, r *http.Request) {
 		}
 		return
 	case typ != "":
-		items, err = h.content.ListByType(r.Context(), typ, 50)
+		items, err = h.content.ListByType(r.Context(), typ, 0)
 	case cefr != "":
 		minR, maxR := cefrToRatingRange(cefr)
-		items, err = h.content.ListByRatingRange(r.Context(), minR, maxR, 50)
+		items, err = h.content.ListByRatingRange(r.Context(), minR, maxR, 0)
 	default:
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 
+	items = keepStandalone(items, h.readSet(r.Context(), u))
 	if err != nil || len(items) == 0 {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
@@ -689,8 +644,8 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 		"User":          u,
 		"Exercises":     exercises,
 		"SeriesEntries": seriesEntries,
-		"Tags":        tags,
-		"UILang":      UILangFor(u),
+		"Tags":          tags,
+		"UILang":        UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "steloj.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

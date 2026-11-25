@@ -67,16 +67,42 @@ func courseDef(content map[string]interface{}, lang string) (def string, copied 
 // ReVo's translation → English, the course's or ReVo's → ReVo's Esperanto
 // definition. A course definition copied from another language (see
 // lingvoj.CopiedFrom) does not count as one in the learner's language.
+//
+// A card or a reading's word may name the sense it means (content
+// "senco", a ReVo sense marker: boa.0o.KOMUNE, the snake, not the scarf):
+// then the definition and the translations are that sense's.
 func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	word := item.Word()
 	hit := revo.Lookup(word, isRootCard(item))
 	m := Meaning{PIVURL: pivURL(word, hit)}
+	var sense *revo.Sense
 	if hit != nil {
 		m.ReVoURL, m.ReVoFound = hit.URL(), true
 		m.Via = hit.Via
 		m.EoDef, m.EoDefRevo = hit.Def, hit.Def != ""
+		if mrk, _ := item.Content["senco"].(string); mrk != "" {
+			if sense = hit.Sense(mrk); sense != nil {
+				m.ReVoURL = revo.ArticleURL(sense.Mrk)
+				if sense.Def != "" {
+					m.EoDef = sense.Def
+				}
+			}
+		}
 	} else {
 		m.ReVoURL = revo.SearchURL(word)
+	}
+	// ReVo's translation: the sense's own; for the main sense, else the
+	// word's (whose translations are the main sense's).
+	revoTr := func(l string) string {
+		if sense != nil {
+			if t := sense.Translation(l); t != "" {
+				return t
+			}
+			if hit.Senses[hit.Main()].Mrk != sense.Mrk {
+				return ""
+			}
+		}
+		return hit.Translation(l)
 	}
 	set := func(text, l, src string) Meaning {
 		m.Text, m.Lang, m.Source, m.Fallback = text, l, src, l != lang
@@ -97,14 +123,14 @@ func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	if community != "" {
 		return set(community, lang, "community")
 	}
-	if t := hit.Translation(lang); t != "" && !lingvoj.WrongScript(t, lang) {
+	if t := revoTr(lang); t != "" && !lingvoj.WrongScript(t, lang) {
 		m.Suggestions = splitSuggestions(t)
 		return set(t, lang, "revo")
 	}
 	if en, _ := courseDef(item.Content, "en"); en != "" {
 		return set(en, "en", "course")
 	}
-	if t := hit.Translation("en"); t != "" {
+	if t := revoTr("en"); t != "" {
 		return set(t, "en", "revo")
 	}
 	if src := lingvoj.CopySource(courseDefs(item.Content), lang); src != "" {

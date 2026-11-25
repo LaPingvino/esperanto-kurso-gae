@@ -1,0 +1,21 @@
+{{/* One word of a reading (handler.GlossWord), Esperanto first: the word,
+     its parts (each root linked to its card), a picture, the Esperanto
+     definition of the sense the text means (the text around it is the
+     context); the translation
+     folded away, marked with its language when it is a fallback. eo.js
+     shows the same .gl-body as the panel of a word tapped in the text.
+     Takes: map "G" the word "L" the UI language. */}}
+{{define "gl-entry"}}{{$L := .L}}{{with .G}}
+<div class="gl-entry" id="{{.ID}}">
+  <dt lang="eo"><b>{{.Lemma}}</b>{{if ne (index .Forms 0) .Lemma}} <span class="gl-form">{{index .Forms 0}}</span>{{end}}</dt>
+  <dd class="gl-body">
+    {{with .Pic}}<img class="gl-pic" src="{{.URL}}" alt="" width="56" height="56" loading="lazy" decoding="async">{{end}}
+    {{if .ShowParts}}<p class="gl-parts" lang="eo">{{range $i, $p := .Parts}}{{if $i}}<span class="gl-dot" aria-hidden="true">·</span>{{end}}{{if $p.Slug}}<a href="/ekzerco/{{$p.Slug}}" class="gl-part {{$p.Kind}}" title="{{$p.Kind}}">{{$p.Text}}</a>{{else}}<span class="gl-part {{$p.Kind}}" title="{{$p.Kind}}">{{$p.Text}}</span>{{end}}{{end}}</p>{{end}}
+    {{with .M.EoDef}}<p class="gl-def" lang="eo">{{.}}</p>{{end}}
+    <div class="gl-row">
+      {{if and .M.Text (ne .M.Lang "eo")}}<details class="gl-tr"><summary>{{t $L "words.translation"}}</summary><span lang="{{.M.Lang}}">{{.M.Text}}</span>{{if .M.Fallback}} <small class="gl-lang">({{.M.Lang}})</small>{{end}}</details>{{end}}
+      <p class="gl-links"><small>{{if .Card}}<a href="/ekzerco/{{.Card.Slug}}">{{t $L "words.card"}}</a> · {{end}}<a href="{{.M.ReVoURL}}" target="_blank" rel="noopener">Reta Vortaro</a></small></p>
+    </div>
+  </dd>
+</div>
+{{end}}{{end}}
