@@ -272,3 +272,40 @@ func TestRenderPracticeVerdict(t *testing.T) {
 		}
 	}
 }
+
+// TestRenderSourceLink: an exercise from another project (the Bona lingvo
+// series, content/builder/60-bona-lingvo.json) links back to its source on
+// its page, as a reading does.
+func TestRenderSourceLink(t *testing.T) {
+	tmpl, err := parseTemplates()
+	if err != nil {
+		t.Fatal(err)
+	}
+	raw, err := os.ReadFile("content/builder/60-bona-lingvo.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	var items []*model.ContentItem
+	if err := json.Unmarshal(raw, &items); err != nil {
+		t.Fatal(err)
+	}
+	kinds := map[string]bool{}
+	for _, it := range items {
+		if kinds[it.Type] {
+			continue
+		}
+		kinds[it.Type] = true
+		it.Status = "approved"
+		u := &model.User{ID: "test-user-6", Lang: "en", UILang: "eo", Rating: 2000, RD: 200}
+		var b bytes.Buffer
+		if err := tmpl.ExecuteTemplate(&b, "ekzerco.html", map[string]interface{}{"User": u, "Item": it, "UILang": "eo", "CommentCount": 0, "CommentCountMyLang": 0}); err != nil {
+			t.Fatalf("%s: %v", it.Slug, err)
+		}
+		if url, _ := it.Content["source_url"].(string); url == "" || !strings.Contains(b.String(), `href="`+url+`"`) || !strings.Contains(b.String(), "La Bona Lingvo") {
+			t.Errorf("%s: no link to its source %q", it.Slug, url)
+		}
+	}
+	if !kinds["multiplechoice"] || !kinds["fillin"] {
+		t.Errorf("kinds %v", kinds)
+	}
+}

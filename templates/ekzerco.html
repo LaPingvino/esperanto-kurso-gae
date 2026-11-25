@@ -275,6 +275,8 @@
     <p class="x-hint">{{t $L "stage.x_hint"}}</p>
   {{end}}
   </form>
+  {{- /* an exercise from another project (La Bona Lingvo) links back to it */}}
+  {{with index .Item.Content "source_url"}}<p class="reading-source"><small>{{t $L "exercise.source_label"}} <a href="{{.}}" rel="noopener">{{if $.Item.Source}}{{$.Item.Source}}{{else}}{{.}}{{end}}</a></small></p>{{end}}
 
   {{- /* "Mi ne scias": posts to the judgment endpoint as not known */}}
   <form id="jugo-form" hx-post="/ekzerco/{{.Item.Slug}}/jugxo" hx-target="#dock" hx-swap="innerHTML">

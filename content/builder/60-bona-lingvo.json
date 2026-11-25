@@ -1,0 +1,7362 @@
+[
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "pluralo",
+    "trajno",
+    "judaismo",
+    "medikamento"
+   ],
+   "question": "„Vagonaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=trajno"
+  },
+  "rating": 1900,
+  "series_label": "Bona lingvo",
+  "series_order": 1,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-trajno-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "plurnombro",
+    "vagonaro",
+    "judismo",
+    "kuracilo"
+   ],
+   "question": "Anstataŭ „trajno“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=trajno"
+  },
+  "rating": 1900,
+  "series_label": "Bona lingvo",
+  "series_order": 2,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-trajno-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "vagonaro",
+   "hint": "…·ar·o",
+   "question": "Trajno = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=trajno"
+  },
+  "rating": 1900,
+  "series_label": "Bona lingvo",
+  "series_order": 3,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-trajno-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "trajno",
+   "hint": "t… (6 literoj)",
+   "question": "Vagonaro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=trajno"
+  },
+  "rating": 1900,
+  "series_label": "Bona lingvo",
+  "series_order": 4,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-trajno-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "sufikso",
+    "abismo",
+    "evento",
+    "taŭro"
+   ],
+   "question": "„Okazaĵo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=evento"
+  },
+  "rating": 1902,
+  "series_label": "Bona lingvo",
+  "series_order": 5,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-evento-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "postafikso",
+    "profundego",
+    "okazaĵo",
+    "virbovo"
+   ],
+   "question": "Anstataŭ „evento“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=evento"
+  },
+  "rating": 1902,
+  "series_label": "Bona lingvo",
+  "series_order": 6,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-evento-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "okazaĵo",
+   "hint": "…·aĵ·o",
+   "question": "Evento = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=evento"
+  },
+  "rating": 1902,
+  "series_label": "Bona lingvo",
+  "series_order": 7,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-evento-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "toporo",
+    "abato",
+    "administracio",
+    "kamiono"
+   ],
+   "question": "„Ŝarĝaŭto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=kamiono"
+  },
+  "rating": 1904,
+  "series_label": "Bona lingvo",
+  "series_order": 8,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kamiono-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "hakilo",
+    "monaĥejestro",
+    "administrado",
+    "ŝarĝaŭto"
+   ],
+   "question": "Anstataŭ „kamiono“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=kamiono"
+  },
+  "rating": 1904,
+  "series_label": "Bona lingvo",
+  "series_order": 9,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kamiono-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ŝarĝaŭto",
+   "hint": "…·…·o",
+   "question": "Kamiono = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=kamiono"
+  },
+  "rating": 1904,
+  "series_label": "Bona lingvo",
+  "series_order": 10,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kamiono-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "kamiono",
+   "hint": "k… (7 literoj)",
+   "question": "Ŝarĝaŭto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=kamiono"
+  },
+  "rating": 1904,
+  "series_label": "Bona lingvo",
+  "series_order": 11,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kamiono-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "ginekologo",
+    "likvaĵo",
+    "ĝemelo",
+    "ekvinokso"
+   ],
+   "question": "„Fluidaĵo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=likvaĵo"
+  },
+  "rating": 1908,
+  "series_label": "Bona lingvo",
+  "series_order": 12,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-likvajxo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "virinkuracisto",
+    "fluidaĵo",
+    "dunaskito",
+    "tagnoktegaleco"
+   ],
+   "question": "Anstataŭ „likvaĵo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=likvaĵo"
+  },
+  "rating": 1908,
+  "series_label": "Bona lingvo",
+  "series_order": 13,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-likvajxo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "fluidaĵo",
+   "hint": "…·aĵ·o",
+   "question": "Likvaĵo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=likvaĵo"
+  },
+  "rating": 1908,
+  "series_label": "Bona lingvo",
+  "series_order": 14,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-likvajxo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "aeroplano",
+    "hipodromo",
+    "bebo",
+    "helianto"
+   ],
+   "question": "„Infaneto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=bebo"
+  },
+  "rating": 1910,
+  "series_label": "Bona lingvo",
+  "series_order": 15,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-bebo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "aviadilo",
+    "ĉevalkurejo",
+    "infaneto",
+    "sunfloro"
+   ],
+   "question": "Anstataŭ „bebo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=bebo"
+  },
+  "rating": 1910,
+  "series_label": "Bona lingvo",
+  "series_order": 16,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-bebo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "bebo",
+   "hint": "b… (4 literoj)",
+   "question": "Infaneto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=bebo"
+  },
+  "rating": 1910,
+  "series_label": "Bona lingvo",
+  "series_order": 17,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-bebo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "importi",
+    "prokrasti",
+    "centralizi",
+    "multipliki"
+   ],
+   "question": "„Obligi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=multipliki"
+  },
+  "rating": 1912,
+  "series_label": "Bona lingvo",
+  "series_order": 18,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-multipliki-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "enporti",
+    "malfruigi",
+    "centrigi",
+    "obligi"
+   ],
+   "question": "Anstataŭ „multipliki“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=multipliki"
+  },
+  "rating": 1912,
+  "series_label": "Bona lingvo",
+  "series_order": 19,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-multipliki-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "obligi",
+   "hint": "obl·ig·i",
+   "question": "Multipliki = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=multipliki"
+  },
+  "rating": 1912,
+  "series_label": "Bona lingvo",
+  "series_order": 20,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-multipliki-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "multipliki",
+   "hint": "m… (10 literoj)",
+   "question": "Obligi = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=multipliki"
+  },
+  "rating": 1912,
+  "series_label": "Bona lingvo",
+  "series_order": 21,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-multipliki-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "pluralo",
+    "judaismo",
+    "medikamento",
+    "kinejo"
+   ],
+   "question": "„Plurnombro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=pluralo"
+  },
+  "rating": 1914,
+  "series_label": "Bona lingvo",
+  "series_order": 22,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pluralo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "plurnombro",
+    "judismo",
+    "kuracilo",
+    "filmteatro"
+   ],
+   "question": "Anstataŭ „pluralo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=pluralo"
+  },
+  "rating": 1914,
+  "series_label": "Bona lingvo",
+  "series_order": 23,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pluralo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "pluralo",
+   "hint": "p… (7 literoj)",
+   "question": "Plurnombro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=pluralo"
+  },
+  "rating": 1914,
+  "series_label": "Bona lingvo",
+  "series_order": 24,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pluralo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "abismo",
+    "sufikso",
+    "taŭro",
+    "aŭtoro"
+   ],
+   "question": "„Postafikso“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=sufikso"
+  },
+  "rating": 1916,
+  "series_label": "Bona lingvo",
+  "series_order": 25,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-sufikso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "profundego",
+    "postafikso",
+    "virbovo",
+    "verkinto"
+   ],
+   "question": "Anstataŭ „sufikso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=sufikso"
+  },
+  "rating": 1916,
+  "series_label": "Bona lingvo",
+  "series_order": 26,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-sufikso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "sufikso",
+   "hint": "s… (7 literoj)",
+   "question": "Postafikso = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=sufikso"
+  },
+  "rating": 1916,
+  "series_label": "Bona lingvo",
+  "series_order": 27,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-sufikso-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "abato",
+    "administracio",
+    "toporo",
+    "femino"
+   ],
+   "question": "„Hakilo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=toporo"
+  },
+  "rating": 1918,
+  "series_label": "Bona lingvo",
+  "series_order": 28,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-toporo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "monaĥejestro",
+    "administrado",
+    "hakilo",
+    "virino"
+   ],
+   "question": "Anstataŭ „toporo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=toporo"
+  },
+  "rating": 1918,
+  "series_label": "Bona lingvo",
+  "series_order": 29,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-toporo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "hakilo",
+   "hint": "…·il·o",
+   "question": "Toporo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=toporo"
+  },
+  "rating": 1918,
+  "series_label": "Bona lingvo",
+  "series_order": 30,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-toporo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "toporo",
+   "hint": "t… (6 literoj)",
+   "question": "Hakilo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=toporo"
+  },
+  "rating": 1918,
+  "series_label": "Bona lingvo",
+  "series_order": 31,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-toporo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "hospitalo",
+    "barbiro",
+    "fotelo",
+    "cerumeno"
+   ],
+   "question": "„Orelvakso“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=cerumeno"
+  },
+  "rating": 1920,
+  "series_label": "Bona lingvo",
+  "series_order": 32,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cerumeno-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "malsanulejo",
+    "barbisto",
+    "brakseĝo",
+    "orelvakso"
+   ],
+   "question": "Anstataŭ „cerumeno“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=cerumeno"
+  },
+  "rating": 1920,
+  "series_label": "Bona lingvo",
+  "series_order": 33,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cerumeno-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "orelvakso",
+   "hint": "…·…·o",
+   "question": "Cerumeno = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=cerumeno"
+  },
+  "rating": 1920,
+  "series_label": "Bona lingvo",
+  "series_order": 34,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cerumeno-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "cerumeno",
+   "hint": "c… (8 literoj)",
+   "question": "Orelvakso = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=cerumeno"
+  },
+  "rating": 1920,
+  "series_label": "Bona lingvo",
+  "series_order": 35,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cerumeno-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "ginekologo",
+    "ĝemelo",
+    "ekvinokso",
+    "gazono"
+   ],
+   "question": "„Virinkuracisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ginekologo"
+  },
+  "rating": 1922,
+  "series_label": "Bona lingvo",
+  "series_order": 36,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ginekologo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "virinkuracisto",
+    "dunaskito",
+    "tagnoktegaleco",
+    "herbotapiŝo"
+   ],
+   "question": "Anstataŭ „ginekologo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ginekologo"
+  },
+  "rating": 1922,
+  "series_label": "Bona lingvo",
+  "series_order": 37,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ginekologo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ginekologo",
+   "hint": "g… (10 literoj)",
+   "question": "Virinkuracisto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ginekologo"
+  },
+  "rating": 1922,
+  "series_label": "Bona lingvo",
+  "series_order": 38,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ginekologo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "stulta",
+    "amara",
+    "mava",
+    "humida"
+   ],
+   "question": "„Maldolĉa“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=amara"
+  },
+  "rating": 1924,
+  "series_label": "Bona lingvo",
+  "series_order": 39,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-amara-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "malsaĝa",
+    "maldolĉa",
+    "malbona",
+    "malseketa"
+   ],
+   "question": "Anstataŭ „amara“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=amara"
+  },
+  "rating": 1924,
+  "series_label": "Bona lingvo",
+  "series_order": 40,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-amara-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "amara",
+   "hint": "a… (5 literoj)",
+   "question": "Maldolĉa = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=amara"
+  },
+  "rating": 1924,
+  "series_label": "Bona lingvo",
+  "series_order": 41,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-amara-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "arakido",
+    "inkubo",
+    "cico",
+    "basketbalo"
+   ],
+   "question": "„Mampinto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=cico"
+  },
+  "rating": 1926,
+  "series_label": "Bona lingvo",
+  "series_order": 42,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cico-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "ternukso",
+    "premsonĝo",
+    "mampinto",
+    "korbopilkado"
+   ],
+   "question": "Anstataŭ „cico“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=cico"
+  },
+  "rating": 1926,
+  "series_label": "Bona lingvo",
+  "series_order": 43,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cico-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "mampinto",
+   "hint": "…·…·o",
+   "question": "Cico = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=cico"
+  },
+  "rating": 1926,
+  "series_label": "Bona lingvo",
+  "series_order": 44,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cico-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "cico",
+   "hint": "c… (4 literoj)",
+   "question": "Mampinto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=cico"
+  },
+  "rating": 1926,
+  "series_label": "Bona lingvo",
+  "series_order": 45,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-cico-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "adicii",
+    "prononci",
+    "rezisti",
+    "abdiki"
+   ],
+   "question": "„Eksiĝi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=abdiki"
+  },
+  "rating": 1928,
+  "series_label": "Bona lingvo",
+  "series_order": 46,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abdiki-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "sumigi",
+    "elparoli",
+    "kontraŭstari",
+    "eksiĝi"
+   ],
+   "question": "Anstataŭ „abdiki“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=abdiki"
+  },
+  "rating": 1928,
+  "series_label": "Bona lingvo",
+  "series_order": 47,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abdiki-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "abismo",
+    "taŭro",
+    "aŭtoro",
+    "orkestro"
+   ],
+   "question": "„Profundego“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=abismo"
+  },
+  "rating": 1930,
+  "series_label": "Bona lingvo",
+  "series_order": 48,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abismo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "profundego",
+    "virbovo",
+    "verkinto",
+    "muzikistaro"
+   ],
+   "question": "Anstataŭ „abismo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=abismo"
+  },
+  "rating": 1930,
+  "series_label": "Bona lingvo",
+  "series_order": 49,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abismo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "abismo",
+   "hint": "a… (6 literoj)",
+   "question": "Profundego = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=abismo"
+  },
+  "rating": 1930,
+  "series_label": "Bona lingvo",
+  "series_order": 50,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abismo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "administracio",
+    "abato",
+    "femino",
+    "pado"
+   ],
+   "question": "„Monaĥejestro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=abato"
+  },
+  "rating": 1932,
+  "series_label": "Bona lingvo",
+  "series_order": 51,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abato-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "administrado",
+    "monaĥejestro",
+    "virino",
+    "vojeto"
+   ],
+   "question": "Anstataŭ „abato“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=abato"
+  },
+  "rating": 1932,
+  "series_label": "Bona lingvo",
+  "series_order": 52,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abato-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "abato",
+   "hint": "a… (5 literoj)",
+   "question": "Monaĥejestro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=abato"
+  },
+  "rating": 1932,
+  "series_label": "Bona lingvo",
+  "series_order": 53,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-abato-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "barbiro",
+    "fotelo",
+    "hospitalo",
+    "ĵurnalo"
+   ],
+   "question": "„Malsanulejo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=hospitalo"
+  },
+  "rating": 1934,
+  "series_label": "Bona lingvo",
+  "series_order": 54,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hospitalo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "barbisto",
+    "brakseĝo",
+    "malsanulejo",
+    "taggazeto"
+   ],
+   "question": "Anstataŭ „hospitalo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=hospitalo"
+  },
+  "rating": 1934,
+  "series_label": "Bona lingvo",
+  "series_order": 55,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hospitalo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "malsanulejo",
+   "hint": "mal·…·ul·ej·o",
+   "question": "Hospitalo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=hospitalo"
+  },
+  "rating": 1934,
+  "series_label": "Bona lingvo",
+  "series_order": 56,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hospitalo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "hospitalo",
+   "hint": "h… (9 literoj)",
+   "question": "Malsanulejo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=hospitalo"
+  },
+  "rating": 1934,
+  "series_label": "Bona lingvo",
+  "series_order": 57,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hospitalo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "ekvinokso",
+    "gazono",
+    "erco",
+    "ĝemelo"
+   ],
+   "question": "„Dunaskito“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ĝemelo"
+  },
+  "rating": 1936,
+  "series_label": "Bona lingvo",
+  "series_order": 58,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gxemelo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "tagnoktegaleco",
+    "herbotapiŝo",
+    "minaĵo",
+    "dunaskito"
+   ],
+   "question": "Anstataŭ „ĝemelo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ĝemelo"
+  },
+  "rating": 1936,
+  "series_label": "Bona lingvo",
+  "series_order": 59,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gxemelo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "dunaskito",
+   "hint": "…·…·it·o",
+   "question": "Ĝemelo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=ĝemelo"
+  },
+  "rating": 1936,
+  "series_label": "Bona lingvo",
+  "series_order": 60,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gxemelo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "ĝemelo",
+   "hint": "ĝ… (6 literoj)",
+   "question": "Dunaskito = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ĝemelo"
+  },
+  "rating": 1936,
+  "series_label": "Bona lingvo",
+  "series_order": 61,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gxemelo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "aeroplano",
+    "hipodromo",
+    "helianto",
+    "analogio"
+   ],
+   "question": "„Aviadilo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=aeroplano"
+  },
+  "rating": 1938,
+  "series_label": "Bona lingvo",
+  "series_order": 62,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-aeroplano-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "aviadilo",
+    "ĉevalkurejo",
+    "sunfloro",
+    "analogeco"
+   ],
+   "question": "Anstataŭ „aeroplano“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=aeroplano"
+  },
+  "rating": 1938,
+  "series_label": "Bona lingvo",
+  "series_order": 63,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-aeroplano-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "aviadilo",
+   "hint": "…·il·o",
+   "question": "Aeroplano = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=aeroplano"
+  },
+  "rating": 1938,
+  "series_label": "Bona lingvo",
+  "series_order": 64,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-aeroplano-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "inkubo",
+    "arakido",
+    "basketbalo",
+    "gingivo"
+   ],
+   "question": "„Ternukso“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=arakido"
+  },
+  "rating": 1940,
+  "series_label": "Bona lingvo",
+  "series_order": 65,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arakido-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "premsonĝo",
+    "ternukso",
+    "korbopilkado",
+    "dentokarno"
+   ],
+   "question": "Anstataŭ „arakido“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=arakido"
+  },
+  "rating": 1940,
+  "series_label": "Bona lingvo",
+  "series_order": 66,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arakido-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ternukso",
+   "hint": "…·…·o",
+   "question": "Arakido = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=arakido"
+  },
+  "rating": 1940,
+  "series_label": "Bona lingvo",
+  "series_order": 67,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arakido-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "arakido",
+   "hint": "a… (7 literoj)",
+   "question": "Ternukso = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=arakido"
+  },
+  "rating": 1940,
+  "series_label": "Bona lingvo",
+  "series_order": 68,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arakido-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "medikamento",
+    "kinejo",
+    "judaismo",
+    "biblioteko"
+   ],
+   "question": "„Judismo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=judaismo"
+  },
+  "rating": 1942,
+  "series_label": "Bona lingvo",
+  "series_order": 69,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-judaismo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "kuracilo",
+    "filmteatro",
+    "judismo",
+    "librotenejo"
+   ],
+   "question": "Anstataŭ „judaismo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=judaismo"
+  },
+  "rating": 1942,
+  "series_label": "Bona lingvo",
+  "series_order": 70,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-judaismo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "judismo",
+   "hint": "…·ism·o",
+   "question": "Judaismo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=judaismo"
+  },
+  "rating": 1942,
+  "series_label": "Bona lingvo",
+  "series_order": 71,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-judaismo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "judaismo",
+   "hint": "j… (8 literoj)",
+   "question": "Judismo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=judaismo"
+  },
+  "rating": 1942,
+  "series_label": "Bona lingvo",
+  "series_order": 72,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-judaismo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "aŭtoro",
+    "orkestro",
+    "biografio",
+    "taŭro"
+   ],
+   "question": "„Virbovo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=taŭro"
+  },
+  "rating": 1944,
+  "series_label": "Bona lingvo",
+  "series_order": 73,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-tauxro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "verkinto",
+    "muzikistaro",
+    "vivhistorio",
+    "virbovo"
+   ],
+   "question": "Anstataŭ „taŭro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=taŭro"
+  },
+  "rating": 1944,
+  "series_label": "Bona lingvo",
+  "series_order": 74,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-tauxro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "virbovo",
+   "hint": "…·…·o",
+   "question": "Taŭro = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=taŭro"
+  },
+  "rating": 1944,
+  "series_label": "Bona lingvo",
+  "series_order": 75,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-tauxro-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "administracio",
+    "femino",
+    "pado",
+    "braceleto"
+   ],
+   "question": "„Administrado“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=administracio"
+  },
+  "rating": 1946,
+  "series_label": "Bona lingvo",
+  "series_order": 76,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-administracio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "administrado",
+    "virino",
+    "vojeto",
+    "ĉirkaŭmano"
+   ],
+   "question": "Anstataŭ „administracio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=administracio"
+  },
+  "rating": 1946,
+  "series_label": "Bona lingvo",
+  "series_order": 77,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-administracio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "fotelo",
+    "barbiro",
+    "ĵurnalo",
+    "nomenklaturo"
+   ],
+   "question": "„Barbisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=barbiro"
+  },
+  "rating": 1948,
+  "series_label": "Bona lingvo",
+  "series_order": 78,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-barbiro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "brakseĝo",
+    "barbisto",
+    "taggazeto",
+    "nomaro"
+   ],
+   "question": "Anstataŭ „barbiro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=barbiro"
+  },
+  "rating": 1948,
+  "series_label": "Bona lingvo",
+  "series_order": 79,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-barbiro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "barbiro",
+   "hint": "b… (7 literoj)",
+   "question": "Barbisto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=barbiro"
+  },
+  "rating": 1948,
+  "series_label": "Bona lingvo",
+  "series_order": 80,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-barbiro-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "gazono",
+    "erco",
+    "ekvinokso",
+    "oftalmologio"
+   ],
+   "question": "„Tagnoktegaleco“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ekvinokso"
+  },
+  "rating": 1950,
+  "series_label": "Bona lingvo",
+  "series_order": 81,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ekvinokso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "herbotapiŝo",
+    "minaĵo",
+    "tagnoktegaleco",
+    "okulkuracado"
+   ],
+   "question": "Anstataŭ „ekvinokso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ekvinokso"
+  },
+  "rating": 1950,
+  "series_label": "Bona lingvo",
+  "series_order": 82,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ekvinokso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ekvinokso",
+   "hint": "e… (9 literoj)",
+   "question": "Tagnoktegaleco = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ekvinokso"
+  },
+  "rating": 1950,
+  "series_label": "Bona lingvo",
+  "series_order": 83,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ekvinokso-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "helianto",
+    "analogio",
+    "futbalo",
+    "hipodromo"
+   ],
+   "question": "„Ĉevalkurejo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=hipodromo"
+  },
+  "rating": 1952,
+  "series_label": "Bona lingvo",
+  "series_order": 84,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hipodromo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "sunfloro",
+    "analogeco",
+    "piedpilkado",
+    "ĉevalkurejo"
+   ],
+   "question": "Anstataŭ „hipodromo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=hipodromo"
+  },
+  "rating": 1952,
+  "series_label": "Bona lingvo",
+  "series_order": 85,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hipodromo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ĉevalkurejo",
+   "hint": "…·…·ej·o",
+   "question": "Hipodromo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=hipodromo"
+  },
+  "rating": 1952,
+  "series_label": "Bona lingvo",
+  "series_order": 86,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hipodromo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "hipodromo",
+   "hint": "h… (9 literoj)",
+   "question": "Ĉevalkurejo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=hipodromo"
+  },
+  "rating": 1952,
+  "series_label": "Bona lingvo",
+  "series_order": 87,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hipodromo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "inkubo",
+    "basketbalo",
+    "gingivo",
+    "prefikso"
+   ],
+   "question": "„Premsonĝo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=inkubo"
+  },
+  "rating": 1954,
+  "series_label": "Bona lingvo",
+  "series_order": 88,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-inkubo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "premsonĝo",
+    "korbopilkado",
+    "dentokarno",
+    "antaŭafikso"
+   ],
+   "question": "Anstataŭ „inkubo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=inkubo"
+  },
+  "rating": 1954,
+  "series_label": "Bona lingvo",
+  "series_order": 89,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-inkubo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "kinejo",
+    "medikamento",
+    "biblioteko",
+    "humoro"
+   ],
+   "question": "„Kuracilo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=medikamento"
+  },
+  "rating": 1956,
+  "series_label": "Bona lingvo",
+  "series_order": 90,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-medikamento-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "filmteatro",
+    "kuracilo",
+    "librotenejo",
+    "animstato"
+   ],
+   "question": "Anstataŭ „medikamento“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=medikamento"
+  },
+  "rating": 1956,
+  "series_label": "Bona lingvo",
+  "series_order": 91,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-medikamento-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "orkestro",
+    "biografio",
+    "aŭtoro",
+    "incizivo"
+   ],
+   "question": "„Verkinto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=aŭtoro"
+  },
+  "rating": 1958,
+  "series_label": "Bona lingvo",
+  "series_order": 92,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-auxtoro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "muzikistaro",
+    "vivhistorio",
+    "verkinto",
+    "tranĉodento"
+   ],
+   "question": "Anstataŭ „aŭtoro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=aŭtoro"
+  },
+  "rating": 1958,
+  "series_label": "Bona lingvo",
+  "series_order": 93,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-auxtoro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "aŭtoro",
+   "hint": "a… (6 literoj)",
+   "question": "Verkinto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=aŭtoro"
+  },
+  "rating": 1958,
+  "series_label": "Bona lingvo",
+  "series_order": 94,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-auxtoro-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "pado",
+    "braceleto",
+    "lesbo",
+    "femino"
+   ],
+   "question": "„Virino“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=femino"
+  },
+  "rating": 1960,
+  "series_label": "Bona lingvo",
+  "series_order": 95,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-femino-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "vojeto",
+    "ĉirkaŭmano",
+    "samseksemulino",
+    "virino"
+   ],
+   "question": "Anstataŭ „femino“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=femino"
+  },
+  "rating": 1960,
+  "series_label": "Bona lingvo",
+  "series_order": 96,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-femino-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "virino",
+   "hint": "…·in·o",
+   "question": "Femino = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=femino"
+  },
+  "rating": 1960,
+  "series_label": "Bona lingvo",
+  "series_order": 97,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-femino-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "fotelo",
+    "ĵurnalo",
+    "nomenklaturo",
+    "veterinaro"
+   ],
+   "question": "„Brakseĝo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=fotelo"
+  },
+  "rating": 1962,
+  "series_label": "Bona lingvo",
+  "series_order": 98,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fotelo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "brakseĝo",
+    "taggazeto",
+    "nomaro",
+    "bestkuracisto"
+   ],
+   "question": "Anstataŭ „fotelo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=fotelo"
+  },
+  "rating": 1962,
+  "series_label": "Bona lingvo",
+  "series_order": 99,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fotelo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "brakseĝo",
+   "hint": "…·…·o",
+   "question": "Fotelo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=fotelo"
+  },
+  "rating": 1962,
+  "series_label": "Bona lingvo",
+  "series_order": 100,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fotelo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "fotelo",
+   "hint": "f… (6 literoj)",
+   "question": "Brakseĝo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=fotelo"
+  },
+  "rating": 1962,
+  "series_label": "Bona lingvo",
+  "series_order": 101,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fotelo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "erco",
+    "gazono",
+    "oftalmologio",
+    "arkipelago"
+   ],
+   "question": "„Herbotapiŝo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=gazono"
+  },
+  "rating": 1964,
+  "series_label": "Bona lingvo",
+  "series_order": 102,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gazono-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "minaĵo",
+    "herbotapiŝo",
+    "okulkuracado",
+    "insularo"
+   ],
+   "question": "Anstataŭ „gazono“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=gazono"
+  },
+  "rating": 1964,
+  "series_label": "Bona lingvo",
+  "series_order": 103,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gazono-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "analogio",
+    "futbalo",
+    "helianto",
+    "patrio"
+   ],
+   "question": "„Sunfloro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=helianto"
+  },
+  "rating": 1966,
+  "series_label": "Bona lingvo",
+  "series_order": 104,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-helianto-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "analogeco",
+    "piedpilkado",
+    "sunfloro",
+    "patrujo"
+   ],
+   "question": "Anstataŭ „helianto“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=helianto"
+  },
+  "rating": 1966,
+  "series_label": "Bona lingvo",
+  "series_order": 105,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-helianto-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "sunfloro",
+   "hint": "…·…·o",
+   "question": "Helianto = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=helianto"
+  },
+  "rating": 1966,
+  "series_label": "Bona lingvo",
+  "series_order": 106,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-helianto-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "helianto",
+   "hint": "h… (8 literoj)",
+   "question": "Sunfloro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=helianto"
+  },
+  "rating": 1966,
+  "series_label": "Bona lingvo",
+  "series_order": 107,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-helianto-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "obtuza",
+    "amara",
+    "stulta",
+    "humida"
+   ],
+   "question": "„Malseketa“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=humida"
+  },
+  "rating": 1968,
+  "series_label": "Bona lingvo",
+  "series_order": 108,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humida-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "malakra",
+    "maldolĉa",
+    "malsaĝa",
+    "malseketa"
+   ],
+   "question": "Anstataŭ „humida“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=humida"
+  },
+  "rating": 1968,
+  "series_label": "Bona lingvo",
+  "series_order": 109,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humida-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "humida",
+   "hint": "h… (6 literoj)",
+   "question": "Malseketa = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=humida"
+  },
+  "rating": 1968,
+  "series_label": "Bona lingvo",
+  "series_order": 110,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humida-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "kinejo",
+    "biblioteko",
+    "humoro",
+    "prezenco"
+   ],
+   "question": "„Filmteatro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=kinejo"
+  },
+  "rating": 1970,
+  "series_label": "Bona lingvo",
+  "series_order": 111,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kinejo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "filmteatro",
+    "librotenejo",
+    "animstato",
+    "nuntempo"
+   ],
+   "question": "Anstataŭ „kinejo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=kinejo"
+  },
+  "rating": 1970,
+  "series_label": "Bona lingvo",
+  "series_order": 112,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kinejo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "filmteatro",
+   "hint": "…·…·o",
+   "question": "Kinejo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=kinejo"
+  },
+  "rating": 1970,
+  "series_label": "Bona lingvo",
+  "series_order": 113,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kinejo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "kinejo",
+   "hint": "k… (6 literoj)",
+   "question": "Filmteatro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=kinejo"
+  },
+  "rating": 1970,
+  "series_label": "Bona lingvo",
+  "series_order": 114,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-kinejo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "biografio",
+    "orkestro",
+    "incizivo",
+    "biologo"
+   ],
+   "question": "„Muzikistaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=orkestro"
+  },
+  "rating": 1972,
+  "series_label": "Bona lingvo",
+  "series_order": 115,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-orkestro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "vivhistorio",
+    "muzikistaro",
+    "tranĉodento",
+    "biologiisto"
+   ],
+   "question": "Anstataŭ „orkestro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=orkestro"
+  },
+  "rating": 1972,
+  "series_label": "Bona lingvo",
+  "series_order": 116,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-orkestro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "muzikistaro",
+   "hint": "…·ist·ar·o",
+   "question": "Orkestro = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=orkestro"
+  },
+  "rating": 1972,
+  "series_label": "Bona lingvo",
+  "series_order": 117,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-orkestro-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "braceleto",
+    "lesbo",
+    "pado",
+    "eskalo"
+   ],
+   "question": "„Vojeto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=pado"
+  },
+  "rating": 1974,
+  "series_label": "Bona lingvo",
+  "series_order": 118,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pado-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "ĉirkaŭmano",
+    "samseksemulino",
+    "vojeto",
+    "ŝtupetaro"
+   ],
+   "question": "Anstataŭ „pado“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=pado"
+  },
+  "rating": 1974,
+  "series_label": "Bona lingvo",
+  "series_order": 119,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pado-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "pado",
+   "hint": "p… (4 literoj)",
+   "question": "Vojeto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=pado"
+  },
+  "rating": 1974,
+  "series_label": "Bona lingvo",
+  "series_order": 120,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pado-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "nomenklaturo",
+    "veterinaro",
+    "delegacio",
+    "ĵurnalo"
+   ],
+   "question": "„Taggazeto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ĵurnalo"
+  },
+  "rating": 1976,
+  "series_label": "Bona lingvo",
+  "series_order": 121,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-jxurnalo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "nomaro",
+    "bestkuracisto",
+    "delegitaro",
+    "taggazeto"
+   ],
+   "question": "Anstataŭ „ĵurnalo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ĵurnalo"
+  },
+  "rating": 1976,
+  "series_label": "Bona lingvo",
+  "series_order": 122,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-jxurnalo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ĵurnalo",
+   "hint": "ĵ… (7 literoj)",
+   "question": "Taggazeto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ĵurnalo"
+  },
+  "rating": 1976,
+  "series_label": "Bona lingvo",
+  "series_order": 123,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-jxurnalo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "adicii",
+    "prononci",
+    "rezisti",
+    "damni"
+   ],
+   "question": "„Sumigi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=adicii"
+  },
+  "rating": 1978,
+  "series_label": "Bona lingvo",
+  "series_order": 124,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-adicii-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "sumigi",
+    "elparoli",
+    "kontraŭstari",
+    "malbeni"
+   ],
+   "question": "Anstataŭ „adicii“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=adicii"
+  },
+  "rating": 1978,
+  "series_label": "Bona lingvo",
+  "series_order": 125,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-adicii-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "adicii",
+   "hint": "a… (6 literoj)",
+   "question": "Sumigi = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=adicii"
+  },
+  "rating": 1978,
+  "series_label": "Bona lingvo",
+  "series_order": 126,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-adicii-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "futbalo",
+    "analogio",
+    "patrio",
+    "asistanto"
+   ],
+   "question": "„Analogeco“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=analogio"
+  },
+  "rating": 1980,
+  "series_label": "Bona lingvo",
+  "series_order": 127,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-analogio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "piedpilkado",
+    "analogeco",
+    "patrujo",
+    "helpanto"
+   ],
+   "question": "Anstataŭ „analogio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=analogio"
+  },
+  "rating": 1980,
+  "series_label": "Bona lingvo",
+  "series_order": 128,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-analogio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "analogio",
+   "hint": "a… (8 literoj)",
+   "question": "Analogeco = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=analogio"
+  },
+  "rating": 1980,
+  "series_label": "Bona lingvo",
+  "series_order": 129,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-analogio-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "gingivo",
+    "prefikso",
+    "basketbalo",
+    "ateismo"
+   ],
+   "question": "„Korbopilkado“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=basketbalo"
+  },
+  "rating": 1982,
+  "series_label": "Bona lingvo",
+  "series_order": 130,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-basketbalo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "dentokarno",
+    "antaŭafikso",
+    "korbopilkado",
+    "sendiismo"
+   ],
+   "question": "Anstataŭ „basketbalo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=basketbalo"
+  },
+  "rating": 1982,
+  "series_label": "Bona lingvo",
+  "series_order": 131,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-basketbalo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "korbopilkado",
+   "hint": "…·o·…·ad·o",
+   "question": "Basketbalo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=basketbalo"
+  },
+  "rating": 1982,
+  "series_label": "Bona lingvo",
+  "series_order": 132,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-basketbalo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "basketbalo",
+   "hint": "b… (10 literoj)",
+   "question": "Korbopilkado = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=basketbalo"
+  },
+  "rating": 1982,
+  "series_label": "Bona lingvo",
+  "series_order": 133,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-basketbalo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "humoro",
+    "prezenco",
+    "ateisto",
+    "biblioteko"
+   ],
+   "question": "„Librotenejo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=biblioteko"
+  },
+  "rating": 1984,
+  "series_label": "Bona lingvo",
+  "series_order": 134,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biblioteko-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "animstato",
+    "nuntempo",
+    "sendiulo",
+    "librotenejo"
+   ],
+   "question": "Anstataŭ „biblioteko“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=biblioteko"
+  },
+  "rating": 1984,
+  "series_label": "Bona lingvo",
+  "series_order": 135,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biblioteko-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "biografio",
+    "incizivo",
+    "biologo",
+    "diskurso"
+   ],
+   "question": "„Vivhistorio“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=biografio"
+  },
+  "rating": 1986,
+  "series_label": "Bona lingvo",
+  "series_order": 136,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biografio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "vivhistorio",
+    "tranĉodento",
+    "biologiisto",
+    "parolado"
+   ],
+   "question": "Anstataŭ „biografio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=biografio"
+  },
+  "rating": 1986,
+  "series_label": "Bona lingvo",
+  "series_order": 137,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biografio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "lesbo",
+    "braceleto",
+    "eskalo",
+    "komisiono"
+   ],
+   "question": "„Ĉirkaŭmano“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=braceleto"
+  },
+  "rating": 1988,
+  "series_label": "Bona lingvo",
+  "series_order": 138,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-braceleto-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "samseksemulino",
+    "ĉirkaŭmano",
+    "ŝtupetaro",
+    "komisiitaro"
+   ],
+   "question": "Anstataŭ „braceleto“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=braceleto"
+  },
+  "rating": 1988,
+  "series_label": "Bona lingvo",
+  "series_order": 139,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-braceleto-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "braceleto",
+   "hint": "b… (9 literoj)",
+   "question": "Ĉirkaŭmano = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=braceleto"
+  },
+  "rating": 1988,
+  "series_label": "Bona lingvo",
+  "series_order": 140,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-braceleto-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "neglekti",
+    "abdiki",
+    "centralizi",
+    "adicii"
+   ],
+   "question": "„Centrigi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=centralizi"
+  },
+  "rating": 1990,
+  "series_label": "Bona lingvo",
+  "series_order": 141,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-centralizi-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "malzorgi",
+    "eksiĝi",
+    "centrigi",
+    "sumigi"
+   ],
+   "question": "Anstataŭ „centralizi“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=centralizi"
+  },
+  "rating": 1990,
+  "series_label": "Bona lingvo",
+  "series_order": 142,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-centralizi-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "centrigi",
+   "hint": "…·ig·i",
+   "question": "Centralizi = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=centralizi"
+  },
+  "rating": 1990,
+  "series_label": "Bona lingvo",
+  "series_order": 143,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-centralizi-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "centralizi",
+   "hint": "c… (10 literoj)",
+   "question": "Centrigi = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=centralizi"
+  },
+  "rating": 1990,
+  "series_label": "Bona lingvo",
+  "series_order": 144,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-centralizi-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "oftalmologio",
+    "arkipelago",
+    "dermatologo",
+    "erco"
+   ],
+   "question": "„Minaĵo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=erco"
+  },
+  "rating": 1992,
+  "series_label": "Bona lingvo",
+  "series_order": 145,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-erco-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "okulkuracado",
+    "insularo",
+    "haŭtkuracisto",
+    "minaĵo"
+   ],
+   "question": "Anstataŭ „erco“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=erco"
+  },
+  "rating": 1992,
+  "series_label": "Bona lingvo",
+  "series_order": 146,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-erco-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "erco",
+   "hint": "e… (4 literoj)",
+   "question": "Minaĵo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=erco"
+  },
+  "rating": 1992,
+  "series_label": "Bona lingvo",
+  "series_order": 147,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-erco-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "futbalo",
+    "patrio",
+    "asistanto",
+    "diapozitivo"
+   ],
+   "question": "„Piedpilkado“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=futbalo"
+  },
+  "rating": 1994,
+  "series_label": "Bona lingvo",
+  "series_order": 148,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-futbalo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "piedpilkado",
+    "patrujo",
+    "helpanto",
+    "lumbildo"
+   ],
+   "question": "Anstataŭ „futbalo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=futbalo"
+  },
+  "rating": 1994,
+  "series_label": "Bona lingvo",
+  "series_order": 149,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-futbalo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "futbalo",
+   "hint": "f… (7 literoj)",
+   "question": "Piedpilkado = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=futbalo"
+  },
+  "rating": 1994,
+  "series_label": "Bona lingvo",
+  "series_order": 150,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-futbalo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "prefikso",
+    "gingivo",
+    "ateismo",
+    "direktoro"
+   ],
+   "question": "„Dentokarno“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=gingivo"
+  },
+  "rating": 1996,
+  "series_label": "Bona lingvo",
+  "series_order": 151,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gingivo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "antaŭafikso",
+    "dentokarno",
+    "sendiismo",
+    "direktisto"
+   ],
+   "question": "Anstataŭ „gingivo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=gingivo"
+  },
+  "rating": 1996,
+  "series_label": "Bona lingvo",
+  "series_order": 152,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gingivo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "dentokarno",
+   "hint": "…·o·…·o",
+   "question": "Gingivo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=gingivo"
+  },
+  "rating": 1996,
+  "series_label": "Bona lingvo",
+  "series_order": 153,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gingivo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "gingivo",
+   "hint": "g… (7 literoj)",
+   "question": "Dentokarno = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=gingivo"
+  },
+  "rating": 1996,
+  "series_label": "Bona lingvo",
+  "series_order": 154,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-gingivo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "prezenco",
+    "ateisto",
+    "humoro",
+    "diskoteko"
+   ],
+   "question": "„Animstato“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=humoro"
+  },
+  "rating": 1998,
+  "series_label": "Bona lingvo",
+  "series_order": 155,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humoro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "nuntempo",
+    "sendiulo",
+    "animstato",
+    "dancejo"
+   ],
+   "question": "Anstataŭ „humoro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=humoro"
+  },
+  "rating": 1998,
+  "series_label": "Bona lingvo",
+  "series_order": 156,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humoro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "animstato",
+   "hint": "…·…·o",
+   "question": "Humoro = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=humoro"
+  },
+  "rating": 1998,
+  "series_label": "Bona lingvo",
+  "series_order": 157,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humoro-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "humoro",
+   "hint": "h… (6 literoj)",
+   "question": "Animstato = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=humoro"
+  },
+  "rating": 1998,
+  "series_label": "Bona lingvo",
+  "series_order": 158,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-humoro-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "biologo",
+    "diskurso",
+    "komikso",
+    "incizivo"
+   ],
+   "question": "„Tranĉodento“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=incizivo"
+  },
+  "rating": 2100,
+  "series_label": "Bona lingvo",
+  "series_order": 159,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-incizivo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "biologiisto",
+    "parolado",
+    "bildrakonto",
+    "tranĉodento"
+   ],
+   "question": "Anstataŭ „incizivo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=incizivo"
+  },
+  "rating": 2100,
+  "series_label": "Bona lingvo",
+  "series_order": 160,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-incizivo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "tranĉodento",
+   "hint": "…·o·…·o",
+   "question": "Incizivo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=incizivo"
+  },
+  "rating": 2100,
+  "series_label": "Bona lingvo",
+  "series_order": 161,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-incizivo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "incizivo",
+   "hint": "i… (8 literoj)",
+   "question": "Tranĉodento = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=incizivo"
+  },
+  "rating": 2100,
+  "series_label": "Bona lingvo",
+  "series_order": 162,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-incizivo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "lesbo",
+    "eskalo",
+    "komisiono",
+    "mukozo"
+   ],
+   "question": "„Samseksemulino“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=lesbo"
+  },
+  "rating": 2102,
+  "series_label": "Bona lingvo",
+  "series_order": 163,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lesbo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "samseksemulino",
+    "ŝtupetaro",
+    "komisiitaro",
+    "mukmembrano"
+   ],
+   "question": "Anstataŭ „lesbo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=lesbo"
+  },
+  "rating": 2102,
+  "series_label": "Bona lingvo",
+  "series_order": 164,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lesbo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "veterinaro",
+    "nomenklaturo",
+    "delegacio",
+    "fetoro"
+   ],
+   "question": "„Nomaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=nomenklaturo"
+  },
+  "rating": 2104,
+  "series_label": "Bona lingvo",
+  "series_order": 165,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nomenklaturo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "bestkuracisto",
+    "nomaro",
+    "delegitaro",
+    "odoraĉo"
+   ],
+   "question": "Anstataŭ „nomenklaturo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=nomenklaturo"
+  },
+  "rating": 2104,
+  "series_label": "Bona lingvo",
+  "series_order": 166,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nomenklaturo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "nomaro",
+   "hint": "…·ar·o",
+   "question": "Nomenklaturo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=nomenklaturo"
+  },
+  "rating": 2104,
+  "series_label": "Bona lingvo",
+  "series_order": 167,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nomenklaturo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "nomenklaturo",
+   "hint": "n… (12 literoj)",
+   "question": "Nomaro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=nomenklaturo"
+  },
+  "rating": 2104,
+  "series_label": "Bona lingvo",
+  "series_order": 168,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nomenklaturo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "arkipelago",
+    "dermatologo",
+    "oftalmologio",
+    "filantropio"
+   ],
+   "question": "„Okulkuracado“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=oftalmologio"
+  },
+  "rating": 2106,
+  "series_label": "Bona lingvo",
+  "series_order": 169,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-oftalmologio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "insularo",
+    "haŭtkuracisto",
+    "okulkuracado",
+    "homamo"
+   ],
+   "question": "Anstataŭ „oftalmologio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=oftalmologio"
+  },
+  "rating": 2106,
+  "series_label": "Bona lingvo",
+  "series_order": 170,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-oftalmologio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "oftalmologio",
+   "hint": "o… (12 literoj)",
+   "question": "Okulkuracado = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=oftalmologio"
+  },
+  "rating": 2106,
+  "series_label": "Bona lingvo",
+  "series_order": 171,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-oftalmologio-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "asistanto",
+    "diapozitivo",
+    "hobio",
+    "patrio"
+   ],
+   "question": "„Patrujo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=patrio"
+  },
+  "rating": 2108,
+  "series_label": "Bona lingvo",
+  "series_order": 172,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-patrio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "helpanto",
+    "lumbildo",
+    "ŝatokupo",
+    "patrujo"
+   ],
+   "question": "Anstataŭ „patrio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=patrio"
+  },
+  "rating": 2108,
+  "series_label": "Bona lingvo",
+  "series_order": 173,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-patrio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "patrio",
+   "hint": "p… (6 literoj)",
+   "question": "Patrujo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=patrio"
+  },
+  "rating": 2108,
+  "series_label": "Bona lingvo",
+  "series_order": 174,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-patrio-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "prefikso",
+    "ateismo",
+    "direktoro",
+    "maleolo"
+   ],
+   "question": "„Antaŭafikso“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=prefikso"
+  },
+  "rating": 2110,
+  "series_label": "Bona lingvo",
+  "series_order": 175,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prefikso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "antaŭafikso",
+    "sendiismo",
+    "direktisto",
+    "piedartiko"
+   ],
+   "question": "Anstataŭ „prefikso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=prefikso"
+  },
+  "rating": 2110,
+  "series_label": "Bona lingvo",
+  "series_order": 176,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prefikso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "prefikso",
+   "hint": "p… (8 literoj)",
+   "question": "Antaŭafikso = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=prefikso"
+  },
+  "rating": 2110,
+  "series_label": "Bona lingvo",
+  "series_order": 177,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prefikso-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "ateisto",
+    "prezenco",
+    "diskoteko",
+    "inflamo"
+   ],
+   "question": "„Nuntempo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=prezenco"
+  },
+  "rating": 2112,
+  "series_label": "Bona lingvo",
+  "series_order": 178,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prezenco-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "sendiulo",
+    "nuntempo",
+    "dancejo",
+    "brulumo"
+   ],
+   "question": "Anstataŭ „prezenco“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=prezenco"
+  },
+  "rating": 2112,
+  "series_label": "Bona lingvo",
+  "series_order": 179,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prezenco-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "prezenco",
+   "hint": "p… (8 literoj)",
+   "question": "Nuntempo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=prezenco"
+  },
+  "rating": 2112,
+  "series_label": "Bona lingvo",
+  "series_order": 180,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prezenco-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "rezisti",
+    "damni",
+    "prononci",
+    "multipliki"
+   ],
+   "question": "„Elparoli“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=prononci"
+  },
+  "rating": 2114,
+  "series_label": "Bona lingvo",
+  "series_order": 181,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prononci-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "kontraŭstari",
+    "malbeni",
+    "elparoli",
+    "obligi"
+   ],
+   "question": "Anstataŭ „prononci“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=prononci"
+  },
+  "rating": 2114,
+  "series_label": "Bona lingvo",
+  "series_order": 182,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prononci-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "elparoli",
+   "hint": "…·…·i",
+   "question": "Prononci = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=prononci"
+  },
+  "rating": 2114,
+  "series_label": "Bona lingvo",
+  "series_order": 183,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prononci-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "prononci",
+   "hint": "p… (8 literoj)",
+   "question": "Elparoli = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=prononci"
+  },
+  "rating": 2114,
+  "series_label": "Bona lingvo",
+  "series_order": 184,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prononci-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "mava",
+    "humida",
+    "obtuza",
+    "stulta"
+   ],
+   "question": "„Malsaĝa“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=stulta"
+  },
+  "rating": 2116,
+  "series_label": "Bona lingvo",
+  "series_order": 185,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-stulta-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "malbona",
+    "malseketa",
+    "malakra",
+    "malsaĝa"
+   ],
+   "question": "Anstataŭ „stulta“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=stulta"
+  },
+  "rating": 2116,
+  "series_label": "Bona lingvo",
+  "series_order": 186,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-stulta-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "malsaĝa",
+   "hint": "mal·…·a",
+   "question": "Stulta = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=stulta"
+  },
+  "rating": 2116,
+  "series_label": "Bona lingvo",
+  "series_order": 187,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-stulta-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "veterinaro",
+    "delegacio",
+    "fetoro",
+    "lavabo"
+   ],
+   "question": "„Bestkuracisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=veterinaro"
+  },
+  "rating": 2118,
+  "series_label": "Bona lingvo",
+  "series_order": 188,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-veterinaro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "bestkuracisto",
+    "delegitaro",
+    "odoraĉo",
+    "lavkuvo"
+   ],
+   "question": "Anstataŭ „veterinaro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=veterinaro"
+  },
+  "rating": 2118,
+  "series_label": "Bona lingvo",
+  "series_order": 189,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-veterinaro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "bestkuracisto",
+   "hint": "…·…·ist·o",
+   "question": "Veterinaro = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=veterinaro"
+  },
+  "rating": 2118,
+  "series_label": "Bona lingvo",
+  "series_order": 190,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-veterinaro-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "veterinaro",
+   "hint": "v… (10 literoj)",
+   "question": "Bestkuracisto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=veterinaro"
+  },
+  "rating": 2118,
+  "series_label": "Bona lingvo",
+  "series_order": 191,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-veterinaro-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "dermatologo",
+    "arkipelago",
+    "filantropio",
+    "lingvistiko"
+   ],
+   "question": "„Insularo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=arkipelago"
+  },
+  "rating": 2120,
+  "series_label": "Bona lingvo",
+  "series_order": 192,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arkipelago-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "haŭtkuracisto",
+    "insularo",
+    "homamo",
+    "lingvoscienco"
+   ],
+   "question": "Anstataŭ „arkipelago“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=arkipelago"
+  },
+  "rating": 2120,
+  "series_label": "Bona lingvo",
+  "series_order": 193,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arkipelago-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "insularo",
+   "hint": "…·ar·o",
+   "question": "Arkipelago = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=arkipelago"
+  },
+  "rating": 2120,
+  "series_label": "Bona lingvo",
+  "series_order": 194,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-arkipelago-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "diapozitivo",
+    "hobio",
+    "asistanto",
+    "majoritato"
+   ],
+   "question": "„Helpanto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=asistanto"
+  },
+  "rating": 2122,
+  "series_label": "Bona lingvo",
+  "series_order": 195,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-asistanto-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "lumbildo",
+    "ŝatokupo",
+    "helpanto",
+    "plimulto"
+   ],
+   "question": "Anstataŭ „asistanto“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=asistanto"
+  },
+  "rating": 2122,
+  "series_label": "Bona lingvo",
+  "series_order": 196,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-asistanto-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "helpanto",
+   "hint": "…·ant·o",
+   "question": "Asistanto = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=asistanto"
+  },
+  "rating": 2122,
+  "series_label": "Bona lingvo",
+  "series_order": 197,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-asistanto-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "asistanto",
+   "hint": "a… (9 literoj)",
+   "question": "Helpanto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=asistanto"
+  },
+  "rating": 2122,
+  "series_label": "Bona lingvo",
+  "series_order": 198,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-asistanto-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "direktoro",
+    "maleolo",
+    "cerumeno",
+    "ateismo"
+   ],
+   "question": "„Sendiismo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ateismo"
+  },
+  "rating": 2124,
+  "series_label": "Bona lingvo",
+  "series_order": 199,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateismo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "direktisto",
+    "piedartiko",
+    "orelvakso",
+    "sendiismo"
+   ],
+   "question": "Anstataŭ „ateismo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ateismo"
+  },
+  "rating": 2124,
+  "series_label": "Bona lingvo",
+  "series_order": 200,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateismo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ateismo",
+   "hint": "a… (7 literoj)",
+   "question": "Sendiismo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ateismo"
+  },
+  "rating": 2124,
+  "series_label": "Bona lingvo",
+  "series_order": 201,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateismo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "ateisto",
+    "diskoteko",
+    "inflamo",
+    "metodologio"
+   ],
+   "question": "„Sendiulo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ateisto"
+  },
+  "rating": 2126,
+  "series_label": "Bona lingvo",
+  "series_order": 202,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateisto-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "sendiulo",
+    "dancejo",
+    "brulumo",
+    "metodaro"
+   ],
+   "question": "Anstataŭ „ateisto“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ateisto"
+  },
+  "rating": 2126,
+  "series_label": "Bona lingvo",
+  "series_order": 203,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateisto-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ateisto",
+   "hint": "a… (7 literoj)",
+   "question": "Sendiulo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ateisto"
+  },
+  "rating": 2126,
+  "series_label": "Bona lingvo",
+  "series_order": 204,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ateisto-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "diskurso",
+    "biologo",
+    "komikso",
+    "miozoto"
+   ],
+   "question": "„Biologiisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=biologo"
+  },
+  "rating": 2128,
+  "series_label": "Bona lingvo",
+  "series_order": 205,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biologo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "parolado",
+    "biologiisto",
+    "bildrakonto",
+    "neforgesumino"
+   ],
+   "question": "Anstataŭ „biologo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=biologo"
+  },
+  "rating": 2128,
+  "series_label": "Bona lingvo",
+  "series_order": 206,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biologo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "biologo",
+   "hint": "b… (7 literoj)",
+   "question": "Biologiisto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=biologo"
+  },
+  "rating": 2128,
+  "series_label": "Bona lingvo",
+  "series_order": 207,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-biologo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "multipliki",
+    "importi",
+    "damni",
+    "prokrasti"
+   ],
+   "question": "„Malbeni“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=damni"
+  },
+  "rating": 2130,
+  "series_label": "Bona lingvo",
+  "series_order": 208,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-damni-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "obligi",
+    "enporti",
+    "malbeni",
+    "malfruigi"
+   ],
+   "question": "Anstataŭ „damni“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=damni"
+  },
+  "rating": 2130,
+  "series_label": "Bona lingvo",
+  "series_order": 209,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-damni-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "malbeni",
+   "hint": "mal·…·i",
+   "question": "Damni = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=damni"
+  },
+  "rating": 2130,
+  "series_label": "Bona lingvo",
+  "series_order": 210,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-damni-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "damni",
+   "hint": "d… (5 literoj)",
+   "question": "Malbeni = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=damni"
+  },
+  "rating": 2130,
+  "series_label": "Bona lingvo",
+  "series_order": 211,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-damni-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "fetoro",
+    "lavabo",
+    "piĵamo",
+    "delegacio"
+   ],
+   "question": "„Delegitaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=delegacio"
+  },
+  "rating": 2132,
+  "series_label": "Bona lingvo",
+  "series_order": 212,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-delegacio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "odoraĉo",
+    "lavkuvo",
+    "noktovesto",
+    "delegitaro"
+   ],
+   "question": "Anstataŭ „delegacio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=delegacio"
+  },
+  "rating": 2132,
+  "series_label": "Bona lingvo",
+  "series_order": 213,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-delegacio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "delegitaro",
+   "hint": "…·it·ar·o",
+   "question": "Delegacio = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=delegacio"
+  },
+  "rating": 2132,
+  "series_label": "Bona lingvo",
+  "series_order": 214,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-delegacio-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "dermatologo",
+    "filantropio",
+    "lingvistiko",
+    "nostalgio"
+   ],
+   "question": "„Haŭtkuracisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=dermatologo"
+  },
+  "rating": 2134,
+  "series_label": "Bona lingvo",
+  "series_order": 215,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-dermatologo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "haŭtkuracisto",
+    "homamo",
+    "lingvoscienco",
+    "hejmveo"
+   ],
+   "question": "Anstataŭ „dermatologo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=dermatologo"
+  },
+  "rating": 2134,
+  "series_label": "Bona lingvo",
+  "series_order": 216,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-dermatologo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "dermatologo",
+   "hint": "d… (11 literoj)",
+   "question": "Haŭtkuracisto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=dermatologo"
+  },
+  "rating": 2134,
+  "series_label": "Bona lingvo",
+  "series_order": 217,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-dermatologo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "hobio",
+    "diapozitivo",
+    "majoritato",
+    "obstaklo"
+   ],
+   "question": "„Lumbildo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=diapozitivo"
+  },
+  "rating": 2136,
+  "series_label": "Bona lingvo",
+  "series_order": 218,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diapozitivo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "ŝatokupo",
+    "lumbildo",
+    "plimulto",
+    "malhelpo"
+   ],
+   "question": "Anstataŭ „diapozitivo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=diapozitivo"
+  },
+  "rating": 2136,
+  "series_label": "Bona lingvo",
+  "series_order": 219,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diapozitivo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "lumbildo",
+   "hint": "…·…·o",
+   "question": "Diapozitivo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=diapozitivo"
+  },
+  "rating": 2136,
+  "series_label": "Bona lingvo",
+  "series_order": 220,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diapozitivo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "maleolo",
+    "cerumeno",
+    "direktoro",
+    "hospitalo"
+   ],
+   "question": "„Direktisto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=direktoro"
+  },
+  "rating": 2138,
+  "series_label": "Bona lingvo",
+  "series_order": 221,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-direktoro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "piedartiko",
+    "orelvakso",
+    "direktisto",
+    "malsanulejo"
+   ],
+   "question": "Anstataŭ „direktoro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=direktoro"
+  },
+  "rating": 2138,
+  "series_label": "Bona lingvo",
+  "series_order": 222,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-direktoro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "direktisto",
+   "hint": "…·ist·o",
+   "question": "Direktoro = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=direktoro"
+  },
+  "rating": 2138,
+  "series_label": "Bona lingvo",
+  "series_order": 223,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-direktoro-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "inflamo",
+    "metodologio",
+    "ostaĝo",
+    "diskoteko"
+   ],
+   "question": "„Dancejo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=diskoteko"
+  },
+  "rating": 2140,
+  "series_label": "Bona lingvo",
+  "series_order": 224,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskoteko-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "brulumo",
+    "metodaro",
+    "garantiulo",
+    "dancejo"
+   ],
+   "question": "Anstataŭ „diskoteko“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=diskoteko"
+  },
+  "rating": 2140,
+  "series_label": "Bona lingvo",
+  "series_order": 225,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskoteko-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "diskoteko",
+   "hint": "d… (9 literoj)",
+   "question": "Dancejo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=diskoteko"
+  },
+  "rating": 2140,
+  "series_label": "Bona lingvo",
+  "series_order": 226,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskoteko-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "diskurso",
+    "komikso",
+    "miozoto",
+    "paciento"
+   ],
+   "question": "„Parolado“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=diskurso"
+  },
+  "rating": 2142,
+  "series_label": "Bona lingvo",
+  "series_order": 227,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskurso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "parolado",
+    "bildrakonto",
+    "neforgesumino",
+    "kuracato"
+   ],
+   "question": "Anstataŭ „diskurso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=diskurso"
+  },
+  "rating": 2142,
+  "series_label": "Bona lingvo",
+  "series_order": 228,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskurso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "diskurso",
+   "hint": "d… (8 literoj)",
+   "question": "Parolado = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=diskurso"
+  },
+  "rating": 2142,
+  "series_label": "Bona lingvo",
+  "series_order": 229,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-diskurso-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "komisiono",
+    "eskalo",
+    "mukozo",
+    "pacifismo"
+   ],
+   "question": "„Ŝtupetaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=eskalo"
+  },
+  "rating": 2144,
+  "series_label": "Bona lingvo",
+  "series_order": 230,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-eskalo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "komisiitaro",
+    "ŝtupetaro",
+    "mukmembrano",
+    "pacismo"
+   ],
+   "question": "Anstataŭ „eskalo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=eskalo"
+  },
+  "rating": 2144,
+  "series_label": "Bona lingvo",
+  "series_order": 231,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-eskalo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "eskalo",
+   "hint": "e… (6 literoj)",
+   "question": "Ŝtupetaro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=eskalo"
+  },
+  "rating": 2144,
+  "series_label": "Bona lingvo",
+  "series_order": 232,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-eskalo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "lavabo",
+    "piĵamo",
+    "fetoro",
+    "trajno"
+   ],
+   "question": "„Odoraĉo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=fetoro"
+  },
+  "rating": 2146,
+  "series_label": "Bona lingvo",
+  "series_order": 233,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fetoro-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "lavkuvo",
+    "noktovesto",
+    "odoraĉo",
+    "vagonaro"
+   ],
+   "question": "Anstataŭ „fetoro“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=fetoro"
+  },
+  "rating": 2146,
+  "series_label": "Bona lingvo",
+  "series_order": 234,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fetoro-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "fetoro",
+   "hint": "f… (6 literoj)",
+   "question": "Odoraĉo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=fetoro"
+  },
+  "rating": 2146,
+  "series_label": "Bona lingvo",
+  "series_order": 235,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-fetoro-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "lingvistiko",
+    "nostalgio",
+    "polmo",
+    "filantropio"
+   ],
+   "question": "„Homamo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=filantropio"
+  },
+  "rating": 2148,
+  "series_label": "Bona lingvo",
+  "series_order": 236,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-filantropio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "lingvoscienco",
+    "hejmveo",
+    "manplato",
+    "homamo"
+   ],
+   "question": "Anstataŭ „filantropio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=filantropio"
+  },
+  "rating": 2148,
+  "series_label": "Bona lingvo",
+  "series_order": 237,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-filantropio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "hobio",
+    "majoritato",
+    "obstaklo",
+    "proceso"
+   ],
+   "question": "„Ŝatokupo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=hobio"
+  },
+  "rating": 2150,
+  "series_label": "Bona lingvo",
+  "series_order": 238,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hobio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "ŝatokupo",
+    "plimulto",
+    "malhelpo",
+    "juĝafero"
+   ],
+   "question": "Anstataŭ „hobio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=hobio"
+  },
+  "rating": 2150,
+  "series_label": "Bona lingvo",
+  "series_order": 239,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hobio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ŝatokupo",
+   "hint": "…·…·o",
+   "question": "Hobio = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=hobio"
+  },
+  "rating": 2150,
+  "series_label": "Bona lingvo",
+  "series_order": 240,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-hobio-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "prokrasti",
+    "importi",
+    "centralizi",
+    "neglekti"
+   ],
+   "question": "„Enporti“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=importi"
+  },
+  "rating": 2152,
+  "series_label": "Bona lingvo",
+  "series_order": 241,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-importi-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "malfruigi",
+    "enporti",
+    "centrigi",
+    "malzorgi"
+   ],
+   "question": "Anstataŭ „importi“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=importi"
+  },
+  "rating": 2152,
+  "series_label": "Bona lingvo",
+  "series_order": 242,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-importi-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "enporti",
+   "hint": "…·…·i",
+   "question": "Importi = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=importi"
+  },
+  "rating": 2152,
+  "series_label": "Bona lingvo",
+  "series_order": 243,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-importi-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "importi",
+   "hint": "i… (7 literoj)",
+   "question": "Enporti = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=importi"
+  },
+  "rating": 2152,
+  "series_label": "Bona lingvo",
+  "series_order": 244,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-importi-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "metodologio",
+    "ostaĝo",
+    "inflamo",
+    "pugo"
+   ],
+   "question": "„Brulumo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=inflamo"
+  },
+  "rating": 2154,
+  "series_label": "Bona lingvo",
+  "series_order": 245,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-inflamo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "metodaro",
+    "garantiulo",
+    "brulumo",
+    "postaĵo"
+   ],
+   "question": "Anstataŭ „inflamo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=inflamo"
+  },
+  "rating": 2154,
+  "series_label": "Bona lingvo",
+  "series_order": 246,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-inflamo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "brulumo",
+   "hint": "…·um·o",
+   "question": "Inflamo = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=inflamo"
+  },
+  "rating": 2154,
+  "series_label": "Bona lingvo",
+  "series_order": 247,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-inflamo-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "miozoto",
+    "paciento",
+    "bebo",
+    "komikso"
+   ],
+   "question": "„Bildrakonto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=komikso"
+  },
+  "rating": 2156,
+  "series_label": "Bona lingvo",
+  "series_order": 248,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komikso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "neforgesumino",
+    "kuracato",
+    "infaneto",
+    "bildrakonto"
+   ],
+   "question": "Anstataŭ „komikso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=komikso"
+  },
+  "rating": 2156,
+  "series_label": "Bona lingvo",
+  "series_order": 249,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komikso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "komisiono",
+    "mukozo",
+    "pacifismo",
+    "cico"
+   ],
+   "question": "„Komisiitaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=komisiono"
+  },
+  "rating": 2158,
+  "series_label": "Bona lingvo",
+  "series_order": 250,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komisiono-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "komisiitaro",
+    "mukmembrano",
+    "pacismo",
+    "mampinto"
+   ],
+   "question": "Anstataŭ „komisiono“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=komisiono"
+  },
+  "rating": 2158,
+  "series_label": "Bona lingvo",
+  "series_order": 251,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komisiono-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "komisiitaro",
+   "hint": "…·it·ar·o",
+   "question": "Komisiono = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=komisiono"
+  },
+  "rating": 2158,
+  "series_label": "Bona lingvo",
+  "series_order": 252,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komisiono-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "komisiono",
+   "hint": "k… (9 literoj)",
+   "question": "Komisiitaro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=komisiono"
+  },
+  "rating": 2158,
+  "series_label": "Bona lingvo",
+  "series_order": 253,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-komisiono-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "piĵamo",
+    "lavabo",
+    "trajno",
+    "pluralo"
+   ],
+   "question": "„Lavkuvo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=lavabo"
+  },
+  "rating": 2160,
+  "series_label": "Bona lingvo",
+  "series_order": 254,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lavabo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "noktovesto",
+    "lavkuvo",
+    "vagonaro",
+    "plurnombro"
+   ],
+   "question": "Anstataŭ „lavabo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=lavabo"
+  },
+  "rating": 2160,
+  "series_label": "Bona lingvo",
+  "series_order": 255,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lavabo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "lavabo",
+   "hint": "l… (6 literoj)",
+   "question": "Lavkuvo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=lavabo"
+  },
+  "rating": 2160,
+  "series_label": "Bona lingvo",
+  "series_order": 256,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lavabo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "nostalgio",
+    "polmo",
+    "lingvistiko",
+    "evento"
+   ],
+   "question": "„Lingvoscienco“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=lingvistiko"
+  },
+  "rating": 2162,
+  "series_label": "Bona lingvo",
+  "series_order": 257,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lingvistiko-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "hejmveo",
+    "manplato",
+    "lingvoscienco",
+    "okazaĵo"
+   ],
+   "question": "Anstataŭ „lingvistiko“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=lingvistiko"
+  },
+  "rating": 2162,
+  "series_label": "Bona lingvo",
+  "series_order": 258,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lingvistiko-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "lingvoscienco",
+   "hint": "…·o·…·o",
+   "question": "Lingvistiko = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=lingvistiko"
+  },
+  "rating": 2162,
+  "series_label": "Bona lingvo",
+  "series_order": 259,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-lingvistiko-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "obstaklo",
+    "proceso",
+    "kamiono",
+    "majoritato"
+   ],
+   "question": "„Plimulto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=majoritato"
+  },
+  "rating": 2164,
+  "series_label": "Bona lingvo",
+  "series_order": 260,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-majoritato-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "malhelpo",
+    "juĝafero",
+    "ŝarĝaŭto",
+    "plimulto"
+   ],
+   "question": "Anstataŭ „majoritato“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=majoritato"
+  },
+  "rating": 2164,
+  "series_label": "Bona lingvo",
+  "series_order": 261,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-majoritato-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "maleolo",
+    "cerumeno",
+    "hospitalo",
+    "barbiro"
+   ],
+   "question": "„Piedartiko“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=maleolo"
+  },
+  "rating": 2166,
+  "series_label": "Bona lingvo",
+  "series_order": 262,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-maleolo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "piedartiko",
+    "orelvakso",
+    "malsanulejo",
+    "barbisto"
+   ],
+   "question": "Anstataŭ „maleolo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=maleolo"
+  },
+  "rating": 2166,
+  "series_label": "Bona lingvo",
+  "series_order": 263,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-maleolo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "maleolo",
+   "hint": "m… (7 literoj)",
+   "question": "Piedartiko = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=maleolo"
+  },
+  "rating": 2166,
+  "series_label": "Bona lingvo",
+  "series_order": 264,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-maleolo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "ostaĝo",
+    "metodologio",
+    "pugo",
+    "likvaĵo"
+   ],
+   "question": "„Metodaro“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=metodologio"
+  },
+  "rating": 2168,
+  "series_label": "Bona lingvo",
+  "series_order": 265,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-metodologio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "garantiulo",
+    "metodaro",
+    "postaĵo",
+    "fluidaĵo"
+   ],
+   "question": "Anstataŭ „metodologio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=metodologio"
+  },
+  "rating": 2168,
+  "series_label": "Bona lingvo",
+  "series_order": 266,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-metodologio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "metodologio",
+   "hint": "m… (11 literoj)",
+   "question": "Metodaro = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=metodologio"
+  },
+  "rating": 2168,
+  "series_label": "Bona lingvo",
+  "series_order": 267,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-metodologio-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "paciento",
+    "bebo",
+    "miozoto",
+    "aeroplano"
+   ],
+   "question": "„Neforgesumino“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=miozoto"
+  },
+  "rating": 2170,
+  "series_label": "Bona lingvo",
+  "series_order": 268,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-miozoto-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "kuracato",
+    "infaneto",
+    "neforgesumino",
+    "aviadilo"
+   ],
+   "question": "Anstataŭ „miozoto“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=miozoto"
+  },
+  "rating": 2170,
+  "series_label": "Bona lingvo",
+  "series_order": 269,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-miozoto-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "neforgesumino",
+   "hint": "…·…·um·in·o",
+   "question": "Miozoto = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=miozoto"
+  },
+  "rating": 2170,
+  "series_label": "Bona lingvo",
+  "series_order": 270,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-miozoto-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "miozoto",
+   "hint": "m… (7 literoj)",
+   "question": "Neforgesumino = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=miozoto"
+  },
+  "rating": 2170,
+  "series_label": "Bona lingvo",
+  "series_order": 271,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-miozoto-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "pacifismo",
+    "cico",
+    "arakido",
+    "mukozo"
+   ],
+   "question": "„Mukmembrano“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=mukozo"
+  },
+  "rating": 2172,
+  "series_label": "Bona lingvo",
+  "series_order": 272,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mukozo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "pacismo",
+    "mampinto",
+    "ternukso",
+    "mukmembrano"
+   ],
+   "question": "Anstataŭ „mukozo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=mukozo"
+  },
+  "rating": 2172,
+  "series_label": "Bona lingvo",
+  "series_order": 273,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mukozo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "mukozo",
+   "hint": "m… (6 literoj)",
+   "question": "Mukmembrano = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=mukozo"
+  },
+  "rating": 2172,
+  "series_label": "Bona lingvo",
+  "series_order": 274,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mukozo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "neglekti",
+    "abdiki",
+    "adicii",
+    "prononci"
+   ],
+   "question": "„Malzorgi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=neglekti"
+  },
+  "rating": 2174,
+  "series_label": "Bona lingvo",
+  "series_order": 275,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-neglekti-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "malzorgi",
+    "eksiĝi",
+    "sumigi",
+    "elparoli"
+   ],
+   "question": "Anstataŭ „neglekti“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=neglekti"
+  },
+  "rating": 2174,
+  "series_label": "Bona lingvo",
+  "series_order": 276,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-neglekti-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "neglekti",
+   "hint": "n… (8 literoj)",
+   "question": "Malzorgi = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=neglekti"
+  },
+  "rating": 2174,
+  "series_label": "Bona lingvo",
+  "series_order": 277,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-neglekti-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "polmo",
+    "nostalgio",
+    "evento",
+    "sufikso"
+   ],
+   "question": "„Hejmveo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=nostalgio"
+  },
+  "rating": 2176,
+  "series_label": "Bona lingvo",
+  "series_order": 278,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nostalgio-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "manplato",
+    "hejmveo",
+    "okazaĵo",
+    "postafikso"
+   ],
+   "question": "Anstataŭ „nostalgio“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=nostalgio"
+  },
+  "rating": 2176,
+  "series_label": "Bona lingvo",
+  "series_order": 279,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nostalgio-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "nostalgio",
+   "hint": "n… (9 literoj)",
+   "question": "Hejmveo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=nostalgio"
+  },
+  "rating": 2176,
+  "series_label": "Bona lingvo",
+  "series_order": 280,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-nostalgio-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "proceso",
+    "kamiono",
+    "obstaklo",
+    "toporo"
+   ],
+   "question": "„Malhelpo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=obstaklo"
+  },
+  "rating": 2178,
+  "series_label": "Bona lingvo",
+  "series_order": 281,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obstaklo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "juĝafero",
+    "ŝarĝaŭto",
+    "malhelpo",
+    "hakilo"
+   ],
+   "question": "Anstataŭ „obstaklo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=obstaklo"
+  },
+  "rating": 2178,
+  "series_label": "Bona lingvo",
+  "series_order": 282,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obstaklo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "obstaklo",
+   "hint": "o… (8 literoj)",
+   "question": "Malhelpo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=obstaklo"
+  },
+  "rating": 2178,
+  "series_label": "Bona lingvo",
+  "series_order": 283,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obstaklo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "amara",
+    "stulta",
+    "mava",
+    "obtuza"
+   ],
+   "question": "„Malakra“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=obtuza"
+  },
+  "rating": 2180,
+  "series_label": "Bona lingvo",
+  "series_order": 284,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obtuza-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "maldolĉa",
+    "malsaĝa",
+    "malbona",
+    "malakra"
+   ],
+   "question": "Anstataŭ „obtuza“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=obtuza"
+  },
+  "rating": 2180,
+  "series_label": "Bona lingvo",
+  "series_order": 285,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obtuza-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "malakra",
+   "hint": "mal·…·a",
+   "question": "Obtuza = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=obtuza"
+  },
+  "rating": 2180,
+  "series_label": "Bona lingvo",
+  "series_order": 286,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-obtuza-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "ostaĝo",
+    "pugo",
+    "likvaĵo",
+    "ginekologo"
+   ],
+   "question": "„Garantiulo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=ostaĝo"
+  },
+  "rating": 2182,
+  "series_label": "Bona lingvo",
+  "series_order": 287,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ostagxo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "garantiulo",
+    "postaĵo",
+    "fluidaĵo",
+    "virinkuracisto"
+   ],
+   "question": "Anstataŭ „ostaĝo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=ostaĝo"
+  },
+  "rating": 2182,
+  "series_label": "Bona lingvo",
+  "series_order": 288,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ostagxo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "ostaĝo",
+   "hint": "o… (6 literoj)",
+   "question": "Garantiulo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=ostaĝo"
+  },
+  "rating": 2182,
+  "series_label": "Bona lingvo",
+  "series_order": 289,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-ostagxo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "bebo",
+    "paciento",
+    "aeroplano",
+    "hipodromo"
+   ],
+   "question": "„Kuracato“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=paciento"
+  },
+  "rating": 2184,
+  "series_label": "Bona lingvo",
+  "series_order": 290,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-paciento-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "infaneto",
+    "kuracato",
+    "aviadilo",
+    "ĉevalkurejo"
+   ],
+   "question": "Anstataŭ „paciento“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=paciento"
+  },
+  "rating": 2184,
+  "series_label": "Bona lingvo",
+  "series_order": 291,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-paciento-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "kuracato",
+   "hint": "…·at·o",
+   "question": "Paciento = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=paciento"
+  },
+  "rating": 2184,
+  "series_label": "Bona lingvo",
+  "series_order": 292,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-paciento-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "paciento",
+   "hint": "p… (8 literoj)",
+   "question": "Kuracato = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=paciento"
+  },
+  "rating": 2184,
+  "series_label": "Bona lingvo",
+  "series_order": 293,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-paciento-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "cico",
+    "arakido",
+    "pacifismo",
+    "inkubo"
+   ],
+   "question": "„Pacismo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=pacifismo"
+  },
+  "rating": 2186,
+  "series_label": "Bona lingvo",
+  "series_order": 294,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pacifismo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "mampinto",
+    "ternukso",
+    "pacismo",
+    "premsonĝo"
+   ],
+   "question": "Anstataŭ „pacifismo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=pacifismo"
+  },
+  "rating": 2186,
+  "series_label": "Bona lingvo",
+  "series_order": 295,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pacifismo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "pacifismo",
+   "hint": "p… (9 literoj)",
+   "question": "Pacismo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=pacifismo"
+  },
+  "rating": 2186,
+  "series_label": "Bona lingvo",
+  "series_order": 296,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pacifismo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "trajno",
+    "pluralo",
+    "judaismo",
+    "piĵamo"
+   ],
+   "question": "„Noktovesto“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=piĵamo"
+  },
+  "rating": 2188,
+  "series_label": "Bona lingvo",
+  "series_order": 297,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pijxamo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "vagonaro",
+    "plurnombro",
+    "judismo",
+    "noktovesto"
+   ],
+   "question": "Anstataŭ „piĵamo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=piĵamo"
+  },
+  "rating": 2188,
+  "series_label": "Bona lingvo",
+  "series_order": 298,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pijxamo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "piĵamo",
+   "hint": "p… (6 literoj)",
+   "question": "Noktovesto = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=piĵamo"
+  },
+  "rating": 2188,
+  "series_label": "Bona lingvo",
+  "series_order": 299,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pijxamo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "polmo",
+    "evento",
+    "sufikso",
+    "abismo"
+   ],
+   "question": "„Manplato“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=polmo"
+  },
+  "rating": 2190,
+  "series_label": "Bona lingvo",
+  "series_order": 300,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-polmo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "manplato",
+    "okazaĵo",
+    "postafikso",
+    "profundego"
+   ],
+   "question": "Anstataŭ „polmo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=polmo"
+  },
+  "rating": 2190,
+  "series_label": "Bona lingvo",
+  "series_order": 301,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-polmo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "polmo",
+   "hint": "p… (5 literoj)",
+   "question": "Manplato = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=polmo"
+  },
+  "rating": 2190,
+  "series_label": "Bona lingvo",
+  "series_order": 302,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-polmo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "kamiono",
+    "proceso",
+    "toporo",
+    "abato"
+   ],
+   "question": "„Juĝafero“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=proceso"
+  },
+  "rating": 2192,
+  "series_label": "Bona lingvo",
+  "series_order": 303,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-proceso-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "ŝarĝaŭto",
+    "juĝafero",
+    "hakilo",
+    "monaĥejestro"
+   ],
+   "question": "Anstataŭ „proceso“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=proceso"
+  },
+  "rating": 2192,
+  "series_label": "Bona lingvo",
+  "series_order": 304,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-proceso-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "juĝafero",
+   "hint": "…·…·o",
+   "question": "Proceso = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=proceso"
+  },
+  "rating": 2192,
+  "series_label": "Bona lingvo",
+  "series_order": 305,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-proceso-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "answer": "proceso",
+   "hint": "p… (7 literoj)",
+   "question": "Juĝafero = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=proceso"
+  },
+  "rating": 2192,
+  "series_label": "Bona lingvo",
+  "series_order": 306,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-proceso-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "centralizi",
+    "neglekti",
+    "prokrasti",
+    "abdiki"
+   ],
+   "question": "„Malfruigi“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=prokrasti"
+  },
+  "rating": 2194,
+  "series_label": "Bona lingvo",
+  "series_order": 307,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prokrasti-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 2,
+   "options": [
+    "centrigi",
+    "malzorgi",
+    "malfruigi",
+    "eksiĝi"
+   ],
+   "question": "Anstataŭ „prokrasti“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=prokrasti"
+  },
+  "rating": 2194,
+  "series_label": "Bona lingvo",
+  "series_order": 308,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prokrasti-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "prokrasti",
+   "hint": "p… (9 literoj)",
+   "question": "Malfruigi = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=prokrasti"
+  },
+  "rating": 2194,
+  "series_label": "Bona lingvo",
+  "series_order": 309,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-prokrasti-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "likvaĵo",
+    "ginekologo",
+    "ĝemelo",
+    "pugo"
+   ],
+   "question": "„Postaĵo“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=pugo"
+  },
+  "rating": 2196,
+  "series_label": "Bona lingvo",
+  "series_order": 310,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pugo-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 3,
+   "options": [
+    "fluidaĵo",
+    "virinkuracisto",
+    "dunaskito",
+    "postaĵo"
+   ],
+   "question": "Anstataŭ „pugo“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=pugo"
+  },
+  "rating": 2196,
+  "series_label": "Bona lingvo",
+  "series_order": 311,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pugo-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "pugo",
+   "hint": "p… (4 literoj)",
+   "question": "Postaĵo = ___ (la sama signifo, per propra radiko)",
+   "source_url": "https://labonalingvo.org/?vorto=pugo"
+  },
+  "rating": 2196,
+  "series_label": "Bona lingvo",
+  "series_order": 312,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-pugo-tajpu-radikan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "rezisti",
+    "damni",
+    "multipliki",
+    "importi"
+   ],
+   "question": "„Kontraŭstari“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=rezisti"
+  },
+  "rating": 2198,
+  "series_label": "Bona lingvo",
+  "series_order": 313,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-rezisti-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 0,
+   "options": [
+    "kontraŭstari",
+    "malbeni",
+    "obligi",
+    "enporti"
+   ],
+   "question": "Anstataŭ „rezisti“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=rezisti"
+  },
+  "rating": 2198,
+  "series_label": "Bona lingvo",
+  "series_order": 314,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-rezisti-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "kontraŭstari",
+   "hint": "…·…·i",
+   "question": "Rezisti = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=rezisti"
+  },
+  "rating": 2198,
+  "series_label": "Bona lingvo",
+  "series_order": 315,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-rezisti-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "humida",
+    "mava",
+    "obtuza",
+    "amara"
+   ],
+   "question": "„Malbona“ estas konstruita el bazaj radikoj. Kiu Esperanta vorto kun propra radiko signifas la samon?",
+   "source_url": "https://labonalingvo.org/?vorto=mava"
+  },
+  "rating": 2200,
+  "series_label": "Bona lingvo",
+  "series_order": 316,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mava-al-radiko",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "correct_index": 1,
+   "options": [
+    "malseketa",
+    "malbona",
+    "malakra",
+    "maldolĉa"
+   ],
+   "question": "Anstataŭ „mava“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?",
+   "source_url": "https://labonalingvo.org/?vorto=mava"
+  },
+  "rating": 2200,
+  "series_label": "Bona lingvo",
+  "series_order": 317,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mava-al-konstruita",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "elekti"
+  ],
+  "type": "multiplechoice"
+ },
+ {
+  "content": {
+   "answer": "malbona",
+   "hint": "mal·…·a",
+   "question": "Mava = ___ (la sama signifo, el bazaj radikoj)",
+   "source_url": "https://labonalingvo.org/?vorto=mava"
+  },
+  "rating": 2200,
+  "series_label": "Bona lingvo",
+  "series_order": 318,
+  "series_slug": "bona-lingvo",
+  "slug": "bona-lingvo-mava-tajpu-konstruitan",
+  "source": "La Bona Lingvo (labonalingvo.org)",
+  "tags": [
+   "vortaro",
+   "bona-lingvo",
+   "plenigi"
+  ],
+  "type": "fillin"
+ }
+]
