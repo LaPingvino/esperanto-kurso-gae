@@ -715,10 +715,36 @@ func Plan(items []*model.ContentItem) []Action {
 		if strings.ContainsAny(w, " -→") {
 			ok = false // "ami→malami", "dek-dua": pieces of an example, not a word
 		}
-		if l, known := fromTexts(c, w); l != "" && l != lemma {
-			lemma, hit, ok = l, revo.Exact(l), true // "boa" → boao
+		isHead := revo.Exact(w) != nil
+		l, known := fromTexts(c, w)
+		// a stem without an ending the old extractor cut from a longer
+		// form (bat from batanto, ven from venonta, kv from kvanto) — not
+		// a word, though ReVo may list it as an interjection (bat!)
+		bare := !strings.ContainsAny(w, " -→") && !strings.ContainsAny(string([]rune(w)[len([]rune(w))-1:]), "oaeiu") &&
+			(!ok || (known && l != w && revo.IsRoot(w)))
+		switch {
+		case bare:
+			// the root's base word — its verb, else noun, else adjective —
+			// never a derived form; for two letters or none: no word
+			ok, lemma = false, ""
+			for _, e := range []string{"i", "o", "a"} {
+				if len([]rune(w)) < 3 {
+					break
+				}
+				if h := revo.Exact(w + e); h != nil {
+					lemma, hit, ok = w+e, h, true
+					a.Note = "the base word of the root " + w
+					break
+				}
+			}
+		case l != "" && l != lemma && ok && (!isHead || l == w+"o"):
+			// its texts have another word: the one it was cut from (ele
+			// from elen). A real word folds only into the noun it stood
+			// for ("la boaj": boa → boao), never into another headword
+			// (supre stays supre, though its text has supren).
+			lemma, hit, ok = l, revo.Exact(l), true
 			a.Note = "its text has " + l
-		} else if known && l == "" && ok && lemma == w {
+		case known && l == "" && ok && lemma == w:
 			a.Note = "not in its text any more"
 		}
 		precious := hasDefs(c) || c.AuthorID != ""
