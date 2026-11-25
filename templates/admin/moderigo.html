@@ -25,7 +25,7 @@
               hx-target="#msg-{{.ID}}"
               hx-swap="outerHTML"
               style="display:inline">
-          <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+          <button type="submit" class="outline">{{ico "check"}} Markita kiel legita</button>
         </form>
       </footer>
     </article>
@@ -52,30 +52,30 @@
         {{if .IsAlternative}}<span class="tag">sugesto</span>{{else}}<span class="tag">eraro-raporto</span>{{end}}
         {{if .Slug}}
         &middot;
-        <a href="/ekzerco/{{.Slug}}">&#128065; Vidi ekzercon</a>
+        <a href="/ekzerco/{{.Slug}}">{{ico "search"}} Vidi ekzercon</a>
         &middot;
-        <a href="/admin/enhavo/{{.Slug}}/redakti">&#9998; Redakti</a>
+        <a href="/admin/enhavo/{{.Slug}}/redakti">{{ico "pen"}} Redakti</a>
         {{end}}
       </header>
       {{if .Item}}
       <details open>
         <summary><strong>{{if .Item.Title}}{{.Item.Title}}{{else}}{{.Slug}}{{end}}</strong></summary>
         <blockquote style="margin:0.5rem 0;font-size:0.9em">
-          {{if .Item.Question}}<p>&#10067; {{.Item.Question}}</p>{{end}}
-          {{if .Item.Answer}}<p>&#10003; Ĝusta respondo: <code>{{.Item.Answer}}</code></p>{{end}}
+          {{if .Item.Question}}<p>{{ico "chat"}} {{.Item.Question}}</p>{{end}}
+          {{if .Item.Answer}}<p>{{ico "check"}} Ĝusta respondo: <code>{{.Item.Answer}}</code></p>{{end}}
           {{if .Item.Text}}<p style="white-space:pre-wrap;max-height:6em;overflow:auto">{{.Item.Text}}</p>{{end}}
         </blockquote>
       </details>
       {{end}}
       {{if .Answer}}
-      <p>&#128161; Sugesto: <strong><code>{{.Answer}}</code></strong></p>
+      <p>{{ico "bulb"}} Sugesto: <strong><code>{{.Answer}}</code></strong></p>
       {{end}}
       <footer>
         <form hx-post="/admin/mesagxoj/{{.Msg.ID}}/legita"
               hx-target="#msg-{{.Msg.ID}}"
               hx-swap="outerHTML"
               style="display:inline">
-          <button type="submit" class="outline">&#10003; Markita kiel legita</button>
+          <button type="submit" class="outline">{{ico "check"}} Markita kiel legita</button>
         </form>
       </footer>
     </article>
@@ -110,12 +110,12 @@
       <footer style="display:flex;gap:0.5rem;flex-wrap:wrap">
         <form hx-post="/admin/tradukoj/{{.ID}}/aprobi"
               hx-target="#traduko-{{.ID}}" hx-swap="outerHTML" style="display:inline">
-          <button type="submit" class="approve-btn">&#10003; Aldoni kiel oficialan difinon</button>
+          <button type="submit" class="approve-btn">{{ico "check"}} Aldoni kiel oficialan difinon</button>
         </form>
         <form hx-post="/admin/tradukoj/{{.ID}}/forigi"
               hx-target="#traduko-{{.ID}}" hx-swap="outerHTML" style="display:inline"
               hx-confirm="Forigi tiun ĉi tradukon?">
-          <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
+          <button type="submit" class="reject-btn outline">{{ico "x"}} Forigi</button>
         </form>
       </footer>
     </article>

@@ -57,7 +57,7 @@
     {{range .SeedFiles}}
     <tr>
       <td><code>{{.}}</code></td>
-      <td><a href="/admin/seed/{{.}}/rigardi" role="button" class="outline btn-sm">&#128065; Rigardi</a></td>
+      <td><a href="/admin/seed/{{.}}/rigardi" role="button" class="outline btn-sm">{{ico "search"}} Rigardi</a></td>
       <td>
         <form method="POST" action="/admin/seed/{{.}}" style="display:inline">
           <input type="hidden" name="mode" value="create">

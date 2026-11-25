@@ -20,9 +20,9 @@
         Ekzerco:
         <a href="/ekzerco/{{.Comment.ContentItemID}}">{{.Title}}</a>
         &middot;
-        <a href="/ekzerco/{{.Comment.ContentItemID}}">&#128065;</a>
+        <a href="/ekzerco/{{.Comment.ContentItemID}}">{{ico "search"}}</a>
         &middot;
-        <a href="/admin/enhavo/{{.Comment.ContentItemID}}/redakti">&#9998;</a>
+        <a href="/admin/enhavo/{{.Comment.ContentItemID}}/redakti">{{ico "pen"}}</a>
       </small>
     </header>
     <p style="white-space:pre-wrap">{{.Comment.Text}}</p>
@@ -32,7 +32,7 @@
             hx-swap="outerHTML"
             hx-confirm="Forigi tiun ĉi komenton?"
             style="display:inline">
-        <button type="submit" class="reject-btn outline">&#10007; Forigi</button>
+        <button type="submit" class="reject-btn outline">{{ico "x"}} Forigi</button>
       </form>
     </footer>
   </article>

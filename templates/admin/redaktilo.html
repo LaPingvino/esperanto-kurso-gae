@@ -77,7 +77,7 @@
 </form>
 
 <details style="margin-top:1.5rem">
-  <summary>&#9998; Renomi serion</summary>
+  <summary>{{ico "pen"}} Renomi serion</summary>
   <form method="POST" action="/admin/serio/{{.SeriesSlug}}/renomi" style="margin-top:0.5rem"
         onsubmit="return confirm('Ĉu vi certas? Ĉi tio ĝisdatigos la serio-identigilon sur ĉiuj ekzercoj kaj la stelumoj de uzantoj.')">
     <div class="grid">
@@ -90,7 +90,7 @@
         <button type="submit" class="outline">Renomi</button>
       </div>
     </div>
-    <small>&#9888; Ĉi tio ĝisdatigas la serio-identigilon sur ĉiuj ekzercoj en la serio kaj ĝisdatigas stelumojn de uzantoj. La propraj identigiloj de la ekzercoj ne ŝanĝiĝas.</small>
+    <small>{{ico "flag"}} Ĉi tio ĝisdatigas la serio-identigilon sur ĉiuj ekzercoj en la serio kaj ĝisdatigas stelumojn de uzantoj. La propraj identigiloj de la ekzercoj ne ŝanĝiĝas.</small>
   </form>
 </details>
 
@@ -355,7 +355,7 @@
     <button type="submit" id="submit-btn">{{if .IsNew}}Krei{{else}}Konservi{{end}}</button>
     <a href="/admin/enhavo" role="button" class="outline">Nuligi</a>
     {{if and (not .IsNew) .Item.SeriesSlug}}
-    <a href="/admin/serio/{{.Item.SeriesSlug}}/redakti" role="button" class="outline">&#128196; Redakti serion</a>
+    <a href="/admin/serio/{{.Item.SeriesSlug}}/redakti" role="button" class="outline">{{ico "list"}} Redakti serion</a>
     {{end}}
     {{if and (not .IsNew) (eq .Item.Type "reading")}}
     <a href="/admin/enhavo/{{.Item.Slug}}/vortaro" role="button" class="outline">Krei vortaron</a>
@@ -363,13 +363,13 @@
     {{if .IsNew}}
     <button type="button" id="series-toggle-btn" onclick="toggleSeriesMode()"
             class="outline secondary" style="margin-left:auto">
-      &#128196; Aldoni kiel serion
+      {{ico "list"}} Aldoni kiel serion
     </button>
     {{end}}
     {{if not .IsNew}}
     <form method="POST" action="/admin/enhavo/{{.Item.Slug}}/forigi" style="display:inline;margin-left:auto"
           onsubmit="return confirm('Ĉu vi certas, ke vi volas forigi «{{.Item.Slug}}»?')">
-      <button type="submit" class="outline contrast">&#10007; Forigi</button>
+      <button type="submit" class="outline contrast">{{ico "x"}} Forigi</button>
     </form>
     {{end}}
   </div>
@@ -412,7 +412,7 @@ function toggleSeriesMode() {
       siAdd(); siAdd(); siAdd();
     }
   } else {
-    btn.textContent = '📄 Aldoni kiel serion';
+    btn.textContent = 'Aldoni kiel serion';
     submitBtn.textContent = 'Krei';
     if (slugField)  slugField.setAttribute('required', '');
     if (typeSelect) typeSelect.setAttribute('required', '');

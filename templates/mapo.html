@@ -1,0 +1,54 @@
+{{template "base" .}}
+
+{{define "title"}}{{t .UILang "map.title"}} — Esperanto-kurso{{end}}
+
+{{- /* The course map: a transit line, one round station per KER level A0–C2,
+     series as stops. Done (filled, ✓), here (ringed, "Vi estas ĉi tie", opens
+     into the next set), ahead (hollow), empty (dashed, says so honestly). */}}
+{{define "content"}}
+{{$L := .UILang}}
+<div class="col">
+  <h1>{{t $L "map.title"}}</h1>
+  <p class="lead">{{t $L "map.lead"}}</p>
+  <ol class="line">
+    {{range .Stations}}
+    <li class="stop {{if eq .State "done"}}done{{else if eq .State "here"}}here{{else if eq .State "empty"}}later{{end}}">
+      <span class="st">{{if eq .State "done"}}{{ico "check"}}{{end}}</span>
+      <div class="stop-head">
+        <h2>{{.Level}}</h2>
+        {{if eq .State "here"}}<span class="here-tag">{{t $L "map.here"}}</span>{{end}}
+        {{if .Series}}<small>{{len .Series}} {{t $L "map.series_n"}}</small>{{end}}
+      </div>
+      {{with .Here}}
+      <div class="here-card">
+        <strong>{{.Label}}</strong>
+        <div class="kinds">{{range .KindList}}<span class="chip">{{typeIco .Kind}}{{tipNomo .Kind}} {{.N}}</span>{{end}}</div>
+        <a class="btn" href="/ekzerco/{{.NextSlug}}">{{if .Started}}{{t $L "home.continue_cta"}}{{else}}{{t $L "home.start_cta"}}{{end}} {{ico "right"}}</a>
+      </div>
+      {{end}}
+      {{if .Series}}
+      {{$hs := ""}}{{with .Here}}{{$hs = .Slug}}{{end}}
+      <ul class="series">
+        {{range $i, $s := .Series}}{{if lt $i 8}}{{if ne $s.Slug $hs}}
+        <li><a href="/ekzerco/{{$s.NextSlug}}" class="{{if $s.Finished}}fin{{else if $s.Started}}part{{end}}">{{if $s.Finished}}{{ico "check"}}{{end}}{{$s.Label}} <span class="n">{{if $s.Started}}{{$s.Done}}/{{end}}{{$s.Total}}</span></a></li>
+        {{end}}{{end}}{{end}}
+      </ul>
+      {{if gt (len .Series) 8}}
+      <details class="more-series">
+        <summary>+ {{sub (len .Series) 8}} {{t $L "map.more"}}</summary>
+        <ul class="series">
+          {{range $i, $s := .Series}}{{if ge $i 8}}{{if ne $s.Slug $hs}}
+          <li><a href="/ekzerco/{{$s.NextSlug}}" class="{{if $s.Finished}}fin{{else if $s.Started}}part{{end}}">{{if $s.Finished}}{{ico "check"}}{{end}}{{$s.Label}} <span class="n">{{if $s.Started}}{{$s.Done}}/{{end}}{{$s.Total}}</span></a></li>
+          {{end}}{{end}}{{end}}
+        </ul>
+      </details>
+      {{end}}
+      {{else}}
+      <p class="empty">{{t $L "map.empty"}} {{if ge (levelIndex .Level) 3}}{{t $L "map.empty_angla"}} <a href="/vojkrucigxo">angla.org</a>.{{else}}<a href="/gramatiko">{{t $L "map.empty_grammar"}}</a>{{end}}</p>
+      {{end}}
+    </li>
+    {{end}}
+  </ol>
+  <p class="map-foot">{{t $L "map.foot"}} <a href="/vortaro">{{t $L "nav.vortaro"}}</a> · <a href="/etikedoj">{{t $L "tags.title"}}</a> · <a href="/ludo/">{{t $L "nav.game"}}</a></p>
+</div>
+{{end}}

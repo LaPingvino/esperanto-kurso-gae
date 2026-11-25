@@ -32,8 +32,8 @@
     <small>nivelo ≈ {{printf "%.0f" .Rating}}</small>
   </header>
   {{if .Title}}<p><strong>{{.Title}}</strong></p>{{end}}
-  {{if .Question}}<p>&#10067; {{.Question}}</p>{{end}}
-  {{if .Answer}}<p>&#10003; <code>{{.Answer}}</code></p>{{end}}
+  {{if .Question}}<p>{{ico "chat"}} {{.Question}}</p>{{end}}
+  {{if .Answer}}<p>{{ico "check"}} <code>{{.Answer}}</code></p>{{end}}
   {{if .Text}}<p style="white-space:pre-wrap;max-height:8em;overflow:auto;font-size:0.85em">{{.Text}}</p>{{end}}
 </article>
 {{end}}

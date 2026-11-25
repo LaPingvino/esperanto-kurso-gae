@@ -140,7 +140,7 @@ function addItem(q='', a='', typ=null) {
     <select name="item_type">${typeOptions(defType)}</select>
     <input type="text" name="item_question" value="${escHtml(q)}" placeholder="Demando / teksto" required>
     <input type="text" name="item_answer"   value="${escHtml(a)}" placeholder="Respondo (nedeviga)">
-    <button type="button" class="outline contrast" style="padding:0.2em 0.6em" onclick="removeItem(this)" title="Forigi">&#10007;</button>
+    <button type="button" class="outline contrast" style="padding:0.2em 0.6em" onclick="removeItem(this)" title="Forigi">{{ico "x"}}</button>
   `;
   list.appendChild(row);
   renumber();

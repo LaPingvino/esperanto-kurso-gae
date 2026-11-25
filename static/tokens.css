@@ -1,0 +1,220 @@
+/* kurso-design — shared tokens for esperanto-kurso.net and angla.org
+ *
+ * Custom properties only: this file is the contract. Component CSS lives in
+ * index.html (illustration, free to re-implement).
+ *
+ * Theme:  light by default; dark via prefers-color-scheme unless the page sets
+ *         <html data-theme="light">; <html data-theme="dark"> forces dark.
+ * Site:   put data-site="eo" (esperanto-kurso.net) or data-site="en" (angla.org)
+ *         on <html> or any container; --accent-* then follow that site.
+ *
+ * Every text/background pair used by the design is checked by tools/contrast.py
+ * (7:1 for all text, 3:1 for control edges and meaningful icons). Change a
+ * colour here, then run:  python tools/contrast.py --write
+ */
+
+:root {
+  /* ── Type ─────────────────────────────────────────────────────────── */
+  --font-ui: "Source Sans 3", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", sans-serif;
+  --font-read: "Charis SIL", Charter, "Bitstream Charter", "Noto Serif", Georgia, serif;
+  --font-display: "Fraunces", "Charis SIL", Georgia, serif;
+  --font-ipa: "Charis SIL", "Noto Sans", "Doulos SIL", serif;
+  --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  /* Fraunces axes: each site picks its own personality (see DESIGN.md). */
+  --display-soft: 50;
+  --display-wonk: 0;
+  --display-weight: 620;
+
+  /* Scale: 1.2 ratio from a 17px body; fluid at the top end only. */
+  --text-xs: 0.8125rem;   /* 13px — never for running text */
+  --text-sm: 0.9375rem;   /* 15px — meta, chips */
+  --text-md: 1.0625rem;   /* 17px — body */
+  --text-lg: 1.25rem;     /* 20px — reading text, lead */
+  --text-xl: 1.5rem;      /* 24px — h3, card titles */
+  --text-2xl: clamp(1.625rem, 1.3rem + 1.2vw, 2rem);      /* h2 */
+  --text-3xl: clamp(2rem, 1.5rem + 2.2vw, 2.75rem);       /* h1 */
+  --text-word: clamp(2.25rem, 1.6rem + 3vw, 3.25rem);     /* flashcard word */
+
+  --leading-tight: 1.15;
+  --leading-ui: 1.4;
+  --leading-read: 1.65;
+  --measure: 66ch;
+
+  /* ── Space (4px base) ─────────────────────────────────────────────── */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2rem);
+  --content-max: 46rem;   /* reading column */
+  --wide-max: 72rem;      /* home, map */
+
+  /* ── Shape ────────────────────────────────────────────────────────── */
+  --radius-sm: 6px;       /* chips, inputs */
+  --radius-md: 10px;      /* buttons */
+  --radius-lg: 16px;      /* cards */
+  --radius-pill: 999px;
+  --border: 1px;
+  --border-strong: 2px;
+  --focus-width: 3px;
+  --tap: 44px;            /* minimum touch target */
+
+  --shadow-card: 0 1px 0 var(--line), 0 6px 18px -12px rgb(16 44 40 / 0.35);
+
+  /* Activities: tiles and the stage */
+  --tile-border: 2px;
+  --tile-lift: 4px;       /* the pressable ledge under a tile */
+  --tile-min: 56px;       /* answer tiles are bigger than the 44px minimum */
+  --stage-max: 40rem;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --dur: 180ms;
+
+  /* ── Colour: light ────────────────────────────────────────────────── */
+  /* Shared base: a light green-teal page with deep teal ink. */
+  --paper: #E6F2EE;
+  --surface: #FAFDFC;
+  --sunk: #D3E6E0;
+  --ink: #102C28;
+  --ink-muted: #2C4A45;
+  --line: #BFD8D1;          /* decorative dividers only */
+  --edge: #5F7F79;          /* control borders: >= 3:1 on paper/surface */
+
+  /* Esperanto-kurso: the green of the flag, deepened for AAA text. */
+  --eo-fill: #17632F;
+  --eo-on-fill: #FFFFFF;
+  --eo-text: #0F5024;
+  --eo-tint: #D5EDD9;
+  --eo-line: #2A8046;       /* map line, progress fill (non-text, >= 3:1) */
+
+  /* angla.org: a deep indigo; never shown next to green without a shape cue. */
+  --en-fill: #2A3F8F;
+  --en-on-fill: #FFFFFF;
+  --en-text: #283C88;
+  --en-tint: #DDE3F5;
+  --en-line: #4A63B8;
+
+  /* Shared meaning colours — identical on both sites. */
+  --right-text: #145224;
+  --right-tint: #D8F0DC;
+  --right-edge: #2F8A45;
+  --wrong-text: #8A2317;
+  --wrong-tint: #FBE1DA;
+  --wrong-edge: #C4503C;
+  --note-text: #5A3A00;     /* "kontrasto kun Esperanto", hints */
+  --note-tint: #FBEBC6;
+  --star: #C68A00;          /* earned stars, streak (icon, with outline) */
+  --star-edge: #7A5500;
+
+  /* Picture frame. The pictures (OpenMoji) draw with black outlines, so the
+     frame stays light in both themes, like a printed card. */
+  --pic-bg: #F2F7F5;
+
+  color-scheme: light;
+}
+
+/* ── Colour: dark ───────────────────────────────────────────────────── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1D1B;
+    --surface: #152826;
+    --sunk: #1E3532;
+    --ink: #E2F1ED;
+    --ink-muted: #A8C7C0;
+    --line: #284440;
+    --edge: #6E918A;
+
+    --eo-fill: #6ACB8A;
+    --eo-on-fill: #08180D;
+    --eo-text: #82D69E;
+    --eo-tint: #173A26;
+    --eo-line: #4FB073;
+
+    --en-fill: #9CB0F0;
+    --en-on-fill: #0D1530;
+    --en-text: #AFC0F5;
+    --en-tint: #1F2A4D;
+    --en-line: #7389DC;
+
+    --right-text: #9EE0AE;
+    --right-tint: #163823;
+    --right-edge: #57B06E;
+    --wrong-text: #F6B0A3;
+    --wrong-tint: #3E1F1B;
+    --wrong-edge: #D9705F;
+    --note-text: #F2D08A;
+    --note-tint: #3A2E15;
+    --star: #E8B53A;
+    --star-edge: #E8B53A;
+
+    --pic-bg: #DCE7E3;
+
+    --shadow-card: 0 1px 0 var(--line), 0 8px 20px -14px rgb(0 0 0 / 0.8);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0E1D1B;
+  --surface: #152826;
+  --sunk: #1E3532;
+  --ink: #E2F1ED;
+  --ink-muted: #A8C7C0;
+  --line: #284440;
+  --edge: #6E918A;
+
+  --eo-fill: #6ACB8A;
+  --eo-on-fill: #08180D;
+  --eo-text: #82D69E;
+  --eo-tint: #173A26;
+  --eo-line: #4FB073;
+
+  --en-fill: #9CB0F0;
+  --en-on-fill: #0D1530;
+  --en-text: #AFC0F5;
+  --en-tint: #1F2A4D;
+  --en-line: #7389DC;
+
+  --right-text: #9EE0AE;
+  --right-tint: #163823;
+  --right-edge: #57B06E;
+  --wrong-text: #F6B0A3;
+  --wrong-tint: #3E1F1B;
+  --wrong-edge: #D9705F;
+  --note-text: #F2D08A;
+  --note-tint: #3A2E15;
+  --star: #E8B53A;
+  --star-edge: #E8B53A;
+
+  --pic-bg: #DCE7E3;
+
+  --shadow-card: 0 1px 0 var(--line), 0 8px 20px -14px rgb(0 0 0 / 0.8);
+  color-scheme: dark;
+}
+
+/* ── Site flavour ───────────────────────────────────────────────────── */
+[data-site="eo"] {
+  --accent-fill: var(--eo-fill);
+  --accent-on-fill: var(--eo-on-fill);
+  --accent-text: var(--eo-text);
+  --accent-tint: var(--eo-tint);
+  --accent-line: var(--eo-line);
+  --display-soft: 100;   /* round, friendly */
+  --display-wonk: 0;
+  --display-weight: 600;
+}
+
+[data-site="en"] {
+  --accent-fill: var(--en-fill);
+  --accent-on-fill: var(--en-on-fill);
+  --accent-text: var(--en-text);
+  --accent-tint: var(--en-tint);
+  --accent-line: var(--en-line);
+  --display-soft: 0;     /* crisper, a little bookish */
+  --display-wonk: 1;
+  --display-weight: 640;
+}

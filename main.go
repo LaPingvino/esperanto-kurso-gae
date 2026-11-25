@@ -1,9 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"context"
+	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
+	"fmt"
+	"os"
 	"html"
 	"html/template"
 	"io"
@@ -47,6 +50,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("templates: %v", err)
 	}
+	handler.AssetVersion = assetVersion()
 
 	// --- Auth ---
 	sessionStore := localauth.NewSessionStore(db)
@@ -79,9 +83,14 @@ func main() {
 	mux.HandleFunc("POST /ekzerco/{slug}/steli", contentH.ToggleFavorite)
 	mux.HandleFunc("POST /serio/{series_slug}/steli", contentH.ToggleFavoriteSeries)
 	mux.HandleFunc("POST /etikedo/{tag}/steli", contentH.ToggleFavoriteTag)
-	mux.HandleFunc("GET /honorlisto", contentH.ShowHonorListo)
-	mux.HandleFunc("GET /serioj-nav", contentH.SeriesNavOptions)
-	mux.HandleFunc("GET /serioj", contentH.ShowSeriesBrowser)
+	mux.HandleFunc("GET /mapo", contentH.ShowMap)
+	mux.HandleFunc("GET /gramatiko", contentH.ShowGrammarIndex)
+	mux.HandleFunc("GET /gramatiko/{topic}", contentH.ShowGrammar)
+	mux.HandleFunc("GET /vojkrucigxo", contentH.ShowHandoff)
+	// The map replaces the series browser; the honour list is dropped (a
+	// rating leaderboard serves neither the course nor the path to English).
+	mux.Handle("GET /serioj", http.RedirectHandler("/mapo", http.StatusMovedPermanently))
+	mux.Handle("GET /honorlisto", http.RedirectHandler("/mapo", http.StatusMovedPermanently))
 	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
 	mux.HandleFunc("GET /fontoj", contentH.ShowCredits)
 	// The course as a game (game/; built into static/ludo by `make ludo`). On
@@ -228,8 +237,10 @@ func parseTemplates() (*pageTemplates, error) {
 		"sercxi.html":           "templates/sercxi.html",
 		"etikedoj.html":         "templates/etikedoj.html",
 		"steloj.html":           "templates/steloj.html",
-		"honorlisto.html":       "templates/honorlisto.html",
-		"serioj.html":           "templates/serioj.html",
+		"mapo.html":             "templates/mapo.html",
+		"gramatiko.html":        "templates/gramatiko.html",
+		"gramatikero.html":      "templates/gramatikero.html",
+		"vojkrucigxo.html":      "templates/vojkrucigxo.html",
 		"fontoj.html":           "templates/fontoj.html",
 		"admin-komentoj.html":       "templates/admin/komentoj.html",
 		"admin-seed-rigardi.html":   "templates/admin/seed-rigardi.html",
@@ -254,6 +265,7 @@ func parseTemplates() (*pageTemplates, error) {
 		// (e.g. "admin_uzantoj.html") differs from the basename ("uzantoj.html").
 		t, err := template.New(filepath.Base(path)).Funcs(funcs).ParseFiles(
 			"templates/base.html",
+			"templates/partials/ikonoj.html",
 			"templates/partials/vochdonado.html",
 			"templates/partials/komentoj.html",
 			"templates/partials/traduko.html",
@@ -266,7 +278,11 @@ func parseTemplates() (*pageTemplates, error) {
 	}
 
 	for name, path := range partials {
-		t, err := template.New(name).Funcs(funcs).ParseFiles(path)
+		files := []string{path}
+		if name == "rezulto.html" { // the verdict carries the compact vote
+			files = append(files, "templates/partials/vote-kompakta.html")
+		}
+		t, err := template.New(name).Funcs(funcs).ParseFiles(files...)
 		if err != nil {
 			return nil, fmt.Errorf("parseTemplates partial %s: %w", name, err)
 		}
@@ -277,17 +293,49 @@ func parseTemplates() (*pageTemplates, error) {
 }
 
 func templateFuncs() template.FuncMap {
-	typeNames := map[string]string{
-		"multiplechoice": "Plurelekta",
-		"fillin":         "Plenigi blankon",
-		"listening":      "Aŭskulti",
-		"vocab":          "Vortaro",
-		"reading":        "Legado",
-		"phrasebook":     "Frazaro",
-		"image":          "Bildo",
-		"video":          "Video",
-	}
 	return template.FuncMap{
+		// Drawn icons (templates/partials/ikonoj.html), never emoji.
+		"ico": handler.Icon,
+		// kindIco / tipNomo: an item's kind as icon + word (DESIGN.md 8).
+		"kindIco": func(item *model.ContentItem) template.HTML {
+			return handler.Icon(handler.KindIcon(item))
+		},
+		"typeIco": func(typ string) template.HTML {
+			return handler.Icon(handler.KindIcon(&model.ContentItem{Type: typ}))
+		},
+		"tipNomo": handler.KindName,
+		"itemKind": func(item *model.ContentItem) string {
+			return handler.KindName(handler.ItemKind(item))
+		},
+		// levelIndex: a KER level's place on the line (A0 = 0 … C2 = 6).
+		"levelIndex": func(l string) int {
+			for i, x := range handler.Levels {
+				if x == l {
+					return i
+				}
+			}
+			return -1
+		},
+		// versio busts the browser cache of the static files on each deploy.
+		"versio": func() string { return handler.AssetVersion },
+		// vojo: the seven Esperanto stations of the footer strip, as the
+		// class of each dot ("" passed, "me" here, "off" ahead).
+		"vojo": func(here string) []string {
+			var out []string
+			passed := true
+			for _, l := range handler.Levels {
+				switch {
+				case l == here:
+					out = append(out, "me")
+					passed = false
+				case passed:
+					out = append(out, "")
+				default:
+					out = append(out, "off")
+				}
+			}
+			return out
+		},
 		// Pictures (internal/bildoj): through data, never by hand here.
 		// vortBildo: a vocab item's word picture, or a picture exercise's
 		// (multiplechoice with content "bildo"); nil when there is none.
@@ -322,12 +370,6 @@ func templateFuncs() template.FuncMap {
 		"isRTL": func(lang string) bool {
 			return locale.IsRTL(lang)
 		},
-		"tipNomo": func(t string) string {
-			if name, ok := typeNames[t]; ok {
-				return name
-			}
-			return t
-		},
 		"cefr": func(rating float64) string {
 			return model.RatingToCEFR(rating)
 		},
@@ -339,7 +381,7 @@ func templateFuncs() template.FuncMap {
 			if u.Role == "admin" || u.Role == "mod" || u.Role == "creator" {
 				return true
 			}
-			return u.Rating >= 1500 && u.RD < 150
+			return u.Established()
 		},
 		"slice": func(s string, i, j int) string {
 			if i < 0 {
@@ -353,43 +395,24 @@ func templateFuncs() template.FuncMap {
 			}
 			return s[i:j]
 		},
-		"seriesBar": func(current, total int) string {
-			if total <= 0 {
-				return ""
+		// defForLang: a vocab definition in the requested language only.
+		"defForLang": handler.DefinitionIn,
+		// percent: a part of a whole as a whole percentage (progress bars).
+		"percent": func(part, whole int) int {
+			if whole <= 0 {
+				return 0
 			}
-			bar := ""
-			for i := 1; i <= total; i++ {
-				if i < current {
-					bar += "▪"
-				} else if i == current {
-					bar += "◆"
-				} else {
-					bar += "▫"
-				}
-			}
-			return bar
+			return part * 100 / whole
 		},
-		// defForLang returns a vocab definition in the requested language only.
-		// Checks content["definitions"]["lang"] first (multilingual map), then falls
-		// back to the legacy content["definition"] flat string as English.
-		"defForLang": func(content map[string]interface{}, lang string) string {
-			if content == nil {
-				return ""
-			}
-			if defsRaw, ok := content["definitions"]; ok {
-				if defs, ok := defsRaw.(map[string]interface{}); ok {
-					if v, ok := defs[lang].(string); ok && v != "" {
-						return v
-					}
+		// longest: the length in characters of the longest string (tile layout).
+		"longest": func(ss []string) int {
+			n := 0
+			for _, s := range ss {
+				if l := len([]rune(s)); l > n {
+					n = l
 				}
 			}
-			// Legacy fallback: flat "definition" field treated as English.
-			if lang == "en" {
-				if v, ok := content["definition"].(string); ok && v != "" {
-					return v
-				}
-			}
-			return ""
+			return n
 		},
 		// allDefs returns all available definitions from content["definitions"] as a map.
 		// Also includes the legacy flat content["definition"] as "en" if no multilingual map exists.
@@ -601,6 +624,18 @@ func templateFuncs() template.FuncMap {
 			return code
 		},
 	}
+}
+
+// assetVersion is a short hash of the static files the pages load, so their
+// URLs change whenever their contents do.
+func assetVersion() string {
+	h := sha256.New()
+	for _, f := range []string{"static/tokens.css", "static/stilo.css", "static/eo.js"} {
+		if b, err := os.ReadFile(f); err == nil {
+			h.Write(b)
+		}
+	}
+	return hex.EncodeToString(h.Sum(nil))[:10]
 }
 
 // isEoLetter reports whether r is an Esperanto letter (Latin + special chars).

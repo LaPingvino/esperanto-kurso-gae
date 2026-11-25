@@ -7,24 +7,23 @@
     <button type="submit" name="value" value="1"
             class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
             title="{{t .UILang "vote.aria_up"}}"
-            aria-label="{{t .UILang "vote.aria_up"}}">&#9650;</button>
+            aria-label="{{t .UILang "vote.aria_up"}}">{{ico "up"}}</button>
     <span class="vote-score-inline" aria-label="{{.VoteScore}} {{t .UILang "vote.count_aria"}}">{{.VoteScore}}</span>
     <button type="submit" name="value" value="-1"
             class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
             title="{{t .UILang "vote.aria_down"}}"
-            aria-label="{{t .UILang "vote.aria_down"}}">&#9660;</button>
+            aria-label="{{t .UILang "vote.aria_down"}}">{{ico "down"}}</button>
   </form>
   <details id="flag-{{.ContentID}}" class="flag-section">
-    <summary class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">&#9873; {{t .UILang "flag.button"}}</summary>
+    <summary class="flag-btn outline secondary" title="{{t .UILang "flag.title"}}">{{ico "flag"}} {{t .UILang "flag.button"}}</summary>
     <form hx-post="/ekzerco/{{.ContentID}}/flagi"
           hx-target="#flag-{{.ContentID}}"
           hx-swap="outerHTML"
-          style="margin-top:0.5rem">
+          class="flag-form">
       <textarea name="comment" rows="2" maxlength="500"
-                placeholder="Priskribu la problemon (nedeviga)..."
-                style="font-size:0.85em"></textarea>
+                placeholder="{{t .UILang "flag.placeholder"}}"></textarea>
       <button type="submit" class="flag-btn outline secondary">
-        &#9873; {{t .UILang "flag.button"}}
+        {{ico "flag"}} {{t .UILang "flag.button"}}
       </button>
     </form>
   </details>

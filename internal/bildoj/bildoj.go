@@ -173,3 +173,17 @@ func ForReading(slug, series string) string {
 	}
 	return ""
 }
+
+// Topics are the A0 picture topics in the order of vortbildoj.json: the order
+// in which a newcomer meets the picture series bildoj-<topic>.
+func Topics() []string {
+	var out []string
+	seen := map[string]bool{}
+	for _, p := range all {
+		if p.Topic != "" && !seen[p.Topic] {
+			seen[p.Topic] = true
+			out = append(out, p.Topic)
+		}
+	}
+	return out
+}

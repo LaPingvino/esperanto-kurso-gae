@@ -1,236 +1,149 @@
 {{define "base"}}<!DOCTYPE html>
-<html lang="{{.UILang}}"{{if isRTL .UILang}} dir="rtl"{{end}}>
+<html lang="{{.UILang}}" data-site="eo"{{if isRTL .UILang}} dir="rtl"{{end}}>
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>{{block "title" .}}Esperanto-kurso{{end}}</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
-  <link rel="stylesheet" href="/static/stilo.css">
-  <script>(function(){var t=localStorage.getItem('eo_theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);})();</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Charis+SIL:ital,wght@0,400;0,700;1,400&family=Fraunces:opsz,wght,SOFT,WONK@9..144,400..700,0..100,0..1&family=Source+Sans+3:ital,wght@0,400..700;1,400&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2.0.6/css/pico.min.css">
+  <link rel="stylesheet" href="/static/tokens.css?v={{versio}}">
+  <link rel="stylesheet" href="/static/stilo.css?v={{versio}}">
+  <link rel="icon" href="/static/bildoj/signo.svg" type="image/svg+xml">
+  <script>(function(){try{var t=localStorage.getItem('eo_theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-  <script src="/static/eo.js" defer></script>
+  <script src="/static/eo.js?v={{versio}}" defer></script>
 </head>
-<body>
-  <header class="container">
-    <nav>
-      <ul>
-        <li><strong><a href="/" class="site-title">Esperanto-kurso</a></strong>
-          <a href="/admin/initial" id="admin-link" aria-hidden="true" tabindex="-1">&#9651;</a>
-          {{if .User}}
-            {{if eq .User.Role "admin"}}&nbsp;<a href="/admin" title="{{t .UILang "nav.admin"}}">⚙️</a>{{end}}
-            {{if eq .User.Role "mod"}}&nbsp;<a href="/admin/moderigo" title="{{t .UILang "nav.mod"}}">🔧</a>{{end}}
-            {{if canContribute .User}}&nbsp;<a href="/admin/enhavo/nova" title="{{t .UILang "nav.contribute"}}">➕</a>{{end}}
-          {{end}}
-        </li>
-      </ul>
-      <ul>
-        <li><a href="/" title="{{t .UILang "nav.home"}}">🏠</a></li>
-        <li>
-          <form method="GET" action="/vortaro" class="nav-search-form">
-            <input type="search" name="s" placeholder="🔍" class="nav-search" aria-label="{{t .UILang "nav.vortaro"}}">
-          </form>
-        </li>
-        {{if .User}}<li><a href="/steloj" title="{{t .UILang "nav.favorites"}}">★</a></li>{{end}}
-        <li><a href="/serioj" title="{{t .UILang "nav.serioj"}}">📋</a></li>
-        <li><a href="/honorlisto" title="{{t .UILang "nav.honorlisto"}}">🏆</a></li>
-        <li><a href="/ludo/" title="{{t .UILang "nav.ludo"}}">🎲</a></li>
-        <li><button id="theme-toggle" class="theme-toggle" onclick="cycleTheme()">🔆</button></li>
-        <li><button class="focus-toggle" onclick="toggleFocusMode()" title="{{t .UILang "focus.toggle"}}">🎯</button></li>
-        <li><a href="/enskribi" class="nav-profile" title="{{t .UILang "nav.profile"}}">{{if .User}}<span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>{{if .User.Username}}&nbsp;@{{.User.Username}}{{else}}&nbsp;👤{{slice .User.ID 0 6}}{{end}}{{else}}🔑{{end}}</a></li>
-        {{- /* ── Language switchers ── */}}
-        {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
-        <li class="lang-switchers">
-          <form method="POST" action="/uilingvo" id="ui-lang-form" class="lang-form" title="{{t .UILang "nav.ui_lang_title"}}">
-            <label>&#127760;<input id="ui-lang-input" name="ui_lang" type="text"
-                    list="ui-lang-list" autocomplete="off" spellcheck="false"
-                    class="lang-input" placeholder="{{.UILang}}"
-                    value="{{.UILang}}"
-                    oninput="uiLangInput(this)"
-                    onfocus="langInputFocus(this)"
-                    onblur="langInputBlur(this,'ui-lang-list')"></label>
-            <datalist id="ui-lang-list">
-              <option value="ar">العربية</option>
-              <option value="bn">বাংলা</option>
-              <option value="cs">Čeština</option>
-              <option value="da">Dansk</option>
-              <option value="de">Deutsch</option>
-              <option value="el">Ελληνικά</option>
-              <option value="en">English</option>
-              <option value="eo">Esperanto</option>
-              <option value="es">Español</option>
-              <option value="fa">فارسی</option>
-              <option value="fr">Français</option>
-              <option value="he">עברית</option>
-              <option value="hi">हिन्दी</option>
-              <option value="hu">Magyar</option>
-              <option value="id">Bahasa Indonesia</option>
-              <option value="it">Italiano</option>
-              <option value="ja">日本語</option>
-              <option value="ko">한국어</option>
-              <option value="nl">Nederlands</option>
-              <option value="pl">Polski</option>
-              <option value="pt">Português</option>
-              <option value="ro">Română</option>
-              <option value="ru">Русский</option>
-              <option value="sv">Svenska</option>
-              <option value="sw">Kiswahili</option>
-              <option value="tr">Türkçe</option>
-              <option value="uk">Українська</option>
-              <option value="ur">اردو</option>
-              <option value="vi">Tiếng Việt</option>
-              <option value="tok">Toki Pona</option>
-              <option value="zh">中文</option>
-            </datalist>
-          </form>
-          <form method="POST" action="/lingvo" id="vocab-lang-form" class="lang-form" title="{{t .UILang "nav.vocab_lang_title"}}">
-            <label>&#128172;<input id="vocab-lang-input" name="lang" type="text"
-                    list="vocab-lang-list" autocomplete="off" spellcheck="false"
-                    class="lang-input" placeholder="{{$vl}}"
-                    value="{{$vl}}"
-                    oninput="vocabLangInput(this)"
-                    onfocus="langInputFocus(this)"
-                    onblur="langInputBlur(this,'vocab-lang-list')"></label>
-            <datalist id="vocab-lang-list">
-              <option value="ar">العربية</option>
-              <option value="be">Беларуская</option>
-              <option value="bn">বাংলা</option>
-              <option value="ca">Català</option>
-              <option value="cs">Čeština</option>
-              <option value="da">Dansk</option>
-              <option value="de">Deutsch</option>
-              <option value="el">Ελληνικά</option>
-              <option value="en">English</option>
-              <option value="eo">Esperanto</option>
-              <option value="es">Español</option>
-              <option value="fa">فارسی</option>
-              <option value="fr">Français</option>
-              <option value="frp">Arpitan</option>
-              <option value="ga">Gaeilge</option>
-              <option value="he">עברית</option>
-              <option value="hi">हिन्दी</option>
-              <option value="hr">Hrvatski</option>
-              <option value="hu">Magyar</option>
-              <option value="id">Bahasa Indonesia</option>
-              <option value="it">Italiano</option>
-              <option value="ja">日本語</option>
-              <option value="kk">Қазақша</option>
-              <option value="km">ខ្មែរ</option>
-              <option value="ko">한국어</option>
-              <option value="ku">Kurdî</option>
-              <option value="lo">ລາວ</option>
-              <option value="mg">Malagasy</option>
-              <option value="ms">Bahasa Melayu</option>
-              <option value="my">မြန်မာဘာသာ</option>
-              <option value="nl">Nederlands</option>
-              <option value="pl">Polski</option>
-              <option value="pt">Português</option>
-              <option value="ro">Română</option>
-              <option value="ru">Русский</option>
-              <option value="sk">Slovenčina</option>
-              <option value="sl">Slovenščina</option>
-              <option value="sv">Svenska</option>
-              <option value="sw">Kiswahili</option>
-              <option value="th">ไทย</option>
-              <option value="tok">Toki Pona</option>
-              <option value="tr">Türkçe</option>
-              <option value="uk">Українська</option>
-              <option value="ur">اردو</option>
-              <option value="vi">Tiếng Việt</option>
-              <option value="yo">Yorùbá</option>
-              <option value="zh">中文</option>
-              <option value="zh-tw">繁體中文</option>
-            </datalist>
-          </form>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-  {{if .User}}{{if .User.NeedsAccountNudge}}
-  <div class="container">
-    <div class="account-nudge" id="account-nudge" hidden>
-      <span class="account-nudge-text">&#128273; <strong>{{t .UILang "nudge.title"}}</strong> {{t .UILang "nudge.text"}}</span>
-      <a href="/enskribi" role="button" class="account-nudge-cta">{{t .UILang "nudge.cta"}}</a>
-      <button type="button" class="account-nudge-close" onclick="dismissAccountNudge()" aria-label="{{t .UILang "nudge.dismiss"}}" title="{{t .UILang "nudge.dismiss"}}">&times;</button>
-    </div>
-  </div>
-  {{end}}{{end}}
-
-  <main class="container">
-    {{block "content" .}}{{end}}
-  </main>
-
-  <footer class="container">
-    <small>
-      {{if .User}}
-        <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
-        <span class="rating-badge">{{printf "%.0f" .User.Rating}}</span>
-        <span id="footer-streak">{{if .User.CurrentStreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.CurrentStreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}</span>
-        <span class="user-id-badge" title="via uzant-ID"><a href="/enskribi">{{if .User.Username}}@{{.User.Username}}{{else}}<code>{{.User.ID}}</code>{{end}}</a></span>
-      {{else}}
-        <em><a href="/enskribi">{{t .UILang "footer.login_link"}}</a> {{t .UILang "footer.login_prompt"}}</em>
-      {{end}}
-      &mdash; Esperanto-kurso &copy; 2026
-    </small>
-    <div class="footer-tools">
-      <small><a href="/etikedoj" class="footer-tool-link">🏷️ {{t .UILang "tags.title"}}</a></small>
-      <small><a href="/fontoj" class="footer-tool-link">🖼️ {{t .UILang "credits.footer"}}</a></small>
-      <details class="footer-widget support-corner">
-        <summary>&#128154; {{t .UILang "support.title"}}</summary>
-        <div class="footer-panel support-options">
-          <p>{{t .UILang "support.text"}}</p>
-          <ul>
-            <li><span class="support-method">bunq</span><a href="https://bunq.me/lapingvino" target="_blank" rel="noopener">bunq.me/lapingvino</a></li>
-            <li><span class="support-method">PayPal</span><a href="https://www.paypal.com/paypalme/lapingvino" target="_blank" rel="noopener">paypal.me/lapingvino</a></li>
-            <li><span class="support-method">Bitcoin Cash</span><a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20" id="support-bch" data-copy="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><code>qrrqxuwd&hellip;ju53j7glf20</code></a>
-              <button type="button" class="support-copy" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">&#128203;</button>
-              <details class="bch-qr">
-                <summary title="QR">&#128241; QR</summary>
-                <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><img src="/static/bch-qr.png" alt="Bitcoin Cash QR" width="185" height="185" loading="lazy"></a>
-              </details></li>
-          </ul>
-        </div>
-      </details>
-      <details id="series-nav-details" class="footer-widget">
-        <summary>&#9776; serioj</summary>
-        <div class="footer-panel series-nav-panel">
-          <input type="search" id="series-nav-search" placeholder="Serĉi serion…"
-                 oninput="filterSeriesNav(this.value)" autocomplete="off">
-          <select id="series-nav-select" size="6"
-                  onchange="if(this.value){window.location=this.value;this.value=''}">
-            <option value="" disabled>— ŝarĝas —</option>
-          </select>
-        </div>
-      </details>
-    </div>
-  </footer>
-
-  <script>
-  var _seriesNavOptions = [];
-  var _seriesNavLoaded = false;
-  document.getElementById('series-nav-details').addEventListener('toggle', function(e) {
-    if (!e.target.open || _seriesNavLoaded) return;
-    _seriesNavLoaded = true;
-    fetch('/serioj-nav').then(function(r){ return r.text(); }).then(function(html) {
-      var sel = document.getElementById('series-nav-select');
-      sel.innerHTML = html;
-      _seriesNavOptions = Array.from(sel.options).map(function(o){ return {v:o.value,t:o.text}; });
-      var q = document.getElementById('series-nav-search').value;
-      if (q) filterSeriesNav(q);
-    });
-  });
-
-  function filterSeriesNav(q) {
-    if (!_seriesNavOptions.length) return;
-    var sel = document.getElementById('series-nav-select');
-    q = q.toLowerCase();
-    sel.innerHTML = _seriesNavOptions
-      .filter(function(o){ return !q || o.t.toLowerCase().indexOf(q) >= 0; })
-      .map(function(o){ return '<option value="'+o.v+'">'+o.t+'</option>'; })
-      .join('') || '<option value="" disabled>— neniu trovita —</option>';
-  }
-  </script>
-
-  <button class="focus-exit" onclick="toggleFocusMode()" title="{{t .UILang "focus.exit"}}" aria-label="{{t .UILang "focus.exit"}}">🎯</button>
+<body class="{{block "korpo" .}}{{end}}">
+{{template "ikonoj"}}
+{{block "kapo" .}}{{template "siteheader" .}}{{end}}
+<main{{block "mainclass" .}} class="wrap"{{end}}>
+{{block "content" .}}{{end}}
+</main>
+{{block "piedo" .}}{{template "sitefooter" .}}{{end}}
 </body>
 </html>{{end}}
+
+{{define "siteheader"}}
+<header class="sh">
+  <a class="wordmark display" href="/"><svg class="mark" aria-hidden="true"><use href="#m-eo"/></svg>Esperanto-kurso</a>
+  <nav aria-label="{{t .UILang "nav.main"}}"><ul>
+    <li><a href="/" data-loko="/">{{ico "home"}}{{t .UILang "nav.home"}}</a></li>
+    <li><a href="/mapo" data-loko="/mapo">{{ico "map"}}{{t .UILang "nav.map"}}</a></li>
+    <li><a href="/vortaro" data-loko="/vortaro">{{ico "image"}}{{t .UILang "nav.words"}}</a></li>
+    <li><a href="/gramatiko" data-loko="/gramatiko">{{ico "gram"}}{{t .UILang "nav.grammar"}}</a></li>
+    <li><a href="/ludo/">{{ico "die"}}{{t .UILang "nav.game"}}</a></li>
+  </ul></nav>
+  <div class="who">
+    <a class="icon-btn wide-only" href="/vortaro" title="{{t .UILang "nav.vortaro"}}" aria-label="{{t .UILang "nav.vortaro"}}">{{ico "search"}}</a>
+    <details class="menu" id="profile-menu">
+      <summary aria-label="{{t .UILang "nav.profile"}}">{{if and .User (.User.Placed)}}<span class="chip lvl solid">{{.User.CEFRLevel}}</span>{{else if .User}}<span class="chip lvl">{{ico "user"}}{{t .UILang "nav.profile"}}</span>{{else}}<span class="chip lvl">{{ico "key"}}{{t .UILang "nav.login"}}</span>{{end}}</summary>
+      <div class="menu-panel">
+        <a href="/enskribi">{{ico "user"}}{{if .User}}{{if .User.Username}}@{{.User.Username}}{{else}}{{t .UILang "nav.profile"}}{{end}}{{else}}{{t .UILang "nav.login"}}{{end}}</a>
+        {{if .User}}<a href="/steloj">{{ico "star"}}{{t .UILang "nav.favorites"}}</a>{{end}}
+        {{if .User}}
+          {{if eq .User.Role "admin"}}<a href="/admin">{{ico "gear"}}{{t .UILang "nav.admin"}}</a>{{end}}
+          {{if or (eq .User.Role "admin") (eq .User.Role "mod")}}<a href="/admin/moderigo">{{ico "shield"}}{{t .UILang "nav.mod"}}</a>{{end}}
+          {{if canContribute .User}}<a href="/admin/enhavo/nova">{{ico "plus"}}{{t .UILang "nav.contribute"}}</a>{{end}}
+        {{end}}
+        <hr>
+        {{$vl := "en"}}{{if .User}}{{if .User.Lang}}{{$vl = .User.Lang}}{{end}}{{end}}
+        <div class="menu-row">
+          <form method="POST" action="/uilingvo" id="ui-lang-form" class="lang-form">
+            <label title="{{t .UILang "nav.ui_lang_title"}}">{{ico "globe"}}<span class="vh">{{t .UILang "nav.ui_lang_title"}}</span><input id="ui-lang-input" name="ui_lang" type="text"
+                    list="ui-lang-list" autocomplete="off" spellcheck="false" data-no-x-system
+                    class="lang-input" placeholder="{{.UILang}}" value="{{.UILang}}"
+                    oninput="uiLangInput(this)" onfocus="langInputFocus(this)" onblur="langInputBlur(this,'ui-lang-list')"></label>
+            <datalist id="ui-lang-list">
+              <option value="ar">العربية</option><option value="bn">বাংলা</option><option value="cs">Čeština</option>
+              <option value="da">Dansk</option><option value="de">Deutsch</option><option value="el">Ελληνικά</option>
+              <option value="en">English</option><option value="eo">Esperanto</option><option value="es">Español</option>
+              <option value="fa">فارسی</option><option value="fr">Français</option><option value="he">עברית</option>
+              <option value="hi">हिन्दी</option><option value="hu">Magyar</option><option value="id">Bahasa Indonesia</option>
+              <option value="it">Italiano</option><option value="ja">日本語</option><option value="ko">한국어</option>
+              <option value="nl">Nederlands</option><option value="pl">Polski</option><option value="pt">Português</option>
+              <option value="ro">Română</option><option value="ru">Русский</option><option value="sv">Svenska</option>
+              <option value="sw">Kiswahili</option><option value="tr">Türkçe</option><option value="uk">Українська</option>
+              <option value="ur">اردو</option><option value="vi">Tiếng Việt</option><option value="tok">Toki Pona</option>
+              <option value="zh">中文</option>
+            </datalist>
+          </form>
+        </div>
+        <div class="menu-row">
+          <form method="POST" action="/lingvo" id="vocab-lang-form" class="lang-form">
+            <label title="{{t .UILang "nav.vocab_lang_title"}}">{{ico "chat"}}<span class="vh">{{t .UILang "nav.vocab_lang_title"}}</span><input id="vocab-lang-input" name="lang" type="text"
+                    list="vocab-lang-list" autocomplete="off" spellcheck="false" data-no-x-system
+                    class="lang-input" placeholder="{{$vl}}" value="{{$vl}}"
+                    oninput="vocabLangInput(this)" onfocus="langInputFocus(this)" onblur="langInputBlur(this,'vocab-lang-list')"></label>
+            <datalist id="vocab-lang-list">
+              <option value="ar">العربية</option><option value="be">Беларуская</option><option value="bn">বাংলা</option>
+              <option value="ca">Català</option><option value="cs">Čeština</option><option value="da">Dansk</option>
+              <option value="de">Deutsch</option><option value="el">Ελληνικά</option><option value="en">English</option>
+              <option value="eo">Esperanto</option><option value="es">Español</option><option value="fa">فارسی</option>
+              <option value="fr">Français</option><option value="frp">Arpitan</option><option value="ga">Gaeilge</option>
+              <option value="he">עברית</option><option value="hi">हिन्दी</option><option value="hr">Hrvatski</option>
+              <option value="hu">Magyar</option><option value="id">Bahasa Indonesia</option><option value="it">Italiano</option>
+              <option value="ja">日本語</option><option value="kk">Қазақша</option><option value="km">ខ្មែរ</option>
+              <option value="ko">한국어</option><option value="ku">Kurdî</option><option value="lo">ລາວ</option>
+              <option value="mg">Malagasy</option><option value="ms">Bahasa Melayu</option><option value="my">မြန်မာဘာသာ</option>
+              <option value="nl">Nederlands</option><option value="pl">Polski</option><option value="pt">Português</option>
+              <option value="ro">Română</option><option value="ru">Русский</option><option value="sk">Slovenčina</option>
+              <option value="sl">Slovenščina</option><option value="sv">Svenska</option><option value="sw">Kiswahili</option>
+              <option value="th">ไทย</option><option value="tok">Toki Pona</option><option value="tr">Türkçe</option>
+              <option value="uk">Українська</option><option value="ur">اردو</option><option value="vi">Tiếng Việt</option>
+              <option value="yo">Yorùbá</option><option value="zh">中文</option><option value="zh-tw">繁體中文</option>
+            </datalist>
+          </form>
+        </div>
+        <div class="menu-row"><span class="muted">{{t .UILang "nav.theme"}}</span>
+          <div class="seg" role="group" aria-label="{{t .UILang "nav.theme"}}">
+            <button type="button" data-theme-set="auto" title="{{t .UILang "nav.theme_auto"}}" aria-label="{{t .UILang "nav.theme_auto"}}">{{ico "auto"}}</button>
+            <button type="button" data-theme-set="light" title="{{t .UILang "nav.theme_light"}}" aria-label="{{t .UILang "nav.theme_light"}}">{{ico "sun"}}</button>
+            <button type="button" data-theme-set="dark" title="{{t .UILang "nav.theme_dark"}}" aria-label="{{t .UILang "nav.theme_dark"}}">{{ico "moon"}}</button>
+          </div>
+        </div>
+      </div>
+    </details>
+  </div>
+</header>
+{{end}}
+
+{{define "sitefooter"}}
+<footer class="vojo">
+  <div class="vojo-line">
+    {{template "vojostrio" .}}
+  </div>
+  <div class="vojo-links">
+    <a href="/etikedoj">{{ico "tag"}} {{t .UILang "tags.title"}}</a>
+    <a href="/fontoj">{{ico "image"}} {{t .UILang "credits.footer"}}</a>
+    <details class="footer-widget support-corner">
+      <summary>{{ico "heart"}} {{t .UILang "support.title"}}</summary>
+      <div class="footer-panel support-options">
+        <p>{{t .UILang "support.text"}}</p>
+        <ul>
+          <li><span class="support-method">bunq</span><a href="https://bunq.me/lapingvino" target="_blank" rel="noopener">bunq.me/lapingvino</a></li>
+          <li><span class="support-method">PayPal</span><a href="https://www.paypal.com/paypalme/lapingvino" target="_blank" rel="noopener">paypal.me/lapingvino</a></li>
+          <li><span class="support-method">Bitcoin Cash</span><a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20" id="support-bch" data-copy="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><code>qrrqxuwd&hellip;ju53j7glf20</code></a>
+            <button type="button" class="support-copy icon-btn" onclick="copySupport('support-bch', this)" title="{{t .UILang "support.copy"}}" aria-label="{{t .UILang "support.copy"}}">{{ico "copy"}}</button>
+            <details class="bch-qr">
+              <summary title="QR">{{ico "qr"}} QR</summary>
+              <a href="bitcoincash:qrrqxuwdh4j92vytr89n95xhvvcraugju53j7glf20"><img src="/static/bch-qr.png" alt="Bitcoin Cash QR" width="185" height="185" loading="lazy"></a>
+            </details></li>
+        </ul>
+      </div>
+    </details>
+    <span>Esperanto-kurso &copy; 2026</span>
+    <a href="/admin/initial" id="admin-link" aria-hidden="true" tabindex="-1">&#9651;</a>
+  </div>
+</footer>
+{{end}}
+
+{{define "vojostrio"}}
+{{- /* Both courses as one line: the seven Esperanto stations, then angla.org's. */}}
+{{$nun := "A0"}}{{if .User}}{{if .User.Placed}}{{$nun = .User.CEFRLevel}}{{end}}{{end}}
+<span class="leg eo" aria-label="{{t .UILang "path.eo_here"}} {{$nun}}" role="img">{{range vojo $nun}}<i class="{{.}}"></i>{{end}}</span>
+<span aria-hidden="true">&rarr;</span>
+<span class="leg en" aria-hidden="true"><i class="off"></i><i class="off"></i><i class="off"></i></span>
+<span>{{t .UILang "path.after_b1"}} {{if and .User (.User.ReachedB1)}}<a href="/vojkrucigxo">angla.org</a>{{else}}<a href="https://angla.org/?de=esperanto-kurso">angla.org</a>{{end}}</span>
+{{end}}

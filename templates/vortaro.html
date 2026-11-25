@@ -34,7 +34,7 @@
 {{/* Result count + practice button */}}
 <p style="margin:0.5rem 0">
   <small>{{.Total}} {{t .UILang "vortaro.results_count"}}</small>
-  {{if and .Tag .Items}}&nbsp;<a href="/ekzerco/{{(index .Items 0).Slug}}" role="button" class="outline" style="font-size:0.85em">&#9654; {{t .UILang "vortaro.start_practice"}}</a>{{end}}
+  {{if and .Tag .Items}}&nbsp;<a href="/ekzerco/{{(index .Items 0).Slug}}" role="button" class="outline" style="font-size:0.85em">{{ico "play"}} {{t .UILang "vortaro.start_practice"}}</a>{{end}}
 </p>
 
 {{if .Items}}

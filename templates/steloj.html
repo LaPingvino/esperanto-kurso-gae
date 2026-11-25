@@ -3,7 +3,7 @@
 {{define "title"}}{{t .UILang "steloj.title"}} — Esperanto-kurso{{end}}
 
 {{define "content"}}
-<h1>★ {{t .UILang "steloj.title"}}</h1>
+<h1>{{t .UILang "steloj.title"}}</h1>
 
 {{if and (not .Exercises) (not .SeriesEntries) (not .Tags)}}
 <p><em>{{t .UILang "steloj.empty"}}</em></p>
@@ -29,11 +29,11 @@
           {{if .Word}}<strong>{{.Word}}</strong>{{else if .Title}}<strong>{{.Title}}</strong>{{else if .Question}}{{truncate .Question 50}}{{else}}<code>{{.Slug}}</code>{{end}}
         </a>
       </td>
-      <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+      <td><span class="type-badge">{{kindIco .}} {{itemKind .}}</span></td>
       <td><span class="cefr-badge cefr-{{cefr .Rating}}">{{cefr .Rating}}</span></td>
       <td>
         <form method="POST" action="/ekzerco/{{.Slug}}/steli" style="display:inline">
-          <button type="submit" class="icon-btn" title="{{t $.UILang "steloj.unstar_title"}}">★</button>
+          <button type="submit" class="icon-btn" aria-pressed="true" title="{{t $.UILang "steloj.unstar_title"}}">{{ico "star"}}</button>
         </form>
       </td>
     </tr>
@@ -47,10 +47,10 @@
 <ul>
   {{range .SeriesEntries}}
   <li>
-    <a href="/ekzerco/{{.FirstSlug}}">&#128196; {{.Label}}</a>
+    <a href="/ekzerco/{{.FirstSlug}}">{{ico "list"}} {{.Label}}</a>
     &nbsp;
     <form method="POST" action="/serio/{{.Slug}}/steli" style="display:inline">
-      <button type="submit" class="icon-btn" title="Malfavori serion">★</button>
+      <button type="submit" class="icon-btn" aria-pressed="true" title="Malfavori serion">{{ico "star"}}</button>
     </form>
   </li>
   {{end}}
@@ -65,7 +65,7 @@
     <a href="/sercxi?etikedo={{.}}" class="tag">{{.}}</a>
     &nbsp;
     <form method="POST" action="/etikedo/{{.}}/steli" style="display:inline">
-      <button type="submit" class="icon-btn" title="Malfavori etikedon">★</button>
+      <button type="submit" class="icon-btn" aria-pressed="true" title="Malfavori etikedon">{{ico "star"}}</button>
     </form>
   </li>
   {{end}}

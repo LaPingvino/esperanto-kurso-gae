@@ -90,65 +90,68 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	answer := strings.Join(answers, " / ") // display string
 	correct := checkAnswer(item, answers)
 
-	// Record the attempt.
-	attempt := &model.Attempt{
-		UserID:        u.ID,
-		ContentItemID: slug,
-		Correct:       correct,
-		Answer:        answer,
-		TimeMS:        0,
-		Timestamp:     time.Now(),
-	}
-	_ = h.attempts.Create(r.Context(), attempt)
-
-	// Update Glicko-2 ratings.
 	score := 0.0
 	if correct {
 		score = 1.0
 	}
+	h.verdict(w, r, item, u, newToken, score, correct, answer, "")
+}
 
-	// User's perspective: content is the "opponent".
-	userResults := []glicko.Result{{
-		OpponentRating: item.Rating,
-		OpponentRD:     item.RD,
-		Score:          score,
-	}}
-	newUserR, newUserRD, newUserVol := glicko.Update(u.Rating, u.RD, u.Volatility, userResults)
+// verdict records an answer or a self-judgement, updates both Glicko-2
+// ratings and the streak, and renders the verdict into the stage's dock.
+func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *model.ContentItem, u *model.User, newToken string, score float64, correct bool, answer, judgment string) {
+	ctx := r.Context()
+	slug := item.Slug
+	recorded := answer
+	if judgment != "" {
+		recorded, answer = judgment, "" // a self-judgement is no answer to show
+	}
+	_ = h.attempts.Create(ctx, &model.Attempt{
+		UserID:        u.ID,
+		ContentItemID: slug,
+		Correct:       correct,
+		Answer:        recorded,
+		Timestamp:     time.Now(),
+	})
 
-	// Content's perspective: user is the "opponent", score inverted.
-	contentResults := []glicko.Result{{
-		OpponentRating: u.Rating,
-		OpponentRD:     u.RD,
-		Score:          1.0 - score,
-	}}
-	newContentR, newContentRD, newContentVol := glicko.Update(item.Rating, item.RD, item.Volatility, contentResults)
+	// The user's opponent is the content, and the content's the user (score inverted).
+	newUserR, newUserRD, newUserVol := glicko.Update(u.Rating, u.RD, u.Volatility,
+		[]glicko.Result{{OpponentRating: item.Rating, OpponentRD: item.RD, Score: score}})
+	newContentR, newContentRD, newContentVol := glicko.Update(item.Rating, item.RD, item.Volatility,
+		[]glicko.Result{{OpponentRating: u.Rating, OpponentRD: u.RD, Score: 1.0 - score}})
+	_ = h.users.UpdateRating(ctx, u.ID, newUserR, newUserRD, newUserVol)
+	_ = h.content.UpdateRating(ctx, slug, newContentR, newContentRD, newContentVol)
 
-	// Persist updated ratings.
-	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
-	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
 	// Milestones celebrate only the attempt that extends the streak, so check
 	// the pre-update practice day before it is overwritten below.
 	now := time.Now().UTC()
 	firstToday := u.LastPracticeAt.UTC().Truncate(24 * time.Hour).Before(now.Truncate(24 * time.Hour))
-	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
-	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
-	// Reflect new streak in the User object so OOB footer swap is accurate.
+	streak, _ := h.users.UpdateStreakAndSeen(ctx, u.ID)
 	u.StreakDays = streak
 	u.LastSeenAt = now
 	u.LastPracticeAt = now
-	streakMilestone := firstToday && isStreakMilestone(streak)
 
-	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
-	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
-		_ = h.users.UpdateUILang(r.Context(), u.ID, "eo")
+	after := &model.User{Rating: newUserR, RD: newUserRD}
+	// The interface switches itself to Esperanto once the learner is established.
+	if after.Established() && u.UILang != "eo" && u.UILang != "" {
+		_ = h.users.UpdateUILang(ctx, u.ID, "eo")
 	}
 
-	// Recommend next exercises (normal, harder, easier).
-	nextSlug, harderSlug, easierSlug := nextSlugs(r.Context(), newUserR, newUserRD, slug, h.content)
-	nextInSeries := nextSeriesItem(r.Context(), item, h.content)
+	nextSlug, harderSlug, easierSlug := nextSlugs(ctx, newUserR, newUserRD, slug, h.content)
+	nextInSeries := nextSeriesItem(ctx, item, h.content)
+	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating) && newUserR > u.Rating && after.Placed()
 
-	ratingDelta := newUserR - u.Rating
-	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
+	// Daŭrigi: on through the series, else the recommendation, else home. The
+	// step that reaches B1 leads to the crossroads with angla.org, once.
+	cont := "/"
+	switch {
+	case levelUp && after.ReachedB1() && !u.ReachedB1():
+		cont = "/vojkrucigxo"
+	case nextInSeries != nil:
+		cont = "/ekzerco/" + nextInSeries.Slug
+	case nextSlug != "":
+		cont = "/ekzerco/" + nextSlug
+	}
 
 	correctAnswer := item.Answer()
 	switch item.Type {
@@ -157,36 +160,38 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	case "vocab":
 		correctAnswer = item.Word()
 	}
-
-	currentVote, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
-
-	data := map[string]interface{}{
-		"User":           u,
-		"Item":           item,
-		"Correct":        correct,
-		"CorrectAnswer":  correctAnswer,
-		"YourAnswer":     answer,
-		"NextSlug":       nextSlug,
-		"HarderSlug":     harderSlug,
-		"EasierSlug":     easierSlug,
-		"NextInSeries":   nextInSeries,
-		"UserRating":     newUserR,
-		"RatingDelta":    ratingDelta,
-		"CEFRLevel":      model.RatingToCEFR(newUserR),
-		"LevelUp":        levelUp,
-		"StreakDays":      streak,
-		"StreakDeadline":  streakDeadline,
-		"StreakMilestone": streakMilestone,
-		"NewToken":       newToken,
-		"UILang":         u.UILangOrDefault(),
-		"CurrentVote":    currentVote,
-		"VoteScore":      item.VoteScore,
+	// The gloss: the word in the learner's language, for words and pictures.
+	gloss := ""
+	if item.Type == "vocab" || ItemKind(item) == "bildo" {
+		gloss = DefinitionFor(item, u.Lang)
 	}
 
+	currentVote, _ := h.votes.GetByUserAndContent(ctx, u.ID, slug)
+	data := map[string]interface{}{
+		"User":            u,
+		"Item":            item,
+		"Correct":         correct,
+		"Judgment":        judgment,
+		"CorrectAnswer":   correctAnswer,
+		"YourAnswer":      answer,
+		"Gloss":           gloss,
+		"Why":             item.Hint(),
+		"ContinueHref":    cont,
+		"NextSlug":        nextSlug,
+		"HarderSlug":      harderSlug,
+		"EasierSlug":      easierSlug,
+		"NextInSeries":    nextInSeries,
+		"CEFRLevel":       model.RatingToCEFR(newUserR),
+		"LevelUp":         levelUp,
+		"StreakDays":      streak,
+		"StreakMilestone": firstToday && isStreakMilestone(streak),
+		"UILang":          u.UILangOrDefault(),
+		"CurrentVote":     currentVote,
+		"VoteScore":       item.VoteScore,
+	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)
 	}
-
 	if err := h.tmpl.ExecuteTemplate(w, "rezulto.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
@@ -318,7 +323,8 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 
 	var score float64
 	var correct bool
-	switch r.FormValue("judgment") {
+	judgment := r.FormValue("judgment")
+	switch judgment {
 	case "facile":
 		score, correct = 1.0, true
 	case "bone":
@@ -326,85 +332,11 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	case "malfacile":
 		score, correct = 0.5, false
 	default: // "ne-sciis"
+		judgment = "ne-sciis"
 		score, correct = 0.0, false
 	}
 
-	attempt := &model.Attempt{
-		UserID:        u.ID,
-		ContentItemID: slug,
-		Correct:       correct,
-		Answer:        r.FormValue("judgment"),
-		Timestamp:     time.Now(),
-	}
-	_ = h.attempts.Create(r.Context(), attempt)
-
-	userResults := []glicko.Result{{OpponentRating: item.Rating, OpponentRD: item.RD, Score: score}}
-	newUserR, newUserRD, newUserVol := glicko.Update(u.Rating, u.RD, u.Volatility, userResults)
-
-	contentResults := []glicko.Result{{OpponentRating: u.Rating, OpponentRD: u.RD, Score: 1.0 - score}}
-	newContentR, newContentRD, newContentVol := glicko.Update(item.Rating, item.RD, item.Volatility, contentResults)
-
-	_ = h.users.UpdateRating(r.Context(), u.ID, newUserR, newUserRD, newUserVol)
-	_ = h.content.UpdateRating(r.Context(), slug, newContentR, newContentRD, newContentVol)
-	// Milestones celebrate only the attempt that extends the streak, so check
-	// the pre-update practice day before it is overwritten below.
-	now := time.Now().UTC()
-	firstToday := u.LastPracticeAt.UTC().Truncate(24 * time.Hour).Before(now.Truncate(24 * time.Hour))
-	streak, _ := h.users.UpdateStreakAndSeen(r.Context(), u.ID)
-	streakDeadline := now.Truncate(24 * time.Hour).Add(48 * time.Hour).Format("02 Jan 15:04 UTC")
-	// Reflect new streak in the User object so OOB footer swap is accurate.
-	u.StreakDays = streak
-	u.LastSeenAt = now
-	u.LastPracticeAt = now
-	streakMilestone := firstToday && isStreakMilestone(streak)
-
-	// Auto-upgrade UI language to Esperanto once user reaches B1 stability.
-	if newUserRD < 150 && newUserR >= 1500 && u.UILang != "eo" && u.UILang != "" {
-		_ = h.users.UpdateUILang(r.Context(), u.ID, "eo")
-	}
-
-	nextSlug, harderSlug, easierSlug := nextSlugs(r.Context(), newUserR, newUserRD, slug, h.content)
-	nextInSeries := nextSeriesItem(r.Context(), item, h.content)
-	levelUp := model.RatingToCEFR(newUserR) != model.RatingToCEFR(u.Rating)
-
-	correctAnswer := item.Answer()
-	switch item.Type {
-	case "fillin":
-		correctAnswer = strings.Join(item.GapAnswers(), " / ")
-	case "vocab":
-		correctAnswer = item.Word()
-	}
-
-	currentVote, _ := h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
-
-	data := map[string]interface{}{
-		"User":           u,
-		"Item":           item,
-		"Correct":        correct,
-		"Judgment":       r.FormValue("judgment"),
-		"CorrectAnswer":  correctAnswer,
-		"NextSlug":       nextSlug,
-		"HarderSlug":     harderSlug,
-		"EasierSlug":     easierSlug,
-		"NextInSeries":   nextInSeries,
-		"UserRating":     newUserR,
-		"RatingDelta":    newUserR - u.Rating,
-		"CEFRLevel":      model.RatingToCEFR(newUserR),
-		"LevelUp":        levelUp,
-		"StreakDays":      streak,
-		"StreakDeadline":  streakDeadline,
-		"StreakMilestone": streakMilestone,
-		"NewToken":       newToken,
-		"UILang":         u.UILangOrDefault(),
-		"CurrentVote":    currentVote,
-		"VoteScore":      item.VoteScore,
-	}
-	if newToken != "" {
-		w.Header().Set("X-New-Token", newToken)
-	}
-	if err := h.tmpl.ExecuteTemplate(w, "rezulto.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+	h.verdict(w, r, item, u, newToken, score, correct, "", judgment)
 }
 
 // nextSeriesItem returns the next item in the series after the given item, or nil.

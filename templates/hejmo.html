@@ -1,113 +1,88 @@
 {{template "base" .}}
 
-{{define "title"}}Hejmo — Esperanto-kurso{{end}}
+{{define "title"}}Esperanto-kurso{{end}}
 
+{{- /* Home is a launcher: greeting and streak in one line, one big "next"
+     card, the Hodiaŭ queue, the level bar, the game, the way to angla.org. */}}
 {{define "content"}}
-{{$lang := .UILang}}
-<h1>{{t $lang "home.title"}}</h1>
-<p>{{t $lang "home.subtitle"}}</p>
-
-{{if .User}}
-<section class="hero-dash">
-  <div class="hero-streak">
-    {{if .User.CurrentStreakDays}}
-    <span class="streak-badge">&#128293; <strong>{{.User.CurrentStreakDays}}</strong></span>
-    {{if .User.PracticedToday}}
-    <small class="streak-status ok">&#10003; {{t $lang "home.streak_done"}}</small>
-    {{else}}
-    <small class="streak-status warn">{{t $lang "home.streak_keep"}}</small>
-    {{end}}
-    {{else}}
-    <small class="streak-status">{{t $lang "home.streak_start"}}</small>
-    {{end}}
+{{$L := .UILang}}
+<div class="col">
+  {{if .FromAngla}}
+  <div class="card other-site">
+    <p class="from">angla.org</p>
+    <p>{{t $L "home.from_angla"}}</p>
   </div>
-  <div class="hero-level">
-    <span class="cefr-badge cefr-{{.User.CEFRLevel}}">{{.User.CEFRLevel}}</span>
-    {{if .User.NextCEFRLevel}}
-    <div class="level-progress" role="progressbar" aria-valuenow="{{.User.CEFRProgressPercent}}" aria-valuemin="0" aria-valuemax="100">
-      <div class="level-progress-fill" style="width:{{.User.CEFRProgressPercent}}%"></div>
-    </div>
-    <small class="level-progress-label">{{.User.CEFRProgressPercent}}% {{t $lang "home.progress_to"}} {{.User.NextCEFRLevel}}</small>
-    {{end}}
-  </div>
-  {{if .CompletedSeries}}
-  <small class="hero-done" title="{{t $lang "home.series_done"}}">&#10003; {{.CompletedSeries}} {{t $lang "home.series_done"}}</small>
   {{end}}
-  {{if .PracticeSlug}}
-  <a href="/ekzerco/{{.PracticeSlug}}" role="button" class="hero-practice">&#9654; {{t $lang "home.practice_now"}}</a>
+
+  <div class="hello">
+    <h1>{{if and .User .Placed}}{{t $L "home.hello_back"}}{{else}}{{t $L "home.hello"}}{{end}}</h1>
+    {{if .User}}{{if .User.CurrentStreakDays}}<span class="streak" title="{{t $L "footer.streak_title"}}">{{ico "flame"}}{{.User.CurrentStreakDays}}<span class="vh">{{t $L "footer.streak_title"}}</span></span>{{end}}{{end}}
+  </div>
+  {{if .Intro}}<p class="lead">{{t $L "home.intro"}}</p>{{end}}
+
+  {{with .Next}}
+  <div class="next">
+    {{if .Pic}}<span class="big-ico pic"><img src="{{.Pic}}" alt="" width="44" height="44" decoding="async"></span>{{else}}<span class="big-ico">{{typeIco .Kind}}</span>{{end}}
+    <div><p class="what">{{.Label}}</p><p class="from">{{tipNomo .Kind}} · {{if .Started}}{{.Done}}/{{.Total}}{{else}}{{.Total}} {{t $L "home.activities"}}{{end}} · {{.CEFR}}</p></div>
+    <a class="btn" href="/ekzerco/{{.NextSlug}}">{{if .Started}}{{t $L "home.continue_cta"}}{{else}}{{t $L "home.start_cta"}}{{end}} {{ico "right"}}</a>
+  </div>
+  {{else}}
+  <p class="empty">{{t $L "home.no_exercises"}}</p>
   {{end}}
-</section>
 
-{{if .ContinueSeries}}
-<section>
-  <h2>&#128218; {{t $lang "home.continue_title"}}</h2>
-  <div class="path-list">
-    {{range .ContinueSeries}}
-    <a class="path-card" href="/ekzerco/{{.NextSlug}}">
-      <div class="path-card-top">
-        {{with serioBildo .Slug}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" loading="lazy" decoding="async">{{end}}
-        <strong>{{.Label}}</strong>
-        <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
-      </div>
-      <div class="level-progress"><div class="level-progress-fill" style="width:{{.Percent}}%"></div></div>
-      <small>{{.Done}}/{{.Total}} &middot; {{t $lang "home.continue_cta"}}</small>
-    </a>
+  {{if .Today}}
+  <h2 class="section-h">{{t $L "home.today"}}</h2>
+  <ul class="today">
+    {{range .Today}}
+    <li class="is-{{.State}}"><a href="/ekzerco/{{.NextSlug}}">
+      <span class="k">{{typeIco .Kind}}</span>
+      <span class="t">{{.Label}}<small>{{tipNomo .Kind}} · {{.Total}}</small></span>
+      {{if eq .State "done"}}<span class="s done">{{ico "check"}}{{t $L "home.state_done"}}</span>
+      {{else if eq .State "now"}}<span class="s now">{{t $L "home.state_now"}} {{ico "right"}}</span>
+      {{else if eq .State "part"}}<span class="s part">{{.Done}}/{{.Total}}</span>
+      {{else}}<span class="s new">{{t $L "home.state_new"}}</span>{{end}}
+    </a></li>
     {{end}}
-  </div>
-</section>
-{{end}}
+  </ul>
+  {{end}}
 
-{{if .SuggestedSeries}}
-<section>
-  <h2>&#127919; {{t $lang "home.suggested_title"}}{{if .User.NextCEFRLevel}} <small class="muted">({{t $lang "home.toward"}} {{.User.NextCEFRLevel}})</small>{{end}}</h2>
-  <div class="path-list">
-    {{range .SuggestedSeries}}
-    <a class="path-card" href="/ekzerco/{{.NextSlug}}">
-      <div class="path-card-top">
-        {{with serioBildo .Slug}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" loading="lazy" decoding="async">{{end}}
-        <strong>{{.Label}}</strong>
-        <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
-      </div>
-      <small>{{.Total}} {{t $lang "home.exercises_label"}} &middot; {{t $lang "home.start_cta"}}</small>
-    </a>
-    {{end}}
+  {{if .Placed}}{{with .User}}
+  {{if .NextCEFRLevel}}
+  <div class="lvlrow">
+    <span class="chip lvl">{{.CEFRLevel}}</span>
+    <div class="bar" role="progressbar" aria-label="{{t $L "home.progress_to"}} {{.NextCEFRLevel}}" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{.CEFRProgressPercent}}"><i style="width:{{.CEFRProgressPercent}}%"></i></div>
+    <span class="chip lvl solid">{{.NextCEFRLevel}}</span>
   </div>
-</section>
-{{end}}
-{{end}}
+  {{end}}
+  {{end}}{{else}}
+  <div class="lvlrow"><span class="chip lvl solid">A0</span><span class="lbl">{{t $L "home.start_at_a0"}}</span></div>
+  {{end}}
 
-{{if .Items}}
-<section>
-  <h2>{{t $lang "home.recommended"}}</h2>
-  <div class="exercise-grid">
-    {{range .Items}}
-    <article class="exercise-card">
-      {{if .ImageURL}}
-      <img src="{{.ImageURL}}" alt="{{.Title}}" loading="lazy">
-      {{else}}{{with vortBildo .}}
-      <span class="pic-tile card-pic"><img src="{{.URL}}" alt="" width="56" height="56" loading="lazy" decoding="async"></span>
-      {{end}}{{end}}
-      <header>
-        <span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span>
-        <span class="rating-badge">{{printf "%.0f" .Rating}}</span>
-      </header>
-      <h3>{{if .Title}}{{.Title}}{{else if .Question}}{{.Question}}{{else if .Word}}{{.Word}}{{else}}Ekzerco{{end}}</h3>
-      {{if .Tags}}
-      <footer>
-        {{range .Tags}}<small class="tag">{{.}}</small> {{end}}
-      </footer>
-      {{end}}
-      <a href="/ekzerco/{{.Slug}}" role="button">{{t $lang "home.practice_btn"}}</a>
-    </article>
-    {{end}}
+  {{if .User}}{{if .User.ReachedB1}}
+  {{if .HandoffSeen}}
+  <div class="card other-site">
+    <p class="from">angla.org</p>
+    <p>{{t $L "home.handoff_card"}}</p>
+    <a class="btn ghost small" href="{{.Angla}}">{{t $L "handoff.start"}} {{ico "right"}}</a>
   </div>
-</section>
-{{else}}
-<article>
-  <p>{{t $lang "home.no_exercises"}}</p>
-  {{if .User}}{{if eq .User.Role "admin"}}
-  <a href="/admin/enhavo/nova" role="button">{{t $lang "home.add_exercise"}}</a>
+  {{else}}
+  <a class="ludo other-site" href="/vojkrucigxo">{{ico "junction"}}<div><h3>{{t $L "handoff.reached"}}</h3><p>{{t $L "home.handoff_card"}}</p></div><span class="go">{{ico "right"}}</span></a>
+  {{end}}
   {{end}}{{end}}
-</article>
-{{end}}
+
+  <a class="ludo" href="/ludo/"><svg class="die ico" aria-hidden="true"><use href="#i-die"/></svg><div><h3>{{t $L "home.game_title"}}</h3><p>{{t $L "home.game_text"}}</p></div><span class="go">{{ico "right"}}</span></a>
+
+  {{if .User}}{{if .User.NeedsAccountNudge}}
+  <div class="quiet-card" id="account-nudge" hidden>
+    {{ico "key"}}
+    <p><strong>{{t $L "nudge.title"}}</strong> {{t $L "nudge.text_path"}}</p>
+    <a class="btn ghost small" href="/enskribi">{{t $L "nudge.cta"}}</a>
+    <button type="button" class="icon-btn" onclick="dismissAccountNudge()" aria-label="{{t $L "nudge.dismiss"}}" title="{{t $L "nudge.dismiss"}}">{{ico "x"}}</button>
+  </div>
+  {{end}}{{else}}
+  <div class="quiet-card">{{ico "key"}}<p>{{t $L "home.save_progress"}}</p><a class="btn ghost small" href="/enskribi">{{t $L "nav.login"}}</a></div>
+  {{end}}
+
+  {{if .User}}{{if eq .User.Role "admin"}}<p><a href="/admin/enhavo/nova">{{ico "plus"}} {{t $L "home.add_exercise"}}</a></p>{{end}}{{end}}
+</div>
 {{end}}

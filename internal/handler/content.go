@@ -2,7 +2,6 @@ package handler
 
 import (
 	"context"
-	"fmt"
 	"math/rand"
 	"net/http"
 	"sort"
@@ -12,7 +11,6 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/dolthub"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
@@ -48,68 +46,6 @@ func NewContentHandler(
 		translations: translations,
 		users:        users,
 		attempts:     attempts,
-	}
-}
-
-// ShowHome handles GET /. Visitors who have never answered anything are
-// dropped straight into a recommended exercise (zero-friction first contact);
-// returning learners get the goal dashboard with their learning path.
-func (h *ContentHandler) ShowHome(w http.ResponseWriter, r *http.Request) {
-	// "GET /" is the mux catch-all; don't render (and query for) the home
-	// page for every probed path like /wp-login.php.
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-	u := UserFromContext(r.Context())
-
-	var rating, rd float64 = 1500, 350
-	if u != nil {
-		rating = u.Rating
-		rd = u.RD
-	}
-
-	items, err := recommend.GetForUser(r.Context(), rating, rd, h.content, 10)
-	if err != nil || len(items) == 0 {
-		items, _ = h.content.ListApproved(r.Context(), 10)
-	}
-
-	var attempts []*model.Attempt
-	if u != nil {
-		attempts, _ = h.attempts.ListByUser(r.Context(), u.ID, 500)
-	}
-
-	if len(attempts) == 0 && len(items) > 0 {
-		pick := items[rand.Intn(len(items))]
-		http.Redirect(w, r, "/ekzerco/"+pick.Slug, http.StatusSeeOther)
-		return
-	}
-
-	path := h.buildLearningPath(r.Context(), attempts, rating)
-
-	// The primary CTA follows the path: continue the most advanced series,
-	// else start the best-fitting new one, else fall back to a recommendation.
-	practiceSlug := ""
-	switch {
-	case len(path.Continue) > 0:
-		practiceSlug = path.Continue[0].NextSlug
-	case len(path.Suggested) > 0:
-		practiceSlug = path.Suggested[0].NextSlug
-	case len(items) > 0:
-		practiceSlug = items[rand.Intn(len(items))].Slug
-	}
-
-	data := map[string]interface{}{
-		"User":            u,
-		"Items":           items,
-		"UILang":          UILangFor(u),
-		"PracticeSlug":    practiceSlug,
-		"ContinueSeries":  path.Continue,
-		"SuggestedSeries": path.Suggested,
-		"CompletedSeries": path.Completed,
-	}
-	if err := h.tmpl.ExecuteTemplate(w, "hejmo.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
@@ -749,142 +685,6 @@ func (h *ContentHandler) ShowFavorites(w http.ResponseWriter, r *http.Request) {
 		"UILang":      UILangFor(u),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "steloj.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-// ShowHonorListo handles GET /honorlisto — hall of fame, top rated named users.
-// SeriesNavOptions handles GET /serioj-nav — returns <option> HTML for top-level series.
-// Used by base.html footer to populate the quick-navigation select asynchronously.
-func (h *ContentHandler) SeriesNavOptions(w http.ResponseWriter, r *http.Request) {
-	items, err := h.content.ListForAdmin(r.Context(), "approved", 50000)
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		return
-	}
-
-	// Collect top-level series: series_slug set, series_parent empty.
-	// Preserve first-seen order; track first item slug per series.
-	type seriesEntry struct {
-		slug       string
-		firstItem  string
-		label      string
-	}
-	seen := make(map[string]bool)
-	var entries []seriesEntry
-
-	for _, item := range items {
-		if item.SeriesSlug == "" || item.SeriesParent != "" {
-			continue
-		}
-		if seen[item.SeriesSlug] {
-			continue
-		}
-		seen[item.SeriesSlug] = true
-		label := item.SeriesLabel
-		if label == "" {
-			label = item.SeriesSlug
-		}
-		entries = append(entries, seriesEntry{
-			slug:      item.SeriesSlug,
-			firstItem: item.Slug,
-			label:     label,
-		})
-	}
-
-	sort.Slice(entries, func(i, j int) bool {
-		return entries[i].slug < entries[j].slug
-	})
-
-	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	for _, e := range entries {
-		// value = first item slug so clicking navigates directly to the exercise
-		fmt.Fprintf(w, `<option value="/ekzerco/%s" data-slug="%s">%s</option>`+"\n",
-			e.firstItem, e.slug, e.label)
-	}
-}
-
-// ShowSeriesBrowser handles GET /serioj — public series browser grouped by CEFR level.
-func (h *ContentHandler) ShowSeriesBrowser(w http.ResponseWriter, r *http.Request) {
-	u := UserFromContext(r.Context())
-	items, err := h.content.ListForAdmin(r.Context(), "approved", 50000)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
-
-	type SeriesEntry struct {
-		Slug      string
-		Label     string
-		FirstSlug string
-		Rating    float64
-		CEFR      string
-	}
-
-	seen := make(map[string]*SeriesEntry)
-	var order []string
-	for _, item := range items {
-		if item.SeriesSlug == "" || item.SeriesParent != "" {
-			continue
-		}
-		if _, ok := seen[item.SeriesSlug]; ok {
-			continue
-		}
-		label := item.SeriesLabel
-		if label == "" {
-			label = item.SeriesSlug
-		}
-		seen[item.SeriesSlug] = &SeriesEntry{
-			Slug:      item.SeriesSlug,
-			Label:     label,
-			FirstSlug: item.Slug,
-			Rating:    item.Rating,
-			CEFR:      model.RatingToCEFR(item.Rating),
-		}
-		order = append(order, item.SeriesSlug)
-	}
-
-	// Group by CEFR in level order.
-	cefrOrder := []string{"A0", "A1", "A2", "B1", "B2", "C1", "C2"}
-	type CEFRGroup struct {
-		Level   string
-		Entries []*SeriesEntry
-	}
-	byLevel := make(map[string][]*SeriesEntry)
-	for _, slug := range order {
-		e := seen[slug]
-		byLevel[e.CEFR] = append(byLevel[e.CEFR], e)
-	}
-	var groups []CEFRGroup
-	for _, lvl := range cefrOrder {
-		if entries, ok := byLevel[lvl]; ok {
-			sort.Slice(entries, func(i, j int) bool { return entries[i].Label < entries[j].Label })
-			groups = append(groups, CEFRGroup{Level: lvl, Entries: entries})
-		}
-	}
-
-	data := map[string]interface{}{
-		"User":   u,
-		"Groups": groups,
-		"UILang": UILangFor(u),
-	}
-	if err := h.tmpl.ExecuteTemplate(w, "serioj.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
-}
-
-func (h *ContentHandler) ShowHonorListo(w http.ResponseWriter, r *http.Request) {
-	u := UserFromContext(r.Context())
-	top, err := h.users.ListTopUsers(r.Context(), 100)
-	if err != nil {
-		top = nil
-	}
-	data := map[string]interface{}{
-		"User":   u,
-		"Top":    top,
-		"UILang": UILangFor(u),
-	}
-	if err := h.tmpl.ExecuteTemplate(w, "honorlisto.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }

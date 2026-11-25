@@ -1,103 +1,46 @@
 {{define "rezulto.html"}}
-<div class="rezulto {{if .Correct}}correct{{else}}incorrect{{end}}">
-  {{if .Judgment}}
-  {{/* Judgment-only result (passive content / mi-ne-scias) */}}
-  {{if or (eq .Judgment "bone") (eq .Judgment "facile")}}
-  <p class="rezulto-ikono">&#10003; {{t .UILang "result.judgment_good"}}</p>
-  {{else if eq .Judgment "malfacile"}}
-  <p class="rezulto-ikono">&#9888; {{t .UILang "result.judgment_hard"}}</p>
-  {{else}}
-  <p class="rezulto-ikono">&#10007; {{t .UILang "result.judgment_unknown"}}</p>
-  {{if .CorrectAnswer}}<p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>{{end}}
-  {{end}}
-  {{else if .Correct}}
-  <p class="rezulto-ikono">&#10003; {{t .UILang "result.correct"}}</p>
-  {{else}}
-  <p class="rezulto-ikono">&#10007; {{t .UILang "result.incorrect"}}</p>
-  {{if .CorrectAnswer}}<p>{{t .UILang "result.correct_answer_label"}} <strong>{{.CorrectAnswer}}</strong></p>{{end}}
-  {{if .YourAnswer}}<p>{{t .UILang "result.your_answer_label"}} <em>{{.YourAnswer}}</em></p>{{end}}
-  {{if and .User .Item .YourAnswer (ne .Item.Type "multiplechoice")}}
-  <div id="suggest-alt-{{.Item.Slug}}">
-    <form hx-post="/ekzerco/{{.Item.Slug}}/alternativo"
-          hx-target="#suggest-alt-{{.Item.Slug}}"
-          hx-swap="innerHTML">
-      <input type="hidden" name="answer" value="{{.YourAnswer}}">
-      <button type="submit" class="outline secondary btn-sm">
-        &#128172; {{t .UILang "result.suggest_alternative"}}
-      </button>
-    </form>
+{{- /* The verdict, swapped into the stage's dock (#dock, a live region).
+     Right: ✓ disc, "Ĝuste!", the word. Wrong: ✗ disc, "Ne tute.", the right
+     answer and one line of why. Then the one big button: Daŭrigi. eo.js reads
+     data-verdict / data-correct / data-your to mark the tiles or gaps. */}}
+{{$L := .UILang}}
+{{$v := "wrong"}}{{if .Correct}}{{$v = "right"}}{{end}}
+{{if eq .Judgment "malfacile"}}{{$v = "judged"}}{{end}}
+<div class="verdict-in" data-verdict="{{$v}}" data-correct="{{.CorrectAnswer}}" data-your="{{.YourAnswer}}">
+  {{if .LevelUp}}<p class="news"><svg class="sparkle" aria-hidden="true"><use href="#i-star"/></svg>{{t $L "result.level_up_prefix"}} <span class="chip lvl solid">{{.CEFRLevel}}</span></p>{{end}}
+  {{if .StreakMilestone}}<p class="news"><span class="streak">{{ico "flame"}}{{.StreakDays}}</span> {{t $L "result.milestone_prefix"}} {{.StreakDays}}{{t $L "result.milestone_suffix"}}</p>{{end}}
+  <div class="verdict">
+    {{if eq $v "right"}}<span class="mark-big">{{ico "check"}}</span>{{else if eq $v "wrong"}}<span class="mark-big">{{ico "x"}}</span>{{end}}
+    <div>
+      {{if .Judgment}}
+        {{if eq $v "right"}}<p class="head">{{t $L "result.judgment_good"}} <svg class="sparkle" aria-hidden="true"><use href="#i-star"/></svg></p>
+        {{else if eq $v "judged"}}<p class="head">{{t $L "result.judgment_hard"}}</p><p class="why">{{t $L "result.again_soon"}}</p>
+        {{else}}<p class="head">{{t $L "result.judgment_unknown"}}</p>{{end}}
+        {{if and (ne $v "right") .CorrectAnswer}}<p>{{t $L "result.correct_answer_label"}} <strong lang="eo">{{.CorrectAnswer}}</strong></p>{{end}}
+      {{else if .Correct}}
+        <p class="head">{{t $L "result.correct"}} <svg class="sparkle" aria-hidden="true"><use href="#i-star"/></svg></p>
+        {{if .CorrectAnswer}}<p><strong lang="eo">{{.CorrectAnswer}}</strong>{{with .Gloss}} — <span class="why">{{.}}</span>{{end}}</p>{{end}}
+      {{else}}
+        <p class="head">{{t $L "result.incorrect"}}</p>
+        {{if .CorrectAnswer}}<p>{{t $L "result.correct_answer_label"}} <strong lang="eo">{{.CorrectAnswer}}</strong>{{with .Gloss}} — {{.}}{{end}}</p>{{end}}
+        {{if .Why}}<p class="why">{{.Why}}</p>{{else if .YourAnswer}}<p class="why">{{t $L "result.your_answer_label"}} <span lang="eo">{{.YourAnswer}}</span></p>{{end}}
+      {{end}}
+    </div>
   </div>
-  {{end}}
-  {{end}}
-
-  {{if .LevelUp}}
-  <p class="level-up-banner">&#127881; {{t .UILang "result.level_up_prefix"}} <strong>{{.CEFRLevel}}</strong>!</p>
-  {{end}}
-
-  {{if .StreakMilestone}}
-  <p class="level-up-banner">&#127942; {{t .UILang "result.milestone_prefix"}} <strong>{{.StreakDays}}</strong>{{t .UILang "result.milestone_suffix"}}</p>
-  {{end}}
-
-  <p class="rating-change">
-    {{t .UILang "result.level_label"}} <span class="cefr-badge cefr-{{.CEFRLevel}}">{{.CEFRLevel}}</span>
-    <span class="rating-badge">{{printf "%.0f" .UserRating}}</span>
-    {{if gt .RatingDelta 0.0}}
-    <span class="delta-pos">(+{{printf "%.1f" .RatingDelta}})</span>
-    {{else if lt .RatingDelta 0.0}}
-    <span class="delta-neg">({{printf "%.1f" .RatingDelta}})</span>
+  <a class="btn big" href="{{.ContinueHref}}" data-continue>{{t $L "stage.continue"}} {{ico "right"}}</a>
+  <div class="extras">
+    {{if .EasierSlug}}<a href="/ekzerco/{{.EasierSlug}}">{{ico "down"}} {{t $L "result.easier"}}</a>{{end}}
+    {{if .HarderSlug}}<a href="/ekzerco/{{.HarderSlug}}">{{ico "up"}} {{t $L "result.harder"}}</a>{{end}}
+    <span class="sep"></span>
+    {{if and .User .Item .YourAnswer (not .Correct) (ne .Item.Type "multiplechoice")}}
+    <span id="suggest-alt-{{.Item.Slug}}">
+      <form hx-post="/ekzerco/{{.Item.Slug}}/alternativo" hx-target="#suggest-alt-{{.Item.Slug}}" hx-swap="innerHTML" style="display:inline;margin:0">
+        <input type="hidden" name="answer" value="{{.YourAnswer}}">
+        <button type="submit" class="btn quiet small">{{ico "chat"}} {{t $L "result.suggest_alternative"}}</button>
+      </form>
+    </span>
     {{end}}
-    {{if .StreakDays}}
-    <span class="streak-badge" title="{{t .UILang "result.streak_title"}}">&#128293; <strong>{{.StreakDays}}</strong></span>
-    <small style="color:var(--pico-muted-color)">&#9201; {{t .UILang "result.streak_until"}} {{.StreakDeadline}}</small>
-    {{end}}
-  </p>
-
-  <div class="result-nav-row">
-    <nav class="next-buttons">
-      <ul>
-        {{if .EasierSlug}}
-        <li><a href="/ekzerco/{{.EasierSlug}}" role="button" class="outline secondary">&#8595; {{t .UILang "result.easier"}}</a></li>
-        {{end}}
-        {{if .NextInSeries}}
-        <li><a href="/ekzerco/{{.NextInSeries.Slug}}" role="button" class="series-next">&#128196; {{t .UILang "result.next_in_series"}}</a></li>
-        {{end}}
-        {{if .NextSlug}}
-        <li><a href="/ekzerco/{{.NextSlug}}" role="button" {{if .NextInSeries}}class="outline"{{end}}>{{t .UILang "result.next_level"}}</a></li>
-        {{else if not .NextInSeries}}
-        <li><a href="/" role="button">{{t .UILang "result.back_home"}}</a></li>
-        {{end}}
-        {{if .HarderSlug}}
-        <li><a href="/ekzerco/{{.HarderSlug}}" role="button" class="outline">&#8593; {{t .UILang "result.harder"}}</a></li>
-        {{end}}
-        <li>
-        {{if and .Item .Item.SeriesSlug}}
-        <a href="/vorto?etikedo={{.Item.SeriesSlug}}" role="button" class="outline secondary">&#128172; {{t .UILang "result.give_me_a_word"}}</a>
-        {{else if and .Item .Item.Tags}}
-        <a href="/vorto?etikedo={{index .Item.Tags 0}}" role="button" class="outline secondary">&#128172; {{t .UILang "result.give_me_a_word"}}</a>
-        {{else}}
-        <a href="/vorto" role="button" class="outline secondary">&#128172; {{t .UILang "result.give_me_a_word"}}</a>
-        {{end}}
-      </li>
-      </ul>
-    </nav>
-    {{if .User}}
-    <form class="vote-inline" hx-post="/vochdonado/{{.Item.Slug}}/kompakta"
-          hx-target="closest .vote-inline"
-          hx-swap="outerHTML">
-      <button type="submit" name="value" value="1"
-              class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value 1}}active{{end}}{{end}}"
-              title="{{t .UILang "vote.aria_up"}}"
-              aria-label="{{t .UILang "vote.aria_up"}}">&#9650;</button>
-      <span class="vote-score-inline">{{.VoteScore}}</span>
-      <button type="submit" name="value" value="-1"
-              class="vote-arrow {{if .CurrentVote}}{{if eq .CurrentVote.Value -1}}active{{end}}{{end}}"
-              title="{{t .UILang "vote.aria_down"}}"
-              aria-label="{{t .UILang "vote.aria_down"}}">&#9660;</button>
-    </form>
-    {{end}}
+    {{if .User}}{{template "vote-kompakta.html" map "ContentID" .Item.Slug "VoteScore" .VoteScore "CurrentVote" .CurrentVote "UILang" $L}}{{end}}
   </div>
 </div>
-{{if .User}}
-<span id="footer-streak" hx-swap-oob="true">{{if .User.CurrentStreakDays}}{{$exh := .User.StreakExpiresInHours}}<span class="streak-badge{{if and (ge $exh 0) (lt $exh 24)}} streak-urgent{{end}}" title="{{t .UILang "footer.streak_title"}}">&#128293; <strong>{{.User.CurrentStreakDays}}</strong>{{if and (ge $exh 0) (lt $exh 24)}} &#9201;{{$exh}}h{{end}}</span>{{end}}</span>
-{{end}}
 {{end}}

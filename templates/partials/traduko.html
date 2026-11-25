@@ -29,7 +29,7 @@
         </form>
         {{if or (eq $.User.ID .AuthorID) (eq $.User.Role "mod") (eq $.User.Role "admin")}}
         <details style="display:inline-block;margin-left:0.5rem">
-          <summary class="btn-sm" style="cursor:pointer;font-size:0.8rem">✏️ {{t $uiLang "translate.edit"}}</summary>
+          <summary class="btn-sm" style="cursor:pointer;font-size:0.8rem">{{ico "pen"}} {{t $uiLang "translate.edit"}}</summary>
           <form hx-post="/tradukoj/{{$contentID}}/redakti/{{.ID}}"
                 hx-target="#tradukoj-{{$contentID}}"
                 hx-swap="outerHTML"
@@ -69,7 +69,7 @@
           hx-swap="outerHTML">
       <input type="hidden" name="language" value="{{$lang}}">
       {{if .DoltSuggestions}}
-      <p><small>💡 {{t $uiLang "translate.dolt_hint"}}:</small></p>
+      <p><small>{{ico "bulb"}} {{t $uiLang "translate.dolt_hint"}}:</small></p>
       <div class="dolt-suggestions">
         {{range .DoltSuggestions}}
         <button type="button" class="outline secondary dolt-suggestion-btn"
@@ -89,7 +89,7 @@
 
   <div class="traduko-lang-switch">
     <form method="POST" action="/lingvo" class="inline-lang-form">
-      <label>&#128172;
+      <label>{{ico "chat"}}
         <select name="lang" onchange="this.form.submit()" class="lang-select-inline">
           <option value="ar"    {{if eq $lang "ar"   }}selected{{end}}>العربية</option>
           <option value="be"    {{if eq $lang "be"   }}selected{{end}}>Беларуская</option>

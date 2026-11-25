@@ -15,7 +15,7 @@
     <small class="tag-count">{{$count}}</small>
     {{if $.User}}
     <form method="POST" action="/etikedo/{{$tag}}/steli" style="display:inline">
-      <button type="submit" class="icon-btn" title="{{if $.User.IsFavoriteTag $tag}}Malfavori etikedon{{else}}Steli etikedon{{end}}">{{if $.User.IsFavoriteTag $tag}}★{{else}}☆{{end}}</button>
+      <button type="submit" class="icon-btn" aria-pressed="{{if $.User.IsFavoriteTag $tag}}true{{else}}false{{end}}" title="{{if $.User.IsFavoriteTag $tag}}Malfavori etikedon{{else}}Steli etikedon{{end}}">{{ico "star"}}</button>
     </form>
     {{end}}
   </span>

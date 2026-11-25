@@ -8,7 +8,7 @@
 
 {{if .Items}}
 <p>
-  <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button">&#9654; {{t $lang "browse.start_first"}}</a>
+  <a href="/ekzerco/{{(index .Items 0).Slug}}" role="button">{{ico "play"}} {{t $lang "browse.start_first"}}</a>
 </p>
 
 <table>
@@ -28,7 +28,7 @@
         {{else if .Question}}{{truncate .Question 60}}
         {{else}}{{.Slug}}{{end}}
       </a></td>
-      <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+      <td><span class="type-badge">{{kindIco .}} {{itemKind .}}</span></td>
       <td><span class="cefr-badge cefr-{{cefr .Rating}}">{{cefr .Rating}}</span></td>
     </tr>
     {{end}}

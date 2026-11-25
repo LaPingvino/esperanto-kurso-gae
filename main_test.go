@@ -118,8 +118,13 @@ func TestPagesRender(t *testing.T) {
 	if n := strings.Count(html, "<tr>"); n != len(bildoj.All())+1 {
 		t.Errorf("credits page has %d rows, want %d", n-1, len(bildoj.All()))
 	}
-	render(t, "serioj.html", map[string]interface{}{})
-	render(t, "hejmo.html", map[string]interface{}{"Items": []*model.ContentItem{
-		{Slug: "bildo-kato", Type: "vocab", Content: map[string]interface{}{"word": "kato"}},
-	}})
+	// The pages around the stage render with no user (a first visit).
+	render(t, "hejmo.html", map[string]interface{}{})
+	render(t, "mapo.html", map[string]interface{}{})
+	render(t, "gramatiko.html", map[string]interface{}{})
+	render(t, "vojkrucigxo.html", map[string]interface{}{"Angla": "https://angla.org/?de=esperanto-kurso"})
+	html = render(t, "hejmo.html", map[string]interface{}{"FromAngla": true})
+	if !strings.Contains(html, "angla.org") {
+		t.Error("an arrival from angla.org is not greeted")
+	}
 }

@@ -1,0 +1,34 @@
+{{template "base" .}}
+
+{{define "title"}}{{.Topic.Title}} — Esperanto-kurso{{end}}
+
+{{- /* A grammar page: the one page built for reading (reading face, 66ch
+     measure, examples, tables in their own scroll box), always ending in a
+     practice card that opens the stage for the same point. */}}
+{{define "content"}}
+{{$L := .UILang}}
+{{with .Topic}}
+<div class="col">
+  <p><a href="/gramatiko">{{ico "left"}} {{t $L "grammar.title"}}</a></p>
+  <article class="prose" lang="eo">
+    <h1>{{.Title}}</h1>
+    <div class="meta"><span class="chip lvl">{{.Level}}</span>{{if .Text}}<span>{{t $L "grammar.from_pmeg"}}</span>{{end}}</div>
+    {{if .Intro}}<p>{{.Intro}}</p>{{end}}
+    {{range .Blocks}}
+      {{if eq .Kind "h"}}<h2>{{.Text}}</h2>
+      {{else if eq .Kind "table"}}<div class="table-wrap"><table class="tab"><tbody>{{range .Rows}}<tr>{{if index . 0}}<th scope="row">{{index . 0}}</th><td>{{index . 1}}</td>{{else}}<td colspan="2">{{index . 1}}</td>{{end}}</tr>{{end}}</tbody></table></div>
+      {{else if eq .Kind "examples"}}<ul class="examples">{{range .Items}}<li><span class="src">{{.}}</span></li>{{end}}</ul>
+      {{else}}<p>{{if .Term}}<b>{{.Term}}</b> {{end}}{{.Text}}</p>{{end}}
+    {{end}}
+    {{with .Text}}{{with index .Content "source_url"}}<p class="reading-source"><small>{{t $L "exercise.source_label"}} <a href="{{.}}" rel="noopener">PMEG</a></small></p>{{end}}{{end}}
+    <section class="practice-list" aria-label="{{t $L "grammar.practice"}}">
+      {{range .Practice}}
+      <a class="practice" href="/ekzerco/{{.NextSlug}}"><span class="k">{{typeIco .Kind}}</span><p><b>{{t $L "grammar.practice"}} {{.Label}}</b><small>{{tipNomo .Kind}} · {{if .Started}}{{.Done}}/{{end}}{{.Total}} {{t $L "home.activities"}}</small></p></a>
+      {{else}}
+      <p class="empty">{{t $L "grammar.no_practice"}}</p>
+      {{end}}
+    </section>
+  </article>
+</div>
+{{end}}
+{{end}}

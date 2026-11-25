@@ -158,6 +158,21 @@ func (u *User) CEFRProgressPercent() int {
 	return 100
 }
 
+// Placed reports whether the learner's level means something yet: a new
+// account starts at 1500 ± 350 (the middle of B1), so until the deviation
+// has come down (a handful of answers) the site treats them as a beginner
+// starting at A0 instead of showing a B1 they never earned.
+func (u *User) Placed() bool { return u.RD < 250 }
+
+// ReachedB1 reports whether the learner is settled at B1 or above: the point
+// where the site offers the English course on angla.org, whose explanations
+// are in Esperanto (/vojkrucigxo).
+func (u *User) ReachedB1() bool { return u.Rating >= 1400 && u.RD < 200 }
+
+// Established reports a stable upper-B1 learner: may contribute content, and
+// the interface switches itself to Esperanto.
+func (u *User) Established() bool { return u.Rating >= 1500 && u.RD < 150 }
+
 // NeedsAccountNudge reports whether the user should be nudged to secure their
 // account: they have invested real effort (RD drops from 350 toward ~250 after
 // a handful of exercises) but have no username (account auto-deletes after 7

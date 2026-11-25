@@ -24,7 +24,7 @@
       <tr data-search="{{.Slug}} {{.Type}} {{.Status}}" data-type="{{.Type}}" data-parent="{{.SeriesParent}}">
         <td><input type="checkbox" name="slugs" value="{{.Slug}}" class="row-check" onchange="updateBulkBar()" style="width:auto"></td>
         <td><code style="font-size:0.8em">{{.Slug}}</code>{{if .Word}}<br><span style="font-size:0.85em">{{.Word}}</span>{{else if .Title}}<br><span style="font-size:0.85em">{{.Title}}</span>{{else if .Question}}<br><span style="font-size:0.85em;color:var(--pico-muted-color)">{{truncate .Question 50}}</span>{{end}}</td>
-        <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+        <td><span class="type-badge">{{kindIco .}} {{itemKind .}}</span></td>
         <td>
           <span class="status-badge status-{{.Status}}">
             {{if eq .Status "draft"}}Malneto
@@ -112,7 +112,7 @@
 {{range .Groups}}
 <details class="series-group" id="sg-{{.SeriesSlug}}" style="margin-bottom:0.75rem">
   <summary style="cursor:pointer;font-weight:bold">
-    &#128196; {{.SeriesLabel}}
+    {{ico "list"}} {{.SeriesLabel}}
     {{if ne .SeriesLabel .SeriesSlug}}<small style="font-weight:normal;opacity:0.6">({{.SeriesSlug}})</small>{{end}}
     <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj{{if .Children}}, {{len .Children}} subseroj{{end}})</small>
     &nbsp;
@@ -129,7 +129,7 @@
   {{range .Children}}
   <details class="series-group series-group-child" id="sg-{{.SeriesSlug}}" style="margin:0.5rem 0 0.5rem 1.5rem">
     <summary style="cursor:pointer;font-weight:bold">
-      &#8627; &#128196; {{.SeriesLabel}}
+      &#8627; {{ico "list"}} {{.SeriesLabel}}
       {{if ne .SeriesLabel .SeriesSlug}}<small style="font-weight:normal;opacity:0.6">({{.SeriesSlug}})</small>{{end}}
       <small style="font-weight:normal;color:var(--pico-muted-color)">({{len .Items}} eroj)</small>
       &nbsp;
@@ -167,7 +167,7 @@
       <tr data-search="{{.Slug}} {{.Type}} {{.Status}}" data-type="{{.Type}}" data-parent="{{.SeriesParent}}">
         <td><input type="checkbox" name="slugs" value="{{.Slug}}" class="row-check" onchange="updateBulkBar()" style="width:auto"></td>
         <td><code style="font-size:0.8em">{{.Slug}}</code>{{if .Word}}<br><span style="font-size:0.85em">{{.Word}}</span>{{else if .Title}}<br><span style="font-size:0.85em">{{.Title}}</span>{{else if .Question}}<br><span style="font-size:0.85em;color:var(--pico-muted-color)">{{truncate .Question 50}}</span>{{end}}</td>
-        <td><span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span></td>
+        <td><span class="type-badge">{{kindIco .}} {{itemKind .}}</span></td>
         <td>
           <span class="status-badge status-{{.Status}}">
             {{if eq .Status "draft"}}Malneto

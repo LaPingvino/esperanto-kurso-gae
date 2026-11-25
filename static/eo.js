@@ -318,100 +318,6 @@ function credentialToJSON(cred) {
   return cred;
 }
 
-// ---- Exercise feedback: sounds + level-up celebration ----
-
-(function () {
-  'use strict';
-
-  // Web Audio beeps — no external files needed.
-  function beep(freq, duration, type, vol) {
-    try {
-      const ctx = new (window.AudioContext || window.webkitAudioContext)();
-      const osc = ctx.createOscillator();
-      const gain = ctx.createGain();
-      osc.connect(gain);
-      gain.connect(ctx.destination);
-      osc.type = type || 'sine';
-      osc.frequency.setValueAtTime(freq, ctx.currentTime);
-      gain.gain.setValueAtTime(vol || 0.15, ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + duration);
-      osc.start(ctx.currentTime);
-      osc.stop(ctx.currentTime + duration);
-    } catch (e) { /* AudioContext may not be available */ }
-  }
-
-  function playCorrect() {
-    beep(660, 0.12, 'sine', 0.12);
-    setTimeout(() => beep(880, 0.15, 'sine', 0.10), 100);
-  }
-
-  function playIncorrect() {
-    beep(300, 0.2, 'sawtooth', 0.10);
-  }
-
-  // Minimal confetti burst for level-up (no external lib).
-  function launchConfetti() {
-    const canvas = document.createElement('canvas');
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999';
-    document.body.appendChild(canvas);
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const colors = ['#009900','#f5c400','#fff','#00c853','#ffd600'];
-    const particles = Array.from({length: 80}, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * -100,
-      r: Math.random() * 6 + 3,
-      d: Math.random() * 3 + 1,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      tilt: Math.random() * 10 - 5,
-      tiltAngle: 0,
-      tiltSpeed: Math.random() * 0.05 + 0.02,
-    }));
-
-    let frame = 0;
-    function draw() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      particles.forEach(p => {
-        p.tiltAngle += p.tiltSpeed;
-        p.y += p.d + 1;
-        p.tilt = Math.sin(p.tiltAngle) * 12;
-        ctx.beginPath();
-        ctx.lineWidth = p.r;
-        ctx.strokeStyle = p.color;
-        ctx.moveTo(p.x + p.tilt + p.r / 2, p.y);
-        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 2);
-        ctx.stroke();
-      });
-      frame++;
-      if (frame < 120) requestAnimationFrame(draw);
-      else canvas.remove();
-    }
-    draw();
-  }
-
-  // After HTMX swaps in a result, play sound and check for level-up.
-  document.addEventListener('htmx:afterSwap', function (evt) {
-    const target = evt.detail.target;
-    if (!target || target.id !== 'rezulto') return;
-
-    const result = target.querySelector('.rezulto');
-    if (!result) return;
-
-    if (result.classList.contains('correct')) {
-      playCorrect();
-    } else {
-      playIncorrect();
-    }
-
-    if (target.querySelector('.level-up-banner')) {
-      launchConfetti();
-    }
-  });
-
-})();
-
 // ---- X-system auto-correction ----
 // Converts cx→ĉ, gx→ĝ, hx→ĥ, jx→ĵ, sx→ŝ, ux→ŭ (case-preserving) in text inputs.
 
@@ -454,47 +360,39 @@ function credentialToJSON(cred) {
   }, true);
 })();
 
-// ---- Theme picker (light / dark / auto) ----
+// ---- Theme picker (light / dark / auto), in the profile menu ----
 (function () {
   var THEME_KEY = 'eo_theme';
-  var ICONS = { light: '☀️', dark: '🌙', auto: '🔆' };
-
-  function getTheme() { return localStorage.getItem(THEME_KEY) || 'auto'; }
-
+  function getTheme() { try { return localStorage.getItem(THEME_KEY) || 'auto'; } catch (e) { return 'auto'; } }
   function applyTheme(theme) {
-    if (theme === 'auto') {
-      document.documentElement.removeAttribute('data-theme');
-    } else {
-      document.documentElement.setAttribute('data-theme', theme);
-    }
-    var btn = document.getElementById('theme-toggle');
-    if (btn) btn.textContent = ICONS[theme] || ICONS.auto;
+    if (theme === 'auto') document.documentElement.removeAttribute('data-theme');
+    else document.documentElement.setAttribute('data-theme', theme);
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.dataset.themeSet === theme));
+    });
   }
-
-  // Sync icon once DOM is ready (theme attribute already applied by inline script).
-  document.addEventListener('DOMContentLoaded', function () { applyTheme(getTheme()); });
-
-  window.cycleTheme = function () {
-    var cur = getTheme();
-    var next = cur === 'auto' ? 'light' : cur === 'light' ? 'dark' : 'auto';
-    localStorage.setItem(THEME_KEY, next);
-    applyTheme(next);
-  };
-})();
-
-// ---- Focus mode ----
-(function () {
-  var FM_KEY = 'eo_focus_mode';
-  function applyFocusMode(on) {
-    document.body.classList.toggle('focus-mode', on);
-  }
-  // Restore on load.
-  if (localStorage.getItem(FM_KEY) === '1') applyFocusMode(true);
-  window.toggleFocusMode = function () {
-    var on = !document.body.classList.contains('focus-mode');
-    applyFocusMode(on);
-    localStorage.setItem(FM_KEY, on ? '1' : '0');
-  };
+  document.addEventListener('DOMContentLoaded', function () {
+    applyTheme(getTheme());
+    document.querySelectorAll('[data-theme-set]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        try { localStorage.setItem(THEME_KEY, b.dataset.themeSet); } catch (e) {}
+        applyTheme(b.dataset.themeSet);
+      });
+    });
+    // The header place you are on.
+    var path = location.pathname.replace(/\/+$/, '') || '/';
+    document.querySelectorAll('[data-loko]').forEach(function (a) {
+      var l = a.dataset.loko;
+      if (l === path || (l !== '/' && path.indexOf(l + '/') === 0)) a.setAttribute('aria-current', 'page');
+    });
+    // Close an open menu on a click outside it or on Escape.
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('details.menu[open]').forEach(function (d) { if (!d.contains(e.target)) d.open = false; });
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') document.querySelectorAll('details.menu[open]').forEach(function (d) { d.open = false; });
+    });
+  });
 })();
 
 // ---- Language pickers (datalist with code or name search) ----
@@ -550,16 +448,109 @@ document.addEventListener('DOMContentLoaded', function () {
   if (vl) langInputBlur(vl, 'vocab-lang-list');
 });
 
-// ---- Reveal community sections after answer ----
-document.addEventListener('htmx:afterSwap', function (evt) {
-  if (evt.detail.target && evt.detail.target.id === 'rezulto') {
-    const postAnswer = document.getElementById('post-answer');
-    if (postAnswer) {
-      postAnswer.classList.remove('post-answer-hidden');
-      postAnswer.classList.add('post-answer-visible');
-    }
+// ---- The activity stage ----
+// Kontroli stays disabled until there is an answer; after the verdict
+// (rezulto.html swapped into #dock) the tiles or gaps get their state with a
+// second cue besides colour (a ✓/✗ badge), the dock its tint, and focus goes
+// to Daŭrigi. Keys: 1–4 pick a tile or a self-judgement, Space flips a card.
+(function () {
+  'use strict';
+  var SVG = function (n) { return '<svg class="ico" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
+  var norm = function (s) { return (s || '').trim().toLowerCase(); };
+
+  function answered(form) {
+    var fields = form.querySelectorAll('[name="answer"]');
+    if (!fields.length) return false;
+    if (fields[0].type === 'radio') return !!form.querySelector('[name="answer"]:checked');
+    for (var i = 0; i < fields.length; i++) if (!fields[i].value.trim()) return false;
+    return true;
   }
-});
+  function syncCheck() {
+    var form = document.getElementById('answer-form');
+    var btn = document.querySelector('[data-check]');
+    if (form && btn) btn.disabled = !answered(form);
+  }
+  document.addEventListener('input', syncCheck);
+  document.addEventListener('change', syncCheck);
+  document.addEventListener('DOMContentLoaded', syncCheck);
+
+  function badge(kind) { var b = document.createElement('span'); b.className = 'badge'; b.innerHTML = SVG(kind === 'right' ? 'check' : 'x'); return b; }
+  function gapMark(kind) { var b = document.createElement('span'); b.className = 'gap-mark ' + kind; b.innerHTML = SVG(kind === 'right' ? 'check' : 'x'); return b; }
+
+  function markAnswer(v) {
+    var form = document.getElementById('answer-form');
+    if (!form) return;
+    var correct = v.dataset.correct || '';
+    var verdict = v.dataset.verdict;
+    var radios = form.querySelectorAll('input[type="radio"][name="answer"]');
+    if (radios.length) {
+      radios.forEach(function (r) {
+        var tile = r.closest('.tile');
+        r.disabled = true;
+        if (norm(r.value) === norm(correct)) { tile.dataset.s = 'right'; tile.appendChild(badge('right')); }
+        else if (r.checked) { tile.dataset.s = 'wrong'; tile.appendChild(badge('wrong')); }
+        else { tile.dataset.s = 'done'; }
+      });
+      var fs = form.querySelector('.tiles'); if (fs) fs.dataset.answered = '';
+      return;
+    }
+    var fields = form.querySelectorAll('input[name="answer"]');
+    var parts = correct.split(' / ');
+    fields.forEach(function (f, i) {
+      var ok = verdict === 'right' || (fields.length > 1 && parts.length && norm(f.value) === norm(parts[i % parts.length]));
+      f.readOnly = true;
+      f.classList.add(ok ? 'is-right' : 'is-wrong');
+      f.insertAdjacentElement('afterend', gapMark(ok ? 'right' : 'wrong'));
+    });
+  }
+
+  document.addEventListener('htmx:afterSwap', function (evt) {
+    var dock = evt.detail.target;
+    if (!dock || dock.id !== 'dock') return;
+    var v = dock.querySelector('[data-verdict]');
+    if (!v) return;
+    dock.classList.remove('right', 'wrong');
+    if (v.dataset.verdict === 'right' || v.dataset.verdict === 'wrong') dock.classList.add(v.dataset.verdict);
+    markAnswer(v);
+    var post = document.getElementById('post-answer');
+    if (post) post.classList.remove('post-answer-hidden');
+    var go = dock.querySelector('[data-continue]');
+    if (go) go.focus({ preventScroll: true });
+  });
+
+  function flip() {
+    var back = document.querySelector('[data-back]');
+    var front = document.querySelector('#dock [data-front]');
+    var judge = document.querySelector('#dock [data-judge]');
+    if (!front || front.hidden) return;
+    if (back) back.hidden = false;
+    front.hidden = true;
+    if (judge) { judge.hidden = false; var first = judge.querySelector('button'); if (first) first.focus({ preventScroll: true }); }
+  }
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-flip]')) flip();
+    var play = e.target.closest('[data-play]');
+    if (play) {
+      var a = document.getElementById('sono');
+      if (a) { a.playbackRate = parseFloat(play.dataset.play) || 1; a.currentTime = 0; a.play(); }
+    }
+    var reveal = e.target.closest('[data-reveal-after]');
+    if (reveal) { var post = document.getElementById('post-answer'); if (post) post.classList.remove('post-answer-hidden'); }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (!document.body.classList.contains('on-stage') || e.ctrlKey || e.metaKey || e.altKey) return;
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' && t.type !== 'radio' || t.tagName === 'TEXTAREA')) return;
+    if (e.key === ' ' && document.querySelector('#dock [data-front]:not([hidden])')) { e.preventDefault(); flip(); return; }
+    if (/^[1-9]$/.test(e.key)) {
+      var judge = document.querySelector('#dock [data-judge]:not([hidden]) [data-key="' + e.key + '"]');
+      if (judge) { judge.click(); return; }
+      var radio = document.querySelector('#answer-form input[type="radio"][data-key="' + e.key + '"]:not(:disabled)');
+      if (radio) { radio.checked = true; radio.focus(); syncCheck(); }
+    }
+  });
+})();
 
 // ---- Account nudge banner ----
 // Server renders it (hidden) for users with progress but no username/passkey;
@@ -589,8 +580,8 @@ function copySupport(id, btn) {
   // data-copy wins over the (possibly truncated) display text.
   const text = (el.dataset.copy || el.textContent).trim();
   navigator.clipboard.writeText(text).then(function () {
-    const old = btn.textContent;
-    btn.textContent = '✓';
-    setTimeout(function () { btn.textContent = old; }, 1500);
+    const old = btn.innerHTML;
+    btn.innerHTML = '<svg class="ico" aria-hidden="true"><use href="#i-check"/></svg>';
+    setTimeout(function () { btn.innerHTML = old; }, 1500);
   });
 }
