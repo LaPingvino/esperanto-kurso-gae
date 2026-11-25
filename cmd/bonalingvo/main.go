@@ -5,13 +5,16 @@
 // the same meaning built from basic roots (malsanulejo, malbona, malsaĝa).
 // Both are Esperanto; the built one is the project's preference.
 //
-//	curl -sS -A esperanto-kurso-builder/1 -o bl.json https://labonalingvo.org/api/all-translations
+//	curl -sS -o bl.json https://labonalingvo.org/api/all-translations
 //	go run ./cmd/bonalingvo bl.json > content/builder/60-bona-lingvo.json
 //
 // A pair is kept only when (the drops are counted on stderr):
 //   - both sides are single plain words, the entry an ordinary word (no
 //     affix entry, no context note), and the project has checked it (not one
 //     of its grey PIV/ReVo-only suggestions);
+//   - the other word is one root with its ending (hospital·o, not
+//     de·nov·e), and not a Fundamento word (an Official Addition, as
+//     hospitalo and stulta are, or no official root at all);
 //   - the preferred word is built: two morphemes or more besides the ending,
 //     each an affix or a Fundamento/official root (ReVo's <ofc>);
 //   - ReVo has both words, and confirms the meaning: one's definition names
@@ -101,6 +104,18 @@ func built(divided string) bool {
 	return true
 }
 
+// roots: how many of the divided form's pieces are roots.
+func roots(divided string) int {
+	n := 0
+	ps := strings.Split(divided, "·")
+	for _, p := range ps[:len(ps)-1] {
+		if p != "o" && !prefixes[p] && !suffixes[p] {
+			n++
+		}
+	}
+	return n
+}
+
 // stem: the word without its ending.
 func stem(w string) string { return w[:len(w)-1] }
 
@@ -168,7 +183,7 @@ var differ = set(
 
 // Identity words are left out: a series that prefers one word over a
 // group's own name for itself would not be neutral.
-var identity = set("gejo", "lesbanino", "lesbano")
+var identity = set("gejo", "lesbanino", "lesbano", "lesbo")
 
 // Joop's own examples go in whatever their rank.
 var always = set("hospitalo", "mava", "stulta")
@@ -207,6 +222,13 @@ func main() {
 	for _, e := range d.Results {
 		if !plain.MatchString(e.Source) || deref(e.Context) != "" {
 			drop["ne simpla vorto (afikso, pluraj vortoj, kunteksto)"]++
+			continue
+		}
+		if ps := strings.Split(e.Divided, "·"); len(ps) != 2 || !endings[ps[1]] {
+			drop["la alia vorto ne estas unu radiko kun finaĵo"]++
+			continue
+		} else if revo.RootOfc(ps[0]) == "*" {
+			drop["la alia vorto estas Fundamenta"]++
 			continue
 		}
 		if grey(deref(e.Annotation)) {
@@ -353,7 +375,9 @@ func makeItems(pairs []pair, fwd, inv map[string]map[string]bool) []map[string]a
 		// the word with its own root → the preferred built word
 		mc("al-konstruita", fmt.Sprintf("Anstataŭ „%s“ La Bona Lingvo proponas vorton el bazaj radikoj. Kiun?", p.Neo),
 			p.Built, pick(i, p.Built, fwd[p.Neo], func(q pair) string { return q.Built }))
-		if len(fwd[p.Neo]) == 1 { // the project proposes only this word for it
+		// the project proposes only this word for it, and it has one root (a
+		// compound may take a linking o or not: dent·o·karn·o, dent·karn·o)
+		if len(fwd[p.Neo]) == 1 && roots(p.BuiltDiv) == 1 {
 			base("fillin", "tajpu-konstruitan", map[string]any{
 				"question": fmt.Sprintf("%s = ___ (la sama signifo, el bazaj radikoj)", capital(p.Neo)),
 				"answer":   p.Built, "hint": hintBuilt(p.BuiltDiv)})
