@@ -82,6 +82,7 @@ type Exercise struct {
 	Revo     *revo.Hit // Q: Reta Vortaro's entry for the word, for Meaning
 	Word     *Word     // C
 	Sentence string    // B
+	Bare     bool      // Q: a bare root or affix (tagged radiko, sufikso, prefikso), not a word to guess
 }
 
 // Word is a card's word: the form met in the text, its vocabulary root, the
@@ -329,7 +330,11 @@ func exerciseOf(it *model.ContentItem) *Exercise {
 		if w == "" || len(d) == 0 && hit == nil {
 			return nil
 		}
-		return &Exercise{Kind: 'Q', Slug: it.Slug, Answers: []string{w}, Alts: clean(it.Alternatives()), Defs: d, Revo: hit, Hint: it.Hint()}
+		bare := false
+		for _, t := range it.Tags {
+			bare = bare || t == "radiko" || t == "sufikso" || t == "prefikso"
+		}
+		return &Exercise{Kind: 'Q', Slug: it.Slug, Answers: []string{w}, Alts: clean(it.Alternatives()), Defs: d, Revo: hit, Hint: it.Hint(), Bare: bare}
 	case "reading", "video":
 		return nil
 	}

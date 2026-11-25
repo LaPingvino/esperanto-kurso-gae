@@ -25,6 +25,7 @@ import (
 //     answer with the account's state, so one request syncs both ways:
 //
 //     L <lang>                   the player's language for meanings
+//     R <rating> <level>         the rating, and its level once settled (RD < 200; else "")
 //     S <place slug> <stars>     the game's stars on the account
 //     F <exercise slug>          an exercise answered rightly on the site
 //     D <place slug>             a place whose site exercises all were
@@ -87,6 +88,13 @@ func (h *GameHandler) Progress(w http.ResponseWriter, r *http.Request) {
 		lang = "en"
 	}
 	fmt.Fprintf(w, "L %s\n", lang) // the player's language for meanings (the game's default)
+	// The rating, for the bonus games: the race's speed; and the level, once
+	// the rating is settled (a new account's 1500 is a guess, not B1).
+	level := ""
+	if u.RD < 200 {
+		level = model.RatingToCEFR(u.Rating)
+	}
+	fmt.Fprintln(w, strings.TrimSpace(fmt.Sprintf("R %d %s", int(u.Rating), level)))
 	fmt.Fprint(w, FormatGameProgress(stars, right))
 	if h.Course != nil {
 		if c := h.Course(r.Context()); c != nil {

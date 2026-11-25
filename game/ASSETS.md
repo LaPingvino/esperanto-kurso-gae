@@ -1,12 +1,15 @@
 # The game's pictures: sources and licences
 
-Every picture in `sprites/` comes from an openly licensed pack. All of them are CC0 (public domain dedication): no attribution is
-required, so the game shows no credits line. They are credited here anyway.
+Every picture in `sprites/` comes from an openly licensed pack. All of them but `spr_bildo` are CC0 (public domain
+dedication): no attribution is required, so the game shows no credits line for them; they are credited here anyway.
+`spr_bildo` is the site's own word pictures (OpenMoji, CC BY-SA 4.0, as on the site's `/fontoj`): Vortludo shows
+"Bildo: OpenMoji, CC BY-SA 4.0" under every one it draws.
 
 | Resource | What | From | Author | Licence |
 |---|---|---|---|---|
 | `spr_place` (44 px), `spr_place_s` (28 px) | a place's picture (`scripts/place_pic.gml`), frames 0–14 in kurso-design's muted ink (44, 74, 69), 15–29 the same faded (128, 156, 150) for a place not open yet. 0–11 one per Zagreb lesson (by the number in its slug, `zagr-lNN-teksto`): `houseSmall`, `houses`, `ship`, `houseChimney`, `house`, `campfire`, `waterWheel`, `tent`, `treePines`, `mill`, `well`, `dock`; every other place by its kind: 12 `castle` (a reading), 13 `bridge` (exercises), 14 `lighthouse` (a video) | Cartography Pack | Kenney | CC0 1.0 |
 | `spr_compass` (60 px) | `compass`, the muted ink at 45 % opacity | Cartography Pack | Kenney | CC0 1.0 |
+| `spr_bildo` (96 px) | Vortludo's picture hint: the word picture (`internal/bildoj`, `static/bildoj/`) of every five-letter word, rendered from its SVG by `cmd/game-bildoj` (rsvg-convert), which also writes `scripts/bildo_frame.gml` (a picture's frame by its file name) | OpenMoji 17.0.0 | the OpenMoji authors (per picture in `vortbildoj.json`) | CC BY-SA 4.0 |
 | `spr_kind` (22 px) | the exercise kinds (`ex_begin.gml`), in the accent text green (15, 80, 36): 0 `book_open` (word cards), 1 `notepad_write` (fill-ins), 2 `cards_order` (sentences to build), 3 `hexagon_question` (multiple choice), 4 `card_flip` (vocabulary), 5 `book_closed` (typed answers: the phrasebook) | Board Game Icons 1.1 (2024) | Kenney | CC0 1.0 |
 
 Sources (each pack's own `License.txt` states CC0 1.0,

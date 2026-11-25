@@ -1,10 +1,11 @@
 // sync_merge(text): the account's state (/ludo-progreso) into the game's,
 // merged by the larger, so nothing is lost: "L lang" the account's language
-// for meanings (the default until the player picks one); "S slug n" the
+// for meanings (the default until the player picks one); "R rating level"
+// the account's rating and its level once settled (the bonus games); "S slug n" the
 // game's stars kept on the account; "D slug" a place whose exercises were
 // all answered rightly on the site — done, one star. ("F slug" lines, the
 // exercises themselves, the site works out into D lines.)
-var t, p, changed;
+var t, p, changed, k;
 changed = 0;
 global.ptext = argument0; global.peof = 0;
 while (!global.peof) {
@@ -13,6 +14,11 @@ while (!global.peof) {
   p = string_copy(t, 1, 2);
   t = string_delete(t, 1, 2);
   if (p == "L ") global.acclang = t;
+  if (p == "R ") { // the rating (the race's speed) and the settled level, or none
+    k = string_pos(" ", t + " ");
+    if (string_digits(string_copy(t, 1, k - 1)) != "") global.rating = real(string_digits(string_copy(t, 1, k - 1)));
+    global.acclevel = strip(string_delete(t, 1, k));
+  }
   if (p == "D ") { if (stars_set(t, 1)) changed = 1; }
   if (p == "S ") {
     p = string_pos(" ", t);

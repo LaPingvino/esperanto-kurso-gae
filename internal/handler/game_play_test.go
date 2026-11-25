@@ -198,7 +198,7 @@ func placeKeys(t *testing.T, lesson string, typed func(i int) bool) []string {
 					a = e.ans[0]
 				}
 				if typed(i) && !strings.ContainsAny(a, ",:") && !(len(a) == 1 && a >= "0" && a <= "9") {
-					ks = append(ks, "text="+a+":1", ":1", "enter:1", ":2")
+					ks = append(ks, "text="+hSpell(a)+":1", ":1", "enter:1", ":2") // typed in the h-system: judged by both readings
 					continue
 				}
 				found := false

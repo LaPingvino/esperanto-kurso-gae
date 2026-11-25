@@ -11,6 +11,8 @@ Datastore reads of its own; built again only when that cache reloads):
 
 - `GET /ludo-api/kurso` — the map: levels, series, places;
 - `GET /ludo-api/leciono/{slug}?lingvo=xx` — a place: its text and exercises, meanings in xx (else English).
+- `GET /ludo-api/vortoj?lingvo=xx` — the vocabulary words for the bonus games (`gamedata/words.go`): each word
+  with its level, meaning, masked Esperanto definition and picture, and the day's Vortludo word per level.
 
 Plain text lines of tab-separated fields (`gamedata/text.go`; GML has no JSON reader), each ending in `FINO`
 so a cut-off text is never taken for a whole one. Mounted outside AuthMiddleware: the same for everyone, no
@@ -48,7 +50,35 @@ phrasebook, 33 videos (Mazi 12, Pasporto 16, music 4, the alphabet 1). In the ga
 | video | the site's videos | watched on the site |
 
 Tiles are **derived** from the other answers of the same kind (same place, then series, then all), never made
-up. Typed answers get the x-system as the site's answer field does (`static/eo.js`).
+up. Typed answers get the x-system as the site's answer field does (`static/eo.js`), and the h-system (ch → ĉ,
+sh → ŝ …; its ŭ is a plain u), both converted as you type (`xsys.gml`). The h-system's letters also occur in real
+words (*flughaveno* shows as *fluĝaveno*), so a typed answer is judged by both readings (`hfold`, `gap_fix`) and
+the site is sent the answer it matched, which `checkAnswer` then judges the same.
+
+## The bonus games: the same words, learnt otherwise
+
+As OpenTeacher does with one list, the course's vocabulary comes back as games, from `/ludo-api/vortoj`, kept in
+the browser (`ludo-vortoj-<lang>.txt`) like the lessons. They are reached from the levels screen (*Ludoj*, above
+the levels) and as the *Bonuso* after a finished place. **Neither sends anything to the site:** a Wordle guess
+answers no item's question and a gate is a choice, so the ratings still move only by typed course answers.
+
+- **The learner's level:** the account's, from its rating once settled (RD < 200: `/ludo-progreso`'s `R` line),
+  else the level the map is at.
+- **Vortludo** (`vl_*.gml`): a Wordle on the course's five-letter words (ĉ ĝ ĥ ĵ ŝ ŭ one letter each; no bare
+  roots). The day's word is the site's (`T` lines: the same for every learner of a level, by the UTC date);
+  *Nova vorto* plays a word of the level's pool at random (the level, then below, then above, to ten:
+  `gamedata.FivePool`, mirrored by `vl_pool.gml`). Any five letters may be tried: the course's list is far
+  shorter than the language. Six rows; typed (x- and h-systems) or on the screen's keyboard of the 28 letters.
+  In its place: the accent fill; elsewhere in the word: the note tint and a dot under the letter; not in it:
+  sunk. After three misses it offers the word's picture (`spr_bildo`, the site's own word pictures) or its
+  Esperanto definition with the word masked (~), else its meaning.
+- **Vetkuro** (`rc_*.gml`): a road of three lanes; the question is a meaning, and a gate of three words comes
+  down it; steer into the right one (arrow keys, a tap on a lane, a swipe). A wrong gate is a crash: a life of
+  three, the right word shown with ✓. A gate takes 9 s down the road at a rating of 1000, 5 s at 2000, a little
+  less with each point. The bonus after a place races with that place's words (four or more), else the
+  level's. This is the one place with lives and a clock, on purpose and only on request: the course itself
+  stays calm.
+
 
 ## How the course becomes a game
 
@@ -187,6 +217,13 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   only the typed answers go out (one refused first: retried), all right by `checkAnswer`; the stars end on
   the account. Offline: from the built-in part, the queue waits and goes on the next opening; the old
   progress file is read into the new one.
+- `internal/handler/game_ludoj_test.go`: Vortludo from the levels screen in both rooms — three misses typed in
+  the x-system, the hint, the day's word typed in the h-system, found on the fourth row; Vetkuro driven to the
+  right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
+  lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words; nothing
+  posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
+- `internal/gamedata/words_test.go`: the word list, the pools of every level, a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
   once per content set, the items' places, a course built from items without series fields.
 - `internal/handler/game_test.go`: the merge rule, the progress format and handler.

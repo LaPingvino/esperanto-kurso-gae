@@ -8,6 +8,7 @@ if (global.kind == 0 || global.kind == 3) { ex_done(choice_ok(global.idx, global
 if (global.kind == 2) { ex_done(build_ok()); exit; }
 all = 1; typed = 1;
 for (g = 0; g < global.ngap; g += 1) {
+  if (global.ftyped[g]) global.fa[g] = gap_fix(global.idx, g, global.fa[g]); // the x- and h-systems' readings
   global.fok[g] = gap_ok(global.idx, g, global.fa[g]);
   if (!global.fok[g]) all = 0;
   if (!global.ftyped[g]) typed = 0;

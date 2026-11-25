@@ -42,4 +42,14 @@ if (http_id() == global.les_req) {
   } else lesson_offline();
   exit;
 }
+if (http_id() == global.wd_req) { // the bonus games' words
+  global.wd_req = -1; global.wd_asked = 0;
+  t = http_result();
+  if (http_status() == 200 && words_parse(t)) {
+    global.wd_lang = lang_cur();
+    file_write_all("ludo-vortoj-" + global.wd_lang + ".txt", t);
+  } else if (global.wd_lang != lang_cur()) global.nw = 0;
+  if (global.scr == 10) game_start();
+  exit;
+}
 sync_answer();

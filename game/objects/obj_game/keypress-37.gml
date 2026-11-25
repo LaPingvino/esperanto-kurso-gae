@@ -1,2 +1,2 @@
 // The arrows move between the things you can press.
-move_focus(-1);
+if (global.scr == 9) rc_steer(-1); else move_focus(-1); // Vetkuro: steer

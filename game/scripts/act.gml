@@ -11,6 +11,7 @@ var a, s;
 a = argument0;
 if (a == 1) {
   global.focus = -1; global.les_want = -1;
+  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; exit; } // a bonus game: back where it came from
   if (global.scr == 0 || global.ser < 0) { global.scr = 5; exit; }
   global.scr = 0; exit;
 }
@@ -38,6 +39,21 @@ if (a == 17) { global.lv_skip = 0; global.focus = -1; exit; }
 if (a == 18) { if (global.lv_next >= 0) global.lv_skip = global.lv_next; global.focus = -1; exit; }
 if (a == 15) { global.mpage += 1; global.focus = -1; exit; }
 if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit; }
+// the bonus games: 700+k a letter of Vortludo's keyboard, 730 ⌫, 731 Provi,
+// 732 / 733 / 734 the hint (picture, definition, meaning), 735 a new word,
+// 736 the day's word; 740 / 741 Vortludo / Vetkuro from the levels, 743 /
+// 744 the same as the bonus after a place; 742 the race's start; 26 their
+// words again.
+if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
+if (a == 730) { vl_key(""); exit; }
+if (a == 731) { vl_submit(); exit; }
+if (a >= 732 && a <= 734) { global.vl_hint = a - 731; exit; }
+if (a == 735) { vl_start(0); exit; }
+if (a == 736) { vl_start(1); exit; }
+if (a == 740 || a == 741) { global.ret_scr = 5; global.rc_place = 0; global.vl_daily = 1; words_open(a - 739); exit; }
+if (a == 743 || a == 744) { global.ret_scr = 3; global.rc_place = (a == 744); global.vl_daily = 0; words_open(a - 742); exit; }
+if (a == 742) { global.rc_lives = 3; global.rc_score = 0; global.rc_n = 0; global.rc_crash = 0; global.rc_lane = 1; rc_next(); global.focus = -1; exit; }
+if (a == 26) { global.wd_fail = 0; words_open(global.game); exit; }
 if (a >= 20000) { // a series: its map, at the page of the place to go on with
   global.ser = a - 20000; global.mpage = 0; global.scr = 0; global.focus = -1;
   for (s = 0; s < global.s_np[global.ser]; s += 1) if (stars_get(global.p_slug[global.s_first[global.ser] + s]) == 0) { global.mpage = s div 12; break; }

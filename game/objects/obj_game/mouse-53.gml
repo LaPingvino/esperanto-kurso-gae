@@ -8,3 +8,4 @@ for (i = global.nhs - 1; i >= 0; i -= 1) {
     exit;
   }
 }
+if (global.scr == 9) { global.rc_pressed = 1; global.rc_px = mouse_x; } // Vetkuro: a tap or a swipe, told at the release

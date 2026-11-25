@@ -39,7 +39,7 @@ if (global.scr == 5) {
   w = bw("Vortoj " + string(global.nword)); button(x - w, y, x, y + b, "Vortoj " + string(global.nword), 2, 2);
 } else if (global.scr == 0) {
   w = bw("‹ Niveloj"); button(x - w, by, x, by + b, "‹ Niveloj", 1, 2);
-} else if (global.scr == 4) {
+} else if (global.scr == 4 || global.scr >= 8) {
   w = bw("‹ Reen"); button(x - w, by, x, by + b, "‹ Reen", 1, 2);
 } else {
   w = bw("‹ Mapo"); button(x - w, by, x, by + b, "‹ Mapo", 1, 2);

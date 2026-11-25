@@ -1,0 +1,7 @@
+frames = 41
+frame_w = 96
+frame_h = 96
+origin = [0, 0]
+bbox_lrbt = [0, 95, 0, 95]
+precise = false
+transparent = false

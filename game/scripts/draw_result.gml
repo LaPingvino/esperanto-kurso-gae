@@ -17,12 +17,18 @@ if (n > 0) {
   y += 32;
   col = 1; if (global.wide) col = 3;
   cw = w / col;
-  rows = floor((global.H - 100 - y) / 26);
+  rows = floor((global.H - 150 - y) / 26);
   k = 0;
   for (i = 0; i < global.nex; i += 1) if (global.x_kind[i] == 0 && k < rows * col) {
     txt(x + (k mod col) * cw, y + (k div col) * 26, fit(global.x_show[i] + " — " + global.x_opt[i, global.x_right[i]], cw - 16, 15, 0), 15, 0, global.C_text);
     k += 1;
   }
 }
+// the bonus: the games, the race with this place's words
+y = global.H - 128;
+txt(global.m, y + 12, "Bonuso:", 15, 1, global.C_text);
+font(15, 1, 0); x = global.m + string_width("Bonuso:") + 12;
+button(x, y, x + bw("Vortludo"), y + 44, "Vortludo", 743, 0); x += bw("Vortludo") + 8;
+button(x, y, x + bw("Vetkuro"), y + 44, "Vetkuro", 744, 0);
 button(global.W - global.m - bw(global.t_continue_cta) - 24, global.H - 72, global.W - global.m, global.H - 20, global.t_continue_cta, 11, 1);
 global.def_act = 11;

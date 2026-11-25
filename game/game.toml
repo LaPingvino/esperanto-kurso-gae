@@ -9,3 +9,4 @@ room_order = ["rm_wide", "rm_tall"]
 
 [constants]
   PARITY = "0"
+  AUTO = "0"

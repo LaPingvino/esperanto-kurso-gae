@@ -66,17 +66,18 @@ func (f *fakeGameStore) ListByUser(context.Context, string, int) ([]*model.Attem
 }
 
 // /ludo-progreso merges by the larger, answers with the account's stars and
-// the exercises answered rightly; no account, nothing.
+// the exercises answered rightly (and the rating, its level only once
+// settled); no account, nothing.
 func TestGameProgressHandler(t *testing.T) {
 	f := &fakeGameStore{stars: map[string]int{"zagr-l01-teksto": 3}, attempts: []*model.Attempt{
 		{ContentItemID: "zagr-l02-fi01", Correct: true}, {ContentItemID: "zagr-l02-fi02", Correct: false}}}
 	h := NewGameHandler(f, f)
 	req := httptest.NewRequest("POST", "/ludo-progreso", strings.NewReader(url.Values{"steloj": {"zagr-l01-teksto=1", "zagr-l03-teksto=2"}}.Encode()))
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req = req.WithContext(context.WithValue(req.Context(), UserContextKey, &model.User{ID: "u"}))
+	req = req.WithContext(context.WithValue(req.Context(), UserContextKey, &model.User{ID: "u", Rating: 1520, RD: 350}))
 	w := httptest.NewRecorder()
 	h.Progress(w, req)
-	if got := w.Body.String(); got != "L en\nS zagr-l01-teksto 3\nS zagr-l03-teksto 2\nF zagr-l02-fi01\n" || w.Code != http.StatusOK {
+	if got := w.Body.String(); got != "L en\nR 1520\nS zagr-l01-teksto 3\nS zagr-l03-teksto 2\nF zagr-l02-fi01\n" || w.Code != http.StatusOK {
 		t.Errorf("%d %q", w.Code, got)
 	}
 	w = httptest.NewRecorder()

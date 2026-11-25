@@ -4,6 +4,7 @@ import (
 	"context"
 	"net/http"
 	"strings"
+	"time"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/gamedata"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
@@ -16,6 +17,8 @@ import (
 //	GET /ludo-api/kurso                       the map: levels, series, places
 //	GET /ludo-api/leciono/{slug}?lingvo=xx    a place: its text and exercises,
 //	                                          meanings in xx (else English)
+//	GET /ludo-api/vortoj?lingvo=xx            the vocabulary words, for the
+//	                                          bonus games (gamedata/words.go)
 //
 // Mounted outside AuthMiddleware: the same for everyone, no user looked up
 // or created, no cookie set, so the answers can be cached publicly (ETag by
@@ -100,8 +103,27 @@ func (a *GameAPI) Lesson(w http.ResponseWriter, r *http.Request) {
 	gamedata.WriteLesson(w, c, p, lang)
 }
 
+// Words handles GET /ludo-api/vortoj: the words, and the day's (UTC).
+func (a *GameAPI) Words(w http.ResponseWriter, r *http.Request) {
+	c := a.Course(r.Context())
+	if c == nil {
+		http.Error(w, "la enhavo ne legeblas", http.StatusServiceUnavailable)
+		return
+	}
+	lang := r.URL.Query().Get("lingvo")
+	if len(lang) > 8 || strings.ContainsAny(lang, `"/ `) {
+		lang = "en"
+	}
+	day := time.Now().UTC().Format("2006-01-02")
+	if cached(w, r, c.Version+"-"+lang+"-"+day) {
+		return
+	}
+	gamedata.WriteWords(w, c, lang, day)
+}
+
 // Routes are the API's routes, to mount outside AuthMiddleware.
 func (a *GameAPI) Routes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /ludo-api/kurso", a.Map)
 	mux.HandleFunc("GET /ludo-api/leciono/{slug}", a.Lesson)
+	mux.HandleFunc("GET /ludo-api/vortoj", a.Words)
 }

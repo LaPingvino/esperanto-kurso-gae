@@ -16,6 +16,9 @@ if (global.scr == 7) draw_video();
 if (global.scr == 2) draw_exercise();
 if (global.scr == 3) draw_result();
 if (global.scr == 4) draw_words();
+if (global.scr == 8) draw_vortludo();
+if (global.scr == 9) draw_vetkuro();
+if (global.scr == 10) draw_words_wait();
 draw_header(); // after the screen: the arrow keys reach the screen's own things first
 if (global.focus >= global.nhs) global.focus = -1;
 if (global.focus >= 0) {

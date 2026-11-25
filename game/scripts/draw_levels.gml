@@ -11,6 +11,14 @@ txt(x0, y, "La kurso — elektu serion", 20, 1, global.C_text);
 y += 40;
 cols = 4; if (!global.wide) cols = 2;
 cw = (x1 - x0 - (cols - 1) * 12) / cols;
+if (global.lv_skip == 0) { // the bonus games, on the first page: the same words, learnt otherwise
+  font(15, 1, 0); cl = string_width("Ludoj") + 24;
+  rfill(x0, y, x0 + cl, y + 28, global.C_tint, global.C_tint); txt(x0 + 12, y + 5, "Ludoj", 15, 1, global.C_link);
+  y += 38;
+  game_tile(x0, y, cw, 0);
+  game_tile(x0 + cw + 12, y, cw, 1);
+  y += 64 + 12;
+}
 inner = cw - 24 - 40;
 bot = global.H - 76;
 cur = ""; // the current level: the first with a series not finished
