@@ -1,0 +1,1298 @@
+[
+ {
+  "slug": "termino-substantivo",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "substantivo",
+   "definition": "noun",
+   "definitions": {
+    "en": "noun",
+    "nl": "zelfstandig naamwoord",
+    "de": "Substantiv",
+    "fr": "nom",
+    "es": "sustantivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 1,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-adjektivo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "adjektivo",
+   "definition": "adjective",
+   "definitions": {
+    "en": "adjective",
+    "nl": "bijvoeglijk naamwoord",
+    "de": "Adjektiv",
+    "fr": "adjectif",
+    "es": "adjetivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 2,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-adverbo",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "adverbo",
+   "definition": "adverb",
+   "definitions": {
+    "en": "adverb",
+    "nl": "bijwoord",
+    "de": "Adverb",
+    "fr": "adverbe",
+    "es": "adverbio"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 3,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-verbo",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "verbo",
+   "definition": "verb",
+   "definitions": {
+    "en": "verb",
+    "nl": "werkwoord",
+    "de": "Verb",
+    "fr": "verbe",
+    "es": "verbo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 4,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-pronomo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "pronomo",
+   "definition": "pronoun",
+   "definitions": {
+    "en": "pronoun",
+    "nl": "voornaamwoord",
+    "de": "Pronomen",
+    "fr": "pronom",
+    "es": "pronombre"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 5,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-prepozicio",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "prepozicio",
+   "definition": "preposition",
+   "definitions": {
+    "en": "preposition",
+    "nl": "voorzetsel",
+    "de": "Präposition",
+    "fr": "préposition",
+    "es": "preposición"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 6,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-konjunkcio",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "konjunkcio",
+   "definition": "conjunction",
+   "definitions": {
+    "en": "conjunction",
+    "nl": "voegwoord",
+    "de": "Konjunktion",
+    "fr": "conjonction",
+    "es": "conjunción"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 7,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-artikolo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "artikolo",
+   "definition": "article (grammar)",
+   "definitions": {
+    "en": "article (grammar)",
+    "nl": "lidwoord",
+    "de": "Artikel",
+    "fr": "article",
+    "es": "artículo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 8,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-interjekcio",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "interjekcio",
+   "definition": "interjection",
+   "definitions": {
+    "en": "interjection",
+    "nl": "tussenwerpsel",
+    "de": "Interjektion",
+    "fr": "interjection",
+    "es": "interjección"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 9,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-nombrovorto",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "nombrovorto",
+   "definition": "numeral",
+   "definitions": {
+    "en": "numeral",
+    "nl": "telwoord",
+    "de": "Numerale, Zahlwort",
+    "fr": "numéral",
+    "es": "numeral"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 10,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-akuzativo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "akuzativo",
+   "definition": "accusative",
+   "definitions": {
+    "en": "accusative",
+    "nl": "accusatief",
+    "de": "Akkusativ",
+    "fr": "accusatif",
+    "es": "acusativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 11,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-nominativo",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "nominativo",
+   "definition": "nominative",
+   "definitions": {
+    "en": "nominative",
+    "nl": "nominatief",
+    "de": "Nominativ",
+    "fr": "nominatif",
+    "es": "nominativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 12,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-infinitivo",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "infinitivo",
+   "definition": "infinitive",
+   "definitions": {
+    "en": "infinitive",
+    "nl": "infinitief",
+    "de": "Infinitiv",
+    "fr": "infinitif",
+    "es": "infinitivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 13,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-imperativo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "imperativo",
+   "definition": "imperative",
+   "definitions": {
+    "en": "imperative",
+    "nl": "gebiedende wijs",
+    "de": "Imperativ",
+    "fr": "impératif",
+    "es": "imperativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 14,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-kondicionalo",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "kondicionalo",
+   "definition": "conditional (mood)",
+   "definitions": {
+    "en": "conditional (mood)",
+    "nl": "voorwaardelijke wijs",
+    "de": "Konditional",
+    "fr": "conditionnel",
+    "es": "condicional"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 15,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-participo",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "participo",
+   "definition": "participle",
+   "definitions": {
+    "en": "participle",
+    "nl": "deelwoord",
+    "de": "Partizip",
+    "fr": "participe",
+    "es": "participio"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 16,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-prezenco",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "prezenco",
+   "definition": "present tense (as-tenso)",
+   "definitions": {
+    "en": "present tense (as-tenso)",
+    "nl": "tegenwoordige tijd",
+    "de": "Präsens",
+    "fr": "présent",
+    "es": "presente"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 17,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-preterito",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "preterito",
+   "definition": "past tense (is-tenso)",
+   "definitions": {
+    "en": "past tense (is-tenso)",
+    "nl": "verleden tijd",
+    "de": "Präteritum, Vergangenheit",
+    "fr": "passé",
+    "es": "pretérito"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 18,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-futuro",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "futuro",
+   "definition": "future tense (os-tenso)",
+   "definitions": {
+    "en": "future tense (os-tenso)",
+    "nl": "toekomende tijd",
+    "de": "Futur",
+    "fr": "futur",
+    "es": "futuro"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 19,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-tenso",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "tenso",
+   "definition": "tense (grammar)",
+   "definitions": {
+    "en": "tense (grammar)",
+    "nl": "werkwoordstijd",
+    "de": "Tempus",
+    "fr": "temps (grammatical)",
+    "es": "tiempo verbal"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 20,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-modo",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "modo",
+   "definition": "mood (grammar)",
+   "definitions": {
+    "en": "mood (grammar)",
+    "nl": "wijs (grammatica)",
+    "de": "Modus",
+    "fr": "mode (grammatical)",
+    "es": "modo (gramatical)"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 21,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-aspekto",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "aspekto",
+   "definition": "aspect (grammar)",
+   "definitions": {
+    "en": "aspect (grammar)",
+    "nl": "aspect",
+    "de": "Aspekt",
+    "fr": "aspect",
+    "es": "aspecto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 22,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-subjekto",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "subjekto",
+   "definition": "subject (grammar)",
+   "definitions": {
+    "en": "subject (grammar)",
+    "nl": "onderwerp",
+    "de": "Subjekt",
+    "fr": "sujet",
+    "es": "sujeto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 23,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-objekto",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "objekto",
+   "definition": "object (grammar)",
+   "definitions": {
+    "en": "object (grammar)",
+    "nl": "voorwerp",
+    "de": "Objekt",
+    "fr": "complément d'objet",
+    "es": "objeto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 24,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-predikato",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "predikato",
+   "definition": "predicate",
+   "definitions": {
+    "en": "predicate",
+    "nl": "gezegde",
+    "de": "Prädikat",
+    "fr": "prédicat",
+    "es": "predicado"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 25,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-predikativo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "predikativo",
+   "definition": "predicative complement (PMEG: perverba priskribo)",
+   "definitions": {
+    "en": "predicative complement (PMEG: perverba priskribo)",
+    "nl": "naamwoordelijk deel van het gezegde",
+    "de": "Prädikativ",
+    "fr": "attribut",
+    "es": "predicativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 26,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-komplemento",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "komplemento",
+   "definition": "complement (grammar)",
+   "definitions": {
+    "en": "complement (grammar)",
+    "nl": "bepaling",
+    "de": "Ergänzung",
+    "fr": "complément",
+    "es": "complemento"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 27,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-frazo",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "frazo",
+   "definition": "sentence",
+   "definitions": {
+    "en": "sentence",
+    "nl": "zin",
+    "de": "Satz",
+    "fr": "phrase",
+    "es": "oración"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 28,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-subfrazo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "subfrazo",
+   "definition": "subordinate clause",
+   "definitions": {
+    "en": "subordinate clause",
+    "nl": "bijzin",
+    "de": "Nebensatz",
+    "fr": "proposition subordonnée",
+    "es": "oración subordinada"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 29,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-transitiva",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "transitiva",
+   "definition": "transitive",
+   "definitions": {
+    "en": "transitive",
+    "nl": "overgankelijk",
+    "de": "transitiv",
+    "fr": "transitif",
+    "es": "transitivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 30,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-netransitiva",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "netransitiva",
+   "definition": "intransitive",
+   "definitions": {
+    "en": "intransitive",
+    "nl": "onovergankelijk",
+    "de": "intransitiv",
+    "fr": "intransitif",
+    "es": "intransitivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 31,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-aktivo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "aktivo",
+   "definition": "active voice",
+   "definitions": {
+    "en": "active voice",
+    "nl": "bedrijvende vorm",
+    "de": "Aktiv",
+    "fr": "voix active",
+    "es": "voz activa"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 32,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-pasivo",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "pasivo",
+   "definition": "passive voice",
+   "definitions": {
+    "en": "passive voice",
+    "nl": "lijdende vorm",
+    "de": "Passiv",
+    "fr": "voix passive",
+    "es": "voz pasiva"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 33,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-prefikso",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "prefikso",
+   "definition": "prefix",
+   "definitions": {
+    "en": "prefix",
+    "nl": "voorvoegsel",
+    "de": "Präfix",
+    "fr": "préfixe",
+    "es": "prefijo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 34,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-afikso",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "afikso",
+   "definition": "affix",
+   "definitions": {
+    "en": "affix",
+    "nl": "affix",
+    "de": "Affix",
+    "fr": "affixe",
+    "es": "afijo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 35,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-kunmetajxo",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "kunmetaĵo",
+   "definition": "compound word",
+   "definitions": {
+    "en": "compound word",
+    "nl": "samenstelling",
+    "de": "Kompositum",
+    "fr": "mot composé",
+    "es": "palabra compuesta"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 36,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-vokalo",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "vokalo",
+   "definition": "vowel",
+   "definitions": {
+    "en": "vowel",
+    "nl": "klinker",
+    "de": "Vokal",
+    "fr": "voyelle",
+    "es": "vocal"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 37,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-konsonanto",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "konsonanto",
+   "definition": "consonant",
+   "definitions": {
+    "en": "consonant",
+    "nl": "medeklinker",
+    "de": "Konsonant",
+    "fr": "consonne",
+    "es": "consonante"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 38,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-akcento",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "akcento",
+   "definition": "stress (accent)",
+   "definitions": {
+    "en": "stress (accent)",
+    "nl": "klemtoon",
+    "de": "Betonung",
+    "fr": "accent tonique",
+    "es": "acento"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 39,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-pluralo",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "pluralo",
+   "definition": "plural",
+   "definitions": {
+    "en": "plural",
+    "nl": "meervoud",
+    "de": "Plural",
+    "fr": "pluriel",
+    "es": "plural"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 40,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-komparativo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "komparativo",
+   "definition": "comparative",
+   "definitions": {
+    "en": "comparative",
+    "nl": "vergrotende trap",
+    "de": "Komparativ",
+    "fr": "comparatif",
+    "es": "comparativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 41,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-superlativo",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "superlativo",
+   "definition": "superlative",
+   "definitions": {
+    "en": "superlative",
+    "nl": "overtreffende trap",
+    "de": "Superlativ",
+    "fr": "superlatif",
+    "es": "superlativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 42,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-tabelvorto",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "tabelvorto",
+   "definition": "correlative (table word)",
+   "definitions": {
+    "en": "correlative (table word)",
+    "nl": "correlatief",
+    "de": "Korrelativ",
+    "fr": "corrélatif",
+    "es": "correlativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 43,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-helpverbo",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "helpverbo",
+   "definition": "auxiliary verb",
+   "definitions": {
+    "en": "auxiliary verb",
+    "nl": "hulpwerkwoord",
+    "de": "Hilfsverb",
+    "fr": "auxiliaire",
+    "es": "verbo auxiliar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 44,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-demandvorto",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "demandvorto",
+   "definition": "question word",
+   "definitions": {
+    "en": "question word",
+    "nl": "vraagwoord",
+    "de": "Fragewort",
+    "fr": "mot interrogatif",
+    "es": "palabra interrogativa"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 45,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-gramatiko",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "gramatiko",
+   "definition": "grammar",
+   "definitions": {
+    "en": "grammar",
+    "nl": "grammatica",
+    "de": "Grammatik",
+    "fr": "grammaire",
+    "es": "gramática"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 46,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-vortordo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "vortordo",
+   "definition": "word order",
+   "definitions": {
+    "en": "word order",
+    "nl": "woordvolgorde",
+    "de": "Wortstellung",
+    "fr": "ordre des mots",
+    "es": "orden de las palabras"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 47,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-konjugacio",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "konjugacio",
+   "definition": "conjugation",
+   "definitions": {
+    "en": "conjugation",
+    "nl": "vervoeging",
+    "de": "Konjugation",
+    "fr": "conjugaison",
+    "es": "conjugación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 48,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-deklinacio",
+  "type": "vocab",
+  "rating": 1390,
+  "content": {
+   "word": "deklinacio",
+   "definition": "declension",
+   "definitions": {
+    "en": "declension",
+    "nl": "verbuiging",
+    "de": "Deklination",
+    "fr": "déclinaison",
+    "es": "declinación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 49,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-ortografio",
+  "type": "vocab",
+  "rating": 1430,
+  "content": {
+   "word": "ortografio",
+   "definition": "spelling, orthography",
+   "definitions": {
+    "en": "spelling, orthography",
+    "nl": "spelling",
+    "de": "Rechtschreibung",
+    "fr": "orthographe",
+    "es": "ortografía"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 50,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-prononco",
+  "type": "vocab",
+  "rating": 1470,
+  "content": {
+   "word": "prononco",
+   "definition": "pronunciation",
+   "definitions": {
+    "en": "pronunciation",
+    "nl": "uitspraak",
+    "de": "Aussprache",
+    "fr": "prononciation",
+    "es": "pronunciación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 51,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-idiomajxo",
+  "type": "vocab",
+  "rating": 1510,
+  "content": {
+   "word": "idiomaĵo",
+   "definition": "idiom",
+   "definitions": {
+    "en": "idiom",
+    "nl": "uitdrukking, idioom",
+    "de": "Redewendung",
+    "fr": "expression idiomatique",
+    "es": "modismo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 52,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-sinonimo",
+  "type": "vocab",
+  "rating": 1550,
+  "content": {
+   "word": "sinonimo",
+   "definition": "synonym",
+   "definitions": {
+    "en": "synonym",
+    "nl": "synoniem",
+    "de": "Synonym",
+    "fr": "synonyme",
+    "es": "sinónimo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 53,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "termino-antonimo",
+  "type": "vocab",
+  "rating": 1350,
+  "content": {
+   "word": "antonimo",
+   "definition": "antonym",
+   "definitions": {
+    "en": "antonym",
+    "nl": "antoniem",
+    "de": "Antonym",
+    "fr": "antonyme",
+    "es": "antónimo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "gramatika-termino"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-gramatikaj-terminoj",
+  "series_order": 54,
+  "series_label": "Gramatikaj terminoj"
+ }
+]

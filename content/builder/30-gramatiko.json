@@ -1,0 +1,1542 @@
+[
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-01",
+  "type": "fillin",
+  "rating": 1515,
+  "content": {
+   "question": "___ vi loĝas? — Mi loĝas en Utrecht.",
+   "answer": "Kie",
+   "hint": "KI-vorto (demanda) pri loko"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 1,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-02",
+  "type": "fillin",
+  "rating": 1530,
+  "content": {
+   "question": "Mi serĉis la ŝlosilon ĉie, sed ___ trovis ĝin.",
+   "answer": "nenie",
+   "hint": "NENI-vorto pri loko"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 2,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-03",
+  "type": "fillin",
+  "rating": 1545,
+  "content": {
+   "question": "___ kostas tiu ĉi libro? — Dek eŭrojn.",
+   "answer": "Kiom",
+   "hint": "KI-vorto (demanda) pri kvanto"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 3,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-04",
+  "type": "fillin",
+  "rating": 1560,
+  "content": {
+   "question": "Li faris ĝin ___, kiel mi diris al li.",
+   "answer": "tiel",
+   "hint": "TI-vorto (montra) pri maniero"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 4,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-05",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "Ĉu vi aŭdis ___? — Ne, mi aŭdis nenion.",
+   "answer": "ion",
+   "hint": "I-vorto (nedifina) pri afero, kun akuzativo"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 5,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-06",
+  "type": "fillin",
+  "rating": 1515,
+  "content": {
+   "question": "___ venos al la festo? — Mia plej bona amiko.",
+   "answer": "Kiu",
+   "hint": "KI-vorto (demanda) pri persono"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 6,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-07",
+  "type": "fillin",
+  "rating": 1530,
+  "content": {
+   "question": "Mi ne scias, ___ li ne venis.",
+   "answer": "kial",
+   "hint": "KI-vorto pri kaŭzo"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 7,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-08",
+  "type": "fillin",
+  "rating": 1545,
+  "content": {
+   "question": "La domo, en ___ mi naskiĝis, estas malnova.",
+   "answer": "kiu",
+   "hint": "KI-vorto (rilata), ununombro, sen direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 8,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-09",
+  "type": "fillin",
+  "rating": 1560,
+  "content": {
+   "question": "___ homo havas siajn proprajn revojn.",
+   "answer": "Ĉiu",
+   "hint": "ĈI-vorto pri persono"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 9,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-10",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "Ni iru ___ — al la parko!",
+   "answer": "tien",
+   "hint": "TI-vorto (montra) pri loko, kun -n de direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 10,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-11",
+  "type": "fillin",
+  "rating": 1515,
+  "content": {
+   "question": "___ ajn vi iros, mi sekvos vin.",
+   "answer": "Kien",
+   "hint": "KI-vorto pri direkto, antaŭ „ajn“"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 11,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-12",
+  "type": "fillin",
+  "rating": 1530,
+  "content": {
+   "question": "Li havas ___ da mono, ke li ne scias, kion fari.",
+   "answer": "tiom",
+   "hint": "TI-vorto (montra) pri kvanto"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 12,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-13",
+  "type": "fillin",
+  "rating": 1545,
+  "content": {
+   "question": "___ fojon, kiam mi vidas lin, li ridetas.",
+   "answer": "Ĉiun",
+   "hint": "ĈI-vorto, akuzativo de tempo"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 13,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-tabelvortoj-ekz-14",
+  "type": "fillin",
+  "rating": 1560,
+  "content": {
+   "question": "___ libro estas tiu ĉi? — Ĝi estas de Petro.",
+   "answer": "Kies",
+   "hint": "KI-vorto (demanda) pri posedo"
+  },
+  "tags": [
+   "gramatiko",
+   "tabelvorto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tabelvortoj-ekz",
+  "series_order": 14,
+  "series_label": "Tabelvortoj (korelativoj)"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-01",
+  "type": "fillin",
+  "rating": 1715,
+  "content": {
+   "question": "La letero, ___ hieraŭ, jam alvenis. (skrib-)",
+   "answer": "skribita",
+   "hint": "pasiva participo, pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 1,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-02",
+  "type": "fillin",
+  "rating": 1730,
+  "content": {
+   "question": "La knabino ___ en la ĝardeno estas mia fratino. (leg-)",
+   "answer": "leganta",
+   "hint": "aktiva participo, nuno"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 2,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-03",
+  "type": "fillin",
+  "rating": 1745,
+  "content": {
+   "question": "La ___ gastoj jam telefonis, ke ili malfruos. (ven-)",
+   "answer": "venontaj",
+   "hint": "aktiva participo, estonteco, pluralo"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 3,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-04",
+  "type": "fillin",
+  "rating": 1760,
+  "content": {
+   "question": "La domo estas ___ nun; la laboristoj ankoraŭ laboras. (konstru-)",
+   "answer": "konstruata",
+   "hint": "pasiva participo, nuno"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 4,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-05",
+  "type": "fillin",
+  "rating": 1700,
+  "content": {
+   "question": "___, li ekdormis. (manĝ-)",
+   "answer": "Manĝinte",
+   "hint": "e-participo, aktiva, pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 5,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-06",
+  "type": "fillin",
+  "rating": 1715,
+  "content": {
+   "question": "La ___ jaro estis malfacila. (pas-)",
+   "answer": "pasinta",
+   "hint": "aktiva participo, pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 6,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-07",
+  "type": "fillin",
+  "rating": 1730,
+  "content": {
+   "question": "La ___ de Esperanto ofte rapide progresas. (lern-)",
+   "answer": "lernantoj",
+   "hint": "aktiva participo, nuno, kiel substantivo, pluralo"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 7,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-08",
+  "type": "fillin",
+  "rating": 1745,
+  "content": {
+   "question": "La ___ estis kondukita al la policejo. (arest-)",
+   "answer": "arestito",
+   "hint": "pasiva participo, pasinteco, kiel substantivo"
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 8,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-09",
+  "type": "multiplechoice",
+  "rating": 1760,
+  "content": {
+   "question": "Kiu frazo diras, ke la pordo jam estis en fermita stato (ne, ke iu ĝin fermadis)?",
+   "options": [
+    "La pordo estis fermata.",
+    "La pordo estis fermanta.",
+    "La pordo estis fermonta.",
+    "La pordo estis fermita."
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 9,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-participoj-ekz-10",
+  "type": "multiplechoice",
+  "rating": 1700,
+  "content": {
+   "question": "„Li estas mortonta.“ Kion tio signifas?",
+   "options": [
+    "Li baldaŭ mortos",
+    "Li jam mortis",
+    "Li mortas ĝuste nun",
+    "Oni mortigos lin"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "participo",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-participoj-ekz",
+  "series_order": 10,
+  "series_label": "Participoj"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-01",
+  "type": "multiplechoice",
+  "rating": 1515,
+  "content": {
+   "question": "La kato estis sur la planko kaj saltis supren al la tablo. Kiu frazo diras tion?",
+   "options": [
+    "La kato saltis sur la tablo.",
+    "La kato saltis sur la tablon.",
+    "La kato saltis sur tablo.",
+    "La kato saltis sur la tabloj."
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 1,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-02",
+  "type": "multiplechoice",
+  "rating": 1530,
+  "content": {
+   "question": "„La infanoj kuris en la ĝardeno.“ Kion tio signifas?",
+   "options": [
+    "La infanoj kuris de ekstere en la ĝardenon.",
+    "La infanoj kuris for el la ĝardeno.",
+    "La infanoj volis kuri al la ĝardeno.",
+    "La infanoj estis en la ĝardeno kaj kuris tie."
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 2,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-03",
+  "type": "multiplechoice",
+  "rating": 1545,
+  "content": {
+   "question": "„La infanoj kuris en la ĝardenon.“ Kion tio signifas?",
+   "options": [
+    "Ili kuris tien kaj reen ene de la ĝardeno.",
+    "Ili kuris for el la ĝardeno.",
+    "Ili staris en la ĝardeno.",
+    "Ili kuris de ekstere kaj eniris la ĝardenon."
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 3,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-04",
+  "type": "fillin",
+  "rating": 1560,
+  "content": {
+   "question": "Morgaŭ ni veturos ___. (Pariz-)",
+   "answer": "Parizon",
+   "hint": "direkto per akuzativo, sen prepozicio"
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 4,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-05",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "Kien vi iras? — Mi iras ___. (hejm-)",
+   "answer": "hejmen",
+   "hint": "adverbo kun -n de direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 5,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-06",
+  "type": "fillin",
+  "rating": 1515,
+  "content": {
+   "question": "Metu la librojn ___ la tablon.",
+   "answer": "sur",
+   "hint": "prepozicio: poste la libroj kuŝos supre de la tablo"
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 6,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-07",
+  "type": "multiplechoice",
+  "rating": 1530,
+  "content": {
+   "question": "En kiu frazo „urbo“ ĝuste staras sen -n, kvankam temas pri direkto?",
+   "options": [
+    "Mi iras en la urbo.",
+    "Mi iras la urbo.",
+    "Mi iras al la urbo.",
+    "Mi iras sur la urbo."
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 7,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-direkto-ekz-08",
+  "type": "fillin",
+  "rating": 1545,
+  "content": {
+   "question": "La birdo flugis ___ al la tegmento. (supr-)",
+   "answer": "supren",
+   "hint": "adverbo kun -n de direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "akuzativo",
+   "direkto",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-direkto-ekz",
+  "series_order": 8,
+  "series_label": "Akuzativo de direkto"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-01",
+  "type": "fillin",
+  "rating": 1315,
+  "content": {
+   "question": "Hieraŭ mi ___ libron. (leg-)",
+   "answer": "legis",
+   "hint": "pasinteco (is-tenso)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 1,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-02",
+  "type": "fillin",
+  "rating": 1330,
+  "content": {
+   "question": "Morgaŭ ni ___ la avinon. (vizit-)",
+   "answer": "vizitos",
+   "hint": "estonteco (os-tenso)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 2,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-03",
+  "type": "fillin",
+  "rating": 1345,
+  "content": {
+   "question": "Nun ŝi ___ en la koruso. (kant-)",
+   "answer": "kantas",
+   "hint": "nuno (as-tenso)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 3,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-04",
+  "type": "fillin",
+  "rating": 1360,
+  "content": {
+   "question": "Se mi havus tempon, mi ___ vin. (help-)",
+   "answer": "helpus",
+   "hint": "kondicionalo (us-modo)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 4,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-05",
+  "type": "fillin",
+  "rating": 1300,
+  "content": {
+   "question": "___ tuj al mi! (ven-)",
+   "answer": "Venu",
+   "hint": "imperativo (u-modo)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 5,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-06",
+  "type": "fillin",
+  "rating": 1315,
+  "content": {
+   "question": "Mi volas, ke vi ___ la veron. (dir-)",
+   "answer": "diru",
+   "hint": "u-modo post „ke“ de volo"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 6,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-07",
+  "type": "fillin",
+  "rating": 1330,
+  "content": {
+   "question": "Mi ŝatas ___ en la maro. (naĝ-)",
+   "answer": "naĝi",
+   "hint": "infinitivo (i-formo)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 7,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-08",
+  "type": "fillin",
+  "rating": 1345,
+  "content": {
+   "question": "Se mi ___ riĉa, mi vojaĝus. (est-)",
+   "answer": "estus",
+   "hint": "kondicionalo (us-modo)"
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 8,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-09",
+  "type": "multiplechoice",
+  "rating": 1360,
+  "content": {
+   "question": "„Li diris, ke li venos.“ Kiam li venos, rilate al la momento, kiam li diris tion?",
+   "options": [
+    "Antaŭ la momento de la diro",
+    "Samtempe kun la diro",
+    "Neniam",
+    "Post la momento de la diro"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 9,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-10",
+  "type": "multiplechoice",
+  "rating": 1300,
+  "content": {
+   "question": "„Li diris, ke li estas laca.“ Kiam li estis laca?",
+   "options": [
+    "Antaŭ sia diro",
+    "Samtempe kun sia diro",
+    "Nur nun, kiam ni rakontas tion",
+    "Post sia diro"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 10,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-tempoj-modoj-ekz-11",
+  "type": "multiplechoice",
+  "rating": 1315,
+  "content": {
+   "question": "Kiel nomiĝas la verbformo „farus“?",
+   "options": [
+    "imperativo (u-modo)",
+    "futuro (os-tenso)",
+    "kondicionalo (us-modo)",
+    "infinitivo (i-formo)"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "verbo",
+   "tempo",
+   "modo",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-tempoj-modoj-ekz",
+  "series_order": 11,
+  "series_label": "Verbaj tempoj kaj modoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-01",
+  "type": "fillin",
+  "rating": 1415,
+  "content": {
+   "question": "Persono, kies profesio estas instrui, estas ___.",
+   "answer": "instruisto",
+   "hint": "instru- + sufikso de profesio"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 1,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-02",
+  "type": "fillin",
+  "rating": 1430,
+  "content": {
+   "question": "Loko, kie oni lernas, estas ___.",
+   "answer": "lernejo",
+   "hint": "lern- + sufikso de loko"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 2,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-03",
+  "type": "fillin",
+  "rating": 1445,
+  "content": {
+   "question": "La ina formo de „patro“ estas ___.",
+   "answer": "patrino",
+   "hint": "sufikso de ina sekso"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 3,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-04",
+  "type": "fillin",
+  "rating": 1460,
+  "content": {
+   "question": "Malgranda domo estas ___.",
+   "answer": "dometo",
+   "hint": "sufikso de malgrandigo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 4,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-05",
+  "type": "fillin",
+  "rating": 1400,
+  "content": {
+   "question": "Tre granda domo estas ___.",
+   "answer": "domego",
+   "hint": "sufikso de grandigo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 5,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-06",
+  "type": "fillin",
+  "rating": 1415,
+  "content": {
+   "question": "La kontraŭo de „bona“ estas ___.",
+   "answer": "malbona",
+   "hint": "prefikso de kontraŭo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 6,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-07",
+  "type": "fillin",
+  "rating": 1430,
+  "content": {
+   "question": "Ilo por tranĉi estas ___.",
+   "answer": "tranĉilo",
+   "hint": "sufikso de ilo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 7,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-08",
+  "type": "fillin",
+  "rating": 1445,
+  "content": {
+   "question": "Iu, kiu loĝas en Parizo, estas ___.",
+   "answer": "parizano",
+   "hint": "sufikso -an-"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 8,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-09",
+  "type": "fillin",
+  "rating": 1460,
+  "content": {
+   "question": "Tio, kion oni povas manĝi, estas ___.",
+   "answer": "manĝebla",
+   "hint": "sufikso de ebleco, a-vorto"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 9,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-10",
+  "type": "fillin",
+  "rating": 1400,
+  "content": {
+   "question": "Libro, kiun indas legi, estas ___.",
+   "answer": "leginda",
+   "hint": "sufikso de indeco, a-vorto"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 10,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-11",
+  "type": "fillin",
+  "rating": 1415,
+  "content": {
+   "question": "Subite komenci dormi: ___",
+   "answer": "ekdormi",
+   "hint": "prefikso ek-, i-formo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 11,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-12",
+  "type": "fillin",
+  "rating": 1430,
+  "content": {
+   "question": "Doni ion reen al ĝia posedanto: ___",
+   "answer": "redoni",
+   "hint": "prefikso de reveno, i-formo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 12,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-13",
+  "type": "fillin",
+  "rating": 1445,
+  "content": {
+   "question": "La patro kaj la patrino kune estas la ___.",
+   "answer": "gepatroj",
+   "hint": "prefikso de ambaŭ seksoj, pluralo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 13,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-14",
+  "type": "fillin",
+  "rating": 1460,
+  "content": {
+   "question": "Fari ion pura: ___",
+   "answer": "purigi",
+   "hint": "sufikso -ig-, i-formo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 14,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-15",
+  "type": "fillin",
+  "rating": 1400,
+  "content": {
+   "question": "Fariĝi ruĝa: ___",
+   "answer": "ruĝiĝi",
+   "hint": "sufikso -iĝ-, i-formo"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 15,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-16",
+  "type": "fillin",
+  "rating": 1415,
+  "content": {
+   "question": "Unu malgranda peco de neĝo (neĝflokoj konsistas el ili) estas ___.",
+   "answer": "neĝero",
+   "hint": "sufikso -er-"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 16,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-17",
+  "type": "fillin",
+  "rating": 1430,
+  "content": {
+   "question": "Granda aro da arboj estas ___.",
+   "answer": "arbaro",
+   "hint": "sufikso de aro"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 17,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatiko-afiksoj-ekz-18",
+  "type": "fillin",
+  "rating": 1445,
+  "content": {
+   "question": "La eco de tiu, kiu estas libera, estas ___.",
+   "answer": "libereco",
+   "hint": "sufikso de eco"
+  },
+  "tags": [
+   "gramatiko",
+   "vortfarado",
+   "afikso",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-afiksoj-ekz",
+  "series_order": 18,
+  "series_label": "Vortfarado: afiksoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-01",
+  "type": "multiplechoice",
+  "rating": 1465,
+  "content": {
+   "question": "En la frazo „Petro legas libron“, kiu vorto estas la objekto?",
+   "options": [
+    "Petro",
+    "libron",
+    "legas",
+    "neniu"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 1,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-02",
+  "type": "multiplechoice",
+  "rating": 1480,
+  "content": {
+   "question": "„Hieraŭ la hundo mordis la poŝtiston.“ Kiu estas la subjekto?",
+   "options": [
+    "la poŝtiston",
+    "hieraŭ",
+    "mordis",
+    "la hundo"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 2,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-03",
+  "type": "multiplechoice",
+  "rating": 1495,
+  "content": {
+   "question": "Kiu vorto en „La rapida knabo kuras rapide“ estas adverbo?",
+   "options": [
+    "rapida",
+    "knabo",
+    "kuras",
+    "rapide"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 3,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-04",
+  "type": "multiplechoice",
+  "rating": 1510,
+  "content": {
+   "question": "Kiu el tiuj verboj estas netransitiva?",
+   "options": [
+    "vidi",
+    "manĝi",
+    "doni",
+    "dormi"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 4,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-05",
+  "type": "multiplechoice",
+  "rating": 1450,
+  "content": {
+   "question": "Kio estas „-ant-“?",
+   "options": [
+    "sufikso de pasiva participo, pasinteco",
+    "sufikso de aktiva participo, nuno",
+    "prefikso de kontraŭo",
+    "finaĵo de la akuzativo"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 5,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-06",
+  "type": "multiplechoice",
+  "rating": 1465,
+  "content": {
+   "question": "Kiun finaĵon havas la akuzativo?",
+   "options": [
+    "-j",
+    "-n",
+    "-a",
+    "-e"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 6,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-07",
+  "type": "multiplechoice",
+  "rating": 1480,
+  "content": {
+   "question": "En „la libro, kiun mi legis“, kio estas „kiun mi legis“?",
+   "options": [
+    "ĉeffrazo",
+    "infinitivo",
+    "rilata subfrazo",
+    "prepozicio"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 7,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-08",
+  "type": "multiplechoice",
+  "rating": 1495,
+  "content": {
+   "question": "Kiel nomiĝas „pli granda“ en la gramatiko?",
+   "options": [
+    "superlativo",
+    "participo",
+    "imperativo",
+    "komparativo"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 8,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-09",
+  "type": "multiplechoice",
+  "rating": 1510,
+  "content": {
+   "question": "Kiu el tiuj frazoj estas en la pasivo?",
+   "options": [
+    "La knabo manĝas pomon.",
+    "La pomo estas manĝata.",
+    "La knabo manĝos.",
+    "Manĝu la pomon!"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 9,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-10",
+  "type": "multiplechoice",
+  "rating": 1450,
+  "content": {
+   "question": "Kio estas la radiko de „malsanulejo“?",
+   "options": [
+    "mal",
+    "ul",
+    "ej",
+    "san"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 10,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-11",
+  "type": "multiplechoice",
+  "rating": 1465,
+  "content": {
+   "question": "Kiu el tiuj vortoj estas pronomo?",
+   "options": [
+    "ŝi",
+    "kaj",
+    "sur",
+    "ho"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 11,
+  "series_label": "Gramatikaj terminoj"
+ },
+ {
+  "slug": "gramatikaj-terminoj-ekz-12",
+  "type": "multiplechoice",
+  "rating": 1480,
+  "content": {
+   "question": "Kiu el tiuj vortoj estas konjunkcio?",
+   "options": [
+    "sub",
+    "tre",
+    "sed",
+    "ili"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "terminoj",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatikaj-terminoj-ekz",
+  "series_order": 12,
+  "series_label": "Gramatikaj terminoj"
+ }
+]
