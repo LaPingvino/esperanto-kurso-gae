@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
 )
@@ -34,56 +35,38 @@ type Suggestion struct {
 	Text, Source string
 }
 
-// copiedLangs are the languages whose generated course definitions are
-// copies of another language's, not translations, and that language:
-// measured on the seed, each has the same text as its source on 680 to
-// 1,011 of its ~1,011 cards (ur: 199 English + 64 Persian). Elsewhere a
-// definition equal to the English one is a cognate (de Hand, nl water), so
-// the rule applies only to these.
-var copiedLangs = map[string][]string{
-	"ro": {"fr"}, "sw": {"fr"}, "frp": {"fr"}, "be": {"ru"}, "ku": {"fa"},
-	"hi": {"en"}, "lo": {"en"}, "my": {"en"}, "yo": {"en"}, "km": {"en"},
-	"tok": {"en"}, "kk": {"en"}, "ur": {"en", "fa"},
-}
-
-// copiedFrom names the language a copied definition was taken from.
-func copiedFrom(content map[string]interface{}, lang, def string) string {
-	for _, src := range copiedLangs[lang] {
-		if d, _ := courseDef(content, src); src != lang && strings.EqualFold(d, def) {
-			return src
-		}
-	}
-	return lang
-}
-
-// courseDef is the card's own definition in lang and whether it is a copy
-// of another language's definition rather than a translation.
-func courseDef(content map[string]interface{}, lang string) (def string, copied bool) {
+// courseDefs is the card's definitions per language (the flat legacy
+// "definition" as English).
+func courseDefs(content map[string]interface{}) map[string]string {
+	out := map[string]string{}
 	defs, _ := content["definitions"].(map[string]interface{})
-	str := func(l string) string {
-		s, _ := defs[l].(string)
-		if s == "" && l == "en" {
-			s, _ = content["definition"].(string)
-		}
-		return strings.TrimSpace(s)
-	}
-	def = str(lang)
-	if def == "" || lang == "en" {
-		return def, false
-	}
-	for _, src := range copiedLangs[lang] {
-		if strings.EqualFold(def, str(src)) {
-			return def, true
+	for l, v := range defs {
+		if s, _ := v.(string); strings.TrimSpace(s) != "" {
+			out[l] = strings.TrimSpace(s)
 		}
 	}
-	return def, false
+	if out["en"] == "" {
+		if s, _ := content["definition"].(string); strings.TrimSpace(s) != "" {
+			out["en"] = strings.TrimSpace(s)
+		}
+	}
+	return out
+}
+
+// courseDef is the card's own definition in lang and whether it is not
+// really in lang: a copy of another language's definition, or text in
+// another script (English on a Hindi card, Greek on a German one).
+func courseDef(content map[string]interface{}, lang string) (def string, copied bool) {
+	defs := courseDefs(content)
+	def = defs[lang]
+	return def, def != "" && (lingvoj.CopySource(defs, lang) != "" || lingvoj.WrongScript(def, lang))
 }
 
 // MeaningFor runs the fallback chain for a vocab card in the learner's
 // language: the course's own definition → a community translation →
 // ReVo's translation → English, the course's or ReVo's → ReVo's Esperanto
 // definition. A course definition copied from another language (see
-// copiedLangs) does not count as one in the learner's language.
+// lingvoj.CopiedFrom) does not count as one in the learner's language.
 func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	word := item.Word()
 	hit := revo.Lookup(word, isRootCard(item))
@@ -114,7 +97,7 @@ func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	if community != "" {
 		return set(community, lang, "community")
 	}
-	if t := hit.Translation(lang); t != "" {
+	if t := hit.Translation(lang); t != "" && !lingvoj.WrongScript(t, lang) {
 		m.Suggestions = splitSuggestions(t)
 		return set(t, lang, "revo")
 	}
@@ -124,8 +107,9 @@ func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	if t := hit.Translation("en"); t != "" {
 		return set(t, "en", "revo")
 	}
-	if own != "" { // a copy, shown as what it is: the other language's text
-		return set(own, copiedFrom(item.Content, lang, own), "course")
+	if src := lingvoj.CopySource(courseDefs(item.Content), lang); src != "" {
+		// a copy, shown as what it is: the other language's text
+		return set(own, src, "course")
 	}
 	if m.EoDef != "" {
 		return set(m.EoDef, "eo", sourceOf(m.EoDefRevo))

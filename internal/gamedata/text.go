@@ -68,7 +68,7 @@ func WriteCourse(w io.Writer, c *Course) {
 	line(w, "FINO")
 }
 
-// WriteLesson writes a place, its meanings in lang (else English).
+// WriteLesson writes a place, its meanings in lang (see Meaning).
 func WriteLesson(w io.Writer, c *Course, p *Place, lang string) {
 	line(w, "LECIONO", c.Version, p.Slug, string(p.Kind))
 	line(w, "T", p.Title)
@@ -84,9 +84,9 @@ func WriteLesson(w io.Writer, c *Course, p *Place, lang string) {
 		switch e.Kind {
 		case 'C':
 			show, seen := e.Word.Shown()
-			ms := []string{Meaning(e.Word.Defs, lang)}
+			ms := []string{Meaning(e.Word.Defs, e.Word.Revo, lang)}
 			for _, o := range e.Word.Others {
-				ms = append(ms, Meaning(o.Defs, lang))
+				ms = append(ms, Meaning(o.Defs, o.Revo, lang))
 			}
 			order := shuffled(ms, e.Word.Root)
 			right := 0
@@ -117,7 +117,7 @@ func WriteLesson(w io.Writer, c *Course, p *Place, lang string) {
 		case 'Q', 'H':
 			q := e.Question
 			if e.Kind == 'Q' {
-				q = Meaning(e.Defs, lang)
+				q = Meaning(e.Defs, e.Revo, lang)
 			}
 			line(w, string(e.Kind), e.Slug, q, e.Hint)
 			line(w, "A", e.Answers[0])

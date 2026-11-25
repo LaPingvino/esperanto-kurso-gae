@@ -45,6 +45,7 @@ func main() {
 	}
 
 	ent, err := loadEntities(filepath.Join(*grundo, "dtd"), "vokosgn.dtd", "vokomll.dtd", "vokourl.dtd")
+	entities = ent
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -350,6 +351,23 @@ func isFak(snc *node) bool {
 // trdText is a translation's display text: clarifications that ReVo shows
 // only in its index (klr tip="ind"), ambiguity notes (tip="amb") and
 // pronunciations are dropped.
+// entities are the DTD's entities, for leftovers: some articles escape a
+// character entity twice ("&amp;t_-a;" in Tibetan translations), so it
+// reaches the text as "&t_-a;" and is resolved here.
+var (
+	entities  map[string]string
+	leftEntRe = regexp.MustCompile(`&([A-Za-z0-9_.-]+);`)
+)
+
+func resolveLeftovers(s string) string {
+	return leftEntRe.ReplaceAllStringFunc(s, func(m string) string {
+		if v, ok := entities[m[1:len(m)-1]]; ok {
+			return v
+		}
+		return m
+	})
+}
+
 func trdText(n *node) string {
 	var b strings.Builder
 	var rec func(n *node)
@@ -369,7 +387,7 @@ func trdText(n *node) string {
 		}
 	}
 	rec(n)
-	return squash(b.String())
+	return squash(resolveLeftovers(b.String()))
 }
 
 // heads expands a drv's <kap>: the tilde is the root, variants and

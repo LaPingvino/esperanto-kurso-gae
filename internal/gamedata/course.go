@@ -2,6 +2,8 @@ package gamedata
 
 import (
 	"fmt"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
 	"hash/fnv"
 	"sort"
 	"strings"
@@ -77,8 +79,9 @@ type Exercise struct {
 	Options  []string   // M: the item's options
 	Correct  int        // M: CorrectIndex()
 	Defs     map[string]string
-	Word     *Word  // C
-	Sentence string // B
+	Revo     *revo.Hit // Q: Reta Vortaro's entry for the word, for Meaning
+	Word     *Word     // C
+	Sentence string    // B
 }
 
 // Word is a card's word: the form met in the text, its vocabulary root, the
@@ -86,6 +89,7 @@ type Exercise struct {
 type Word struct {
 	Base, Root string
 	Defs       map[string]string
+	Revo       *revo.Hit
 	Others     []*Word
 }
 
@@ -321,10 +325,11 @@ func exerciseOf(it *model.ContentItem) *Exercise {
 	case "vocab":
 		w := strings.TrimSpace(it.Word())
 		d := defsOf(it)
-		if w == "" || len(d) == 0 {
+		hit := lookup(it)
+		if w == "" || len(d) == 0 && hit == nil {
 			return nil
 		}
-		return &Exercise{Kind: 'Q', Slug: it.Slug, Answers: []string{w}, Alts: clean(it.Alternatives()), Defs: d, Hint: it.Hint()}
+		return &Exercise{Kind: 'Q', Slug: it.Slug, Answers: []string{w}, Alts: clean(it.Alternatives()), Defs: d, Revo: hit, Hint: it.Hint()}
 	case "reading", "video":
 		return nil
 	}
@@ -347,16 +352,47 @@ func defsOf(it *model.ContentItem) map[string]string {
 			d["en"] = strings.TrimSpace(s)
 		}
 	}
+	// Generated definitions copied from another language (Romanian = the
+	// French text…) are not meanings in that language.
+	var copies []string
+	for l := range lingvoj.CopiedFrom {
+		if lingvoj.CopySource(d, l) != "" {
+			copies = append(copies, l)
+		}
+	}
+	for _, l := range copies {
+		delete(d, l)
+	}
 	return d
 }
 
-// Meaning is a meaning in lang, else in English, else any.
-func Meaning(d map[string]string, lang string) string {
-	if d[lang] != "" {
+// Meaning is a card's meaning in lang, by the site's fallback chain: the
+// course's definition in lang, Reta Vortaro's translation, then English
+// (the course's, then ReVo's), ReVo's Esperanto definition, and last any
+// course definition. A meaning not in lang carries its language in front,
+// "(en) boy", so a card never passes off another language as lang's. Text
+// in another script than lang's (Greek on a German card) is not lang's.
+func Meaning(d map[string]string, hit *revo.Hit, lang string) string {
+	if d[lang] != "" && !lingvoj.WrongScript(d[lang], lang) {
 		return d[lang]
 	}
+	if t := hit.Translation(lang); t != "" && !lingvoj.WrongScript(t, lang) {
+		return t
+	}
+	mark := func(l, s string) string {
+		if l == lang {
+			return s
+		}
+		return "(" + l + ") " + s
+	}
 	if d["en"] != "" {
-		return d["en"]
+		return mark("en", d["en"])
+	}
+	if t := hit.Translation("en"); t != "" {
+		return mark("en", t)
+	}
+	if hit != nil && hit.Def != "" {
+		return mark("eo", hit.Def)
 	}
 	keys := make([]string, 0, len(d))
 	for k := range d {
@@ -364,11 +400,23 @@ func Meaning(d map[string]string, lang string) string {
 	}
 	sort.Strings(keys)
 	for _, k := range keys {
-		if d[k] != "" {
-			return d[k]
+		if d[k] != "" && !lingvoj.WrongScript(d[k], k) {
+			return mark(k, d[k])
 		}
 	}
 	return ""
+}
+
+// lookup is ReVo's entry for a vocab item's word (roots and affixes looked
+// up as roots, as on the site).
+func lookup(it *model.ContentItem) *revo.Hit {
+	root := false
+	for _, t := range it.Tags {
+		if t == "radiko" || t == "sufikso" || t == "prefikso" {
+			root = true
+		}
+	}
+	return revo.Lookup(it.Word(), root)
 }
 
 // wordCards: up to five words of a reading's text that have a meaning
@@ -394,7 +442,7 @@ func wordCards(text string, vocab map[string]*model.ContentItem, seen map[string
 			continue
 		}
 		seen[root] = true
-		w := &Word{Base: base, Root: strings.TrimSpace(v.Word()), Defs: defsOf(v)}
+		w := &Word{Base: base, Root: strings.TrimSpace(v.Word()), Defs: defsOf(v), Revo: lookup(v)}
 		out = append(out, &Exercise{Kind: 'C', Word: w})
 		if len(out) == 5 {
 			break

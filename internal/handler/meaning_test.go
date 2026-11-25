@@ -147,3 +147,53 @@ func allDefsOf(it *model.ContentItem) map[string]interface{} {
 	}
 	return out
 }
+
+// TestMeaningsInTheirLanguage: every meaning the site shows for language X
+// is written in X's script, or is marked with the language it is in (a
+// fallback), and then is in that language's script. Greek on a German card
+// (the bug: "multe" → "πολύ") fails here. All seed cards, all languages.
+func TestMeaningsInTheirLanguage(t *testing.T) {
+	cards := seedCards(t)
+	bad := 0
+	for _, l := range lingvoj.Vocab() {
+		for _, it := range cards {
+			m := MeaningFor(it, l.Code, "")
+			if m.Text == "" {
+				continue
+			}
+			if m.Fallback == (m.Lang == l.Code) {
+				t.Errorf("%s %s: Fallback=%v but Lang=%s", l.Code, it.Word(), m.Fallback, m.Lang)
+			}
+			if lingvoj.WrongScript(m.Text, m.Lang) {
+				bad++
+				if bad <= 30 {
+					t.Errorf("%s card %q: %q is shown as %s (source %s) but is mostly in another script", l.Code, it.Word(), m.Text, m.Lang, m.Source)
+				}
+			}
+		}
+	}
+	if bad > 30 {
+		t.Errorf("… %d in all", bad)
+	}
+}
+
+func seedCards(t *testing.T) []*model.ContentItem {
+	t.Helper()
+	files, _ := fs.Glob(seed.FS, "*.json")
+	seen := map[string]bool{}
+	var cards []*model.ContentItem
+	for _, f := range files {
+		raw, _ := seed.FS.ReadFile(f)
+		var items []*model.ContentItem
+		if json.Unmarshal(raw, &items) != nil {
+			continue
+		}
+		for _, it := range items {
+			if it.Type == "vocab" && !seen[it.Slug] {
+				seen[it.Slug] = true
+				cards = append(cards, it)
+			}
+		}
+	}
+	return cards
+}
