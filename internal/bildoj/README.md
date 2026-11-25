@@ -2,7 +2,8 @@
 
 `vortbildoj.json` maps Esperanto words to pictures. It is embedded in the
 binary (package `bildoj`), so a change ships with the next deploy; the content
-in Datastore needs no change. Every vocab item, reading text and picture
+in Datastore needs no change, unless `make_seed.py` changed `seed/bildvortaro.json`
+(new words, other options): then load that file in patch mode (`/admin`, seed). Every vocab item, reading text and picture
 exercise with a word in it shows that word's picture.
 
 Each row:
