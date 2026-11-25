@@ -2,11 +2,14 @@ package handler
 
 import (
 	"context"
+	"io"
 	"net/http"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/gamedata"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -19,6 +22,9 @@ import (
 //	                                          meanings in xx (else English)
 //	GET /ludo-api/vortoj?lingvo=xx            the vocabulary words, for the
 //	                                          bonus games (gamedata/words.go)
+//	GET /ludo-api/vorto?v=…                   "1" if v is an Esperanto word
+//	                                          (legvortoj.Valid), else "0":
+//	                                          Vortludo's guesses
 //
 // Mounted outside AuthMiddleware: the same for everyone, no user looked up
 // or created, no cookie set, so the answers can be cached publicly (ETag by
@@ -121,9 +127,24 @@ func (a *GameAPI) Words(w http.ResponseWriter, r *http.Request) {
 	gamedata.WriteWords(w, c, lang, day)
 }
 
+// Word handles GET /ludo-api/vorto?v=…: "1" when v is a word (a ReVo
+// headword or its inflection, or known roots and affixes with an ending),
+// "0" when not. The answer never changes with the course: cached a day.
+func (a *GameAPI) Word(w http.ResponseWriter, r *http.Request) {
+	v := r.URL.Query().Get("v")
+	ans := "0"
+	if utf8.RuneCountInString(v) <= 16 && legvortoj.Valid(v) {
+		ans = "1"
+	}
+	w.Header().Set("Content-Type", "text/plain; charset=utf-8")
+	w.Header().Set("Cache-Control", "public, max-age=86400")
+	io.WriteString(w, ans)
+}
+
 // Routes are the API's routes, to mount outside AuthMiddleware.
 func (a *GameAPI) Routes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /ludo-api/kurso", a.Map)
 	mux.HandleFunc("GET /ludo-api/leciono/{slug}", a.Lesson)
 	mux.HandleFunc("GET /ludo-api/vortoj", a.Words)
+	mux.HandleFunc("GET /ludo-api/vorto", a.Word)
 }

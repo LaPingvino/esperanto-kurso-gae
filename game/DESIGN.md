@@ -59,8 +59,9 @@ the site is sent the answer it matched, which `checkAnswer` then judges the same
 
 As OpenTeacher does with one list, the course's vocabulary comes back as games, from `/ludo-api/vortoj`, kept in
 the browser (`ludo-vortoj-<lang>.txt`) like the lessons. They are reached from the levels screen (*Ludoj*, above
-the levels) and as the *Bonuso* after a finished place. **Neither sends anything to the site:** a Wordle guess
-answers no item's question and a gate is a choice, so the ratings still move only by typed course answers.
+the levels) and as the *Bonuso* after a finished place. **Neither sends anything to the site's progress:** a
+Wordle guess answers no item's question and a gate is a choice, so the ratings still move only by typed course
+answers (Vortludo only asks whether a guess is a word, below).
 
 - **The learner's level:** the account's, from its rating once settled (RD < 200: `/ludo-progreso`'s `R` line),
   else the level the map is at.
@@ -71,8 +72,14 @@ answers no item's question and a gate is a choice, so the ratings still move onl
   sit anywhere, and the player works out where; its letters count as any others. The day's word is the site's
   (`T` lines: the same for every learner of a level, by the UTC date); *Nova vorto* plays a word of the level's
   pool at random (the level, then below, then above, to ten: `gamedata.Pool`, mirrored by `vl_pool.gml`), the
-  board showing its length. Any letters of the word's length may be tried: the course's list is far shorter
-  than the language. Six rows; typed (x- and h-systems) or on the screen's keyboard of the 28 letters; the cells
+  board showing its length. A guess must be a word, but any word of the language, not only the course's: a ReVo
+  headword or its inflection, or known roots and affixes with an ending (*domŝipo*, *malbonulejo*, *tiujn*;
+  `legvortoj.Valid`). A word of the course's list goes in at once; another is asked of the site
+  (`GET /ludo-api/vorto?v=…`, x-system, `1`/`0`, cached a day); a guess it knows as no word shakes the row and
+  costs no try, as in Wordle. Offline, on an error or after two seconds without an answer, any letters count.
+  (Asking was chosen over shipping the morphemes: 13 461 ReVo roots are only 38 KB deflated, but the headwords,
+  the inflections and the splitter would be a second copy in GML of what `legvortoj` already does, sure to
+  drift; one small cached GET per guess is quick enough, and no ReVo (GPL) data goes into the game.) Six rows; typed (x- and h-systems) or on the screen's keyboard of the 28 letters; the cells
   shrink to fit nine on a phone. In its place: the accent fill; elsewhere in the word: the note tint and a dot
   under the letter; not in it: sunk. After three misses it offers the word's picture (`spr_bildo`, the site's
   own word pictures) or its Esperanto definition with the word masked (~), else its meaning.
@@ -224,7 +231,8 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   the account. Offline: from the built-in part, the queue waits and goes on the next opening; the old
   progress file is read into the new one.
 - `internal/handler/game_ludoj_test.go`: Vortludo from the levels screen in both rooms — three misses typed in
-  the x-system, the hint, the day's word typed in the h-system, found on the fourth row; Vetkuro driven to the
+  the x-system, the hint, the day's word typed in the h-system, found on the fourth row; a long word's board:
+  a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
   lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words; nothing
   posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.

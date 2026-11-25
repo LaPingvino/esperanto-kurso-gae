@@ -3,6 +3,7 @@ package handler
 import (
 	"context"
 	"net/http"
+	"net/url"
 	"net/http/httptest"
 	"strings"
 	"testing"
@@ -92,5 +93,25 @@ func TestCourseWithoutSeries(t *testing.T) {
 	}
 	if n < 1000 || len(c.Series) == 0 {
 		t.Errorf("%d exercises in %d series", n, len(c.Series))
+	}
+}
+
+// /ludo-api/vorto: a guess is a word or not (the x-system read too), the
+// answer cacheable and without a cookie.
+func TestGameAPIWord(t *testing.T) {
+	mux := http.NewServeMux()
+	NewGameAPI(&seedSource{}).Routes(mux)
+	for v, want := range map[string]string{
+		"domo": "1", "domojn": "1", "domŝipo": "1", "malbonulejo": "1", "tiujn": "1", "trancxiloj": "1", "tranĉiloj": "1",
+		"bzzrk": "0", "domok": "0", "": "0", strings.Repeat("domo", 5): "0",
+	} {
+		w := httptest.NewRecorder()
+		mux.ServeHTTP(w, httptest.NewRequest("GET", "/ludo-api/vorto?v="+url.QueryEscape(v), nil))
+		if w.Code != 200 || w.Body.String() != want {
+			t.Errorf("%q: %d %q, want %q", v, w.Code, w.Body.String(), want)
+		}
+		if w.Header().Get("Set-Cookie") != "" || !strings.Contains(w.Header().Get("Cache-Control"), "public") {
+			t.Errorf("%q headers: %v", v, w.Header())
+		}
 	}
 }

@@ -10,3 +10,9 @@ typing();
 if (global.scr == 9) rc_step();
 if (string(PARITY) != "1") { net_tick(); sync_tick(); }
 if (global.flash > 0) global.flash -= 1;
+if (global.vl_shake > 0) global.vl_shake -= 1;
+if (global.vl_wait > 0) { // a guess asked of the site: two seconds, then taken
+  global.vl_wait += 1;
+  if (global.scr != 8 || global.vl_state != 0) { global.vl_wait = 0; global.vl_req = -1; }
+  else if (global.vl_wait > 120) vl_try(global.vl_ask);
+}

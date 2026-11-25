@@ -8,7 +8,7 @@
 // state has a cue besides its colour: in its place, the accent fill (white
 // letter); elsewhere in the word, the note tint with a dot under it; not in
 // it, sunk with the muted letter (kurso-design's checked pairs, 7:1 and up).
-var x0, x1, y, c, g, gw, gh, gx, gy, r, k, l, st, kw, kh, kg, kt, n, x, px0, py0, px1, py1, by, t, lv, h, a, pend;
+var sx, x0, x1, y, c, g, gw, gh, gx, gy, r, k, l, st, kw, kh, kg, kt, n, x, px0, py0, px1, py1, by, t, lv, h, a, pend;
 x0 = global.m; x1 = global.W - global.m;
 lv = level_me();
 y = global.hh + 12;
@@ -26,7 +26,8 @@ for (r = 0; r < 6; r += 1) for (k = 0; k < n; k += 1) {
   l = ""; st = -2;
   if (r < global.vl_row) { l = string_char_at(global.vl_g[r], k + 1); st = global.vl_s[r * 10 + k]; }
   else if (r == global.vl_row && global.vl_state == 0) { l = string_char_at(global.vl_cur, k + 1); st = -1; }
-  vl_cell(gx + k * (c + g), gy + r * (c + g), c, l, st);
+  sx = 0; if (r == global.vl_row && global.vl_shake > 0) sx = round(sin(global.vl_shake * 1.3) * global.vl_shake * 0.6); // no word: the row shakes
+  vl_cell(gx + k * (c + g) + sx, gy + r * (c + g), c, l, st);
 }
 // the keyboard: a–h, ĥ–p, then Viŝi and r–z
 kh = 46; kg = 6;

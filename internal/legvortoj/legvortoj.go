@@ -933,3 +933,30 @@ const (
 	MergedIntoKey = "merged_into" // content: the slug of the card it folded into ("" none)
 	UndoKey       = "legvortoj_undo"
 )
+
+// ---- a word at all ----
+
+// Valid reports whether a word is Esperanto, as the bonus games take a
+// guess: a ReVo headword or an inflection of one (Lemma), a derivation or
+// compound of known roots and affixes with an ending (dom|ŝip|o, mal|bon|
+// ul|ej|o: Lemma's split), or a correlative or pronoun with -j, -n, -jn
+// (tiujn, kiuj, ilin). Not any letters: no ending, or pieces no root
+// explains, is no word.
+func Valid(word string) bool {
+	w := revo.Normalize(word)
+	if w == "" || strings.ContainsFunc(w, func(r rune) bool { return !isLetter(r) }) {
+		return false
+	}
+	if revo.Exact(w) != nil {
+		return true
+	}
+	if _, _, _, ok := Lemma(w); ok {
+		return true
+	}
+	for _, c := range []struct{ end, after string }{{"jn", "u"}, {"j", "u"}, {"n", "ui"}} {
+		if stem, cut := strings.CutSuffix(w, c.end); cut && stem != "" && strings.ContainsRune(c.after, []rune(stem)[len([]rune(stem))-1]) && revo.Exact(stem) != nil {
+			return true
+		}
+	}
+	return false
+}

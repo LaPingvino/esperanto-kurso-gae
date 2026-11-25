@@ -5,6 +5,7 @@
 var s, d;
 if (global.scr == 8) { // Vortludo: the row being typed
   if (global.vl_state != 0) { keyboard_string = ""; global.typed = ""; exit; }
+  if (global.vl_wait > 0) { keyboard_string = global.vl_cur; exit; } // the row is being asked about
   if (keyboard_string == global.vl_cur) exit;
   s = vl_letters(keyboard_string);
   if (s != global.vl_cur) global.vl_msg = "";

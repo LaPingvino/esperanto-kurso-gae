@@ -165,8 +165,9 @@ func TestPlayVortludo(t *testing.T) {
 
 // TestPlayVortludoLong: a B1 learner's Vortludo — the day's word long
 // (komputilo, nine letters: the widest board), its affix (il) beside the
-// board; two misses (and a row too short, refused), then the word on the third row, in both rooms, every
-// text fitting. Then Nova vorto: another long word with its affix, free.
+// board; a guess that is no word (the row shakes, no try spent), a row too
+// short (refused), two misses (tranĉiloj asked of the site), then the word
+// on the third row, in both rooms, every text fitting. Then Nova vorto: another long word with its affix, free.
 func TestPlayVortludoLong(t *testing.T) {
 	gameviber(t)
 	s := newStubSite(t)
@@ -179,12 +180,19 @@ func TestPlayVortludoLong(t *testing.T) {
 	base := wordsServer(t, s, "B1", word)
 	for _, room := range []string{"rm_tall", "rm_wide"} {
 		keys := []string{":30", "down:1", ":1", "enter:1", ":4"}
-		for _, m := range []string{"kantistoj", "lernejo", "tranĉiloj", "komputilo"} {
-			keys = append(keys, "text="+xSpell(m)+":1", ":1", "enter:1", ":2")
-		}
+		// bzzrktpln is no word: the row shakes, no try spent
 		dir := gameDir(t, c)
+		bad := append(append([]string{}, keys...), "text=bzzrktpln:1", ":1", "enter:1", ":3")
+		playArgs(t, dir, []string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(bad)), "-keys", strings.Join(bad, ",")},
+			`global.scr == 8 && global.vl_state == 0 && global.vl_row == 0 && global.vl_shake > 0 && global.vl_msg != "" && global.vl_cur == "bzzrktpln" && global.vl_wait == 0`)
+		// lernejo is too short: not a row, nothing asked
+		short := append(append([]string{}, keys...), "text=lernejo:1", ":1", "enter:1", ":3")
+		playArgs(t, dir, []string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(short)), "-keys", strings.Join(short, ",")},
+			`global.scr == 8 && global.vl_row == 0 && global.vl_shake == 0 && global.vl_msg != "" && global.vl_wait == 0`)
+		for _, m := range []string{"kantistoj", "tranĉiloj", "komputilo"} {
+			keys = append(keys, "text="+xSpell(m)+":1", ":1", "enter:1", ":3")
+		}
 		args := append([]string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")}, shot("vortludo-long-"+room)...)
-		// lernejo is too short: not a row
 		playArgs(t, dir, args, fmt.Sprintf(`global.scr == 8 && global.vl_word == "%s" && global.vl_daily && global.vl_long && global.vl_n == 9 && global.vl_aff == "il" && global.vl_state == 1 && global.vl_row == 3 && global.ovf == 0`, word))
 		keys = append(keys, "enter:1", ":2") // Nova vorto
 		playArgs(t, dir, []string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")},
