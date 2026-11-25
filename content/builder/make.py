@@ -53,6 +53,19 @@ def place(slug, opts):
 
 items = {}
 reading_order = {}
+# The old texts are not C2 by their vocabulary (Joop 2026-11-25): they sit in
+# two series by kind, start at an honest B2/C1, and Glicko settles them.
+DOCS = ("fundamentaj-dokumentoj", "Fundamentaj dokumentoj pri Esperanto")
+CLASSICS = ("literaturaj-klasikajxoj", "Klasikaĵoj de la literaturo")
+PLACE = {  # reading slug: (series, label, starting rating)
+    "c2-fundamento-antauxparolo": DOCS + (1850,),
+    "c2-letero-deveno": DOCS + (1750,),
+    "c2-esenco-pioniroj": DOCS + (1900,),
+    "c1-bulonja-deklaracio": DOCS + (1700,),
+    "c1-la-espero": DOCS + (1650,),
+    "c2-revizoro-urbestro": CLASSICS + (1900,),
+    "c2-sinjoro-tadeo-litvo": CLASSICS + (1950,),
+}
 
 
 def add(file, it):
@@ -63,18 +76,18 @@ def reading(file, slug, level, title, text, source, url, tags, note="", rating=N
     c = {"title": title, "text": text, "source_url": url, "license": PD}
     if note:
         c["note"] = note
-    series = "konstruanto-" + level.lower() + "-legado"
+    series, label, rating = PLACE.get(slug, ("konstruanto-legado", "Legaĵoj", rating or LVL[level]))
     reading_order[series] = reading_order.get(series, 0) + 1
-    it = {"slug": slug, "type": "reading", "level": level, "content": c, "tags": tags,
+    it = {"slug": slug, "type": "reading", "rating": rating, "content": c,
+          "tags": [t for t in tags if t not in LVL],
           "source": source, "series_slug": series, "series_order": reading_order[series],
-          "series_label": "Legaĵoj " + level}
-    if rating:
-        it["rating"] = rating
+          "series_label": label}
     add(file, it)
 
 
 def exercises(file, parent, series, label, level, tags, exs, base=None):
-    base = base or LVL[level]
+    base = base or (PLACE[parent][2] - 30 if parent in PLACE else LVL[level])
+    tags = [t for t in tags if t not in LVL]
     for n, e in enumerate(exs, 1):
         slug = f"{series}-{n:02d}"
         if e[0] == "mc":
@@ -97,7 +110,7 @@ def exercises(file, parent, series, label, level, tags, exs, base=None):
 
 
 # ---------------------------------------------------------------- C2 texts
-F = "10-c2-legajhoj.json"
+F = "10-dokumentoj-kaj-klasikajxoj.json"
 
 t = read("h1.txt")
 fund = "\n\n".join([
@@ -318,7 +331,7 @@ exercises(F, "c2-sinjoro-tadeo-litvo", "c2-tadeo-ekz", "Ekzercoj: Sinjoro Tadeo"
 ])
 
 # ---------------------------------------------------------------- C1 texts
-F = "20-c1.json"
+F = "20-dokumentoj-kaj-nuancoj.json"
 t = read("h5.txt")
 bd = "\n\n".join([
     between(t, "1. La Esperantismo estas penado", "por kiu la Esperantismo ne respondas."),
@@ -384,7 +397,7 @@ exercises(F, "c1-la-espero", "c1-espero-ekz", "Ekzercoj: La Espero", "C1",
     ("fi", "Sur neŭtrala lingva ___, / Komprenante unu la alian…", "fundamento", "vorto el la poemo"),
 ])
 
-exercises(F, None, "c1-nuancoj", "Nuancoj de la lingvo (C1)", "C1", ["nuanco", "gramatiko", "C1"], [
+exercises(F, None, "c1-nuancoj", "Nuancoj de la lingvo", "C1", ["nuanco", "gramatiko", "C1"], [
     ("mc", "„Li ja venis!“ Kion aldonas „ja“?", [
         "Emfazon: tio estas certa, oni devus jam scii aŭ akcepti ĝin", "Neon", "Demandon", "Estontecon"]),
     ("mc", "Elektu la ĝustan vorton: „Mi estas pli alta ___ mia frato.“", ["ol", "kiel", "tiel", "de"]),

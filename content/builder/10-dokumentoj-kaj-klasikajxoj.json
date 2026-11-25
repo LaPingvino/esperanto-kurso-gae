@@ -2,7 +2,7 @@
  {
   "slug": "c2-fundamento-antauxparolo",
   "type": "reading",
-  "level": "C2",
+  "rating": 1850,
   "content": {
    "title": "Antaŭparolo de la Fundamento (eltiro)",
    "text": "Por ke lingvo internacia povu bone kaj regule progresadi kaj por ke ĝi havu plenan certecon, ke ĝi neniam disfalos kaj ia facilanima paŝo de ĝiaj amikoj estontaj ne detruos la laborojn de ĝiaj amikoj estintaj, — estas plej necesa antaŭ ĉio unu kondiĉo: la ekzistado de klare difinita, neniam tuŝebla kaj neniam ŝanĝebla Fundamento de la lingvo. Kiam nia lingvo estos oficiale akceptita de la registaroj de la plej ĉefaj regnoj kaj tiuj ĉi registaroj per speciala leĝo garantios al Esperanto tute certan vivon kaj uzatecon kaj plenan sendanĝerecon kontraŭ ĉiuj personaj kapricoj aŭ disputoj, tiam aŭtoritata komitato, interkonsente elektita de tiuj registaroj, havos la rajton fari en la fundamento de la lingvo unu fojon por ĉiam ĉiujn deziritajn ŝanĝojn, se tiaj ŝanĝoj montriĝos necesaj; sed ĝis tiu tempo la fundamento de Esperanto devas plej severe resti absolute senŝanĝa, ĉar severa netuŝebleco de nia fundamento estas la plej grava kaŭzo de nia ĝisnuna progresado kaj la plej grava kondiĉo por nia regula kaj paca progresado estonta. Neniu persono kaj neniu societo devas havi la rajton arbitre fari en nia Fundamento iun eĉ plej malgrandan ŝanĝon! Tiun ĉi tre gravan principon la esperantistoj volu ĉiam bone memori kaj kontraŭ la ektuŝo de tiu ĉi principo ili volu ĉiam energie batali, ĉar la momento, en kiu ni ektuŝus tiun principon, estus la komenco de nia morto.\n\nHavante la karakteron de fundamento, la tri verkoj represitaj en tiu ĉi libro devas antaŭ ĉio esti netuŝeblaj. Tial la legantoj ne miru, ke ili trovos en la nacia traduko de diversaj vortoj en tiu ĉi libro (precipe en la angla parto) tute nekorektite tiujn samajn erarojn, kiuj sin trovis en la unua eldono de la „Universala Vortaro“. Mi permesis al mi nur korekti la preserarojn; sed se ia vorto estis erare aŭ nelerte traduktita, mi ĝin lasis en tiu ĉi libro tute senŝanĝe; ĉar se mi volus plibonigi, tio ĉi jam estus ŝanĝo, kiu povus kaŭzi disputojn kaj kiu en verko fundamenta ne povas esti tolerata. La fundamento devas resti severe netuŝebla eĉ kune kun siaj eraroj.\n\nMi diris, ke la fundamento de nia lingvo devas esti absolute netuŝebla, se eĉ ŝajnus al ni, ke tiu aŭ alia punkto estas sendube erara. Tio ĉi povus naski la penson, ke nia lingvo restos ĉiam rigida kaj neniam disvolviĝos... Ho, ne! Malgraŭ la severa netuŝebleco de la fundamento, nia lingvo havos la plenan eblon ne sole konstante riĉiĝadi, sed eĉ konstante pliboniĝadi kaj perfektiĝadi; la netuŝebleco de la fundamento nur garantios al ni konstante, ke tiu perfektiĝado fariĝados ne per arbitra, interbatala kaj ruiniga rompado kaj ŝanĝado, ne per nuligado aŭ sentaŭgigado de nia ĝisnuna literaturo, sed per vojo natura, senkonfuza kaj sendanĝera.\n\n1) Riĉigadi la lingvon per novaj vortoj oni povas jam nun, per konsiliĝado kun tiuj personoj, kiuj estas rigardataj kiel la plej aŭtoritataj en nia lingvo, kaj zorgante pri tio, ke ĉiuj uzu tiujn vortojn en la sama formo; sed tiuj ĉi vortoj devas esti nur rekomendataj, ne altrudataj; oni devas ilin uzadi nur en la literaturo; sed en korespondado kun personoj nekonataj estas bone ĉiam peni uzadi nur vortojn el la „Fundamento“ ĉar nur pri tiaj vortoj ni povas esti certaj, ke nia adresato ilin nepre trovos en sia vortaro. Nur iam poste, kiam la plej granda parto de la novaj vortoj estos jam tute matura, ia aŭtoritata institucio enkondukos ilin en la vortaron oficialan, kiel „Aldonon al la Fundamento“\n\n2) Se ia aŭtoritata centra institucio trovos, ke tiu aŭ alia vorto aŭ regulo en nia lingvo estas tro neoportuna, ĝi ne devos forigi aŭ ŝanĝi la diritan formon, sed ĝi povos proponi formon novan, kiun ĝi rekomendos uzadi paralele kun la formo malnova. Kun la tempo la formo nova iom post iom elpuŝos la formon malnovan, kiu fariĝos arĥaismo, kiel ni tion ĉi vidas en ĉiu natura lingvo. Sed, prezentante parton de la fundamento, tiuj ĉi arĥaismoj neniam estos elĵetitaj, sed ĉiam estos presataj en ĉiuj lernolibroj kaj vortaroj samtempe kun la formoj novaj, kaj tiamaniere ni havos la certecon, ke eĉ ĉe la plej granda perfektiĝado la unueco de Esperanto neniam estos rompata kaj neniu verko Esperanta eĉ el la plej frua tempo iam perdos sian valoron kaj kompreneblecon por la estontaj generacioj.",
@@ -14,18 +14,17 @@
    "legado",
    "literatura",
    "zamenhof",
-   "fundamento",
-   "C2"
+   "fundamento"
   ],
   "source": "Fundamento de Esperanto, Antaŭparolo — L. L. Zamenhof (1905)",
-  "series_slug": "konstruanto-c2-legado",
+  "series_slug": "fundamentaj-dokumentoj",
   "series_order": 1,
-  "series_label": "Legaĵoj C2"
+  "series_label": "Fundamentaj dokumentoj pri Esperanto"
  },
  {
   "slug": "c2-fundamento-ekz-01",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1835,
   "content": {
    "question": "Laŭ Zamenhof, kiam aŭtoritata komitato rajtos fari ŝanĝojn en la fundamento?",
    "options": [
@@ -39,7 +38,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -51,7 +49,7 @@
  {
   "slug": "c2-fundamento-ekz-02",
   "type": "multiplechoice",
-  "rating": 2130,
+  "rating": 1850,
   "content": {
    "question": "Kial Zamenhof lasis nekorektitaj la erarojn en la nacia traduko de la Universala Vortaro?",
    "options": [
@@ -65,7 +63,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -77,7 +74,7 @@
  {
   "slug": "c2-fundamento-ekz-03",
   "type": "multiplechoice",
-  "rating": 2145,
+  "rating": 1865,
   "content": {
    "question": "Kio laŭ la teksto okazos kun malnova formo, se oni rekomendos novan formon paralele kun ĝi?",
    "options": [
@@ -91,7 +88,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -103,7 +99,7 @@
  {
   "slug": "c2-fundamento-ekz-04",
   "type": "multiplechoice",
-  "rating": 2160,
+  "rating": 1880,
   "content": {
    "question": "„…la momento, en kiu ni ektuŝus tiun principon, estus la komenco de nia morto.“ Kion esprimas la prefikso ek- en „ektuŝus“?",
    "options": [
@@ -117,7 +113,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -129,7 +124,7 @@
  {
   "slug": "c2-fundamento-ekz-05",
   "type": "multiplechoice",
-  "rating": 2100,
+  "rating": 1820,
   "content": {
    "question": "Kion signifas „netuŝebla“ en ĉi tiu teksto?",
    "options": [
@@ -143,7 +138,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -155,7 +149,7 @@
  {
   "slug": "c2-fundamento-ekz-06",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1835,
   "content": {
    "question": "Kiel, laŭ la teksto, oni uzu novajn vortojn, kiuj ne troviĝas en la Fundamento?",
    "options": [
@@ -169,7 +163,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -181,7 +174,7 @@
  {
   "slug": "c2-fundamento-ekz-07",
   "type": "fillin",
-  "rating": 2130,
+  "rating": 1850,
   "content": {
    "question": "La fundamento devas resti severe ___ eĉ kune kun siaj eraroj.",
    "answer": "netuŝebla",
@@ -190,7 +183,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -202,7 +194,7 @@
  {
   "slug": "c2-fundamento-ekz-08",
   "type": "fillin",
-  "rating": 2145,
+  "rating": 1865,
   "content": {
    "question": "Por ke lingvo internacia povu bone kaj regule ___ … (progres-)",
    "answer": "progresadi",
@@ -211,7 +203,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -223,7 +214,7 @@
  {
   "slug": "c2-fundamento-ekz-09",
   "type": "fillin",
-  "rating": 2160,
+  "rating": 1880,
   "content": {
    "question": "…nia lingvo havos la plenan eblon ne sole konstante ___, sed eĉ konstante pliboniĝadi kaj perfektiĝadi (riĉ-)",
    "answer": "riĉiĝadi",
@@ -232,7 +223,6 @@
   "tags": [
    "fundamento",
    "kompreno",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -244,7 +234,7 @@
  {
   "slug": "c2-letero-deveno",
   "type": "reading",
-  "level": "C2",
+  "rating": 1750,
   "content": {
    "title": "Letero pri la deveno de Esperanto (eltiro)",
    "text": "Mi naskiĝis en Bjelostoko, gubernio de Grodno. Tiu ĉi loko de mia naskiĝo kaj de miaj infanaj jaroj donis la direkton al ĉiuj miaj estontaj celadoj. En Bjelostoko la loĝantaro konsistas el kvar diversaj elementoj: rusoj, poloj, germanoj kaj hebreoj; ĉiu el ĉi tiuj elementoj parolas apartan lingvon kaj neamike rilatas la aliajn elementojn. En tia urbo pli ol ie la impresema naturo sentas la multepezan malfeliĉon de diverslingveco kaj konvinkiĝas ĉe ĉiu paŝo, ke la diverseco de lingvoj estas la sola, aŭ almenaŭ la ĉefa kaŭzo, kiu disigas la homan familion kaj dividas ĝin en malamikaj partoj. Oni edukadis min kiel idealiston; oni min instruis, ke ĉiuj homoj estas fratoj, kaj dume sur la strato kaj sur la korto, ĉio ĉe ĉiu paŝo igis min senti, ke homoj ne ekzistas: ekzistas sole rusoj, poloj, germanoj, hebreoj k.t.p. Tio ĉi ĉiam forte turmentis mian infanan animon, kvankam multaj eble ridetos pri tiu ĉi „doloro pro la mondo“ ĉe la infano. Ĉar al mi tiam ŝajnis, ke la „grandaĝaj“ posedas ian ĉiopovan forton, mi ripetadis al mi, ke kiam mi estos grandaĝa, mi nepre forigos tiun ĉi malbonon.\n\nGermanan kaj francan lingvojn mi ellernadis en infaneco, kiam oni ne povas ankoraŭ kompari kaj fari konkludojn; sed kiam, estante en la 5-a klaso de gimnazio, mi komencis ellernadi lingvon anglan, la simpleco de la angla gramatiko ĵetiĝis en miajn okulojn, precipe dank’al la kruta transiro al ĝi de la gramatikoj latina kaj greka. Mi rimarkis tiam, ke la riĉeco de gramatikaj formoj estas nur blinda historia okazo, sed ne estas necesa por la lingvo. Sub tia influo mi komencis serĉi en la lingvo kaj forĵetadi la senbezonajn formojn, kaj mi rimarkis, ke la gramatiko ĉiam pli kaj pli degelas en miaj manoj, kaj baldaŭ mi venis al la gramatiko plej malgranda, kiu okupis sen malutilo por la lingvo ne pli ol kelkajn paĝojn.\n\nUnu fojon, kiam mi estis en la 6-a aŭ 7-a klaso de la gimnazio, mi okaze turnis la atenton al la surskribo „ŝvejcarskaja“*, kiun mi jam multajn fojojn vidis, kaj poste al la elpendaĵo „Konditorskaja“.** Tiu ĉi „skaja“ ekinteresis min kaj montris al mi, ke la sufiksoj donas la eblon el unu vorto fari aliajn vortojn, kiujn oni ne devas aparte ellernadi. Tiu ĉi penso ekposedis min tute, kaj mi subite eksentis la teron sub la piedoj.\n\nSur la terurajn grandegulajn vortarojn falis radio de lumo, kaj ili komencis rapide malgrandiĝi antaŭ miaj okuloj.\n\n„La problemo estas solvita!“ — diris mi tiam. Mi kaptis la ideon pri sufiksoj kaj komencis multe labori en tiu ĉi direkto. Mi komprenis, kian grandan signifon povas havi por la lingvo konscie kreata la plena uzado de tiu forto, kiu en lingvoj naturaj efikis nur parte, blinde, neregule kaj neplene. Mi komencis kompari vortojn, serĉi inter ili konstantajn, difinitajn rilatojn kaj ĉiutage mi forĵetadis el la vortaro novan grandegan serion da vortoj, anstataŭigante tiun ĉi grandegon per unu sufikso, kiu signifis certan rilaton. Mi rimarkis tiam, ke tre granda amaso da vortoj pure radikaj (ekz. „patrino“, „mallarĝa“, „tranĉilo“ k.t.p.) povas esti facile transformitaj en vortojn formitajn kaj malaperi el la vortaro. La meĥaniko de la lingvo estis antaŭ mi kvazaŭ sur la manplato, kaj mi nun komencis jam labori regule, kun amo kaj espero. Baldaŭ post tio mi jam havis skribitan la tutan gramatikon kaj malgrandan vortaron.\n\n[Notoj de la retejo: * ŝvejcarskaja (ruse) — pordistejo; ** konditorskaja (ruse) — sukeraĵejo.]",
@@ -256,18 +246,17 @@
    "legado",
    "literatura",
    "zamenhof",
-   "historio",
-   "C2"
+   "historio"
   ],
   "source": "Letero pri la deveno de Esperanto (al N. Borovko, ĉ. 1895) — L. L. Zamenhof; el Lingvaj Respondoj (1925)",
-  "series_slug": "konstruanto-c2-legado",
+  "series_slug": "fundamentaj-dokumentoj",
   "series_order": 2,
-  "series_label": "Legaĵoj C2"
+  "series_label": "Fundamentaj dokumentoj pri Esperanto"
  },
  {
   "slug": "c2-letero-ekz-01",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1735,
   "content": {
    "question": "Kial, laŭ Zamenhof, lia naskiĝurbo donis la direkton al liaj celadoj?",
    "options": [
@@ -281,7 +270,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -293,7 +281,7 @@
  {
   "slug": "c2-letero-ekz-02",
   "type": "multiplechoice",
-  "rating": 2130,
+  "rating": 1750,
   "content": {
    "question": "Kion Zamenhof rimarkis, kiam li komencis lerni la anglan?",
    "options": [
@@ -307,7 +295,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -319,7 +306,7 @@
  {
   "slug": "c2-letero-ekz-03",
   "type": "multiplechoice",
-  "rating": 2145,
+  "rating": 1765,
   "content": {
    "question": "Kio solvis por li la problemon de la grandegaj vortaroj?",
    "options": [
@@ -333,7 +320,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -345,7 +331,7 @@
  {
   "slug": "c2-letero-ekz-04",
   "type": "multiplechoice",
-  "rating": 2160,
+  "rating": 1780,
   "content": {
    "question": "„…mi subite eksentis la teron sub la piedoj.“ Kion signifas tiu esprimo ĉi tie?",
    "options": [
@@ -359,7 +345,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -371,7 +356,7 @@
  {
   "slug": "c2-letero-ekz-05",
   "type": "multiplechoice",
-  "rating": 2100,
+  "rating": 1720,
   "content": {
    "question": "Zamenhof skribas „mi forĵetadis“, „mi ripetadis“, „oni edukadis min“. Kion aldonas la sufikso -ad- al tiuj verboj?",
    "options": [
@@ -385,7 +370,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -397,7 +381,7 @@
  {
   "slug": "c2-letero-ekz-06",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1735,
   "content": {
    "question": "Kial vortoj kiel „patrino“, „mallarĝa“, „tranĉilo“ povas „malaperi el la vortaro“?",
    "options": [
@@ -411,7 +395,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -423,7 +406,7 @@
  {
   "slug": "c2-letero-ekz-07",
   "type": "fillin",
-  "rating": 2130,
+  "rating": 1750,
   "content": {
    "question": "En tia urbo pli ol ie la impresema naturo sentas la multepezan malfeliĉon de ___.",
    "answer": "diverslingveco",
@@ -432,7 +415,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -444,7 +426,7 @@
  {
   "slug": "c2-letero-ekz-08",
   "type": "fillin",
-  "rating": 2145,
+  "rating": 1765,
   "content": {
    "question": "La meĥaniko de la lingvo estis antaŭ mi kvazaŭ sur la ___.",
    "answer": "manplato",
@@ -453,7 +435,6 @@
   "tags": [
    "zamenhof",
    "kompreno",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -465,7 +446,7 @@
  {
   "slug": "c2-esenco-pioniroj",
   "type": "reading",
-  "level": "C2",
+  "rating": 1900,
   "content": {
    "title": "Esenco kaj estonteco de la ideo de lingvo internacia (komenco)",
    "text": "Ĉiuj ideoj, kiuj estas ludontaj gravan rolon en la historio de la homaro, havas ĉiam tiun saman egalan sorton: kiam ili ekaperas, la samtempuloj renkontas ilin ne sole kun rimarkinde obstina malkonfido, sed eĉ kun ia neklarigebla malamikeco; la pioniroj de tiuj ĉi ideoj devas multe batali kaj multe suferi; oni rigardas ilin kiel homojn frenezajn, infane malsaĝajn, aŭ fine eĉ rekte kiel homojn tre malutilajn. Dum la homoj, kiuj okupas sin je ĉia plej sencela kaj senutila sensencaĵo, se ĝi nur estas en modo kaj konforma al la rutinaj ideoj de la amaso, ĝuas ne sole ĉiujn bonojn de la vivo, sed ankaŭ la honoran nomon de \"instruituloj\" aŭ \"utilaj publikaj agantoj\", la pioniroj de novaj ideoj renkontas nenion krom mokoj kaj atakoj; la unua renkontita tre malmulte lerninta bubo rigardas ilin de alte kaj diras al ili, ke ili okupas sin je malsaĝaĵoj; la unua renkontita gazeta felietonisto skribas pri ili „spritajn“ artikolojn kaj notojn, ne preninte sur sin la laboron almenaŭ iom ekscii, super kio ili propre laboras; kaj la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj, ridas kaj ridegas kaj eĉ por unu minuto ne faras al si la demandon, ĉu ekzistas eĉ guto da senco kaj logiko en ĉiuj tiuj ĉi „spritaj“ mokoj. Pri tiuj ĉi ideoj „estas modo“ paroli ne alie, ol kun ironia kaj malestima rideto, tial tiel agas ankaŭ A kaj B kaj C, kaj ĉiu el ili timas enpensiĝi serioze eĉ unu minuton pri la mokata ideo, ĉar li „scias antaŭe“, ke „ĝi krom malsaĝaĵo enhavas ja nenion“, kaj li timas, ke oni iel alkalkulos lin mem al la nombro de „tiuj malsaĝuloj“, se li eĉ en la daŭro de unu minuto provos rilati serioze al tiu ĉi malsaĝaĵo.\n\nSed pasas kelka tempo. Post longa vico da batalado kaj suferoj la „buboj-fantaziuloj“ atingis la celon. La homaro fariĝis pli riĉa per unu nova grava akiro kaj eltiras el ĝi la plej vastan kaj diversforman utilon. Tiam la cirkonstancoj ŝanĝiĝas. La jam fortiĝinta nova afero ŝajnas al la homoj tiel simpla, tiel „komprenebla per si mem“, ke la homoj ne komprenas, kiamaniere oni povis tutajn miljarojn vivi sen ĝi. Kiam la posteuloj legas la rakontojn pri tio, kiel sin tenis kontraŭ la dirita ideo la samtempuloj de ĝia naskiĝo, ili absolute ne volas kredi kaj pensas, ke ĉion tion ĉi elpensis la historioskribantoj pro mokado je la foririntaj generacioj. „Ĉu efektive“, ili diras, „la tuta mondo tiam konsistis el idiotoj? Ĉu efektive ekzistis homoj, kiuj elpaŝadis kontraŭ la pioniroj kun tiaj sensencaj kontraŭparoloj kaj la ceteraj homoj silentadis kaj la unua renkontita kvinjara infano ne diradis al tiuj kritikantoj: „sinjoroj, vi ja parolas teruran, sur nenio fonditan sensencaĵon, kies rebato sin trovas ja tuj antaŭ via nazo!“? Absolute nekompreneble! La historiistoj certe trograndigas!“",
@@ -477,18 +458,17 @@
    "legado",
    "literatura",
    "zamenhof",
-   "eseo",
-   "C2"
+   "eseo"
   ],
   "source": "Esenco kaj estonteco de la ideo de lingvo internacia (1900) — L. L. Zamenhof; el Fundamenta Krestomatio (1903)",
-  "series_slug": "konstruanto-c2-legado",
+  "series_slug": "fundamentaj-dokumentoj",
   "series_order": 3,
-  "series_label": "Legaĵoj C2"
+  "series_label": "Fundamentaj dokumentoj pri Esperanto"
  },
  {
   "slug": "c2-esenco-ekz-01",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1885,
   "content": {
    "question": "Kiel, laŭ la teksto, la samtempuloj kutime renkontas novajn grandajn ideojn?",
    "options": [
@@ -503,7 +483,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -515,7 +494,7 @@
  {
   "slug": "c2-esenco-ekz-02",
   "type": "multiplechoice",
-  "rating": 2130,
+  "rating": 1900,
   "content": {
    "question": "La vortoj „spritajn“ kaj „scias antaŭe“ staras en citiloj. Kion la aŭtoro esprimas per tio?",
    "options": [
@@ -530,7 +509,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -542,7 +520,7 @@
  {
   "slug": "c2-esenco-ekz-03",
   "type": "multiplechoice",
-  "rating": 2145,
+  "rating": 1915,
   "content": {
    "question": "Kion la posteuloj, laŭ la teksto, ne povas kompreni?",
    "options": [
@@ -557,7 +535,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -569,7 +546,7 @@
  {
   "slug": "c2-esenco-ekz-04",
   "type": "multiplechoice",
-  "rating": 2160,
+  "rating": 1930,
   "content": {
    "question": "Kion signifas „bubo“ en „la unua renkontita tre malmulte lerninta bubo“?",
    "options": [
@@ -584,7 +561,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -596,7 +572,7 @@
  {
   "slug": "c2-esenco-ekz-05",
   "type": "multiplechoice",
-  "rating": 2100,
+  "rating": 1870,
   "content": {
    "question": "„…la publiko, kiu ĉiam iras, kiel anaro da ŝafoj post la kriemuloj…“ Kion diras tiu komparo?",
    "options": [
@@ -611,7 +587,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -623,7 +598,7 @@
  {
   "slug": "c2-esenco-ekz-06",
   "type": "fillin",
-  "rating": 2115,
+  "rating": 1885,
   "content": {
    "question": "Post longa vico da batalado kaj suferoj la „buboj-___“ atingis la celon.",
    "answer": "fantaziuloj",
@@ -633,7 +608,6 @@
    "zamenhof",
    "kompreno",
    "stilo",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -645,7 +619,7 @@
  {
   "slug": "c2-revizoro-urbestro",
   "type": "reading",
-  "level": "C2",
+  "rating": 1900,
   "content": {
    "title": "La Revizoro: la urbestro avertas siajn oficistojn",
    "text": "(El la unua akto. La urbestro ĵus sciigis al la urbaj oficistoj, ke sekrete venas revizoro el la ĉefurbo. — Noto de la retejo.)\n\nUrbestro. — Kial! Certe jam tia estas nia sorto! (Ekĝeminte) Ĝis nun, dank’ al Dio, oni atakadis aliajn urbojn; nun venis la vico al nia urbo.\n\nAmmos Fjodoroviĉ. — Mi opinias, Anton Antonoviĉ, ke tie ĉi estas kaŭzo delikata kaj pli politika. Ĝi signifas jenon: Rusujo… jes… volas fari militon, kaj la ministraro tial, jen vidu, sendis sekrete oficiston, por sciiĝi, ĉu ne ekzistas ie perfido.\n\nUrbestro. — Eh kien vi ensaltis! Kaj ankoraŭ saĝa homo! En malgranda urbo, perfido! Ĉu ĝi estas urbo apudlima, he? De ĉi tie vi ja povas eĉ tri jarojn rajdi, vi al nenia regno alrajdos.\n\nAmmos Fjodoroviĉ. — Ne, por diri al vi, vi ne tion… vi ne… La estraro havas konsiderojn subtilajn: malgraŭ ke estas malproksime, ĝi tamen notas al si en la cerbo.\n\nUrbestro. — Notas aŭ ne notas, sed mi vin, sinjoroj, avertis — rigardu. En mia parto mi kelkajn disponojn jam faris, mi konsilas ankaŭ al vi. Precipe al vi, Artemij Filippoviĉ! Sendube la traveturanta oficisto volos antaŭ ĉio ĉirkaŭrigardi la kadukulejojn, kiuj estas sub via estreco, kaj tial faru tiamaniere, ke ĉio estu konvena: ke la noktaj ĉapoj estu puraj kaj la malsanuloj ne similu forĝistojn en la senĝenaj ĉiutagaj vestoj.\n\nArtemij Filippoviĉ. — Nu, ĉi tio ne estas ankoraŭ gravaĵo. Ĉapojn, se estas necese, oni povas doni al ili eĉ purajn.\n\nUrbestro. — Jes. Kaj ankaŭ super ĉiu lito superskribi latine aŭ en ia alia lingvo… ĉi tio jam apartenas al vi, Ĥristian Ivanoviĉ, — ĉiun malsanon: kiam ĉiu malsaniĝis, kiun tagon kaj daton… Ne bone estas, ke ĉe vi la malsanuloj fumas tian fortan tabakon, ke oni ĉiam ekternas, kiam oni eniras. Kaj cetere estus pli bone, se ilia nombro estus malpli granda: tuj oni povas kulpigi malbonan zorgadon aŭ nelertecon de la kuracisto.\n\nArtemij Filippoviĉ. — Ho, pri la kuracado, mi kaj Ĥristian Ivanoviĉ faris decan aranĝon: ju pli proksime al la naturo, des pli bone, — karajn medikamentojn ni ne uzas. Simpla homo, se li mortos, li ankaŭ sen tio mortos, — se li saniĝos, li ankaŭ sen tio saniĝos. Cetere por Ĥristian Ivanoviĉ eĉ estus malfacile kompreniĝadi kun ili: li ne scias ruse eĉ unu vorton.",
@@ -657,18 +631,17 @@
    "legado",
    "literatura",
    "teatraĵo",
-   "zamenhof",
-   "C2"
+   "zamenhof"
   ],
   "source": "La Revizoro, akto unua — N. V. Gogol, trad. L. L. Zamenhof (1907)",
-  "series_slug": "konstruanto-c2-legado",
-  "series_order": 4,
-  "series_label": "Legaĵoj C2"
+  "series_slug": "literaturaj-klasikajxoj",
+  "series_order": 1,
+  "series_label": "Klasikaĵoj de la literaturo"
  },
  {
   "slug": "c2-revizoro-ekz-01",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1885,
   "content": {
    "question": "Kion supozas Ammos Fjodoroviĉ pri la kaŭzo de la revizio?",
    "options": [
@@ -683,7 +656,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -695,7 +667,7 @@
  {
   "slug": "c2-revizoro-ekz-02",
   "type": "multiplechoice",
-  "rating": 2130,
+  "rating": 1900,
   "content": {
    "question": "„Eh kien vi ensaltis! Kaj ankoraŭ saĝa homo!“ Kian tonon havas la urbestro ĉi tie?",
    "options": [
@@ -710,7 +682,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -722,7 +693,7 @@
  {
   "slug": "c2-revizoro-ekz-03",
   "type": "multiplechoice",
-  "rating": 2145,
+  "rating": 1915,
   "content": {
    "question": "Kial la urbestro trovas perfidon en ilia urbo absurda?",
    "options": [
@@ -737,7 +708,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -749,7 +719,7 @@
  {
   "slug": "c2-revizoro-ekz-04",
   "type": "multiplechoice",
-  "rating": 2160,
+  "rating": 1930,
   "content": {
    "question": "Artemij diras: „ju pli proksime al la naturo, des pli bone, — karajn medikamentojn ni ne uzas.“ Kion montras la satiro?",
    "options": [
@@ -764,7 +734,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -776,7 +745,7 @@
  {
   "slug": "c2-revizoro-ekz-05",
   "type": "multiplechoice",
-  "rating": 2100,
+  "rating": 1870,
   "content": {
    "question": "Kiu frazo uzas „ju … des“ ĝuste?",
    "options": [
@@ -791,7 +760,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -803,7 +771,7 @@
  {
   "slug": "c2-revizoro-ekz-06",
   "type": "fillin",
-  "rating": 2115,
+  "rating": 1885,
   "content": {
    "question": "Ĝis nun, dank’ al Dio, oni ___ aliajn urbojn; nun venis la vico al nia urbo. (atak-)",
    "answer": "atakadis",
@@ -813,7 +781,6 @@
    "teatraĵo",
    "kompreno",
    "ironio",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -825,7 +792,7 @@
  {
   "slug": "c2-sinjoro-tadeo-litvo",
   "type": "reading",
-  "level": "C2",
+  "rating": 1950,
   "content": {
    "title": "Sinjoro Tadeo: la komenco („Litvo! Patrujo mia!“)",
    "text": "Litvo! Patrujo mia! Simila al sano;\nVian grandan valoron ekkonas litvano,\nVin perdinte. Belecon vian mi admiras,\nVidas ĝin kaj priskribas, ĉar mi hejmsopiras.\nSankta Virgin’! Vi gardas Ĉenstoĥovon helan,\nEn Ostra-Brama lumas! Vi, kiu kastelan\nNovogrodek defendas kaj pian urbanon!\nKiel Vi al infano redonis la sanon —\n(Kiam mi, de l’ patrino al Vi oferite,\nLa malvivan palpebron eklevis subite\nKaj povis tuj al Via sanktejo ekiri,\nPor redonita vivo Dio dankodiri)\nTiel Vi nin mirakle portos hejman limon!…\nDume transportu mian sopiran animon\nAl montetoj arbaraj, herbejoj verdantaj,\nLarĝe apud lazura Njemen tiriĝantaj,\nAl la kampoj per greno diversa pentritaj,\nDe sekalo arĝentaj, de tritik’ oritaj,\nKiujn la neĝblanka poligon’ ornamas,\nKie per virga ruĝo trifolio flamas,\nKaj ĉion zonas, kvazaŭ per verda rubando,\nKun maldensaj pirarboj la kampa limrando.",
@@ -837,18 +804,17 @@
    "legado",
    "literatura",
    "poezio",
-   "grabowski",
-   "C2"
+   "grabowski"
   ],
   "source": "Sinjoro Tadeo, Libro I — Adam Mickiewicz, trad. Antoni Grabowski (1918)",
-  "series_slug": "konstruanto-c2-legado",
-  "series_order": 5,
-  "series_label": "Legaĵoj C2"
+  "series_slug": "literaturaj-klasikajxoj",
+  "series_order": 2,
+  "series_label": "Klasikaĵoj de la literaturo"
  },
  {
   "slug": "c2-tadeo-ekz-01",
   "type": "multiplechoice",
-  "rating": 2115,
+  "rating": 1935,
   "content": {
    "question": "Kiam, laŭ la poeto, oni ekkonas la grandan valoron de la patrujo?",
    "options": [
@@ -863,7 +829,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -875,7 +840,7 @@
  {
   "slug": "c2-tadeo-ekz-02",
   "type": "multiplechoice",
-  "rating": 2130,
+  "rating": 1950,
   "content": {
    "question": "En „Sankta Virgin’!“ kaj „de tritik’ oritaj“ mankas la finaĵo -o. Kial tio estas permesata?",
    "options": [
@@ -890,7 +855,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -902,7 +866,7 @@
  {
   "slug": "c2-tadeo-ekz-03",
   "type": "multiplechoice",
-  "rating": 2145,
+  "rating": 1965,
   "content": {
    "question": "Kion signifas „hejmsopiras“?",
    "options": [
@@ -917,7 +881,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -929,7 +892,7 @@
  {
   "slug": "c2-tadeo-ekz-04",
   "type": "multiplechoice",
-  "rating": 2160,
+  "rating": 1980,
   "content": {
    "question": "Kio estas „sekalo“ kaj „tritiko“ en la priskribo de la kampoj?",
    "options": [
@@ -944,7 +907,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -956,7 +918,7 @@
  {
   "slug": "c2-tadeo-ekz-05",
   "type": "multiplechoice",
-  "rating": 2100,
+  "rating": 1920,
   "content": {
    "question": "„Kaj ĉion zonas, kvazaŭ per verda rubando, / Kun maldensaj pirarboj la kampa limrando.“ Kio estas la subjekto de „zonas“?",
    "options": [
@@ -971,7 +933,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "elekti"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
@@ -983,7 +944,7 @@
  {
   "slug": "c2-tadeo-ekz-06",
   "type": "fillin",
-  "rating": 2115,
+  "rating": 1935,
   "content": {
    "question": "Al montetoj arbaraj, herbejoj ___, / Larĝe apud lazura Njemen tiriĝantaj (verd-)",
    "answer": "verdantaj",
@@ -993,7 +954,6 @@
    "poezio",
    "kompreno",
    "stilo",
-   "C2",
    "plenigi"
   ],
   "source": "esperanto-kurso.net (konstruanto)",
