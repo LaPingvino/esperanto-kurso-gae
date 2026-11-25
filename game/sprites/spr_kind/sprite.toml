@@ -1,0 +1,7 @@
+frames = 3
+frame_w = 22
+frame_h = 22
+origin = [0, 0]
+bbox_lrbt = [0, 21, 0, 21]
+precise = false
+transparent = false

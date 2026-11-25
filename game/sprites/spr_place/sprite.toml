@@ -1,0 +1,7 @@
+frames = 24
+frame_w = 44
+frame_h = 44
+origin = [0, 0]
+bbox_lrbt = [0, 43, 0, 43]
+precise = false
+transparent = false
