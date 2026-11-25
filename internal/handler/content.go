@@ -456,7 +456,9 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 				}
 			}
 		}
-		if !hasDef {
+		// A word with a picture needs no shared language: its picture is the
+		// prompt (typing mode). Otherwise show the word first.
+		if !hasDef && vocabPicture(item) == nil {
 			vocabModo = "karto-def"
 		}
 	}

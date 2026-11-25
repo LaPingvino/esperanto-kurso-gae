@@ -1577,3 +1577,84 @@ h2 .muted { color: var(--pico-muted-color); font-weight: normal; }
   padding: 0.25rem;
   font-size: 1em;
 }
+
+/* ── Pictures (internal/bildoj, static/bildoj/ASSETS.md) ──
+   Word pictures (OpenMoji) have black outlines and the lesson places are
+   drawn in the game map's brown ink, so both sit on a light paper tile in
+   either theme: they keep their contrast on a dark page. */
+:root { --pic-paper: #fbf8f1; --pic-edge: #d9cfbd; }
+
+.pic-tile, .series-pic, .lesson-pic {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  background: var(--pic-paper);
+  border: 1px solid var(--pic-edge);
+  border-radius: 0.5rem;
+}
+.pic-tile { width: 4.25rem; height: 4.25rem; }
+.pic-tile img { width: 3.5rem; height: 3.5rem; }
+.pic-tile-lg { width: 9rem; height: 9rem; border-radius: 0.75rem; }
+.pic-tile-lg img { width: 8rem; height: 8rem; }
+.pic-tile-sm { width: 2.5rem; height: 2.5rem; border-radius: 0.35rem; }
+.pic-tile-sm img { width: 2rem; height: 2rem; }
+.series-pic { width: 2.5rem; height: 2.5rem; padding: 0.2rem; border-radius: 0.4rem; }
+.lesson-pic {
+  width: 3rem; height: 3rem; padding: 0.2rem;
+  margin-inline-end: 0.6rem; vertical-align: middle;
+}
+.reading-title { display: flex; align-items: center; }
+
+.pic-prompt { margin: 0.5rem 0 0.75rem; }
+
+.pic-glossary {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(5.5rem, 1fr));
+  gap: 0.6rem;
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+}
+.pic-glossary li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  list-style: none;
+  margin: 0;
+  font-weight: 600;
+  text-align: center;
+}
+.pic-glossary-details { margin: 0.25rem 0 0.75rem; }
+.pic-glossary-details summary { color: var(--pico-muted-color); }
+
+.exercise-card .card-pic { margin-bottom: 0.5rem; }
+.path-card-top .series-pic { margin-inline-end: auto; }
+.path-card-top .series-pic + strong { flex: 1; }
+
+/* Exercise-kind icons: a white shape used as a mask, filled with the
+   badge's own text colour. Decorative: the badge names the kind. */
+.type-badge:is(.type-reading, .type-vocab, .type-fillin, .type-phrasebook,
+  .type-multiplechoice, .type-listening, .type-video, .type-image)::before {
+  content: "";
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  margin-inline-end: 0.3em;
+  vertical-align: -0.2em;
+  background-color: currentColor;
+  -webkit-mask: var(--kind-icon) center / contain no-repeat;
+  mask: var(--kind-icon) center / contain no-repeat;
+}
+.type-reading        { --kind-icon: url(/static/bildoj/specoj/reading.png); }
+.type-vocab          { --kind-icon: url(/static/bildoj/specoj/vocab.png); }
+.type-fillin         { --kind-icon: url(/static/bildoj/specoj/fillin.png); }
+.type-phrasebook     { --kind-icon: url(/static/bildoj/specoj/phrasebook.png); }
+.type-multiplechoice { --kind-icon: url(/static/bildoj/specoj/multiplechoice.png); }
+.type-listening      { --kind-icon: url(/static/bildoj/specoj/listening.png); }
+.type-video          { --kind-icon: url(/static/bildoj/specoj/video.png); }
+.type-image          { --kind-icon: url(/static/bildoj/specoj/image.png); }
+
+.credits-table-wrap { overflow-x: auto; }
+.credits-table td { vertical-align: middle; }

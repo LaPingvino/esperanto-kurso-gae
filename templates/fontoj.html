@@ -1,0 +1,43 @@
+{{template "base" .}}
+
+{{define "title"}}{{t .UILang "credits.title"}} — Esperanto-kurso{{end}}
+
+{{define "content"}}
+{{$lang := .UILang}}
+<h1>{{t $lang "credits.title"}}</h1>
+<p>{{t $lang "credits.intro"}}</p>
+
+<section class="credits-sources">
+  <h2>OpenMoji</h2>
+  <p lang="en">All emojis designed by <a href="https://openmoji.org/" rel="noopener">OpenMoji</a> – the open-source emoji and icon project. License: <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="noopener license">CC BY-SA 4.0</a></p>
+  <p>{{t $lang "credits.openmoji_changes"}}</p>
+  <h2>Kenney</h2>
+  <p>{{t $lang "credits.kenney"}} <a href="https://kenney.nl/" rel="noopener">kenney.nl</a> — <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener license">CC0 1.0</a></p>
+</section>
+
+<h2>{{t $lang "credits.words_title"}}</h2>
+<div class="credits-table-wrap">
+<table class="credits-table">
+  <thead>
+    <tr>
+      <th scope="col">{{t $lang "credits.col_picture"}}</th>
+      <th scope="col">{{t $lang "credits.col_word"}}</th>
+      <th scope="col">{{t $lang "credits.col_source"}}</th>
+      <th scope="col">{{t $lang "credits.col_author"}}</th>
+      <th scope="col">{{t $lang "credits.col_license"}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .Pictures}}
+    <tr>
+      <td><span class="pic-tile pic-tile-sm"><img src="{{.URL}}" alt="" width="32" height="32" loading="lazy" decoding="async"></span></td>
+      <td lang="eo">{{.Word}}</td>
+      <td>{{.Source}}</td>
+      <td>{{.Author}}</td>
+      <td>{{.License}}</td>
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+</div>
+{{end}}

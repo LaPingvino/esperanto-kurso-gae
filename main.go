@@ -13,6 +13,7 @@ import (
 	"strings"
 
 	localauth "github.com/LaPingvino/esperanto-kurso-gae/internal/auth"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/bildoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/config"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/handler"
@@ -82,6 +83,7 @@ func main() {
 	mux.HandleFunc("GET /serioj-nav", contentH.SeriesNavOptions)
 	mux.HandleFunc("GET /serioj", contentH.ShowSeriesBrowser)
 	mux.HandleFunc("GET /vorto", contentH.RandomVocab)
+	mux.HandleFunc("GET /fontoj", contentH.ShowCredits)
 	// The course as a game (game/; built into static/ludo by `make ludo`). On
 	// App Engine app.yaml serves /ludo/ as static files; these serve them when
 	// the app runs by itself (go run). The progress endpoint is the app's.
@@ -228,6 +230,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"steloj.html":           "templates/steloj.html",
 		"honorlisto.html":       "templates/honorlisto.html",
 		"serioj.html":           "templates/serioj.html",
+		"fontoj.html":           "templates/fontoj.html",
 		"admin-komentoj.html":       "templates/admin/komentoj.html",
 		"admin-seed-rigardi.html":   "templates/admin/seed-rigardi.html",
 	}
@@ -285,6 +288,34 @@ func templateFuncs() template.FuncMap {
 		"video":          "Video",
 	}
 	return template.FuncMap{
+		// Pictures (internal/bildoj): through data, never by hand here.
+		// vortBildo: a vocab item's word picture, or a picture exercise's
+		// (multiplechoice with content "bildo"); nil when there is none.
+		"vortBildo": func(item *model.ContentItem) *bildoj.Picture {
+			if item == nil {
+				return nil
+			}
+			switch item.Type {
+			case "vocab":
+				return bildoj.ForVocab(item.Word(), handler.VocabKind(item))
+			case "multiplechoice":
+				if w, _ := item.Content["bildo"].(string); w != "" {
+					return bildoj.ForVocab(w, "")
+				}
+			}
+			return nil
+		},
+		"tekstBildoj":  bildoj.InText,
+		"hasTag": func(item *model.ContentItem, tag string) bool {
+			for _, t := range item.Tags {
+				if t == tag {
+					return true
+				}
+			}
+			return false
+		},
+		"serioBildo":   bildoj.ForSeries,
+		"legadoBildo":  bildoj.ForReading,
 		"t": func(lang, key string) string {
 			return locale.T(lang, key)
 		},

@@ -12,6 +12,7 @@
   <div class="series-browser-grid">
     {{range .Entries}}
     <a href="/ekzerco/{{.FirstSlug}}" class="series-browser-card">
+      {{with serioBildo .Slug}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" loading="lazy" decoding="async">{{end}}
       <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
       <strong>{{.Label}}</strong>
     </a>

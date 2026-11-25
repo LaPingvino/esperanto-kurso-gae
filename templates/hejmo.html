@@ -45,6 +45,7 @@
     {{range .ContinueSeries}}
     <a class="path-card" href="/ekzerco/{{.NextSlug}}">
       <div class="path-card-top">
+        {{with serioBildo .Slug}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" loading="lazy" decoding="async">{{end}}
         <strong>{{.Label}}</strong>
         <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
       </div>
@@ -63,6 +64,7 @@
     {{range .SuggestedSeries}}
     <a class="path-card" href="/ekzerco/{{.NextSlug}}">
       <div class="path-card-top">
+        {{with serioBildo .Slug}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" loading="lazy" decoding="async">{{end}}
         <strong>{{.Label}}</strong>
         <span class="cefr-badge cefr-{{.CEFR}}">{{.CEFR}}</span>
       </div>
@@ -82,7 +84,9 @@
     <article class="exercise-card">
       {{if .ImageURL}}
       <img src="{{.ImageURL}}" alt="{{.Title}}" loading="lazy">
-      {{end}}
+      {{else}}{{with vortBildo .}}
+      <span class="pic-tile card-pic"><img src="{{.URL}}" alt="" width="56" height="56" loading="lazy" decoding="async"></span>
+      {{end}}{{end}}
       <header>
         <span class="type-badge type-{{.Type}}">{{tipNomo .Type}}</span>
         <span class="rating-badge">{{printf "%.0f" .Rating}}</span>

@@ -81,7 +81,24 @@
 
   {{if eq .Item.Type "reading"}}
   <article class="reading-text">
-    {{if .Item.Title}}<h3>{{.Item.Title}}</h3>{{end}}
+    {{$loko := legadoBildo .Item.Slug .Item.SeriesSlug}}
+    {{if .Item.Title}}<h3 class="reading-title">{{if $loko}}<img src="{{$loko}}" alt="" class="lesson-pic" width="48" height="48" decoding="async">{{end}}{{.Item.Title}}</h3>{{end}}
+    {{- /* The pictures of the words in the text (internal/bildoj): shown open
+         at A0, where they carry the meaning, folded away above it. */}}
+    {{with tekstBildoj .Item.Text}}
+    {{if or (lt $.Item.Rating 1000.0) (hasTag $.Item "A0")}}
+    <ul class="pic-glossary" aria-label="{{t $.UILang "pictures.glossary"}}">
+      {{range .}}<li><span class="pic-tile"><img src="{{.URL}}" alt="" width="56" height="56" loading="lazy" decoding="async"></span><span lang="eo">{{.Word}}</span></li>{{end}}
+    </ul>
+    {{else}}
+    <details class="pic-glossary-details">
+      <summary>{{t $.UILang "pictures.glossary"}} ({{len .}})</summary>
+      <ul class="pic-glossary">
+        {{range .}}<li><span class="pic-tile"><img src="{{.URL}}" alt="" width="56" height="56" loading="lazy" decoding="async"></span><span lang="eo">{{.Word}}</span></li>{{end}}
+      </ul>
+    </details>
+    {{end}}
+    {{end}}
     {{$uiLang := "en"}}{{if .User}}{{$uiLang = .User.Lang}}{{end}}
     <p>{{linkifyText .Item.Text .VocabItems $uiLang}}</p>
   </article>
@@ -136,6 +153,7 @@
   </nav>
   <div class="flashcard" id="fc-{{.Item.Slug}}">
     <div class="flashcard-front" id="fc-front-{{.Item.Slug}}">
+      {{if eq $modo "karto-eo"}}{{with vortBildo $.Item}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="" width="128" height="128" decoding="async"></span></div>{{end}}{{end}}
       {{if eq $modo "karto-eo"}}
         {{if $shownDef}}
         <h2 class="vocab-word">{{$shownDef}}</h2>
@@ -153,6 +171,7 @@
       </button>
     </div>
     <div class="flashcard-back" id="fc-back-{{.Item.Slug}}" style="display:none">
+      {{if ne $modo "karto-eo"}}{{with vortBildo $.Item}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="" width="128" height="128" loading="lazy" decoding="async"></span></div>{{end}}{{end}}
       {{if eq $modo "karto-eo"}}
       <p>{{t .UILang "exercise.vocab_eo_prompt"}}</p>
       <h2 class="vocab-word">{{.Item.Word}}</h2>
@@ -222,6 +241,7 @@
     {{if eq .Item.Type "multiplechoice"}}
     <fieldset>
       <legend>{{t .UILang "exercise.choose_answer"}}</legend>
+      {{with vortBildo .Item}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{t $.UILang "pictures.prompt_alt"}}" width="128" height="128" decoding="async"></span></div>{{end}}
       {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
       {{range $i, $opt := .Item.Options}}
       <label>
@@ -261,6 +281,8 @@
       <a href="?modo=karto-eo"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_fwd"}}</a>
       <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t .UILang "exercise.vocab_mode_card_rev"}}</a>
     </nav>
+    {{$pic := vortBildo .Item}}
+    {{with $pic}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{if or $def $communityDef}}{{else}}{{t $.UILang "pictures.prompt_alt"}}{{end}}" width="128" height="128" decoding="async"></span></div>{{end}}
     {{if $def}}
     {{if eq $.VocabKind "sufikso"}}<p>{{t $.UILang "exercise.sufikso_prompt"}} <span class="tag">sufikso</span></p>
     {{else if eq $.VocabKind "prefikso"}}<p>{{t $.UILang "exercise.prefikso_prompt"}} <span class="tag">prefikso</span></p>
@@ -273,6 +295,9 @@
     {{else if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span> <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>
     {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}} <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
     <h2 class="vocab-word">{{$communityDef}}</h2>
+    {{else if $pic}}
+    {{- /* No shared language needed: the picture asks for the word. */}}
+    <p>{{t .UILang "exercise.picture_prompt"}}</p>
     {{else}}
     <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
     {{$allDefs := allDefs .Item.Content}}
