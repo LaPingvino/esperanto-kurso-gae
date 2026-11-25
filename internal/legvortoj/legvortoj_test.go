@@ -56,7 +56,7 @@ func TestParts(t *testing.T) {
 
 // La eta princo: "la boaj" is the snakes (boao), as boaon and boaoj in the
 // same text say, not the adjective boa; the snake, not the fur scarf.
-const etaPrinco = "La batanto iris supren kaj elen kun kvanto da akvo. Tiu bildo prezentis boaon, kiu glutas rabobeston. En la libro oni diris: \"La boaj glutas sian rabaĵon unuglute, sen-maĉe.\" La granduloj konsilis, ke mi flankenlasu desegnojn de boaoj. Marko havas amikon."
+const etaPrinco = "La batanto iris supren kaj elen kun kvanto da akvo. La diamanto brilis. Tiu bildo prezentis boaon, kiu glutas rabobeston. En la libro oni diris: \"La boaj glutas sian rabaĵon unuglute, sen-maĉe.\" La granduloj konsilis, ke mi flankenlasu desegnojn de boaoj. Marko havas amikon."
 
 func vocab(slug, word string, tags ...string) *model.ContentItem {
 	return &model.ContentItem{Slug: slug, Type: "vocab", Status: "approved", Content: map[string]interface{}{"word": word}, Tags: tags}
@@ -135,8 +135,13 @@ func TestPlan(t *testing.T) {
 		vocab("voc-auto-ami→malami", "ami→malami", "vortaro", "pmeg-vortfarado"),       // no word
 		vocab("voc-auto-bat", "bat", "vortaro", "lit-la-eta-princo-komenco"),           // cut from batanto: the root's verb
 		vocab("voc-auto-kv", "kv", "vortaro", "lit-la-eta-princo-komenco"),             // cut from kvanto: no word
-		vocab("voc-auto-supre", "supre", "vortaro", "lit-la-eta-princo-komenco"),       // a word, though the text has supren
-		vocab("voc-auto-ele", "ele", "vortaro", "lit-la-eta-princo-komenco"),           // cut from elen
+		{Slug: "voc-auto-diam", Type: "vocab", Status: MergedStatus, Tags: []string{"vortaro", "lit-la-eta-princo-komenco"}, // retired by a run; cut from diamanto
+			Content: map[string]interface{}{"word": "diam", MergedIntoKey: "", UndoKey: []interface{}{map[string]interface{}{"run": "lv-1"}}}},
+		{Slug: "voc-auto-metr", Type: "vocab", Status: MergedStatus, Tags: []string{"vortaro", "lit-la-eta-princo-komenco"}, // retired; its text has no metro…: stays
+			Content: map[string]interface{}{"word": "metr", MergedIntoKey: "", UndoKey: []interface{}{map[string]interface{}{"run": "lv-1"}}}},
+		vocab("voc-auto-kilom", "kilom", "vortaro", "lit-la-eta-princo-komenco"), // not in its text: retired, for review
+		vocab("voc-auto-supre", "supre", "vortaro", "lit-la-eta-princo-komenco"), // a word, though the text has supren
+		vocab("voc-auto-ele", "ele", "vortaro", "lit-la-eta-princo-komenco"),     // cut from elen
 		{Slug: "voc-auto-glutas", Type: "vocab", Status: "approved", AuthorID: "someone", Content: map[string]interface{}{"word": "glutas", "definitions": map[string]interface{}{"en": "swallows"}}},
 	}
 	got := map[string]Action{}
@@ -154,7 +159,11 @@ func TestPlan(t *testing.T) {
 		"voc-auto-glutas":     {"keep", ""}, // a meaning someone gave: kept
 		"voc-auto-bat":        {"lemma", "voc-auto-bati"},
 		"voc-auto-bati":       {"create", ""},
-		"voc-auto-kv":         {"junk", ""},
+		"voc-auto-kv":         {"lemma", "voc-auto-kvanto"},
+		"voc-auto-kvanto":     {"create", ""},
+		"voc-auto-kilom":      {"junk", ""},
+		"voc-auto-diam":       {"refold", "voc-auto-diamanto"},
+		"voc-auto-diamanto":   {"create", ""},
 		"voc-auto-supre":      {"keep", ""},
 		"voc-auto-ele":        {"lemma", "voc-auto-elen"},
 		"voc-auto-elen":       {"create", ""},

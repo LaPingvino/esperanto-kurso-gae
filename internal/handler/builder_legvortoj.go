@@ -211,7 +211,7 @@ func (b *BuilderAPI) legvortojApply(w http.ResponseWriter, r *http.Request) {
 				fail(err)
 				return
 			}
-		case "core", "lemma", "junk":
+		case "core", "lemma", "junk", "refold":
 			it.Status = legvortoj.MergedStatus
 			c[legvortoj.MergedIntoKey] = a.Into
 		default:

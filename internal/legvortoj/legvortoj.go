@@ -643,6 +643,7 @@ func Plan(items []*model.ContentItem) []Action {
 	var cards, core []*model.ContentItem
 	var readings []*model.ContentItem
 	done := map[string]bool{} // shared cards a run already handled: they exist
+	var retired []*model.ContentItem
 	for _, it := range items {
 		switch {
 		case IsShared(it):
@@ -650,6 +651,9 @@ func Plan(items []*model.ContentItem) []Action {
 			switch {
 			case it.Content[UndoKey] != nil:
 				done[it.Slug] = true
+				if into, _ := it.Content[MergedIntoKey].(string); it.Status == MergedStatus && into == "" {
+					retired = append(retired, it) // retired by a run: a later rule may find its word
+				}
 			case it.Status == "" || it.Status == "approved":
 				cards = append(cards, it)
 			}
@@ -702,6 +706,27 @@ func Plan(items []*model.ContentItem) []Action {
 		sort.Strings(rs)
 		return append([]string{"vortaro", "legvorto"}, rs...)
 	}
+	// the words of a card's own texts (its reading tags): a stem is
+	// resolved only to a word its text has — never from the dictionary
+	// alone ("diam" could be an abbreviation of diametro)
+	inOwnText := func(c *model.ContentItem, word string) bool {
+		for _, t := range c.Tags {
+			if lemmasOf[t][word] {
+				return true
+			}
+		}
+		return false
+	}
+	stemInText := func(c *model.ContentItem, stem string) bool {
+		for _, t := range c.Tags {
+			for l := range lemmasOf[t] {
+				if strings.HasPrefix(l, stem) {
+					return true
+				}
+			}
+		}
+		return false
+	}
 	bySlug := map[string]*model.ContentItem{}
 	for _, c := range cards {
 		bySlug[c.Slug] = c
@@ -724,9 +749,21 @@ func Plan(items []*model.ContentItem) []Action {
 			(!ok || (known && l != w && revo.IsRoot(w)))
 		switch {
 		case bare:
-			// the root's base word — its verb, else noun, else adjective —
-			// never a derived form; for two letters or none: no word
+			// the word it was cut from when that is a word of its own, not
+			// a participle (kvanto, diamanto: the old extractor took -anto
+			// for one); else the root's base word — its verb, else noun,
+			// else adjective — never a derived form; for two letters or
+			// none: no word
 			ok, lemma = false, ""
+			if !stemInText(c, w) {
+				a.Note = "review: no word of its text begins with " + w
+				break
+			}
+			if cw := cutFrom(w, x, func(cw string) bool { return inOwnText(c, cw) }); cw != "" {
+				lemma, hit, ok = cw, revo.Exact(cw), true
+				a.Note = "cut from " + cw
+				break
+			}
 			for _, e := range []string{"i", "o", "a"} {
 				if len([]rune(w)) < 3 {
 					break
@@ -780,6 +817,28 @@ func Plan(items []*model.ContentItem) []Action {
 		}
 		out = append(out, a)
 	}
+	// cards a run retired as no word whose word a later rule finds (kv,
+	// cut from kvanto): fold them into it now (refold)
+	sort.Slice(retired, func(i, j int) bool { return retired[i].Slug < retired[j].Slug })
+	for _, c := range retired {
+		w := revo.Normalize(c.Word())
+		cw := cutFrom(w, x, func(cw string) bool { return inOwnText(c, cw) })
+		if cw == "" {
+			continue
+		}
+		a := Action{Slug: c.Slug, Word: c.Word(), Kind: "refold", Lemma: cw, Note: "cut from " + cw}
+		if t, core := x.Card(cw); t != nil && core {
+			a.Into = t.Slug
+		} else {
+			a.Into = SharedSlug(cw)
+			if bySlug[a.Into] == nil && !done[a.Into] && !created[cw] {
+				created[cw] = true
+				out = append(out, Action{Slug: a.Into, Word: cw, Kind: "create", Lemma: cw,
+					Rating: Rating(cw, revo.Exact(cw)), Tags: tagsFor(cw), Note: "the word " + c.Slug + " was cut from"})
+			}
+		}
+		out = append(out, a)
+	}
 	// a lemma card that exists but would itself fold away: point at its target
 	final := map[string]string{}
 	for _, a := range out {
@@ -800,6 +859,23 @@ func Plan(items []*model.ContentItem) []Action {
 	}
 	sort.SliceStable(out, func(i, j int) bool { return out[i].Slug < out[j].Slug })
 	return out
+}
+
+// cutFrom is the word a stem without an ending was cut from by the old
+// extractor, which stripped -anto, -anta, -inta, -onta… as participles:
+// when stem+that is a ReVo word or a core card's, no participle (the
+// stem has no verb: kvanto, diamanto — not batanto, of bati), and in the
+// card's own text (inText). "" none.
+func cutFrom(stem string, x *Index, inText func(string) bool) string {
+	if stem == "" || revo.Exact(stem+"i") != nil {
+		return ""
+	}
+	for _, suf := range []string{"anto", "anta", "into", "inta", "onto", "onta"} {
+		if c := stem + suf; inText(c) && (revo.Exact(c) != nil || (x != nil && x.word[c] != nil)) {
+			return c
+		}
+	}
+	return ""
 }
 
 func hasDefs(it *model.ContentItem) bool {
