@@ -342,7 +342,9 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 	userLang := "en"
 	if u != nil {
 		currentVote, _ = h.votes.GetByUserAndContent(r.Context(), u.ID, slug)
-		userLang = u.Lang
+		if u.Lang != "" {
+			userLang = u.Lang
+		}
 	}
 
 	userID := ""

@@ -34,15 +34,21 @@ type Suggestion struct {
 	Text, Source string
 }
 
-// copySources are the languages the course's generated definitions were
-// copied from: Romanian and Swahili cards carry the French text, Belarusian
-// the Russian, Kurdish the Persian, Hindi, Lao, Burmese, Yoruba… the
-// English (measured on the seed: around 1,000 cards each).
-var copySources = []string{"en", "fr", "ru", "fa"}
+// copiedLangs are the languages whose generated course definitions are
+// copies of another language's, not translations, and that language:
+// measured on the seed, each has the same text as its source on 680 to
+// 1,011 of its ~1,011 cards (ur: 199 English + 64 Persian). Elsewhere a
+// definition equal to the English one is a cognate (de Hand, nl water), so
+// the rule applies only to these.
+var copiedLangs = map[string][]string{
+	"ro": {"fr"}, "sw": {"fr"}, "frp": {"fr"}, "be": {"ru"}, "ku": {"fa"},
+	"hi": {"en"}, "lo": {"en"}, "my": {"en"}, "yo": {"en"}, "km": {"en"},
+	"tok": {"en"}, "kk": {"en"}, "ur": {"en", "fa"},
+}
 
 // copiedFrom names the language a copied definition was taken from.
 func copiedFrom(content map[string]interface{}, lang, def string) string {
-	for _, src := range copySources {
+	for _, src := range copiedLangs[lang] {
 		if d, _ := courseDef(content, src); src != lang && strings.EqualFold(d, def) {
 			return src
 		}
@@ -65,8 +71,8 @@ func courseDef(content map[string]interface{}, lang string) (def string, copied 
 	if def == "" || lang == "en" {
 		return def, false
 	}
-	for _, src := range copySources {
-		if src != lang && strings.EqualFold(def, str(src)) {
+	for _, src := range copiedLangs[lang] {
+		if strings.EqualFold(def, str(src)) {
 			return def, true
 		}
 	}
@@ -77,7 +83,7 @@ func courseDef(content map[string]interface{}, lang string) (def string, copied 
 // language: the course's own definition → a community translation →
 // ReVo's translation → English, the course's or ReVo's → ReVo's Esperanto
 // definition. A course definition copied from another language (see
-// copySources) does not count as one in the learner's language.
+// copiedLangs) does not count as one in the learner's language.
 func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	word := item.Word()
 	hit := revo.Lookup(word, isRootCard(item))
@@ -159,13 +165,13 @@ func splitSuggestions(t string) []Suggestion {
 
 // pivURL links to the word in PIV at vortaro.net. Its address is the
 // search state after "#": "<word>_kd" searches headwords (k) and
-// derivations (d) (vortaro.net/js/piv.js, KreiStatonElAdreso). A root
-// card is looked up by ReVo's headword for it ("hom" → homo), since PIV's
-// headwords are words; spaces are %20, as piv.js decodes with decodeURI.
+// derivations (d) (vortaro.net/js/piv.js, KreiStatonElAdreso). A root,
+// an inflected form or a related-word hit is looked up by the headword
+// ReVo matched ("hom" → homo), since PIV finds words, not roots; spaces are %20, as piv.js decodes with decodeURI.
 func pivURL(word string, hit *revo.Hit) string {
 	w := revo.Normalize(word)
-	if hit != nil && (hit.Root || hit.Via != "") && len(hit.Heads) > 0 {
-		w = hit.Heads[0]
+	if hit != nil && len(hit.Heads) > 0 && !hit.HasHead(w) {
+		w = hit.Heads[0] // knabojn → knabo, hom → homo, trankvile → trankvila
 	}
 	if w == "" {
 		return "https://vortaro.net/"

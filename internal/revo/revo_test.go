@@ -46,6 +46,8 @@ func TestLookup(t *testing.T) {
 		{"sxangxi", false, "sxangx.0i", "change"},
 		{"-ec-", true, "ec.", ""},
 		{"mal-", true, "mal.", ""},
+		{"vorto", false, "vort.0o", "word"}, // not "Vorto", the Logos
+		{"do", false, "do.", ""},            // not the letter d
 	}
 	for _, c := range cases {
 		h := Lookup(c.word, c.root)

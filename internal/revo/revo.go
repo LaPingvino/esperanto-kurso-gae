@@ -163,6 +163,29 @@ func load() {
 			heads[k] = append(heads[k], i)
 		}
 	}
+	// Homographs: a common word before a proper noun ("vorto" before
+	// "Vorto", the Logos), then the derivation translated into the most
+	// languages ("do" the conjunction before "do" the letter d).
+	for k, is := range heads {
+		if len(is) < 2 {
+			continue
+		}
+		lower := func(i int) bool {
+			for _, h := range data.Drv[i].Heads {
+				if Normalize(h) == k && h == strings.ToLower(h) {
+					return true
+				}
+			}
+			return false
+		}
+		sort.SliceStable(is, func(a, b int) bool {
+			la, lb := lower(is[a]), lower(is[b])
+			if la != lb {
+				return la
+			}
+			return strings.Count(data.Drv[is[a]].Trd, "\n") > strings.Count(data.Drv[is[b]].Trd, "\n")
+		})
+	}
 }
 
 // Warm loads the extract ahead of the first lookup (it takes about a
@@ -332,4 +355,14 @@ func related(stem string) *Hit {
 		}
 	}
 	return nil
+}
+
+// HasHead reports whether w (normalized) is one of the entry's headwords.
+func (e *Entry) HasHead(w string) bool {
+	for _, h := range e.Heads {
+		if Normalize(h) == w {
+			return true
+		}
+	}
+	return false
 }
