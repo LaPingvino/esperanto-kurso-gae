@@ -79,6 +79,8 @@
 {"word": "infano", "topic": "familio", "file": "vortoj/1f9d2.svg", "source": "OpenMoji 17.0.0: 1F9D2 child", "author": "Johanna Wellnitz", "license": "CC BY-SA 4.0", "group": "homo"},
 {"word": "avo", "topic": "familio", "file": "vortoj/1f474.svg", "source": "OpenMoji 17.0.0: 1F474 old man", "author": "Liz Bravo", "license": "CC BY-SA 4.0"},
 {"word": "avino", "topic": "familio", "file": "vortoj/1f475.svg", "source": "OpenMoji 17.0.0: 1F475 old woman", "author": "Johanna Wellnitz", "license": "CC BY-SA 4.0"},
+{"word": "patro", "topic": "familio", "file": "vortoj/1f468-200d-1f466.svg", "source": "OpenMoji 17.0.0: 1F468-200D-1F466 family: man, boy", "author": "Fanny Jung", "license": "CC BY-SA 4.0", "group": "familio"},
+{"word": "patrino", "topic": "familio", "file": "vortoj/1f469-200d-1f467.svg", "source": "OpenMoji 17.0.0: 1F469-200D-1F467 family: woman, girl", "author": "Fanny Jung", "license": "CC BY-SA 4.0", "group": "familio"},
 {"word": "familio", "topic": "familio", "file": "vortoj/1f468-200d-1f469-200d-1f467-200d-1f466.svg", "source": "OpenMoji 17.0.0: 1F468-200D-1F469-200D-1F467-200D-1F466 family: man, woman, girl, boy", "author": "Fanny Jung", "license": "CC BY-SA 4.0", "group": "familio"},
 {"word": "ruĝa", "topic": "koloroj", "file": "vortoj/1f534.svg", "source": "OpenMoji 17.0.0: 1F534 red circle", "author": "Ricarda Krejci", "license": "CC BY-SA 4.0"},
 {"word": "oranĝkolora", "topic": "koloroj", "file": "vortoj/1f7e0.svg", "source": "OpenMoji 17.0.0: 1F7E0 orange circle", "author": "Sam Eckert", "license": "CC BY-SA 4.0"},

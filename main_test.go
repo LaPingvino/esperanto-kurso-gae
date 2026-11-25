@@ -55,6 +55,11 @@ func TestPictureExercisesRender(t *testing.T) {
 		t.Errorf("picture exercise has no picture %s", dog)
 	}
 	assertNoLeak(t, html, "hundo")
+	// with definitions, the alt is the word in the learner's language
+	mc.Content["definitions"] = map[string]interface{}{"en": "dog"}
+	if html = render(t, "ekzerco.html", map[string]interface{}{"Item": mc}); !strings.Contains(html, `alt="dog"`) {
+		t.Error("the picture's alt is not the learner-language definition")
+	}
 
 	// A vocab word with a picture and no definition in the learner's
 	// language: the picture is the prompt, and the word is not shown.
@@ -70,6 +75,14 @@ func TestPictureExercisesRender(t *testing.T) {
 	}
 	if strings.Contains(html, `class="vocab-word">kato<`) {
 		t.Error("the picture prompt shows the word it asks for")
+	}
+	// A Zagreb root with no definition in the learner's language asks for
+	// the root (its answer is "akv", not "akvo").
+	bare := &model.ContentItem{Slug: "voc-zagr-akv", Type: "vocab", Tags: []string{"vortaro", "zagr", "radiko"},
+		Content: map[string]interface{}{"word": "akv", "definitions": map[string]interface{}{"de": "Wasser"}}}
+	html = render(t, "ekzerco.html", map[string]interface{}{"Item": bare, "VocabModo": "", "IsRadiko": true})
+	if strings.Contains(html, "Write the word in Esperanto") || !strings.Contains(html, `<span class="tag">radiko</span>`) {
+		t.Error("a root's picture prompt does not ask for the root")
 	}
 	// A Zagreb root gets its word's picture too.
 	root := &model.ContentItem{Slug: "voc-zagr-akv", Type: "vocab", Tags: []string{"radiko"},

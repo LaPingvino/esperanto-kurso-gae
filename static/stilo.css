@@ -1664,3 +1664,4 @@ img.lesson-pic {
 
 .credits-table-wrap { overflow-x: auto; }
 .credits-table td { vertical-align: middle; }
+.game-link a { display: inline-flex; align-items: center; gap: 0.5rem; }

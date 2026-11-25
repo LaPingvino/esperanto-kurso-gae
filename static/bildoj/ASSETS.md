@@ -5,7 +5,7 @@ site's credits page (`/fontoj`) shows the same, with every word picture's author
 
 | Folder | What | From | Author | Licence |
 |---|---|---|---|---|
-| `vortoj/` | a picture per word (147 words, the row per file in `internal/bildoj/vortbildoj.json`) | OpenMoji 17.0.0, https://openmoji.org | the OpenMoji designers; each file's author is in its row | CC BY-SA 4.0 |
+| `vortoj/` | a picture per word (149 words, the row per file in `internal/bildoj/vortbildoj.json`) | OpenMoji 17.0.0, https://openmoji.org | the OpenMoji designers; each file's author is in its row | CC BY-SA 4.0 |
 | `lokoj/` | a picture per Zagreb lesson, its place on the game's map: `houseSmall`, `houses`, `ship`, `houseChimney`, `house`, `campfire`, `waterWheel`, `tent`, `treePines`, `mill`, `well`, `dock` (lessons 1–12, as in the game's `spr_place`) | Cartography Pack | Kenney (kenney.nl) | CC0 1.0 |
 | `specoj/` | a picture per exercise kind: `book_open` (reading), `cards_fan` (vocab), `notepad_write` (fill-in), `cards_order` (phrasebook) from Board Game Icons; `menuList` (multiple choice), `audioOn` (listening), `video` (video), `zoom` (image) from Game Icons | Board Game Icons 1.1, Game Icons | Kenney (kenney.nl) | CC0 1.0 |
 
@@ -22,8 +22,9 @@ field `openmoji_author`).
 Changes made (so these files are adaptations, under the same CC BY-SA 4.0):
 
 - every file: the `id` attributes and white space removed and coordinates
-  rounded to 2 decimals (in a 72-unit box), which renders the same at the
-  sizes the site uses, compared pixel by pixel at 96 px;
+  rounded to 2 decimals (in a 72-unit box; paths with arcs are left as they
+  were), which renders the same at the sizes the site uses, compared pixel by
+  pixel at 96 px (`internal/bildoj/tools/make_words.py`);
 - `vortoj/26aa-9b9b9b.svg` (griza, grey): OpenMoji's white circle 26AA with its
   fill changed to #9b9b9b.
 

@@ -38,7 +38,55 @@
     "robo"
    ],
    "correct_index": 1,
-   "bildo": "domo"
+   "bildo": "domo",
+   "definitions": {
+    "ar": "منزل; بيت",
+    "be": "дом",
+    "ca": "casa; edifici",
+    "cs": "dům",
+    "da": "hus",
+    "de": "Haus",
+    "el": "σπίτι",
+    "en": "house",
+    "es": "casa",
+    "fa": "خانه (ساختمان)",
+    "fr": "maison",
+    "frp": "maison",
+    "ga": "teach",
+    "he": "בית",
+    "hi": "house",
+    "hr": "kuća",
+    "hu": "ház",
+    "id": "rumah",
+    "it": "casa",
+    "ja": "家",
+    "kk": "house",
+    "km": "house",
+    "ko": "집",
+    "ku": "خانه (ساختمان)",
+    "lo": "house",
+    "mg": "trano",
+    "ms": "rumah",
+    "my": "house",
+    "nl": "huis",
+    "pl": "dom (budynek)",
+    "pt": "casa",
+    "ro": "maison",
+    "ru": "дом",
+    "sk": "dom",
+    "sl": "hiša",
+    "sv": "hus",
+    "sw": "maison",
+    "th": "บ้าน",
+    "tok": "house",
+    "tr": "ev",
+    "uk": "дім",
+    "ur": "گھر",
+    "vi": "ngôi nhà",
+    "yo": "house",
+    "zh": "房子",
+    "zh-tw": "房子"
+   }
   },
   "Tags": [
    "A0",
@@ -72,7 +120,10 @@
     "ĉemizo"
    ],
    "correct_index": 2,
-   "bildo": "libro"
+   "bildo": "libro",
+   "definitions": {
+    "en": "book"
+   }
   },
   "Tags": [
    "A0",
@@ -106,7 +157,10 @@
     "seĝo"
    ],
    "correct_index": 3,
-   "bildo": "seĝo"
+   "bildo": "seĝo",
+   "definitions": {
+    "en": "chair"
+   }
   },
   "Tags": [
    "A0",
@@ -140,7 +194,10 @@
     "fenestro"
    ],
    "correct_index": 3,
-   "bildo": "fenestro"
+   "bildo": "fenestro",
+   "definitions": {
+    "en": "window"
+   }
   },
   "Tags": [
    "A0",
@@ -174,7 +231,10 @@
     "ŝlosilo"
    ],
    "correct_index": 0,
-   "bildo": "pordo"
+   "bildo": "pordo",
+   "definitions": {
+    "en": "door"
+   }
   },
   "Tags": [
    "A0",
@@ -208,7 +268,10 @@
     "trajno"
    ],
    "correct_index": 2,
-   "bildo": "telefono"
+   "bildo": "telefono",
+   "definitions": {
+    "en": "telephone"
+   }
   },
   "Tags": [
    "A0",
@@ -242,7 +305,10 @@
     "komputilo"
    ],
    "correct_index": 3,
-   "bildo": "komputilo"
+   "bildo": "komputilo",
+   "definitions": {
+    "en": "computer"
+   }
   },
   "Tags": [
    "A0",
@@ -276,7 +342,10 @@
     "letero"
    ],
    "correct_index": 0,
-   "bildo": "horloĝo"
+   "bildo": "horloĝo",
+   "definitions": {
+    "en": "clock"
+   }
   },
   "Tags": [
    "A0",
@@ -310,7 +379,10 @@
     "komputilo"
    ],
    "correct_index": 0,
-   "bildo": "lito"
+   "bildo": "lito",
+   "definitions": {
+    "en": "bed"
+   }
   },
   "Tags": [
    "A0",
@@ -344,7 +416,10 @@
     "ŝlosilo"
    ],
    "correct_index": 3,
-   "bildo": "ŝlosilo"
+   "bildo": "ŝlosilo",
+   "definitions": {
+    "en": "key"
+   }
   },
   "Tags": [
    "A0",
@@ -378,7 +453,55 @@
     "ŝlosilo"
    ],
    "correct_index": 1,
-   "bildo": "aŭto"
+   "bildo": "aŭto",
+   "definitions": {
+    "ar": "سيارة",
+    "be": "машина; автомобиль",
+    "ca": "cotxe",
+    "cs": "auto",
+    "da": "bil",
+    "de": "Auto",
+    "el": "αυτοκίνητο",
+    "en": "car",
+    "es": "coche",
+    "fa": "خودرو",
+    "fr": "voiture",
+    "frp": "voiture",
+    "ga": "carr",
+    "he": "מכונית",
+    "hi": "car",
+    "hr": "auto",
+    "hu": "autó",
+    "id": "mobil",
+    "it": "automobile",
+    "ja": "車",
+    "kk": "car",
+    "km": "ឡាន",
+    "ko": "자동차",
+    "ku": "خودرو",
+    "lo": "car",
+    "mg": "fiara",
+    "ms": "kereta",
+    "my": "car",
+    "nl": "auto",
+    "pl": "samochód",
+    "pt": "carro",
+    "ro": "voiture",
+    "ru": "машина; автомобиль",
+    "sk": "auto",
+    "sl": "avto",
+    "sv": "bil",
+    "sw": "voiture",
+    "th": "รถ",
+    "tok": "car",
+    "tr": "araba",
+    "uk": "автомобіль",
+    "ur": "کار",
+    "vi": "xe hơi",
+    "yo": "car",
+    "zh": "汽车",
+    "zh-tw": "汽車"
+   }
   },
   "Tags": [
    "A0",
@@ -412,7 +535,10 @@
     "tranĉilo"
    ],
    "correct_index": 2,
-   "bildo": "biciklo"
+   "bildo": "biciklo",
+   "definitions": {
+    "en": "bicycle"
+   }
   },
   "Tags": [
    "A0",
@@ -446,7 +572,55 @@
     "ŝuo"
    ],
    "correct_index": 0,
-   "bildo": "ŝipo"
+   "bildo": "ŝipo",
+   "definitions": {
+    "ar": "سفينة",
+    "be": "корабль; судно",
+    "ca": "vaixell",
+    "cs": "loď",
+    "da": "skib",
+    "de": "Schiff",
+    "el": "πλοίο",
+    "en": "ship",
+    "es": "barco",
+    "fa": "کِشتی",
+    "fr": "navire; bateau",
+    "frp": "navire; bateau",
+    "ga": "long",
+    "he": "אניה",
+    "hi": "ship",
+    "hr": "brod",
+    "hu": "hajó",
+    "id": "kapal",
+    "it": "nave",
+    "ja": "船",
+    "kk": "кеме",
+    "km": "ship",
+    "ko": "배",
+    "ku": "کِشتی",
+    "lo": "ship",
+    "mg": "sambo be; sambo",
+    "ms": "kapal laut",
+    "my": "ship",
+    "nl": "schip",
+    "pl": "statek",
+    "pt": "navio",
+    "ro": "navire; bateau",
+    "ru": "корабль; судно",
+    "sk": "loď",
+    "sl": "ladja",
+    "sv": "båt; fartyg",
+    "sw": "navire; bateau",
+    "th": "เรือ",
+    "tok": "ship",
+    "tr": "gemi",
+    "uk": "корабель",
+    "ur": "بحری جہاز",
+    "vi": "thuyền; tàu thuỷ",
+    "yo": "ship",
+    "zh": "船",
+    "zh-tw": "船"
+   }
   },
   "Tags": [
    "A0",
@@ -480,7 +654,10 @@
     "biciklo"
    ],
    "correct_index": 2,
-   "bildo": "trajno"
+   "bildo": "trajno",
+   "definitions": {
+    "en": "train"
+   }
   },
   "Tags": [
    "A0",
@@ -514,7 +691,10 @@
     "buso"
    ],
    "correct_index": 2,
-   "bildo": "aviadilo"
+   "bildo": "aviadilo",
+   "definitions": {
+    "en": "aeroplane"
+   }
   },
   "Tags": [
    "A0",
@@ -548,7 +728,10 @@
     "ŝipo"
    ],
    "correct_index": 1,
-   "bildo": "buso"
+   "bildo": "buso",
+   "definitions": {
+    "en": "bus"
+   }
   },
   "Tags": [
    "A0",
@@ -582,7 +765,10 @@
     "biciklo"
    ],
    "correct_index": 1,
-   "bildo": "ombrelo"
+   "bildo": "ombrelo",
+   "definitions": {
+    "en": "umbrella"
+   }
   },
   "Tags": [
    "A0",
@@ -616,7 +802,10 @@
     "mono"
    ],
    "correct_index": 1,
-   "bildo": "ŝuo"
+   "bildo": "ŝuo",
+   "definitions": {
+    "en": "shoe"
+   }
   },
   "Tags": [
    "A0",
@@ -650,7 +839,10 @@
     "trajno"
    ],
    "correct_index": 2,
-   "bildo": "ĉemizo"
+   "bildo": "ĉemizo",
+   "definitions": {
+    "en": "shirt"
+   }
   },
   "Tags": [
    "A0",
@@ -684,7 +876,10 @@
     "lito"
    ],
    "correct_index": 0,
-   "bildo": "robo"
+   "bildo": "robo",
+   "definitions": {
+    "en": "dress"
+   }
   },
   "Tags": [
    "A0",
@@ -718,7 +913,10 @@
     "telefono"
    ],
    "correct_index": 0,
-   "bildo": "ĉapelo"
+   "bildo": "ĉapelo",
+   "definitions": {
+    "en": "hat"
+   }
   },
   "Tags": [
    "A0",
@@ -752,7 +950,55 @@
     "lito"
    ],
    "correct_index": 1,
-   "bildo": "letero"
+   "bildo": "letero",
+   "definitions": {
+    "ar": "حرف",
+    "be": "письмо",
+    "ca": "carta",
+    "cs": "dopis",
+    "da": "brev",
+    "de": "Brief",
+    "el": "επιστολή",
+    "en": "letter",
+    "es": "carta",
+    "fa": "نامه",
+    "fr": "lettre",
+    "frp": "lettre",
+    "ga": "litir",
+    "he": "מכתב",
+    "hi": "letter",
+    "hr": "pismo",
+    "hu": "levél",
+    "id": "surat",
+    "it": "lettera",
+    "ja": "手紙",
+    "kk": "letter",
+    "km": "letter",
+    "ko": "편지",
+    "ku": "نامه",
+    "lo": "letter",
+    "mg": "taratasy",
+    "ms": "surat",
+    "my": "letter",
+    "nl": "brief",
+    "pl": "list",
+    "pt": "carta",
+    "ro": "lettre",
+    "ru": "письмо",
+    "sk": "list",
+    "sl": "pismo",
+    "sv": "brev",
+    "sw": "lettre",
+    "th": "จดหมาย",
+    "tok": "letter",
+    "tr": "mektup",
+    "uk": "лист",
+    "ur": "letter",
+    "vi": "bức thư",
+    "yo": "letter",
+    "zh": "书信",
+    "zh-tw": "書信"
+   }
   },
   "Tags": [
    "A0",
@@ -786,7 +1032,55 @@
     "hospitalo"
    ],
    "correct_index": 1,
-   "bildo": "mono"
+   "bildo": "mono",
+   "definitions": {
+    "ar": "فلوس; مال",
+    "be": "деньги",
+    "ca": "diners",
+    "cs": "peníze",
+    "da": "penge",
+    "de": "Geld",
+    "el": "χρήμα",
+    "en": "money",
+    "es": "dinero",
+    "fa": "پول",
+    "fr": "argent; monnaie",
+    "frp": "argent",
+    "ga": "airgead",
+    "he": "כסף",
+    "hi": "money",
+    "hr": "novac",
+    "hu": "pénz",
+    "id": "uang",
+    "it": "donera",
+    "ja": "お金",
+    "kk": "ақша",
+    "km": "ប្រាក់",
+    "ko": "돈",
+    "ku": "پول",
+    "lo": "money",
+    "mg": "vola; vola madinika",
+    "ms": "duit",
+    "my": "money",
+    "nl": "geld",
+    "pl": "pieniądze",
+    "pt": "dinheiro",
+    "ro": "argent; monnaie",
+    "ru": "деньги",
+    "sk": "peniaze",
+    "sl": "denar",
+    "sv": "pengar",
+    "sw": "argent; monnaie",
+    "th": "เงิน",
+    "tok": "money",
+    "tr": "para",
+    "uk": "гроші",
+    "ur": "رقم",
+    "vi": "tiền bạc",
+    "yo": "money",
+    "zh": "钱",
+    "zh-tw": "錢"
+   }
   },
   "Tags": [
    "A0",
@@ -820,7 +1114,10 @@
     "lernejo"
    ],
    "correct_index": 2,
-   "bildo": "krajono"
+   "bildo": "krajono",
+   "definitions": {
+    "en": "pencil"
+   }
   },
   "Tags": [
    "A0",
@@ -854,7 +1151,10 @@
     "buso"
    ],
    "correct_index": 1,
-   "bildo": "pilko"
+   "bildo": "pilko",
+   "definitions": {
+    "en": "ball"
+   }
   },
   "Tags": [
    "A0",
@@ -888,7 +1188,10 @@
     "kulero"
    ],
    "correct_index": 3,
-   "bildo": "kulero"
+   "bildo": "kulero",
+   "definitions": {
+    "en": "spoon"
+   }
   },
   "Tags": [
    "A0",
@@ -922,7 +1225,10 @@
     "ĉapelo"
    ],
    "correct_index": 0,
-   "bildo": "tranĉilo"
+   "bildo": "tranĉilo",
+   "definitions": {
+    "en": "knife"
+   }
   },
   "Tags": [
    "A0",
@@ -956,7 +1262,10 @@
     "pordo"
    ],
    "correct_index": 1,
-   "bildo": "lernejo"
+   "bildo": "lernejo",
+   "definitions": {
+    "en": "school"
+   }
   },
   "Tags": [
    "A0",
@@ -990,7 +1299,55 @@
     "mono"
    ],
    "correct_index": 0,
-   "bildo": "hotelo"
+   "bildo": "hotelo",
+   "definitions": {
+    "ar": "فندق",
+    "be": "гостиница; отель",
+    "ca": "hotel",
+    "cs": "hotel",
+    "da": "hotel",
+    "de": "Hotel",
+    "el": "ξενοδοχείο",
+    "en": "hotel",
+    "es": "hotel",
+    "fa": "هتل",
+    "fr": "hôtel",
+    "frp": "hôtel",
+    "ga": "óstán",
+    "he": "מלון",
+    "hi": "hotel",
+    "hr": "hotel",
+    "hu": "szálloda",
+    "id": "hotel",
+    "it": "hotel",
+    "ja": "ホテル",
+    "kk": "қонақхана",
+    "km": "សណ្ឋាគារ",
+    "ko": "호텔",
+    "ku": "هتل",
+    "lo": "hotel",
+    "mg": "hotely",
+    "ms": "hotel",
+    "my": "hotel",
+    "nl": "hotel",
+    "pl": "hotel",
+    "pt": "hotel",
+    "ro": "hôtel",
+    "ru": "гостиница; отель",
+    "sk": "hotel",
+    "sl": "hotel",
+    "sv": "hotell",
+    "sw": "hôtel",
+    "th": "โรงแรม",
+    "tok": "hotel",
+    "tr": "otel",
+    "uk": "готель",
+    "ur": "ہوٹل",
+    "vi": "khách sạn",
+    "yo": "hotel",
+    "zh": "酒店",
+    "zh-tw": "旅館"
+   }
   },
   "Tags": [
    "A0",
@@ -1024,7 +1381,10 @@
     "hospitalo"
    ],
    "correct_index": 3,
-   "bildo": "hospitalo"
+   "bildo": "hospitalo",
+   "definitions": {
+    "en": "hospital"
+   }
   },
   "Tags": [
    "A0",
@@ -1104,7 +1464,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1133,7 +1494,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1162,7 +1524,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1191,7 +1554,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1220,7 +1584,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1249,7 +1614,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1278,7 +1644,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1307,7 +1674,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1336,7 +1704,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1365,7 +1734,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1439,7 +1809,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1468,7 +1839,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1542,7 +1914,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1571,7 +1944,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1600,7 +1974,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1629,7 +2004,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1658,7 +2034,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1687,7 +2064,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1716,7 +2094,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1745,7 +2124,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1774,7 +2154,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1848,7 +2229,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1922,7 +2304,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1951,7 +2334,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -1980,7 +2364,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2009,7 +2394,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2038,7 +2424,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2067,7 +2454,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2141,7 +2529,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2170,7 +2559,8 @@
    "A0",
    "bildvortaro",
    "objektoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-objektoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2225,7 +2615,10 @@
     "simio"
    ],
    "correct_index": 0,
-   "bildo": "hundo"
+   "bildo": "hundo",
+   "definitions": {
+    "en": "dog"
+   }
   },
   "Tags": [
    "A0",
@@ -2259,7 +2652,10 @@
     "kokino"
    ],
    "correct_index": 2,
-   "bildo": "kato"
+   "bildo": "kato",
+   "definitions": {
+    "en": "cat"
+   }
   },
   "Tags": [
    "A0",
@@ -2293,7 +2689,10 @@
     "ĉevalo"
    ],
    "correct_index": 2,
-   "bildo": "birdo"
+   "bildo": "birdo",
+   "definitions": {
+    "en": "bird"
+   }
   },
   "Tags": [
    "A0",
@@ -2327,7 +2726,10 @@
     "muso"
    ],
    "correct_index": 0,
-   "bildo": "fiŝo"
+   "bildo": "fiŝo",
+   "definitions": {
+    "en": "fish"
+   }
   },
   "Tags": [
    "A0",
@@ -2361,7 +2763,10 @@
     "ĉevalo"
    ],
    "correct_index": 3,
-   "bildo": "ĉevalo"
+   "bildo": "ĉevalo",
+   "definitions": {
+    "en": "horse"
+   }
   },
   "Tags": [
    "A0",
@@ -2395,7 +2800,10 @@
     "muso"
    ],
    "correct_index": 1,
-   "bildo": "bovino"
+   "bildo": "bovino",
+   "definitions": {
+    "en": "cow"
+   }
   },
   "Tags": [
    "A0",
@@ -2429,7 +2837,10 @@
     "kato"
    ],
    "correct_index": 0,
-   "bildo": "porko"
+   "bildo": "porko",
+   "definitions": {
+    "en": "pig"
+   }
   },
   "Tags": [
    "A0",
@@ -2463,7 +2874,10 @@
     "leono"
    ],
    "correct_index": 0,
-   "bildo": "ŝafo"
+   "bildo": "ŝafo",
+   "definitions": {
+    "en": "sheep"
+   }
   },
   "Tags": [
    "A0",
@@ -2497,7 +2911,10 @@
     "elefanto"
    ],
    "correct_index": 0,
-   "bildo": "kokino"
+   "bildo": "kokino",
+   "definitions": {
+    "en": "hen"
+   }
   },
   "Tags": [
    "A0",
@@ -2531,7 +2948,10 @@
     "muso"
    ],
    "correct_index": 3,
-   "bildo": "muso"
+   "bildo": "muso",
+   "definitions": {
+    "en": "mouse"
+   }
   },
   "Tags": [
    "A0",
@@ -2565,7 +2985,10 @@
     "fiŝo"
    ],
    "correct_index": 1,
-   "bildo": "kuniklo"
+   "bildo": "kuniklo",
+   "definitions": {
+    "en": "rabbit"
+   }
   },
   "Tags": [
    "A0",
@@ -2599,7 +3022,10 @@
     "urso"
    ],
    "correct_index": 3,
-   "bildo": "urso"
+   "bildo": "urso",
+   "definitions": {
+    "en": "bear"
+   }
   },
   "Tags": [
    "A0",
@@ -2633,7 +3059,10 @@
     "fiŝo"
    ],
    "correct_index": 0,
-   "bildo": "leono"
+   "bildo": "leono",
+   "definitions": {
+    "en": "lion"
+   }
   },
   "Tags": [
    "A0",
@@ -2667,7 +3096,10 @@
     "elefanto"
    ],
    "correct_index": 3,
-   "bildo": "elefanto"
+   "bildo": "elefanto",
+   "definitions": {
+    "en": "elephant"
+   }
   },
   "Tags": [
    "A0",
@@ -2701,7 +3133,10 @@
     "muso"
    ],
    "correct_index": 2,
-   "bildo": "simio"
+   "bildo": "simio",
+   "definitions": {
+    "en": "monkey"
+   }
   },
   "Tags": [
    "A0",
@@ -2735,7 +3170,10 @@
     "kato"
    ],
    "correct_index": 0,
-   "bildo": "serpento"
+   "bildo": "serpento",
+   "definitions": {
+    "en": "snake"
+   }
   },
   "Tags": [
    "A0",
@@ -2769,7 +3207,10 @@
     "hundo"
    ],
    "correct_index": 2,
-   "bildo": "abelo"
+   "bildo": "abelo",
+   "definitions": {
+    "en": "bee"
+   }
   },
   "Tags": [
    "A0",
@@ -2803,7 +3244,10 @@
     "birdo"
    ],
    "correct_index": 0,
-   "bildo": "papilio"
+   "bildo": "papilio",
+   "definitions": {
+    "en": "butterfly"
+   }
   },
   "Tags": [
    "A0",
@@ -2837,7 +3281,10 @@
     "rano"
    ],
    "correct_index": 3,
-   "bildo": "rano"
+   "bildo": "rano",
+   "definitions": {
+    "en": "frog"
+   }
   },
   "Tags": [
    "A0",
@@ -2871,7 +3318,10 @@
     "testudo"
    ],
    "correct_index": 3,
-   "bildo": "testudo"
+   "bildo": "testudo",
+   "definitions": {
+    "en": "tortoise"
+   }
   },
   "Tags": [
    "A0",
@@ -2906,7 +3356,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2935,7 +3386,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2964,7 +3416,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -2993,7 +3446,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3022,7 +3476,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3051,7 +3506,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3080,7 +3536,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3109,7 +3566,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3138,7 +3596,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3167,7 +3626,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3196,7 +3656,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3225,7 +3686,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3254,7 +3716,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3283,7 +3746,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3312,7 +3776,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3341,7 +3806,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3370,7 +3836,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3399,7 +3866,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3428,7 +3896,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3457,7 +3926,8 @@
    "A0",
    "bildvortaro",
    "bestoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-bestoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -3512,7 +3982,10 @@
     "oranĝo"
    ],
    "correct_index": 0,
-   "bildo": "pano"
+   "bildo": "pano",
+   "definitions": {
+    "en": "bread"
+   }
   },
   "Tags": [
    "A0",
@@ -3546,7 +4019,10 @@
     "kuko"
    ],
    "correct_index": 1,
-   "bildo": "akvo"
+   "bildo": "akvo",
+   "definitions": {
+    "en": "water (the liquid)"
+   }
   },
   "Tags": [
    "A0",
@@ -3580,7 +4056,55 @@
     "pano"
    ],
    "correct_index": 1,
-   "bildo": "lakto"
+   "bildo": "lakto",
+   "definitions": {
+    "ar": "حليب",
+    "be": "молоко",
+    "ca": "llet",
+    "cs": "mléko",
+    "da": "mælk",
+    "de": "Milch",
+    "el": "γάλα",
+    "en": "milk",
+    "es": "leche",
+    "fa": "شیر",
+    "fr": "lait",
+    "frp": "lait",
+    "ga": "bainne",
+    "he": "חלב",
+    "hi": "milk",
+    "hr": "mlijeko",
+    "hu": "tej",
+    "id": "susu",
+    "it": "latte",
+    "ja": "ミルク",
+    "kk": "milk",
+    "km": "milk",
+    "ko": "우유",
+    "ku": "شیر",
+    "lo": "milk",
+    "mg": "ronono",
+    "ms": "susu",
+    "my": "milk",
+    "nl": "melk",
+    "pl": "mleko",
+    "pt": "leite",
+    "ro": "lait",
+    "ru": "молоко",
+    "sk": "mlieko",
+    "sl": "mleko",
+    "sv": "mjölk",
+    "sw": "lait",
+    "th": "นำ้นม",
+    "tok": "milk",
+    "tr": "süt",
+    "uk": "молоко",
+    "ur": "دودھ",
+    "vi": "sữa",
+    "yo": "milk",
+    "zh": "牛奶",
+    "zh-tw": "牛奶"
+   }
   },
   "Tags": [
    "A0",
@@ -3614,7 +4138,55 @@
     "citrono"
    ],
    "correct_index": 1,
-   "bildo": "kafo"
+   "bildo": "kafo",
+   "definitions": {
+    "ar": "قهوة",
+    "be": "кофе",
+    "ca": "cafè",
+    "cs": "káva",
+    "da": "kaffe",
+    "de": "Kaffee",
+    "el": "καφές",
+    "en": "coffee",
+    "es": "café",
+    "fa": "قهوه",
+    "fr": "café",
+    "frp": "café",
+    "ga": "caife",
+    "he": "קפה",
+    "hi": "coffee",
+    "hr": "kava",
+    "hu": "kávé",
+    "id": "kopi",
+    "it": "caffè",
+    "ja": "コーヒー",
+    "kk": "кофе",
+    "km": "កាហ្វេ",
+    "ko": "커피",
+    "ku": "قهوه",
+    "lo": "coffee",
+    "mg": "kafé",
+    "ms": "kopi",
+    "my": "coffee",
+    "nl": "koffie",
+    "pl": "kawa",
+    "pt": "café",
+    "ro": "café",
+    "ru": "кофе",
+    "sk": "káva",
+    "sl": "kava",
+    "sv": "kaffe",
+    "sw": "café",
+    "th": "กาแฟ",
+    "tok": "coffee",
+    "tr": "kahve",
+    "uk": "кава",
+    "ur": "coffee",
+    "vi": "cà phê",
+    "yo": "coffee",
+    "zh": "咖啡",
+    "zh-tw": "咖啡"
+   }
   },
   "Tags": [
    "A0",
@@ -3648,7 +4220,55 @@
     "akvo"
    ],
    "correct_index": 2,
-   "bildo": "teo"
+   "bildo": "teo",
+   "definitions": {
+    "ar": "شاي",
+    "be": "чай",
+    "ca": "te (planta)",
+    "cs": "čaj",
+    "da": "te",
+    "de": "Tee",
+    "el": "τσάι",
+    "en": "tea",
+    "es": "té",
+    "fa": "چای",
+    "fr": "thé",
+    "frp": "thé",
+    "ga": "tae",
+    "he": "תה",
+    "hi": "tea",
+    "hr": "čaj",
+    "hu": "tea",
+    "id": "teh",
+    "it": "tè",
+    "ja": "茶",
+    "kk": "шай",
+    "km": "តែ",
+    "ko": "차",
+    "ku": "چای",
+    "lo": "tea",
+    "mg": "dité",
+    "ms": "teh",
+    "my": "tea",
+    "nl": "thee",
+    "pl": "herbata",
+    "pt": "chá",
+    "ro": "thé",
+    "ru": "чай",
+    "sk": "čaj",
+    "sl": "čaj",
+    "sv": "te",
+    "sw": "thé",
+    "th": "ชา",
+    "tok": "tea",
+    "tr": "çay",
+    "uk": "чай",
+    "ur": "چائے",
+    "vi": "trà",
+    "yo": "tea",
+    "zh": "茶",
+    "zh-tw": "茶"
+   }
   },
   "Tags": [
    "A0",
@@ -3682,7 +4302,10 @@
     "pomo"
    ],
    "correct_index": 3,
-   "bildo": "pomo"
+   "bildo": "pomo",
+   "definitions": {
+    "en": "apple"
+   }
   },
   "Tags": [
    "A0",
@@ -3716,7 +4339,10 @@
     "karoto"
    ],
    "correct_index": 0,
-   "bildo": "banano"
+   "bildo": "banano",
+   "definitions": {
+    "en": "banana"
+   }
   },
   "Tags": [
    "A0",
@@ -3750,7 +4376,10 @@
     "karoto"
    ],
    "correct_index": 0,
-   "bildo": "oranĝo"
+   "bildo": "oranĝo",
+   "definitions": {
+    "en": "orange"
+   }
   },
   "Tags": [
    "A0",
@@ -3784,7 +4413,10 @@
     "tomato"
    ],
    "correct_index": 0,
-   "bildo": "citrono"
+   "bildo": "citrono",
+   "definitions": {
+    "en": "lemon"
+   }
   },
   "Tags": [
    "A0",
@@ -3818,7 +4450,10 @@
     "supo"
    ],
    "correct_index": 2,
-   "bildo": "vinbero"
+   "bildo": "vinbero",
+   "definitions": {
+    "en": "grape"
+   }
   },
   "Tags": [
    "A0",
@@ -3852,7 +4487,10 @@
     "lakto"
    ],
    "correct_index": 2,
-   "bildo": "frago"
+   "bildo": "frago",
+   "definitions": {
+    "en": "strawberry"
+   }
   },
   "Tags": [
    "A0",
@@ -3886,7 +4524,10 @@
     "pano"
    ],
    "correct_index": 2,
-   "bildo": "fromaĝo"
+   "bildo": "fromaĝo",
+   "definitions": {
+    "en": "cheese"
+   }
   },
   "Tags": [
    "A0",
@@ -3920,7 +4561,10 @@
     "ovo"
    ],
    "correct_index": 3,
-   "bildo": "ovo"
+   "bildo": "ovo",
+   "definitions": {
+    "en": "egg"
+   }
   },
   "Tags": [
    "A0",
@@ -3954,7 +4598,10 @@
     "supo"
    ],
    "correct_index": 1,
-   "bildo": "viando"
+   "bildo": "viando",
+   "definitions": {
+    "en": "meat"
+   }
   },
   "Tags": [
    "A0",
@@ -3988,7 +4635,10 @@
     "kuko"
    ],
    "correct_index": 0,
-   "bildo": "rizo"
+   "bildo": "rizo",
+   "definitions": {
+    "en": "rice"
+   }
   },
   "Tags": [
    "A0",
@@ -4022,7 +4672,55 @@
     "vinbero"
    ],
    "correct_index": 0,
-   "bildo": "kuko"
+   "bildo": "kuko",
+   "definitions": {
+    "ar": "كعكة",
+    "be": "торт",
+    "ca": "pastís",
+    "cs": "koláč",
+    "da": "kage",
+    "de": "Kuchen",
+    "el": "γλύκισμα",
+    "en": "cake",
+    "es": "pastel; torta",
+    "fa": "کیک",
+    "fr": "gâteau",
+    "frp": "gâteau",
+    "ga": "císte",
+    "he": "עוגה",
+    "hi": "cake",
+    "hr": "kolač",
+    "hu": "süti",
+    "id": "kue",
+    "it": "torta",
+    "ja": "菓子",
+    "kk": "cake",
+    "km": "នំ",
+    "ko": "과자",
+    "ku": "کیک",
+    "lo": "cake",
+    "mg": "mofo mamy",
+    "ms": "kek",
+    "my": "cake",
+    "nl": "koek; cake",
+    "pl": "ciasto",
+    "pt": "bolo",
+    "ro": "gâteau",
+    "ru": "торт",
+    "sk": "koláč",
+    "sl": "pecivo",
+    "sv": "kaka",
+    "sw": "gâteau",
+    "th": "เค้ก",
+    "tok": "cake",
+    "tr": "kek",
+    "uk": "пиріг",
+    "ur": "cake",
+    "vi": "bánh kem",
+    "yo": "cake",
+    "zh": "蛋糕",
+    "zh-tw": "蛋糕"
+   }
   },
   "Tags": [
    "A0",
@@ -4056,7 +4754,10 @@
     "supo"
    ],
    "correct_index": 1,
-   "bildo": "glaciaĵo"
+   "bildo": "glaciaĵo",
+   "definitions": {
+    "en": "ice cream"
+   }
   },
   "Tags": [
    "A0",
@@ -4090,7 +4791,10 @@
     "supo"
    ],
    "correct_index": 3,
-   "bildo": "supo"
+   "bildo": "supo",
+   "definitions": {
+    "en": "soup"
+   }
   },
   "Tags": [
    "A0",
@@ -4124,7 +4828,10 @@
     "teo"
    ],
    "correct_index": 0,
-   "bildo": "terpomo"
+   "bildo": "terpomo",
+   "definitions": {
+    "en": "potato"
+   }
   },
   "Tags": [
    "A0",
@@ -4158,7 +4865,10 @@
     "oranĝo"
    ],
    "correct_index": 2,
-   "bildo": "tomato"
+   "bildo": "tomato",
+   "definitions": {
+    "en": "tomato"
+   }
   },
   "Tags": [
    "A0",
@@ -4192,7 +4902,10 @@
     "karoto"
    ],
    "correct_index": 3,
-   "bildo": "karoto"
+   "bildo": "karoto",
+   "definitions": {
+    "en": "carrot"
+   }
   },
   "Tags": [
    "A0",
@@ -4226,7 +4939,55 @@
     "pano"
    ],
    "correct_index": 1,
-   "bildo": "vino"
+   "bildo": "vino",
+   "definitions": {
+    "ar": "خمر",
+    "be": "вино",
+    "ca": "vi",
+    "cs": "víno",
+    "da": "vin",
+    "de": "Wein",
+    "el": "κρασί",
+    "en": "wine",
+    "es": "vino",
+    "fa": "شراب",
+    "fr": "vin",
+    "frp": "vin",
+    "ga": "fíon",
+    "he": "יין",
+    "hi": "wine",
+    "hr": "vino",
+    "hu": "bor",
+    "id": "anggur (minuman)",
+    "it": "vino",
+    "ja": "ワイン",
+    "kk": "шарап",
+    "km": "ស្រា",
+    "ko": "와인",
+    "ku": "شراب",
+    "lo": "wine",
+    "mg": "divay",
+    "ms": "wain",
+    "my": "wine",
+    "nl": "wijn",
+    "pl": "wino",
+    "pt": "vinho",
+    "ro": "vin",
+    "ru": "вино",
+    "sk": "víno",
+    "sl": "vino",
+    "sv": "vin",
+    "sw": "vin",
+    "th": "ไวน์",
+    "tok": "wine",
+    "tr": "şarap",
+    "uk": "вино",
+    "ur": "wine",
+    "vi": "rượu vang",
+    "yo": "wine",
+    "zh": "葡萄酒",
+    "zh-tw": "葡萄酒"
+   }
   },
   "Tags": [
    "A0",
@@ -4261,7 +5022,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4290,7 +5052,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4364,7 +5127,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4438,7 +5202,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4512,7 +5277,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4541,7 +5307,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4570,7 +5337,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4599,7 +5367,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4628,7 +5397,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4657,7 +5427,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4686,7 +5457,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4715,7 +5487,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4744,7 +5517,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4773,7 +5547,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4802,7 +5577,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4876,7 +5652,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4905,7 +5682,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4934,7 +5712,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4963,7 +5742,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -4992,7 +5772,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5021,7 +5802,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5095,7 +5877,8 @@
    "A0",
    "bildvortaro",
    "manĝaĵoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-mangxajxoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5116,7 +5899,7 @@
   "Type": "reading",
   "Content": {
    "title": "Bildoj: Homoj kaj familio",
-   "text": "Jen viro.\nJen virino.\nJen knabo.\nJen knabino.\nJen bebo.\nJen infano.\nJen avo.\nJen avino.\nJen familio."
+   "text": "Jen viro.\nJen virino.\nJen knabo.\nJen knabino.\nJen bebo.\nJen infano.\nJen avo.\nJen avino.\nJen patro.\nJen patrino.\nJen familio."
   },
   "Tags": [
    "A0",
@@ -5144,13 +5927,61 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avino",
+    "patro",
     "viro",
     "avo",
-    "familio"
+    "patrino"
    ],
    "correct_index": 1,
-   "bildo": "viro"
+   "bildo": "viro",
+   "definitions": {
+    "ar": "رجل",
+    "be": "мужчина",
+    "ca": "home, mascle",
+    "cs": "muž",
+    "da": "mand",
+    "de": "Mann",
+    "el": "άντρας",
+    "en": "man",
+    "es": "hombre",
+    "fa": "مرد",
+    "fr": "homme",
+    "frp": "homme",
+    "ga": "fear",
+    "he": "גבר",
+    "hi": "man",
+    "hr": "muškarac",
+    "hu": "ember",
+    "id": "pria",
+    "it": "uomo",
+    "ja": "男",
+    "kk": "man",
+    "km": "man",
+    "ko": "남자",
+    "ku": "مرد",
+    "lo": "man",
+    "mg": "olona , lehilahy",
+    "ms": "lelaki",
+    "my": "man",
+    "nl": "man",
+    "pl": "mężczyzna",
+    "pt": "homem; masculino",
+    "ro": "homme",
+    "ru": "мужчина",
+    "sk": "muž",
+    "sl": "moški",
+    "sv": "man",
+    "sw": "homme",
+    "th": "ผู้ชาย",
+    "tok": "man",
+    "tr": "adam",
+    "uk": "чоловік",
+    "ur": "آدمی",
+    "vi": "đàn ông",
+    "yo": "man",
+    "zh": "男人",
+    "zh-tw": "男人"
+   }
   },
   "Tags": [
    "A0",
@@ -5181,10 +6012,13 @@
     "avo",
     "virino",
     "familio",
-    "avino"
+    "patrino"
    ],
    "correct_index": 1,
-   "bildo": "virino"
+   "bildo": "virino",
+   "definitions": {
+    "en": "woman"
+   }
   },
   "Tags": [
    "A0",
@@ -5212,13 +6046,61 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
+    "patrino",
     "avino",
-    "familio",
     "knabo",
     "avo"
    ],
    "correct_index": 2,
-   "bildo": "knabo"
+   "bildo": "knabo",
+   "definitions": {
+    "ar": "صبي",
+    "be": "мальчик",
+    "ca": "noi",
+    "cs": "kluk",
+    "da": "dreng",
+    "de": "Knabe",
+    "el": "αγόρι",
+    "en": "boy",
+    "es": "chico",
+    "fa": "پسر",
+    "fr": "garçon",
+    "frp": "garçon",
+    "ga": "buachaill",
+    "he": "נער",
+    "hi": "boy",
+    "hr": "dječak",
+    "hu": "fiú",
+    "id": "anak laki-laki",
+    "it": "ragazzo",
+    "ja": "少年",
+    "kk": "бала",
+    "km": "boy",
+    "ko": "소년",
+    "ku": "پسر",
+    "lo": "boy",
+    "mg": "zazalahy",
+    "ms": "lelaki kecil",
+    "my": "boy",
+    "nl": "jongen; knaap",
+    "pl": "chłopiec",
+    "pt": "garoto; menino",
+    "ro": "garçon",
+    "ru": "мальчик",
+    "sk": "chlapec",
+    "sl": "deček",
+    "sv": "pojke",
+    "sw": "garçon",
+    "th": "เด็กชาย",
+    "tok": "boy",
+    "tr": "oğlan",
+    "uk": "хлопець",
+    "ur": "لڑکا",
+    "vi": "cậu bé",
+    "yo": "boy",
+    "zh": "小孩",
+    "zh-tw": "男孩"
+   }
   },
   "Tags": [
    "A0",
@@ -5248,11 +6130,14 @@
    "options": [
     "knabino",
     "avo",
-    "familio",
-    "avino"
+    "avino",
+    "familio"
    ],
    "correct_index": 0,
-   "bildo": "knabino"
+   "bildo": "knabino",
+   "definitions": {
+    "en": "girl"
+   }
   },
   "Tags": [
    "A0",
@@ -5280,13 +6165,16 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avino",
-    "familio",
+    "patro",
+    "avo",
     "bebo",
-    "avo"
+    "avino"
    ],
    "correct_index": 2,
-   "bildo": "bebo"
+   "bildo": "bebo",
+   "definitions": {
+    "en": "baby"
+   }
   },
   "Tags": [
    "A0",
@@ -5314,13 +6202,16 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avo",
+    "avino",
     "familio",
     "infano",
-    "avino"
+    "patro"
    ],
    "correct_index": 2,
-   "bildo": "infano"
+   "bildo": "infano",
+   "definitions": {
+    "en": "child"
+   }
   },
   "Tags": [
    "A0",
@@ -5348,13 +6239,16 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "virino",
-    "bebo",
     "avo",
-    "familio"
+    "virino",
+    "knabino",
+    "bebo"
    ],
-   "correct_index": 2,
-   "bildo": "avo"
+   "correct_index": 0,
+   "bildo": "avo",
+   "definitions": {
+    "en": "grandfather"
+   }
   },
   "Tags": [
    "A0",
@@ -5384,11 +6278,14 @@
    "options": [
     "avino",
     "avo",
-    "knabo",
-    "virino"
+    "infano",
+    "knabo"
    ],
    "correct_index": 0,
-   "bildo": "avino"
+   "bildo": "avino",
+   "definitions": {
+    "en": "grandmother"
+   }
   },
   "Tags": [
    "A0",
@@ -5411,18 +6308,21 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-familio-elekto",
+  "Slug": "bildo-patro-elekto",
   "Type": "multiplechoice",
   "Content": {
    "question": "Kio estas tio?",
    "options": [
+    "avo",
     "avino",
-    "knabino",
-    "knabo",
-    "familio"
+    "patro",
+    "bebo"
    ],
-   "correct_index": 3,
-   "bildo": "familio"
+   "correct_index": 2,
+   "bildo": "patro",
+   "definitions": {
+    "en": "father"
+   }
   },
   "Tags": [
    "A0",
@@ -5441,6 +6341,80 @@
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
   "SeriesOrder": 10,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-patrino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "viro",
+    "patrino",
+    "bebo",
+    "virino"
+   ],
+   "correct_index": 1,
+   "bildo": "patrino",
+   "definitions": {
+    "en": "mother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 11,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-familio-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "avino",
+    "knabino",
+    "knabo",
+    "familio"
+   ],
+   "correct_index": 3,
+   "bildo": "familio",
+   "definitions": {
+    "en": "family"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 12,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -5502,7 +6476,8 @@
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5514,7 +6489,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 11,
+  "SeriesOrder": 13,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -5531,7 +6506,8 @@
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5543,7 +6519,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 12,
+  "SeriesOrder": 14,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -5605,65 +6581,8 @@
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
-  ],
-  "Source": "esperanto-kurso.net",
-  "AuthorID": "seed",
-  "Status": "approved",
-  "Rating": 890,
-  "RD": 200,
-  "Volatility": 0.06,
-  "VoteScore": 0,
-  "Version": 1,
-  "ImageURL": "",
-  "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 13,
-  "SeriesLabel": "Bildoj: Homoj kaj familio",
-  "SeriesParent": ""
- },
- {
-  "Slug": "bildo-knabino",
-  "Type": "vocab",
-  "Content": {
-   "word": "knabino",
-   "definitions": {
-    "en": "girl"
-   }
-  },
-  "Tags": [
-   "A0",
-   "bildvortaro",
-   "familio",
-   "vortaro"
-  ],
-  "Source": "esperanto-kurso.net",
-  "AuthorID": "seed",
-  "Status": "approved",
-  "Rating": 890,
-  "RD": 200,
-  "Volatility": 0.06,
-  "VoteScore": 0,
-  "Version": 1,
-  "ImageURL": "",
-  "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 14,
-  "SeriesLabel": "Bildoj: Homoj kaj familio",
-  "SeriesParent": ""
- },
- {
-  "Slug": "bildo-bebo",
-  "Type": "vocab",
-  "Content": {
-   "word": "bebo",
-   "definitions": {
-    "en": "baby"
-   }
-  },
-  "Tags": [
-   "A0",
-   "bildvortaro",
-   "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5680,19 +6599,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-infano",
+  "Slug": "bildo-knabino",
   "Type": "vocab",
   "Content": {
-   "word": "infano",
+   "word": "knabino",
    "definitions": {
-    "en": "child"
+    "en": "girl"
    }
   },
   "Tags": [
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5709,19 +6629,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-avo",
+  "Slug": "bildo-bebo",
   "Type": "vocab",
   "Content": {
-   "word": "avo",
+   "word": "bebo",
    "definitions": {
-    "en": "grandfather"
+    "en": "baby"
    }
   },
   "Tags": [
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5738,19 +6659,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-avino",
+  "Slug": "bildo-infano",
   "Type": "vocab",
   "Content": {
-   "word": "avino",
+   "word": "infano",
    "definitions": {
-    "en": "grandmother"
+    "en": "child"
    }
   },
   "Tags": [
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5767,19 +6689,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-familio",
+  "Slug": "bildo-avo",
   "Type": "vocab",
   "Content": {
-   "word": "familio",
+   "word": "avo",
    "definitions": {
-    "en": "family"
+    "en": "grandfather"
    }
   },
   "Tags": [
    "A0",
    "bildvortaro",
    "familio",
-   "vortaro"
+   "vortaro",
+   "bildoj-familio-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -5792,6 +6715,126 @@
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
   "SeriesOrder": 19,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-avino",
+  "Type": "vocab",
+  "Content": {
+   "word": "avino",
+   "definitions": {
+    "en": "grandmother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 20,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-patro",
+  "Type": "vocab",
+  "Content": {
+   "word": "patro",
+   "definitions": {
+    "en": "father"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 21,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-patrino",
+  "Type": "vocab",
+  "Content": {
+   "word": "patrino",
+   "definitions": {
+    "en": "mother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 22,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-familio",
+  "Type": "vocab",
+  "Content": {
+   "word": "familio",
+   "definitions": {
+    "en": "family"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 23,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -5834,7 +6877,55 @@
     "ruĝa"
    ],
    "correct_index": 3,
-   "bildo": "ruĝa"
+   "bildo": "ruĝa",
+   "definitions": {
+    "ar": "أحمر",
+    "be": "красный",
+    "ca": "roig/roja",
+    "cs": "červená",
+    "da": "rød",
+    "de": "rot",
+    "el": "κόκκινος-η-ο",
+    "en": "red",
+    "es": "rojo/a",
+    "fa": "سرخ; قرمز",
+    "fr": "rouge",
+    "frp": "rojo",
+    "ga": "dearg",
+    "he": "אדום",
+    "hi": "red",
+    "hr": "crvena",
+    "hu": "piros",
+    "id": "merah",
+    "it": "rosso",
+    "ja": "赤",
+    "kk": "қызыл",
+    "km": "ក្រហម",
+    "ko": "붉은",
+    "ku": "سرخ; قرمز",
+    "lo": "red",
+    "mg": "mena",
+    "ms": "merah",
+    "my": "red",
+    "nl": "rood; rode",
+    "pl": "czerwony",
+    "pt": "vermelho",
+    "ro": "rouge",
+    "ru": "красный",
+    "sk": "červená",
+    "sl": "rdeča",
+    "sv": "röd",
+    "sw": "rouge",
+    "th": "สีแดง",
+    "tok": "loje",
+    "tr": "kırmızı",
+    "uk": "червоний",
+    "ur": "سرخ/لال",
+    "vi": "màu đỏ",
+    "yo": "red",
+    "zh": "红",
+    "zh-tw": "紅"
+   }
   },
   "Tags": [
    "A0",
@@ -5868,7 +6959,10 @@
     "flava"
    ],
    "correct_index": 0,
-   "bildo": "oranĝkolora"
+   "bildo": "oranĝkolora",
+   "definitions": {
+    "en": "orange (colour)"
+   }
   },
   "Tags": [
    "A0",
@@ -5902,7 +6996,55 @@
     "flava"
    ],
    "correct_index": 3,
-   "bildo": "flava"
+   "bildo": "flava",
+   "definitions": {
+    "ar": "أصفر",
+    "be": "жёлтый",
+    "ca": "groc/groga",
+    "cs": "žlutá",
+    "da": "gul",
+    "de": "gelb",
+    "el": "κίτρινος-η-ο",
+    "en": "yellow",
+    "es": "amarillo/a",
+    "fa": "زرد",
+    "fr": "jaune",
+    "frp": "jôno",
+    "ga": "buí",
+    "he": "צהוב",
+    "hi": "yellow",
+    "hr": "žuta",
+    "hu": "sárga",
+    "id": "kuning",
+    "it": "giallo",
+    "ja": "黄色",
+    "kk": "сары",
+    "km": "លឿង",
+    "ko": "노란",
+    "ku": "زرد",
+    "lo": "yellow",
+    "mg": "mavo",
+    "ms": "kuning",
+    "my": "yellow",
+    "nl": "geel; gele",
+    "pl": "żółty",
+    "pt": "amarelo",
+    "ro": "jaune",
+    "ru": "жёлтый",
+    "sk": "žltá",
+    "sl": "rumena",
+    "sv": "gul",
+    "sw": "jaune",
+    "th": "สีเหลือง",
+    "tok": "jelo",
+    "tr": "sarı",
+    "uk": "жовтий",
+    "ur": "پیلا/زرد",
+    "vi": "màu vàng",
+    "yo": "yellow",
+    "zh": "黄",
+    "zh-tw": "黄"
+   }
   },
   "Tags": [
    "A0",
@@ -5936,7 +7078,55 @@
     "griza"
    ],
    "correct_index": 1,
-   "bildo": "verda"
+   "bildo": "verda",
+   "definitions": {
+    "ar": "أخضر",
+    "be": "зелёный",
+    "ca": "verd/a",
+    "cs": "zelená",
+    "da": "grøn",
+    "de": "grün",
+    "el": "πράσινος-η-ο",
+    "en": "green",
+    "es": "verde",
+    "fa": "سبز",
+    "fr": "vert",
+    "frp": "vèrt",
+    "ga": "glas - uaine",
+    "he": "ירוק",
+    "hi": "green",
+    "hr": "zelena",
+    "hu": "zöld",
+    "id": "hijau",
+    "it": "verde",
+    "ja": "緑",
+    "kk": "жасыл",
+    "km": "បៃតង",
+    "ko": "녹색의",
+    "ku": "سبز",
+    "lo": "green",
+    "mg": "maintso",
+    "ms": "hijau",
+    "my": "green",
+    "nl": "groen; groene",
+    "pl": "zielony",
+    "pt": "verde",
+    "ro": "vert",
+    "ru": "зелёный",
+    "sk": "zelená",
+    "sl": "zelena",
+    "sv": "grön",
+    "sw": "vert",
+    "th": "สีเขียว",
+    "tok": "laso kasi",
+    "tr": "yeşil",
+    "uk": "зелений",
+    "ur": "سبز",
+    "vi": "màu xanh lá",
+    "yo": "green",
+    "zh": "青",
+    "zh-tw": "綠"
+   }
   },
   "Tags": [
    "A0",
@@ -5970,7 +7160,55 @@
     "blua"
    ],
    "correct_index": 3,
-   "bildo": "blua"
+   "bildo": "blua",
+   "definitions": {
+    "ar": "أزرق",
+    "be": "синий",
+    "ca": "blau/blava",
+    "cs": "modrá",
+    "da": "blå",
+    "de": "blau",
+    "el": "(ο,η,το) μπλε",
+    "en": "blue",
+    "es": "azul",
+    "fa": "آبی",
+    "fr": "bleu",
+    "frp": "blu",
+    "ga": "gorm",
+    "he": "כחול",
+    "hi": "blue",
+    "hr": "plava",
+    "hu": "kék",
+    "id": "biru",
+    "it": "blu",
+    "ja": "青",
+    "kk": "көк",
+    "km": "ខៀវ",
+    "ko": "푸른",
+    "ku": "آبی",
+    "lo": "blue",
+    "mg": "manga",
+    "ms": "biru",
+    "my": "blue",
+    "nl": "blauw; blauwe",
+    "pl": "niebieski",
+    "pt": "azul",
+    "ro": "bleu",
+    "ru": "синий",
+    "sk": "modrá",
+    "sl": "modra",
+    "sv": "blå",
+    "sw": "bleu",
+    "th": "สีน้ำเงิน",
+    "tok": "laso sewi",
+    "tr": "mavi",
+    "uk": "синій",
+    "ur": "نیلا",
+    "vi": "màu xanh dương",
+    "yo": "blue",
+    "zh": "蓝",
+    "zh-tw": "藍"
+   }
   },
   "Tags": [
    "A0",
@@ -6004,7 +7242,10 @@
     "viola"
    ],
    "correct_index": 3,
-   "bildo": "viola"
+   "bildo": "viola",
+   "definitions": {
+    "en": "purple"
+   }
   },
   "Tags": [
    "A0",
@@ -6038,7 +7279,55 @@
     "griza"
    ],
    "correct_index": 1,
-   "bildo": "bruna"
+   "bildo": "bruna",
+   "definitions": {
+    "ar": "بنى",
+    "be": "коричневый",
+    "ca": "marró",
+    "cs": "hnědá",
+    "da": "brun",
+    "de": "braun",
+    "el": "(ο,η,το) καφέ",
+    "en": "brown",
+    "es": "marrón",
+    "fa": "قهوه‌ای",
+    "fr": "marron",
+    "frp": "marron",
+    "ga": "donn",
+    "he": "חום",
+    "hi": "brown",
+    "hr": "smeđa",
+    "hu": "barna",
+    "id": "coklat",
+    "it": "marrone",
+    "ja": "茶色",
+    "kk": "қоңыр",
+    "km": "ត្នោត",
+    "ko": "갈색의",
+    "ku": "قهوه‌ای",
+    "lo": "brown",
+    "mg": "mavo manja",
+    "ms": "warna coklat",
+    "my": "brown",
+    "nl": "bruin; bruine",
+    "pl": "brązowy",
+    "pt": "marrom",
+    "ro": "marron",
+    "ru": "коричневый",
+    "sk": "hnedá",
+    "sl": "rjava",
+    "sv": "brun",
+    "sw": "marron",
+    "th": "สีน้ำตาล",
+    "tok": "loje pimeja",
+    "tr": "kahve",
+    "uk": "коричневий",
+    "ur": "بھورا",
+    "vi": "màu nâu",
+    "yo": "brown",
+    "zh": "褐色",
+    "zh-tw": "褐色"
+   }
   },
   "Tags": [
    "A0",
@@ -6072,7 +7361,55 @@
     "flava"
    ],
    "correct_index": 1,
-   "bildo": "nigra"
+   "bildo": "nigra",
+   "definitions": {
+    "ar": "أسود",
+    "be": "чёрный",
+    "ca": "negre/a",
+    "cs": "černá",
+    "da": "sort",
+    "de": "schwarz",
+    "el": "μαύρος-η-ο",
+    "en": "black",
+    "es": "negro/a",
+    "fa": "سیاه; مشکی",
+    "fr": "noir",
+    "frp": "nêr",
+    "ga": "dubh",
+    "he": "שחור",
+    "hi": "black",
+    "hr": "crna",
+    "hu": "fekete",
+    "id": "hitam",
+    "it": "nero",
+    "ja": "黒",
+    "kk": "қара",
+    "km": "ខ្មៅ",
+    "ko": "검은",
+    "ku": "سیاه; مشکی",
+    "lo": "black",
+    "mg": "mainty",
+    "ms": "hitam",
+    "my": "black",
+    "nl": "zwart; zwarte",
+    "pl": "czarny",
+    "pt": "preto",
+    "ro": "noir",
+    "ru": "чёрный",
+    "sk": "čierna",
+    "sl": "črna",
+    "sv": "svart",
+    "sw": "noir",
+    "th": "สีดำ",
+    "tok": "pimeja",
+    "tr": "siyah",
+    "uk": "чорний",
+    "ur": "سیاہ/کالا",
+    "vi": "màu đen",
+    "yo": "black",
+    "zh": "黑",
+    "zh-tw": "黑"
+   }
   },
   "Tags": [
    "A0",
@@ -6106,7 +7443,55 @@
     "griza"
    ],
    "correct_index": 2,
-   "bildo": "blanka"
+   "bildo": "blanka",
+   "definitions": {
+    "ar": "أبيض",
+    "be": "белый",
+    "ca": "blanc/a",
+    "cs": "bílá",
+    "da": "hvid",
+    "de": "weiß",
+    "el": "λευκός-η-ο",
+    "en": "white",
+    "es": "blanco/a",
+    "fa": "سفید",
+    "fr": "blanc",
+    "frp": "bllanc",
+    "ga": "bán",
+    "he": "לבן",
+    "hi": "white",
+    "hr": "bijela",
+    "hu": "fehér",
+    "id": "putih",
+    "it": "bianco",
+    "ja": "白",
+    "kk": "ақ",
+    "km": "ពណ៌ស",
+    "ko": "하얀",
+    "ku": "سفید",
+    "lo": "white",
+    "mg": "fotsy",
+    "ms": "putih",
+    "my": "white",
+    "nl": "wit; witte",
+    "pl": "biały",
+    "pt": "branco",
+    "ro": "blanc",
+    "ru": "белый",
+    "sk": "biela",
+    "sl": "bela",
+    "sv": "vit",
+    "sw": "blanc",
+    "th": "สีขาว",
+    "tok": "walo",
+    "tr": "beyaz",
+    "uk": "білий",
+    "ur": "سفید",
+    "vi": "màu trắng",
+    "yo": "white",
+    "zh": "白",
+    "zh-tw": "白"
+   }
   },
   "Tags": [
    "A0",
@@ -6140,7 +7525,55 @@
     "blanka"
    ],
    "correct_index": 1,
-   "bildo": "griza"
+   "bildo": "griza",
+   "definitions": {
+    "ar": "رمادي",
+    "be": "серый",
+    "ca": "gris/a",
+    "cs": "šedá",
+    "da": "grå",
+    "de": "grau",
+    "el": "γκριζος-α-ο",
+    "en": "gray",
+    "es": "gris",
+    "fa": "خاکستری; توسی",
+    "fr": "gris",
+    "frp": "gris",
+    "ga": "liath",
+    "he": "אפור",
+    "hi": "gray",
+    "hr": "siva",
+    "hu": "szürke",
+    "id": "abu-abu",
+    "it": "grigio",
+    "ja": "灰色",
+    "kk": "сұр",
+    "km": "ប្រផេះ",
+    "ko": "회색의",
+    "ku": "خاکستری; توسی",
+    "lo": "gray",
+    "mg": "mavo vasoka",
+    "ms": "kelabu",
+    "my": "gray",
+    "nl": "grijs; grijze",
+    "pl": "szary",
+    "pt": "cinza",
+    "ro": "gris",
+    "ru": "серый",
+    "sk": "sivá",
+    "sl": "siva",
+    "sv": "grå",
+    "sw": "gris",
+    "th": "สีเทา",
+    "tok": "walo pimeja",
+    "tr": "gri",
+    "uk": "сірий",
+    "ur": "سلیٹی",
+    "vi": "màu xám",
+    "yo": "gray",
+    "zh": "灰色",
+    "zh-tw": "灰色"
+   }
   },
   "Tags": [
    "A0",
@@ -6220,7 +7653,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6249,7 +7683,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6323,7 +7758,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6397,7 +7833,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6471,7 +7908,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6500,7 +7938,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6574,7 +8013,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6648,7 +8088,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6722,7 +8163,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6796,7 +8238,8 @@
    "A0",
    "bildvortaro",
    "koloroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-koloroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -6851,7 +8294,11 @@
     "nul"
    ],
    "correct_index": 3,
-   "bildo": "nul"
+   "bildo": "nul",
+   "definitions": {
+    "el": "μηδέν",
+    "en": "zero"
+   }
   },
   "Tags": [
    "A0",
@@ -6885,7 +8332,55 @@
     "nul"
    ],
    "correct_index": 0,
-   "bildo": "unu"
+   "bildo": "unu",
+   "definitions": {
+    "ar": "واحد",
+    "be": "один",
+    "ca": "u/un/una",
+    "cs": "jedna",
+    "da": "én; ét; en; et",
+    "de": "ein; eine; eines; eins",
+    "el": "ένας, μία, ένα",
+    "en": "one",
+    "es": "uno",
+    "fa": "یک",
+    "fr": "un",
+    "frp": "yun",
+    "ga": "aon",
+    "he": "אחת",
+    "hi": "one",
+    "hr": "jedan",
+    "hu": "egy",
+    "id": "satu",
+    "it": "uno",
+    "ja": "一",
+    "kk": "бір",
+    "km": "មួយ",
+    "ko": "하나; 일(1)",
+    "ku": "یک",
+    "lo": "one",
+    "mg": "isa ,iray",
+    "ms": "satu",
+    "my": "one",
+    "nl": "een; één",
+    "pl": "jeden",
+    "pt": "um",
+    "ro": "un",
+    "ru": "один",
+    "sk": "jeden",
+    "sl": "ena",
+    "sv": "ett",
+    "sw": "un",
+    "th": "หนึ่ง",
+    "tok": "wan",
+    "tr": "bir",
+    "uk": "один",
+    "ur": "ایک",
+    "vi": "một",
+    "yo": "one",
+    "zh": "一",
+    "zh-tw": "一"
+   }
   },
   "Tags": [
    "A0",
@@ -6919,7 +8414,55 @@
     "kvar"
    ],
    "correct_index": 0,
-   "bildo": "du"
+   "bildo": "du",
+   "definitions": {
+    "ar": "اثنان",
+    "be": "два",
+    "ca": "dos/dues",
+    "cs": "dva",
+    "da": "to",
+    "de": "zwei",
+    "el": "δύο",
+    "en": "two",
+    "es": "dos",
+    "fa": "دو",
+    "fr": "deux",
+    "frp": "dous",
+    "ga": "dó",
+    "he": "שתיים",
+    "hi": "two",
+    "hr": "dva",
+    "hu": "kettő",
+    "id": "dua",
+    "it": "due",
+    "ja": "二",
+    "kk": "екі",
+    "km": "ពីរ",
+    "ko": "둘; 이(2)",
+    "ku": "دو",
+    "lo": "two",
+    "mg": "roa",
+    "ms": "dua",
+    "my": "two",
+    "nl": "twee",
+    "pl": "dwa",
+    "pt": "dois",
+    "ro": "deux",
+    "ru": "два",
+    "sk": "dva",
+    "sl": "dve",
+    "sv": "två",
+    "sw": "deux",
+    "th": "สอง",
+    "tok": "tu",
+    "tr": "iki",
+    "uk": "два",
+    "ur": "دو",
+    "vi": "hai",
+    "yo": "two",
+    "zh": "二",
+    "zh-tw": "二"
+   }
   },
   "Tags": [
    "A0",
@@ -6953,7 +8496,55 @@
     "sep"
    ],
    "correct_index": 2,
-   "bildo": "tri"
+   "bildo": "tri",
+   "definitions": {
+    "ar": "ثلاثة",
+    "be": "три",
+    "ca": "tres",
+    "cs": "tři",
+    "da": "tre",
+    "de": "drei",
+    "el": "τρείς, τρία",
+    "en": "three",
+    "es": "tres",
+    "fa": "سه",
+    "fr": "trois",
+    "frp": "três",
+    "ga": "trí",
+    "he": "שלוש",
+    "hi": "three",
+    "hr": "tri",
+    "hu": "három",
+    "id": "tiga",
+    "it": "tre",
+    "ja": "三",
+    "kk": "үш",
+    "km": "បី",
+    "ko": "셋; 삼(3)",
+    "ku": "سه",
+    "lo": "three",
+    "mg": "telo",
+    "ms": "tiga",
+    "my": "three",
+    "nl": "drie",
+    "pl": "trzy",
+    "pt": "três",
+    "ro": "trois",
+    "ru": "три",
+    "sk": "tri",
+    "sl": "tri",
+    "sv": "tre",
+    "sw": "trois",
+    "th": "สาม",
+    "tok": "tu wan",
+    "tr": "üç",
+    "uk": "три",
+    "ur": "تین",
+    "vi": "ba",
+    "yo": "three",
+    "zh": "三",
+    "zh-tw": "三"
+   }
   },
   "Tags": [
    "A0",
@@ -6987,7 +8578,55 @@
     "dek"
    ],
    "correct_index": 1,
-   "bildo": "kvar"
+   "bildo": "kvar",
+   "definitions": {
+    "ar": "أربعة",
+    "be": "четыре",
+    "ca": "quatre",
+    "cs": "čtyři",
+    "da": "fire",
+    "de": "vier",
+    "el": "τέσσερεις, τέσσερα",
+    "en": "four",
+    "es": "cuatro",
+    "fa": "چهار",
+    "fr": "quatre",
+    "frp": "catro",
+    "ga": "ceathair",
+    "he": "ארבע",
+    "hi": "four",
+    "hr": "četiri",
+    "hu": "négy",
+    "id": "empat",
+    "it": "quattro",
+    "ja": "四",
+    "kk": "төрт",
+    "km": "បួននាក់",
+    "ko": "넷; 사(4)",
+    "ku": "چهار",
+    "lo": "four",
+    "mg": "efatra",
+    "ms": "empat",
+    "my": "four",
+    "nl": "vier",
+    "pl": "cztery",
+    "pt": "quatro",
+    "ro": "quatre",
+    "ru": "четыре",
+    "sk": "štyri",
+    "sl": "štiri",
+    "sv": "fyra",
+    "sw": "quatre",
+    "th": "สี่",
+    "tok": "tu tu",
+    "tr": "dört",
+    "uk": "чотири",
+    "ur": "چار",
+    "vi": "bốn",
+    "yo": "four",
+    "zh": "四",
+    "zh-tw": "四"
+   }
   },
   "Tags": [
    "A0",
@@ -7021,7 +8660,55 @@
     "dek"
    ],
    "correct_index": 0,
-   "bildo": "kvin"
+   "bildo": "kvin",
+   "definitions": {
+    "ar": "خمسة",
+    "be": "пять",
+    "ca": "cinc",
+    "cs": "pět",
+    "da": "fem",
+    "de": "fünf",
+    "el": "πέντε",
+    "en": "five",
+    "es": "cinco",
+    "fa": "پنج",
+    "fr": "cinq",
+    "frp": "cinc",
+    "ga": "cúig",
+    "he": "חמש",
+    "hi": "five",
+    "hr": "pet",
+    "hu": "öt",
+    "id": "lima",
+    "it": "cinque",
+    "ja": "五",
+    "kk": "бес",
+    "km": "ប្រាំនាក់",
+    "ko": "다섯; 오(5)",
+    "ku": "پنج",
+    "lo": "five",
+    "mg": "dimy",
+    "ms": "lima",
+    "my": "five",
+    "nl": "vijf",
+    "pl": "pięć",
+    "pt": "cinco",
+    "ro": "cinq",
+    "ru": "пять",
+    "sk": "päť",
+    "sl": "pet",
+    "sv": "fem",
+    "sw": "cinq",
+    "th": "ห้า",
+    "tok": "luka (nanpa)",
+    "tr": "beş",
+    "uk": "п'ять",
+    "ur": "پانچ",
+    "vi": "năm",
+    "yo": "five",
+    "zh": "五",
+    "zh-tw": "五"
+   }
   },
   "Tags": [
    "A0",
@@ -7055,7 +8742,55 @@
     "du"
    ],
    "correct_index": 1,
-   "bildo": "ses"
+   "bildo": "ses",
+   "definitions": {
+    "ar": "ستة",
+    "be": "шесть",
+    "ca": "sis",
+    "cs": "šest",
+    "da": "seks",
+    "de": "sechs",
+    "el": "έξι",
+    "en": "six",
+    "es": "seis",
+    "fa": "شش",
+    "fr": "six",
+    "frp": "siés",
+    "ga": "sé",
+    "he": "שש",
+    "hi": "six",
+    "hr": "šest",
+    "hu": "hat",
+    "id": "enam",
+    "it": "sei",
+    "ja": "六",
+    "kk": "алты",
+    "km": "ប្រាំមួយ",
+    "ko": "여섯; 육(6)",
+    "ku": "شش",
+    "lo": "six",
+    "mg": "enina",
+    "ms": "enam",
+    "my": "six",
+    "nl": "zes",
+    "pl": "sześć",
+    "pt": "seis",
+    "ro": "six",
+    "ru": "шесть",
+    "sk": "šesť",
+    "sl": "šest",
+    "sv": "sex",
+    "sw": "six",
+    "th": "หก",
+    "tok": "luka wan",
+    "tr": "altı",
+    "uk": "шість",
+    "ur": "چھ",
+    "vi": "sáu",
+    "yo": "six",
+    "zh": "六",
+    "zh-tw": "六"
+   }
   },
   "Tags": [
    "A0",
@@ -7089,7 +8824,55 @@
     "sep"
    ],
    "correct_index": 3,
-   "bildo": "sep"
+   "bildo": "sep",
+   "definitions": {
+    "ar": "سبعة",
+    "be": "семь",
+    "ca": "set",
+    "cs": "sedm",
+    "da": "syv",
+    "de": "sieben",
+    "el": "επτά",
+    "en": "seven",
+    "es": "siete",
+    "fa": "هفت",
+    "fr": "sept",
+    "frp": "sète",
+    "ga": "seacht",
+    "he": "שבע",
+    "hi": "seven",
+    "hr": "sedam",
+    "hu": "hét",
+    "id": "tujuh",
+    "it": "sette",
+    "ja": "七",
+    "kk": "жеті",
+    "km": "ចំនួនប្រាំពីរ",
+    "ko": "일곱; 칠(7)",
+    "ku": "هفت",
+    "lo": "seven",
+    "mg": "fito",
+    "ms": "tujuk",
+    "my": "seven",
+    "nl": "zeven",
+    "pl": "siedem",
+    "pt": "sete",
+    "ro": "sept",
+    "ru": "семь",
+    "sk": "sedem",
+    "sl": "sedem",
+    "sv": "sju",
+    "sw": "sept",
+    "th": "เจ็ด",
+    "tok": "luka tu",
+    "tr": "yedi",
+    "uk": "сім",
+    "ur": "سات",
+    "vi": "bảy",
+    "yo": "seven",
+    "zh": "七",
+    "zh-tw": "七"
+   }
   },
   "Tags": [
    "A0",
@@ -7123,7 +8906,55 @@
     "tri"
    ],
    "correct_index": 1,
-   "bildo": "ok"
+   "bildo": "ok",
+   "definitions": {
+    "ar": "ثمانية",
+    "be": "восемь",
+    "ca": "vuit",
+    "cs": "osm",
+    "da": "otte",
+    "de": "acht",
+    "el": "οκτώ",
+    "en": "eight",
+    "es": "ocho",
+    "fa": "هشت",
+    "fr": "huit",
+    "frp": "uèt",
+    "ga": "ocht",
+    "he": "שמונה",
+    "hi": "eight",
+    "hr": "osam",
+    "hu": "nyolc",
+    "id": "delapan",
+    "it": "otto",
+    "ja": "八",
+    "kk": "сегіз",
+    "km": "ប្រាំបី",
+    "ko": "여덟; 팔(8)",
+    "ku": "هشت",
+    "lo": "eight",
+    "mg": "valo",
+    "ms": "lapan",
+    "my": "eight",
+    "nl": "acht",
+    "pl": "osiem",
+    "pt": "oito",
+    "ro": "huit",
+    "ru": "восемь",
+    "sk": "osem",
+    "sl": "osem",
+    "sv": "åtta",
+    "sw": "huit",
+    "th": "แปด",
+    "tok": "luka tu wan",
+    "tr": "sekiz",
+    "uk": "вісім",
+    "ur": "آٹھ",
+    "vi": "tám",
+    "yo": "eight",
+    "zh": "八",
+    "zh-tw": "八"
+   }
   },
   "Tags": [
    "A0",
@@ -7157,7 +8988,55 @@
     "naŭ"
    ],
    "correct_index": 3,
-   "bildo": "naŭ"
+   "bildo": "naŭ",
+   "definitions": {
+    "ar": "تسعة",
+    "be": "девять",
+    "ca": "nou",
+    "cs": "devět",
+    "da": "ni",
+    "de": "neun",
+    "el": "εννέα",
+    "en": "nine",
+    "es": "nueve",
+    "fa": "نُه",
+    "fr": "neuf",
+    "frp": "nou",
+    "ga": "naoi",
+    "he": "תשע",
+    "hi": "nine",
+    "hr": "devet",
+    "hu": "kilenc",
+    "id": "sembilan",
+    "it": "nove",
+    "ja": "九",
+    "kk": "тоғыз",
+    "km": "ប្រាំបួន",
+    "ko": "아홉; 구(9)",
+    "ku": "نُه",
+    "lo": "nine",
+    "mg": "sivy",
+    "ms": "sembilan",
+    "my": "nine",
+    "nl": "negen",
+    "pl": "dziewięć",
+    "pt": "nove",
+    "ro": "neuf",
+    "ru": "девять",
+    "sk": "deväť",
+    "sl": "devet",
+    "sv": "nio",
+    "sw": "neuf",
+    "th": "เก้า",
+    "tok": "luka tu tu",
+    "tr": "dokuz",
+    "uk": "дев'ять",
+    "ur": "نو",
+    "vi": "chín",
+    "yo": "nine",
+    "zh": "九",
+    "zh-tw": "九"
+   }
   },
   "Tags": [
    "A0",
@@ -7191,7 +9070,55 @@
     "tri"
    ],
    "correct_index": 2,
-   "bildo": "dek"
+   "bildo": "dek",
+   "definitions": {
+    "ar": "عشرة",
+    "be": "десять",
+    "ca": "deu",
+    "cs": "deset",
+    "da": "ti",
+    "de": "zehn",
+    "el": "δέκα",
+    "en": "ten",
+    "es": "diez",
+    "fa": "ده",
+    "fr": "dix",
+    "frp": "diés",
+    "ga": "deich",
+    "he": "עשר",
+    "hi": "ten",
+    "hr": "deset",
+    "hu": "tíz",
+    "id": "sepuluh",
+    "it": "dieci",
+    "ja": "十",
+    "kk": "он",
+    "km": "ទាំងដប់",
+    "ko": "열; 십(10)",
+    "ku": "ده",
+    "lo": "ten",
+    "mg": "folo",
+    "ms": "sepuluh",
+    "my": "ten",
+    "nl": "tien",
+    "pl": "dziesięć",
+    "pt": "dez",
+    "ro": "dix",
+    "ru": "десять",
+    "sk": "desať",
+    "sl": "deset",
+    "sv": "tio",
+    "sw": "dix",
+    "th": "สิบ",
+    "tok": "luka luka",
+    "tr": "on",
+    "uk": "десять",
+    "ur": "دس",
+    "vi": "mười",
+    "yo": "ten",
+    "zh": "十",
+    "zh-tw": "十"
+   }
   },
   "Tags": [
    "A0",
@@ -7227,7 +9154,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7301,7 +9229,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7375,7 +9304,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7449,7 +9379,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7523,7 +9454,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7597,7 +9529,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7671,7 +9604,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7745,7 +9679,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7819,7 +9754,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7893,7 +9829,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -7967,7 +9904,8 @@
    "A0",
    "bildvortaro",
    "nombroj",
-   "vortaro"
+   "vortaro",
+   "bildoj-nombroj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -8022,7 +9960,55 @@
     "pensi"
    ],
    "correct_index": 1,
-   "bildo": "manĝi"
+   "bildo": "manĝi",
+   "definitions": {
+    "ar": "أكل",
+    "be": "есть",
+    "ca": "menjar",
+    "cs": "jíst",
+    "da": "spise",
+    "de": "essen",
+    "el": "το να τρώγω",
+    "en": "to eat",
+    "es": "comer",
+    "fa": "خوردن",
+    "fr": "manger",
+    "frp": "manger",
+    "ga": "ith",
+    "he": "לאכול",
+    "hi": "to eat",
+    "hr": "jesti",
+    "hu": "eszik",
+    "id": "makan",
+    "it": "mangiare",
+    "ja": "食べる",
+    "kk": "to eat",
+    "km": "to eat",
+    "ko": "먹다",
+    "ku": "خوردن",
+    "lo": "to eat",
+    "mg": "mihinana",
+    "ms": "makan",
+    "my": "to eat",
+    "nl": "eten",
+    "pl": "jeść",
+    "pt": "comer",
+    "ro": "manger",
+    "ru": "есть",
+    "sk": "jesť",
+    "sl": "jesti",
+    "sv": "äta",
+    "sw": "manger",
+    "th": "กิน",
+    "tok": "to eat",
+    "tr": "yemek",
+    "uk": "їсти",
+    "ur": "کھانا کھانا",
+    "vi": "ăn",
+    "yo": "to eat",
+    "zh": "吃",
+    "zh-tw": "吃"
+   }
   },
   "Tags": [
    "A0",
@@ -8056,7 +10042,55 @@
     "trinki"
    ],
    "correct_index": 3,
-   "bildo": "trinki"
+   "bildo": "trinki",
+   "definitions": {
+    "ar": "شراب",
+    "be": "пить",
+    "ca": "beure",
+    "cs": "pít",
+    "da": "drikke",
+    "de": "trinken",
+    "el": "το να πίνω",
+    "en": "to drink",
+    "es": "beber",
+    "fa": "نوشیدن",
+    "fr": "boire",
+    "frp": "boire",
+    "ga": "ól",
+    "he": "לשתות",
+    "hi": "to drink",
+    "hr": "piti",
+    "hu": "iszik",
+    "id": "minum",
+    "it": "bere",
+    "ja": "飲む",
+    "kk": "to drink",
+    "km": "to drink",
+    "ko": "마시다",
+    "ku": "نوشیدن",
+    "lo": "to drink",
+    "mg": "misotro",
+    "ms": "minum",
+    "my": "to drink",
+    "nl": "drinken",
+    "pl": "pić",
+    "pt": "beber",
+    "ro": "boire",
+    "ru": "пить",
+    "sk": "piť",
+    "sl": "piti",
+    "sv": "dricka",
+    "sw": "boire",
+    "th": "ดื่ม",
+    "tok": "to drink",
+    "tr": "içmek",
+    "uk": "пити (воду)",
+    "ur": "پینا",
+    "vi": "uống",
+    "yo": "to drink",
+    "zh": "饮，喝",
+    "zh-tw": "飲, 喝"
+   }
   },
   "Tags": [
    "A0",
@@ -8090,7 +10124,55 @@
     "kuri"
    ],
    "correct_index": 0,
-   "bildo": "dormi"
+   "bildo": "dormi",
+   "definitions": {
+    "ar": "نوم",
+    "be": "спать",
+    "ca": "dormir",
+    "cs": "spát",
+    "da": "sove",
+    "de": "schlafen",
+    "el": "το να κοιμάμαι",
+    "en": "to sleep",
+    "es": "dormir",
+    "fa": "خوابیده بودن; خوابیدن",
+    "fr": "dormir",
+    "frp": "dormir",
+    "ga": "codladh",
+    "he": "לישון",
+    "hi": "sleep",
+    "hr": "spavati",
+    "hu": "alszik",
+    "id": "tidur",
+    "it": "dormire",
+    "ja": "眠る",
+    "kk": "sleep",
+    "km": "sleep",
+    "ko": "자다",
+    "ku": "خوابیده بودن; خوابیدن",
+    "lo": "sleep",
+    "mg": "matory",
+    "ms": "tidur",
+    "my": "sleep",
+    "nl": "slapen",
+    "pl": "spać",
+    "pt": "dormir",
+    "ro": "dormir",
+    "ru": "спать",
+    "sk": "spať",
+    "sl": "spati",
+    "sv": "sova",
+    "sw": "dormir",
+    "th": "นอนหลับ",
+    "tok": "to sleep",
+    "tr": "uyku",
+    "uk": "спати",
+    "ur": "sleep",
+    "vi": "đi ngủ",
+    "yo": "to sleep",
+    "zh": "睡",
+    "zh-tw": "睡"
+   }
   },
   "Tags": [
    "A0",
@@ -8124,7 +10206,55 @@
     "kuri"
    ],
    "correct_index": 3,
-   "bildo": "kuri"
+   "bildo": "kuri",
+   "definitions": {
+    "ar": "جري",
+    "be": "бегать",
+    "ca": "córrer",
+    "cs": "běžet",
+    "da": "løbe",
+    "de": "laufen",
+    "el": "το να τρέχω",
+    "en": "to run",
+    "es": "correr",
+    "fa": "دویدن",
+    "fr": "courir",
+    "frp": "courir",
+    "ga": "rith",
+    "he": "לרוץ",
+    "hi": "to run",
+    "hr": "trčati",
+    "hu": "fut",
+    "id": "lari",
+    "it": "correre",
+    "ja": "走る",
+    "kk": "to run",
+    "km": "to run",
+    "ko": "달리다",
+    "ku": "دویدن",
+    "lo": "to run",
+    "mg": "mihazakazaka",
+    "ms": "lari",
+    "my": "to run",
+    "nl": "lopen; rennen; hardlopen",
+    "pl": "biec",
+    "pt": "correr",
+    "ro": "courir",
+    "ru": "бегать",
+    "sk": "bežať",
+    "sl": "teči",
+    "sv": "springa",
+    "sw": "courir",
+    "th": "วิ่ง",
+    "tok": "to run",
+    "tr": "koşmak",
+    "uk": "бігти",
+    "ur": "دوڑنا",
+    "vi": "chạy",
+    "yo": "to run",
+    "zh": "跑",
+    "zh-tw": "跑"
+   }
   },
   "Tags": [
    "A0",
@@ -8158,7 +10288,55 @@
     "manĝi"
    ],
    "correct_index": 0,
-   "bildo": "iri"
+   "bildo": "iri",
+   "definitions": {
+    "ar": "يذهب",
+    "be": "идти",
+    "ca": "anar",
+    "cs": "jít",
+    "da": "tage til",
+    "de": "gehen",
+    "el": "το να πηγαίνω",
+    "en": "to go",
+    "es": "ir",
+    "fa": "رفتن",
+    "fr": "aller",
+    "frp": "aller",
+    "ga": "dul",
+    "he": "ללכת",
+    "hi": "to go",
+    "hr": "ići",
+    "hu": "megy",
+    "id": "pergi",
+    "it": "andare",
+    "ja": "行く",
+    "kk": "to go",
+    "km": "to go",
+    "ko": "가다",
+    "ku": "رفتن",
+    "lo": "to go",
+    "mg": "mandeha , mankany",
+    "ms": "pergi",
+    "my": "to go",
+    "nl": "gaan",
+    "pl": "iść",
+    "pt": "ir; andar",
+    "ro": "aller",
+    "ru": "идти",
+    "sk": "ísť",
+    "sl": "iti",
+    "sv": "gå; åka",
+    "sw": "aller",
+    "th": "ไป",
+    "tok": "to go",
+    "tr": "gitmek",
+    "uk": "йти",
+    "ur": "جانا",
+    "vi": "đi",
+    "yo": "to go",
+    "zh": "去",
+    "zh-tw": "去"
+   }
   },
   "Tags": [
    "A0",
@@ -8192,7 +10370,10 @@
     "danci"
    ],
    "correct_index": 2,
-   "bildo": "naĝi"
+   "bildo": "naĝi",
+   "definitions": {
+    "en": "to swim"
+   }
   },
   "Tags": [
    "A0",
@@ -8226,7 +10407,55 @@
     "skribi"
    ],
    "correct_index": 3,
-   "bildo": "skribi"
+   "bildo": "skribi",
+   "definitions": {
+    "ar": "يكتب",
+    "be": "писать",
+    "ca": "escriure",
+    "cs": "psát",
+    "da": "skrive",
+    "de": "schreiben",
+    "el": "το να γράφω",
+    "en": "to write",
+    "es": "escribir",
+    "fa": "نوشتن",
+    "fr": "écrire",
+    "frp": "écrire",
+    "ga": "scríobh",
+    "he": "לכתוב",
+    "hi": "to write",
+    "hr": "pisati",
+    "hu": "ír",
+    "id": "tulis",
+    "it": "scrivere",
+    "ja": "書く",
+    "kk": "to write",
+    "km": "to write",
+    "ko": "쓰다",
+    "ku": "نوشتن",
+    "lo": "to write",
+    "mg": "manoratra",
+    "ms": "tulis",
+    "my": "to write",
+    "nl": "schrijven",
+    "pl": "pisać",
+    "pt": "escrever",
+    "ro": "écrire",
+    "ru": "писать",
+    "sk": "písať",
+    "sl": "pisati",
+    "sv": "skriva",
+    "sw": "écrire",
+    "th": "เขียน",
+    "tok": "to write",
+    "tr": "yazmak",
+    "uk": "писати",
+    "ur": "لکھنا",
+    "vi": "viết",
+    "yo": "to write",
+    "zh": "写",
+    "zh-tw": "寫"
+   }
   },
   "Tags": [
    "A0",
@@ -8260,7 +10489,55 @@
     "kuri"
    ],
    "correct_index": 1,
-   "bildo": "legi"
+   "bildo": "legi",
+   "definitions": {
+    "ar": "قرأ",
+    "be": "читать",
+    "ca": "llegir",
+    "cs": "číst",
+    "da": "læse",
+    "de": "lesen",
+    "el": "το να διαβάζω",
+    "en": "to read",
+    "es": "leer",
+    "fa": "روخوانی کردن; خواندن; مطالعه کردن",
+    "fr": "lire",
+    "frp": "lire",
+    "ga": "léigh",
+    "he": "לקרוא",
+    "hi": "to read",
+    "hr": "čitati",
+    "hu": "olvas",
+    "id": "baca",
+    "it": "leggere",
+    "ja": "読む",
+    "kk": "to read",
+    "km": "to read",
+    "ko": "읽다",
+    "ku": "روخوانی کردن; خواندن; مطالعه کردن",
+    "lo": "to read",
+    "mg": "mamaky teny",
+    "ms": "baca",
+    "my": "to read",
+    "nl": "lezen",
+    "pl": "czytać",
+    "pt": "ler",
+    "ro": "lire",
+    "ru": "читать",
+    "sk": "čítať",
+    "sl": "brati",
+    "sv": "läsa",
+    "sw": "lire",
+    "th": "อ่าน",
+    "tok": "to read",
+    "tr": "okumak",
+    "uk": "читати",
+    "ur": "پڑھنا",
+    "vi": "đọc",
+    "yo": "to read",
+    "zh": "读",
+    "zh-tw": "讀"
+   }
   },
   "Tags": [
    "A0",
@@ -8294,7 +10571,55 @@
     "paroli"
    ],
    "correct_index": 3,
-   "bildo": "paroli"
+   "bildo": "paroli",
+   "definitions": {
+    "ar": "يتحدث",
+    "be": "говорить",
+    "ca": "parlar",
+    "cs": "mluvit",
+    "da": "tale",
+    "de": "sprechen",
+    "el": "το να μιλώ",
+    "en": "to speak",
+    "es": "hablar",
+    "fa": "صحبت کردن",
+    "fr": "parler",
+    "frp": "parler",
+    "ga": "labhair",
+    "he": "לדבר",
+    "hi": "to speak",
+    "hr": "govoriti",
+    "hu": "beszél",
+    "id": "bicara",
+    "it": "parlare",
+    "ja": "話す",
+    "kk": "to speak",
+    "km": "to speak",
+    "ko": "말하다",
+    "ku": "صحبت کردن",
+    "lo": "to speak",
+    "mg": "miteny",
+    "ms": "ucap",
+    "my": "to speak",
+    "nl": "spreken",
+    "pl": "mówić",
+    "pt": "falar; fala",
+    "ro": "parler",
+    "ru": "говорить",
+    "sk": "hovoriť",
+    "sl": "govoriti",
+    "sv": "tala; prata",
+    "sw": "parler",
+    "th": "พูด",
+    "tok": "to speak",
+    "tr": "konuşmak",
+    "uk": "говорити",
+    "ur": "بولنا",
+    "vi": "nói chuyện",
+    "yo": "to speak",
+    "zh": "说",
+    "zh-tw": "說"
+   }
   },
   "Tags": [
    "A0",
@@ -8328,7 +10653,11 @@
     "kuiri"
    ],
    "correct_index": 1,
-   "bildo": "aŭskulti"
+   "bildo": "aŭskulti",
+   "definitions": {
+    "sl": "poslušati",
+    "en": "to listen"
+   }
   },
   "Tags": [
    "A0",
@@ -8362,7 +10691,55 @@
     "kanti"
    ],
    "correct_index": 0,
-   "bildo": "vidi"
+   "bildo": "vidi",
+   "definitions": {
+    "ar": "يري",
+    "be": "видеть",
+    "ca": "veure",
+    "cs": "vidět",
+    "da": "se",
+    "de": "sehen",
+    "el": "το να βλέπω",
+    "en": "to see",
+    "es": "ver",
+    "fa": "دیدن",
+    "fr": "voir",
+    "frp": "voir",
+    "ga": "feic",
+    "he": "לראות",
+    "hi": "to see",
+    "hr": "vidjeti",
+    "hu": "lát",
+    "id": "lihat",
+    "it": "vedere",
+    "ja": "見えている",
+    "kk": "to see",
+    "km": "to see",
+    "ko": "보다",
+    "ku": "دیدن",
+    "lo": "to see",
+    "mg": "mijery , mizaha",
+    "ms": "lihat",
+    "my": "to see",
+    "nl": "zien",
+    "pl": "widzieć",
+    "pt": "ver; vista",
+    "ro": "voir",
+    "ru": "видеть",
+    "sk": "vidieť",
+    "sl": "videti",
+    "sv": "se",
+    "sw": "voir",
+    "th": "เห็น; พบ",
+    "tok": "to see",
+    "tr": "görmek",
+    "uk": "бачити",
+    "ur": "دیکھنا",
+    "vi": "thấy",
+    "yo": "to see",
+    "zh": "看",
+    "zh-tw": "看"
+   }
   },
   "Tags": [
    "A0",
@@ -8396,7 +10773,12 @@
     "kanti"
    ],
    "correct_index": 3,
-   "bildo": "kanti"
+   "bildo": "kanti",
+   "definitions": {
+    "sl": "pesem",
+    "zh-tw": "唱; 歌",
+    "en": "to sing"
+   }
   },
   "Tags": [
    "A0",
@@ -8430,7 +10812,10 @@
     "aŭskulti"
    ],
    "correct_index": 0,
-   "bildo": "danci"
+   "bildo": "danci",
+   "definitions": {
+    "en": "to dance"
+   }
   },
   "Tags": [
    "A0",
@@ -8464,7 +10849,55 @@
     "trinki"
    ],
    "correct_index": 0,
-   "bildo": "kuiri"
+   "bildo": "kuiri",
+   "definitions": {
+    "ar": "طبخ",
+    "be": "готовить (пищу)",
+    "ca": "cuinar",
+    "cs": "vařit",
+    "da": "tilberede mad; lave mad",
+    "de": "kochen",
+    "el": "το να μαγειρεύω",
+    "en": "to cook",
+    "es": "cocinar",
+    "fa": "پختن",
+    "fr": "cuisiner",
+    "frp": "cuisiner",
+    "ga": "cócaireacht",
+    "he": "לבשל",
+    "hi": "to cook",
+    "hr": "kuhati",
+    "hu": "főz",
+    "id": "masak",
+    "it": "cucinare",
+    "ja": "料理をする",
+    "kk": "to cook",
+    "km": "to cook",
+    "ko": "요리하다",
+    "ku": "پختن",
+    "lo": "to cook",
+    "mg": "mahandro",
+    "ms": "memasak",
+    "my": "to cook",
+    "nl": "koken",
+    "pl": "gotować",
+    "pt": "cozinhar",
+    "ro": "cuisiner",
+    "ru": "готовить (пищу)",
+    "sk": "variť",
+    "sl": "kuhati",
+    "sv": "laga (mat)",
+    "sw": "cuisiner",
+    "th": "ทำอาหาร, ปรุง, ชง",
+    "tok": "to cook",
+    "tr": "yemek yapmak; pişirmek",
+    "uk": "варити",
+    "ur": "پکانا",
+    "vi": "nấu",
+    "yo": "to cook",
+    "zh": "煮",
+    "zh-tw": "煮"
+   }
   },
   "Tags": [
    "A0",
@@ -8498,7 +10931,55 @@
     "ridi"
    ],
    "correct_index": 3,
-   "bildo": "ridi"
+   "bildo": "ridi",
+   "definitions": {
+    "ar": "ضحك",
+    "be": "смеяться",
+    "ca": "riure",
+    "cs": "smát se",
+    "da": "grine",
+    "de": "lachen",
+    "el": "το να γελώ",
+    "en": "to laugh",
+    "es": "reír",
+    "fa": "خندیدن",
+    "fr": "rire",
+    "frp": "rire",
+    "ga": "gáir",
+    "he": "לצחוק",
+    "hi": "to laugh",
+    "hr": "smijati se",
+    "hu": "nevet",
+    "id": "tawa",
+    "it": "ridere",
+    "ja": "笑う",
+    "kk": "to laugh",
+    "km": "to laugh",
+    "ko": "웃다",
+    "ku": "خندیدن",
+    "lo": "to laugh",
+    "mg": "hehy",
+    "ms": "ketawa",
+    "my": "to laugh",
+    "nl": "lachen",
+    "pl": "śmiać się",
+    "pt": "rir",
+    "ro": "rire",
+    "ru": "смеяться",
+    "sk": "smiať sa",
+    "sl": "smejati se",
+    "sv": "skratta",
+    "sw": "rire",
+    "th": "หัวเราะ",
+    "tok": "to laugh",
+    "tr": "gülmek",
+    "uk": "сміятись",
+    "ur": "مسکرانا",
+    "vi": "cười lên",
+    "yo": "to laugh",
+    "zh": "笑",
+    "zh-tw": "笑"
+   }
   },
   "Tags": [
    "A0",
@@ -8532,7 +11013,10 @@
     "plori"
    ],
    "correct_index": 3,
-   "bildo": "plori"
+   "bildo": "plori",
+   "definitions": {
+    "en": "to cry"
+   }
   },
   "Tags": [
    "A0",
@@ -8566,7 +11050,55 @@
     "paroli"
    ],
    "correct_index": 1,
-   "bildo": "pensi"
+   "bildo": "pensi",
+   "definitions": {
+    "ar": "يفكر",
+    "be": "думать",
+    "ca": "pensar",
+    "cs": "myslet",
+    "da": "tænke",
+    "de": "denken",
+    "el": "το να σκέφτομαι",
+    "en": "to think",
+    "es": "pensar",
+    "fa": "فکر کردن",
+    "fr": "penser",
+    "frp": "penser",
+    "ga": "smaoinigh",
+    "he": "לחשוב",
+    "hi": "to think",
+    "hr": "misao; misliti",
+    "hu": "gondol",
+    "id": "pikir",
+    "it": "pensare",
+    "ja": "考える",
+    "kk": "to think",
+    "km": "to think",
+    "ko": "생각하다",
+    "ku": "فکر کردن",
+    "lo": "to think",
+    "mg": "mihevitra",
+    "ms": "fikir",
+    "my": "to think",
+    "nl": "denken",
+    "pl": "myśleć",
+    "pt": "pensar; pensamento",
+    "ro": "penser",
+    "ru": "думать",
+    "sk": "myslieť",
+    "sl": "misliti",
+    "sv": "tänka; tycka",
+    "sw": "penser",
+    "th": "คิด",
+    "tok": "to think",
+    "tr": "düşünmek",
+    "uk": "думати",
+    "ur": "سوچنا",
+    "vi": "suy nghĩ",
+    "yo": "to think",
+    "zh": "想",
+    "zh-tw": "想"
+   }
   },
   "Tags": [
    "A0",
@@ -8600,7 +11132,55 @@
     "trinki"
    ],
    "correct_index": 1,
-   "bildo": "ami"
+   "bildo": "ami",
+   "definitions": {
+    "ar": "حب",
+    "be": "любовь",
+    "ca": "estimar, amar",
+    "cs": "láska",
+    "da": "kærlighed",
+    "de": "lieben",
+    "el": "το να αγαπώ",
+    "en": "to love",
+    "es": "amar",
+    "fa": "عاشق بودن",
+    "fr": "aimer",
+    "frp": "aimer",
+    "ga": "grá",
+    "he": "אהבה",
+    "hi": "love",
+    "hr": "ljubiti; voljeti",
+    "hu": "szeret",
+    "id": "cinta",
+    "it": "amore",
+    "ja": "愛する",
+    "kk": "love",
+    "km": "love",
+    "ko": "사랑",
+    "ku": "عاشق بودن",
+    "lo": "love",
+    "mg": "tia",
+    "ms": "sayang; cinta",
+    "my": "love",
+    "nl": "beminnen",
+    "pl": "miłość",
+    "pt": "amor; amar",
+    "ro": "aimer",
+    "ru": "любовь",
+    "sk": "láska",
+    "sl": "ljubezen",
+    "sv": "kärlek; älska",
+    "sw": "aimer",
+    "th": "รัก",
+    "tok": "to love",
+    "tr": "sevmek; sevgi, aşk",
+    "uk": "кохати; любити",
+    "ur": "محبت",
+    "vi": "yêu dấu",
+    "yo": "to love",
+    "zh": "爱",
+    "zh-tw": "愛"
+   }
   },
   "Tags": [
    "A0",
@@ -8634,7 +11214,55 @@
     "pensi"
    ],
    "correct_index": 2,
-   "bildo": "aĉeti"
+   "bildo": "aĉeti",
+   "definitions": {
+    "ar": "اشترى",
+    "be": "купить",
+    "ca": "comprar",
+    "cs": "koupit",
+    "da": "købe",
+    "de": "kaufen",
+    "el": "το να αγοράζω",
+    "en": "to buy",
+    "es": "comprar",
+    "fa": "خریدن",
+    "fr": "acheter",
+    "frp": "acheter",
+    "ga": "ceannaigh",
+    "he": "לקנות",
+    "hi": "to buy",
+    "hr": "kupiti",
+    "hu": "vesz",
+    "id": "beli",
+    "it": "comprare",
+    "ja": "買う",
+    "kk": "to buy",
+    "km": "to buy",
+    "ko": "사다",
+    "ku": "خریدن",
+    "lo": "to buy",
+    "mg": "mividy",
+    "ms": "membeli",
+    "my": "to buy",
+    "nl": "kopen",
+    "pl": "kupować",
+    "pt": "comprar",
+    "ro": "acheter",
+    "ru": "купить",
+    "sk": "kúpiť",
+    "sl": "kupiti",
+    "sv": "köpa",
+    "sw": "acheter",
+    "th": "ซื้อ",
+    "tok": "to buy",
+    "tr": "satın almak",
+    "uk": "купувати",
+    "ur": "خریدنا",
+    "vi": "mua sắm",
+    "yo": "to buy",
+    "zh": "买",
+    "zh-tw": "買"
+   }
   },
   "Tags": [
    "A0",
@@ -8714,7 +11342,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -8788,7 +11417,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -8862,7 +11492,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -8936,7 +11567,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9010,7 +11642,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9039,7 +11672,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9113,7 +11747,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9187,7 +11822,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9261,7 +11897,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9291,7 +11928,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9365,7 +12003,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9396,7 +12035,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9425,7 +12065,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9499,7 +12140,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9573,7 +12215,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9602,7 +12245,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9676,7 +12320,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9750,7 +12395,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9824,7 +12470,8 @@
    "A0",
    "bildvortaro",
    "agoj",
-   "vortaro"
+   "vortaro",
+   "bildoj-agoj-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -9879,7 +12526,55 @@
     "mano"
    ],
    "correct_index": 3,
-   "bildo": "mano"
+   "bildo": "mano",
+   "definitions": {
+    "ar": "يد",
+    "be": "рука",
+    "ca": "mà",
+    "cs": "ruka",
+    "da": "hånd",
+    "de": "Hand",
+    "el": "χέρι",
+    "en": "hand",
+    "es": "mano",
+    "fa": "دست",
+    "fr": "main",
+    "frp": "main",
+    "ga": "lámh",
+    "he": "יד",
+    "hi": "hand",
+    "hr": "ruka",
+    "hu": "kéz",
+    "id": "tangan",
+    "it": "mano",
+    "ja": "手",
+    "kk": "қол",
+    "km": "hand",
+    "ko": "손",
+    "ku": "دست",
+    "lo": "hand",
+    "mg": "tànana",
+    "ms": "tangan",
+    "my": "hand",
+    "nl": "hand",
+    "pl": "ręka",
+    "pt": "mão",
+    "ro": "main",
+    "ru": "рука",
+    "sk": "ruka",
+    "sl": "roka",
+    "sv": "hand",
+    "sw": "main",
+    "th": "มือ",
+    "tok": "hand",
+    "tr": "el",
+    "uk": "рука",
+    "ur": "ہاتھ",
+    "vi": "bàn tay",
+    "yo": "hand",
+    "zh": "手",
+    "zh-tw": "手"
+   }
   },
   "Tags": [
    "A0",
@@ -9913,7 +12608,55 @@
     "okulo"
    ],
    "correct_index": 3,
-   "bildo": "okulo"
+   "bildo": "okulo",
+   "definitions": {
+    "ar": "عين",
+    "be": "око; глаз",
+    "ca": "ull",
+    "cs": "oko",
+    "da": "øje",
+    "de": "Auge",
+    "el": "μάτι",
+    "en": "eye",
+    "es": "ojo",
+    "fa": "چشم",
+    "fr": "oeil",
+    "frp": "oeil",
+    "ga": "súil",
+    "he": "עין",
+    "hi": "eye",
+    "hr": "oko",
+    "hu": "szem",
+    "id": "mata",
+    "it": "occhio",
+    "ja": "eye",
+    "kk": "көз",
+    "km": "eye",
+    "ko": "눈",
+    "ku": "چشم",
+    "lo": "eye",
+    "mg": "maso",
+    "ms": "mata",
+    "my": "eye",
+    "nl": "oog",
+    "pl": "oko",
+    "pt": "olho",
+    "ro": "oeil",
+    "ru": "око; глаз",
+    "sk": "oko",
+    "sl": "oko",
+    "sv": "öga",
+    "sw": "oeil",
+    "th": "ดวงตา",
+    "tok": "eye",
+    "tr": "göz",
+    "uk": "око",
+    "ur": "آنکھ",
+    "vi": "con mắt",
+    "yo": "eye",
+    "zh": "眼睛",
+    "zh-tw": "眼睛"
+   }
   },
   "Tags": [
    "A0",
@@ -9947,7 +12690,55 @@
     "kruro"
    ],
    "correct_index": 0,
-   "bildo": "orelo"
+   "bildo": "orelo",
+   "definitions": {
+    "ar": "إذن",
+    "be": "ухо",
+    "ca": "orella",
+    "cs": "ucho",
+    "da": "øre",
+    "de": "Ohr",
+    "el": "αφτί",
+    "en": "ear",
+    "es": "oreja",
+    "fa": "گوش",
+    "fr": "oreille",
+    "frp": "oreille",
+    "ga": "cluas",
+    "he": "אוזן",
+    "hi": "ear",
+    "hr": "uho",
+    "hu": "fül",
+    "id": "telinga, kuping",
+    "it": "orecchio",
+    "ja": "耳",
+    "kk": "құлақ",
+    "km": "ear",
+    "ko": "귀",
+    "ku": "گوش",
+    "lo": "ear",
+    "mg": "sofina",
+    "ms": "telinga",
+    "my": "ear",
+    "nl": "oor",
+    "pl": "ucho",
+    "pt": "orelha",
+    "ro": "oreille",
+    "ru": "ухо",
+    "sk": "ucho",
+    "sl": "uho",
+    "sv": "öra",
+    "sw": "oreille",
+    "th": "หู",
+    "tok": "ear",
+    "tr": "kulak",
+    "uk": "вухо",
+    "ur": "کان",
+    "vi": "tai",
+    "yo": "ear",
+    "zh": "耳朵",
+    "zh-tw": "耳朵"
+   }
   },
   "Tags": [
    "A0",
@@ -9981,7 +12772,10 @@
     "nazo"
    ],
    "correct_index": 3,
-   "bildo": "nazo"
+   "bildo": "nazo",
+   "definitions": {
+    "en": "nose"
+   }
   },
   "Tags": [
    "A0",
@@ -10015,7 +12809,55 @@
     "koro"
    ],
    "correct_index": 2,
-   "bildo": "buŝo"
+   "bildo": "buŝo",
+   "definitions": {
+    "ar": "فم",
+    "be": "морда",
+    "ca": "boca",
+    "cs": "ústa",
+    "da": "mund",
+    "de": "Mund",
+    "el": "στόμα",
+    "en": "mouth",
+    "es": "boca",
+    "fa": "دهان",
+    "fr": "bouche",
+    "frp": "bouche",
+    "ga": "béal",
+    "he": "פה",
+    "hi": "mouth",
+    "hr": "usta",
+    "hu": "száj",
+    "id": "mulut",
+    "it": "bocca",
+    "ja": "口",
+    "kk": "ауыз",
+    "km": "មាត់",
+    "ko": "입",
+    "ku": "دهان",
+    "lo": "mouth",
+    "mg": "vava",
+    "ms": "mulut",
+    "my": "mouth",
+    "nl": "mond",
+    "pl": "usta",
+    "pt": "boca",
+    "ro": "bouche",
+    "ru": "морда",
+    "sk": "ústa",
+    "sl": "usta",
+    "sv": "mun",
+    "sw": "bouche",
+    "th": "ปาก",
+    "tok": "mouth",
+    "tr": "ağız",
+    "uk": "рот",
+    "ur": "منہ",
+    "vi": "miệng",
+    "yo": "mouth",
+    "zh": "嘴",
+    "zh-tw": "嘴"
+   }
   },
   "Tags": [
    "A0",
@@ -10049,7 +12891,10 @@
     "dento"
    ],
    "correct_index": 3,
-   "bildo": "dento"
+   "bildo": "dento",
+   "definitions": {
+    "en": "tooth"
+   }
   },
   "Tags": [
    "A0",
@@ -10083,7 +12928,55 @@
     "piedo"
    ],
    "correct_index": 3,
-   "bildo": "piedo"
+   "bildo": "piedo",
+   "definitions": {
+    "ar": "قدم",
+    "be": "нога; стопа; лапа",
+    "ca": "peu",
+    "cs": "noha",
+    "da": "fod",
+    "de": "Fuß",
+    "el": "πόδι",
+    "en": "foot",
+    "es": "pie",
+    "fa": "پا",
+    "fr": "pied",
+    "frp": "pied",
+    "ga": "cos",
+    "he": "רגל",
+    "hi": "foot",
+    "hr": "stopalo",
+    "hu": "láb",
+    "id": "kaki",
+    "it": "piede",
+    "ja": "足",
+    "kk": "foot",
+    "km": "foot",
+    "ko": "발",
+    "ku": "پا",
+    "lo": "foot",
+    "mg": "tongotra",
+    "ms": "kaki",
+    "my": "foot",
+    "nl": "voet",
+    "pl": "piedo",
+    "pt": "pé",
+    "ro": "pied",
+    "ru": "нога; стопа; лапа",
+    "sk": "noha",
+    "sl": "noga, stopalo",
+    "sv": "fot",
+    "sw": "pied",
+    "th": "เท้า",
+    "tok": "foot",
+    "tr": "ayak",
+    "uk": "нога; ступня",
+    "ur": "پاؤں",
+    "vi": "chân",
+    "yo": "foot",
+    "zh": "脚",
+    "zh-tw": "腳"
+   }
   },
   "Tags": [
    "A0",
@@ -10117,7 +13010,10 @@
     "kruro"
    ],
    "correct_index": 3,
-   "bildo": "kruro"
+   "bildo": "kruro",
+   "definitions": {
+    "en": "leg"
+   }
   },
   "Tags": [
    "A0",
@@ -10151,7 +13047,55 @@
     "kruro"
    ],
    "correct_index": 2,
-   "bildo": "koro"
+   "bildo": "koro",
+   "definitions": {
+    "ar": "قلب",
+    "be": "сердце",
+    "ca": "cor",
+    "cs": "srdce",
+    "da": "hjerte",
+    "de": "Herz",
+    "el": "καρδιά",
+    "en": "heart",
+    "es": "corazón",
+    "fa": "قلب",
+    "fr": "coeur",
+    "frp": "coeur",
+    "ga": "croí",
+    "he": "לב",
+    "hi": "heart",
+    "hr": "srce",
+    "hu": "szív",
+    "id": "hati",
+    "it": "cuore",
+    "ja": "心臓; 心",
+    "kk": "жүрек",
+    "km": "heart",
+    "ko": "심장",
+    "ku": "قلب",
+    "lo": "heart",
+    "mg": "fo",
+    "ms": "hati",
+    "my": "heart",
+    "nl": "hart",
+    "pl": "serce",
+    "pt": "coração; cordial",
+    "ro": "coeur",
+    "ru": "сердце",
+    "sk": "srdce",
+    "sl": "srce",
+    "sv": "hjärta",
+    "sw": "coeur",
+    "th": "หัวใจ",
+    "tok": "heart",
+    "tr": "kalp",
+    "uk": "серце",
+    "ur": "دل",
+    "vi": "con tim",
+    "yo": "heart",
+    "zh": "心",
+    "zh-tw": "心"
+   }
   },
   "Tags": [
    "A0",
@@ -10231,7 +13175,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10305,7 +13250,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10379,7 +13325,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10408,7 +13355,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10482,7 +13430,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10511,7 +13460,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10585,7 +13535,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10614,7 +13565,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10688,7 +13640,8 @@
    "A0",
    "bildvortaro",
    "korpo",
-   "vortaro"
+   "vortaro",
+   "bildoj-korpo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -10743,7 +13696,55 @@
     "ĉielarko"
    ],
    "correct_index": 0,
-   "bildo": "suno"
+   "bildo": "suno",
+   "definitions": {
+    "ar": "شمس",
+    "be": "солнце",
+    "ca": "sol (astre)",
+    "cs": "slunce",
+    "da": "sol",
+    "de": "Sonne",
+    "el": "ήλιος",
+    "en": "sun",
+    "es": "sol",
+    "fa": "خورشید",
+    "fr": "soleil",
+    "frp": "soleil",
+    "ga": "grian",
+    "he": "שמש",
+    "hi": "sun",
+    "hr": "sunce",
+    "hu": "nap",
+    "id": "matahari",
+    "it": "sole",
+    "ja": "太陽",
+    "kk": "күн",
+    "km": "ព្រះអាទិត្យ",
+    "ko": "태양",
+    "ku": "خورشید",
+    "lo": "sun",
+    "mg": "masoandro",
+    "ms": "matahari",
+    "my": "sun",
+    "nl": "zon",
+    "pl": "słońce",
+    "pt": "sol",
+    "ro": "soleil",
+    "ru": "солнце",
+    "sk": "slnko",
+    "sl": "sonce",
+    "sv": "sol",
+    "sw": "soleil",
+    "th": "ดวงอาทิตย์",
+    "tok": "sun",
+    "tr": "güneş",
+    "uk": "сонце",
+    "ur": "سورج",
+    "vi": "mặt trời",
+    "yo": "sun",
+    "zh": "太阳",
+    "zh-tw": "太陽"
+   }
   },
   "Tags": [
    "A0",
@@ -10777,7 +13778,10 @@
     "pluvo"
    ],
    "correct_index": 0,
-   "bildo": "luno"
+   "bildo": "luno",
+   "definitions": {
+    "en": "moon"
+   }
   },
   "Tags": [
    "A0",
@@ -10811,7 +13815,10 @@
     "ĉielarko"
    ],
    "correct_index": 2,
-   "bildo": "stelo"
+   "bildo": "stelo",
+   "definitions": {
+    "en": "star"
+   }
   },
   "Tags": [
    "A0",
@@ -10845,7 +13852,10 @@
     "ŝtono"
    ],
    "correct_index": 0,
-   "bildo": "nubo"
+   "bildo": "nubo",
+   "definitions": {
+    "en": "cloud"
+   }
   },
   "Tags": [
    "A0",
@@ -10879,7 +13889,10 @@
     "stelo"
    ],
    "correct_index": 0,
-   "bildo": "pluvo"
+   "bildo": "pluvo",
+   "definitions": {
+    "en": "rain"
+   }
   },
   "Tags": [
    "A0",
@@ -10913,7 +13926,10 @@
     "pluvo"
    ],
    "correct_index": 1,
-   "bildo": "neĝo"
+   "bildo": "neĝo",
+   "definitions": {
+    "en": "snow"
+   }
   },
   "Tags": [
    "A0",
@@ -10947,7 +13963,55 @@
     "arbo"
    ],
    "correct_index": 3,
-   "bildo": "arbo"
+   "bildo": "arbo",
+   "definitions": {
+    "ar": "شجرة",
+    "be": "дерево",
+    "ca": "arbre",
+    "cs": "strom",
+    "da": "træ",
+    "de": "Baum",
+    "el": "δέντρο",
+    "en": "tree",
+    "es": "árbol",
+    "fa": "درخت",
+    "fr": "arbre",
+    "frp": "arbre",
+    "ga": "crann",
+    "he": "עץ",
+    "hi": "tree",
+    "hr": "stablo",
+    "hu": "fa",
+    "id": "pohon",
+    "it": "albero",
+    "ja": "木",
+    "kk": "ағаш",
+    "km": "ដើមឈើ",
+    "ko": "나무",
+    "ku": "درخت",
+    "lo": "tree",
+    "mg": "hazo",
+    "ms": "pokok",
+    "my": "tree",
+    "nl": "boom",
+    "pl": "drzewo",
+    "pt": "árvore",
+    "ro": "arbre",
+    "ru": "дерево",
+    "sk": "strom",
+    "sl": "drevo",
+    "sv": "träd",
+    "sw": "arbre",
+    "th": "ต้นไม้",
+    "tok": "tree",
+    "tr": "ağaç",
+    "uk": "дерево",
+    "ur": "درخت",
+    "vi": "cây cối",
+    "yo": "tree",
+    "zh": "树",
+    "zh-tw": "樹"
+   }
   },
   "Tags": [
    "A0",
@@ -10981,7 +14045,10 @@
     "suno"
    ],
    "correct_index": 0,
-   "bildo": "floro"
+   "bildo": "floro",
+   "definitions": {
+    "en": "flower"
+   }
   },
   "Tags": [
    "A0",
@@ -11015,7 +14082,55 @@
     "neĝo"
    ],
    "correct_index": 1,
-   "bildo": "monto"
+   "bildo": "monto",
+   "definitions": {
+    "ar": "جبل",
+    "be": "гора",
+    "ca": "muntanya",
+    "cs": "hora",
+    "da": "bjerg",
+    "de": "Berg",
+    "el": "βουνό",
+    "en": "mountain",
+    "es": "montaña",
+    "fa": "کوه",
+    "fr": "montagne",
+    "frp": "montagne",
+    "ga": "sliabh",
+    "he": "הר",
+    "hi": "mountain",
+    "hr": "planina",
+    "hu": "hegy",
+    "id": "gunung",
+    "it": "montagna",
+    "ja": "山",
+    "kk": "тау",
+    "km": "ភ្នំ",
+    "ko": "산",
+    "ku": "کوه",
+    "lo": "mountain",
+    "mg": "tendrombohitra",
+    "ms": "gunung",
+    "my": "mountain",
+    "nl": "berg",
+    "pl": "góra",
+    "pt": "montanha",
+    "ro": "montagne",
+    "ru": "гора",
+    "sk": "hora",
+    "sl": "gora",
+    "sv": "berg",
+    "sw": "montagne",
+    "th": "ภูเขา",
+    "tok": "mountain",
+    "tr": "dağ",
+    "uk": "гора",
+    "ur": "پہاڑ",
+    "vi": "ngọn núi",
+    "yo": "mountain",
+    "zh": "山",
+    "zh-tw": "山"
+   }
   },
   "Tags": [
    "A0",
@@ -11049,7 +14164,55 @@
     "luno"
    ],
    "correct_index": 0,
-   "bildo": "maro"
+   "bildo": "maro",
+   "definitions": {
+    "ar": "بحر",
+    "be": "море",
+    "ca": "mar",
+    "cs": "moře",
+    "da": "hav",
+    "de": "Meer",
+    "el": "θάλασσα",
+    "en": "sea",
+    "es": "mar",
+    "fa": "دریا",
+    "fr": "mer",
+    "frp": "mer",
+    "ga": "muir",
+    "he": "ים",
+    "hi": "sea",
+    "hr": "more",
+    "hu": "tenger",
+    "id": "laut",
+    "it": "mare",
+    "ja": "海",
+    "kk": "теңіз",
+    "km": "សមុទ្រ",
+    "ko": "바다",
+    "ku": "دریا",
+    "lo": "sea",
+    "mg": "rano masina",
+    "ms": "laut",
+    "my": "sea",
+    "nl": "zee",
+    "pl": "morze",
+    "pt": "mar",
+    "ro": "mer",
+    "ru": "море",
+    "sk": "more",
+    "sl": "morje",
+    "sv": "hav",
+    "sw": "mer",
+    "th": "ทะเล",
+    "tok": "sea",
+    "tr": "deniz",
+    "uk": "море",
+    "ur": "سمندر",
+    "vi": "biển cả",
+    "yo": "sea",
+    "zh": "海",
+    "zh-tw": "海"
+   }
   },
   "Tags": [
    "A0",
@@ -11083,7 +14246,10 @@
     "fajro"
    ],
    "correct_index": 3,
-   "bildo": "fajro"
+   "bildo": "fajro",
+   "definitions": {
+    "en": "fire"
+   }
   },
   "Tags": [
    "A0",
@@ -11117,7 +14283,10 @@
     "ŝtono"
    ],
    "correct_index": 3,
-   "bildo": "ŝtono"
+   "bildo": "ŝtono",
+   "definitions": {
+    "en": "stone"
+   }
   },
   "Tags": [
    "A0",
@@ -11151,7 +14320,10 @@
     "ĉielarko"
    ],
    "correct_index": 3,
-   "bildo": "ĉielarko"
+   "bildo": "ĉielarko",
+   "definitions": {
+    "en": "rainbow"
+   }
   },
   "Tags": [
    "A0",
@@ -11185,7 +14357,55 @@
     "printempo"
    ],
    "correct_index": 3,
-   "bildo": "printempo"
+   "bildo": "printempo",
+   "definitions": {
+    "ar": "ربيع",
+    "be": "весна",
+    "ca": "primavera",
+    "cs": "jaro",
+    "da": "forår",
+    "de": "Frühling",
+    "el": "άνοιξη",
+    "en": "spring",
+    "es": "primavera",
+    "fa": "بهار",
+    "fr": "printemps",
+    "frp": "printemps",
+    "ga": "earrach",
+    "he": "אביב",
+    "hi": "spring",
+    "hr": "proljeće",
+    "hu": "tavasz",
+    "id": "musim semi",
+    "it": "primavera",
+    "ja": "春",
+    "kk": "көктем",
+    "km": "និទាឃរដូវ។",
+    "ko": "봄",
+    "ku": "بهار",
+    "lo": "spring",
+    "mg": "lohataona",
+    "ms": "musim bunga",
+    "my": "និទាឃរដូវ",
+    "nl": "lente",
+    "pl": "wiosna",
+    "pt": "primavera",
+    "ro": "printemps",
+    "ru": "весна",
+    "sk": "jar",
+    "sl": "pomlad",
+    "sv": "vår",
+    "sw": "printemps",
+    "th": "ฤดูใบไม้ผลิ",
+    "tok": "tenpo pi seli lili",
+    "tr": "ilkbahar",
+    "uk": "весна",
+    "ur": "spring",
+    "vi": "mùa xuân",
+    "yo": "spring",
+    "zh": "春",
+    "zh-tw": "春"
+   }
   },
   "Tags": [
    "A0",
@@ -11219,7 +14439,55 @@
     "somero"
    ],
    "correct_index": 3,
-   "bildo": "somero"
+   "bildo": "somero",
+   "definitions": {
+    "ar": "صيف",
+    "be": "лето",
+    "ca": "estiu",
+    "cs": "léto",
+    "da": "sommer",
+    "de": "Sommer",
+    "el": "καλοκαίρι",
+    "en": "summer",
+    "es": "verano",
+    "fa": "تابستان",
+    "fr": "été",
+    "frp": "chôd-temps",
+    "ga": "samhradh",
+    "he": "קיץ",
+    "hi": "summer",
+    "hr": "ljeto",
+    "hu": "nyár",
+    "id": "musim panas",
+    "it": "estate",
+    "ja": "夏",
+    "kk": "жаз",
+    "km": "នៅរដូវក្តៅ",
+    "ko": "여름",
+    "ku": "تابستان",
+    "lo": "summer",
+    "mg": "fahavaratra",
+    "ms": "musim panas",
+    "my": "រដូវក្តៅ",
+    "nl": "zomer",
+    "pl": "lato",
+    "pt": "verão",
+    "ro": "été",
+    "ru": "лето",
+    "sk": "leto",
+    "sl": "poletje",
+    "sv": "sommar",
+    "sw": "été",
+    "th": "ฤดูร้อน",
+    "tok": "tenpo seli",
+    "tr": "yaz",
+    "uk": "літо",
+    "ur": "summer",
+    "vi": "mùa hạ; mùa hè",
+    "yo": "summer",
+    "zh": "夏",
+    "zh-tw": "夏"
+   }
   },
   "Tags": [
    "A0",
@@ -11253,7 +14521,55 @@
     "somero"
    ],
    "correct_index": 0,
-   "bildo": "aŭtuno"
+   "bildo": "aŭtuno",
+   "definitions": {
+    "ar": "خريف",
+    "be": "осень",
+    "ca": "tardor",
+    "cs": "podzim",
+    "da": "efterår",
+    "de": "Herbst",
+    "el": "φθινόπωρο",
+    "en": "autumn",
+    "es": "otoño",
+    "fa": "پاییز",
+    "fr": "automne",
+    "frp": "ôtono",
+    "ga": "fómhar",
+    "he": "סתיו",
+    "hi": "autumn",
+    "hr": "jesen",
+    "hu": "ősz",
+    "id": "musim gugur",
+    "it": "autunno",
+    "ja": "秋",
+    "kk": "күз",
+    "km": "រដូវស្លឹកឈើជ្រុះ",
+    "ko": "가을",
+    "ku": "پاییز",
+    "lo": "autumn",
+    "mg": "fararano",
+    "ms": "musim luruh",
+    "my": "រដូវស្លឹកឈើជ្រុះ",
+    "nl": "herfst",
+    "pl": "jesień",
+    "pt": "outono",
+    "ro": "automne",
+    "ru": "осень",
+    "sk": "jeseň",
+    "sl": "jesen",
+    "sv": "höst",
+    "sw": "automne",
+    "th": "ฤดูใบไม้ร่วง",
+    "tok": "tenpo pi lete lili",
+    "tr": "sonbahar",
+    "uk": "осінь",
+    "ur": "autumn",
+    "vi": "mùa thu",
+    "yo": "autumn",
+    "zh": "秋",
+    "zh-tw": "秋"
+   }
   },
   "Tags": [
    "A0",
@@ -11287,7 +14603,55 @@
     "nubo"
    ],
    "correct_index": 1,
-   "bildo": "vintro"
+   "bildo": "vintro",
+   "definitions": {
+    "ar": "شتاء",
+    "be": "зима",
+    "ca": "hivern",
+    "cs": "zima",
+    "da": "vinter",
+    "de": "Winter",
+    "el": "χειμώνας",
+    "en": "winter",
+    "es": "invierno",
+    "fa": "زمستان",
+    "fr": "hiver",
+    "frp": "hivèrn",
+    "ga": "geimhreadh",
+    "he": "חורף",
+    "hi": "winter",
+    "hr": "zima",
+    "hu": "tél",
+    "id": "musim dingin",
+    "it": "inverno",
+    "ja": "冬",
+    "kk": "қыс",
+    "km": "រដូវរងារ",
+    "ko": "겨울",
+    "ku": "زمستان",
+    "lo": "winter",
+    "mg": "ririnina",
+    "ms": "musim salji",
+    "my": "រដូវរងារ",
+    "nl": "winter",
+    "pl": "zima",
+    "pt": "inverno",
+    "ro": "hiver",
+    "ru": "зима",
+    "sk": "zima",
+    "sl": "zima",
+    "sv": "vinter",
+    "sw": "hiver",
+    "th": "ฤดูหนาว",
+    "tok": "tenpo lete",
+    "tr": "kış",
+    "uk": "зима",
+    "ur": "winter",
+    "vi": "mùa đông",
+    "yo": "winter",
+    "zh": "冬",
+    "zh-tw": "冬"
+   }
   },
   "Tags": [
    "A0",
@@ -11367,7 +14731,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11396,7 +14761,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11425,7 +14791,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11454,7 +14821,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11483,7 +14851,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11512,7 +14881,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11586,7 +14956,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11615,7 +14986,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11689,7 +15061,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11763,7 +15136,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11792,7 +15166,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11821,7 +15196,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11850,7 +15226,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11924,7 +15301,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -11998,7 +15376,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -12072,7 +15451,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",
@@ -12146,7 +15526,8 @@
    "A0",
    "bildvortaro",
    "naturo",
-   "vortaro"
+   "vortaro",
+   "bildoj-naturo-teksto"
   ],
   "Source": "esperanto-kurso.net",
   "AuthorID": "seed",

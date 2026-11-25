@@ -1,6 +1,7 @@
 package bildoj
 
 import (
+	"encoding/json"
 	"os"
 	"path/filepath"
 	"strings"
@@ -116,5 +117,56 @@ func TestForSeries(t *testing.T) {
 	}
 	if got := ForReading("zagr-l05-teksto", ""); got != Base+"lokoj/l05.png" {
 		t.Errorf("zagr-l05-teksto: %q", got)
+	}
+}
+
+// The A0 picture series (seed/bildvortaro.json, made by tools/make_seed.py)
+// stay in step with the mapping: every picture exercise and vocab word has
+// its picture, the right option is the pictured word, and no option looks
+// like it (same group).
+func TestSeedPicturesResolve(t *testing.T) {
+	b, err := os.ReadFile(filepath.Join("..", "..", "seed", "bildvortaro.json"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	var items []struct {
+		Slug, Type string
+		Content    map[string]interface{}
+	}
+	if err := json.Unmarshal(b, &items); err != nil {
+		t.Fatal(err)
+	}
+	byWord := map[string]*Picture{}
+	for _, p := range All() {
+		byWord[p.Word] = p
+	}
+	for _, it := range items {
+		switch it.Type {
+		case "vocab":
+			w, _ := it.Content["word"].(string)
+			if ForVocab(w, "") == nil {
+				t.Errorf("%s: %q has no picture", it.Slug, w)
+			}
+		case "multiplechoice":
+			w, _ := it.Content["bildo"].(string)
+			p := ForVocab(w, "")
+			if p == nil {
+				t.Errorf("%s: bildo %q has no picture", it.Slug, w)
+				continue
+			}
+			opts, _ := it.Content["options"].([]interface{})
+			ci, _ := it.Content["correct_index"].(float64)
+			if int(ci) >= len(opts) || opts[int(ci)] != w {
+				t.Errorf("%s: the right option is not %q", it.Slug, w)
+			}
+			for _, o := range opts {
+				q := byWord[o.(string)]
+				if q == nil {
+					t.Errorf("%s: option %q has no picture row", it.Slug, o)
+				} else if q != p && p.Group != "" && q.Group == p.Group {
+					t.Errorf("%s: options %q and %q look alike (group %s)", it.Slug, w, o, p.Group)
+				}
+			}
+		}
 	}
 }

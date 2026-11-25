@@ -19,12 +19,12 @@ const Base = "/static/bildoj/"
 
 // Picture is one row of vortbildoj.json.
 type Picture struct {
-	Word    string `json:"word"`    // the Esperanto word, in its dictionary form (hundo, ruĝa, manĝi)
-	Topic   string `json:"topic"`   // the A0 topic it belongs to (bestoj, koloroj, …)
-	File    string `json:"file"`    // path under static/bildoj/
-	Source  string `json:"source"`  // where the picture comes from
-	Author  string `json:"author"`  // its author
-	License string `json:"license"` // its licence
+	Word    string `json:"word"`            // the Esperanto word, in its dictionary form (hundo, ruĝa, manĝi)
+	Topic   string `json:"topic"`           // the A0 topic it belongs to (bestoj, koloroj, …)
+	File    string `json:"file"`            // path under static/bildoj/
+	Source  string `json:"source"`          // where the picture comes from
+	Author  string `json:"author"`          // its author
+	License string `json:"license"`         // its licence
 	Exact   bool   `json:"exact,omitempty"` // match the word only as written (numbers): no root matching
 	Group   string `json:"group,omitempty"` // pictures too alike to be told apart: never options of one exercise
 }

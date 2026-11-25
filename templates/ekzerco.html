@@ -73,7 +73,7 @@
   {{end}}
 
   {{if .GameLesson}}
-  <p class="game-link"><a href="/ludo/?leciono={{.GameLesson}}">&#127922; {{t .UILang "exercise.play_as_game"}}</a></p>
+  <p class="game-link"><a href="/ludo/?leciono={{.GameLesson}}">{{with and (ne .Item.Type "reading") (legadoBildo .GameLesson "")}}<img src="{{.}}" alt="" class="series-pic" width="40" height="40" decoding="async"> {{else}}&#127922; {{end}}{{t .UILang "exercise.play_as_game"}}</a></p>
   {{end}}
 
   {{/* ── Passive types + vocab flashcard: Anki judgment, no text input ── */}}
@@ -241,7 +241,8 @@
     {{if eq .Item.Type "multiplechoice"}}
     <fieldset>
       <legend>{{t .UILang "exercise.choose_answer"}}</legend>
-      {{with vortBildo .Item}}<div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{t $.UILang "pictures.prompt_alt"}}" width="128" height="128" decoding="async"></span></div>{{end}}
+      {{with vortBildo .Item}}{{$lang := "en"}}{{if $.User}}{{$lang = $.User.Lang}}{{end}}{{$alt := defForLang $.Item.Content $lang}}
+      <div class="pic-prompt"><span class="pic-tile pic-tile-lg"><img src="{{.URL}}" alt="{{if $alt}}{{$alt}}{{else}}{{t $.UILang "pictures.prompt_alt"}}{{end}}" width="128" height="128" decoding="async"></span></div>{{end}}
       {{if .Item.Question}}<p>{{.Item.Question}}</p>{{end}}
       {{range $i, $opt := .Item.Options}}
       <label>
@@ -296,8 +297,10 @@
     {{else}}<p>{{t $.UILang "exercise.vocab_prompt"}} <small>({{t $.UILang "exercise.vocab_community_note"}} {{langName $lang}})</small></p>{{end}}
     <h2 class="vocab-word">{{$communityDef}}</h2>
     {{else if $pic}}
-    {{- /* No shared language needed: the picture asks for the word. */}}
-    <p>{{t .UILang "exercise.picture_prompt"}}</p>
+    {{- /* No shared language needed: the picture asks for the word (for a
+         Zagreb root, the root: the answer stays the item's word). */}}
+    {{if $.IsRadiko}}<p>{{t $.UILang "exercise.radiko_prompt"}} <span class="tag">radiko</span></p>
+    {{else}}<p>{{t .UILang "exercise.picture_prompt"}}</p>{{end}}
     {{else}}
     <p class="missing-def">{{t .UILang "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t .UILang "exercise.missing_def_suffix"}}</p>
     {{$allDefs := allDefs .Item.Content}}

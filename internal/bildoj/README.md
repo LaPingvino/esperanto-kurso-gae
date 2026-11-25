@@ -32,6 +32,29 @@ How a word finds its picture (`ForToken`, `ForVocab`):
    the root of a row. Affixes and correlatives (tags `sufikso`, `prefikso`,
    `tabelvorto`) get no picture.
 
+## Picture exercises
+
+A `multiplechoice` item whose content has `"bildo": "<word>"` shows that
+word's picture above its options (the A0 series in `seed/bildvortaro.json`
+are built so). Its `definitions` (as on a vocab item) give the picture's alt
+text in the learner's language; without them the alt is a generic "a picture
+of the word to find". The answer rules are the site's own: the chosen option
+against `correct_index`. The site's content editor (`/admin/enhavo/…/redakti`)
+rebuilds an item's content from its form, which has no `bildo` field yet:
+saving such an item there drops its picture.
+
+## Tools
+
+`tools/` has the scripts that made the files (Python 3 with Pillow;
+`rsvg-convert`/ImageMagick only for checking):
+
+- `make_words.py words.txt OPENMOJI_DIR .` — `words.txt` lists word, topic,
+  emoji and flags; writes `static/bildoj/vortoj/` and `vortbildoj.json` from the
+  OpenMoji release: OPENMOJI_DIR holds `svg/` (`openmoji-svg-color.zip`
+  unzipped) and `openmoji.json` (the release's `data/openmoji.json`).
+- `make_site_icons.py KENNEY_DIR .` — the lesson places and kind icons.
+- `make_seed.py .` — `seed/bildvortaro.json` from `vortbildoj.json`.
+
 To give a new word a picture: add the file under `static/bildoj/vortoj/`, add
 its row, add its credit to `static/bildoj/ASSETS.md` if it comes from a new
 source, and run `go test ./internal/bildoj/`.
