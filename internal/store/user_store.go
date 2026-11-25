@@ -26,6 +26,7 @@ type userEntity struct {
 	PasskeysJSON  []byte    `datastore:"passkeys_json,noindex"`
 	ProgressJSON  []byte    `datastore:"progress_json,noindex"`
 	FavoritesJSON []byte    `datastore:"favorites_json,noindex"`
+	GameStarsJSON []byte    `datastore:"game_stars_json,noindex"`
 	KeepDataDays  int       `datastore:"keep_data_days"`
 	StreakDays    int       `datastore:"streak_days"`
 	StreakStartAt time.Time `datastore:"streak_start_at"`
@@ -47,6 +48,12 @@ func userToEntity(u *model.User) (*userEntity, error) {
 	if err != nil {
 		return nil, err
 	}
+	var gsJSON []byte
+	if len(u.GameStars) > 0 {
+		if gsJSON, err = json.Marshal(u.GameStars); err != nil {
+			return nil, err
+		}
+	}
 	lang := u.Lang
 	if lang == "" {
 		lang = "en"
@@ -67,6 +74,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		PasskeysJSON:  pkJSON,
 		ProgressJSON:  prJSON,
 		FavoritesJSON: favJSON,
+		GameStarsJSON: gsJSON,
 		KeepDataDays:  u.KeepDataDays,
 		StreakDays:    u.StreakDays,
 		StreakStartAt: u.StreakStartAt,
@@ -126,6 +134,11 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 	}
 	if len(e.FavoritesJSON) > 0 {
 		if err := json.Unmarshal(e.FavoritesJSON, &u.Favorites); err != nil {
+			return nil, err
+		}
+	}
+	if len(e.GameStarsJSON) > 0 {
+		if err := json.Unmarshal(e.GameStarsJSON, &u.GameStars); err != nil {
 			return nil, err
 		}
 	}
@@ -335,6 +348,8 @@ func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 		dst.StreakStartAt = src.StreakStartAt
 		dst.LastPracticeAt = src.LastPracticeAt
 	}
+	// The game's stars: the larger per lesson (never lose progress).
+	dst.GameStars = model.MergeGameStars(dst.GameStars, src.GameStars)
 	// Keep username from src if dst has none.
 	if dst.Username == "" && src.Username != "" {
 		dst.Username = src.Username
@@ -477,6 +492,44 @@ func (s *UserStore) UpdateLang(ctx context.Context, userID, lang string) error {
 		return err
 	})
 	return err
+}
+
+// MergeGameStars merges the game's stars into the account's (the larger per
+// lesson, model.MergeGameStars) in one transaction, and returns the result.
+func (s *UserStore) MergeGameStars(ctx context.Context, userID string, stars map[string]int) (map[string]int, error) {
+	key := s.userKey(userID)
+	var merged map[string]int
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		merged = map[string]int{}
+		if len(e.GameStarsJSON) > 0 {
+			if err := json.Unmarshal(e.GameStarsJSON, &merged); err != nil {
+				return err
+			}
+		}
+		before := len(merged)
+		changed := false
+		for k, n := range stars {
+			if n > merged[k] && n <= 3 {
+				changed = true
+			}
+		}
+		merged = model.MergeGameStars(merged, stars)
+		if !changed && len(merged) == before {
+			return nil // nothing new: no write
+		}
+		b, err := json.Marshal(merged)
+		if err != nil {
+			return err
+		}
+		e.GameStarsJSON = b
+		_, err = tx.Put(key, &e)
+		return err
+	})
+	return merged, err
 }
 
 func (s *UserStore) UpdateUILang(ctx context.Context, userID, lang string) error {

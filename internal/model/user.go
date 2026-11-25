@@ -22,6 +22,7 @@ type User struct {
 	PasskeysJSON []byte             `firestore:"passkeys_json"`
 	Passkeys     []webauthn.Credential `firestore:"-"`
 	Progress     map[string]bool    `firestore:"progress"`
+	GameStars    map[string]int     `firestore:"-"` // the game's stars per lesson (gamestars.go)
 	Favorites      []string           `firestore:"favorites"`
 	KeepDataDays   int                `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
 	StreakDays      int                `firestore:"streak_days"`
