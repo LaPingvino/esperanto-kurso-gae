@@ -1,6 +1,6 @@
 # The course's gaps (2026-11-25)
 
-Measured on the seed files in `seed/` (the export from March 2026: 2,295 items),
+Measured on the seed files in `seed/` (the export from March 2026 and the older seed files: 1,633 distinct items),
 not on the live Datastore, which may have grown since. Once the builder API is
 deployed, `scripts/builder.sh read` gives the live outline; re-check this page
 against it.
@@ -22,15 +22,18 @@ the grammar terms themselves.
 
 | Level | Readings | Fill-in | Multiple choice | Vocab | Video | Phrasebook |
 |---|---:|---:|---:|---:|---:|---:|
-| A0 | 6 | – | – | 272 | 4 | – |
-| A1 | 10 | 46 | 5 | 783 | 30 | – |
-| A2 | 9 | 40 | 7 | 14 | 32 | 2 |
-| B1 | 48 | 40 | – | 693 | – | – |
-| B2 | 20 | – | – | 34 | – | – |
-| C1 | 12 | – | – | 188 | – | – |
+| A0 | 3 | – | – | 141 | 3 | – |
+| A1 | 5 | 23 | 2 | 386 | 14 | – |
+| A2 | 5 | 21 | 5 | 14 | 16 | 2 |
+| B1 | 40 | 20 | – | 693 | – | – |
+| B2 | 13 | – | – | 34 | – | – |
+| C1 | 5 | – | – | 188 | – | – |
 | C2 | **0** | **0** | **0** | **0** | – | – |
 
-Series: the Zagreb method (12 lessons, with 8–16 fill-ins each), vocab lists
+(1,633 distinct items: the seed files overlap, so each slug is counted once,
+with the rating of the March export, `ekzercoj-zagr-restructured.json`.)
+
+Series: the Zagreb method (12 lessons, 4–8 fill-ins each), vocab lists
 (roots, correlatives, prepositions, affixes, numbers, days, months, colours),
 the Fundamenta Ekzercaro (31 readings), PMEG excerpts (9), literature
 excerpts (8, B1–C1), Mazi and Pasporto videos, two articles (C1).
@@ -39,7 +42,7 @@ excerpts (8, B1–C1), Mazi and Pasporto videos, two articles (C1).
 
 1. **No C2 at all**, and nothing interactive above B1. B2, C1 and C2 have
    only readings and vocab cards: there is not one exercise with an answer to
-   check. 108 interactive items in all (A1–B1), against 1,454 vocab cards.
+   check. 71 interactive items in all (64 fill-ins and 7 multiple choice, A1–B1), against 1,456 vocab cards.
 2. **Grammar terminology is missing**, and the English course needs it most.
    Of the ~50 core terms (substantivo, verbo, akuzativo, participo,
    infinitivo, subjekto, objekto, tenso, modo, pasivo, komparativo,
@@ -121,7 +124,7 @@ scan joined, footnote and verse numbers removed, two OCR errors in *Esenco*
 fixed (samlempuloj → samtempuloj, "iras. kiel" → "iras, kiel"). The Revizoro
 has a one-line introduction and the Letter a note on the two Russian shop
 signs, both marked as the site's own. (Grabowski died in 1921, not 1930 as the
-brief had it; PD either way. Hamlet, transl. Zamenhof, would have been a good
+brief had it; PD either way. Death dates checked on Esperanto Wikipedia. Hamlet, transl. Zamenhof, would have been a good
 C2 text but Wikisource has act III untranscribed.)
 
 ## Copyright: already on the site, worth a look
@@ -130,7 +133,7 @@ These are on the live site now, from before the builder:
 
 - *Vivo de Zamenhof*, **Edmond Privat** (died 1962): in copyright until
   2032, plus 87 vocab cards made from it.
-- *La sep kapridoj*, Grimm, transl. **Kabe** (Kazimierz Bein, died 1959): in
+- *La sep kapridoj*, Grimm, transl. **Kabe** (Kazimierz Bein, died 15 June 1959): in
   copyright until 2029.
 - *1984*, Orwell (d. 1950), transl. **Donald Broadribb** (d. 2012), and *La
   eta princo*, Saint-Exupéry (d. 1944), in a modern translation: both in
@@ -150,7 +153,7 @@ current branches land.
 - **The duplicate series `literatura` / `literaturo`** — one is enough (8 + 8 readings, overlapping).
 - **Duplicate tags** (`grava-esprimo`/`grava_esprimo`, `tago-en-la-semajno`/`tago_en_la_semajno`) — one spelling.
 - **The phrasebook items that ask in English** ("How do you say…") — they assume English, which this course comes *before*; ask in the learner's language or in Esperanto.
-- **The legacy `question`/`answer` keys on readings** (17 readings, mostly empty) — dead data.
+- **The legacy `question`/`answer` keys on readings** (21 readings, mostly empty) — dead data.
 - **The Honorlisto (hall of fame)** — a rating leaderboard serves neither the course nor the path to English.
 - **Video items without exercises** (Mazi 24, Pasporto 32, music 8) — they are passive; keep them only if they get comprehension questions, and check that the YouTube embeds still play.
 - **`voc-auto-*` cards from literature excerpts in general** — even with meanings, a card per rare word of one text is noise next to the core vocabulary.

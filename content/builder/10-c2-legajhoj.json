@@ -19,6 +19,7 @@
   ],
   "source": "Fundamento de Esperanto, Antaŭparolo — L. L. Zamenhof (1905)",
   "series_slug": "konstruanto-c2-legado",
+  "series_order": 1,
   "series_label": "Legaĵoj C2"
  },
  {
@@ -260,6 +261,7 @@
   ],
   "source": "Letero pri la deveno de Esperanto (al N. Borovko, ĉ. 1895) — L. L. Zamenhof; el Lingvaj Respondoj (1925)",
   "series_slug": "konstruanto-c2-legado",
+  "series_order": 2,
   "series_label": "Legaĵoj C2"
  },
  {
@@ -480,6 +482,7 @@
   ],
   "source": "Esenco kaj estonteco de la ideo de lingvo internacia (1900) — L. L. Zamenhof; el Fundamenta Krestomatio (1903)",
   "series_slug": "konstruanto-c2-legado",
+  "series_order": 3,
   "series_label": "Legaĵoj C2"
  },
  {
@@ -659,6 +662,7 @@
   ],
   "source": "La Revizoro, akto unua — N. V. Gogol, trad. L. L. Zamenhof (1907)",
   "series_slug": "konstruanto-c2-legado",
+  "series_order": 4,
   "series_label": "Legaĵoj C2"
  },
  {
@@ -838,6 +842,7 @@
   ],
   "source": "Sinjoro Tadeo, Libro I — Adam Mickiewicz, trad. Antoni Grabowski (1918)",
   "series_slug": "konstruanto-c2-legado",
+  "series_order": 5,
   "series_label": "Legaĵoj C2"
  },
  {

@@ -36,8 +36,11 @@ one bad item and nothing is written.
 
 ## The approval flow, and undo
 
-- Everything the builder writes has `AuthorID: "builder"`. The admin editor
-  keeps that mark when an admin edits the item.
+- Everything the builder writes has `AuthorID: "builder"`. The admin's
+  single-item editor keeps that mark; the admin's *series* editor
+  (`/admin/serio/…/redakti`) rewrites a series' items as the editing admin's
+  (and resets their ratings), so after a save there they are no longer the
+  builder's: the builder can't change or unpublish them any more.
 - New items go in **pending**: on the admin's list (`/admin/enhavo?status=pending`)
   and the dashboard count, in no public list, series, search or
   recommendation, until an admin approves them there, or the builder
@@ -46,6 +49,8 @@ one bad item and nothing is written.
   the builder's is refused (400), and publishing or unpublishing one is
   refused (409). So it can never overwrite seed, admin or community content,
   or publish someone else's pending item.
+- `unpublish --all` also sends back builder items that an admin approved by
+  hand; approve them again afterwards if that wasn't meant.
 - **Undo in one call:** `scripts/builder.sh unpublish --all` puts every
   builder item back to pending. Use `--series S` or slugs to undo some.
 - The limit: like every unapproved item on the site, a pending item still
@@ -57,7 +62,8 @@ one bad item and nothing is written.
 scripts/builder.sh read 'level=C2&origin=builder'
 scripts/builder.sh get c2-letero-deveno
 scripts/builder.sh load content/builder      # the prepared content, all pending
-scripts/builder.sh publish --series c2-letero-ekz
+scripts/builder.sh publish c2-letero-deveno           # a reading (its series holds all C2 readings)
+scripts/builder.sh publish --series c2-letero-ekz     # and its exercises
 scripts/builder.sh unpublish --all           # the undo
 ```
 
@@ -67,6 +73,7 @@ override the site and key file. The script needs `curl` and `jq`.
 ## Prepared content
 
 `content/builder/*.json` is in the API's format, made by
-`content/builder/make.py` from the Wikisource texts (sources and licences in
+`content/builder/make.py` from the Wikisource texts (`content/builder/sources/fetch.sh DIR`
+fetches and converts them; then `python content/builder/make.py DIR content/builder`) (sources and licences in
 `docs/GAPS.md`). `TestBuilderContentFiles` runs the files through the API's own
 checks and makes sure no slug collides with the seed.

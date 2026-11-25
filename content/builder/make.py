@@ -1,4 +1,7 @@
-"""Builds content/builder/*.json (builder API format) from the fetched
+"""Run sources/fetch.sh first (it fetches the pages into a directory and
+converts them to text), then: python make.py SRCDIR OUTDIR.
+
+Builds content/builder/*.json (builder API format) from the fetched
 Wikisource texts (argv[1] = src dir) and the hand-written exercises below.
 argv[2] = output dir."""
 import json, re, sys, hashlib, os
@@ -49,6 +52,7 @@ def place(slug, opts):
 
 
 items = {}
+reading_order = {}
 
 
 def add(file, it):
@@ -59,8 +63,10 @@ def reading(file, slug, level, title, text, source, url, tags, note="", rating=N
     c = {"title": title, "text": text, "source_url": url, "license": PD}
     if note:
         c["note"] = note
+    series = "konstruanto-" + level.lower() + "-legado"
+    reading_order[series] = reading_order.get(series, 0) + 1
     it = {"slug": slug, "type": "reading", "level": level, "content": c, "tags": tags,
-          "source": source, "series_slug": "konstruanto-" + level.lower() + "-legado",
+          "source": source, "series_slug": series, "series_order": reading_order[series],
           "series_label": "Legaĵoj " + level}
     if rating:
         it["rating"] = rating
@@ -483,7 +489,7 @@ exercises(F, None, "gramatiko-afiksoj-ekz", "Vortfarado: afiksoj", "B1", ["grama
     ("fi", "La patro kaj la patrino kune estas la ___.", "gepatroj", "prefikso de ambaŭ seksoj, pluralo"),
     ("fi", "Fari ion pura: ___", "purigi", "sufikso -ig-, i-formo"),
     ("fi", "Fariĝi ruĝa: ___", "ruĝiĝi", "sufikso -iĝ-, i-formo"),
-    ("fi", "Unu malgranda peco de neĝo (neĝflokoj konsistas el ili) estas ___.", "neĝero", "sufikso -er-"),
+    ("fi", "Unu ero de neĝo (unu neĝfloko) estas ___.", "neĝero", "neĝ- + sufikso -er-"),
     ("fi", "Granda aro da arboj estas ___.", "arbaro", "sufikso de aro"),
     ("fi", "La eco de tiu, kiu estas libera, estas ___.", "libereco", "sufikso de eco"),
 ], base=1400)
