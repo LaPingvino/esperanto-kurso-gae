@@ -2,8 +2,9 @@
 // each panel's shade is the mean light of the same panel of the Cartography
 // Pack's parchmentFolded texture (ASSETS.md), at a third of its strength, at
 // most 2 darker than the plain paper (every colour on the map keeps its
-// contrast). Flat fills, not the picture: a full-screen picture costs
-// ~12 ms a frame to blend (generated; see ASSETS.md).
+// contrast). Flat fills, not the picture: blending a 1280x656 picture took
+// ~12 ms a frame natively (Go's image/draw); a fill costs next to nothing.
+// The shades were computed once from the texture (ASSETS.md).
 var y0;
 y0 = argument0;
 if (global.wide) {

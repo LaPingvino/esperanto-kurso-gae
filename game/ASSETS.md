@@ -26,9 +26,11 @@ scaled with Lanczos to the exact size the game draws it at (the engine scales
 with nearest neighbour, so nothing is drawn stretched), and saved as a new PNG
 with no text, time or profile chunks.
 
-The paper is flat fills, not the texture itself: blending a full-screen picture
-costs about 12 ms a frame (measured natively; more in the browser, and the
-player draws every frame), while a fill costs next to nothing. Each panel is
+The paper is flat fills, not the texture itself: blending the texture as a
+1280×656 picture took about 12 ms a frame, measured natively with Go's
+image/draw as the engine draws it (the browser player redraws every frame; not
+measured there), while a fill costs next to nothing. The shades were computed
+once from the texture by a small script (not in the repository). Each panel is
 mostly lighter than the plain paper and at most 2 below it, so every colour on
 the map keeps its contrast at the darkest panel: the muted text 5.4:1 (AA),
 the green 6.0:1, the stars 3.4:1 and the locked places' edge 3.0:1.
