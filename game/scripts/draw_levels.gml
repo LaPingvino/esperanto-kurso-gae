@@ -3,6 +3,7 @@
 // Paged when it doesn't fit (from series global.lv_skip on).
 var x, y, x0, x1, s, lv, h, lab, n, cols, cw, row;
 x0 = global.m; x1 = global.W - global.m;
+map_paper(global.hh); // the paper, as on the maps (ASSETS.md)
 y = global.hh + 16;
 txt(x0, y, "La kurso — elektu serion", 18, 1, global.C_text);
 y += 36;
@@ -27,7 +28,8 @@ for (s = global.lv_skip; s < global.ns; s += 1) {
   rfill(x, y, x + cw, y + h, global.C_panel, global.C_line);
   if (n > 0) fill(x + 2, y + h - 6, x + 2 + (cw - 4) * n / max(1, global.s_np[s]), y + h - 3, global.C_main);
   font(15, 1, 0);
-  while (string_width(lab) > cw - 20 && string_length(lab) > 4) lab = string_copy(lab, 1, string_length(lab) - 2) + "…";
+  draw_sprite(spr_place_s, series_pic(s), x + cw - 38, y + (h - 28) / 2 - 2); // the series' picture
+  while (string_width(lab) > cw - 58 && string_length(lab) > 4) lab = string_copy(lab, 1, string_length(lab) - 2) + "…";
   txt(x + 10, y + 7, lab, 15, 1, global.C_text);
   txt(x + 10, y + 28, string(n) + " / " + string(global.s_np[s]), 13, 0, global.C_muted);
   hs(x, y, x + cw, y + h, 20000 + s);

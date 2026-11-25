@@ -1,6 +1,9 @@
 // draw_map(): a series' places on a path, twelve to a page; each finished
 // place opens the next.
-var s, f, n, l, k, x, y, x2, y2, c, r, open, lx, ly, nm, cur, st, k0, k1;
+var s, f, n, l, k, x, y, x2, y2, c, r, open, lx, ly, nm, cur, st, k0, k1, pic, e;
+// The paper, folded as a map is, and its compass when there is room (ASSETS.md).
+map_paper(global.hh);
+if (global.wide) draw_sprite(spr_compass, 0, global.W - global.m - 60, global.hh + 14);
 s = global.ser;
 f = global.s_first[s]; n = global.s_np[s];
 txt(global.m, global.hh + 18, global.s_label[s] + " — " + global.s_level[s], 18, 1, global.C_text);
@@ -22,6 +25,12 @@ for (k = k0; k < k1; k += 1) {
   open = place_open_ok(l);
   st = stars_get(global.p_slug[l]);
   nm = global.p_title[l];
+  pic = place_pic(l) + 15 * (!open); // its picture, faded until it opens
+  if (global.wide) {
+    if (k - k0 == 6) draw_sprite(spr_place, pic, x + r + 10, y - 22); // beside it: the path comes down from above
+    else draw_sprite(spr_place, pic, x - 22, y - r - 52);
+  }
+  else draw_sprite(spr_place_s, pic, global.W - global.m - 28, y - 14); // at the row's end
   font(15, 1, 0);
   while (string_width(nm) > 170 && string_length(nm) > 6) nm = string_copy(nm, 1, string_length(nm) - 2) + "…";
   if (st > 0) { brush_color = global.C_main; pen_color = global.C_main; draw_circle(x, y, r); txtc(x, y - 12, string(k + 1), 18, 1, global.C_on); }
@@ -42,6 +51,11 @@ for (k = k0; k < k1; k += 1) {
     if (open) hs(x - 90, y - r - 6, x + 90, ly + 46, 10000 + l);
   } else {
     lx = x + r + 14; ly = y - 11;
+    e = 0; // what follows the name on its row, kept clear of the picture at the row's end
+    if (st > 0) e = 60;
+    else if (l == cur) { font(13, 0, 0); e = 12 + string_width("‹ komencu"); }
+    font(15, 1, 0);
+    while (lx + string_width(nm) + e > global.W - global.m - 42 && string_length(nm) > 6) nm = string_copy(nm, 1, string_length(nm) - 2) + "…";
     if (open) txt(lx, ly, nm, 15, 1, global.C_text); else txt(lx, ly, nm, 15, 0, global.C_muted);
     font(15, 1, 0);
     if (st > 0) stars(lx + string_width(nm) + 34, y, 7, st);
