@@ -1,0 +1,18 @@
+{{/* Where a vocab card's meaning comes from, and links into the dictionaries.
+     Both take: map "M" .Meaning "UILang" .UILang, plus "Hide" true where the
+     answer is still to be typed (no link that shows the word, no related word). */}}
+
+{{define "signifo-fonto"}}{{with .M}}{{if or .Fallback (eq .Source "revo") .Via}}
+<p class="def-source"><small>
+  {{- if .Fallback}}{{t $.UILang "dict.fallback_in"}} {{langName .Lang}}{{end}}
+  {{- if eq .Source "revo"}}{{if .Fallback}} · {{end}}{{t $.UILang "dict.from"}} {{if $.Hide}}Reta Vortaro{{else}}<a href="{{.ReVoURL}}" target="_blank" rel="noopener">Reta Vortaro</a>{{end}}{{end}}
+  {{- if .Via}} · {{t $.UILang "dict.related"}}{{if not $.Hide}}: <em>{{.Via}}</em>{{end}}{{end -}}
+</small></p>
+{{end}}{{end}}{{end}}
+
+{{define "vortaroj-ligiloj"}}{{with .M}}
+<p class="dict-links"><small>&#128214; {{t $.UILang "dict.look_up"}}
+  <a href="{{.ReVoURL}}" target="_blank" rel="noopener" title="{{t $.UILang "dict.revo_title"}}">Reta Vortaro{{if not .ReVoFound}} ({{t $.UILang "dict.search"}}){{end}}</a>
+  &middot; <a href="{{.PIVURL}}" target="_blank" rel="noopener" title="{{t $.UILang "dict.piv_title"}}">PIV</a>
+</small></p>
+{{end}}{{end}}

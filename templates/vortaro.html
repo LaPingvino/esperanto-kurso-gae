@@ -51,10 +51,12 @@
     {{range .Items}}
     <tr>
       <td><strong><a href="/ekzerco/{{.Slug}}">{{.Word}}</a></strong></td>
-      <td>{{defForLang .Content $lang}}</td>
+      {{$m := index $.Meanings .Slug}}
+      <td>{{if $m.Text}}{{if $m.Fallback}}<small class="lang-badge" title="{{langName $m.Lang}}">{{$m.Lang}}</small> {{end}}{{$m.Text}}{{if $m.Via}} <small class="def-source">({{$m.Via}})</small>{{end}}{{if eq $m.Source "revo"}} <a href="{{$m.ReVoURL}}" target="_blank" rel="noopener" class="def-source" title="Reta Vortaro"><small>ReVo</small></a>{{end}}{{else}}<a href="{{$m.ReVoURL}}" target="_blank" rel="noopener" class="def-source"><small>ReVo ({{t $.UILang "dict.search"}})</small></a>{{end}}</td>
       <td>{{range .Tags}}<small class="tag">{{.}}</small> {{end}}</td>
       <td>
         <a href="/ekzerco/{{.Slug}}">{{t $.UILang "vortaro.practice_link"}}</a>
+        &middot; <a href="{{$m.PIVURL}}" target="_blank" rel="noopener" title="{{t $.UILang "dict.piv_title"}}">PIV</a>
         {{if $.User}} &middot; <a href="/ekzerco/{{.Slug}}#tradukoj-{{.Slug}}">{{t $.UILang "vortaro.translate_link"}}</a>{{end}}
       </td>
     </tr>
@@ -79,6 +81,7 @@
 </nav>
 {{end}}
 
+<p class="def-source"><small>{{t .UILang "dict.credit"}}</small></p>
 {{else}}
 <p>{{t .UILang "vortaro.empty"}}</p>
 {{end}}
