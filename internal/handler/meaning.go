@@ -4,6 +4,7 @@ import (
 	"net/url"
 	"strings"
 
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
@@ -74,6 +75,23 @@ func courseDef(content map[string]interface{}, lang string) (def string, copied 
 func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 	word := item.Word()
 	hit := revo.Lookup(word, isRootCard(item))
+	if !isRootCard(item) {
+		// The reading words' lemmatiser is stricter than Lookup's guesses
+		// (akrega is akr|eg|a, not "akreo", an acre; ele is el|e, not the
+		// letter L): a word it finds no ReVo entry for gets no near-word's
+		// meaning, and a form it traces to a word gets that word's.
+		if l, h, via, ok := legvortoj.Lemma(word); ok {
+			switch {
+			case h == nil:
+				hit = nil
+			case hit == nil || hit.Entry != h.Entry:
+				hit = h
+				if via {
+					hit.Via = l
+				}
+			}
+		}
+	}
 	m := Meaning{PIVURL: pivURL(word, hit)}
 	var sense *revo.Sense
 	if hit != nil {

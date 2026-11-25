@@ -237,3 +237,38 @@ func TestRenderReadingWords(t *testing.T) {
 		os.WriteFile(filepath.Join(out, "legvortoj.html"), b.Bytes(), 0o644)
 	}
 }
+
+// TestRenderPracticeVerdict renders the practice's verdict (rezulto.html)
+// with exactly the data the answer handler gives it, with and without a
+// card, right and wrong.
+func TestRenderPracticeVerdict(t *testing.T) {
+	tmpl, err := parseTemplates()
+	if err != nil {
+		t.Fatal(err)
+	}
+	reading := seedItem(t, "lit-la-eta-princo-komenco")
+	words := handler.Glossary(reading, legvortoj.NewIndex(nil), "de")
+	qs := handler.Practice(reading.Slug, words)
+	if len(qs) < 2 {
+		t.Fatal("no practice")
+	}
+	u := &model.User{ID: "test-user-5", Lang: "de", UILang: "eo", Rating: 1500, RD: 200}
+	cardItem := &model.ContentItem{Slug: "voc-auto-x", Type: "vocab", Content: map[string]interface{}{"word": "x"}}
+	for _, c := range []struct {
+		card   *model.ContentItem
+		answer string
+	}{{nil, qs[0].Form}, {nil, "nenio"}, {cardItem, qs[0].Form}, {cardItem, "nenio"}} {
+		data := handler.PracticeVerdict(u, qs[0], c.answer, c.card, reading.Slug, 1, len(qs), 3, false)
+		var b bytes.Buffer
+		if err := tmpl.ExecuteTemplate(&b, "rezulto.html", data); err != nil {
+			t.Fatalf("card %v answer %q: %v", c.card != nil, c.answer, err)
+		}
+		out := b.String()
+		if !strings.Contains(out, "/legado/lit-la-eta-princo-komenco/vortoj?n=2") || !strings.Contains(out, qs[0].Form) {
+			t.Errorf("verdict lacks the next question or the answer: %s", out)
+		}
+		if strings.Contains(out, "/alternativo") {
+			t.Error("a cloze answer offered as an alternative for the card")
+		}
+	}
+}

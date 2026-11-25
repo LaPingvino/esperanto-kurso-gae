@@ -36,7 +36,15 @@ load) for f in "${1:?a directory}"/*.json; do echo "== $f"; post content @"$f"; 
 publish) post publish "$(target "$@")" ;;
 unpublish) post unpublish "$(target "$@")" ;;
 legvortoj) curl -sS --fail-with-body "${ua[@]}" -H @"$hdr" "$site/builder-api/legvortoj" | jq '{fingerprint, counts, actions: (.actions | group_by(.kind) | map({key: .[0].kind, value: map(.slug + (if .into then " → " + .into else "" end))}) | from_entries)}' ;;
-legvortoj-apply) post legvortoj/apply "$(jq -n --arg f "${1:?the fingerprint from: builder.sh legvortoj}" '{fingerprint: $f}')" ;;
+legvortoj-apply) # in batches: the same run, the next fingerprint, until nothing remains
+  fp=${1:?the fingerprint from: builder.sh legvortoj}; run=""
+  while :; do
+    res=$(post legvortoj/apply "$(jq -n --arg f "$fp" --arg r "$run" '{fingerprint: $f} + (if $r == "" then {} else {run: $r} end)')")
+    echo "$res"
+    run=$(jq -r .run <<<"$res"); left=$(jq -r '.remaining // 0' <<<"$res"); fp=$(jq -r '.fingerprint // empty' <<<"$res")
+    [ "$left" -gt 0 ] && [ -n "$fp" ] || break
+  done
+  echo "run $run (undo: $0 legvortoj-undo $run)" ;;
 legvortoj-undo) post legvortoj/undo "$(jq -n --arg r "${1:?a run id, lv-…}" '{run: $r}')" ;;
 *) echo "usage: $0 read [QUERY] | get SLUG | add FILE... | load DIR | publish|unpublish SLUG...|--series S|--all | legvortoj | legvortoj-apply FP | legvortoj-undo RUN" >&2; exit 2 ;;
 esac

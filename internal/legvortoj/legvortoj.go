@@ -659,6 +659,8 @@ func Plan(items []*model.ContentItem) []Action {
 			core = append(core, it)
 		}
 	}
+	sort.Slice(cards, func(i, j int) bool { return cards[i].Slug < cards[j].Slug }) // the same plan for the same items
+	sort.Slice(readings, func(i, j int) bool { return readings[i].Slug < readings[j].Slug })
 	x := NewIndex(core) // core cards only: which words the course already has
 	inReading := map[string][]string{}
 	lemmasOf := map[string]map[string]bool{}  // reading → its words

@@ -10,7 +10,9 @@ package handler
 // leads to the card it folded into).
 //
 //	GET  /builder-api/legvortoj          the plan (legvortoj.Plan) and its fingerprint; changes nothing
-//	POST /builder-api/legvortoj/apply    {"fingerprint": "…"}: carry out exactly that plan → {"run": "…"}
+//	POST /builder-api/legvortoj/apply    {"fingerprint": "…"[, "run": "…"]}: carry out that plan, at most
+//	                                     lvBatch actions a call → {"run", "remaining", "fingerprint"}: while
+//	                                     remaining > 0, call again with that fingerprint and the same run
 //	POST /builder-api/legvortoj/undo     {"run": "…"}: put back what that run changed
 
 import (
@@ -19,12 +21,19 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"regexp"
 	"sort"
 	"time"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
+
+// lvBatch is how many cards one apply call changes (each a few Datastore
+// calls; 1,900 cards in one request could outrun App Engine's deadline).
+var lvBatch = 400
+
+var lvRunRE = regexp.MustCompile(`^lv-[0-9]{8}T[0-9]{6}-[0-9a-f]{6}$`)
 
 func (b *BuilderAPI) legvortojRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /builder-api/legvortoj", b.legvortojPlan)
@@ -116,6 +125,7 @@ func (b *BuilderAPI) legvortojApply(w http.ResponseWriter, r *http.Request) {
 	}
 	var body struct {
 		Fingerprint string `json:"fingerprint"`
+		Run         string `json:"run"` // go on with this run (the next batch)
 	}
 	if err := json.NewDecoder(http.MaxBytesReader(w, r.Body, 1<<16)).Decode(&body); err != nil || body.Fingerprint == "" {
 		builderJSON(w, http.StatusBadRequest, map[string]string{"error": `want {"fingerprint": "…"} from GET /builder-api/legvortoj`})
@@ -135,9 +145,20 @@ func (b *BuilderAPI) legvortojApply(w http.ResponseWriter, r *http.Request) {
 		builderJSON(w, http.StatusOK, map[string]any{"run": "", "changed": 0})
 		return
 	}
-	run := "lv-" + time.Now().UTC().Format("20060102T150405") + "-" + fp[:6]
+	run := body.Run
+	if run == "" {
+		run = "lv-" + time.Now().UTC().Format("20060102T150405") + "-" + fp[:6]
+	} else if !lvRunRE.MatchString(run) {
+		builderJSON(w, http.StatusBadRequest, map[string]string{"error": "a run id like lv-20261125T120000-abcdef"})
+		return
+	}
 	// new cards first, so every fold has its target
 	sort.SliceStable(plan, func(i, j int) bool { return plan[i].Kind == "create" && plan[j].Kind != "create" })
+	// a batch a call, well within a request's time; the rest in the next call
+	remaining := 0
+	if len(plan) > lvBatch {
+		remaining, plan = len(plan)-lvBatch, plan[:lvBatch]
+	}
 	changed := 0
 	fail := func(err error) {
 		log.Printf("legvortoj %s: stopped after %d changes: %v (undo with this run)", run, changed, err)
@@ -203,8 +224,14 @@ func (b *BuilderAPI) legvortojApply(w http.ResponseWriter, r *http.Request) {
 		log.Printf("legvortoj %s: %s %s → %q (was %s, rating %.0f)", run, a.Kind, a.Slug, a.Into, old.Status, old.Rating)
 		changed++
 	}
-	log.Printf("legvortoj %s: %d changes %v", run, changed, lvCounts(plan))
-	builderJSON(w, http.StatusOK, map[string]any{"run": run, "changed": changed, "counts": lvCounts(plan)})
+	log.Printf("legvortoj %s: %d changes %v, %d to go", run, changed, lvCounts(plan), remaining)
+	out := map[string]any{"run": run, "changed": changed, "counts": lvCounts(plan), "remaining": remaining}
+	if remaining > 0 {
+		if _, next, _, err := b.currentPlan(r); err == nil {
+			out["fingerprint"] = next
+		}
+	}
+	builderJSON(w, http.StatusOK, out)
 }
 
 // legvortojUndo puts back what a run changed: each card's latest snapshot

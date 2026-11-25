@@ -177,3 +177,73 @@ func TestGlossaryAndPractice(t *testing.T) {
 		}
 	}
 }
+
+// TestLegvortojBatches: a plan larger than a batch goes in several calls of
+// one run, and one undo puts all of it back.
+func TestLegvortojBatches(t *testing.T) {
+	old := lvBatch
+	lvBatch = 2
+	defer func() { lvBatch = old }()
+	_, fc, mux := newTestBuilder()
+	fc.m = lvItems()
+	before := snapshotStore(fc.m)
+	var res struct {
+		Fingerprint string
+		Run         string
+		Remaining   int
+	}
+	w := call(mux, "GET", "/builder-api/legvortoj", testKey, "")
+	json.Unmarshal(w.Body.Bytes(), &res)
+	body := `{"fingerprint":"` + res.Fingerprint + `"}`
+	calls := 0
+	for {
+		calls++
+		w = call(mux, "POST", "/builder-api/legvortoj/apply", testKey, body)
+		if w.Code != 200 {
+			t.Fatalf("apply %d: %d %s", calls, w.Code, w.Body)
+		}
+		res.Remaining, res.Fingerprint = 0, ""
+		json.Unmarshal(w.Body.Bytes(), &res)
+		if res.Remaining == 0 {
+			break
+		}
+		body = `{"fingerprint":"` + res.Fingerprint + `","run":"` + res.Run + `"}`
+		if calls > 5 {
+			t.Fatal("no end")
+		}
+	}
+	if calls != 3 {
+		t.Errorf("%d calls for 5 actions in batches of 2", calls)
+	}
+	w = call(mux, "GET", "/builder-api/legvortoj", testKey, "")
+	var plan struct{ Actions []legvortoj.Action }
+	json.Unmarshal(w.Body.Bytes(), &plan)
+	if len(plan.Actions) != 0 {
+		t.Errorf("left: %+v", plan.Actions)
+	}
+	call(mux, "POST", "/builder-api/legvortoj/undo", testKey, `{"run":"`+res.Run+`"}`)
+	after := snapshotStore(fc.m)
+	for k, v := range before {
+		if after[k] != v {
+			t.Errorf("%s not put back", k)
+		}
+	}
+	if w := call(mux, "POST", "/builder-api/legvortoj/apply", testKey, `{"fingerprint":"x","run":"../etc"}`); w.Code != 409 && w.Code != 400 {
+		t.Errorf("a bad run id: %d", w.Code)
+	}
+}
+
+// TestNoNearWordMeaning: a word ReVo lacks gets no meaning of a word that
+// only looks near (akrega is akr|eg|a, not akreo, an acre; ele is el|e,
+// not elo, the letter L); a form of a word gets that word's.
+func TestNoNearWordMeaning(t *testing.T) {
+	for _, w := range []string{"akrega", "ele"} {
+		m := MeaningFor(&model.ContentItem{Type: "vocab", Content: map[string]any{"word": w}}, "en", "")
+		if m.Text != "" || m.ReVoFound {
+			t.Errorf("%s: %q (via %q)", w, m.Text, m.Via)
+		}
+	}
+	if m := MeaningFor(&model.ContentItem{Type: "vocab", Content: map[string]any{"word": "aĉetita"}}, "en", ""); !strings.Contains(m.Text, "buy") || m.Via != "aĉeti" {
+		t.Errorf("aĉetita: %q via %q", m.Text, m.Via)
+	}
+}

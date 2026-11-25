@@ -428,13 +428,34 @@ func (h *ExerciseHandler) SubmitReadingPractice(w http.ResponseWriter, r *http.R
 	if correct {
 		score = 1
 	}
+	// The answer counts for a shared card (it learns its difficulty, the
+	// learner the word). A core card's own exercises stay its measure: a
+	// four-tile gap in a sentence it is not, so it neither moves its rating
+	// nor marks it done in its series.
 	var streak int
 	var milestone bool
-	if q.Word.Card != nil {
-		_, _, streak, milestone = h.rate(ctx, u, q.Word.Card, score, correct, answer)
+	var card *model.ContentItem
+	if c := q.Word.Card; c != nil {
+		card, _ = h.content.GetBySlug(ctx, c.Slug) // the stored rating, not the cache's
 	}
+	if card != nil && legvortoj.IsShared(card) {
+		_, _, streak, milestone = h.rate(ctx, u, card, score, correct, answer)
+	}
+	data := PracticeVerdict(u, q, answer, card, slug, n, len(qs), streak, milestone)
+	if newToken != "" {
+		w.Header().Set("X-New-Token", newToken)
+	}
+	if err := h.tmpl.ExecuteTemplate(w, "rezulto.html", data); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+// PracticeVerdict is the data rezulto.html gets for an answer in the
+// practice: n of total; card is the word's card or nil.
+func PracticeVerdict(u *model.User, q *PracticeQ, answer string, card *model.ContentItem, slug string, n, total, streak int, milestone bool) map[string]interface{} {
+	correct := strings.EqualFold(strings.TrimSpace(answer), q.Form)
 	cont := "/ekzerco/" + slug
-	if n < len(qs) {
+	if n < total {
 		cont = "/legado/" + slug + "/vortoj?n=" + strconv.Itoa(n+1)
 	}
 	why := q.Word.EoDef()
@@ -446,16 +467,11 @@ func (h *ExerciseHandler) SubmitReadingPractice(w http.ResponseWriter, r *http.R
 		"Why": why, "Gloss": "", "ContinueHref": cont, "UILang": u.UILangOrDefault(),
 		"StreakDays": streak, "StreakMilestone": milestone, "NoAlt": true,
 	}
-	if q.Word.Card != nil {
-		data["Item"] = q.Word.Card
-		data["VoteScore"] = q.Word.Card.VoteScore
+	if card != nil {
+		data["Item"] = card
+		data["VoteScore"] = card.VoteScore
 	}
-	if newToken != "" {
-		w.Header().Set("X-New-Token", newToken)
-	}
-	if err := h.tmpl.ExecuteTemplate(w, "rezulto.html", data); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+	return data
 }
 
 // newWords is the glossary's list: the words new to the course, in the
