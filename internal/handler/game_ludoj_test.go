@@ -4,6 +4,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httptest"
+	"net/http/httputil"
+	"net/url"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -68,45 +71,93 @@ func steps(keys []string) int {
 	return n
 }
 
+// wordsServer is the stub site with the day's A0 word made word (a word
+// with a picture, so the picture hint shows).
+func wordsServer(t *testing.T, s *stubSite, word string) string {
+	u, _ := url.Parse(s.srv.URL)
+	proxy := httputil.NewSingleHostReverseProxy(u)
+	mux := http.NewServeMux()
+	mux.HandleFunc("GET /ludo-api/vortoj", func(w http.ResponseWriter, r *http.Request) {
+		var out []string
+		for _, l := range strings.Split(s.get(t, "/ludo-api/vortoj?"+r.URL.RawQuery), "\n") {
+			if strings.HasPrefix(l, "T\tA0\t") {
+				l = "T\tA0\t" + word
+			}
+			out = append(out, l)
+		}
+		io.WriteString(w, strings.Join(out, "\n"))
+	})
+	mux.Handle("/", proxy)
+	srv := httptest.NewServer(mux)
+	t.Cleanup(srv.Close)
+	return srv.URL
+}
+
 // TestPlayVortludo: from the levels screen, the day's word of the learner's
-// level (the site's T line): three misses typed in the x-system, the hint
-// taken, the word typed in the h-system — found on the fourth row; in both
-// rooms, every text fitting, nothing posted.
+// level (a word with a picture): the first letter pressed on the screen's
+// keyboard, three misses typed in the x-system, the picture hint taken, the
+// word typed in the h-system — found on the fourth row; in both rooms, every
+// text fitting, nothing posted. Then the day's word comes from the site's
+// list, never from yesterday's kept copy; without the site, free play.
 func TestPlayVortludo(t *testing.T) {
 	gameviber(t)
 	s := newStubSite(t)
 	c := s.api.Course(t.Context())
-	ws := c.Words()
-	pool := gamedata.FivePool(ws, "A0")
-	word := ""
+	pool := gamedata.FivePool(c.Words(), "A0")
+	word, def := "", false
 	for _, l := range strings.Split(s.get(t, "/ludo-api/vortoj?lingvo=en"), "\n") {
-		if f := strings.Split(l, "\t"); f[0] == "T" && f[1] == "A0" {
-			word = f[2]
+		if f := strings.Split(l, "\t"); f[0] == "W" && f[3] == "1" && f[2] == "A0" && f[6] != "" && word == "" && f[1] != "abelo" {
+			word, def = f[1], f[5] != ""
 		}
 	}
 	if word == "" {
-		t.Fatal("no day's word for A0")
+		t.Fatal("no A0 word with a picture")
 	}
-	var misses []string
+	base := wordsServer(t, s, word)
+	misses := []string{"abelo"}
 	for _, w := range pool {
-		if w != word && len(misses) < 3 {
+		if w != word && w != "abelo" && len(misses) < 3 {
 			misses = append(misses, w)
 		}
 	}
+	if !strings.Contains(strings.Join(pool, " "), "abelo") {
+		t.Fatal("abelo not in the A0 pool")
+	}
+	var dir string
 	for _, room := range []string{"rm_tall", "rm_wide"} {
-		keys := []string{":30", "down:1", ":1", "enter:1", ":4"}
-		for _, m := range misses {
+		keys := []string{":30", "down:1", ":1", "enter:1", ":4", "down:1", ":1", "enter:1", ":1"} // Vortludo; the screen's a
+		for i, m := range misses {
+			if i == 0 {
+				m = m[1:]
+			}
 			keys = append(keys, "text="+xSpell(m)+":1", ":1", "enter:1", ":2")
 		}
-		keys = append(keys, "up:1", ":1", "up:1", ":1", "enter:1", ":2") // the last hint button
-		keys = append(keys, "text="+strings.ReplaceAll(hSpell(word), "u", "ux")+":1", ":1", "enter:1", ":4")
-		if strings.Contains(word, "ŭ") {
-			keys[len(keys)-4] = "text=" + xSpell(word) + ":1"
+		keys = append(keys, "up:1", ":1", "up:1", ":1")
+		if def {
+			keys = append(keys, "up:1", ":1")
 		}
-		dir := gameDir(t, c)
-		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")}, shot("vortludo-"+room)...)
-		playArgs(t, dir, args, fmt.Sprintf(`global.scr == 8 && global.vl_word == "%s" && global.vl_daily && global.vl_state == 1 && global.vl_row == 4 && global.vl_hint > 0 && global.ovf == 0`, word))
+		keys = append(keys, "enter:1", ":2") // Bildo
+		keys = append(keys, "text="+strings.ReplaceAll(hSpell(word), "u", "ux")+":1", ":1", "enter:1", ":4")
+		dir = gameDir(t, c)
+		args := append([]string{"play", "-base", base + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")}, shot("vortludo-"+room)...)
+		playArgs(t, dir, args, fmt.Sprintf(`global.scr == 8 && global.vl_word == "%s" && global.vl_daily && global.vl_state == 1 && global.vl_row == 4 && global.vl_hint == 1 && global.vl_pic >= 0 && global.ovf == 0`, word))
 	}
+	// the kept copy says another word is the day's: the site's list wins
+	kept := filepath.Join(dir, "ludo-vortoj-en.txt") // the game keeps its files in its working folder
+	b, err := os.ReadFile(kept)
+	if err != nil {
+		t.Fatal(err)
+	}
+	os.WriteFile(kept, []byte(strings.ReplaceAll(string(b), "T\tA0\t"+word, "T\tA0\t"+misses[1])), 0o644)
+	open := []string{":30", "down:1", ":1", "enter:1", ":6"}
+	playArgs(t, dir, []string{"play", "-base", base + "/ludo/", "-steps", "50", "-keys", strings.Join(open, ",")},
+		fmt.Sprintf(`global.scr == 8 && global.vl_daily && global.vl_word == "%s"`, word))
+	dead := httptest.NewServer(http.NotFoundHandler())
+	deadURL := dead.URL
+	dead.Close()
+	os.WriteFile(kept, []byte(strings.ReplaceAll(string(b), "T\tA0\t"+word, "T\tA0\t"+misses[1])), 0o644)
+	playArgs(t, dir, []string{"play", "-base", deadURL + "/ludo/", "-steps", "50", "-keys", strings.Join(open, ",")},
+		`global.scr == 8 && !global.vl_daily && global.vl_state == 0`)
 	if len(s.posts) != 0 {
 		t.Errorf("Vortludo posted %q", s.posts)
 	}
@@ -147,8 +198,23 @@ func TestPlayVetkuro(t *testing.T) {
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
 	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro, Komenci
-	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
+	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
 		`global.scr == 9 && global.rc_place == 1 && global.rp_n >= 4 && global.rc_state >= 1 && global.ovf == 0`)
+	// every word of the list Vetkuro takes fits a phone's gate
+	dir = gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "rccheck.gml"), []byte(`// rccheck(): the words rc_pool_add takes that don't fit a phone's gate.
+var i, n;
+n = 0;
+for (i = 0; i < global.nw; i += 1) {
+  global.rp_n = 0;
+  rc_pool_add(global.w_word[i], global.w_mean[i]);
+  if (global.rp_n == 1) { font(17, 1, 0); if (string_width(global.w_word[i]) > 97 || !fits(global.w_word[i], 97, 17, 1)) n += 1; }
+}
+return n;
+`), 0o644)
+	keys = append(append([]string{}, start...), ":5")
+	playArgs(t, dir, []string{"play", "-base", s.srv.URL + "/ludo/", "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys)), "-keys", strings.Join(keys, ",")},
+		`global.nw > 500 && rccheck() == 0 && global.ovf == 0`)
 	if len(s.posts) != 0 {
 		t.Errorf("Vetkuro posted %q", s.posts)
 	}
@@ -188,4 +254,43 @@ func TestTypingSystems(t *testing.T) {
 	os.WriteFile(filepath.Join(dir, "game", "scripts", "hcheck.gml"), []byte(b.String()), 0o644)
 	playArgs(t, dir, []string{"play", "-steps", "2"}, `hcheck() == 0 && hfold(xsys("flughaveno")) == hfold("flughaveno") && xsys("cxu sxi") == "ĉu ŝi" && xsys("chu shi") == "ĉu ŝi"`)
 	t.Logf("%d answers, each typed three ways", len(seen))
+}
+
+// TestTypedHSystemPosts: a vocabulary place with a ŭ word typed in the
+// h-system (ankaŭ as "ankau", which no conversion makes ankaŭ): the game takes the answers by both readings and
+// sends the site the answers themselves, which checkAnswer judges right —
+// the ratings' guard.
+func TestTypedHSystemPosts(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	c := s.api.Course(t.Context())
+	slug, want := "", ""
+	for _, p := range c.Places {
+		for _, e := range p.Ex {
+			if e.Kind == 'Q' && slug == "" && strings.Contains(e.Answers[0], "ŭ") && !strings.ContainsAny(e.Answers[0], ",: ") && p.Kind == 'E' {
+				slug, want = p.Slug, e.Answers[0]
+			}
+		}
+	}
+	if slug == "" {
+		t.Fatal("no vocabulary place with a ŭ word")
+	}
+	keys := append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return true })...)
+	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-steps", fmt.Sprint(steps(keys) + 200), "-keys", strings.Join(keys, ",")},
+		fmt.Sprintf(`stars_get("%s") == 3 && global.ob_n == 0`, slug))
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	found := false
+	for _, p := range s.posts {
+		found = found || strings.HasSuffix(p, " "+want)
+	}
+	if !found {
+		t.Errorf("%s: %q not posted as itself: %q", slug, want, s.posts)
+	}
+	for _, a := range s.attempts {
+		if !a.Correct {
+			t.Errorf("%s: the site judged the game's typed answer wrong", a.ContentItemID)
+		}
+	}
+	t.Logf("%s: %d typed answers posted, %q among them", slug, len(s.posts), want)
 }

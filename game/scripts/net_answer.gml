@@ -46,10 +46,10 @@ if (http_id() == global.wd_req) { // the bonus games' words
   global.wd_req = -1; global.wd_asked = 0;
   t = http_result();
   if (http_status() == 200 && words_parse(t)) {
-    global.wd_lang = lang_cur();
+    global.wd_lang = lang_cur(); global.wd_fresh = 1;
     file_write_all("ludo-vortoj-" + global.wd_lang + ".txt", t);
   } else if (global.wd_lang != lang_cur()) global.nw = 0;
-  if (global.scr == 10) game_start();
+  if (global.scr == 10) { if (!global.wd_fresh) global.vl_daily = 0; game_start(); } // no fresh list: no day's word
   exit;
 }
 sync_answer();

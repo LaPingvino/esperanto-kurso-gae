@@ -6,11 +6,12 @@ global.vl_daily = argument0;
 vl_pool();
 if (global.vpn == 0) { global.wd_fail = 1; global.scr = 10; exit; }
 lv = level_me(); wd = "";
-if (argument0) { for (k = 0; k < global.nd; k += 1) if (global.d_level[k] == lv) wd = global.d_word[k]; }
+if (argument0 && global.wd_fresh) { for (k = 0; k < global.nd; k += 1) if (global.d_level[k] == lv) wd = global.d_word[k]; }
 global.vl_w = global.vp[floor(random(global.vpn))];
 if (wd != "") { for (i = 0; i < global.nw; i += 1) if (global.w_word[i] == wd) global.vl_w = i; }
 else global.vl_daily = 0;
 global.vl_word = global.w_word[global.vl_w];
+global.vl_mean = global.w_mean[global.vl_w]; global.vl_def = global.w_def[global.vl_w]; // kept: a newer list may come in mid-round
 global.vl_pic = -1;
 if (global.w_pic[global.vl_w] != "") global.vl_pic = bildo_frame(global.w_pic[global.vl_w]);
 global.vl_row = 0; global.vl_cur = ""; global.vl_state = 0; global.vl_hint = 0; global.vl_msg = "";

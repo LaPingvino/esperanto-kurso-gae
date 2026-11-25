@@ -47,7 +47,7 @@ global.def_act = -1; global.cg = 0; global.ngap = 0; global.bn = 0; global.pick 
 global.course_req = -1; global.les_req = -1; global.les_want = -1; global.les_fail = 0;
 global.course_tried = 0; global.acclang = ""; global.want_slug = "";
 // the bonus games (Vortludo 8, Vetkuro 9, their words loading 10)
-global.rating = 1500; global.acclevel = ""; global.nw = 0; global.nd = 0; global.wd_req = -1; global.wd_asked = 0;
+global.rating = 1500; global.acclevel = ""; global.nw = 0; global.nd = 0; global.wd_req = -1; global.wd_asked = 0; global.wd_fresh = 0;
 global.wd_lang = ""; global.wd_fail = 0; global.wd_day = ""; global.game = 0; global.ret_scr = 5; global.vl_daily = 1;
 global.vl_state = 0; global.vl_row = 0; global.vl_cur = ""; global.rc_state = 0; global.rc_best = 0; global.rc_place = 0;
 global.rc_pressed = 0; global.rc_scroll = 0;

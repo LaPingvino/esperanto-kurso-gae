@@ -9,5 +9,5 @@ if (st == 0) { f = global.C_sunk; e = global.C_sunk; t = global.C_muted; }
 if (st == 1) { f = global.C_notebg; e = global.C_note; t = global.C_note; }
 if (st == 2) { f = global.C_main; e = global.C_main; t = global.C_on; }
 box(x, y, x + c, y + c, f, e, 2);
-if (l != "") txtc(x + c / 2, y + c / 2 - 17, l, 24, 1, t);
+if (l != "") txtc(x + c / 2, y + c / 2 - 20, l, 24, 1, t);
 if (st == 1) { brush_color = global.C_note; pen_color = global.C_note; draw_circle(x + c / 2, y + c - 5, 3); }

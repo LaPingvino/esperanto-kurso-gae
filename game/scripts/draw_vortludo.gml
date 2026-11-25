@@ -55,7 +55,7 @@ if (global.vl_state == 0) {
   if (global.vl_state == 1) { mark(px0 + 12, y + 12, 12, 1); txt(px0 + 32, y, "Ĝuste!", 20, 1, global.C_ok); }
   else { mark(px0 + 12, y + 12, 12, 0); txt(px0 + 32, y, "Ne tute.", 20, 1, global.C_bad); }
   y += 30;
-  txt(px0, y, fit(global.vl_word + " — " + global.w_mean[global.vl_w], px1 - px0, 17, 1), 17, 1, global.C_text);
+  txt(px0, y, fit(global.vl_word + " — " + global.vl_mean, px1 - px0, 17, 1), 17, 1, global.C_text);
   y += 30;
 }
 if (global.vl_hint == 1) {
@@ -65,7 +65,7 @@ if (global.vl_hint == 1) {
   y += 118;
 }
 if (global.vl_hint == 2 || global.vl_hint == 3) {
-  t = global.w_def[global.vl_w]; if (global.vl_hint == 3) t = global.w_mean[global.vl_w];
+  t = global.vl_def; if (global.vl_hint == 3) t = global.vl_mean;
   h = by - 10 - y;
   while (th(t, px1 - px0, 16, 0) > h && string_length(t) > 12) t = string_copy(t, 1, string_length(t) - 12) + "…";
   fits(t, px1 - px0, 16, 0);
@@ -77,8 +77,8 @@ x = px0;
 if (global.vl_state == 0) {
   pend = (global.vl_row >= 3);
   if (pend && global.vl_pic >= 0 && global.vl_hint != 1) { button(x, by, x + bw("Bildo"), by + 44, "Bildo", 732, 0); x += bw("Bildo") + 8; }
-  if (pend && global.w_def[global.vl_w] != "" && global.vl_hint != 2) { button(x, by, x + bw("Difino"), by + 44, "Difino", 733, 0); x += bw("Difino") + 8; }
-  if (pend && global.vl_pic < 0 && global.w_def[global.vl_w] == "" && global.vl_hint != 3) { button(x, by, x + bw("Signifo"), by + 44, "Signifo", 734, 0); x += bw("Signifo") + 8; }
+  if (pend && global.vl_def != "" && global.vl_hint != 2) { button(x, by, x + bw("Difino"), by + 44, "Difino", 733, 0); x += bw("Difino") + 8; }
+  if (pend && global.vl_pic < 0 && global.vl_def == "" && global.vl_hint != 3) { button(x, by, x + bw("Signifo"), by + 44, "Signifo", 734, 0); x += bw("Signifo") + 8; }
   if (string_length(global.vl_cur) == 5) button(px1 - bw("Provi"), by, px1, by + 44, "Provi", 731, 1);
   else button(px1 - bw("Provi"), by, px1, by + 44, "Provi", -1, 6);
   if (x > px1 - bw("Provi")) overflow("Vortludo's buttons");
