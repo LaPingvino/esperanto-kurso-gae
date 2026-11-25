@@ -21,4 +21,9 @@ sed -i \
   -e 's/<title>.*<\/title>/<title>Esperanto-kurso: la ludo<\/title>/' \
   -e 's/background:#111;color:#ddd/background:#E6F2EE;color:#102C28/' \
   -e 's/>loading…</>Ŝarĝas…</' \
+  -e 's|</head>|<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/static/bildoj/signo.svg" type="image/svg+xml"><meta name="theme-color" content="#17632F"><script>if("serviceWorker" in navigator)navigator.serviceWorker.register("/sw.js").catch(function(){})</script></head>|' \
   "$out/index.html"
+# The site's service worker (/sw.js) keeps the game for offline play: the
+# page from the network first, its files (with their ?v= content hash)
+# cached until a build changes them. The page as an app: the site's manifest.
+grep -q 'rel="manifest"' "$out/index.html"

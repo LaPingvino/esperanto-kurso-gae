@@ -642,3 +642,10 @@ function copySupport(id, btn) {
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && pop) close(); });
   window.addEventListener('scroll', function () { if (pop) close(); }, { passive: true });
 })();
+
+// ---- The site as an app: the service worker (/sw.js) ----
+// Pages come from the network first, so a deploy shows at the next load;
+// the worker keeps the last-visited pages for when there is no network.
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () { navigator.serviceWorker.register('/sw.js').catch(function () {}); });
+}

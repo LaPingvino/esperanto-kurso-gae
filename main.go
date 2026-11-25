@@ -188,6 +188,10 @@ func main() {
 	// same for everyone and publicly cacheable, needs no user (game_api.go).
 	root := http.NewServeMux()
 	gameAPI.Routes(root)
+	// The site as an installable app (internal/handler/pwa.go, sw.js): the
+	// same for everyone, so no user either.
+	root.HandleFunc("GET /sw.js", handler.ServiceWorker)
+	root.HandleFunc("GET /manifest.webmanifest", handler.Manifest)
 	root.Handle("/", handler.AuthMiddleware(userStore, mux))
 
 	addr := ":" + cfg.Port
