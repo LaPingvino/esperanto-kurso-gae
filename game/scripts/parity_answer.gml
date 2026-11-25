@@ -21,6 +21,7 @@ for (i = 0; i < global.nex; i += 1) {
     // the right answers through the same gap_pick the tiles and typing use
     ex_begin(); s = "";
     for (g = 0; g < global.ngap; g += 1) { if (k == 1) w = global.x_ans[i, g mod global.x_na[i]]; else w = global.x_ans[i, 0]; s += chr(9) + w; gap_pick(w, 0); }
+    ex_check();
     parity_line("R" + chr(9) + slug + chr(9) + string(global.fb == 1) + s);
     wrong = "";
     for (n = 0; n < global.x_nt[i, 0]; n += 1) { if (wrong == "") { if (!gap_ok(i, 0, global.x_tile[i, n])) wrong = global.x_tile[i, n]; } }
@@ -30,6 +31,7 @@ for (i = 0; i < global.nex; i += 1) {
       if (g == 0) w = wrong; else w = global.x_ans[i, g mod global.x_na[i]];
       s += chr(9) + w; gap_pick(w, 0);
     }
+    ex_check();
     parity_line("W" + chr(9) + slug + chr(9) + string(global.fb == 1) + s);
     for (g = 0; g < global.ngap; g += 1) {
       n = 0;
@@ -38,15 +40,15 @@ for (i = 0; i < global.nex; i += 1) {
     }
   }
   if (k == 3) {
-    ex_begin(); act(500 + global.x_right[i]);
+    ex_begin(); act(500 + global.x_right[i]); ex_check();
     parity_line("R" + chr(9) + slug + chr(9) + string(global.fb == 1) + chr(9) + global.x_opt[i, global.x_right[i]]);
     w = (global.x_right[i] + 1) mod global.x_no[i];
-    ex_begin(); act(500 + w);
+    ex_begin(); act(500 + w); ex_check();
     parity_line("W" + chr(9) + slug + chr(9) + string(global.fb == 1) + chr(9) + global.x_opt[i, w]);
   }
   if (k == 0) {
-    ex_begin(); act(500 + global.x_right[i]); ok = (global.fb == 1);
-    ex_begin(); act(500 + (global.x_right[i] + 1) mod global.x_no[i]);
+    ex_begin(); act(500 + global.x_right[i]); ex_check(); ok = (global.fb == 1);
+    ex_begin(); act(500 + (global.x_right[i] + 1) mod global.x_no[i]); ex_check();
     parity_line("C" + chr(9) + place + ":" + string(i) + chr(9) + string(ok) + chr(9) + string(global.fb == 1));
   }
   if (k == 2) {
@@ -58,9 +60,11 @@ for (i = 0; i < global.nex; i += 1) {
       for (n = 0; n < global.x_nt[i, 0]; n += 1) { if (!global.bused[n]) { if (global.x_tile[i, n] == w) { build_place(n); break; } } }
       s = string_delete(s, 1, g);
     }
+    ex_check();
     parity_line("B" + chr(9) + place + ":" + string(i) + chr(9) + string(global.fb == 1));
     ex_begin();
     for (n = 0; n < global.x_nt[i, 0]; n += 1) build_place(n);
+    ex_check();
     parity_line("O" + chr(9) + place + ":" + string(i) + chr(9) + string(global.fb == 1));
   }
 }

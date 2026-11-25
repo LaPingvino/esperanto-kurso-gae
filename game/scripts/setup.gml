@@ -1,25 +1,32 @@
 // Once per game: colours, the player's progress, the course — from the
 // cache, else the built-in part — and the site asked for the current one.
 var t;
-global.C_bg = rgb(246, 241, 231);     // warm paper
-global.C_panel = rgb(255, 253, 248);  // cards and tiles
-global.C_line = rgb(150, 136, 112);   // their edges (3:1 on the paper, WCAG 1.4.11)
-global.C_text = rgb(34, 45, 54);
-global.C_muted = rgb(88, 98, 106);
-global.C_main = rgb(26, 102, 84);     // the course's green: buttons, the open path
-global.C_main2 = rgb(19, 79, 65);     // header buttons
-global.C_on = rgb(255, 255, 255);     // text on green
-global.C_link = rgb(26, 92, 76);
-global.C_ok = rgb(30, 110, 52);
-global.C_okbg = rgb(224, 242, 228);
-global.C_bad = rgb(168, 50, 38);
-global.C_badbg = rgb(251, 229, 224);
-global.C_star = rgb(180, 115, 0);     // earned stars, 3.5:1 on the paper
-global.C_lock = rgb(214, 208, 198);   // a place not open yet
-global.C_path = rgb(190, 182, 168);   // the path to it
-global.C_focus = rgb(36, 84, 196);    // the keyboard's ring
-global.C_gap = rgb(232, 242, 238);    // an open gap
+// The colours: kurso-design's tokens.css (light), the Esperanto site's
+// accent. Text is 7:1 or more on whatever it stands on; edges 3:1 (DESIGN.md).
+global.C_bg = rgb(230, 242, 238);     // --paper
+global.C_panel = rgb(250, 253, 252);  // --surface: cards, tiles, the top bar, the dock
+global.C_sunk = rgb(211, 230, 224);   // --sunk: wells, a used tile, a track
+global.C_text = rgb(16, 44, 40);      // --ink
+global.C_muted = rgb(44, 74, 69);     // --ink-muted
+global.C_line = rgb(191, 216, 209);   // --line: decorative dividers only
+global.C_edge = rgb(95, 127, 121);    // --edge: tile, button and station edges
+global.C_main = rgb(23, 99, 47);      // --eo-fill: the primary button, done stations
+global.C_on = rgb(255, 255, 255);     // --eo-on-fill
+global.C_link = rgb(15, 80, 36);      // --eo-text: accent text, the picked tile
+global.C_tint = rgb(213, 237, 217);   // --eo-tint
+global.C_acc = rgb(42, 128, 70);      // --eo-line: the open path, progress
+global.C_ok = rgb(20, 82, 36);        // --right-text
+global.C_okbg = rgb(216, 240, 220);   // --right-tint
+global.C_okedge = rgb(47, 138, 69);   // --right-edge
+global.C_bad = rgb(138, 35, 23);      // --wrong-text
+global.C_badbg = rgb(251, 225, 218);  // --wrong-tint
+global.C_badedge = rgb(196, 80, 60);  // --wrong-edge
+global.C_star = rgb(198, 138, 0);     // --star (earned)
+global.C_staredge = rgb(122, 85, 0);  // --star-edge
+global.C_focus = rgb(23, 99, 47);     // the keyboard's ring: the accent
+global.ovf = 0; global.ovf_what = ""; // a text that didn't fit its box (overflow.gml)
 course_data();                        // the interface strings and the built-in part
+global.t_check = "Kontroli";          // the dock's button before the verdict (kurso-design)
 global.nst = 0; global.ob_n = 0; global.nword = 0; global.mylang = "";
 load_progress();
 global.ns = 0; global.np = 0; global.nlang = 1; global.lang[0] = "en";

@@ -139,7 +139,8 @@ func play(t *testing.T, dir, base, room string, keys []string, extra int, expect
 // placeKeys are the keys answering every exercise of a place rightly, from
 // its lesson as the site serves it: choices and tiles by their number keys;
 // gaps typed when typed(exercise index) says so (answers a key script can't
-// type go by their tile). Ends back on the series' map.
+// type go by their tile), then Kontroli and Daŭrigi. Ends back on the
+// series' map.
 func placeKeys(t *testing.T, lesson string, typed func(i int) bool) []string {
 	digit := func(n int) []string { return []string{fmt.Sprintf("text=%d:1", n+1), ":2"} }
 	enter := []string{"enter:1", ":2"}
@@ -225,6 +226,7 @@ func placeKeys(t *testing.T, lesson string, typed func(i int) bool) []string {
 				}
 			}
 		}
+		ks = append(ks, enter...) // Kontroli
 		ks = append(ks, enter...) // Daŭrigi
 	}
 	return append(ks, enter...) // the result: Daŭrigi, to the map
@@ -244,8 +246,8 @@ func (s *stubSite) lesson(t *testing.T, slug string) string {
 // the game's real keys, loaded from the site: a Zagreb lesson (cards,
 // fill-ins, sentences), a reading of another series, vocabulary,
 // multiple choice, the phrasebook's typed answers, a video — each ends with
-// three stars (a video: one) on the map. The Zagreb lesson in the tall room
-// too.
+// three stars (a video: one) on the map, every text having fitted its box
+// on the way (global.ovf). The Zagreb lesson in the tall room too.
 func TestPlayEachPart(t *testing.T) {
 	gameviber(t)
 	s := newStubSite(t)
@@ -279,12 +281,12 @@ func TestPlayEachPart(t *testing.T) {
 		}
 		keys := append([]string{":8"}, placeKeys(t, s.lesson(t, slug), never)...)
 		play(t, dir, s.srv.URL+"/ludo/?leciono="+slug, "", keys, 10,
-			fmt.Sprintf(`stars_get("%s") == %d && global.scr == 0`, slug, want))
+			fmt.Sprintf(`stars_get("%s") == %d && global.scr == 0 && global.ovf == 0`, slug, want))
 		t.Logf("%s: %s played, %d stars", name, slug, want)
 	}
 	dir := gameDir(t, c)
 	keys := append([]string{":8"}, placeKeys(t, s.lesson(t, "zagr-l01-teksto"), never)...)
-	play(t, dir, s.srv.URL+"/ludo/?leciono=zagr-l01-teksto", "rm_tall", keys, 10, `stars_get("zagr-l01-teksto") == 3`)
+	play(t, dir, s.srv.URL+"/ludo/?leciono=zagr-l01-teksto", "rm_tall", keys, 10, `stars_get("zagr-l01-teksto") == 3 && global.ovf == 0`)
 }
 
 // TestSyncWithSite: progress made on the site comes into the game (a place

@@ -5,7 +5,8 @@ global.def_act = -1;
 global.W = room_width;
 global.H = room_height;
 global.wide = (room_width > room_height);
-if (global.wide) { global.m = 40; global.hh = 64; } else { global.m = 16; global.hh = 104; }
+// The top bar: one row (a phone's levels screen: two, for its buttons).
+if (global.wide) { global.m = 40; global.hh = 64; } else { global.m = 16; global.hh = 60; if (global.scr == 5) global.hh = 108; }
 fill(0, 0, global.W, global.H, global.C_bg);
 if (global.scr == 5) draw_levels();
 if (global.scr == 0) draw_map();
@@ -18,5 +19,5 @@ if (global.scr == 4) draw_words();
 draw_header(); // after the screen: the arrow keys reach the screen's own things first
 if (global.focus >= global.nhs) global.focus = -1;
 if (global.focus >= 0) {
-  frame(global.hs_x1[global.focus] - 4, global.hs_y1[global.focus] - 4, global.hs_x2[global.focus] + 4, global.hs_y2[global.focus] + 4, global.C_focus);
+  frame(global.hs_x1[global.focus] - 5, global.hs_y1[global.focus] - 5, global.hs_x2[global.focus] + 5, global.hs_y2[global.focus] + 5, global.C_focus);
 }

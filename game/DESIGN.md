@@ -64,13 +64,17 @@ up. Typed answers get the x-system as the site's answer field does (`static/eo.j
 - **Words with affixes** show as their root (*sport-*, "en la teksto: sportisto"), so the meaning shown is
   the root's: *patrino* never appears as "father".
 
-### Audio
+### Sound
 
-The course has no audio yet: the seed holds `audio_url` on four items, all empty, and the site's listening
-template plays whatever URL an item has. So the game ships no sound and no listening exercise. The hook is
-there: an exercise kind "listen and answer" can play a sound per item (GameViber's sounds) wherever the export
-finds an `audio_url`. The natural source is the esperanto-voice Piper voice once it is released (rendered at build
-time per sentence of the lesson texts) — a question for Joop, not done here.
+The site's own two sounds, at the same moments: `static/eo.js` plays a rising two-note chime on a right
+answer and a short low buzz on a wrong one, made with Web Audio (no files). `cmd/game-sounds` renders the
+same oscillators, gains and ramps into `sounds/snd_right.wav` and `sounds/snd_wrong.wav`; `ex_done` plays
+them with the verdict (after Kontroli, or "Mi ne scias"). The site has no other sounds (the level-up has
+confetti only), so neither does the game. The player's sound button (and M, which a typing game gives to the
+keyboard) silences them, and the browser remembers it (GameViber, below).
+
+The course itself has no audio yet (the seed's `audio_url`s are empty), so there is no listening exercise;
+the natural source is the esperanto-voice Piper voice once it is released.
 
 ## In the site: /ludo/, and progress on the account
 
@@ -116,15 +120,39 @@ engine knows the site.
 
 ## Look and input
 
-- Calm and friendly: warm paper, one green from the course, gold stars; no timers, no lives.
-- Contrast (WCAG): text 12.5:1 on the paper; muted text 5.5:1; white on green 6.8:1; the green as text
-  6.1:1 (the quieter link green 7.0:1); right 5.4:1 and wrong 5.5:1 on their tints; locked lesson numbers
-  4.1:1; tile and button edges 3.1:1 (1.4.11); earned stars 3.5:1 on the paper (unearned ones are the pale
-  lock colour); the keyboard's focus ring 5.9:1.
+The shared kurso-design (`~/Projects/kurso-design`, DESIGN.md and tokens.css): the light green-teal base
+and the Esperanto green accent, its tokens copied as the game's colours (`setup.gml`). Calm: no timers, no
+lives, a wrong answer is a plain *Ne tute.* with the right one.
+
+- **The stage.** An activity runs under a top bar with the site's sign (the green disc with the star), the
+  progress through the place, *n/N* and close (×). The body is at most 640 wide: the kind (icon and word),
+  the question, the answer. The **dock** is always at the bottom: *Kontroli* (disabled until there is an
+  answer) with *Mi ne scias* (and *Tajpi*), then the verdict — *Ĝuste!* with a ✓ disc and a small gold
+  star, or *Ne tute.* with a ✗ disc and the right answer — and *Daŭrigi*. A pick is only judged at
+  Kontroli: a choice can be changed, a filled gap pressed to empty it, a placed word taken back.
+- **One tile, five states** (`tilebox.gml`), each with a cue besides its colour: new (surface, edge, a
+  4 px ledge), trying (accent border 3 px, accent ledge and text, no tint so it never looks "right"),
+  right (tint, ✓ badge), wrong (tint, ✗ badge), done (sunk, dashed, sits lower); a word taken from the
+  bank leaves a dashed slot, so nothing jumps; a built sentence gets one badge at its end.
+- **Every text in a box wraps inside it** and the box grows to fit: options, word tiles, gaps, buttons,
+  series tiles, the dock. There is no scrolling, so a multiple-choice screen steps its type down
+  (`draw_choice`, measured by `choice_h`) until question and options fit above the dock; after the verdict only
+  the right option and a wrong pick stay. Anything that still doesn't fit counts in `global.ovf` (the
+  tests expect 0). Checked on every live place of the site (186, in English and German, both rooms, wrong
+  answers first so every verdict dock shows), e.g. "„da“ diras kvanton (glaso plena de vino); „de“
+  montras alian rilaton, ekz. glaso por vino (vinglaso)".
+- **The levels** as KER chips (the current level filled, the others tinted), series as tiles with their
+  picture; **a series' map** as a line with stations: done (filled), here (ringed, *Vi estas ĉi tie*),
+  ahead (hollow). The folded-paper shading is gone (its panels read as rendering glitches).
+- **Contrast**: every text 7:1 or more (tokens.css's checked pairs: ink 12.95:1 on the paper, muted 8.42:1,
+  the accent text 8.34:1, white on the green 7.34:1, muted on sunk 7.44:1, the verdicts' texts 7.24:1 and
+  up on their tints); edges, the line, progress and badges 3:1 or more; the focus ring in the accent, 3 px.
+- Drawn with the engine's own font (Liberation Sans): kurso-design's faces (Source Sans 3, Charis SIL,
+  Fraunces) would need GameViber to load a game's fonts. Light only for now.
 - A wide room (1280×720) and a tall one (420×860), switched by the window's shape, as Sidenote's game does;
   the text is drawn at the screen's real resolution.
-- Keyboard: arrows move the focus, Enter presses (or the screen's main button), 1–4 pick a choice, typing
-  fills a gap, Esc clears or goes back to the map. Mouse and touch: press what you see.
+- Keyboard: arrows move the focus, Enter presses (or the screen's main button: Kontroli, Daŭrigi), 1–4
+  pick a choice, typing fills a gap, Esc clears or goes back to the map. Mouse and touch: press what you see.
 
 ## GameViber changes this needed (branch `web-extras`, generic)
 
@@ -142,6 +170,9 @@ engine knows the site.
 - The margin round the frame takes the room's background colour instead of black; the player's sound and
   full-screen buttons and the pads draw dark on a light margin.
 
+- The sound button is remembered in the browser (localStorage `gameviber/<id>/muted`): a game left muted
+  opens muted.
+
 ## Checks
 
 - `internal/handler/game_parity_test.go`: the parity variant (`game/parity.toml`) fetches the map and every
@@ -151,8 +182,8 @@ engine knows the site.
   and 304 word cards take their answer and refuse another.
 - `internal/handler/game_play_test.go`: played headless through the real keys against a stub of the site (the
   real API and progress handlers, provo judged by `checkAnswer`): a place of every kind — a Zagreb lesson,
-  another reading, vocabulary, multiple choice, the phrasebook, a video — each to its stars, the Zagreb lesson
-  in the tall room too. Sync: the site's progress comes in (a place done on the site, the account's stars);
+  another reading, vocabulary, multiple choice, the phrasebook, a video — each to its stars through Kontroli
+  and Daŭrigi, every text fitting its box (`global.ovf == 0`), the Zagreb lesson in the tall room too. Sync: the site's progress comes in (a place done on the site, the account's stars);
   only the typed answers go out (one refused first: retried), all right by `checkAnswer`; the stars end on
   the account. Offline: from the built-in part, the queue waits and goes on the next opening; the old
   progress file is read into the new one.
@@ -166,3 +197,4 @@ engine knows the site.
 
 1. Audio with the esperanto-voice voice, and with it a listening exercise.
 2. Spaced review: words from finished lessons coming back as cards on the map.
+3. The design's faces and dark mode, once GameViber can load a game's fonts.

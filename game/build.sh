@@ -19,6 +19,6 @@ env -C "${GAMEVIBER_SRC:?set GAMEVIBER_SRC to GameViber's source folder}" "$gv" 
 sed -i \
   -e 's/<html lang="en">/<html lang="eo">/' \
   -e 's/<title>.*<\/title>/<title>Esperanto-kurso: la ludo<\/title>/' \
-  -e 's/background:#111;color:#ddd/background:#F6F1E7;color:#222D36/' \
+  -e 's/background:#111;color:#ddd/background:#E6F2EE;color:#102C28/' \
   -e 's/>loading…</>Ŝarĝas…</' \
   "$out/index.html"

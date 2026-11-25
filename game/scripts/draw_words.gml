@@ -15,7 +15,7 @@ shown = 0;
 for (k = global.page * per; k < n && shown < per; k += 1) {
   font(15, 1, 0);
   txt(x + (shown div rows) * cw, y + (shown mod rows) * 28, global.word_show[k], 15, 1, global.C_text);
-  txt(x + (shown div rows) * cw + string_width(global.word_show[k]) + 8, y + (shown mod rows) * 28, "— " + global.word_mean[k], 15, 0, global.C_muted);
+  txt(x + (shown div rows) * cw + string_width(global.word_show[k]) + 8, y + (shown mod rows) * 28, fit("— " + global.word_mean[k], cw - string_width(global.word_show[k]) - 24, 15, 0), 15, 0, global.C_muted);
   shown += 1;
 }
 y = global.H - 72;

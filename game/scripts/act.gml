@@ -4,9 +4,9 @@
 // type with the phone's keyboard, 9 / 10 next / previous page, 11 place
 // done → its map, 12 this place on the site, 13 watch the video (on the
 // site), 14 try loading again, 15 / 16 the map's next / previous page,
-// 17 / 18 the levels' first / next page;
+// 17 / 18 the levels' first / next page, 19 Kontroli;
 // 200+t a tile; 300+t a sentence's tile; 400+k take a placed word back;
-// 500+k a choice; 10000+p a place; 20000+s a series.
+// 500+k a choice; 600+g empty a filled gap; 10000+p a place; 20000+s a series.
 var a, s;
 a = argument0;
 if (a == 1) {
@@ -21,6 +21,7 @@ if (a == 4) { site_open("/"); exit; }
 if (a == 5) { lesson_start(); exit; }
 if (a == 6) { if (global.fb != 0) ex_next(); exit; }
 if (a == 7) { if (global.fb == 0) ex_done(0); exit; }
+if (a == 19) { ex_check(); exit; }
 if (a == 8) {
   if (global.fb == 0 && global.ngap > 0) {
     s = get_string(global.t_answer_placeholder, "");
@@ -44,7 +45,8 @@ if (a >= 20000) { // a series: its map, at the page of the place to go on with
 }
 if (a >= 10000) { lesson_open(a - 10000); exit; }
 if (global.fb != 0 || global.scr != 2) exit; // answered: only Daŭrigi
-if (a >= 200 && a < 300) { gap_pick(global.x_tile[global.idx, global.cg * 10 + a - 200], 0); exit; }
+if (a >= 200 && a < 300) { gap_pick(global.x_tile[global.idx, min(global.cg, global.ngap - 1) * 10 + a - 200], 0); exit; }
 if (a >= 300 && a < 400) { build_place(a - 300); exit; }
 if (a >= 400 && a < 500) { build_take(a - 400); exit; }
-if (a >= 500 && a < 600) { global.pick = a - 500; ex_done(choice_ok(global.idx, global.pick)); exit; }
+if (a >= 500 && a < 600) { global.pick = a - 500; global.focus = -1; exit; } // picked: Kontroli judges
+if (a >= 600 && a < 700) { gap_clear(a - 600); exit; }

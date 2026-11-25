@@ -3,7 +3,7 @@ width = 420
 height = 860
 speed = 30
 persistent = false
-background_colour = "#F6F1E7"
+background_colour = "#E6F2EE"
 draw_background_colour = true
 views_enabled = false
 

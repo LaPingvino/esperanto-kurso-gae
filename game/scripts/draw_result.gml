@@ -3,9 +3,8 @@ var x, y, w, k, i, col, cw, rows, n;
 x = global.m; w = global.W - 2 * global.m;
 if (global.wide) { w = min(w, 900); x = (global.W - w) / 2; }
 y = global.hh + 28;
-txtc(global.W / 2, y, global.les_title, 22, 1, global.C_text);
-y += 42;
-txtc(global.W / 2, y, "Finita!", 30, 1, global.C_main);
+y += tw(x, y, global.les_title, w, 22, 1, global.C_text) + 14;
+txtc(global.W / 2, y, "Finita!", 30, 1, global.C_link);
 y += 74;
 stars(global.W / 2, y, 22, global.got);
 y += 40;
@@ -21,7 +20,7 @@ if (n > 0) {
   rows = floor((global.H - 100 - y) / 26);
   k = 0;
   for (i = 0; i < global.nex; i += 1) if (global.x_kind[i] == 0 && k < rows * col) {
-    txt(x + (k mod col) * cw, y + (k div col) * 26, global.x_show[i] + " — " + global.x_opt[i, global.x_right[i]], 15, 0, global.C_text);
+    txt(x + (k mod col) * cw, y + (k div col) * 26, fit(global.x_show[i] + " — " + global.x_opt[i, global.x_right[i]], cw - 16, 15, 0), 15, 0, global.C_text);
     k += 1;
   }
 }

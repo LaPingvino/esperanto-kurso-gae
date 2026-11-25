@@ -1,10 +1,9 @@
-// frame(x1, y1, x2, y2, colour): an outline, two pixels.
+// frame(x1, y1, x2, y2, colour): the keyboard's focus ring, three pixels.
+var k;
 pen_color = argument4;
-draw_line(argument0, argument1, argument2, argument1);
-draw_line(argument0, argument3, argument2, argument3);
-draw_line(argument0, argument1, argument0, argument3);
-draw_line(argument2, argument1, argument2, argument3);
-draw_line(argument0 + 1, argument1 + 1, argument2 - 1, argument1 + 1);
-draw_line(argument0 + 1, argument3 - 1, argument2 - 1, argument3 - 1);
-draw_line(argument0 + 1, argument1 + 1, argument0 + 1, argument3 - 1);
-draw_line(argument2 - 1, argument1 + 1, argument2 - 1, argument3 - 1);
+for (k = 0; k < 3; k += 1) {
+  draw_line(argument0 + k, argument1 + k, argument2 - k, argument1 + k);
+  draw_line(argument0 + k, argument3 - k, argument2 - k, argument3 - k);
+  draw_line(argument0 + k, argument1 + k, argument0 + k, argument3 - k);
+  draw_line(argument2 - k, argument1 + k, argument2 - k, argument3 - k);
+}
