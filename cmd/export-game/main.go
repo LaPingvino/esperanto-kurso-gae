@@ -32,6 +32,9 @@ func main() {
 		log.Fatal(err)
 	}
 	c := gamedata.Build(items)
+	if len(c.Places) == 0 {
+		log.Fatalf("%s: no course in it (want the seed folder)", *seed)
+	}
 	if err := os.MkdirAll(filepath.Dir(*out), 0o755); err != nil {
 		log.Fatal(err)
 	}

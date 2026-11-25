@@ -9,7 +9,7 @@ root=$(dirname "$here")
 gv=${GAMEVIBER:-gameviber}
 out=${1:-$here/web}
 go -C "$root" run ./cmd/export-game \
-  -seed "$root/seed/ekzercoj-zagr-restructured.json" \
+  -seed "$root/seed" \
   -locale "$root/internal/locale/eo.json" \
   -out "$here/scripts/course_data.gml"
 "$gv" check "$here"

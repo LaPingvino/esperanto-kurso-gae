@@ -51,6 +51,9 @@ func GML(c *Course, ui map[string]string) string {
 			part.Places = append(part.Places, s.Places...)
 		}
 	}
+	if len(part.Places) == 0 {
+		log.Fatalf("the built-in part (%v) has no places", FallbackSeries)
+	}
 	var mb strings.Builder
 	WriteCourse(&mb, part)
 	w("global.fb_course = %s", gmlRaw(mb.String()))
