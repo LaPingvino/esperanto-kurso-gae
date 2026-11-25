@@ -6,8 +6,16 @@ OPENMOJI_DIR holds openmoji.json and svg/ (openmoji-svg-color.zip, release 17.0.
 Writes SITE_DIR/static/bildoj/vortoj/<hexcode>.svg (minified: ids dropped,
 coordinates rounded to 2 decimals) and SITE_DIR/internal/bildoj/vortbildoj.json.
 File names are the emoji's code points, so a picture's URL never spells the word.
+
+A ref written %KEY (a relation of familytree.py: %father, %cousins) is a family-tree
+picture instead, drawn by familytree.py into SITE_DIR/static/bildoj/parencoj/.
 """
-import json, os, re, sys
+import importlib.util, json, os, re, sys
+
+sys.dont_write_bytecode = True  # no __pycache__ in the repo
+_spec = importlib.util.spec_from_file_location("familytree", os.path.join(os.path.dirname(os.path.abspath(__file__)), "familytree.py"))
+familytree = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(familytree)
 
 words_txt, om, site = sys.argv[1], sys.argv[2], sys.argv[3]
 meta = json.load(open(os.path.join(om, "openmoji.json")))
@@ -73,6 +81,24 @@ for line in open(words_txt, encoding="utf-8"):
         continue
     word, topic, ref, flags = (line.split("|") + [""])[:4]
     flags = dict((f.split("=") + [True])[:2] for f in flags.split(",") if f)
+    if ref.startswith("%"):
+        key = ref[1:]
+        if key not in familytree.RELATIONS:
+            missing.append((word, ref))
+            continue
+        name = familytree.filename(key)
+        treedir = os.path.join(site, "static/bildoj/parencoj")
+        os.makedirs(treedir, exist_ok=True)
+        with open(os.path.join(treedir, name), "w") as f:
+            f.write(familytree.render(key))
+        row = {"word": word, "topic": topic, "file": "parencoj/" + name,
+               "source": "esperanto-kurso.net family tree: " + key,
+               "author": "esperanto-kurso.net", "license": "CC0 1.0"}
+        for k in ("exact", "group", "set"):
+            if flags.get(k):
+                row[k] = flags[k]
+        rows.append(row)
+        continue
     if ref == "=griza":
         # OpenMoji's white circle (26AA) with a grey fill: an adaptation, so CC BY-SA too.
         base = by_hex["26AA"]
@@ -100,10 +126,12 @@ for line in open(words_txt, encoding="utf-8"):
         row["exact"] = True
     if flags.get("group"):
         row["group"] = flags["group"]
+    if flags.get("set"):
+        row["set"] = flags["set"]
     rows.append(row)
 
 if missing:
-    sys.exit(f"not in OpenMoji: {missing}")
+    sys.exit(f"not in OpenMoji (or not a familytree relation): {missing}")
 os.makedirs(os.path.join(site, "internal/bildoj"), exist_ok=True)
 with open(os.path.join(site, "internal/bildoj/vortbildoj.json"), "w", encoding="utf-8") as f:
     f.write("[\n" + ",\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n]\n")

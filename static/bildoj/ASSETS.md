@@ -1,11 +1,13 @@
 # The site's pictures: sources and licences
 
-Every picture under `static/bildoj/` comes from an openly licensed set. The
+Every picture under `static/bildoj/` comes from an openly licensed set or is
+our own drawing. The
 site's credits page (`/fontoj`) shows the same, with every word picture's author.
 
 | Folder | What | From | Author | Licence |
 |---|---|---|---|---|
-| `vortoj/` | a picture per word (149 words, the row per file in `internal/bildoj/vortbildoj.json`) | OpenMoji 17.0.0, https://openmoji.org | the OpenMoji designers; each file's author is in its row | CC BY-SA 4.0 |
+| `vortoj/` | a picture per word (145 words, the row per file in `internal/bildoj/vortbildoj.json`) | OpenMoji 17.0.0, https://openmoji.org | the OpenMoji designers; each file's author is in its row | CC BY-SA 4.0 |
+| `parencoj/` | the family words (avo … genepoj, 24 words): one family tree, "me" ringed, the word's person(s) highlighted | `internal/bildoj/tools/familytree.py` | esperanto-kurso.net (our own work) | CC0 1.0 |
 | `lokoj/` | a picture per Zagreb lesson, its place on the game's map: `houseSmall`, `houses`, `ship`, `houseChimney`, `house`, `campfire`, `waterWheel`, `tent`, `treePines`, `mill`, `well`, `dock` (lessons 1–12, as in the game's `spr_place`) | Cartography Pack | Kenney (kenney.nl) | CC0 1.0 |
 | `specoj/` | a picture per exercise kind: `book_open` (reading), `cards_fan` (vocab), `notepad_write` (fill-in), `cards_order` (phrasebook) from Board Game Icons; `menuList` (multiple choice), `audioOn` (listening), `video` (video), `zoom` (image) from Game Icons | Board Game Icons 1.1, Game Icons | Kenney (kenney.nl) | CC0 1.0 |
 
@@ -30,6 +32,15 @@ Changes made (so these files are adaptations, under the same CC BY-SA 4.0):
 
 The files are named by their code points, so a picture's URL never spells its
 word. The rest of the repository is MIT; these pictures stay CC BY-SA 4.0.
+
+## The family tree (CC0 1.0)
+
+`parencoj/` is drawn by `internal/bildoj/tools/familytree.py` from circles and
+paths, borrowing only OpenMoji's conventions (72-unit box, flat fills of its
+yellow and blue, black round-joined outlines), no OpenMoji artwork. Our own
+work, dedicated to the public domain under CC0 1.0
+(https://creativecommons.org/publicdomain/zero/1.0/), so it can be reused
+anywhere (angla.org) without credit; the script is the source.
 
 ## Kenney (CC0 1.0)
 

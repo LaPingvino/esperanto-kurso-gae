@@ -26,6 +26,11 @@ func TestForToken(t *testing.T) {
 		"amiko": "", "virino": "virino", "viro": "viro", "kafejon": "", "lundo": "",
 		"knabaĉo": "", "skribotablo": "", "arbaro": "", "buŝo": "buŝo", "buso": "buso",
 		"revido": "", "monato": "",
+		// family words: the short roots and the ge- plurals
+		"patrinon": "patrino", "patroj": "patro", "gepatrojn": "gepatroj", "avinoj": "avino",
+		"avon": "avo", "filinon": "filino", "filoj": "filo", "nepinoj": "nepino", "nevon": "nevo",
+		"edzino": "edzino", "edzon": "edzo", "kuzinoj": "kuzino", "gefratoj": "gefratoj",
+		"onklinon": "onklino", "filmo": "", "nepre": "", "aventuro": "",
 	}
 	for tok, want := range cases {
 		if got := word(ForToken(tok)); got != want {
@@ -165,6 +170,8 @@ func TestSeedPicturesResolve(t *testing.T) {
 					t.Errorf("%s: option %q has no picture row", it.Slug, o)
 				} else if q != p && p.Group != "" && q.Group == p.Group {
 					t.Errorf("%s: options %q and %q look alike (group %s)", it.Slug, w, o, p.Group)
+				} else if p.Set != "" && q.Set != p.Set {
+					t.Errorf("%s: option %q is not of the set %s", it.Slug, o, p.Set)
 				}
 			}
 		}

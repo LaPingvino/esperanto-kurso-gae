@@ -5899,7 +5899,7 @@
   "Type": "reading",
   "Content": {
    "title": "Bildoj: Homoj kaj familio",
-   "text": "Jen viro.\nJen virino.\nJen knabo.\nJen knabino.\nJen bebo.\nJen infano.\nJen avo.\nJen avino.\nJen patro.\nJen patrino.\nJen familio."
+   "text": "Jen viro.\nJen virino.\nJen knabo.\nJen knabino.\nJen bebo.\nJen infano.\nJen mia avo.\nJen mia avino.\nJen miaj geavoj.\nJen mia patro.\nJen mia patrino.\nJen miaj gepatroj.\nJen mia onklo.\nJen mia onklino.\nJen mia frato.\nJen mia fratino.\nJen miaj gefratoj.\nJen mia kuzo.\nJen mia kuzino.\nJen miaj gekuzoj.\nJen mia edzo.\nJen mia edzino.\nJen mia filo.\nJen mia filino.\nJen miaj gefiloj.\nJen mia nevo.\nJen mia nevino.\nJen mia nepo.\nJen mia nepino.\nJen miaj genepoj.\nJen familio."
   },
   "Tags": [
    "A0",
@@ -5927,12 +5927,12 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "patro",
+    "familio",
+    "genepoj",
     "viro",
-    "avo",
-    "patrino"
+    "kuzo"
    ],
-   "correct_index": 1,
+   "correct_index": 2,
    "bildo": "viro",
    "definitions": {
     "ar": "رجل",
@@ -6009,10 +6009,10 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avo",
+    "filo",
     "virino",
-    "familio",
-    "patrino"
+    "edzino",
+    "geavoj"
    ],
    "correct_index": 1,
    "bildo": "virino",
@@ -6046,8 +6046,8 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "patrino",
-    "avino",
+    "gekuzoj",
+    "gefratoj",
     "knabo",
     "avo"
    ],
@@ -6129,9 +6129,9 @@
    "question": "Kio estas tio?",
    "options": [
     "knabino",
-    "avo",
-    "avino",
-    "familio"
+    "patro",
+    "patrino",
+    "onklo"
    ],
    "correct_index": 0,
    "bildo": "knabino",
@@ -6165,12 +6165,12 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "patro",
-    "avo",
     "bebo",
-    "avino"
+    "nepo",
+    "kuzo",
+    "genepoj"
    ],
-   "correct_index": 2,
+   "correct_index": 0,
    "bildo": "bebo",
    "definitions": {
     "en": "baby"
@@ -6202,12 +6202,12 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avino",
-    "familio",
-    "infano",
-    "patro"
+    "onklo",
+    "frato",
+    "filino",
+    "infano"
    ],
-   "correct_index": 2,
+   "correct_index": 3,
    "bildo": "infano",
    "definitions": {
     "en": "child"
@@ -6239,12 +6239,12 @@
   "Content": {
    "question": "Kio estas tio?",
    "options": [
+    "patrino",
+    "nevino",
     "avo",
-    "virino",
-    "knabino",
-    "bebo"
+    "frato"
    ],
-   "correct_index": 0,
+   "correct_index": 2,
    "bildo": "avo",
    "definitions": {
     "en": "grandfather"
@@ -6277,9 +6277,9 @@
    "question": "Kio estas tio?",
    "options": [
     "avino",
-    "avo",
-    "infano",
-    "knabo"
+    "edzo",
+    "kuzino",
+    "onklo"
    ],
    "correct_index": 0,
    "bildo": "avino",
@@ -6308,20 +6308,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-patro-elekto",
+  "Slug": "bildo-geavoj-elekto",
   "Type": "multiplechoice",
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avo",
-    "avino",
-    "patro",
-    "bebo"
+    "filino",
+    "gepatroj",
+    "geavoj",
+    "patrino"
    ],
    "correct_index": 2,
-   "bildo": "patro",
+   "bildo": "geavoj",
    "definitions": {
-    "en": "father"
+    "en": "grandparents"
    }
   },
   "Tags": [
@@ -6345,20 +6345,20 @@
   "SeriesParent": ""
  },
  {
-  "Slug": "bildo-patrino-elekto",
+  "Slug": "bildo-patro-elekto",
   "Type": "multiplechoice",
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "viro",
-    "patrino",
-    "bebo",
-    "virino"
+    "gefiloj",
+    "patro",
+    "geavoj",
+    "gefratoj"
    ],
    "correct_index": 1,
-   "bildo": "patrino",
+   "bildo": "patro",
    "definitions": {
-    "en": "mother"
+    "en": "father"
    }
   },
   "Tags": [
@@ -6382,17 +6382,802 @@
   "SeriesParent": ""
  },
  {
+  "Slug": "bildo-patrino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "patro",
+    "patrino",
+    "gefratoj",
+    "gepatroj"
+   ],
+   "correct_index": 1,
+   "bildo": "patrino",
+   "definitions": {
+    "en": "mother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 12,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gepatroj-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "gepatroj",
+    "genepoj",
+    "patrino",
+    "edzo"
+   ],
+   "correct_index": 0,
+   "bildo": "gepatroj",
+   "definitions": {
+    "en": "parents"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 13,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-onklo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "filino",
+    "patrino",
+    "gekuzoj",
+    "onklo"
+   ],
+   "correct_index": 3,
+   "bildo": "onklo",
+   "definitions": {
+    "ar": "عم; خال",
+    "be": "дядя",
+    "ca": "oncle",
+    "cs": "strýc",
+    "da": "onkel",
+    "de": "Onkel",
+    "el": "θείος",
+    "en": "uncle",
+    "es": "tío",
+    "fa": "عمو; دایی",
+    "fr": "oncle",
+    "frp": "oncle",
+    "ga": "uncail",
+    "he": "דוד",
+    "hi": "uncle",
+    "hr": "stric; ujak",
+    "hu": "nagybácsi",
+    "id": "paman",
+    "it": "zio",
+    "ja": "叔父",
+    "kk": "ағай",
+    "km": "ពូ",
+    "ko": "삼촌",
+    "ku": "عمو; دایی",
+    "lo": "uncle",
+    "mg": "dadatoa , rahalahin-dray",
+    "ms": "pakcik",
+    "my": "uncle",
+    "nl": "oom",
+    "pl": "wujek",
+    "pt": "tio",
+    "ro": "oncle",
+    "ru": "дядя",
+    "sk": "strýko",
+    "sl": "stric",
+    "sv": "farbror; morbror",
+    "sw": "oncle",
+    "th": "ลุง; อา; น้า (ชาย)",
+    "tok": "uncle",
+    "tr": "amca",
+    "uk": "дядько",
+    "ur": "چچا",
+    "vi": "cậu, chú, bác",
+    "yo": "uncle",
+    "zh": "叔叔、伯伯",
+    "zh-tw": "叔伯"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 14,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-onklino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "onklino",
+    "gepatroj",
+    "patro",
+    "gefratoj"
+   ],
+   "correct_index": 0,
+   "bildo": "onklino",
+   "definitions": {
+    "en": "aunt"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 15,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-frato-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "frato",
+    "gefratoj",
+    "edzo",
+    "edzino"
+   ],
+   "correct_index": 0,
+   "bildo": "frato",
+   "definitions": {
+    "en": "brother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 16,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-fratino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "nepino",
+    "geavoj",
+    "fratino",
+    "edzo"
+   ],
+   "correct_index": 2,
+   "bildo": "fratino",
+   "definitions": {
+    "en": "sister"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 17,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gefratoj-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "kuzino",
+    "onklo",
+    "gefiloj",
+    "gefratoj"
+   ],
+   "correct_index": 3,
+   "bildo": "gefratoj",
+   "definitions": {
+    "en": "brothers and sisters, siblings"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 18,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-kuzo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "edzino",
+    "geavoj",
+    "kuzo",
+    "gefratoj"
+   ],
+   "correct_index": 2,
+   "bildo": "kuzo",
+   "definitions": {
+    "en": "cousin (male)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 19,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-kuzino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "kuzino",
+    "fratino",
+    "nevino",
+    "frato"
+   ],
+   "correct_index": 0,
+   "bildo": "kuzino",
+   "definitions": {
+    "en": "cousin (female)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 20,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gekuzoj-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "gefiloj",
+    "kuzino",
+    "gekuzoj",
+    "edzino"
+   ],
+   "correct_index": 2,
+   "bildo": "gekuzoj",
+   "definitions": {
+    "en": "cousins"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 21,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-edzo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "nepo",
+    "gekuzoj",
+    "genepoj",
+    "edzo"
+   ],
+   "correct_index": 3,
+   "bildo": "edzo",
+   "definitions": {
+    "en": "husband"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 22,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-edzino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "edzo",
+    "edzino",
+    "nevino",
+    "frato"
+   ],
+   "correct_index": 1,
+   "bildo": "edzino",
+   "definitions": {
+    "en": "wife"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 23,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-filo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "filo",
+    "fratino",
+    "nevo",
+    "filino"
+   ],
+   "correct_index": 0,
+   "bildo": "filo",
+   "definitions": {
+    "en": "son"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 24,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-filino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "nepo",
+    "kuzino",
+    "filino",
+    "edzo"
+   ],
+   "correct_index": 2,
+   "bildo": "filino",
+   "definitions": {
+    "en": "daughter"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 25,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gefiloj-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "geavoj",
+    "gefiloj",
+    "genepoj",
+    "nevo"
+   ],
+   "correct_index": 1,
+   "bildo": "gefiloj",
+   "definitions": {
+    "en": "children (sons and daughters)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 26,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nevo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "nevo",
+    "kuzo",
+    "avo",
+    "nepo"
+   ],
+   "correct_index": 0,
+   "bildo": "nevo",
+   "definitions": {
+    "en": "nephew"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 27,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nevino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "nepo",
+    "gefiloj",
+    "nevino",
+    "genepoj"
+   ],
+   "correct_index": 2,
+   "bildo": "nevino",
+   "definitions": {
+    "en": "niece"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 28,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nepo-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "gepatroj",
+    "nepo",
+    "kuzo",
+    "patrino"
+   ],
+   "correct_index": 1,
+   "bildo": "nepo",
+   "definitions": {
+    "en": "grandson"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 29,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nepino-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "frato",
+    "onklo",
+    "gepatroj",
+    "nepino"
+   ],
+   "correct_index": 3,
+   "bildo": "nepino",
+   "definitions": {
+    "en": "granddaughter"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 30,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-genepoj-elekto",
+  "Type": "multiplechoice",
+  "Content": {
+   "question": "Kio estas tio?",
+   "options": [
+    "kuzo",
+    "genepoj",
+    "gefiloj",
+    "filino"
+   ],
+   "correct_index": 1,
+   "bildo": "genepoj",
+   "definitions": {
+    "en": "grandchildren"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "bildo"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 850,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 31,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
   "Slug": "bildo-familio-elekto",
   "Type": "multiplechoice",
   "Content": {
    "question": "Kio estas tio?",
    "options": [
-    "avino",
-    "knabino",
-    "knabo",
-    "familio"
+    "kuzo",
+    "familio",
+    "nevo",
+    "avo"
    ],
-   "correct_index": 3,
+   "correct_index": 1,
    "bildo": "familio",
    "definitions": {
     "en": "family"
@@ -6414,7 +7199,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 12,
+  "SeriesOrder": 32,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6489,7 +7274,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 13,
+  "SeriesOrder": 33,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6519,7 +7304,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 14,
+  "SeriesOrder": 34,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6594,7 +7379,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 15,
+  "SeriesOrder": 35,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6624,7 +7409,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 16,
+  "SeriesOrder": 36,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6654,7 +7439,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 17,
+  "SeriesOrder": 37,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6684,7 +7469,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 18,
+  "SeriesOrder": 38,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6714,7 +7499,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 19,
+  "SeriesOrder": 39,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6744,7 +7529,37 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 20,
+  "SeriesOrder": 40,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-geavoj",
+  "Type": "vocab",
+  "Content": {
+   "word": "geavoj",
+   "definitions": {
+    "en": "grandparents"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 41,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6774,7 +7589,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 21,
+  "SeriesOrder": 42,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6804,7 +7619,622 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 22,
+  "SeriesOrder": 43,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gepatroj",
+  "Type": "vocab",
+  "Content": {
+   "word": "gepatroj",
+   "definitions": {
+    "en": "parents"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 44,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-onklo",
+  "Type": "vocab",
+  "Content": {
+   "word": "onklo",
+   "definitions": {
+    "ar": "عم; خال",
+    "be": "дядя",
+    "ca": "oncle",
+    "cs": "strýc",
+    "da": "onkel",
+    "de": "Onkel",
+    "el": "θείος",
+    "en": "uncle",
+    "es": "tío",
+    "fa": "عمو; دایی",
+    "fr": "oncle",
+    "frp": "oncle",
+    "ga": "uncail",
+    "he": "דוד",
+    "hi": "uncle",
+    "hr": "stric; ujak",
+    "hu": "nagybácsi",
+    "id": "paman",
+    "it": "zio",
+    "ja": "叔父",
+    "kk": "ағай",
+    "km": "ពូ",
+    "ko": "삼촌",
+    "ku": "عمو; دایی",
+    "lo": "uncle",
+    "mg": "dadatoa , rahalahin-dray",
+    "ms": "pakcik",
+    "my": "uncle",
+    "nl": "oom",
+    "pl": "wujek",
+    "pt": "tio",
+    "ro": "oncle",
+    "ru": "дядя",
+    "sk": "strýko",
+    "sl": "stric",
+    "sv": "farbror; morbror",
+    "sw": "oncle",
+    "th": "ลุง; อา; น้า (ชาย)",
+    "tok": "uncle",
+    "tr": "amca",
+    "uk": "дядько",
+    "ur": "چچا",
+    "vi": "cậu, chú, bác",
+    "yo": "uncle",
+    "zh": "叔叔、伯伯",
+    "zh-tw": "叔伯"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 45,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-onklino",
+  "Type": "vocab",
+  "Content": {
+   "word": "onklino",
+   "definitions": {
+    "en": "aunt"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 46,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-frato",
+  "Type": "vocab",
+  "Content": {
+   "word": "frato",
+   "definitions": {
+    "en": "brother"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 47,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-fratino",
+  "Type": "vocab",
+  "Content": {
+   "word": "fratino",
+   "definitions": {
+    "en": "sister"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 48,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gefratoj",
+  "Type": "vocab",
+  "Content": {
+   "word": "gefratoj",
+   "definitions": {
+    "en": "brothers and sisters, siblings"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 49,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-kuzo",
+  "Type": "vocab",
+  "Content": {
+   "word": "kuzo",
+   "definitions": {
+    "en": "cousin (male)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 50,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-kuzino",
+  "Type": "vocab",
+  "Content": {
+   "word": "kuzino",
+   "definitions": {
+    "en": "cousin (female)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 51,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gekuzoj",
+  "Type": "vocab",
+  "Content": {
+   "word": "gekuzoj",
+   "definitions": {
+    "en": "cousins"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 52,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-edzo",
+  "Type": "vocab",
+  "Content": {
+   "word": "edzo",
+   "definitions": {
+    "en": "husband"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 53,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-edzino",
+  "Type": "vocab",
+  "Content": {
+   "word": "edzino",
+   "definitions": {
+    "en": "wife"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 54,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-filo",
+  "Type": "vocab",
+  "Content": {
+   "word": "filo",
+   "definitions": {
+    "en": "son"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 55,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-filino",
+  "Type": "vocab",
+  "Content": {
+   "word": "filino",
+   "definitions": {
+    "en": "daughter"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 56,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-gefiloj",
+  "Type": "vocab",
+  "Content": {
+   "word": "gefiloj",
+   "definitions": {
+    "en": "children (sons and daughters)"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 57,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nevo",
+  "Type": "vocab",
+  "Content": {
+   "word": "nevo",
+   "definitions": {
+    "en": "nephew"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 58,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nevino",
+  "Type": "vocab",
+  "Content": {
+   "word": "nevino",
+   "definitions": {
+    "en": "niece"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 59,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nepo",
+  "Type": "vocab",
+  "Content": {
+   "word": "nepo",
+   "definitions": {
+    "en": "grandson"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 60,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-nepino",
+  "Type": "vocab",
+  "Content": {
+   "word": "nepino",
+   "definitions": {
+    "en": "granddaughter"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 61,
+  "SeriesLabel": "Bildoj: Homoj kaj familio",
+  "SeriesParent": ""
+ },
+ {
+  "Slug": "bildo-genepoj",
+  "Type": "vocab",
+  "Content": {
+   "word": "genepoj",
+   "definitions": {
+    "en": "grandchildren"
+   }
+  },
+  "Tags": [
+   "A0",
+   "bildvortaro",
+   "familio",
+   "vortaro",
+   "bildoj-familio-teksto"
+  ],
+  "Source": "esperanto-kurso.net",
+  "AuthorID": "seed",
+  "Status": "approved",
+  "Rating": 890,
+  "RD": 200,
+  "Volatility": 0.06,
+  "VoteScore": 0,
+  "Version": 1,
+  "ImageURL": "",
+  "SeriesSlug": "bildoj-familio",
+  "SeriesOrder": 62,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },
@@ -6834,7 +8264,7 @@
   "Version": 1,
   "ImageURL": "",
   "SeriesSlug": "bildoj-familio",
-  "SeriesOrder": 23,
+  "SeriesOrder": 63,
   "SeriesLabel": "Bildoj: Homoj kaj familio",
   "SeriesParent": ""
  },

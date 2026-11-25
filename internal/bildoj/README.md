@@ -21,6 +21,7 @@ Each row:
 | `source`, `author`, `license` | where the picture comes from; shown on the credits page (`/fontoj`). |
 | `exact` | optional: the word matches only as written. For words with no grammatical ending (numbers): without it `tri` would also match `tre`. |
 | `group` | optional: pictures too alike to tell apart (man / boy, the bowls and cups). Two words of one group are never options of the same picture exercise. |
+| `set` | optional: pictures of one drawing, the family tree (`parencoj`). A picture exercise for a word of a set takes its options only from that set: the tree's highlighted father is also a man, so `viro` must not be an option there. (The other way is fine: `patro` is a wrong answer under the picture of a man.) |
 
 How a word finds its picture (`ForToken`, `ForVocab`):
 
@@ -54,6 +55,16 @@ saving such an item there drops its picture.
   unzipped) and `openmoji.json` (the release's `data/openmoji.json`).
 - `make_site_icons.py KENNEY_DIR .` — the lesson places and kind icons.
 - `make_seed.py .` — `seed/bildvortaro.json` from `vortbildoj.json`.
+- `familytree.py` — the family words' pictures (`static/bildoj/parencoj/`):
+  one five-generation tree, the same in every picture, "me" in a blue ring,
+  the word's person(s) in yellow with a black outline, everyone else faint;
+  gender by the body's shape (men square shoulders, women a dress, "me" and
+  an unnamed spouse rounded). Standard library only, drawn from primitives
+  (our own work, CC0). `make_words.py` calls it for refs written `%relation`
+  (`patro|familio|%father|set=parencoj`). Relations have English keys
+  (`familytree.py --list`) and the file names are slot numbers, so it serves
+  any language: for angla.org, `python -I familytree.py OUT_DIR father mother
+  …` writes the pictures and prints `{relation: file}`.
 
 To give a new word a picture: add the file under `static/bildoj/vortoj/`, add
 its row, add its credit to `static/bildoj/ASSETS.md` if it comes from a new

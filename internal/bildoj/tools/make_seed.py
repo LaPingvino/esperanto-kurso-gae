@@ -5,7 +5,8 @@ usage: python -I make_seed.py SITE_DIR
 Each series bildoj-<topic>: a short reading (the pictures show above it), then a
 picture -> choose exercise per word (multiplechoice; content "bildo" names the
 word whose picture shows, "definitions" give the picture's alt text; three options from the same topic, never from the
-same look-alike group), then a vocab item per word (the picture is its prompt).
+same look-alike group; a word of a set, the family tree, takes options only from its
+set), then a vocab item per word (the picture is its prompt).
 Vocab definitions come from the site's own seed vocabulary where the word or
 its root is there (many languages), else an English gloss below.
 """
@@ -69,7 +70,14 @@ EN = {
     "banano": "banana", "oranĝo": "orange", "citrono": "lemon", "vinbero": "grape", "frago": "strawberry",
     "fromaĝo": "cheese", "ovo": "egg", "viando": "meat", "rizo": "rice", "kuko": "cake",
     "glaciaĵo": "ice cream", "supo": "soup", "terpomo": "potato", "tomato": "tomato", "karoto": "carrot",
-    "vino": "wine", "viro": "man", "virino": "woman", "knabo": "boy", "knabino": "girl", "bebo": "baby",
+    "vino": "wine", "viro": "man",
+    "avo": "grandfather", "avino": "grandmother", "geavoj": "grandparents", "patro": "father",
+    "patrino": "mother", "gepatroj": "parents", "onklo": "uncle", "onklino": "aunt",
+    "frato": "brother", "fratino": "sister", "gefratoj": "brothers and sisters, siblings",
+    "kuzo": "cousin (male)", "kuzino": "cousin (female)", "gekuzoj": "cousins", "edzo": "husband",
+    "edzino": "wife", "filo": "son", "filino": "daughter", "gefiloj": "children (sons and daughters)",
+    "nevo": "nephew", "nevino": "niece", "nepo": "grandson", "nepino": "granddaughter",
+    "genepoj": "grandchildren", "virino": "woman", "knabo": "boy", "knabino": "girl", "bebo": "baby",
     "oranĝkolora": "orange (colour)", "viola": "purple", "nul": "zero", "manĝi": "to eat",
     "trinki": "to drink", "dormi": "to sleep", "kuri": "to run", "iri": "to go, to walk", "naĝi": "to swim",
     "legi": "to read", "paroli": "to speak", "aŭskulti": "to listen", "vidi": "to see", "kanti": "to sing",
@@ -100,6 +108,11 @@ def text_for(topic, words):
     if topic == "nombroj":
         line = ", ".join(words).capitalize() + "."
         return line + "\n\nMi havas du okulojn kaj du orelojn. Mi havas unu buŝon kaj unu nazon."
+    if topic == "familio":
+        # the family tree's words from "me": mia patro, miaj gepatroj
+        sets = {r["word"] for r in rows if r.get("set")}
+        return "\n".join(("Jen miaj " if w.endswith("oj") else "Jen mia ") + w + "." if w in sets
+                         else "Jen " + w + "." for w in words)
     if topic == "agoj":
         return "\n".join("Mi " + w[:-1] + "as." for w in words)
     return "\n".join("Jen " + w + "." for w in words)
@@ -136,7 +149,9 @@ for ti, (topic, name) in enumerate(TOPICS):
     for r in trows:
         w = r["word"]
         rnd = random.Random(w)
-        pool = [x["word"] for x in trows if x["word"] != w and (not r.get("group") or x.get("group") != r.get("group"))]
+        pool = [x["word"] for x in trows if x["word"] != w
+                and (not r.get("group") or x.get("group") != r.get("group"))
+                and (not r.get("set") or x.get("set") == r.get("set"))]
         opts = rnd.sample(pool, 3) + [w]
         rnd.shuffle(opts)
         order += 1

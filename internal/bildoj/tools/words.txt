@@ -1,4 +1,4 @@
-# word | topic | OpenMoji emoji (or @hexcode) | flags (exact, group=name)
+# word | topic | OpenMoji emoji (or @hexcode, or %relation for a family-tree picture: familytree.py --list) | flags (exact, group=name, set=name)
 domo|objektoj|🏠|
 libro|objektoj|📕|group=libro
 seĝo|objektoj|🪑|
@@ -77,11 +77,31 @@ knabo|familio|👦|group=homo
 knabino|familio|👧|group=homo
 bebo|familio|👶|group=homo
 infano|familio|🧒|group=homo
-avo|familio|👴|
-avino|familio|👵|
-patro|familio|@1F468-200D-1F466|group=familio
-patrino|familio|@1F469-200D-1F467|group=familio
-familio|familio|@1F468-200D-1F469-200D-1F467-200D-1F466|group=familio
+avo|familio|%grandfather|set=parencoj
+avino|familio|%grandmother|set=parencoj
+geavoj|familio|%grandparents|set=parencoj
+patro|familio|%father|set=parencoj
+patrino|familio|%mother|set=parencoj
+gepatroj|familio|%parents|set=parencoj
+onklo|familio|%uncle|set=parencoj
+onklino|familio|%aunt|set=parencoj
+frato|familio|%brother|set=parencoj
+fratino|familio|%sister|set=parencoj
+gefratoj|familio|%siblings|set=parencoj
+kuzo|familio|%cousin (m)|set=parencoj
+kuzino|familio|%cousin (f)|set=parencoj
+gekuzoj|familio|%cousins|set=parencoj
+edzo|familio|%husband|set=parencoj
+edzino|familio|%wife|set=parencoj
+filo|familio|%son|set=parencoj
+filino|familio|%daughter|set=parencoj
+gefiloj|familio|%children|set=parencoj
+nevo|familio|%nephew|set=parencoj
+nevino|familio|%niece|set=parencoj
+nepo|familio|%grandson|set=parencoj
+nepino|familio|%granddaughter|set=parencoj
+genepoj|familio|%grandchildren|set=parencoj
+familio|familio|@1F468-200D-1F469-200D-1F467-200D-1F466|
 ruĝa|koloroj|🔴|
 oranĝkolora|koloroj|🟠|
 flava|koloroj|🟡|

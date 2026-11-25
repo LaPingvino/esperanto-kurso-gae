@@ -27,6 +27,7 @@ type Picture struct {
 	License string `json:"license"`         // its licence
 	Exact   bool   `json:"exact,omitempty"` // match the word only as written (numbers): no root matching
 	Group   string `json:"group,omitempty"` // pictures too alike to be told apart: never options of one exercise
+	Set     string `json:"set,omitempty"`   // pictures of one drawing (the family tree): their exercises take options only from the set
 }
 
 // URL is where the picture is served.
