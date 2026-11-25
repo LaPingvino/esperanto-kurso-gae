@@ -6,8 +6,13 @@ import (
 	"sort"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
+
+// Source is the content a recommendation draws from (a *store.ContentStore).
+type Source interface {
+	ListByRatingRange(ctx context.Context, minR, maxR float64, limit int) ([]*model.ContentItem, error)
+	ListApproved(ctx context.Context, limit int) ([]*model.ContentItem, error)
+}
 
 // GetForUser returns up to limit content items appropriate for the user's rating.
 // Items are sourced within ±200 rating points of the user's rating, then ranked
@@ -17,7 +22,7 @@ func GetForUser(
 	ctx context.Context,
 	userRating float64,
 	userRD float64,
-	cs *store.ContentStore,
+	cs Source,
 	limit int,
 ) ([]*model.ContentItem, error) {
 
@@ -85,7 +90,7 @@ func GetForUser(
 }
 
 // GetHarder returns items rated +200 to +600 above the user's rating.
-func GetHarder(ctx context.Context, userRating float64, cs *store.ContentStore, limit int, exclude string) ([]*model.ContentItem, error) {
+func GetHarder(ctx context.Context, userRating float64, cs Source, limit int, exclude string) ([]*model.ContentItem, error) {
 	items, err := cs.ListByRatingRange(ctx, userRating+200, userRating+600, limit*2)
 	if err != nil || len(items) == 0 {
 		items, err = cs.ListByRatingRange(ctx, userRating+50, userRating+1000, limit*2)
@@ -98,7 +103,7 @@ func GetHarder(ctx context.Context, userRating float64, cs *store.ContentStore, 
 }
 
 // GetEasier returns items rated -600 to -200 below the user's rating.
-func GetEasier(ctx context.Context, userRating float64, cs *store.ContentStore, limit int, exclude string) ([]*model.ContentItem, error) {
+func GetEasier(ctx context.Context, userRating float64, cs Source, limit int, exclude string) ([]*model.ContentItem, error) {
 	items, err := cs.ListByRatingRange(ctx, userRating-600, userRating-200, limit*2)
 	if err != nil || len(items) == 0 {
 		items, err = cs.ListByRatingRange(ctx, userRating-1000, userRating-50, limit*2)

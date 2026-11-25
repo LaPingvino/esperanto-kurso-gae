@@ -4,6 +4,7 @@ import (
 	"context"
 	"crypto/rand"
 	"encoding/base64"
+	"log/slog"
 	"net/http"
 	"strings"
 	"time"
@@ -12,7 +13,6 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/glicko"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
-	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
 // isStreakMilestone reports whether a streak length deserves a celebration:
@@ -25,22 +25,47 @@ func isStreakMilestone(days int) bool {
 	return days > 0 && days%100 == 0
 }
 
+// exerciseContent, exerciseUsers, exerciseAttempts and exerciseVotes are the
+// parts of the stores an ExerciseHandler uses, so tests can fake them.
+type exerciseContent interface {
+	recommend.Source
+	GetBySlug(ctx context.Context, slug string) (*model.ContentItem, error)
+	ApprovedShared(ctx context.Context) ([]*model.ContentItem, error)
+	ListBySeries(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error)
+	UpdateRating(ctx context.Context, slug string, rating, rd, volatility float64) error
+}
+
+type exerciseUsers interface {
+	Create(ctx context.Context, u *model.User) error
+	UpdateRating(ctx context.Context, userID string, rating, rd, volatility float64) error
+	UpdateStreakAndSeen(ctx context.Context, userID string) (int, error)
+	UpdateUILang(ctx context.Context, userID, lang string) error
+}
+
+type exerciseAttempts interface {
+	Create(ctx context.Context, a *model.Attempt) error
+}
+
+type exerciseVotes interface {
+	GetByUserAndContent(ctx context.Context, userID, contentID string) (*model.Vote, error)
+}
+
 // ExerciseHandler handles exercise submission and result rendering.
 type ExerciseHandler struct {
 	tmpl     Renderer
-	content  *store.ContentStore
-	users    *store.UserStore
-	attempts *store.AttemptStore
-	votes    *store.VoteStore
+	content  exerciseContent
+	users    exerciseUsers
+	attempts exerciseAttempts
+	votes    exerciseVotes
 }
 
 // NewExerciseHandler creates an ExerciseHandler.
 func NewExerciseHandler(
 	tmpl Renderer,
-	content *store.ContentStore,
-	users *store.UserStore,
-	attempts *store.AttemptStore,
-	votes *store.VoteStore,
+	content exerciseContent,
+	users exerciseUsers,
+	attempts exerciseAttempts,
+	votes exerciseVotes,
 ) *ExerciseHandler {
 	return &ExerciseHandler{
 		tmpl:     tmpl,
@@ -102,21 +127,29 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 // rating, the streak and whether it reached a milestone just now.
 func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.ContentItem, score float64, correct bool, recorded string) (float64, float64, int, bool) {
 	slug := item.Slug
-	_ = h.attempts.Create(ctx, &model.Attempt{
+	// A store failure is logged, never shown: the learner's answer still gets
+	// its verdict. Only the slug and the user ID go into the log.
+	if err := h.attempts.Create(ctx, &model.Attempt{
 		UserID:        u.ID,
 		ContentItemID: slug,
 		Correct:       correct,
 		Answer:        recorded,
 		Timestamp:     time.Now(),
-	})
+	}); err != nil {
+		slog.Error("exercise: recording attempt", "slug", slug, "user", u.ID, "err", err)
+	}
 
 	// The user's opponent is the content, and the content's the user (score inverted).
 	newUserR, newUserRD, newUserVol := glicko.Update(u.Rating, u.RD, u.Volatility,
 		[]glicko.Result{{OpponentRating: item.Rating, OpponentRD: item.RD, Score: score}})
 	newContentR, newContentRD, newContentVol := glicko.Update(item.Rating, item.RD, item.Volatility,
 		[]glicko.Result{{OpponentRating: u.Rating, OpponentRD: u.RD, Score: 1.0 - score}})
-	_ = h.users.UpdateRating(ctx, u.ID, newUserR, newUserRD, newUserVol)
-	_ = h.content.UpdateRating(ctx, slug, newContentR, newContentRD, newContentVol)
+	if err := h.users.UpdateRating(ctx, u.ID, newUserR, newUserRD, newUserVol); err != nil {
+		slog.Error("exercise: updating user rating", "slug", slug, "user", u.ID, "err", err)
+	}
+	if err := h.content.UpdateRating(ctx, slug, newContentR, newContentRD, newContentVol); err != nil {
+		slog.Error("exercise: updating item rating", "slug", slug, "user", u.ID, "err", err)
+	}
 
 	// Milestones celebrate only the attempt that extends the streak, so check
 	// the pre-update practice day before it is overwritten below.
@@ -286,7 +319,7 @@ func checkAnswer(item *model.ContentItem, answers []string) bool {
 }
 
 // nextSlugs returns the recommended, harder, and easier next exercise slugs.
-func nextSlugs(ctx context.Context, userR, userRD float64, currentSlug string, cs *store.ContentStore) (next, harder, easier string) {
+func nextSlugs(ctx context.Context, userR, userRD float64, currentSlug string, cs recommend.Source) (next, harder, easier string) {
 	if items, _ := recommend.GetForUser(ctx, userR, userRD, cs, 6); len(items) > 0 {
 		for _, it := range items {
 			if it.Slug != currentSlug {
@@ -353,7 +386,9 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 }
 
 // nextSeriesItem returns the next item in the series after the given item, or nil.
-func nextSeriesItem(ctx context.Context, item *model.ContentItem, cs *store.ContentStore) *model.ContentItem {
+func nextSeriesItem(ctx context.Context, item *model.ContentItem, cs interface {
+	ListBySeries(ctx context.Context, seriesSlug string) ([]*model.ContentItem, error)
+}) *model.ContentItem {
 	if item.SeriesSlug == "" {
 		return nil
 	}
