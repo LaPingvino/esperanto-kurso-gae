@@ -75,6 +75,71 @@ excerpts (8, B1–C1), Mazi and Pasporto videos, two articles (C1).
    official letters, discussion and argument), no Esperanto culture/history
    series beyond a few readings.
 
+## Prerequisites of the English course (2026-11-26)
+
+`~/Projects/angla-kurso/PREREQS.md` lists the Esperanto words, terms and
+constructions the English course (angla.org) uses, each with the level by which
+this course should have taught it. Its ~193 rows, deduplicated (prezenco/
+pasinteco/futuro appear five times; a row listed at two levels counts at the
+lower one), are 157 units: A1 15, A2 35, B1 59, B2 32, C1 16.
+
+Rule: a unit is taught when every word of it has a vocab card, or appears in an
+exercise (fill-in or multiple choice), at or below the unit's level. A reading
+alone does not count; an incidental hit in an exercise was checked by hand
+(e.g. "oni" in gramatiko-mc-01 is not oni-as-passive). Measured on the live
+course (`scripts/builder.sh read`, approved items, texts from seed/ and
+content/builder/).
+
+| Level | Before | After |
+|---|---:|---:|
+| A1 | 1/15 | **15/15** |
+| A2 | 1/35 | **35/35** |
+| B1 | 9/59 | **59/59** |
+| B2 | 1/32 | 3/32 |
+| C1 | 0/16 | 1/16 |
+
+Before, most of the missing units were not missing altogether: they were
+taught too late. The grammar-term cards sat at B1 where the English course
+needs them at A1/A2, as did reading-word cards (voc-auto-silabo, -sufikso,
+-duono B1; -laciga, -triono, -ĉefverbo B2; -apostrofo, -vorteto C1).
+
+What was added (`content/builder/70-prereqs.json`, made by
+`content/builder/prereqs.py`, 174 items, live):
+
+- **112 vocab cards**, each with an Esperanto definition (`definitions.eo`,
+  shown on the Esperanto interface where Reta Vortaro has none) and
+  en/nl/de/fr/es: everyday words A1/A2/B1 (`vortaro-cxiutagaj-a1/-a2/-b1`: 17,
+  22, 36) and language terms (`vortaro-lingvaj-terminoj-a1/-a2/-b1`: 3, 13, 21).
+  None of these words has a picture in internal/bildoj; the ones with a
+  picture (bebo, buso, biciklo, fiŝo, supo, naĝi, dento, hospitalo) were
+  already A0 picture cards.
+- **62 exercises** in three series (`gramatiko-prereqs-a1/-a2/-b1-ekz`: 9, 30,
+  23): clock time, dates with -n, -ad- for past habits, de + duration, oni for
+  the English passive, -n of direction, accusative of measure and time,
+  ordinals and fractions, the terms (affix, syllable and stress, question word,
+  main clause, word order, apostrophe, voiced/voiceless, present tense);
+  tiel/tia…ke, facile + -ebla, -ig- "have it done", estas/estos -inta, Se nur
+  …-us!, ĵus + -inta, unu la alian, helper/main verb, particle, direct/indirect
+  speech and questions, countable, subordinating conjunction, reflexive,
+  stative, false friend, concession. The cards that sat too late but are not
+  the builder's (voc-auto-*) are taught at the right level by these exercises.
+- **11 grammar-term cards re-rated** to the level PREREQS needs
+  (`TERM_RATING` in make.py): prononco, vokalo, konsonanto to A1; afikso,
+  prefikso, akcento, akuzativo, demandvorto, vortordo, subfrazo, prezenco to A2.
+
+An independent review checked the Esperanto and the answer ambiguity; its
+fixes are in (agreement in the laciga item, malfermita/fermita, tian without an
+adjective, "jam de kvin jaroj", the perfekto and akordo definitions, and more).
+
+**Left for later (B2 and C1, 44 units):** B2: akademia/ĵurnalista/oficiala,
+aktuale, analizo, tendenco, aserto, demonstrativo, ekstrema, eventuale, fleksii,
+forpasi, idiomo (the course has idiomaĵo), IFA, intonacio, kadro, kiel ajn + -u,
+kongrui, konsekvenca, estus -inta, latinida, malnovstila, mildigi, perverba
+priskribo, prudenta, referenco, rigide, rondigi, seniluziigi, ol lia/sia,
+slango, verboj de percepto. C1: kiom ajn, anstataŭigo, inversio, arkaika,
+elipso, fonemo, gradigebla, konata/nova informo, kalko, kohero, konverto,
+nominaligo, paralelismo/ritmo/retoriko, registro, ŝvao.
+
 ## What the builder has added (content/builder/, 218 items, live)
 
 The first 190 items were loaded and published on 2026-11-25; the

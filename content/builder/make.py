@@ -576,11 +576,16 @@ prononco|pronunciation|uitspraak|Aussprache|prononciation|pronunciación
 idiomaĵo|idiom|uitdrukking, idioom|Redewendung|expression idiomatique|modismo
 sinonimo|synonym|synoniem|Synonym|synonyme|sinónimo
 antonimo|antonym|antoniem|Antonym|antonyme|antónimo"""
+# The English course (angla.org PREREQS.md) needs these terms earlier than the
+# level they started at; re-rated once on 2026-11-26 (docs/GAPS.md).
+TERM_RATING = {"prononco": 1100, "vokalo": 1080, "konsonanto": 1120,
+               "afikso": 1300, "prefikso": 1280, "akcento": 1320, "akuzativo": 1300,
+               "demandvorto": 1280, "vortordo": 1320, "subfrazo": 1300, "prezenco": 1280}
 F = "40-terminoj.json"
 for n, line in enumerate(TERMS.split("\n"), 1):
     w, en, nl, de, fr, es_ = line.split("|")
     add(F, {"slug": "termino-" + w.replace("ĵ", "jx").replace("ĉ", "cx").replace("ŝ", "sx").replace("ĝ", "gx").replace("ĥ", "hx").replace("ŭ", "ux"),
-            "type": "vocab", "rating": 1350 + (n % 6) * 40,
+            "type": "vocab", "rating": TERM_RATING.get(w, 1350 + (n % 6) * 40),
             "content": {"word": w, "definition": en, "definitions": {"en": en, "nl": nl, "de": de, "fr": fr, "es": es_}},
             "tags": ["vortaro", "gramatika-termino"], "source": SELF,
             "series_slug": "vortaro-gramatikaj-terminoj", "series_order": n, "series_label": "Gramatikaj terminoj"})

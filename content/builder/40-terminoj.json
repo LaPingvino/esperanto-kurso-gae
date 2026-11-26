@@ -242,7 +242,7 @@
  {
   "slug": "termino-akuzativo",
   "type": "vocab",
-  "rating": 1550,
+  "rating": 1300,
   "content": {
    "word": "akuzativo",
    "definition": "accusative",
@@ -386,7 +386,7 @@
  {
   "slug": "termino-prezenco",
   "type": "vocab",
-  "rating": 1550,
+  "rating": 1280,
   "content": {
    "word": "prezenco",
    "definition": "present tense (as-tenso)",
@@ -674,7 +674,7 @@
  {
   "slug": "termino-subfrazo",
   "type": "vocab",
-  "rating": 1550,
+  "rating": 1300,
   "content": {
    "word": "subfrazo",
    "definition": "subordinate clause",
@@ -794,7 +794,7 @@
  {
   "slug": "termino-prefikso",
   "type": "vocab",
-  "rating": 1510,
+  "rating": 1280,
   "content": {
    "word": "prefikso",
    "definition": "prefix",
@@ -818,7 +818,7 @@
  {
   "slug": "termino-afikso",
   "type": "vocab",
-  "rating": 1550,
+  "rating": 1300,
   "content": {
    "word": "afikso",
    "definition": "affix",
@@ -866,7 +866,7 @@
  {
   "slug": "termino-vokalo",
   "type": "vocab",
-  "rating": 1390,
+  "rating": 1080,
   "content": {
    "word": "vokalo",
    "definition": "vowel",
@@ -890,7 +890,7 @@
  {
   "slug": "termino-konsonanto",
   "type": "vocab",
-  "rating": 1430,
+  "rating": 1120,
   "content": {
    "word": "konsonanto",
    "definition": "consonant",
@@ -914,7 +914,7 @@
  {
   "slug": "termino-akcento",
   "type": "vocab",
-  "rating": 1470,
+  "rating": 1320,
   "content": {
    "word": "akcento",
    "definition": "stress (accent)",
@@ -1058,7 +1058,7 @@
  {
   "slug": "termino-demandvorto",
   "type": "vocab",
-  "rating": 1470,
+  "rating": 1280,
   "content": {
    "word": "demandvorto",
    "definition": "question word",
@@ -1106,7 +1106,7 @@
  {
   "slug": "termino-vortordo",
   "type": "vocab",
-  "rating": 1550,
+  "rating": 1320,
   "content": {
    "word": "vortordo",
    "definition": "word order",
@@ -1202,7 +1202,7 @@
  {
   "slug": "termino-prononco",
   "type": "vocab",
-  "rating": 1470,
+  "rating": 1100,
   "content": {
    "word": "prononco",
    "definition": "pronunciation",

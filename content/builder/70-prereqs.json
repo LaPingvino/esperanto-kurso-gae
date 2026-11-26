@@ -1,0 +1,4246 @@
+[
+ {
+  "slug": "pr-stacio",
+  "type": "vocab",
+  "rating": 1080,
+  "content": {
+   "word": "stacio",
+   "definition": "station, stop",
+   "definitions": {
+    "eo": "loko, kie trajnoj aŭ busoj haltas, por ke homoj eniru aŭ eliru",
+    "en": "station, stop",
+    "nl": "station, halte",
+    "de": "Bahnhof, Haltestelle",
+    "fr": "gare, arrêt",
+    "es": "estación, parada"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 1,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-kinejo",
+  "type": "vocab",
+  "rating": 1100,
+  "content": {
+   "word": "kinejo",
+   "definition": "cinema",
+   "definitions": {
+    "eo": "ejo, kie oni spektas filmojn",
+    "en": "cinema",
+    "nl": "bioscoop",
+    "de": "Kino",
+    "fr": "cinéma",
+    "es": "cine"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 2,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-laca",
+  "type": "vocab",
+  "rating": 1120,
+  "content": {
+   "word": "laca",
+   "definition": "tired",
+   "definitions": {
+    "eo": "tia, ke oni volas ripozi aŭ dormi",
+    "en": "tired",
+    "nl": "moe",
+    "de": "müde",
+    "fr": "fatigué",
+    "es": "cansado"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 3,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-banko",
+  "type": "vocab",
+  "rating": 1140,
+  "content": {
+   "word": "banko",
+   "definition": "bank",
+   "definitions": {
+    "eo": "loko, kie homoj konservas sian monon kaj povas prunti monon",
+    "en": "bank",
+    "nl": "bank",
+    "de": "Bank",
+    "fr": "banque",
+    "es": "banco"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 4,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-ferioj",
+  "type": "vocab",
+  "rating": 1060,
+  "content": {
+   "word": "ferioj",
+   "definition": "holidays, vacation",
+   "definitions": {
+    "eo": "tempo sen laboro aŭ lernejo, por ripozi aŭ vojaĝi",
+    "en": "holidays, vacation",
+    "nl": "vakantie",
+    "de": "Ferien, Urlaub",
+    "fr": "vacances",
+    "es": "vacaciones"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 5,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-ekzameno",
+  "type": "vocab",
+  "rating": 1080,
+  "content": {
+   "word": "ekzameno",
+   "definition": "exam",
+   "definitions": {
+    "eo": "provo, en kiu oni montras, kion oni lernis",
+    "en": "exam",
+    "nl": "examen",
+    "de": "Prüfung",
+    "fr": "examen",
+    "es": "examen"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 6,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-sxteli",
+  "type": "vocab",
+  "rating": 1100,
+  "content": {
+   "word": "ŝteli",
+   "definition": "to steal",
+   "definitions": {
+    "eo": "preni ion de alia homo sen permeso",
+    "en": "to steal",
+    "nl": "stelen",
+    "de": "stehlen",
+    "fr": "voler (dérober)",
+    "es": "robar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 7,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-parki",
+  "type": "vocab",
+  "rating": 1120,
+  "content": {
+   "word": "parki",
+   "definition": "to park",
+   "definitions": {
+    "eo": "lasi aŭton aŭ biciklon stari ie por iom da tempo",
+    "en": "to park",
+    "nl": "parkeren",
+    "de": "parken",
+    "fr": "garer",
+    "es": "aparcar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 8,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-ripozi",
+  "type": "vocab",
+  "rating": 1140,
+  "content": {
+   "word": "ripozi",
+   "definition": "to rest",
+   "definitions": {
+    "eo": "ĉesi labori aŭ moviĝi por iom da tempo, por reakiri forton",
+    "en": "to rest",
+    "nl": "rusten",
+    "de": "sich ausruhen",
+    "fr": "se reposer",
+    "es": "descansar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 9,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-promesi",
+  "type": "vocab",
+  "rating": 1060,
+  "content": {
+   "word": "promesi",
+   "definition": "to promise",
+   "definitions": {
+    "eo": "diri, ke oni certe faros ion",
+    "en": "to promise",
+    "nl": "beloven",
+    "de": "versprechen",
+    "fr": "promettre",
+    "es": "prometer"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 10,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-gajni",
+  "type": "vocab",
+  "rating": 1080,
+  "content": {
+   "word": "gajni",
+   "definition": "to win; to earn",
+   "definitions": {
+    "eo": "ricevi monon aŭ premion; venki en ludo",
+    "en": "to win; to earn",
+    "nl": "winnen; verdienen",
+    "de": "gewinnen; verdienen",
+    "fr": "gagner",
+    "es": "ganar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 11,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-loterio",
+  "type": "vocab",
+  "rating": 1100,
+  "content": {
+   "word": "loterio",
+   "definition": "lottery",
+   "definitions": {
+    "eo": "ludo, en kiu oni aĉetas bileton, kaj la hazardo elektas, kiu gajnas",
+    "en": "lottery",
+    "nl": "loterij",
+    "de": "Lotterie",
+    "fr": "loterie",
+    "es": "lotería"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 12,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-frizisto",
+  "type": "vocab",
+  "rating": 1120,
+  "content": {
+   "word": "frizisto",
+   "definition": "hairdresser",
+   "definitions": {
+    "eo": "homo, kiu tondas kaj aranĝas la harojn de aliaj homoj",
+    "en": "hairdresser",
+    "nl": "kapper",
+    "de": "Friseur",
+    "fr": "coiffeur",
+    "es": "peluquero"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 13,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-paciento",
+  "type": "vocab",
+  "rating": 1140,
+  "content": {
+   "word": "paciento",
+   "definition": "patient",
+   "definitions": {
+    "eo": "homo, kiun kuracisto kuracas",
+    "en": "patient",
+    "nl": "patiënt",
+    "de": "Patient",
+    "fr": "patient",
+    "es": "paciente"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 14,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-legxo",
+  "type": "vocab",
+  "rating": 1060,
+  "content": {
+   "word": "leĝo",
+   "definition": "law",
+   "definitions": {
+    "eo": "regulo, kiun la ŝtato faris, kaj kiun ĉiuj devas sekvi",
+    "en": "law",
+    "nl": "wet",
+    "de": "Gesetz",
+    "fr": "loi",
+    "es": "ley"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 15,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-firmao",
+  "type": "vocab",
+  "rating": 1080,
+  "content": {
+   "word": "firmao",
+   "definition": "company, firm",
+   "definitions": {
+    "eo": "grupo de homoj, kiuj kune laboras por vendi aŭ fari ion kaj gajni monon",
+    "en": "company, firm",
+    "nl": "bedrijf, firma",
+    "de": "Firma",
+    "fr": "entreprise",
+    "es": "empresa"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 16,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-afabla",
+  "type": "vocab",
+  "rating": 1100,
+  "content": {
+   "word": "afabla",
+   "definition": "kind, friendly",
+   "definitions": {
+    "eo": "bona kaj agrabla al aliaj homoj",
+    "en": "kind, friendly",
+    "nl": "vriendelijk",
+    "de": "freundlich",
+    "fr": "aimable",
+    "es": "amable"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a1",
+  "series_order": 17,
+  "series_label": "Ĉiutagaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-komo",
+  "type": "vocab",
+  "rating": 1080,
+  "content": {
+   "word": "komo",
+   "definition": "comma",
+   "definitions": {
+    "eo": "la signo „,“ ene de frazo",
+    "en": "comma",
+    "nl": "komma",
+    "de": "Komma",
+    "fr": "virgule",
+    "es": "coma"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a1",
+  "series_order": 1,
+  "series_label": "Lingvaj terminoj (A1)"
+ },
+ {
+  "slug": "pr-citilo",
+  "type": "vocab",
+  "rating": 1100,
+  "content": {
+   "word": "citilo",
+   "definition": "quotation mark",
+   "definitions": {
+    "eo": "unu el la signoj „ kaj “, inter kiuj oni skribas la vortojn de iu",
+    "en": "quotation mark",
+    "nl": "aanhalingsteken",
+    "de": "Anführungszeichen",
+    "fr": "guillemet",
+    "es": "comilla"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a1",
+  "series_order": 2,
+  "series_label": "Lingvaj terminoj (A1)"
+ },
+ {
+  "slug": "pr-demandosigno",
+  "type": "vocab",
+  "rating": 1120,
+  "content": {
+   "word": "demandosigno",
+   "definition": "question mark",
+   "definitions": {
+    "eo": "la signo „?“ ĉe la fino de demando",
+    "en": "question mark",
+    "nl": "vraagteken",
+    "de": "Fragezeichen",
+    "fr": "point d'interrogation",
+    "es": "signo de interrogación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a1",
+  "series_order": 3,
+  "series_label": "Lingvaj terminoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-01",
+  "type": "fillin",
+  "rating": 1080,
+  "content": {
+   "question": "Je kioma horo komenciĝas la filmo? — Je la ___. (8:00)",
+   "answer": "oka",
+   "hint": "-a: oka = 8-a"
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 1,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-02",
+  "type": "fillin",
+  "rating": 1100,
+  "content": {
+   "question": "La buso venas je la deka kaj ___. (10:15)",
+   "answer": "kvarono",
+   "hint": "unu el kvar partoj de horo"
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 2,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-03",
+  "type": "fillin",
+  "rating": 1120,
+  "content": {
+   "question": "Nun estas la tria kaj ___. (3:30)",
+   "answer": "duono",
+   "hint": "unu el du partoj de horo"
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 3,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-04",
+  "type": "fillin",
+  "rating": 1140,
+  "content": {
+   "question": "Post la longa vojaĝo mi estis tre ___ kaj tuj enlitiĝis.",
+   "answer": "laca",
+   "hint": "lac-, a-vorto"
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 4,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-05",
+  "type": "fillin",
+  "rating": 1060,
+  "content": {
+   "question": "La longa marŝado estis ___: post ĝi mi estis laca.",
+   "answer": "laciga",
+   "hint": "lac- + -ig- + -a: kio faras onin laca"
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 5,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-06",
+  "type": "multiplechoice",
+  "rating": 1080,
+  "content": {
+   "question": "Kiu el tiuj literoj estas vokalo?",
+   "options": [
+    "e",
+    "k",
+    "s",
+    "m"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 6,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-07",
+  "type": "multiplechoice",
+  "rating": 1100,
+  "content": {
+   "question": "Kiu el tiuj literoj estas konsonanto?",
+   "options": [
+    "t",
+    "a",
+    "i",
+    "o"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 7,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-08",
+  "type": "multiplechoice",
+  "rating": 1120,
+  "content": {
+   "question": "Kiun signon oni skribas ĉe la fino de demando?",
+   "options": [
+    "komon (,)",
+    "citilojn („ “)",
+    "punkton (.)",
+    "demandosignon (?)"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 8,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a1-ekz-09",
+  "type": "multiplechoice",
+  "rating": 1140,
+  "content": {
+   "question": "Kiel oni prononcas la literon „c“ en Esperanto?",
+   "options": [
+    "kiel „ts“",
+    "kiel „k“",
+    "kiel „s“",
+    "kiel „ĉ“"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "horo",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a1-ekz",
+  "series_order": 9,
+  "series_label": "Horoj kaj lingvaj vortoj (A1)"
+ },
+ {
+  "slug": "pr-diferenco",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "diferenco",
+   "definition": "difference",
+   "definitions": {
+    "eo": "tio, per kio du aferoj ne estas samaj",
+    "en": "difference",
+    "nl": "verschil",
+    "de": "Unterschied",
+    "fr": "différence",
+    "es": "diferencia"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 1,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-testo",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "testo",
+   "definition": "test",
+   "definitions": {
+    "eo": "mallonga provo de scio aŭ kapablo",
+    "en": "test",
+    "nl": "toets, test",
+    "de": "Test",
+    "fr": "test, contrôle",
+    "es": "prueba"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 2,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-konversacio",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "konversacio",
+   "definition": "conversation",
+   "definitions": {
+    "eo": "interparolo inter du aŭ pli da homoj",
+    "en": "conversation",
+    "nl": "gesprek",
+    "de": "Gespräch",
+    "fr": "conversation",
+    "es": "conversación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 3,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-kutimo",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "kutimo",
+   "definition": "habit, custom",
+   "definitions": {
+    "eo": "io, kion oni ofte kaj regule faras",
+    "en": "habit, custom",
+    "nl": "gewoonte",
+    "de": "Gewohnheit",
+    "fr": "habitude",
+    "es": "costumbre"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 4,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-lango",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "lango",
+   "definition": "tongue",
+   "definitions": {
+    "eo": "la moviĝema parto en la buŝo, per kiu oni gustumas kaj parolas",
+    "en": "tongue",
+    "nl": "tong",
+    "de": "Zunge",
+    "fr": "langue (organe)",
+    "es": "lengua (órgano)"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 5,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-lipo",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "lipo",
+   "definition": "lip",
+   "definitions": {
+    "eo": "unu el la du randoj de la buŝo",
+    "en": "lip",
+    "nl": "lip",
+    "de": "Lippe",
+    "fr": "lèvre",
+    "es": "labio"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 6,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-palato",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "palato",
+   "definition": "palate",
+   "definitions": {
+    "eo": "la supra parto de la interno de la buŝo",
+    "en": "palate",
+    "nl": "gehemelte",
+    "de": "Gaumen",
+    "fr": "palais",
+    "es": "paladar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 7,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-listo",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "listo",
+   "definition": "list",
+   "definitions": {
+    "eo": "vico de nomoj aŭ aferoj, skribitaj unu sub la alia",
+    "en": "list",
+    "nl": "lijst",
+    "de": "Liste",
+    "fr": "liste",
+    "es": "lista"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 8,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-literumi",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "literumi",
+   "definition": "to spell",
+   "definitions": {
+    "eo": "diri aŭ skribi la literojn de vorto unu post la alia",
+    "en": "to spell",
+    "nl": "spellen",
+    "de": "buchstabieren",
+    "fr": "épeler",
+    "es": "deletrear"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 9,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-monbileto",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "monbileto",
+   "definition": "banknote",
+   "definitions": {
+    "eo": "papera mono",
+    "en": "banknote",
+    "nl": "bankbiljet",
+    "de": "Geldschein",
+    "fr": "billet de banque",
+    "es": "billete"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 10,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-valuto",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "valuto",
+   "definition": "currency",
+   "definitions": {
+    "eo": "la mono de lando, ekzemple la eŭro aŭ la dolaro",
+    "en": "currency",
+    "nl": "valuta",
+    "de": "Währung",
+    "fr": "devise, monnaie",
+    "es": "divisa, moneda"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 11,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-pundo",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "pundo",
+   "definition": "pound (sterling)",
+   "definitions": {
+    "eo": "la mono de Britio",
+    "en": "pound (sterling)",
+    "nl": "pond",
+    "de": "Pfund",
+    "fr": "livre sterling",
+    "es": "libra"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 12,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-dolaro",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "dolaro",
+   "definition": "dollar",
+   "definitions": {
+    "eo": "la mono de Usono kaj de kelkaj aliaj landoj",
+    "en": "dollar",
+    "nl": "dollar",
+    "de": "Dollar",
+    "fr": "dollar",
+    "es": "dólar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 13,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-mordi",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "mordi",
+   "definition": "to bite",
+   "definitions": {
+    "eo": "premi aŭ tranĉi ion per la dentoj",
+    "en": "to bite",
+    "nl": "bijten",
+    "de": "beißen",
+    "fr": "mordre",
+    "es": "morder"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 14,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-permesi",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "permesi",
+   "definition": "to allow, to permit",
+   "definitions": {
+    "eo": "diri, ke iu rajtas fari ion",
+    "en": "to allow, to permit",
+    "nl": "toestaan",
+    "de": "erlauben",
+    "fr": "permettre",
+    "es": "permitir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 15,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-rifuzi",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "rifuzi",
+   "definition": "to refuse",
+   "definitions": {
+    "eo": "diri, ke oni ne volas fari aŭ akcepti ion",
+    "en": "to refuse",
+    "nl": "weigeren",
+    "de": "ablehnen, verweigern",
+    "fr": "refuser",
+    "es": "negarse, rechazar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 16,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-insisti",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "insisti",
+   "definition": "to insist",
+   "definitions": {
+    "eo": "daŭre diri aŭ peti ion, eĉ se aliaj ne volas",
+    "en": "to insist",
+    "nl": "aandringen",
+    "de": "bestehen auf",
+    "fr": "insister",
+    "es": "insistir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 17,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-klopodi",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "klopodi",
+   "definition": "to try hard",
+   "definitions": {
+    "eo": "multe peni por atingi ion",
+    "en": "to try hard",
+    "nl": "zich inspannen",
+    "de": "sich bemühen",
+    "fr": "s'efforcer",
+    "es": "esforzarse"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 18,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-eviti",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "eviti",
+   "definition": "to avoid",
+   "definitions": {
+    "eo": "resti for de io; fari tiel, ke io ne okazu",
+    "en": "to avoid",
+    "nl": "vermijden",
+    "de": "vermeiden",
+    "fr": "éviter",
+    "es": "evitar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 19,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-stiri",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "stiri",
+   "definition": "to steer, to drive",
+   "definitions": {
+    "eo": "direkti aŭton, ŝipon aŭ biciklon",
+    "en": "to steer, to drive",
+    "nl": "sturen",
+    "de": "lenken, steuern",
+    "fr": "conduire, piloter",
+    "es": "conducir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 20,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-tekstmesagxo",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "tekstmesaĝo",
+   "definition": "text message",
+   "definitions": {
+    "eo": "mallonga skribita mesaĝo, sendita per telefono",
+    "en": "text message",
+    "nl": "sms-bericht",
+    "de": "SMS, Textnachricht",
+    "fr": "SMS, texto",
+    "es": "mensaje de texto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 21,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-jxus",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "ĵus",
+   "definition": "just (a moment ago)",
+   "definitions": {
+    "eo": "antaŭ tre mallonga tempo",
+    "en": "just (a moment ago)",
+    "nl": "zojuist, net",
+    "de": "gerade (eben)",
+    "fr": "tout juste (venir de)",
+    "es": "recién (acabar de)"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-a2",
+  "series_order": 22,
+  "series_label": "Ĉiutagaj vortoj (A2)"
+ },
+ {
+  "slug": "pr-frakcio",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "frakcio",
+   "definition": "fraction",
+   "definitions": {
+    "eo": "nombro, kiu montras parton de tuto, ekzemple duono aŭ triono",
+    "en": "fraction",
+    "nl": "breuk",
+    "de": "Bruch",
+    "fr": "fraction",
+    "es": "fracción"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 1,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-interpunkcio",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "interpunkcio",
+   "definition": "punctuation",
+   "definitions": {
+    "eo": "la signoj en skribita teksto, ekzemple punkto, komo kaj demandosigno",
+    "en": "punctuation",
+    "nl": "interpunctie",
+    "de": "Zeichensetzung",
+    "fr": "ponctuation",
+    "es": "puntuación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 2,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-dupunkto",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "dupunkto",
+   "definition": "colon",
+   "definitions": {
+    "eo": "la signo „:“",
+    "en": "colon",
+    "nl": "dubbele punt",
+    "de": "Doppelpunkt",
+    "fr": "deux-points",
+    "es": "dos puntos"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 3,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-punktokomo",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "punktokomo",
+   "definition": "semicolon",
+   "definitions": {
+    "eo": "la signo „;“",
+    "en": "semicolon",
+    "nl": "puntkomma",
+    "de": "Semikolon",
+    "fr": "point-virgule",
+    "es": "punto y coma"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 4,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-krisigno",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "krisigno",
+   "definition": "exclamation mark",
+   "definitions": {
+    "eo": "la signo „!“",
+    "en": "exclamation mark",
+    "nl": "uitroepteken",
+    "de": "Ausrufezeichen",
+    "fr": "point d'exclamation",
+    "es": "signo de exclamación"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 5,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-streketo",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "streketo",
+   "definition": "hyphen",
+   "definitions": {
+    "eo": "la mallonga signo „-“ inter vortoj aŭ inter partoj de vorto",
+    "en": "hyphen",
+    "nl": "koppelteken",
+    "de": "Bindestrich",
+    "fr": "trait d'union",
+    "es": "guion"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 6,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-majusklo",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "majusklo",
+   "definition": "capital letter",
+   "definitions": {
+    "eo": "granda litero, ekzemple A, B, Ĉ",
+    "en": "capital letter",
+    "nl": "hoofdletter",
+    "de": "Großbuchstabe",
+    "fr": "majuscule",
+    "es": "mayúscula"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 7,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-minusklo",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "minusklo",
+   "definition": "lower-case letter",
+   "definitions": {
+    "eo": "malgranda litero, ekzemple a, b, ĉ",
+    "en": "lower-case letter",
+    "nl": "kleine letter",
+    "de": "Kleinbuchstabe",
+    "fr": "minuscule",
+    "es": "minúscula"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 8,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-numeralo",
+  "type": "vocab",
+  "rating": 1340,
+  "content": {
+   "word": "numeralo",
+   "definition": "numeral; ordinal numeral",
+   "definitions": {
+    "eo": "vorto por nombro (nombrovorto); orda numeralo diras la lokon en vico: unua, dua, tria",
+    "en": "numeral; ordinal numeral",
+    "nl": "telwoord; rangtelwoord",
+    "de": "Zahlwort; Ordnungszahl",
+    "fr": "numéral; ordinal",
+    "es": "numeral; ordinal"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 9,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-vocxa",
+  "type": "vocab",
+  "rating": 1260,
+  "content": {
+   "word": "voĉa",
+   "definition": "voiced (sound)",
+   "definitions": {
+    "eo": "(sono) kun vibrado en la gorĝo, ekzemple b, d, z",
+    "en": "voiced (sound)",
+    "nl": "stemhebbend",
+    "de": "stimmhaft",
+    "fr": "sonore, voisé",
+    "es": "sonoro"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 10,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-senvocxa",
+  "type": "vocab",
+  "rating": 1280,
+  "content": {
+   "word": "senvoĉa",
+   "definition": "voiceless (sound)",
+   "definitions": {
+    "eo": "(sono) sen vibrado en la gorĝo, ekzemple p, t, s",
+    "en": "voiceless (sound)",
+    "nl": "stemloos",
+    "de": "stimmlos",
+    "fr": "sourd",
+    "es": "sordo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 11,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-volitivo",
+  "type": "vocab",
+  "rating": 1300,
+  "content": {
+   "word": "volitivo",
+   "definition": "volitive (u-form)",
+   "definitions": {
+    "eo": "la verbformo kun -u, por peto, ordono aŭ deziro: Venu! Ni iru!",
+    "en": "volitive (u-form)",
+    "nl": "gebiedende/wensende wijs (u-vorm)",
+    "de": "Volitiv (u-Form)",
+    "fr": "volitif (forme en -u)",
+    "es": "volitivo (forma en -u)"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 12,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-cxeffrazo",
+  "type": "vocab",
+  "rating": 1320,
+  "content": {
+   "word": "ĉeffrazo",
+   "definition": "main clause",
+   "definitions": {
+    "eo": "la ĉefa parto de frazo kun subfrazo; ĝi kutime povas stari sola",
+    "en": "main clause",
+    "nl": "hoofdzin",
+    "de": "Hauptsatz",
+    "fr": "proposition principale",
+    "es": "oración principal"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-a2",
+  "series_order": 13,
+  "series_label": "Lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-01",
+  "type": "fillin",
+  "rating": 1280,
+  "content": {
+   "question": "Mi naskiĝis la ___ de majo. (3)",
+   "answer": "trian",
+   "hint": "orda numeralo; -n por la tago, kiam io okazas"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 1,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-02",
+  "type": "fillin",
+  "rating": 1300,
+  "content": {
+   "question": "Hodiaŭ estas la ___ de majo. (3)",
+   "answer": "tria",
+   "hint": "orda numeralo; post „estas“ sen -n"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 2,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-03",
+  "type": "fillin",
+  "rating": 1320,
+  "content": {
+   "question": "Kiam mi estis infano, mi ĉiutage ___ piede al la lernejo.",
+   "answer": "iradis",
+   "hint": "ir- + -ad- (ripetata ago) + -is"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 3,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-04",
+  "type": "fillin",
+  "rating": 1340,
+  "content": {
+   "question": "Mia avo ĉiuvespere ___ al ni fabelojn.",
+   "answer": "rakontadis",
+   "hint": "rakont- + -ad- (ripetata ago) + -is"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 4,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-05",
+  "type": "fillin",
+  "rating": 1260,
+  "content": {
+   "question": "Mi loĝas en ĉi tiu urbo jam ___ kvin jaroj, kaj mi ankoraŭ loĝas ĉi tie.",
+   "answer": "de",
+   "hint": "prepozicio (2 literoj): de iam en la pasinteco ĝis nun"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 5,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-06",
+  "type": "fillin",
+  "rating": 1280,
+  "content": {
+   "question": "En Brazilo ___ parolas la portugalan. (= La portugala estas parolata en Brazilo.)",
+   "answer": "oni",
+   "hint": "pronomo por „homoj ĝenerale“"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 6,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-07",
+  "type": "multiplechoice",
+  "rating": 1300,
+  "content": {
+   "question": "Kiu frazo diras la samon kiel „La angla estas parolata ĉi tie“, sed per „oni“?",
+   "options": [
+    "Ĉi tie oni parolas la angla.",
+    "Ĉi tie la angla parolas.",
+    "Ĉi tie parolas la angla.",
+    "Ĉi tie oni parolas la anglan."
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 7,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-08",
+  "type": "fillin",
+  "rating": 1320,
+  "content": {
+   "question": "Post la laboro mi iras ___ kaj kuiras.",
+   "answer": "hejmen",
+   "hint": "hejm- kun -n de direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 8,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-09",
+  "type": "fillin",
+  "rating": 1340,
+  "content": {
+   "question": "La kato saltis ___ sur la tablon.",
+   "answer": "supren",
+   "hint": "supr- kun -n de direkto"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 9,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-10",
+  "type": "multiplechoice",
+  "rating": 1260,
+  "content": {
+   "question": "Kiu frazo montras direkton (movon al loko)?",
+   "options": [
+    "Mi estas tie.",
+    "Mi iras tien.",
+    "Mi loĝas tie.",
+    "Mi laboras tie."
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 10,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-11",
+  "type": "fillin",
+  "rating": 1280,
+  "content": {
+   "question": "La rivero estas larĝa cent ___.",
+   "answer": "metrojn",
+   "hint": "metr-; akuzativo de mezuro"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 11,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-12",
+  "type": "fillin",
+  "rating": 1300,
+  "content": {
+   "question": "La bebo dormis la tutan ___.",
+   "answer": "nokton",
+   "hint": "nokt-; akuzativo de tempo: kiom longe"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 12,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-13",
+  "type": "fillin",
+  "rating": 1320,
+  "content": {
+   "question": "Januaro estas la ___ monato de la jaro.",
+   "answer": "unua",
+   "hint": "orda numeralo"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 13,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-14",
+  "type": "fillin",
+  "rating": 1340,
+  "content": {
+   "question": "Se oni dividas tuton en tri egalajn partojn, ĉiu parto estas ___.",
+   "answer": "triono",
+   "hint": "tri + -on- + -o"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 14,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-15",
+  "type": "multiplechoice",
+  "rating": 1260,
+  "content": {
+   "question": "En la vorto „malbela“, kio estas „mal-“?",
+   "options": [
+    "sufikso",
+    "prefikso",
+    "finaĵo",
+    "radiko"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 15,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-16",
+  "type": "multiplechoice",
+  "rating": 1280,
+  "content": {
+   "question": "En la vorto „lernejo“, kio estas „-ej-“?",
+   "options": [
+    "prefikso",
+    "sufikso",
+    "finaĵo",
+    "radiko"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 16,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-17",
+  "type": "multiplechoice",
+  "rating": 1300,
+  "content": {
+   "question": "Kio estas afikso?",
+   "options": [
+    "nur la finaĵo -o",
+    "ĉiu radiko",
+    "prefikso aŭ sufikso",
+    "signo de interpunkcio"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 17,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-18",
+  "type": "multiplechoice",
+  "rating": 1320,
+  "content": {
+   "question": "Sur kiu silabo estas la akcento en „familio“?",
+   "options": [
+    "li",
+    "fa",
+    "mi",
+    "o"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 18,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-19",
+  "type": "multiplechoice",
+  "rating": 1340,
+  "content": {
+   "question": "Kiom da silaboj havas la vorto „lernejo“?",
+   "options": [
+    "du",
+    "tri",
+    "kvar",
+    "unu"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 19,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-20",
+  "type": "multiplechoice",
+  "rating": 1260,
+  "content": {
+   "question": "Kiu el tiuj vortoj estas demandvorto?",
+   "options": [
+    "tiam",
+    "ĉiam",
+    "neniam",
+    "kiam"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 20,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-21",
+  "type": "multiplechoice",
+  "rating": 1280,
+  "content": {
+   "question": "„Mi ne scias, kion vi volas.“ Kiu parto estas la ĉeffrazo?",
+   "options": [
+    "Mi ne scias",
+    "kion vi volas",
+    "kion",
+    "vi volas"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 21,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-22",
+  "type": "multiplechoice",
+  "rating": 1300,
+  "content": {
+   "question": "Kiu frazo havas la plej kutiman vortordon (subjekto – verbo – objekto)?",
+   "options": [
+    "Libron legas Petro.",
+    "Legas Petro libron.",
+    "Libron Petro legas.",
+    "Petro legas libron."
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 22,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-23",
+  "type": "multiplechoice",
+  "rating": 1320,
+  "content": {
+   "question": "Kiu signo estas apostrofo?",
+   "options": [
+    "- (kiel en „unu-du“)",
+    "; (punktokomo)",
+    "’ (kiel en „l’ amiko“)",
+    "! (krisigno)"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 23,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-24",
+  "type": "multiplechoice",
+  "rating": 1340,
+  "content": {
+   "question": "Kiu frazo estas ĝentila peto?",
+   "options": [
+    "Fermu la pordon!",
+    "Ĉu vi bonvolus fermi la pordon?",
+    "La pordon!",
+    "Vi fermos la pordon."
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 24,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-25",
+  "type": "multiplechoice",
+  "rating": 1260,
+  "content": {
+   "question": "Kiu verbo estas en la prezenco?",
+   "options": [
+    "legis",
+    "legos",
+    "legas",
+    "legu"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 25,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-26",
+  "type": "multiplechoice",
+  "rating": 1280,
+  "content": {
+   "question": "Kiu el tiuj konsonantoj estas voĉa?",
+   "options": [
+    "p",
+    "b",
+    "t",
+    "k"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 26,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-27",
+  "type": "multiplechoice",
+  "rating": 1300,
+  "content": {
+   "question": "Kiu el tiuj konsonantoj estas senvoĉa?",
+   "options": [
+    "z",
+    "v",
+    "s",
+    "d"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 27,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-28",
+  "type": "fillin",
+  "rating": 1320,
+  "content": {
+   "question": "Mi ___ trinkas kafon matene, sed hodiaŭ mi trinkis teon.",
+   "answer": "kutime",
+   "hint": "kutim-, e-vorto"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 28,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-29",
+  "type": "fillin",
+  "rating": 1340,
+  "content": {
+   "question": "Ni ___ alvenis — antaŭ du minutoj.",
+   "answer": "ĵus",
+   "hint": "vorteto kun ĵ: antaŭ tre mallonga tempo"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 29,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "gramatiko-prereqs-a2-ekz-30",
+  "type": "fillin",
+  "rating": 1260,
+  "content": {
+   "question": "Hieraŭ la patrino ne ___ al la infanoj manĝi dolĉaĵojn.",
+   "answer": "permesis",
+   "hint": "permes-, pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-a2-ekz",
+  "series_order": 30,
+  "series_label": "Datoj, kutimoj kaj lingvaj terminoj (A2)"
+ },
+ {
+  "slug": "pr-dungito",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "dungito",
+   "definition": "employee",
+   "definitions": {
+    "eo": "homo, kiun firmao aŭ alia homo pagas, por ke li laboru",
+    "en": "employee",
+    "nl": "werknemer",
+    "de": "Angestellter, Arbeitnehmer",
+    "fr": "employé",
+    "es": "empleado"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 1,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-dunganto",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "dunganto",
+   "definition": "employer",
+   "definitions": {
+    "eo": "homo aŭ firmao, kiu pagas aliajn, por ke ili laboru",
+    "en": "employer",
+    "nl": "werkgever",
+    "de": "Arbeitgeber",
+    "fr": "employeur",
+    "es": "empleador"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 2,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-ebleco",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "ebleco",
+   "definition": "possibility",
+   "definitions": {
+    "eo": "tio, ke io povas esti aŭ okazi",
+    "en": "possibility",
+    "nl": "mogelijkheid",
+    "de": "Möglichkeit",
+    "fr": "possibilité",
+    "es": "posibilidad"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 3,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-malprobabla",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "malprobabla",
+   "definition": "unlikely",
+   "definitions": {
+    "eo": "tia, ke ĝi verŝajne ne okazos aŭ ne estas vera",
+    "en": "unlikely",
+    "nl": "onwaarschijnlijk",
+    "de": "unwahrscheinlich",
+    "fr": "improbable",
+    "es": "improbable"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 4,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-enui",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "enui",
+   "definition": "to be bored",
+   "definitions": {
+    "eo": "senti, ke la tempo pasas malrapide, ĉar nenio interesas onin",
+    "en": "to be bored",
+    "nl": "zich vervelen",
+    "de": "sich langweilen",
+    "fr": "s'ennuyer",
+    "es": "aburrirse"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 5,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-enuiga",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "enuiga",
+   "definition": "boring",
+   "definitions": {
+    "eo": "tia, ke ĝi enuigas; tute ne interesa",
+    "en": "boring",
+    "nl": "saai",
+    "de": "langweilig",
+    "fr": "ennuyeux",
+    "es": "aburrido (que aburre)"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 6,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-escepto",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "escepto",
+   "definition": "exception",
+   "definitions": {
+    "eo": "io, kio ne sekvas la regulon",
+    "en": "exception",
+    "nl": "uitzondering",
+    "de": "Ausnahme",
+    "fr": "exception",
+    "es": "excepción"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 7,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-fondi",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "fondi",
+   "definition": "to found",
+   "definitions": {
+    "eo": "starigi ion novan, ekzemple firmaon, lernejon aŭ urbon",
+    "en": "to found",
+    "nl": "oprichten",
+    "de": "gründen",
+    "fr": "fonder",
+    "es": "fundar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 8,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-institucio",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "institucio",
+   "definition": "institution",
+   "definitions": {
+    "eo": "granda organizaĵo, kiu daŭras longe, ekzemple universitato aŭ parlamento",
+    "en": "institution",
+    "nl": "instelling",
+    "de": "Institution",
+    "fr": "institution",
+    "es": "institución"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 9,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-insularo",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "insularo",
+   "definition": "archipelago",
+   "definitions": {
+    "eo": "grupo de insuloj",
+    "en": "archipelago",
+    "nl": "eilandengroep, archipel",
+    "de": "Inselgruppe",
+    "fr": "archipel",
+    "es": "archipiélago"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 10,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-dezerto",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "dezerto",
+   "definition": "desert",
+   "definitions": {
+    "eo": "granda seka tereno kun multe da sablo aŭ ŝtonoj kaj preskaŭ sen plantoj",
+    "en": "desert",
+    "nl": "woestijn",
+    "de": "Wüste",
+    "fr": "désert",
+    "es": "desierto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 11,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-oceano",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "oceano",
+   "definition": "ocean",
+   "definitions": {
+    "eo": "tre granda maro inter kontinentoj",
+    "en": "ocean",
+    "nl": "oceaan",
+    "de": "Ozean",
+    "fr": "océan",
+    "es": "océano"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 12,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-intenci",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "intenci",
+   "definition": "to intend",
+   "definitions": {
+    "eo": "voli kaj plani fari ion",
+    "en": "to intend",
+    "nl": "van plan zijn",
+    "de": "beabsichtigen",
+    "fr": "avoir l'intention de",
+    "es": "tener la intención de"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 13,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-konfuzi",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "konfuzi",
+   "definition": "to confuse, to mix up",
+   "definitions": {
+    "eo": "miksi aferojn en la kapo, tiel ke oni ne plu scias, kio estas kio; preni unu aferon por alia",
+    "en": "to confuse, to mix up",
+    "nl": "verwarren",
+    "de": "verwechseln, verwirren",
+    "fr": "confondre",
+    "es": "confundir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 14,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-konkludi",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "konkludi",
+   "definition": "to conclude",
+   "definitions": {
+    "eo": "decidi, kio estas vera, post pripensado de la faktoj",
+    "en": "to conclude",
+    "nl": "concluderen",
+    "de": "folgern",
+    "fr": "conclure",
+    "es": "concluir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 15,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-kunteksto",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "kunteksto",
+   "definition": "context",
+   "definitions": {
+    "eo": "la cetera teksto aŭ situacio ĉirkaŭ vorto aŭ evento, kiu helpas kompreni ĝin",
+    "en": "context",
+    "nl": "context",
+    "de": "Kontext, Zusammenhang",
+    "fr": "contexte",
+    "es": "contexto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 16,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-maltrafi",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "maltrafi",
+   "definition": "to miss",
+   "definitions": {
+    "eo": "ne trafi; alveni tro malfrue, ekzemple por trajno",
+    "en": "to miss",
+    "nl": "missen",
+    "de": "verpassen, verfehlen",
+    "fr": "manquer, rater",
+    "es": "perder (el tren), fallar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 17,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-parkere",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "parkere",
+   "definition": "by heart",
+   "definitions": {
+    "eo": "tiel, ke oni scias ion el la memoro, sen legi",
+    "en": "by heart",
+    "nl": "uit het hoofd",
+    "de": "auswendig",
+    "fr": "par cœur",
+    "es": "de memoria"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 18,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-fantomo",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "fantomo",
+   "definition": "ghost",
+   "definitions": {
+    "eo": "spirito de mortinto, kiun iuj kredas vidi",
+    "en": "ghost",
+    "nl": "spook",
+    "de": "Gespenst",
+    "fr": "fantôme",
+    "es": "fantasma"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 19,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-specimeno",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "specimeno",
+   "definition": "specimen, sample",
+   "definitions": {
+    "eo": "unu ekzemplero, kiu montras, kia estas la tuta grupo",
+    "en": "specimen, sample",
+    "nl": "exemplaar, monster",
+    "de": "Exemplar, Probe",
+    "fr": "spécimen, échantillon",
+    "es": "espécimen, muestra"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 20,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-arkitekto",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "arkitekto",
+   "definition": "architect",
+   "definitions": {
+    "eo": "homo, kiu planas kaj desegnas domojn kaj aliajn konstruaĵojn",
+    "en": "architect",
+    "nl": "architect",
+    "de": "Architekt",
+    "fr": "architecte",
+    "es": "arquitecto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 21,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-sekurzono",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "sekurzono",
+   "definition": "seat belt",
+   "definitions": {
+    "eo": "zono en aŭto aŭ aviadilo, kiu tenas la vojaĝanton sur la seĝo",
+    "en": "seat belt",
+    "nl": "veiligheidsgordel",
+    "de": "Sicherheitsgurt",
+    "fr": "ceinture de sécurité",
+    "es": "cinturón de seguridad"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 22,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-graveda",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "graveda",
+   "definition": "pregnant",
+   "definitions": {
+    "eo": "(virino) kiu atendas bebon",
+    "en": "pregnant",
+    "nl": "zwanger",
+    "de": "schwanger",
+    "fr": "enceinte",
+    "es": "embarazada"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 23,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-alterigxi",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "alteriĝi",
+   "definition": "to land",
+   "definitions": {
+    "eo": "(aviadilo) veni malsupren kaj halti sur la tero",
+    "en": "to land",
+    "nl": "landen",
+    "de": "landen",
+    "fr": "atterrir",
+    "es": "aterrizar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 24,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-eksigxi",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "eksiĝi",
+   "definition": "to resign",
+   "definitions": {
+    "eo": "memvole forlasi sian oficon aŭ laboron",
+    "en": "to resign",
+    "nl": "ontslag nemen",
+    "de": "zurücktreten, kündigen",
+    "fr": "démissionner",
+    "es": "dimitir"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 25,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-promocii",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "promocii",
+   "definition": "to promote",
+   "definitions": {
+    "eo": "doni al iu pli altan postenon",
+    "en": "to promote",
+    "nl": "bevorderen",
+    "de": "befördern",
+    "fr": "promouvoir",
+    "es": "ascender, promover"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 26,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-specifa",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "specifa",
+   "definition": "specific",
+   "definitions": {
+    "eo": "propra al unu afero aŭ grupo; ne ĝenerala",
+    "en": "specific",
+    "nl": "specifiek",
+    "de": "spezifisch",
+    "fr": "spécifique",
+    "es": "específico"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 27,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-unika",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "unika",
+   "definition": "unique",
+   "definitions": {
+    "eo": "tia, ke ekzistas nur unu tia",
+    "en": "unique",
+    "nl": "uniek",
+    "de": "einzigartig",
+    "fr": "unique",
+    "es": "único"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 28,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-validi",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "validi",
+   "definition": "to be valid, to apply",
+   "definitions": {
+    "eo": "havi forton aŭ esti vera por iu tempo aŭ kazo: la bileto validas unu tagon",
+    "en": "to be valid, to apply",
+    "nl": "gelden",
+    "de": "gelten",
+    "fr": "être valable",
+    "es": "ser válido"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 29,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-vidpunkto",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "vidpunkto",
+   "definition": "point of view",
+   "definitions": {
+    "eo": "la maniero, kiel iu vidas kaj juĝas aferon",
+    "en": "point of view",
+    "nl": "standpunt",
+    "de": "Standpunkt",
+    "fr": "point de vue",
+    "es": "punto de vista"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 30,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-fako",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "fako",
+   "definition": "field; subject (of study)",
+   "definitions": {
+    "eo": "parto de scienco aŭ de laboro, pri kiu iu specialiĝas; studfako: tio, kion oni studas",
+    "en": "field; subject (of study)",
+    "nl": "vak, vakgebied",
+    "de": "Fach",
+    "fr": "discipline, matière",
+    "es": "campo, asignatura"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 31,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-strukturo",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "strukturo",
+   "definition": "structure",
+   "definitions": {
+    "eo": "la maniero, kiel la partoj de io estas kunmetitaj",
+    "en": "structure",
+    "nl": "structuur",
+    "de": "Struktur",
+    "fr": "structure",
+    "es": "estructura"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 32,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-stilo",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "stilo",
+   "definition": "style",
+   "definitions": {
+    "eo": "la maniero, kiel oni skribas, parolas aŭ faras ion",
+    "en": "style",
+    "nl": "stijl",
+    "de": "Stil",
+    "fr": "style",
+    "es": "estilo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 33,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-emfazi",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "emfazi",
+   "definition": "to emphasise",
+   "definitions": {
+    "eo": "diri ion pli forte, por montri, ke ĝi estas grava",
+    "en": "to emphasise",
+    "nl": "benadrukken",
+    "de": "betonen",
+    "fr": "souligner",
+    "es": "enfatizar"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 34,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-fiksa",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "fiksa",
+   "definition": "fixed; set phrase",
+   "definitions": {
+    "eo": "ne ŝanĝiĝanta; fiksa esprimo: esprimo, kies vortojn oni ne ŝanĝas",
+    "en": "fixed; set phrase",
+    "nl": "vast; vaste uitdrukking",
+    "de": "fest; feste Wendung",
+    "fr": "fixe; expression figée",
+    "es": "fijo; frase hecha"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 35,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-citajxo",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "citaĵo",
+   "definition": "quotation",
+   "definitions": {
+    "eo": "vortoj, kiujn oni ripetas precize el alia teksto aŭ el alia parolanto",
+    "en": "quotation",
+    "nl": "citaat",
+    "de": "Zitat",
+    "fr": "citation",
+    "es": "cita"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "ĉiutaga",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-cxiutagaj-b1",
+  "series_order": 36,
+  "series_label": "Ĉiutagaj vortoj (B1)"
+ },
+ {
+  "slug": "pr-akordo",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "akordo",
+   "definition": "agreement (grammar)",
+   "definitions": {
+    "eo": "(en gramatiko) kiam adjektivo ricevas la samajn finaĵojn -j kaj -n kiel sia substantivo: bonaj libroj, bonan libron",
+    "en": "agreement (grammar)",
+    "nl": "congruentie",
+    "de": "Kongruenz",
+    "fr": "accord",
+    "es": "concordancia"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 1,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-diftongo",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "diftongo",
+   "definition": "diphthong",
+   "definitions": {
+    "eo": "vokalo kaj duonvokalo (j aŭ ŭ) en unu silabo, ekzemple aj, oj, aŭ, eŭ",
+    "en": "diphthong",
+    "nl": "tweeklank",
+    "de": "Diphthong",
+    "fr": "diphtongue",
+    "es": "diptongo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 2,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-falsa-amiko",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "falsa amiko",
+   "definition": "false friend",
+   "definitions": {
+    "eo": "vorto, kiu similas al vorto de alia lingvo, sed signifas ion alian",
+    "en": "false friend",
+    "nl": "valse vriend",
+    "de": "falscher Freund",
+    "fr": "faux ami",
+    "es": "falso amigo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 3,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-kalkulebla",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "kalkulebla",
+   "definition": "countable (noun)",
+   "definitions": {
+    "eo": "(substantivo) por aferoj, kiujn oni povas nombri: unu libro, du libroj; ne kiel akvo aŭ lakto",
+    "en": "countable (noun)",
+    "nl": "telbaar",
+    "de": "zählbar",
+    "fr": "dénombrable",
+    "es": "contable"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 4,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-kondicxo",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "kondiĉo",
+   "definition": "condition",
+   "definitions": {
+    "eo": "io, kio devas esti vera aŭ okazi, por ke alia afero okazu",
+    "en": "condition",
+    "nl": "voorwaarde",
+    "de": "Bedingung",
+    "fr": "condition",
+    "es": "condición"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 5,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-koncedo",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "koncedo",
+   "definition": "concession (grammar)",
+   "definitions": {
+    "eo": "(en gramatiko) subfrazo pri io, kio ne malhelpas la ĉefan aferon: Kvankam pluvis, ni iris.",
+    "en": "concession (grammar)",
+    "nl": "toegevende bijzin",
+    "de": "Konzession, Einräumung",
+    "fr": "concession",
+    "es": "concesión"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 6,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-subjunkcio",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "subjunkcio",
+   "definition": "subordinating conjunction",
+   "definitions": {
+    "eo": "vorto, kiu komencas subfrazon, ekzemple ke, ĉar, kvankam, se",
+    "en": "subordinating conjunction",
+    "nl": "onderschikkend voegwoord",
+    "de": "unterordnende Konjunktion",
+    "fr": "conjonction de subordination",
+    "es": "conjunción subordinante"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 7,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-nerekta-parolo",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "nerekta parolo",
+   "definition": "reported (indirect) speech",
+   "definitions": {
+    "eo": "raporto pri tio, kion iu diris, sen ties precizaj vortoj: Li diris, ke li venos.",
+    "en": "reported (indirect) speech",
+    "nl": "indirecte rede",
+    "de": "indirekte Rede",
+    "fr": "discours indirect",
+    "es": "estilo indirecto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 8,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-rekta-parolo",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "rekta parolo",
+   "definition": "direct speech",
+   "definitions": {
+    "eo": "la precizaj vortoj de parolanto, kutime inter citiloj: Li diris: „Mi venos.“",
+    "en": "direct speech",
+    "nl": "directe rede",
+    "de": "direkte Rede",
+    "fr": "discours direct",
+    "es": "estilo directo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 9,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-nerekta-demando",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "nerekta demando",
+   "definition": "indirect question",
+   "definitions": {
+    "eo": "demando, kiu estas subfrazo: Mi ne scias, kie li loĝas.",
+    "en": "indirect question",
+    "nl": "indirecte vraag",
+    "de": "indirekte Frage",
+    "fr": "interrogation indirecte",
+    "es": "pregunta indirecta"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 10,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-perfekto",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "perfekto",
+   "definition": "perfect (tense)",
+   "definitions": {
+    "eo": "verbformo por ago jam finita; en Esperanto kutime simple -is, precize per estas + -inta: Mi estas manĝinta.",
+    "en": "perfect (tense)",
+    "nl": "voltooide tijd",
+    "de": "Perfekt",
+    "fr": "parfait, passé composé",
+    "es": "perfecto"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 11,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-subjunktivo",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "subjunktivo",
+   "definition": "subjunctive",
+   "definitions": {
+    "eo": "en aliaj lingvoj: modo por deziroj kaj nerealaj aferoj; Esperanto uzas -u aŭ -us",
+    "en": "subjunctive",
+    "nl": "aanvoegende wijs",
+    "de": "Konjunktiv",
+    "fr": "subjonctif",
+    "es": "subjuntivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 12,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-refleksiva",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "refleksiva",
+   "definition": "reflexive",
+   "definitions": {
+    "eo": "(pronomo) kiu montras reen al la subjekto: si, sin, sia",
+    "en": "reflexive",
+    "nl": "wederkerend",
+    "de": "reflexiv",
+    "fr": "réfléchi",
+    "es": "reflexivo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 13,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-rilativa",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "rilativa",
+   "definition": "relative (pronoun, clause)",
+   "definitions": {
+    "eo": "(pronomo aŭ subfrazo) kiu rilatas al antaŭa vorto: la libro, kiun mi legis",
+    "en": "relative (pronoun, clause)",
+    "nl": "betrekkelijk",
+    "de": "relativ",
+    "fr": "relatif",
+    "es": "relativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 14,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-stativa",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "stativa",
+   "definition": "stative (verb)",
+   "definitions": {
+    "eo": "(verbo) kiu montras staton, ne agon: scii, ami, havi",
+    "en": "stative (verb)",
+    "nl": "toestands- (werkwoord)",
+    "de": "Zustands-",
+    "fr": "d'état",
+    "es": "estativo"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 15,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-dinamika",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "dinamika",
+   "definition": "dynamic (action verb)",
+   "definitions": {
+    "eo": "(verbo) kiu montras agon aŭ okazon: kuri, skribi, fali",
+    "en": "dynamic (action verb)",
+    "nl": "handelings- (werkwoord)",
+    "de": "Handlungs-, dynamisch",
+    "fr": "d'action",
+    "es": "dinámico"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 16,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-vortspeco",
+  "type": "vocab",
+  "rating": 1500,
+  "content": {
+   "word": "vortspeco",
+   "definition": "part of speech, word class",
+   "definitions": {
+    "eo": "grupo de vortoj kun la sama gramatika rolo, ekzemple substantivoj, verboj, adjektivoj",
+    "en": "part of speech, word class",
+    "nl": "woordsoort",
+    "de": "Wortart",
+    "fr": "catégorie grammaticale",
+    "es": "categoría gramatical"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 17,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-sibla",
+  "type": "vocab",
+  "rating": 1520,
+  "content": {
+   "word": "sibla",
+   "definition": "sibilant",
+   "definitions": {
+    "eo": "(sono) kun akra, siblanta bruo, kiel s, z, ŝ, ĵ, c, ĉ, ĝ",
+    "en": "sibilant",
+    "nl": "sis- (klank)",
+    "de": "Zischlaut",
+    "fr": "sifflant(e)",
+    "es": "sibilante"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 18,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-gxermana",
+  "type": "vocab",
+  "rating": 1540,
+  "content": {
+   "word": "ĝermana",
+   "definition": "Germanic",
+   "definitions": {
+    "eo": "rilata al la lingvoj kiel la angla, la germana kaj la nederlanda",
+    "en": "Germanic",
+    "nl": "Germaans",
+    "de": "germanisch",
+    "fr": "germanique",
+    "es": "germánico"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 19,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-latina",
+  "type": "vocab",
+  "rating": 1460,
+  "content": {
+   "word": "latina",
+   "definition": "Latin",
+   "definitions": {
+    "eo": "rilata al la lingvo de la antikvaj romanoj",
+    "en": "Latin",
+    "nl": "Latijns",
+    "de": "lateinisch",
+    "fr": "latin",
+    "es": "latino"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 20,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "pr-varianto",
+  "type": "vocab",
+  "rating": 1480,
+  "content": {
+   "word": "varianto",
+   "definition": "variant",
+   "definitions": {
+    "eo": "iom alia formo de la sama afero, ekzemple de vorto aŭ de lingvo",
+    "en": "variant",
+    "nl": "variant",
+    "de": "Variante",
+    "fr": "variante",
+    "es": "variante"
+   }
+  },
+  "tags": [
+   "vortaro",
+   "lingva-termino",
+   "angla-antauxkono"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "vortaro-lingvaj-terminoj-b1",
+  "series_order": 21,
+  "series_label": "Lingvaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-01",
+  "type": "fillin",
+  "rating": 1480,
+  "content": {
+   "question": "La teo estis ___ varma, ke mi ne povis trinki ĝin.",
+   "answer": "tiel",
+   "hint": "TI-vorto de grado, kun „ke“"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 1,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-02",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "Li havis ___ domon, ke ĉiuj gastoj trovis lokon.",
+   "answer": "tian",
+   "hint": "TI-vorto de kvalito, kun akuzativo"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 2,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-03",
+  "type": "fillin",
+  "rating": 1520,
+  "content": {
+   "question": "Esperanto estas facile ___.",
+   "answer": "lernebla",
+   "hint": "lern- + -ebl- + -a"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 3,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-04",
+  "type": "fillin",
+  "rating": 1540,
+  "content": {
+   "question": "Mi mem ne tondas mian hararon: mi ___ ĝin ĉe frizisto.",
+   "answer": "tondigas",
+   "hint": "tond- + -ig-: alia homo tondas por mi; prezenco"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 4,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-05",
+  "type": "fillin",
+  "rating": 1460,
+  "content": {
+   "question": "Mia aŭto estis difektita, do mi ___ ĝin en garaĝo.",
+   "answer": "riparigis",
+   "hint": "ripar- + -ig-: alia homo riparis por mi; pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 5,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-06",
+  "type": "fillin",
+  "rating": 1480,
+  "content": {
+   "question": "Kiam vi venos, mi jam estos ___ la laboron.",
+   "answer": "fininta",
+   "hint": "fin-; aktiva participo de finita ago"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 6,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-07",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "Kiam ni alvenis, la vendejo jam estis ___, kaj ni ne povis eniri.",
+   "answer": "fermita",
+   "hint": "ferm-; pasiva participo de finita ago"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 7,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-08",
+  "type": "fillin",
+  "rating": 1520,
+  "content": {
+   "question": "Li ne estas malsata: li jam estas ___.",
+   "answer": "manĝinta",
+   "hint": "manĝ-; aktiva participo de finita ago"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 8,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-09",
+  "type": "fillin",
+  "rating": 1540,
+  "content": {
+   "question": "Se nur mi ___ pli da tempo!",
+   "answer": "havus",
+   "hint": "hav-; deziro pri nereala afero"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 9,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-10",
+  "type": "fillin",
+  "rating": 1460,
+  "content": {
+   "question": "La ĵus ___ letero estas de mia fratino.",
+   "answer": "alveninta",
+   "hint": "alven-; aktiva participo de finita ago, a-vorto"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 10,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-11",
+  "type": "fillin",
+  "rating": 1480,
+  "content": {
+   "question": "Ili amas unu la ___.",
+   "answer": "alian",
+   "hint": "reciproka; ali- + -a + -n"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 11,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-12",
+  "type": "fillin",
+  "rating": 1500,
+  "content": {
+   "question": "La firmao havas cent ___.",
+   "answer": "dungitojn",
+   "hint": "dung- + -it- + -o; pluralo, akuzativo"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 12,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-13",
+  "type": "fillin",
+  "rating": 1520,
+  "content": {
+   "question": "Ni ___ la buson kaj devis atendi duonan horon.",
+   "answer": "maltrafis",
+   "hint": "mal- + traf-; pasinteco"
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "plenigi"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 13,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-14",
+  "type": "multiplechoice",
+  "rating": 1540,
+  "content": {
+   "question": "En „Li estis vokita“, kiu vorto estas la helpverbo kaj kiu la ĉefverbo?",
+   "options": [
+    "„vokita“ estas la helpverbo, „estis“ la ĉefverbo",
+    "ambaŭ estas helpverboj",
+    "„estis“ estas la helpverbo, „vokita“ la ĉefverbo",
+    "ambaŭ estas ĉefverboj"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 14,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-15",
+  "type": "multiplechoice",
+  "rating": 1460,
+  "content": {
+   "question": "Kiu vorto en „Eĉ Petro venis“ estas vorteto (partikulo)?",
+   "options": [
+    "eĉ",
+    "Petro",
+    "venis",
+    "neniu el ili"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 15,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-16",
+  "type": "multiplechoice",
+  "rating": 1480,
+  "content": {
+   "question": "Kiu frazo enhavas nerektan demandon?",
+   "options": [
+    "Ĉu li venos?",
+    "Li venos.",
+    "Mi ne scias, ĉu li venos.",
+    "Venu!"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 16,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-17",
+  "type": "multiplechoice",
+  "rating": 1500,
+  "content": {
+   "question": "Kiu frazo estas en rekta parolo?",
+   "options": [
+    "Ŝi diris, ke ŝi estas laca.",
+    "Ŝi estis laca.",
+    "Ŝi diris: „Mi estas laca.“",
+    "Ŝi ne diris, ĉu ŝi estas laca."
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 17,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-18",
+  "type": "multiplechoice",
+  "rating": 1520,
+  "content": {
+   "question": "Kiu substantivo estas kalkulebla?",
+   "options": [
+    "akvo",
+    "lakto",
+    "libro",
+    "sablo"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 18,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-19",
+  "type": "multiplechoice",
+  "rating": 1540,
+  "content": {
+   "question": "Kiu vorto estas subjunkcio?",
+   "options": [
+    "kaj",
+    "ĉar",
+    "sed",
+    "aŭ"
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 19,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-20",
+  "type": "multiplechoice",
+  "rating": 1460,
+  "content": {
+   "question": "En „Li lavas sin“, kia pronomo estas „sin“?",
+   "options": [
+    "rilativa",
+    "demanda",
+    "refleksiva",
+    "montra"
+   ],
+   "correct_index": 2
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 20,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-21",
+  "type": "multiplechoice",
+  "rating": 1480,
+  "content": {
+   "question": "Kiu verbo montras staton, ne agon?",
+   "options": [
+    "kuri",
+    "skribi",
+    "salti",
+    "scii"
+   ],
+   "correct_index": 3
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 21,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-22",
+  "type": "multiplechoice",
+  "rating": 1500,
+  "content": {
+   "question": "Kio estas falsa amiko?",
+   "options": [
+    "vorto, kiu similas al vorto de alia lingvo, sed signifas ion alian",
+    "amiko, kiu mensogas",
+    "vorto sen signifo",
+    "vorto kun du radikoj"
+   ],
+   "correct_index": 0
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 22,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ },
+ {
+  "slug": "gramatiko-prereqs-b1-ekz-23",
+  "type": "multiplechoice",
+  "rating": 1520,
+  "content": {
+   "question": "Kiu frazo havas koncedon?",
+   "options": [
+    "Ĉar pluvis, ni restis hejme.",
+    "Kvankam pluvis, ni iris promeni.",
+    "Se pluvos, ni restos hejme.",
+    "Pluvis, do ni restis hejme."
+   ],
+   "correct_index": 1
+  },
+  "tags": [
+   "gramatiko",
+   "angla-antauxkono",
+   "elekti"
+  ],
+  "source": "esperanto-kurso.net (konstruanto)",
+  "series_slug": "gramatiko-prereqs-b1-ekz",
+  "series_order": 23,
+  "series_label": "Konstruoj kaj terminoj (B1)"
+ }
+]
