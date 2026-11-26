@@ -309,7 +309,7 @@ func TestPlayKonstrui(t *testing.T) {
 	if blocks[w1] == "" || n2 < 3 {
 		t.Fatalf("no pieces: %s %q, %s %q", w1, blocks[w1], w2, blocks[w2])
 	}
-	pinned := func() string {
+	pinned := func(w1, w2 string) string {
 		d := gameDir(t, c)
 		f := filepath.Join(d, "game", "scripts", "kb_next.gml")
 		b, _ := os.ReadFile(f)
@@ -339,7 +339,7 @@ func TestPlayKonstrui(t *testing.T) {
 		playArgs(t, dir, args, expect)
 	}
 	for _, room := range []string{"rm_tall", "rm_wide"} {
-		dir := pinned()
+		dir := pinned(w1, w2)
 		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: three games
 		keys := append(append([]string{}, start...), digits(1, 2)...)
 		keys = append(keys, "down:1", ":1", "enter:1", ":2") // the line's first piece back to the bank
@@ -352,6 +352,17 @@ func TestPlayKonstrui(t *testing.T) {
 		keys = append(keys, "enter:1", ":2") // Daŭrigi: the next word
 		keys = append(append(append(keys, "text=2:1", ":1", "text=1:1", ":1"), digits(3, n2)...), "enter:1", ":2")
 		run(dir, room, "konstrui-ne-"+room, keys, fmt.Sprintf(`global.scr == 11 && global.kb_word == "%s" && global.kb_n == %d && global.fb == 2 && global.kb_ok == 1 && global.kb_tries == 2 && global.ovf == 0`, w2, n2))
+	}
+	// a word asked by its definition, on a phone, after a wrong try
+	def := ""
+	for _, w := range ws {
+		if w.Blocks != "" && gamedata.PictureKey(w.Word) == "" && def == "" {
+			def = w.Word
+		}
+	}
+	if def != "" {
+		keys := append(append(append([]string{}, start...), "text=2:1", ":1", "text=1:1", ":1"), "enter:1", ":2")
+		run(pinned(def, w2), "rm_tall", "konstrui-difino-rm_tall", keys, fmt.Sprintf(`global.kb_word == "%s" && global.kb_pic < 0 && global.fb == 2 && global.ovf == 0`, def))
 	}
 	// the pools and banks, as the site makes them
 	var b strings.Builder
@@ -375,8 +386,30 @@ return 0;
 `)
 	dir := gameDir(t, c)
 	os.WriteFile(filepath.Join(dir, "game", "scripts", "kbcheck.gml"), []byte(b.String()), 0o644)
+	// every word drawn: asked rightly (a translation only for a word with
+	// neither picture nor definition), with none, its pieces or the whole
+	// bank on the line, before and after a wrong verdict; every text fitting
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "kbdraw.gml"), []byte(`// kbdraw(): 0 when every Konstrui word draws whole, else the first that doesn't.
+var i, k, j, m;
+for (i = 0; i < global.nw; i += 1) if (global.w_blk[i] != "") {
+  global.kb_pn = 1; global.kb_p[0] = i; global.kb_w = -1; kb_next();
+  if (global.kb_tr != (global.w_pic[i] == "" && global.w_def[i] == "")) return global.w_word[i] + " asked";
+  if (global.kb_pic < 0 && !global.kb_tr && global.kb_q != global.w_def[i]) return global.w_word[i] + " definition";
+  for (m = 0; m < 3; m += 1) {
+    for (k = global.kb_n - 1; k >= 0; k -= 1) kb_take(k);
+    if (m == 1) for (k = 0; k < global.kb_nb; k += 1) { for (j = 0; j < global.kb_nt; j += 1) if (!global.kb_used[j] && global.kb_t[j] == global.kb_b[k]) break; kb_place(j); }
+    if (m == 2) for (j = 0; j < global.kb_nt; j += 1) kb_place(j);
+    global.fb = 0; draw_all(); if (global.ovf) return global.w_word[i] + " " + string(m) + " " + global.ovf_what;
+    if (m > 0) { global.fb = 2; draw_all(); global.fb = 0; if (global.ovf) return global.w_word[i] + " " + string(m) + " judged " + global.ovf_what; }
+  }
+}
+return 0;
+`), 0o644)
 	keys := append(append([]string{}, start...), ":2")
 	run(dir, "rm_tall", "", keys, `global.scr == 11 && kbcheck() == 0`)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		run(dir, room, "", keys, `global.scr == 11 && kbdraw() == 0`)
+	}
 	// the bonus after a place with three or more such words: those words
 	slug, want := "", 0
 	for _, p := range c.Places {

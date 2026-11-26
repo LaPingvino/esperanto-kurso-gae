@@ -23,8 +23,10 @@ if (global.kb_pic >= 0) {
   t = "Difino:"; if (global.kb_tr) t = "Traduko (mankas difino):";
   txt(x0, y, t, 15, 1, global.C_muted);
   y += 24;
-  fits(global.kb_q, x1 - x0, 17, 0);
-  y += tw(x0, y, global.kb_q, x1 - x0, 17, 0, global.C_text) + 14;
+  t = global.kb_q; // four lines at most: the pieces and the dock below need the room
+  while (th(t, x1 - x0, 17, 0) > 100 && string_length(t) > 12) t = string_copy(t, 1, string_length(t) - 12) + "…";
+  fits(t, x1 - x0, 17, 0);
+  y += tw(x0, y, t, x1 - x0, 17, 0, global.C_text) + 14;
 }
 txt(x0, y, fit("Konstruu la vorton el la pecoj:", x1 - x0, 16, 0), 16, 0, global.C_muted);
 y += 30;
