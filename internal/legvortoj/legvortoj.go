@@ -181,39 +181,65 @@ func Parts(lemma string) []Part {
 	return ps
 }
 
-// OneAffix is the one affix of a word that is a root, that affix and a
-// dictionary ending (lern|ej|o: "ej"; mal|bon|a: "mal"), when the word's two
-// readings agree on it: ReVo's (around the root its marker names) and the
-// split into known pieces alone. "" for any other word, and for the pet
-// names' ĉj and nj.
-func OneAffix(lemma string) string {
+// Blocks are a word's building blocks when its split is beyond doubt: one
+// root with one or more affixes before or after it and a dictionary ending
+// (mal|san|ul|ej|o, lern|ej|o), the word's two readings agreeing piece by
+// piece — ReVo's (around the root its marker names) and the split into
+// known pieces alone. Nil for any other word, and for the pet names' ĉj and
+// nj. The bonus game Konstrui builds a word from these.
+func Blocks(lemma string) []Part {
 	w := revo.Normalize(lemma)
 	h := revo.Exact(w)
 	if h == nil {
-		return ""
+		return nil
 	}
 	if root, before, after, ok := revo.MrkRoot(h.Mrk); !ok || before+root+after != w || root == "" {
-		return ""
+		return nil
 	}
 	byRevo := Parts(w)
 	alone, ok := split(w, true, false)
-	if !ok || len(byRevo) != 3 || len(alone) != 3 {
-		return ""
+	if !ok || len(byRevo) < 3 || len(alone) != len(byRevo) {
+		return nil
 	}
-	affix := ""
+	roots := 0
 	for i, p := range byRevo {
 		if p != alone[i] {
-			return ""
+			return nil
 		}
-		if p.Kind == "prefikso" || p.Kind == "sufikso" {
-			affix = p.Text
+		last := i == len(byRevo)-1
+		switch {
+		case last:
+			if p.Kind != "finaĵo" || len(p.Text) != 1 || !strings.Contains("oaei", p.Text) {
+				return nil
+			}
+		case p.Kind == "radiko":
+			roots++
+		case p.Kind == "prefikso" || p.Kind == "sufikso":
+			if p.Text == "ĉj" || p.Text == "nj" {
+				return nil
+			}
+		default:
+			return nil
 		}
 	}
-	end := byRevo[2]
-	if affix == "" || affix == "ĉj" || affix == "nj" || end.Kind != "finaĵo" || !strings.Contains("oaei", end.Text) || len(end.Text) != 1 {
+	if roots != 1 {
+		return nil
+	}
+	return byRevo
+}
+
+// OneAffix is the one affix of a word that is a root, that affix and a
+// dictionary ending (lern|ej|o: "ej"; mal|bon|a: "mal"): its Blocks when
+// they are three. "" for any other word.
+func OneAffix(lemma string) string {
+	b := Blocks(lemma)
+	if len(b) != 3 {
 		return ""
 	}
-	return affix
+	if b[0].Kind == "prefikso" {
+		return b[0].Text
+	}
+	return b[1].Text
 }
 
 // ---- dictionary forms ----

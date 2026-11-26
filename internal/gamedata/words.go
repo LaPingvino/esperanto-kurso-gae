@@ -18,7 +18,7 @@ import (
 //	GET /ludo-api/vortoj?lingvo=xx
 //
 //	VORTOJ <version> <day>
-//	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix>
+//	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix> <blocks>
 //	T <level> <word>      the day's Vortludo word for a learner of that level
 //	FINO
 //
@@ -30,13 +30,16 @@ import (
 // by ReVo and by the pieces alone: legvortoj.OneAffix), that affix (the
 // clue shown beside the board), else "". picture: the word's picture (bildoj), by
 // its file's name without folder or extension ("1f415"); the game carries
-// all of them (cmd/game-bildoj).
+// all of them (cmd/game-bildoj). blocks: for a word whose split is beyond
+// doubt (legvortoj.Blocks), its pieces as Konstrui's tiles show them,
+// "mal-|san|-ul-|-ej-|-o" (a prefix, the root, suffixes, the ending); else "".
 
 // WordEntry is one vocabulary word of the course.
 type WordEntry struct {
 	Word, Level string
 	Five        bool
 	Affix       string // a long Vortludo word's affix (B1 and up), else ""
+	Blocks      string // Konstrui's tiles, "mal-|san|-ul-|-ej-|-o", else ""
 	Ex          *Exercise
 }
 
@@ -58,6 +61,9 @@ func (c *Course) Words() []*WordEntry {
 				we := &WordEntry{Word: w, Level: s.Level, Five: !e.Bare && IsFive(w), Ex: e}
 				if n := len([]rune(w)); !e.Bare && n >= 6 && n <= 9 && letters(w) {
 					we.Affix = legvortoj.OneAffix(w)
+				}
+				if !e.Bare && letters(w) {
+					we.Blocks = BlockLabels(legvortoj.Blocks(w))
 				}
 				out = append(out, we)
 			}
@@ -109,6 +115,48 @@ func Pool(ws []*WordEntry, level string) []string {
 	}
 	for i := li + 1; i < len(Levels) && len(out) < 10; i++ {
 		add(Levels[i])
+	}
+	sort.Strings(out)
+	return out
+}
+
+// BlockLabels are a word's pieces as Konstrui's tiles: a prefix "mal-", a
+// suffix "-ej-", the ending "-o", the root bare; joined by "|".
+func BlockLabels(ps []legvortoj.Part) string {
+	var out []string
+	for _, p := range ps {
+		switch p.Kind {
+		case "prefikso":
+			out = append(out, p.Text+"-")
+		case "sufikso":
+			out = append(out, "-"+p.Text+"-")
+		case "finaĵo":
+			out = append(out, "-"+p.Text)
+		default:
+			out = append(out, p.Text)
+		}
+	}
+	return strings.Join(out, "|")
+}
+
+// BuildPool is Konstrui's words for a learner of level: those with blocks
+// of that level and, while there are fewer than ten, of the levels below —
+// never above (a word not yet taught); sorted. The game builds the same
+// (kb_pool.gml).
+func BuildPool(ws []*WordEntry, level string) []string {
+	li := 0
+	for i, l := range Levels {
+		if l == level {
+			li = i
+		}
+	}
+	var out []string
+	for i := li; i >= 0 && (i == li || len(out) < 10); i-- {
+		for _, w := range ws {
+			if w.Level == Levels[i] && w.Blocks != "" {
+				out = append(out, w.Word)
+			}
+		}
 	}
 	sort.Strings(out)
 	return out
@@ -174,7 +222,7 @@ func WriteWords(w io.Writer, c *Course, lang, day string) {
 	ws := c.Words()
 	line(w, "VORTOJ", c.Version, day)
 	for _, e := range ws {
-		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word), e.Affix)
+		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word), e.Affix, e.Blocks)
 	}
 	for _, l := range Levels {
 		if d := Daily(Pool(ws, l), day, l); d != "" {

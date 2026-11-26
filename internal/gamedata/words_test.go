@@ -54,3 +54,43 @@ func TestWords(t *testing.T) {
 		t.Errorf("maskFold: %q", got)
 	}
 }
+
+// TestBlocks: Konstrui's words — each word's tiles spell it, with the
+// split legvortoj gives (one root, an affix or more, the ending), and every
+// level's pool holds only words of that level or below, enough to play.
+func TestBlocks(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ws := Build(items).Words()
+	lv := map[string]int{}
+	for i, l := range Levels {
+		lv[l] = i
+	}
+	level := map[string]string{}
+	for _, w := range ws {
+		level[w.Word] = w.Level
+		if w.Blocks == "" {
+			continue
+		}
+		if got := strings.NewReplacer("|", "", "-", "").Replace(w.Blocks); got != w.Word {
+			t.Errorf("%s: blocks %q spell %q", w.Word, w.Blocks, got)
+		}
+		if ps := strings.Split(w.Blocks, "|"); len(ps) < 3 || !strings.HasPrefix(ps[len(ps)-1], "-") {
+			t.Errorf("%s: blocks %q", w.Word, w.Blocks)
+		}
+	}
+	for _, l := range Levels {
+		p := BuildPool(ws, l)
+		if len(p) < 6 {
+			t.Errorf("%s: a pool of %d", l, len(p))
+		}
+		for _, w := range p {
+			if lv[level[w]] > lv[l] {
+				t.Errorf("%s: %s is of %s", l, w, level[w])
+			}
+		}
+		t.Logf("%s: %d words, %v", l, len(p), p)
+	}
+}

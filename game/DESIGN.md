@@ -91,6 +91,16 @@ answers (Vortludo only asks whether a guess is a word, below).
   less with each point. The bonus after a place races with that place's words (four or more), else the
   level's. This is the one place with lives and a clock, on purpose and only on request: the course itself
   stays calm.
+- **Konstrui** (`kb_*.gml`): a word built from its pieces, the Zagreb way. Only words whose split is beyond
+  doubt (`legvortoj.Blocks`: one root, one or more affixes, a dictionary ending, ReVo's reading and the pieces'
+  alone agreeing), shown as tiles *mal-*, *san*, *-ul-*, *-ej-*, *-o* (the `W` line's last field). Asked by the
+  word itself, as in Vetkuro: its picture, else its masked definition, else its meaning under "Traduko". The
+  bank: the word's pieces, another word's root, an affix of its first affix's kind and a suffix, another
+  ending and -j or -n — ten tiles at most. Tap (or a number key, 0 the tenth) puts a piece on the line, tap
+  on the line takes it back; the word they spell shows under the line. Kontroli judges by the spelling; after
+  it each placed piece shows right or wrong (with its badge), and the dock gives the word in its pieces. The
+  pool: the learner's level's words and, to ten, the levels below — never above (`gamedata.BuildPool`,
+  `kb_pool.gml`); after a place, its own words when three or more have pieces. Nothing goes to the site.
 
 
 ## How the course becomes a game
@@ -234,8 +244,8 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   the x-system, the hint, the day's word typed in the h-system, found on the fourth row; a long word's board:
   a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
-  lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words; nothing
-  posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words;
+  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
   `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
 - `internal/gamedata/words_test.go`: the word list, the pools of every level, a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built

@@ -237,7 +237,7 @@ func TestPlayVetkuro(t *testing.T) {
 		}
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro, Komenci
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui), Komenci
 	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
 		`global.scr == 9 && global.rc_place == 1 && global.rp_n >= 4 && global.rc_state >= 1 && global.ovf == 0`)
 	// every word of the list Vetkuro takes fits a phone's gate
@@ -284,6 +284,123 @@ return pics > 0;
 	}
 	if len(s.posts) != 0 {
 		t.Errorf("Vetkuro posted %q", s.posts)
+	}
+}
+
+// TestPlayKonstrui: Konstrui from the levels screen, in both rooms, on two
+// words (pinned, the bank left in order for the test): lernejo's pieces put
+// on the line by their number keys, the first taken back and all put again,
+// Kontroli — right; aviadilo with its first two pieces swapped — wrong,
+// each placed piece showing which. Every text fits; nothing posted. Then
+// the game's pool for every level is the site's (gamedata.BuildPool), each
+// word's bank holds its pieces and others of their families, ten at most,
+// fitting a phone; and the bonus after a place plays that place's words.
+func TestPlayKonstrui(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	c := s.api.Course(t.Context())
+	ws := c.Words()
+	blocks := map[string]string{}
+	for _, w := range ws {
+		blocks[w.Word] = w.Blocks
+	}
+	w1, w2 := "lernejo", "aviadilo"
+	n1, n2 := len(strings.Split(blocks[w1], "|")), len(strings.Split(blocks[w2], "|"))
+	if blocks[w1] == "" || n2 < 3 {
+		t.Fatalf("no pieces: %s %q, %s %q", w1, blocks[w1], w2, blocks[w2])
+	}
+	pinned := func() string {
+		d := gameDir(t, c)
+		f := filepath.Join(d, "game", "scripts", "kb_next.gml")
+		b, _ := os.ReadFile(f)
+		src := string(b)
+		for old, new := range map[string]string{
+			"for (k = global.kb_nt - 1; k > 0; k -= 1) { i = floor(random(k + 1)); t = global.kb_t[k]; global.kb_t[k] = global.kb_t[i]; global.kb_t[i] = t; }": "",
+			"w = global.kb_p[floor(random(global.kb_pn))];\n": `w = 0; for (i = 0; i < global.nw; i += 1) { if (global.kb_w < 0) { if (global.w_word[i] == "` + w1 + `") w = i; } else { if (global.w_word[i] == "` + w2 + `") w = i; } }` + "\n",
+		} {
+			if !strings.Contains(src, old) {
+				t.Fatalf("kb_next: no %q", old)
+			}
+			src = strings.Replace(src, old, new, 1)
+		}
+		os.WriteFile(f, []byte(src), 0o644)
+		return d
+	}
+	digits := func(from, to int) []string {
+		var ks []string
+		for i := from; i <= to; i++ {
+			ks = append(ks, fmt.Sprintf("text=%d:1", i%10), ":1")
+		}
+		return ks
+	}
+	start := []string{":30", "down:1", ":1", "down:1", ":1", "down:1", ":1", "enter:1", ":4"} // the Ludoj row's third: Konstrui
+	run := func(dir, room, shotName string, keys []string, expect string) {
+		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 2), "-keys", strings.Join(keys, ",")}, shot(shotName)...)
+		playArgs(t, dir, args, expect)
+	}
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		dir := pinned()
+		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: three games
+		keys := append(append([]string{}, start...), digits(1, 2)...)
+		keys = append(keys, "down:1", ":1", "enter:1", ":2") // the line's first piece back to the bank
+		run(dir, room, "", keys, `global.scr == 11 && global.kb_n == 1 && global.kb_bp[0] == 1 && global.kb_used[0] == 0 && global.fb == 0 && global.ovf == 0`)
+		keys = append(keys, "down:1", ":1", "enter:1", ":2") // and the other (taking back clears the focus)
+		keys = append(append(keys, digits(1, n1)...), ":2")
+		run(dir, room, "konstrui-"+room, keys, fmt.Sprintf(`global.scr == 11 && global.kb_word == "%s" && kb_built() == "%s" && global.fb == 0 && global.ovf == 0`, w1, w1))
+		keys = append(keys, "enter:1", ":2") // Kontroli
+		run(dir, room, "konstrui-ghuste-"+room, keys, `global.fb == 1 && global.kb_ok == 1 && global.kb_tries == 1 && global.ovf == 0`)
+		keys = append(keys, "enter:1", ":2") // Daŭrigi: the next word
+		keys = append(append(append(keys, "text=2:1", ":1", "text=1:1", ":1"), digits(3, n2)...), "enter:1", ":2")
+		run(dir, room, "konstrui-ne-"+room, keys, fmt.Sprintf(`global.scr == 11 && global.kb_word == "%s" && global.kb_n == %d && global.fb == 2 && global.kb_ok == 1 && global.kb_tries == 2 && global.ovf == 0`, w2, n2))
+	}
+	// the pools and banks, as the site makes them
+	var b strings.Builder
+	b.WriteString("// kbcheck(): 0 when Konstrui's pools are the site's and every bank is sound, else what isn't.\nvar l, k, i, j, f, x, n;\nglobal.kb_place = 0;\n")
+	q := func(s string) string { return `"` + s + `"` }
+	for _, l := range gamedata.Levels {
+		p := gamedata.BuildPool(ws, l)
+		fmt.Fprintf(&b, "global.acclevel = %s; kb_pool(); if (global.kb_pn != %d) return %s;\n", q(l), len(p), q(l+" pool size"))
+		for _, w := range p {
+			fmt.Fprintf(&b, "f = 0; for (k = 0; k < global.kb_pn; k += 1) if (global.w_word[global.kb_p[k]] == %s) f = 1; if (!f) return %s;\n", q(w), q(l+" "+w))
+		}
+	}
+	b.WriteString(`for (i = 0; i < global.nw; i += 1) if (global.w_blk[i] != "") {
+  global.kb_pn = 1; global.kb_p[0] = i; global.kb_w = -1; kb_next();
+  if (global.kb_nt > 10 || global.kb_nt < global.kb_nb + 4) return global.w_word[i] + " bank";
+  x = ""; for (k = 0; k < global.kb_nb; k += 1) { x += string_replace_all(global.kb_b[k], "-", ""); f = 0; for (j = 0; j < global.kb_nt; j += 1) if (global.kb_t[j] == global.kb_b[k]) f = 1; if (!f) return global.w_word[i] + " piece"; }
+  if (x != global.w_word[i]) return global.w_word[i] + " spelt " + x;
+  for (j = 0; j < global.kb_nt; j += 1) if (tile_w(global.kb_t[j], 20, 0) + 24 > 388 - 24) return global.w_word[i] + " wide";
+}
+return 0;
+`)
+	dir := gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "kbcheck.gml"), []byte(b.String()), 0o644)
+	keys := append(append([]string{}, start...), ":2")
+	run(dir, "rm_tall", "", keys, `global.scr == 11 && kbcheck() == 0`)
+	// the bonus after a place with three or more such words: those words
+	slug, want := "", 0
+	for _, p := range c.Places {
+		n := 0
+		for _, e := range p.Ex {
+			if e.Kind == 'Q' && len(e.Answers) > 0 && blocks[strings.TrimSpace(e.Answers[0])] != "" {
+				n++
+			}
+		}
+		if n >= 3 && slug == "" {
+			slug, want = p.Slug, n
+		}
+	}
+	if slug == "" {
+		t.Fatal("no place with three words of pieces")
+	}
+	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
+	playArgs(t, gameDir(t, c), append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys[:len(keys)-2]) + 10), "-keys", strings.Join(keys[:len(keys)-2], ",")}, shot("bonuso-rm_tall")...),
+		`global.scr == 3 && global.ovf == 0`) // the place done: three bonus games, on a phone too
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Konstrui
+	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("konstrui-bonuso-rm_tall")...)
+	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 11 && global.kb_place == 1 && global.kb_pn == %d && global.ovf == 0`, want))
+	if len(s.posts) != 0 {
+		t.Errorf("Konstrui posted %q", s.posts)
 	}
 }
 

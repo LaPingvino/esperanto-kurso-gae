@@ -209,3 +209,20 @@ func TestOneAffix(t *testing.T) {
 		}
 	}
 }
+
+// TestBlocks: a root with its affixes and the ending, read alike by ReVo and
+// by the pieces alone; a compound, a bare root and an inflected form are not.
+func TestBlocks(t *testing.T) {
+	for w, want := range map[string]string{
+		"lernejo": "lern|ej|o", "malbona": "mal|bon|a", "malsanulejo": "mal|san|ul|ej|o",
+		"knabo": "", "lernolibro": "", "gefratoj": "", "paĉjo": "",
+	} {
+		var got []string
+		for _, p := range Blocks(w) {
+			got = append(got, p.Text)
+		}
+		if g := strings.Join(got, "|"); g != want {
+			t.Errorf("Blocks(%q) = %q, want %q", w, g, want)
+		}
+	}
+}

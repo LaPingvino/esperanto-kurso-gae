@@ -17,6 +17,8 @@ if (global.lv_skip == 0) { // the bonus games, on the first page: the same words
   y += 38;
   game_tile(x0, y, cw, 0);
   game_tile(x0 + cw + 12, y, cw, 1);
+  if (cols > 2) game_tile(x0 + 2 * (cw + 12), y, cw, 2);
+  else { y += 64 + 12; game_tile(x0, y, cw, 2); } // a phone: Konstrui on a row of its own
   y += 64 + 12;
 }
 inner = cw - 24 - 40;

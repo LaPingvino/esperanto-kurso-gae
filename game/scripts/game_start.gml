@@ -2,3 +2,4 @@
 if (global.nw == 0) { global.wd_fail = 1; global.scr = 10; exit; }
 if (global.game == 1) vl_start(global.vl_daily);
 if (global.game == 2) rc_ready();
+if (global.game == 3) kb_ready();

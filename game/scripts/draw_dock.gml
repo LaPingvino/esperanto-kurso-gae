@@ -15,7 +15,7 @@ if (global.fb == 0) {
   if (ex_ready()) { button(x + w - b, y, x + w, y + bh, global.t_check, 19, 1); global.def_act = 19; }
   else button(x + w - b, y, x + w, y + bh, global.t_check, -1, 6);
   tx = x;
-  if (global.kind == 1 || global.kind == 4 || global.kind == 5) {
+  if (global.scr == 2 && (global.kind == 1 || global.kind == 4 || global.kind == 5)) {
     button(tx, y + 6, tx + bw(global.t_vocab_mode_type), y + bh - 6, global.t_vocab_mode_type, 8, 0);
     tx += bw(global.t_vocab_mode_type) + 8;
   }

@@ -20,9 +20,9 @@ if (a == 2) { global.scr = 4; global.page = 0; global.focus = -1; exit; }
 if (a == 3) { global.mylang = global.lang[(lang_index() + 1) mod global.nlang]; save_progress(); exit; }
 if (a == 4) { site_open("/"); exit; }
 if (a == 5) { lesson_start(); exit; }
-if (a == 6) { if (global.fb != 0) ex_next(); exit; }
-if (a == 7) { if (global.fb == 0) ex_done(0); exit; }
-if (a == 19) { ex_check(); exit; }
+if (a == 6) { if (global.fb != 0) { if (global.scr == 11) kb_next(); else ex_next(); } exit; }
+if (a == 7) { if (global.fb == 0) { if (global.scr == 11) kb_check(1); else ex_done(0); } exit; }
+if (a == 19) { if (global.scr == 11) kb_check(0); else ex_check(); exit; }
 if (a == 8) {
   if (global.fb == 0 && global.ngap > 0) {
     s = get_string(global.t_answer_placeholder, "");
@@ -43,7 +43,8 @@ if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit;
 // 732 / 733 / 734 the hint (picture, definition, meaning), 735 a new word,
 // 736 the day's word; 740 / 741 Vortludo / Vetkuro from the levels, 743 /
 // 744 the same as the bonus after a place; 742 the race's start; 26 their
-// words again.
+// words again. Konstrui: 745 from the levels, 746 after a place; 760+k a
+// placed piece back, 780+t a piece of the bank onto the line.
 if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
 if (a == 730) { vl_key(""); exit; }
 if (a == 731) { vl_submit(); exit; }
@@ -53,6 +54,9 @@ if (a == 736) { vl_start(1); exit; }
 if (a == 740 || a == 741) { global.ret_scr = 5; global.rc_place = 0; global.vl_daily = 1; words_open(a - 739); exit; }
 if (a == 743 || a == 744) { global.ret_scr = 3; global.rc_place = (a == 744); global.vl_daily = 0; words_open(a - 742); exit; }
 if (a == 742) { global.rc_lives = 3; global.rc_score = 0; global.rc_n = 0; global.rc_crash = 0; global.rc_lane = 1; rc_next(); global.focus = -1; exit; }
+if (a == 745 || a == 746) { global.ret_scr = 5 - 2 * (a == 746); global.kb_place = (a == 746); words_open(3); exit; }
+if (a >= 760 && a < 780) { kb_take(a - 760); exit; }
+if (a >= 780 && a < 800) { kb_place(a - 780); exit; }
 if (a == 26) { global.wd_fail = 0; words_open(global.game); exit; }
 if (a >= 20000) { // a series: its map, at the page of the place to go on with
   global.ser = a - 20000; global.mpage = 0; global.scr = 0; global.focus = -1;
