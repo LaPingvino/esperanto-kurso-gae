@@ -7,6 +7,7 @@ import (
 	"hash/fnv"
 	"sort"
 	"strings"
+	"sync"
 	"unicode"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
@@ -42,6 +43,9 @@ type Course struct {
 	Langs   []string  // languages the meanings can be shown in, "en" first
 	place   map[string]*Place
 	of      map[string]string // item slug → its place's slug
+
+	derivedOnce sync.Once
+	derived     []*WordEntry // Words' derived ones, made once
 }
 
 // Series is one of the site's series (or "Aliaj" per level).

@@ -65,6 +65,17 @@ var suffixes = set("aĉ", "ad", "aĵ", "an", "ar", "ebl", "ec", "eg", "ej", "em"
 // A word ends in one of these (the dictionary form, or an inflected one).
 var endings = set("o", "a", "e", "i", "oj", "aj", "on", "an", "ojn", "ajn", "en", "as", "is", "os", "us", "u")
 
+// AffixKind is "prefikso" or "sufikso" for an affix ("mal", "ej"), else "".
+func AffixKind(s string) string {
+	switch {
+	case prefixes[s]:
+		return "prefikso"
+	case suffixes[s]:
+		return "sufikso"
+	}
+	return ""
+}
+
 func set(xs ...string) map[string]bool {
 	m := map[string]bool{}
 	for _, x := range xs {

@@ -440,6 +440,17 @@ func Exact(w string) *Hit {
 	return nil
 }
 
+// Headwords are all ReVo's headwords, normalized, each once, sorted.
+func Headwords() []string {
+	once.Do(load)
+	out := make([]string, 0, len(heads))
+	for h := range heads {
+		out = append(out, h)
+	}
+	sort.Strings(out)
+	return out
+}
+
 // IsRoot reports whether r is a ReVo root (an article's <rad>).
 func IsRoot(r string) bool {
 	once.Do(load)

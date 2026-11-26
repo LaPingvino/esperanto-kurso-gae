@@ -18,7 +18,7 @@ import (
 //	GET /ludo-api/vortoj?lingvo=xx
 //
 //	VORTOJ <version> <day>
-//	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix> <blocks>
+//	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix> <blocks> <derived>
 //	T <level> <word>      the day's Vortludo word for a learner of that level
 //	FINO
 //
@@ -33,6 +33,8 @@ import (
 // all of them (cmd/game-bildoj). blocks: for a word whose split is beyond
 // doubt (legvortoj.Blocks), its pieces as Konstrui's tiles show them,
 // "mal-|san|-ul-|-ej-|-o" (a prefix, the root, suffixes, the ending); else "".
+// derived: 1 for a word not of the course but built from its roots and
+// affixes (derive.go), for Konstrui alone: never Vortludo's or Vetkuro's.
 
 // WordEntry is one vocabulary word of the course.
 type WordEntry struct {
@@ -40,11 +42,19 @@ type WordEntry struct {
 	Five        bool
 	Affix       string // a long Vortludo word's affix (B1 and up), else ""
 	Blocks      string // Konstrui's tiles, "mal-|san|-ul-|-ej-|-o", else ""
+	Derived     bool   // built from the course's roots and affixes (Derived), Konstrui's alone
 	Ex          *Exercise
 }
 
-// Words are the course's vocabulary words, each once (its first place), in map order.
+// Words are the course's vocabulary words, each once (its first place), in
+// map order; then the words Derived from them.
 func (c *Course) Words() []*WordEntry {
+	ws := c.courseWords()
+	c.derivedOnce.Do(func() { c.derived = Derived(ws) })
+	return append(ws, c.derived...)
+}
+
+func (c *Course) courseWords() []*WordEntry {
 	var out []*WordEntry
 	seen := map[string]bool{}
 	for _, s := range c.Series {
@@ -222,7 +232,7 @@ func WriteWords(w io.Writer, c *Course, lang, day string) {
 	ws := c.Words()
 	line(w, "VORTOJ", c.Version, day)
 	for _, e := range ws {
-		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word), e.Affix, e.Blocks)
+		line(w, "W", e.Word, e.Level, fmt.Sprint(b2i(e.Five)), Meaning(e.Ex.Defs, e.Ex.Revo, lang), eoDef(e.Ex, e.Word), PictureKey(e.Word), e.Affix, e.Blocks, fmt.Sprint(b2i(e.Derived)))
 	}
 	for _, l := range Levels {
 		if d := Daily(Pool(ws, l), day, l); d != "" {

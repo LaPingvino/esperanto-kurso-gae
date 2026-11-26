@@ -1,8 +1,13 @@
 package gamedata
 
 import (
+	"fmt"
+	"sort"
 	"strings"
 	"testing"
+
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
 )
 
 // TestWords: the bonus games' words from the seed — five-letter words in
@@ -91,6 +96,90 @@ func TestBlocks(t *testing.T) {
 				t.Errorf("%s: %s is of %s", l, w, level[w])
 			}
 		}
-		t.Logf("%s: %d words, %v", l, len(p), p)
+		t.Logf("%s: %d words", l, len(p))
 	}
+	t.Log("\n" + poolStats(ws))
+}
+
+// TestDerived: the words built from the course's roots and affixes — each a
+// ReVo headword split beyond doubt, not a course word, every piece taught at
+// or below its level and the hardest at it, for Konstrui alone; and each
+// level's mix: prefixes from A1, no affix over PerAffix.
+func TestDerived(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	c := Build(items)
+	course := c.courseWords()
+	at := taught(course)
+	own := map[string]bool{}
+	for _, w := range course {
+		own[w.Word] = true
+	}
+	n := map[string]int{}
+	prefixed := map[string]bool{}
+	for _, w := range c.Words()[len(course):] {
+		if !w.Derived || own[w.Word] || w.Five || w.Affix != "" || revo.Exact(w.Word) == nil {
+			t.Errorf("%s: %+v", w.Word, w)
+		}
+		ps := legvortoj.Blocks(w.Word)
+		if BlockLabels(ps) != w.Blocks || ps == nil {
+			t.Errorf("%s: blocks %q", w.Word, w.Blocks)
+			continue
+		}
+		hard := 0
+		for _, p := range ps[:len(ps)-1] {
+			hard = max(hard, at[p.Text])
+			if p.Kind != "radiko" {
+				n[w.Level+" "+p.Text]++
+			}
+			if p.Kind == "prefikso" {
+				prefixed[w.Level] = true
+			}
+		}
+		if Levels[hard] != w.Level {
+			t.Errorf("%s: of %s, its hardest piece of %s", w.Word, w.Level, Levels[hard])
+		}
+	}
+	for k, v := range n {
+		if v > PerAffix {
+			t.Errorf("%s: %d words", k, v)
+		}
+	}
+	if !prefixed["A1"] || !prefixed["B1"] {
+		t.Errorf("prefixes: %v", prefixed)
+	}
+}
+
+// poolStats: Konstrui's words per level (the level's own, as BuildPool
+// takes them) and per affix (a word of two affixes under each).
+func poolStats(ws []*WordEntry) string {
+	var b strings.Builder
+	for _, l := range Levels {
+		n, aff := 0, map[string]int{}
+		for _, w := range ws {
+			if w.Level != l || w.Blocks == "" {
+				continue
+			}
+			n++
+			ps := strings.Split(w.Blocks, "|")
+			for _, p := range ps[:len(ps)-1] {
+				if strings.Contains(p, "-") {
+					aff[p]++
+				}
+			}
+		}
+		var ks []string
+		for k := range aff {
+			ks = append(ks, k)
+		}
+		sort.Slice(ks, func(i, j int) bool { return aff[ks[i]] > aff[ks[j]] || aff[ks[i]] == aff[ks[j]] && ks[i] < ks[j] })
+		fmt.Fprintf(&b, "%s: %d own, pool %d;", l, n, len(BuildPool(ws, l)))
+		for _, k := range ks {
+			fmt.Fprintf(&b, " %s %d", k, aff[k])
+		}
+		b.WriteString("\n")
+	}
+	return b.String()
 }
