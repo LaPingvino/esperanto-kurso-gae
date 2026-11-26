@@ -9,6 +9,7 @@ import (
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/lingvoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
 	"github.com/LaPingvino/esperanto-kurso-gae/seed"
 )
 
@@ -127,4 +128,17 @@ func TestLessonsInTheirLanguage(t *testing.T) {
 		t.Fatal("no meanings checked: did the course build?")
 	}
 	t.Logf("%d meanings checked", checked)
+}
+
+// TestMeaningCourseEoBeforeRevo: falling back to Esperanto, the course's
+// own definition comes before ReVo's; ReVo's stays the fallback.
+func TestMeaningCourseEoBeforeRevo(t *testing.T) {
+	hit := &revo.Hit{Entry: &revo.Entry{Def: "ReVo-difino."}}
+	own := "Malgranda vira homo."
+	if got := Meaning(map[string]string{"eo": own}, hit, "xx"); got != "(eo) "+own {
+		t.Errorf("Meaning = %q, want the course's Esperanto definition", got)
+	}
+	if got := Meaning(nil, hit, "xx"); got != "(eo) ReVo-difino." {
+		t.Errorf("Meaning without one = %q, want ReVo's", got)
+	}
 }

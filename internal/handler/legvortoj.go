@@ -58,6 +58,15 @@ func (g *GlossWord) PartsText() string {
 	return strings.Join(ps, "·")
 }
 
+// EoDef is the word's Esperanto definition as the glossary shows it: the
+// card's own, else ReVo's in the sense the text means.
+func (g *GlossWord) EoDef() string {
+	if g.M.EoDef != "" {
+		return g.M.EoDef
+	}
+	return g.Use.EoDef()
+}
+
 // HintDef is the Esperanto definition as a hint: the word itself (its
 // stem) written ~, as ReVo does, so the hint doesn't give it away.
 func (g *GlossWord) HintDef() string {
@@ -128,6 +137,15 @@ func Glossary(reading *model.ContentItem, x *legvortoj.Index, lang string) []*Gl
 			}
 			if revoWordOf(u.Card) != u.Lemma {
 				cp.Content["word"] = u.Lemma // a root card (amik): the meaning of the word itself
+				if defs, _ := cp.Content["definitions"].(map[string]interface{}); defs["eo"] != nil {
+					// the root's Esperanto definition is not the word's
+					d := map[string]interface{}{}
+					for k, v := range defs {
+						d[k] = v
+					}
+					delete(d, "eo")
+					cp.Content["definitions"] = d
+				}
 			}
 			it = &cp
 		}
@@ -135,8 +153,8 @@ func Glossary(reading *model.ContentItem, x *legvortoj.Index, lang string) []*Gl
 			it.Content["senco"] = u.Sense
 		}
 		g.M = MeaningFor(it, lang, "")
-		if def := u.EoDef(); def != "" {
-			g.M.EoDef = def
+		if def := u.EoDef(); def != "" && (g.M.EoDef == "" || g.M.EoDefRevo) {
+			g.M.EoDef = def // ReVo's, in the sense the text means
 		}
 		g.Pic = bildoj.ForVocab(u.Lemma, "")
 		for _, p := range u.Parts {

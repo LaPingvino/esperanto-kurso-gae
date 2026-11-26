@@ -19,7 +19,8 @@ type Meaning struct {
 	Fallback bool   // Text is not in the learner's language (English or Esperanto)
 	Via      string // ReVo had a related word, not this one ("trankvila" for "trankvile")
 
-	// EoDef is ReVo's Esperanto definition. (A card's flat "definition"
+	// EoDef is the Esperanto definition: the course's own (written for
+	// learners), else ReVo's (EoDefRevo). (A card's flat "definition"
 	// field is its legacy English meaning, not an Esperanto definition.)
 	EoDef     string
 	EoDefRevo bool
@@ -65,8 +66,8 @@ func courseDef(content map[string]interface{}, lang string) (def string, copied 
 
 // MeaningFor runs the fallback chain for a vocab card in the learner's
 // language: the course's own definition → a community translation →
-// ReVo's translation → English, the course's or ReVo's → ReVo's Esperanto
-// definition. A course definition copied from another language (see
+// ReVo's translation → English, the course's or ReVo's → the Esperanto
+// definition, the course's or ReVo's. A course definition copied from another language (see
 // lingvoj.CopiedFrom) does not count as one in the learner's language.
 //
 // A card or a reading's word may name the sense it means (content
@@ -108,6 +109,9 @@ func MeaningFor(item *model.ContentItem, lang, community string) Meaning {
 		}
 	} else {
 		m.ReVoURL = revo.SearchURL(word)
+	}
+	if own, copied := courseDef(item.Content, "eo"); own != "" && !copied {
+		m.EoDef, m.EoDefRevo = own, false
 	}
 	// ReVo's translation: the sense's own; for the main sense, else the
 	// word's (whose translations are the main sense's).

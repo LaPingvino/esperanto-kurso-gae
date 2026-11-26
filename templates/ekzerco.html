@@ -150,7 +150,7 @@
     {{else}}<p class="missing-def">{{t $L "exercise.missing_def_prefix"}} <strong>{{langName $lang}}</strong> {{t $L "exercise.missing_def_suffix"}}</p>{{end}}
     <div class="answer-side" data-back hidden>
       <p class="vocab-word" lang="eo">{{.Item.Word}}</p>
-      {{if and $m.EoDef (ne $m.Lang "eo")}}<blockquote class="eo-definition" lang="eo">{{$m.EoDef}} <small class="def-source">— <a href="{{$m.ReVoURL}}" target="_blank" rel="noopener">Reta Vortaro</a></small></blockquote>{{end}}
+      {{if and $m.EoDef (ne $m.Lang "eo")}}<blockquote class="eo-definition" lang="eo">{{$m.EoDef}}{{if $m.EoDefRevo}} <small class="def-source">— <a href="{{$m.ReVoURL}}" target="_blank" rel="noopener">Reta Vortaro</a></small>{{end}}</blockquote>{{end}}
       {{if $m.Via}}<p class="def-source"><small>{{t $L "dict.related"}}: <em lang="eo">{{$m.Via}}</em></small></p>{{end}}
       {{template "vortaroj-ligiloj" map "M" $m "UILang" $L}}
     </div>
@@ -259,7 +259,7 @@
         <button type="button" onclick="addVocabDef('{{.Item.Slug}}','{{$lang}}')" class="btn quiet small">{{ico "plus"}} {{t $L "exercise.add_def_button"}}</button>
       </div>
     {{end}}
-    {{if and $m.EoDef (ne $m.Lang "eo")}}<blockquote class="eo-definition" lang="eo">{{$m.EoDef}} <small class="def-source">— Reta Vortaro</small></blockquote>{{end}}
+    {{if and $m.EoDef (ne $m.Lang "eo")}}<blockquote class="eo-definition" lang="eo">{{$m.EoDef}}{{if $m.EoDefRevo}} <small class="def-source">— Reta Vortaro</small>{{end}}</blockquote>{{end}}
     <input type="text" name="answer" class="answer-input" lang="eo" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="{{if eq .VocabKind "sufikso"}}{{t $L "exercise.sufikso_placeholder"}}{{else if eq .VocabKind "prefikso"}}{{t $L "exercise.prefikso_placeholder"}}{{else if .IsRadiko}}{{t $L "exercise.radiko_placeholder"}}{{else}}{{t $L "exercise.esperanto_placeholder"}}{{end}}" required autofocus>
     <p class="x-hint">{{t $L "stage.x_hint"}}</p>
 

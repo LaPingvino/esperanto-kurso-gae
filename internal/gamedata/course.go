@@ -377,7 +377,8 @@ func defsOf(it *model.ContentItem) map[string]string {
 
 // Meaning is a card's meaning in lang, by the site's fallback chain: the
 // course's definition in lang, Reta Vortaro's translation, then English
-// (the course's, then ReVo's), ReVo's Esperanto definition, and last any
+// (the course's, then ReVo's), the Esperanto definition (the course's, then
+// ReVo's), and last any
 // course definition. A meaning not in lang carries its language in front,
 // "(en) boy", so a card never passes off another language as lang's. Text
 // in another script than lang's (Greek on a German card) is not lang's.
@@ -399,6 +400,9 @@ func Meaning(d map[string]string, hit *revo.Hit, lang string) string {
 	}
 	if t := hit.Translation("en"); t != "" {
 		return mark("en", t)
+	}
+	if d["eo"] != "" {
+		return mark("eo", d["eo"])
 	}
 	if hit != nil && hit.Def != "" {
 		return mark("eo", hit.Def)

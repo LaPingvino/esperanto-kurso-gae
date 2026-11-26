@@ -197,3 +197,20 @@ func seedCards(t *testing.T) []*model.ContentItem {
 	}
 	return cards
 }
+
+// TestCourseEoDefFirst: a card's own Esperanto definition, written for
+// learners, wins over ReVo's, credited to the course; ReVo's is the
+// fallback, credited to ReVo.
+func TestCourseEoDefFirst(t *testing.T) {
+	own := "Malgranda vira homo, ne jam plenkreska."
+	k := card("knabo", map[string]interface{}{"eo": own, "de": "Junge"})
+	if m := MeaningFor(k, "eo", ""); m.Text != own || m.Source != "course" || m.EoDefRevo {
+		t.Errorf("eo learner: %q (%s, revo %v), want the course's", m.Text, m.Source, m.EoDefRevo)
+	}
+	if m := MeaningFor(k, "de", ""); m.EoDef != own || m.EoDefRevo {
+		t.Errorf("de learner's Esperanto definition: %q (revo %v), want the course's", m.EoDef, m.EoDefRevo)
+	}
+	if m := MeaningFor(card("knabo", nil), "eo", ""); !strings.Contains(m.Text, "Virseksa infano") || m.Source != "revo" || !m.EoDefRevo {
+		t.Errorf("no own definition: %q (%s), want ReVo's", m.Text, m.Source)
+	}
+}
