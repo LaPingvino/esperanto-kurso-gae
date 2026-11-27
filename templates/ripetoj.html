@@ -1,0 +1,35 @@
+{{template "base" .}}
+
+{{define "title"}}Ripetoj — Esperanto-kurso{{end}}
+
+{{- /* Spaced repetition (handler/ripetoj.go; the work is in static/eo-ripetoj.js):
+     today's counts and one button. Each card shows on its own exercise page
+     (?ripeto=1), whose Daŭrigi leads to the next; ?plu=1 goes straight on.
+     In Esperanto, as the course's name for it. */}}
+{{define "content"}}
+<section class="ripetoj" id="ripetoj" lang="eo" aria-busy="true"{{if .Plu}} data-plu{{end}}>
+  <h1>{{ico "flip"}} Ripetoj</h1>
+  <dl class="ripetoj-nombroj">
+    <div><dt>Ripetoj</dt><dd data-r="ripetoj">–</dd></div>
+    <div><dt>Novaj</dt><dd data-r="novaj">–</dd></div>
+    <div><dt>Konataj</dt><dd data-r="konataj">–</dd></div>
+  </dl>
+  <button type="button" class="btn big" data-r="komenci" hidden>Komenci {{ico "right"}}</button>
+  <div class="ripetoj-fino" data-r="fino" hidden>
+    <p class="ask" data-r="fino-teksto">Nenio por hodiaŭ.</p>
+    <a class="btn big" href="/">Daŭrigi {{ico "right"}}</a>
+    <button type="button" class="btn quiet" data-r="pli" hidden>+5 novaj</button>
+  </div>
+  <details class="ripetoj-iloj">
+    <summary>{{ico "more"}} Kopio</summary>
+    <div class="ripetoj-butonoj">
+      <button type="button" class="btn quiet" data-r="elsxuti">Elŝuti kopion</button>
+      <button type="button" class="btn quiet" data-r="restarigi">Restarigi el kopio</button>
+      <button type="button" class="btn quiet" data-r="forgesi">Forgesi ĉiujn ripetojn</button>
+      <input type="file" accept=".json,application/json" data-r="dosiero" hidden>
+    </div>
+    <p class="muted" role="status" data-r="noto"></p>
+  </details>
+  <noscript><p>Ripetoj bezonas JavaScript.</p></noscript>
+</section>
+{{end}}

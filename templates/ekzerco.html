@@ -62,7 +62,8 @@
       {{end}}{{end}}
     </div>
   </details>
-  <a class="icon-btn" href="/" aria-label="{{t $L "stage.close"}}" title="{{t $L "stage.close"}}">{{ico "x"}}</a>
+  {{if .Ripeto}}<span class="chip ripetoj-chip" data-ripetoj-nombro title="Ripetoj"></span>{{end}}
+  <a class="icon-btn" href="{{if .Ripeto}}/ripetoj{{else}}/{{end}}" aria-label="{{t $L "stage.close"}}" title="{{t $L "stage.close"}}">{{ico "x"}}</a>
 </div>
 
 <div class="stage-body{{if $passive}} reading{{end}}">
@@ -133,9 +134,9 @@
   {{$modo := .VocabModo}}
   {{if eq .Item.Type "vocab"}}
   <nav class="vocab-mode-switch" aria-label="{{t $L "exercise.vocab_mode_type"}}">
-    <a href="?modo=tipi">{{t $L "exercise.vocab_mode_type"}}</a>
-    <a href="?modo=karto-eo"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_card_fwd"}}</a>
-    <a href="?modo=karto-def"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_card_rev"}}</a>
+    <a href="?modo=tipi{{if $.Ripeto}}&amp;ripeto=1{{end}}">{{t $L "exercise.vocab_mode_type"}}</a>
+    <a href="?modo=karto-eo{{if $.Ripeto}}&amp;ripeto=1{{end}}"{{if eq $modo "karto-eo"}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_card_fwd"}}</a>
+    <a href="?modo=karto-def{{if $.Ripeto}}&amp;ripeto=1{{end}}"{{if eq $modo "karto-def"}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_card_rev"}}</a>
   </nav>
   {{end}}
   <div class="flashcard" id="karto">
@@ -179,6 +180,7 @@
 {{else}}
   {{- /* ── Interactive kinds: tiles, gaps or one text field ── */}}
   <form id="answer-form" hx-post="/ekzerco/{{.Item.Slug}}/provo" hx-target="#dock" hx-swap="innerHTML" hx-indicator="#dock">
+  {{if .Ripeto}}<input type="hidden" name="ripeto" value="1">{{end}}
   {{if eq .Item.Type "multiplechoice"}}
     {{with vortBildo .Item}}{{$alt := defForLang $.Item.Content $lang}}
     <p class="ask">{{if $.Item.Question}}{{$.Item.Question}}{{else}}{{t $L "exercise.image_prompt"}}{{end}}</p>
@@ -188,7 +190,7 @@
     {{end}}
     <fieldset class="tiles{{if gt (longest .Item.Options) 22}} one{{end}}" lang="eo">
       <legend class="vh">{{t $L "exercise.choose_answer"}}</legend>
-      {{range $i, $opt := .Item.Options}}
+      {{range $i, $opt := miksi .Item}}
       <label class="tile"><input type="radio" name="answer" value="{{$opt}}" required data-key="{{add $i 1}}">{{$opt}}</label>
       {{end}}
     </fieldset>
@@ -219,9 +221,9 @@
     {{$m := .Meaning}}
     {{$modo := .VocabModo}}
     <nav class="vocab-mode-switch" aria-label="{{t $L "exercise.vocab_mode_type"}}">
-      <a href="?modo=tipi"{{if or (eq $modo "") (eq $modo "tipi")}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_type"}}</a>
-      <a href="?modo=karto-eo">{{t $L "exercise.vocab_mode_card_fwd"}}</a>
-      <a href="?modo=karto-def">{{t $L "exercise.vocab_mode_card_rev"}}</a>
+      <a href="?modo=tipi{{if $.Ripeto}}&amp;ripeto=1{{end}}"{{if or (eq $modo "") (eq $modo "tipi")}} aria-current="page"{{end}}>{{t $L "exercise.vocab_mode_type"}}</a>
+      <a href="?modo=karto-eo{{if $.Ripeto}}&amp;ripeto=1{{end}}">{{t $L "exercise.vocab_mode_card_fwd"}}</a>
+      <a href="?modo=karto-def{{if $.Ripeto}}&amp;ripeto=1{{end}}">{{t $L "exercise.vocab_mode_card_rev"}}</a>
     </nav>
     {{$pic := vortBildo .Item}}
     {{if $m.Text}}
@@ -281,6 +283,7 @@
   {{- /* "Mi ne scias": posts to the judgment endpoint as not known */}}
   <form id="jugo-form" hx-post="/ekzerco/{{.Item.Slug}}/jugxo" hx-target="#dock" hx-swap="innerHTML">
     <input type="hidden" name="judgment" value="ne-sciis">
+    {{if .Ripeto}}<input type="hidden" name="ripeto" value="1">{{end}}
   </form>
 {{end}}
 
@@ -301,6 +304,7 @@
   <div data-judge{{if $karto}} hidden{{end}}>
     <p class="hint">{{if $passive}}{{t $L "stage.read_prompt"}}{{else}}{{t $L "stage.judge_prompt"}}{{end}}</p>
     <form class="judge" hx-post="/ekzerco/{{.Item.Slug}}/jugxo" hx-target="#dock" hx-swap="innerHTML">
+      {{if .Ripeto}}<input type="hidden" name="ripeto" value="1">{{end}}
       <button type="submit" name="judgment" value="ne-sciis" class="tile" data-key="1">{{t $L "exercise.judge_unknown"}}<kbd>1</kbd></button>
       <button type="submit" name="judgment" value="malfacile" class="tile" data-key="2">{{t $L "exercise.judge_hard"}}<kbd>2</kbd></button>
       <button type="submit" name="judgment" value="bone" class="tile" data-key="3">{{t $L "exercise.judge_good"}}<kbd>3</kbd></button>

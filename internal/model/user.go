@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"time"
 
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 	"github.com/go-webauthn/webauthn/webauthn"
 )
 
@@ -23,6 +24,9 @@ type User struct {
 	Passkeys      []webauthn.Credential `firestore:"-"`
 	Progress      map[string]bool       `firestore:"progress"`
 	GameStars     map[string]int        `firestore:"-"` // the game's stars per lesson (gamestars.go)
+	// Spuro is the spaced-repetition trace (internal/ripetoj): per item
+	// answered its last day, answer count and last grade, packed small.
+	Spuro []byte `firestore:"-"`
 	Favorites     []string              `firestore:"favorites"`
 	KeepDataDays  int                   `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
 	StreakDays    int                   `firestore:"streak_days"`
@@ -32,6 +36,18 @@ type User struct {
 	// LastPracticeAt is when the user last completed an exercise. Unlike
 	// LastSeenAt (bumped on every page view), only this drives the streak.
 	LastPracticeAt time.Time `firestore:"last_practice_at"`
+}
+
+// SpuroN is the number of items in the repetition trace.
+func (u *User) SpuroN() int { return ripetoj.Len(u.Spuro) }
+
+// SRSRating is the rating new repetition cards are picked near: the
+// learner's, or A0's for one not yet placed (Placed).
+func (u *User) SRSRating() int {
+	if !u.Placed() {
+		return 900
+	}
+	return int(u.Rating + 0.5)
 }
 
 // IsFavorite returns true if the given slug is in the user's favorites.

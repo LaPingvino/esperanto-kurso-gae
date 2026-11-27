@@ -62,6 +62,31 @@ make ludo     # builds into static/ludo (git-ignored, deployed); needs GAMEVIBER
 make deploy   # make ludo, then gcloud app deploy
 ```
 
+## Spaced repetition (/ripetoj)
+
+As on [angla.org](https://angla.org) (whose code it reuses): FSRS-6 scheduling in the browser, the state in
+localStorage, the learner's Glicko rating on the server as before.
+
+- **Cards** are the site's items, all but texts and videos (`/ripetoj-api/kartoj`, public and cached like
+  `/ludo-api/`). New cards: 10 a day ("+5 novaj" at the end); in a series a card opens once one of the two
+  before it has been seen; of the open cards the three nearest the learner's rating form the window.
+- **Grades:** a right answer is Good, a wrong one Again; a self-judgement ne sciis / malfacile / bone /
+  facile is Again / Hard / Good / Easy. Every verdict on the site grades its card, in a session or not.
+- **Choices** of a multiple-choice item are shown in a fixed, fair shuffle per item (`miksi`, the same
+  permutation as angla.org's), so authors need not vary the answer's place.
+- **The server's trace** (`internal/ripetoj`): per item answered, the last day, the answer count and the
+  last grade, 7 bytes an item (a 4-byte slug hash, 2 bytes day, 1 byte count and grade) on the User
+  entity, written in the transaction that already records the streak; items never seen take nothing.
+  A browser that lacks items the trace holds (a new device, a cleared browser) gets them from
+  `/ripetoj/spuro` and rebuilds each by replaying a synthetic history through FSRS.
+- **The page** `/ripetoj` starts a session (each card on its own exercise page, `?ripeto=1`), saves and
+  restores the state as a file, and forgets it (here and the trace on the server). The header shows the
+  count due today.
+
+Code: `static/fsrs.js`, `static/ripetoj.js` (pure; tested by `node tools/test-fsrs.mjs` and
+`tools/test-ripetoj.mjs`, which `go test` runs too), `static/eo-ripetoj.js` (the browser side),
+`internal/handler/ripetoj.go`, `internal/ripetoj` (the trace, the shuffle).
+
 ## Pictures
 
 Words, Zagreb lessons and exercise kinds have pictures, mapped through data

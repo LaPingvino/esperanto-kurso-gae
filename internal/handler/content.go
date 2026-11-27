@@ -443,6 +443,7 @@ func (h *ContentHandler) ShowExercise(w http.ResponseWriter, r *http.Request) {
 		"SeriesTotal":        seriesTotal,
 		"SeriesPos":          seriesPos,
 		"VocabModo":          vocabModo,
+		"Ripeto":             r.URL.Query().Get("ripeto") == "1", // a card of a repetition session (/ripetoj)
 		"IsFavorite":         isFavorite,
 		"IsFavoriteSeries":   isFavoriteSeries,
 		"IsRadiko":           isRadiko,

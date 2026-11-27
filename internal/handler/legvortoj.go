@@ -31,6 +31,7 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/eo"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/legvortoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 )
 
 // GlossWord is one word of a reading as the page shows it.
@@ -442,9 +443,9 @@ func (h *ExerciseHandler) SubmitReadingPractice(w http.ResponseWriter, r *http.R
 			return
 		}
 	}
-	score := 0.0
+	score, grade := 0.0, ripetoj.Again
 	if correct {
-		score = 1
+		score, grade = 1, ripetoj.Good
 	}
 	// The answer counts for a shared card (it learns its difficulty, the
 	// learner the word). A core card's own exercises stay its measure: a
@@ -457,9 +458,12 @@ func (h *ExerciseHandler) SubmitReadingPractice(w http.ResponseWriter, r *http.R
 		card, _ = h.content.GetBySlug(ctx, c.Slug) // the stored rating, not the cache's
 	}
 	if card != nil && legvortoj.IsShared(card) {
-		_, _, streak, milestone = h.rate(ctx, u, card, score, correct, answer)
+		_, _, streak, milestone = h.rate(ctx, u, card, score, correct, answer, grade)
 	}
 	data := PracticeVerdict(u, q, answer, card, slug, n, len(qs), streak, milestone)
+	if card != nil && legvortoj.IsShared(card) && IsCard(card) {
+		data["SRSSlug"], data["Grade"] = card.Slug, grade // the word's card, graded like an answer on it
+	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)
 	}

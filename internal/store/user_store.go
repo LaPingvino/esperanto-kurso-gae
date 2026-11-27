@@ -8,6 +8,7 @@ import (
 
 	"cloud.google.com/go/datastore"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 	"github.com/go-webauthn/webauthn/webauthn"
 )
 
@@ -26,6 +27,7 @@ type userEntity struct {
 	ProgressJSON  []byte    `datastore:"progress_json,noindex"`
 	FavoritesJSON []byte    `datastore:"favorites_json,noindex"`
 	GameStarsJSON []byte    `datastore:"game_stars_json,noindex"`
+	Spuro         []byte    `datastore:"srs_trace,noindex"` // internal/ripetoj: 7 bytes per item seen
 	KeepDataDays  int       `datastore:"keep_data_days"`
 	StreakDays    int       `datastore:"streak_days"`
 	StreakStartAt time.Time `datastore:"streak_start_at"`
@@ -74,6 +76,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		ProgressJSON:  prJSON,
 		FavoritesJSON: favJSON,
 		GameStarsJSON: gsJSON,
+		Spuro:         u.Spuro,
 		KeepDataDays:  u.KeepDataDays,
 		StreakDays:    u.StreakDays,
 		StreakStartAt: u.StreakStartAt,
@@ -120,6 +123,7 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		LastSeenAt:   e.LastSeenAt,
 		LastPracticeAt: e.LastPracticeAt,
 		Progress:   make(map[string]bool),
+		Spuro:      e.Spuro,
 	}
 	if len(e.PasskeysJSON) > 0 {
 		if err := json.Unmarshal(e.PasskeysJSON, &u.Passkeys); err != nil {
@@ -349,6 +353,8 @@ func (s *UserStore) MergeUsers(ctx context.Context, dstID, srcID string) error {
 	}
 	// The game's stars: the larger per lesson (never lose progress).
 	dst.GameStars = model.MergeGameStars(dst.GameStars, src.GameStars)
+	// The repetition traces: per item the later answer, the counts added.
+	dst.Spuro = ripetoj.Merge(dst.Spuro, src.Spuro)
 	// Keep username from src if dst has none.
 	if dst.Username == "" && src.Username != "" {
 		dst.Username = src.Username
@@ -429,8 +435,10 @@ func advanceStreak(startAt, lastPractice, now time.Time) (time.Time, int) {
 // anchor; StreakDays is always derived from it. The streak is keyed off
 // LastPracticeAt, not LastSeenAt — the latter is bumped by the middleware on
 // every page view, so merely browsing must not keep a streak alive.
-// Call after every exercise attempt.
-func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int, error) {
+// Call after every exercise attempt. With a slug and a grade (1–4) the
+// answer also goes into the repetition trace (internal/ripetoj), in the same
+// write: the trace costs no Datastore operation of its own.
+func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID, slug string, grade int) (int, error) {
 	key := s.userKey(userID)
 	var newStreak int
 	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
@@ -448,10 +456,29 @@ func (s *UserStore) UpdateStreakAndSeen(ctx context.Context, userID string) (int
 		newStreak = e.StreakDays
 		e.LastPracticeAt = now
 		e.LastSeenAt = now
+		e.Spuro = ripetoj.Note(e.Spuro, slug, grade, now)
 		_, err := tx.Put(key, &e)
 		return err
 	})
 	return newStreak, err
+}
+
+// ClearSpuro forgets the repetition trace (Ripetoj → Forgesi).
+func (s *UserStore) ClearSpuro(ctx context.Context, userID string) error {
+	key := s.userKey(userID)
+	_, err := s.db.RunInTransaction(ctx, func(tx *datastore.Transaction) error {
+		var e userEntity
+		if err := tx.Get(key, &e); err != nil {
+			return err
+		}
+		if len(e.Spuro) == 0 {
+			return nil
+		}
+		e.Spuro = nil
+		_, err := tx.Put(key, &e)
+		return err
+	})
+	return err
 }
 
 func (s *UserStore) AddPasskey(ctx context.Context, userID string, cred webauthn.Credential) error {

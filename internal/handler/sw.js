@@ -1,6 +1,7 @@
 // The site's service worker, served at /sw.js (pwa.go fills in VERSION, one
 // per deploy). It never serves old code after a deploy:
-//   - pages (navigations) and the game's course API: network first; the copy
+//   - pages (navigations), the game's course API and the repetition cards
+//     (/ripetoj-api/kartoj): network first; the copy
 //     kept is only for when the network is down (the last-visited pages);
 //   - /static/ files with ?v= (the deploy's hash) and the game's files with
 //     ?v= (each file's content hash): cache first, they never change;
@@ -129,7 +130,7 @@ self.addEventListener("fetch", (e) => {
     }));
     return;
   }
-  if (p.startsWith("/ludo-api/")) { e.respondWith(networkFirst(e, API)); return; }
+  if (p.startsWith("/ludo-api/") || p === "/ripetoj-api/kartoj") { e.respondWith(networkFirst(e, API)); return; }
   if (p.startsWith("/ludo/") && url.searchParams.has("v")) { e.respondWith(ludoFile(e)); return; }
   if (p.startsWith("/static/")) {
     if (url.searchParams.has("v")) {

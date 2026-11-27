@@ -6,7 +6,7 @@
 {{$L := .UILang}}
 {{$v := "wrong"}}{{if .Correct}}{{$v = "right"}}{{end}}
 {{if eq .Judgment "malfacile"}}{{$v = "judged"}}{{end}}
-<div class="verdict-in" data-verdict="{{$v}}" data-correct="{{.CorrectAnswer}}" data-your="{{.YourAnswer}}">
+<div class="verdict-in" data-verdict="{{$v}}" data-correct="{{.CorrectAnswer}}" data-your="{{.YourAnswer}}"{{with .SRSSlug}} data-srs="{{.}}" data-grade="{{$.Grade}}"{{end}}>
   {{if .LevelUp}}<p class="news"><svg class="sparkle" aria-hidden="true"><use href="#i-star"/></svg>{{t $L "result.level_up_prefix"}} <span class="chip lvl solid">{{.CEFRLevel}}</span></p>{{end}}
   {{if .StreakMilestone}}<p class="news"><span class="streak">{{ico "flame"}}{{.StreakDays}}</span> {{t $L "result.milestone_prefix"}} {{.StreakDays}}{{t $L "result.milestone_suffix"}}</p>{{end}}
   <div class="verdict">

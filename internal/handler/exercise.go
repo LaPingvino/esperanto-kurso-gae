@@ -13,6 +13,7 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/glicko"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/recommend"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 )
 
 // isStreakMilestone reports whether a streak length deserves a celebration:
@@ -38,7 +39,7 @@ type exerciseContent interface {
 type exerciseUsers interface {
 	Create(ctx context.Context, u *model.User) error
 	UpdateRating(ctx context.Context, userID string, rating, rd, volatility float64) error
-	UpdateStreakAndSeen(ctx context.Context, userID string) (int, error)
+	UpdateStreakAndSeen(ctx context.Context, userID, slug string, grade int) (int, error)
 	UpdateUILang(ctx context.Context, userID, lang string) error
 }
 
@@ -115,17 +116,18 @@ func (h *ExerciseHandler) SubmitAttempt(w http.ResponseWriter, r *http.Request) 
 	answer := strings.Join(answers, " / ") // display string
 	correct := checkAnswer(item, answers)
 
-	score := 0.0
+	score, grade := 0.0, ripetoj.Again
 	if correct {
-		score = 1.0
+		score, grade = 1.0, ripetoj.Good
 	}
-	h.verdict(w, r, item, u, newToken, score, correct, answer, "")
+	h.verdict(w, r, item, u, newToken, score, correct, answer, "", grade)
 }
 
 // rate records an answer (or a self-judgement) on an item: the attempt,
-// both Glicko-2 ratings and the streak. It returns the learner's new
+// both Glicko-2 ratings, the streak and, for a repetition card, its grade
+// (1–4) in the trace (internal/ripetoj). It returns the learner's new
 // rating, the streak and whether it reached a milestone just now.
-func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.ContentItem, score float64, correct bool, recorded string) (float64, float64, int, bool) {
+func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.ContentItem, score float64, correct bool, recorded string, grade int) (float64, float64, int, bool) {
 	slug := item.Slug
 	// A store failure is logged, never shown: the learner's answer still gets
 	// its verdict. Only the slug and the user ID go into the log.
@@ -155,7 +157,11 @@ func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.C
 	// the pre-update practice day before it is overwritten below.
 	now := time.Now().UTC()
 	firstToday := u.LastPracticeAt.UTC().Truncate(24 * time.Hour).Before(now.Truncate(24 * time.Hour))
-	streak, _ := h.users.UpdateStreakAndSeen(ctx, u.ID)
+	srsSlug := ""
+	if IsCard(item) {
+		srsSlug = slug
+	}
+	streak, _ := h.users.UpdateStreakAndSeen(ctx, u.ID, srsSlug, grade)
 	u.StreakDays = streak
 	u.LastSeenAt = now
 	u.LastPracticeAt = now
@@ -165,14 +171,14 @@ func (h *ExerciseHandler) rate(ctx context.Context, u *model.User, item *model.C
 
 // verdict records an answer or a self-judgement, updates both Glicko-2
 // ratings and the streak, and renders the verdict into the stage's dock.
-func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *model.ContentItem, u *model.User, newToken string, score float64, correct bool, answer, judgment string) {
+func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *model.ContentItem, u *model.User, newToken string, score float64, correct bool, answer, judgment string, grade int) {
 	ctx := r.Context()
 	slug := item.Slug
 	recorded := answer
 	if judgment != "" {
 		recorded, answer = judgment, "" // a self-judgement is no answer to show
 	}
-	newUserR, newUserRD, streak, milestone := h.rate(ctx, u, item, score, correct, recorded)
+	newUserR, newUserRD, streak, milestone := h.rate(ctx, u, item, score, correct, recorded, grade)
 	after := &model.User{Rating: newUserR, RD: newUserRD}
 	// The interface switches itself to Esperanto once the learner is established.
 	if after.Established() && u.UILang != "eo" && u.UILang != "" {
@@ -189,6 +195,8 @@ func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *
 	switch {
 	case levelUp && after.ReachedB1() && !u.ReachedB1():
 		cont = "/vojkrucigxo"
+	case r.FormValue("ripeto") == "1":
+		cont = "/ripetoj?plu=1" // a repetition session: on to its next card (eo-ripetoj.js)
 	case nextInSeries != nil:
 		cont = "/ekzerco/" + nextInSeries.Slug
 	case nextSlug != "":
@@ -234,6 +242,9 @@ func (h *ExerciseHandler) verdict(w http.ResponseWriter, r *http.Request, item *
 		"UILang":          u.UILangOrDefault(),
 		"CurrentVote":     currentVote,
 		"VoteScore":       item.VoteScore,
+	}
+	if IsCard(item) {
+		data["SRSSlug"], data["Grade"] = slug, grade
 	}
 	if newToken != "" {
 		w.Header().Set("X-New-Token", newToken)
@@ -370,6 +381,7 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 	var score float64
 	var correct bool
 	judgment := r.FormValue("judgment")
+	grade := JudgmentGrade(judgment)
 	switch judgment {
 	case "facile":
 		score, correct = 1.0, true
@@ -382,7 +394,7 @@ func (h *ExerciseHandler) JudgeExercise(w http.ResponseWriter, r *http.Request) 
 		score, correct = 0.0, false
 	}
 
-	h.verdict(w, r, item, u, newToken, score, correct, "", judgment)
+	h.verdict(w, r, item, u, newToken, score, correct, "", judgment, grade)
 }
 
 // nextSeriesItem returns the next item in the series after the given item, or nil.

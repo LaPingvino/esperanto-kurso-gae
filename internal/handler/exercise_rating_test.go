@@ -9,8 +9,10 @@ import (
 	"net/url"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 )
 
 // ratingContent is an in-memory exerciseContent with no recommendations.
@@ -67,7 +69,12 @@ func (f *ratingUsers) UpdateRating(_ context.Context, id string, r, rd, vol floa
 	u.Rating, u.RD, u.Volatility = r, rd, vol
 	return nil
 }
-func (f *ratingUsers) UpdateStreakAndSeen(context.Context, string) (int, error) { return 1, nil }
+func (f *ratingUsers) UpdateStreakAndSeen(_ context.Context, id, slug string, grade int) (int, error) {
+	if u := f.m[id]; u != nil {
+		u.Spuro = ripetoj.Note(u.Spuro, slug, grade, time.Now())
+	}
+	return 1, nil
+}
 func (f *ratingUsers) UpdateUILang(context.Context, string, string) error       { return nil }
 
 type ratingAttempts struct {

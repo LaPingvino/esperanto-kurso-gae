@@ -25,3 +25,6 @@
 *.out
 # The game (game/, a GameViber project) and its web build: not part of the App Engine app
 game/
+
+# Node tests of the browser code (go test runs them): not part of the app
+tools/

@@ -17,6 +17,10 @@ var swSource string
 //go:embed manifest.webmanifest
 var manifest []byte
 
+// AssetFiles are the /static/ files every page loads with ?v=AssetVersion
+// (their hash): the service worker keeps them ahead.
+var AssetFiles = []string{"tokens.css", "stilo.css", "eo.js", "fsrs.js", "ripetoj.js", "eo-ripetoj.js"}
+
 // DeployVersion names this deploy: the service worker's caches carry it, so
 // each deploy installs a new worker that drops the old caches. App Engine
 // gives each deploy its own GAE_VERSION; EK_DEPLOY overrides it (a test can
@@ -35,7 +39,7 @@ func DeployVersion() string {
 // ServiceWorker serves /sw.js: at the root, so its scope is the whole site.
 func ServiceWorker(w http.ResponseWriter, r *http.Request) {
 	pre := []string{}
-	for _, f := range []string{"tokens.css", "stilo.css", "eo.js"} {
+	for _, f := range AssetFiles {
 		pre = append(pre, "/static/"+f+"?v="+AssetVersion)
 	}
 	pj, _ := json.Marshal(pre)

@@ -16,9 +16,14 @@
   <meta name="theme-color" content="#17632F">
   {{/* The server's view of who this is; eo.js copies it into localStorage, which HTMX requests send as X-Auth-Token. The cookie stays HttpOnly. */}}
   {{with .User}}{{if .Token}}<meta name="eo-token" content="{{.Token}}">{{end}}{{end}}
+  {{/* Spaced repetition (static/eo-ripetoj.js): whose state, how many items the server's trace holds, the rating new cards are picked near. */}}
+  {{with .User}}<meta name="eo-ripetoj" content="{{srsOwner .}} {{.SpuroN}} {{.SRSRating}}">{{end}}
   <script>(function(){try{var t=localStorage.getItem('eo_theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   <script src="/static/eo.js?v={{versio}}" defer></script>
+  <script src="/static/fsrs.js?v={{versio}}" defer></script>
+  <script src="/static/ripetoj.js?v={{versio}}" defer></script>
+  <script src="/static/eo-ripetoj.js?v={{versio}}" defer></script>
 </head>
 <body class="{{block "korpo" .}}{{end}}">
 {{template "ikonoj"}}
@@ -38,6 +43,7 @@
     <li><a href="/mapo" data-loko="/mapo">{{ico "map"}}{{t .UILang "nav.map"}}</a></li>
     <li><a href="/vortaro" data-loko="/vortaro">{{ico "image"}}{{t .UILang "nav.words"}}</a></li>
     <li><a href="/gramatiko" data-loko="/gramatiko">{{ico "gram"}}{{t .UILang "nav.grammar"}}</a></li>
+    <li><a href="/ripetoj" data-loko="/ripetoj" lang="eo">{{ico "flip"}}Ripetoj<span class="chip ripetoj-chip" data-ripetoj-nombro hidden></span></a></li>
     <li><a href="/ludo/">{{ico "die"}}{{t .UILang "nav.game"}}</a></li>
   </ul></nav>
   <div class="who">

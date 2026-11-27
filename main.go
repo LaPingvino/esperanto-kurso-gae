@@ -22,6 +22,7 @@ import (
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/locale"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/revo"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
 )
 
@@ -68,6 +69,8 @@ func main() {
 	adminH := handler.NewAdminHandler(tmpl, contentStore, commentStore, userStore, modMessageStore, translationStore)
 	gameH := handler.NewGameHandler(userStore, attemptStore)
 	gameAPI := handler.NewGameAPI(contentStore)
+	ripetojAPI := handler.NewRipetojAPI(contentStore)
+	ripetojH := handler.NewRipetojHandler(tmpl, contentStore, userStore)
 	contentH.GamePlace = gameAPI.PlaceOf
 	gameH.Course = gameAPI.Course
 
@@ -104,6 +107,7 @@ func main() {
 	// app.yaml serves /static/ on App Engine; this serves it when the app runs
 	// by itself (go run), so a local run has its stylesheet and pictures.
 	mux.Handle("GET /static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+	ripetojH.Routes(mux) // spaced repetition (handler/ripetoj.go)
 	mux.HandleFunc("GET /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ludo-progreso", gameH.Progress)
 	mux.HandleFunc("POST /ekzerco/{slug}/provo", exerciseH.SubmitAttempt)
@@ -188,6 +192,7 @@ func main() {
 	// same for everyone and publicly cacheable, needs no user (game_api.go).
 	root := http.NewServeMux()
 	gameAPI.Routes(root)
+	ripetojAPI.Routes(root) // the repetition cards: the same for everyone
 	// The site as an installable app (internal/handler/pwa.go, sw.js): the
 	// same for everyone, so no user either.
 	root.HandleFunc("GET /sw.js", handler.ServiceWorker)
@@ -246,6 +251,7 @@ func parseTemplates() (*pageTemplates, error) {
 		"gramatiko.html":          "templates/gramatiko.html",
 		"gramatikero.html":        "templates/gramatikero.html",
 		"vojkrucigxo.html":        "templates/vojkrucigxo.html",
+		"ripetoj.html":            "templates/ripetoj.html",
 		"fontoj.html":             "templates/fontoj.html",
 		"admin-komentoj.html":     "templates/admin/komentoj.html",
 		"admin-seed-rigardi.html": "templates/admin/seed-rigardi.html",
@@ -413,6 +419,17 @@ func templateFuncs() template.FuncMap {
 			return part * 100 / whole
 		},
 		// longest: the length in characters of the longest string (tile layout).
+		// miksi: a multiple-choice item's options in a fixed, fair shuffle
+		// per item (ripetoj.Shuffle), so the answer's place says nothing.
+		"miksi": func(item *model.ContentItem) []string {
+			opts := item.Options()
+			out := make([]string, len(opts))
+			for i, j := range ripetoj.Shuffle(len(opts), item.Slug) {
+				out[i] = opts[j]
+			}
+			return out
+		},
+		"srsOwner": handler.SRSOwner,
 		"longest": func(ss []string) int {
 			n := 0
 			for _, s := range ss {
@@ -510,8 +527,8 @@ func templateFuncs() template.FuncMap {
 // URLs change whenever their contents do.
 func assetVersion() string {
 	h := sha256.New()
-	for _, f := range []string{"static/tokens.css", "static/stilo.css", "static/eo.js"} {
-		if b, err := os.ReadFile(f); err == nil {
+	for _, f := range handler.AssetFiles {
+		if b, err := os.ReadFile("static/" + f); err == nil {
 			h.Write(b)
 		}
 	}
