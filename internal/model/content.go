@@ -3,29 +3,34 @@ package model
 import (
 	"strings"
 	"time"
+
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 )
 
 // ContentItem is a single exercise / learning item.
 type ContentItem struct {
-	Slug       string                 `firestore:"-"`
-	Type       string                 `firestore:"type"`
-	Content    map[string]interface{} `firestore:"content"`
-	Tags       []string               `firestore:"tags"`
-	Source     string                 `firestore:"source"`
-	AuthorID   string                 `firestore:"author_id"`
-	Status     string                 `firestore:"status"` // draft|pending|approved|rejected
-	Rating     float64                `firestore:"rating"`
-	RD         float64                `firestore:"rd"`
-	Volatility float64                `firestore:"volatility"`
-	VoteScore   int                    `firestore:"vote_score"`
-	Version     int                    `firestore:"version"`
-	ImageURL    string                 `firestore:"image_url"`
+	Slug         string                 `firestore:"-"`
+	Type         string                 `firestore:"type"`
+	Content      map[string]interface{} `firestore:"content"`
+	Tags         []string               `firestore:"tags"`
+	Source       string                 `firestore:"source"`
+	AuthorID     string                 `firestore:"author_id"`
+	Status       string                 `firestore:"status"` // draft|pending|approved|rejected
+	Rating       float64                `firestore:"rating"`
+	RD           float64                `firestore:"rd"`
+	Volatility   float64                `firestore:"volatility"`
+	VoteScore    int                    `firestore:"vote_score"`
+	Version      int                    `firestore:"version"`
+	ImageURL     string                 `firestore:"image_url"`
 	SeriesSlug   string                 `firestore:"series_slug"`
 	SeriesOrder  int                    `firestore:"series_order"`
 	SeriesLabel  string                 `firestore:"series_label"`  // display name for series button
 	SeriesParent string                 `firestore:"series_parent"` // slug of parent item (e.g. reading text)
-	CreatedAt   time.Time              `firestore:"created_at"`
-	UpdatedAt   time.Time              `firestore:"updated_at"`
+	CreatedAt    time.Time              `firestore:"created_at"`
+	UpdatedAt    time.Time              `firestore:"updated_at"`
+	// Unknown carries the stored properties this version does not know
+	// (internal/tolerant) from load to save.
+	Unknown tolerant.Unknown `firestore:"-" json:"-"`
 }
 
 func (c *ContentItem) strField(key string) string {
@@ -141,13 +146,13 @@ func (c *ContentItem) Alternatives() []string {
 	}
 	return nil
 }
-func (c *ContentItem) Hint() string        { return c.strField("hint") }
-func (c *ContentItem) AudioURL() string    { return c.strField("audio_url") }
-func (c *ContentItem) VideoURL() string    { return c.strField("video_url") }
-func (c *ContentItem) Word() string        { return c.strField("word") }
-func (c *ContentItem) Definition() string  { return c.strField("definition") }
-func (c *ContentItem) Title() string       { return c.strField("title") }
-func (c *ContentItem) Text() string        { return c.strField("text") }
+func (c *ContentItem) Hint() string       { return c.strField("hint") }
+func (c *ContentItem) AudioURL() string   { return c.strField("audio_url") }
+func (c *ContentItem) VideoURL() string   { return c.strField("video_url") }
+func (c *ContentItem) Word() string       { return c.strField("word") }
+func (c *ContentItem) Definition() string { return c.strField("definition") }
+func (c *ContentItem) Title() string      { return c.strField("title") }
+func (c *ContentItem) Text() string       { return c.strField("text") }
 
 // Options returns the list of multiple-choice options.
 func (c *ContentItem) Options() []string {

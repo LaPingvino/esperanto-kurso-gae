@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -19,6 +20,8 @@ type attemptEntity struct {
 	Answer        string    `datastore:"answer,noindex"`
 	TimeMS        int64     `datastore:"time_taken_ms"`
 	Timestamp     time.Time `datastore:"timestamp"`
+
+	unknown tolerant.Unknown
 }
 
 type AttemptStore struct {

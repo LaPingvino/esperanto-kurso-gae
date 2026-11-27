@@ -14,6 +14,7 @@ import (
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/store"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	seedpkg "github.com/LaPingvino/esperanto-kurso-gae/seed"
 )
 
@@ -93,6 +94,7 @@ func (h *AdminHandler) Dashboard(w http.ResponseWriter, r *http.Request) {
 		"ImportResult":       r.URL.Query().Get("import"),
 		"NukeResult":         r.URL.Query().Get("nuke"),
 		"UILang":             UILangFor(u),
+		"SchemaCounts":       tolerant.Counts(),
 	}
 	if err := h.tmpl.ExecuteTemplate(w, "admin_dashboard.html", data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

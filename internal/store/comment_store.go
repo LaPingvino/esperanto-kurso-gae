@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -21,6 +22,8 @@ type commentEntity struct {
 	AutoApproved  bool      `datastore:"auto_approved"`
 	Language      string    `datastore:"language,noindex"`
 	CreatedAt     time.Time `datastore:"created_at"`
+
+	unknown tolerant.Unknown
 }
 
 type CommentStore struct {

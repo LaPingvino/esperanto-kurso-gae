@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/go-webauthn/webauthn/webauthn"
 )
 
@@ -20,22 +21,26 @@ type User struct {
 	Lang       string  `firestore:"lang"`     // preferred language for definitions, e.g. "en"
 	UILang     string  `datastore:"ui_lang"`  // preferred interface language, e.g. "en", "nl", "eo"
 	// Passkeys are serialized as JSON bytes in Firestore.
-	PasskeysJSON  []byte                `firestore:"passkeys_json"`
-	Passkeys      []webauthn.Credential `firestore:"-"`
-	Progress      map[string]bool       `firestore:"progress"`
-	GameStars     map[string]int        `firestore:"-"` // the game's stars per lesson (gamestars.go)
+	PasskeysJSON []byte                `firestore:"passkeys_json"`
+	Passkeys     []webauthn.Credential `firestore:"-"`
+	Progress     map[string]bool       `firestore:"progress"`
+	GameStars    map[string]int        `firestore:"-"` // the game's stars per lesson (gamestars.go)
 	// Spuro is the spaced-repetition trace (internal/ripetoj): per item
 	// answered its last day, answer count and last grade, packed small.
-	Spuro []byte `firestore:"-"`
-	Favorites     []string              `firestore:"favorites"`
-	KeepDataDays  int                   `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
-	StreakDays    int                   `firestore:"streak_days"`
-	StreakStartAt time.Time             `firestore:"streak_start_at"`
-	CreatedAt     time.Time             `firestore:"created_at"`
-	LastSeenAt    time.Time             `firestore:"last_seen_at"`
+	Spuro         []byte    `firestore:"-"`
+	Favorites     []string  `firestore:"favorites"`
+	KeepDataDays  int       `firestore:"keep_data_days"` // -1=never delete, 0=default, >0=days of inactivity
+	StreakDays    int       `firestore:"streak_days"`
+	StreakStartAt time.Time `firestore:"streak_start_at"`
+	CreatedAt     time.Time `firestore:"created_at"`
+	LastSeenAt    time.Time `firestore:"last_seen_at"`
 	// LastPracticeAt is when the user last completed an exercise. Unlike
 	// LastSeenAt (bumped on every page view), only this drives the streak.
 	LastPracticeAt time.Time `firestore:"last_practice_at"`
+	// Unknown carries the stored properties this version does not know
+	// (internal/tolerant) from load to save, so an older version keeps what
+	// a newer one wrote.
+	Unknown tolerant.Unknown `firestore:"-" json:"-"`
 }
 
 // SpuroN is the number of items in the repetition trace.

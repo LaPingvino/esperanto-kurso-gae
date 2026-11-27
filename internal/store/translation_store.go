@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -17,6 +18,8 @@ type translationVoteEntity struct {
 	UserID        string `datastore:"user_id"`
 	TranslationID string `datastore:"translation_id"`
 	Value         int    `datastore:"value"`
+
+	unknown tolerant.Unknown
 }
 
 type TranslationStore struct {

@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/go-webauthn/webauthn/webauthn"
 )
 
@@ -17,7 +18,15 @@ const (
 type sessionEntity struct {
 	Data      []byte    `datastore:"data,noindex"`
 	ExpiresAt time.Time `datastore:"expires_at"`
+
+	unknown tolerant.Unknown
 }
+
+func (e *sessionEntity) Load(ps []datastore.Property) error {
+	return tolerant.Load(sessionKind, e, ps, &e.unknown)
+}
+
+func (e *sessionEntity) Save() ([]datastore.Property, error) { return tolerant.Save(e, &e.unknown) }
 
 // SessionStore stores short-lived WebAuthn challenge sessions in Datastore so
 // that they survive across GAE instance boundaries.

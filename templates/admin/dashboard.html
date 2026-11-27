@@ -50,6 +50,24 @@
 {{if eq .User.Role "admin"}}
 <hr>
 <section>
+  <h2>Skemo de la datumbazo</h2>
+  <p>Ecoj de konservitaj datumoj, kiujn ĉi tiu versio ne konas aŭ legas el alia tipo (internal/tolerant). Ĉiu ero ŝarĝiĝas tamen; nekonataj ecoj restas konservitaj. Nombroj de ĉi tiu servila instanco ekde ĝia starto; la protokolo notas ĉiun unuafoje.</p>
+  {{if .SchemaCounts}}
+  <table>
+    <thead><tr><th>Speco</th><th>Eco</th><th>Problemo</th><th>Versio</th><th>Fojoj</th></tr></thead>
+    <tbody>
+    {{range .SchemaCounts}}
+    <tr><td><code>{{.Kind}}</code></td><td><code>{{.Property}}</code></td><td>{{.Problem}}</td><td><code>{{.Version}}</code></td><td>{{.N}}</td></tr>
+    {{end}}
+    </tbody>
+  </table>
+  {{else}}
+  <p><em>Neniu malkongruo ĝis nun.</em></p>
+  {{end}}
+</section>
+
+<hr>
+<section>
   <h2>Semado</h2>
   <p>Por ĉiu dosiero: <strong>Semu novajn</strong> aldonas nur mankantajn; <strong>Ĝisdatigu</strong> anstataŭigas enhavon/etikedojn konservante rangigojn.</p>
   <table>

@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -32,6 +33,8 @@ type contentEntity struct {
 	SeriesParent string    `datastore:"series_parent"`
 	CreatedAt   time.Time `datastore:"created_at"`
 	UpdatedAt   time.Time `datastore:"updated_at"`
+
+	unknown tolerant.Unknown
 }
 
 func contentToEntity(item *model.ContentItem) (*contentEntity, error) {
@@ -58,6 +61,7 @@ func contentToEntity(item *model.ContentItem) (*contentEntity, error) {
 		SeriesParent: item.SeriesParent,
 		CreatedAt:   item.CreatedAt,
 		UpdatedAt:   item.UpdatedAt,
+		unknown:     item.Unknown,
 	}, nil
 }
 
@@ -81,6 +85,7 @@ func entityToContent(slug string, e *contentEntity) (*model.ContentItem, error) 
 		SeriesParent: e.SeriesParent,
 		CreatedAt:   e.CreatedAt,
 		UpdatedAt:   e.UpdatedAt,
+		Unknown:     e.unknown,
 	}
 	if len(e.ContentJSON) > 0 {
 		if err := json.Unmarshal(e.ContentJSON, &item.Content); err != nil {

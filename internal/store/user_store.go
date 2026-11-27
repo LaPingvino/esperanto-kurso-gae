@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/ripetoj"
 	"github.com/go-webauthn/webauthn/webauthn"
@@ -34,6 +35,8 @@ type userEntity struct {
 	CreatedAt    time.Time `datastore:"created_at"`
 	LastSeenAt   time.Time `datastore:"last_seen_at"`
 	LastPracticeAt time.Time `datastore:"last_practice_at"`
+
+	unknown tolerant.Unknown
 }
 
 func userToEntity(u *model.User) (*userEntity, error) {
@@ -83,6 +86,7 @@ func userToEntity(u *model.User) (*userEntity, error) {
 		CreatedAt:    u.CreatedAt,
 		LastSeenAt:   u.LastSeenAt,
 		LastPracticeAt: u.LastPracticeAt,
+		unknown:        u.Unknown,
 	}, nil
 }
 
@@ -124,6 +128,7 @@ func entityToUser(id string, e *userEntity) (*model.User, error) {
 		LastPracticeAt: e.LastPracticeAt,
 		Progress:   make(map[string]bool),
 		Spuro:      e.Spuro,
+		Unknown:    e.unknown,
 	}
 	if len(e.PasskeysJSON) > 0 {
 		if err := json.Unmarshal(e.PasskeysJSON, &u.Passkeys); err != nil {
@@ -310,6 +315,8 @@ const userAliasKind = "UserAlias"
 
 type userAliasEntity struct {
 	TargetID string `datastore:"target_id"`
+
+	unknown tolerant.Unknown
 }
 
 // ResolveAlias follows a UserAlias chain, returning the final live user ID.

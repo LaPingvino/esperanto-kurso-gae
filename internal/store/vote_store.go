@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -15,6 +16,8 @@ type voteEntity struct {
 	UserID        string `datastore:"user_id"`
 	ContentItemID string `datastore:"content_item_id"`
 	Value         int    `datastore:"value"`
+
+	unknown tolerant.Unknown
 }
 
 type VoteStore struct {

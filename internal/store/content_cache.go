@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"cloud.google.com/go/datastore"
+	"github.com/LaPingvino/esperanto-kurso-gae/internal/tolerant"
 	"github.com/LaPingvino/esperanto-kurso-gae/internal/model"
 )
 
@@ -33,6 +34,8 @@ const (
 
 type contentMeta struct {
 	Version int64 `datastore:"version,noindex"`
+
+	unknown tolerant.Unknown
 }
 
 type contentCache struct {
