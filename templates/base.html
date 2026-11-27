@@ -14,6 +14,8 @@
   <link rel="manifest" href="/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/static/bildoj/apple-touch-icon.png">
   <meta name="theme-color" content="#17632F">
+  {{/* The server's view of who this is; eo.js copies it into localStorage, which HTMX requests send as X-Auth-Token. The cookie stays HttpOnly. */}}
+  {{with .User}}{{if .Token}}<meta name="eo-token" content="{{.Token}}">{{end}}{{end}}
   <script>(function(){try{var t=localStorage.getItem('eo_theme');if(t&&t!=='auto')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <script src="https://unpkg.com/htmx.org@1.9.10"></script>
   <script src="/static/eo.js?v={{versio}}" defer></script>

@@ -132,3 +132,22 @@ func TestPagesRender(t *testing.T) {
 		t.Error("an arrival from angla.org is not greeted")
 	}
 }
+
+// A page carries the token of the user it was rendered for, so eo.js can
+// replace a stale anonymous token in localStorage after a cookie login
+// (the cookie itself is HttpOnly). No user or no token, no meta.
+func TestPageCarriesUserToken(t *testing.T) {
+	u := &model.User{ID: "u-cookie", Token: "tok-from-cookie", UILang: "en", Rating: 1500, RD: 350}
+	for _, page := range []string{"hejmo.html", "enskribi.html", "mapo.html"} {
+		html := render(t, page, map[string]interface{}{"User": u})
+		if !strings.Contains(html, `<meta name="eo-token" content="tok-from-cookie">`) {
+			t.Errorf("%s does not carry the cookie user's token", page)
+		}
+	}
+	if html := render(t, "hejmo.html", map[string]interface{}{}); strings.Contains(html, `name="eo-token"`) {
+		t.Error("a page without a user carries a token meta")
+	}
+	if html := render(t, "hejmo.html", map[string]interface{}{"User": &model.User{ID: "gae-admin", Role: "admin"}}); strings.Contains(html, `name="eo-token"`) {
+		t.Error("a tokenless user (GAE admin) gets an empty token meta")
+	}
+}

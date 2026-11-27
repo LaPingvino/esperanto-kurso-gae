@@ -40,16 +40,20 @@
     }
   });
 
-  // On load, sync localStorage token from the server-set cookie.
-  // The cookie is authoritative after passkey/magic-link login, so always
-  // overwrite localStorage when they differ (avoids stale anonymous token).
-  document.addEventListener('DOMContentLoaded', function () {
-    const match = document.cookie.match(/(?:^|;\s*)token=([^;]+)/);
-    if (match) {
-      const cookieToken = decodeURIComponent(match[1]);
-      if (cookieToken !== getToken()) setToken(cookieToken);
-    }
-  });
+  // On load, take the token of the user this page was rendered for. The
+  // login cookie is HttpOnly, so the server writes the token into a meta tag;
+  // after a magic-link or passkey login that replaces a stale anonymous one,
+  // which HTMX requests would otherwise keep sending as X-Auth-Token.
+  function syncFromPage() {
+    const meta = document.querySelector('meta[name="eo-token"]');
+    const pageToken = meta && meta.getAttribute('content');
+    if (pageToken && pageToken !== getToken()) setToken(pageToken);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', syncFromPage);
+  } else {
+    syncFromPage();
+  }
 
   // Expose ensureToken globally for use by WebAuthn flows.
   window.getEoToken = getToken;
