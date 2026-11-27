@@ -11,7 +11,7 @@ var a, s;
 a = argument0;
 if (a == 1) {
   global.focus = -1; global.les_want = -1;
-  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; global.mm_place = 0; global.ft_place = 0; exit; } // a bonus game: back where it came from
+  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; global.mm_place = 0; global.ft_place = 0; global.pv_place = 0; exit; } // a bonus game: back where it came from
   if (global.scr == 0 || global.ser < 0) { global.scr = 5; exit; }
   global.scr = 0; exit;
 }
@@ -48,7 +48,9 @@ if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit;
 // from the levels, 748 after a place, 749 a new board, 800+c a card.
 // Frazotrajno: 850 from the levels, 851 after a place, 852 a new round, 853
 // a judged train on at once, 860+k the train's wagon back, 880+t the
-// depot's wagon coupled.
+// depot's wagon coupled. Vortpluvo: 940 from the levels, 941 after a
+// place, 942 Komenci or Denove, 900+k the screen's letter k, 930 Viŝi,
+// 931 the typed letters cleared.
 if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
 if (a == 730) { vl_key(""); exit; }
 if (a == 731) { vl_submit(); exit; }
@@ -69,6 +71,11 @@ if (a == 852) { ft_round(); exit; }
 if (a == 853) { if (global.ft_st == 1) ft_back(); else if (global.ft_st == 2) ft_go(); exit; }
 if (a >= 860 && a < 880) { ft_uncouple(a - 860); exit; }
 if (a >= 880 && a < 900) { ft_couple(a - 880); exit; }
+if (a == 940 || a == 941) { global.ret_scr = 5 - 2 * (a == 941); global.pv_place = (a == 941); words_open(6); exit; }
+if (a == 942) { pv_new(); global.pv_st = 1; exit; }
+if (a >= 900 && a < 928) { pv_key(string_char_at(global.t_alpha, a - 900 + 1)); exit; }
+if (a == 930) { pv_key(""); exit; }
+if (a == 931) { pv_type(""); exit; }
 if (a == 26) { global.wd_fail = 0; words_open(global.game); exit; }
 if (a >= 20000) { // a series: its map, at the page of the place to go on with
   global.ser = a - 20000; global.mpage = 0; global.scr = 0; global.focus = -1;

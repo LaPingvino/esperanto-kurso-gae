@@ -258,3 +258,39 @@ func TestTrainPool(t *testing.T) {
 		t.Error("TrainOK")
 	}
 }
+
+// TestRainPool: Vortpluvo's words — every level's pool of twenty or more,
+// of that level or below, each one word of two to twelve small letters.
+func TestRainPool(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ws := Build(items).Words()
+	lv := map[string]int{}
+	for i, l := range Levels {
+		lv[l] = i
+	}
+	by := map[string]*WordEntry{}
+	for _, w := range ws {
+		if by[w.Word] == nil {
+			by[w.Word] = w
+		}
+	}
+	for _, l := range Levels {
+		p := RainPool(ws, l)
+		if len(p) < 20 {
+			t.Errorf("%s: a pool of %d", l, len(p))
+		}
+		for _, x := range p {
+			n := len([]rune(x))
+			if lv[by[x].Level] > lv[l] || by[x].Derived || n < RainMin || n > RainMax || !letters(x) {
+				t.Errorf("%s: %q (%s)", l, x, by[x].Level)
+			}
+		}
+		t.Logf("%s: %d words", l, len(p))
+	}
+	if RainOK(&WordEntry{Word: "Zamenhof"}) || RainOK(&WordEntry{Word: "bona tago"}) || RainOK(&WordEntry{Word: "a"}) || !RainOK(&WordEntry{Word: "ĉu"}) {
+		t.Error("RainOK")
+	}
+}

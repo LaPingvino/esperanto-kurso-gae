@@ -38,7 +38,7 @@ t = file_read_all("ludo-kurso.txt");
 global.course_txt = "";
 if (course_parse(t)) global.course_txt = t; else course_parse(global.fb_course);
 global.nex = 0; global.npara = 0; global.les_slug = ""; global.les_kind = ""; global.les_title = ""; global.les_video = "";
-global.scr = 5;       // 5 levels, 0 a series' map, 6 loading, 1 reading, 7 video, 2 exercises, 3 done, 4 words, 8 Vortludo, 9 Vetkuro, 10 their words loading, 11 Konstrui, 12 Memoro, 13 Frazotrajno
+global.scr = 5;       // 5 levels, 0 a series' map, 6 loading, 1 reading, 7 video, 2 exercises, 3 done, 4 words, 8 Vortludo, 9 Vetkuro, 10 their words loading, 11 Konstrui, 12 Memoro, 13 Frazotrajno, 14 Vortpluvo
 global.ser = -1; global.pl = -1;
 global.focus = -1; global.nhs = 0; global.page = 0; global.mpage = 0; global.flash = 0;
 global.typed = ""; global.fs = 15; global.lv_skip = 0; global.lv_next = -1;
@@ -46,7 +46,7 @@ global.fb = 0; global.kind = 0; global.idx = 0; global.qi = 0; global.qn = 0; gl
 global.def_act = -1; global.cg = 0; global.ngap = 0; global.bn = 0; global.pick = -1;
 global.course_req = -1; global.les_req = -1; global.les_want = -1; global.les_fail = 0;
 global.course_tried = 0; global.acclang = ""; global.want_slug = "";
-// the bonus games (Vortludo 8, Vetkuro 9, their words loading 10, Konstrui 11, Memoro 12, Frazotrajno 13)
+// the bonus games (Vortludo 8, Vetkuro 9, their words loading 10, Konstrui 11, Memoro 12, Frazotrajno 13, Vortpluvo 14)
 global.rating = 1500; global.acclevel = ""; global.nw = 0; global.nd = 0; global.wd_req = -1; global.wd_asked = 0; global.wd_fresh = 0;
 global.wd_lang = ""; global.wd_fail = 0; global.wd_day = ""; global.game = 0; global.ret_scr = 5; global.vl_daily = 1;
 global.vl_state = 0; global.vl_row = 0; global.vl_cur = ""; global.vl_n = 5; global.vl_aff = ""; global.vl_long = 0; global.vl_wait = 0; global.vl_req = -1; global.vl_ask = ""; global.vl_shake = 0; global.rc_state = 0; global.rc_best = 0; global.rc_place = 0;
@@ -54,6 +54,7 @@ global.rc_pressed = 0; global.rc_scroll = 0;
 global.kb_place = 0; global.kb_pn = 0; global.kb_n = 0; global.kb_nt = 0; global.kb_nb = 0; global.kb_ok = 0; global.kb_tries = 0; global.kb_w = -1; global.kb_word = "";
 global.mm_place = 0; global.mm_pn = 0; global.mm_n = 0; global.mm_nc = 0; global.mm_found = 0; global.mm_tries = 0; global.mm_a = -1; global.mm_b = -1; global.mm_wait = 0;
 global.nf = 0; global.ft_place = 0; global.ft_pn = 0; global.ft_nr = 0; global.ft_i = 0; global.ft_ok = 0; global.ft_tries = 0; global.ft_nb = 0; global.ft_n = 0; global.ft_st = 0; global.ft_good = 0; global.ft_wait = 0; global.ft_s = "";
+global.pv_place = 0; global.pv_pn = 0; global.pv_st = 0; global.pv_n = 0; global.pv_score = 0; global.pv_best = 0; global.pv_lives = 3; global.pv_buf = ""; global.pv_last = -1; global.pv_fx = 0; global.pv_lt = 0; global.pv_fall = 270; global.pv_t = 0; global.pv_k = 0;
 keyboard_string = "";
 sync_init();
 global.ready = 1;

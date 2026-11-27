@@ -5,3 +5,4 @@ if (global.game == 2) rc_ready();
 if (global.game == 3) kb_ready();
 if (global.game == 4) mm_ready();
 if (global.game == 5) ft_ready();
+if (global.game == 6) pv_ready();

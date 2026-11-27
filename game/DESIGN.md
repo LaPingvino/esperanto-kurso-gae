@@ -127,6 +127,22 @@ answers (Vortludo only asks whether a guess is a word, below).
   (`gamedata.TrainPool`, `ft_pool.gml`): the learner's level's sentences and, to ten, the levels below — never
   above; after a place, its own when it has two or more. The word list's format went to 2 with them
   (`WordsFormat`, in the ETag), and a kept copy without them waits for the site's. Nothing goes to the site.
+- **Vortpluvo** (`pv_*.gml`): the word rain. After Komenci the course's words fall in the field; type one whole
+  before it reaches the ground and it is caught (✓, rising), and the next comes at once when none is left
+  falling; one that lands costs a life (✗ on the ground), the third ends the game with its words and the best of
+  the session, and Denove plays again. The fall quickens with every word caught (a whole fall from nine seconds
+  down to two and a half), a new word comes every 100 steps less three per word caught (36 at least), six at
+  most at a time. Typed letters go through the x- and h-systems as in Vortludo (`pv_letters`: `xsys`, small
+  letters, the alphabet's 28 — the x of *aux* caught at its u drops), or come from the screen's keyboard
+  (`keys_screen`, Vortludo's, shared); a word is caught when the letters spell it by **either reading of the
+  h-system** (`hfold`: *ankau* is *ankaŭ*, *flughaveno* shown *fluĝaveno* is still *flughaveno*), so no
+  spelling is ever ambiguous at the moment of catching. To keep it so, a word never falls while one it starts
+  or that starts it is falling (*la* beside *lago* would be caught before *lago* could be typed). The typed
+  letters sit under the ground (✗ when no falling word starts so; Enter or a space clears them), the last word
+  caught beside them with its meaning. The pool (`gamedata.RainPool`, `pv_pool.gml`): the learner's level's
+  words and, to twenty, the levels below — never above; the course's own (not derived), one word of two to
+  twelve small letters (`gamedata.RainOK`). After a place, its own words when four or more can fall. From the
+  word list's W lines: no line of its own. Nothing goes to the site.
 
 
 ## How the course becomes a game
@@ -271,9 +287,9 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
   lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words;
-  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; Frazotrajno's round played by the keys in both rooms (a train right and gone on, a wagon taken back, a train out of order with its right start kept, a number key, the round done in six tries, Denove), its pools the site's, every sentence's train drawn whole in every state with its depot shuffled, the bonus after a place with its sentences; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; Frazotrajno's round played by the keys in both rooms (a train right and gone on, a wagon taken back, a train out of order with its right start kept, a number key, the round done in six tries, Denove), its pools the site's, every sentence's train drawn whole in every state with its depot shuffled, the bonus after a place with its sentences; Vortpluvo played in both rooms (a ŭ word typed in the h-system with a plain u and caught, one in the x-system, a hatted letter from the screen's keyboard, letters no word starts, three landed and the game done, Denove), its pools the site's, every word falling whole in the field typed or not, the bonus after a place with its words; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
   `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
-- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's, Frazotrajno's), a definition never giving its word.
+- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's, Frazotrajno's, Vortpluvo's), a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
   once per content set, the items' places, a course built from items without series fields.
 - `internal/handler/game_test.go`: the merge rule, the progress format and handler.

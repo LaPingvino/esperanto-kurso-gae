@@ -2,7 +2,8 @@
 // (keyboard_string) are the answer for the current gap, with the x-system;
 // a lone digit picks that tile or choice (1–9); in Vortludo, the row being
 // typed (vl_letters); in Konstrui a digit puts a piece on the line, in
-// Frazotrajno a wagon behind the train.
+// Frazotrajno a wagon behind the train; in Vortpluvo, the letters typed
+// to catch a falling word (pv_letters; a space clears them).
 // Elsewhere typing is dropped.
 var s, d;
 if (global.scr == 8) { // Vortludo: the row being typed
@@ -22,6 +23,13 @@ if (global.scr == 11) { // Konstrui: a lone digit puts that piece of the bank on
 if (global.scr == 13) { // Frazotrajno: a lone digit couples that wagon of the depot
   s = keyboard_string; keyboard_string = ""; global.typed = "";
   if (string_length(s) == 1 && string_digits(s) == s) { d = real(s); if (d >= 1) ft_couple(d - 1); }
+  exit;
+}
+if (global.scr == 14) { // Vortpluvo: the letters typed
+  if (global.pv_st != 1) { keyboard_string = ""; global.typed = ""; exit; }
+  if (keyboard_string == global.pv_buf) exit;
+  s = keyboard_string; if (string_pos(" ", s) > 0) s = "";
+  pv_type(pv_letters(s));
   exit;
 }
 if (global.scr != 2 || global.fb != 0) { keyboard_string = ""; global.typed = ""; exit; }

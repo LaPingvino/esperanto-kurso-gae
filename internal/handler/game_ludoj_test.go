@@ -237,7 +237,7 @@ func TestPlayVetkuro(t *testing.T) {
 		}
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui, Memoro and Frazotrajno), Komenci
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Vortpluvo, Konstrui, Memoro and Frazotrajno), Komenci
 	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
 		`global.scr == 9 && global.rc_place == 1 && global.rp_n >= 4 && global.rc_state >= 1 && global.ovf == 0`)
 	// every word of the list Vetkuro takes fits a phone's gate
@@ -743,6 +743,152 @@ return 0;
 	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 13 && global.ft_place == 1 && global.ft_pn == %d && global.ovf == 0`, want))
 	if len(s.posts) != 0 {
 		t.Errorf("Frazotrajno posted %q", s.posts)
+	}
+}
+
+// TestPlayVortpluvo: Vortpluvo from the levels screen, in both rooms, its
+// words falling in an order pinned for the test: Komenci, a word with ŭ
+// typed in the h-system (its ŭ a plain u) and caught, one typed in the
+// x-system and caught, the next one falling at once; a hatted letter
+// pressed on the screen's keyboard, letters no falling word starts (✗);
+// then three words landed, the game done with its score, Denove. Then the
+// game's pool for every level is the site's (gamedata.RainPool), every
+// word of it falls whole inside a phone's field; the bonus after a place
+// rains that place's words. Nothing posted.
+func TestPlayVortpluvo(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	c := s.api.Course(t.Context())
+	ws := c.Words()
+	var a0 []string // the game's pool for an A0 learner, in its order
+	for _, w := range ws {
+		if w.Level == "A0" && gamedata.RainOK(w) {
+			a0 = append(a0, w.Word)
+		}
+	}
+	iu, ix := -1, -1
+	for i, w := range a0 {
+		if strings.Contains(w, "ŭ") && iu < 0 {
+			iu = i
+		}
+		if strings.ContainsAny(w, "ĉĝĥĵŝ") && ix < 0 {
+			ix = i
+		}
+	}
+	if iu < 0 || ix < 0 {
+		t.Fatalf("A0: no word with ŭ (%d) or another hatted letter (%d)", iu, ix)
+	}
+	third := 2 // the third word: one that no ĉ starts
+	for strings.HasPrefix(a0[third], "ĉ") || third == iu || third == ix {
+		third++
+	}
+	pinned := func() string {
+		d := gameDir(t, c)
+		f := filepath.Join(d, "game", "scripts", "pv_drop.gml")
+		b, _ := os.ReadFile(f)
+		old := "i = global.pv_p[floor(random(global.pv_pn))];"
+		if !strings.Contains(string(b), old) {
+			t.Fatalf("pv_drop: no %q", old)
+		}
+		seq := fmt.Sprintf("i = global.pv_p[%d]; if (global.pv_k == 0) i = global.pv_p[%d]; if (global.pv_k == 1) i = global.pv_p[%d];", third, iu, ix)
+		os.WriteFile(f, []byte(strings.Replace(string(b), old, seq, 1)), 0o644)
+		return d
+	}
+	start := []string{":30", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "enter:1", ":4"} // the Ludoj row's sixth: Vortpluvo
+	run := func(dir, room, shotName string, keys []string, expect string) {
+		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 2), "-keys", strings.Join(keys, ",")}, shot(shotName)...)
+		playArgs(t, dir, args, expect)
+	}
+	q := func(s string) string { return `"` + s + `"` }
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		dir := pinned()
+		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: six games
+		keys := append([]string{}, start...)
+		run(dir, room, "vortpluvo-"+room, append(keys, ":2"), `global.scr == 14 && level_me() == "A0" && global.pv_st == 0 && global.pv_pn >= 20 && global.ovf == 0`)
+		keys = append(keys, "enter:1", ":3") // Komenci
+		run(dir, room, "", keys, fmt.Sprintf(`global.pv_st == 1 && global.pv_n == 1 && global.w_word[global.pv_w[0]] == %s && global.pv_lives == 3`, q(a0[iu])))
+		keys = append(keys, "text="+hSpell(a0[iu])+":1", ":2")
+		run(dir, room, "vortpluvo-kaptita-"+room, keys, fmt.Sprintf(`global.pv_score == 1 && global.pv_buf == "" && global.pv_n == 1 && global.w_word[global.pv_w[0]] == %s && global.pv_fx > 0 && global.ovf == 0`, q(a0[ix])))
+		keys = append(keys, "text="+xSpell(a0[ix])+":1", ":2")
+		run(dir, room, "", keys, fmt.Sprintf(`global.pv_score == 2 && global.pv_buf == "" && global.pv_n == 1 && global.w_word[global.pv_w[0]] == %s && global.pv_fall < 270`, q(a0[third])))
+		keys = append(keys, "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "enter:1", ":1") // the screen's ĉ
+		run(dir, room, "", keys, `global.pv_buf == "ĉ" && global.pv_score == 2`)
+		keys = append(keys, "text=zz:1", ":2")
+		run(dir, room, "vortpluvo-ne-"+room, keys, `global.pv_buf == "ĉzz" && global.pv_score == 2 && global.ovf == 0`)
+		keys = append(keys, ":800") // three landed
+		run(dir, room, "vortpluvo-finita-"+room, keys, `global.pv_st == 2 && global.pv_lives == 0 && global.pv_score == 2 && global.pv_best == 2 && global.pv_n == 0 && global.ovf == 0`)
+		keys = append(keys, "enter:1", ":2") // Denove
+		run(dir, room, "", keys, `global.scr == 14 && global.pv_st == 1 && global.pv_score == 0 && global.pv_lives == 3 && global.pv_n == 1`)
+	}
+	// the pools, as the site makes them; every word falling whole in the field
+	var b strings.Builder
+	b.WriteString("// pvcheck(): 0 when Vortpluvo's pools are the site's, else what isn't.\nvar k, f;\nglobal.pv_place = 0;\n")
+	for _, l := range gamedata.Levels {
+		p := gamedata.RainPool(ws, l)
+		fmt.Fprintf(&b, "global.acclevel = %s; pv_pool(); if (global.pv_pn != %d) return %s;\n", q(l), len(p), q(l+" pool size"))
+		for _, w := range p {
+			fmt.Fprintf(&b, "f = 0; for (k = 0; k < global.pv_pn; k += 1) if (global.w_word[global.pv_p[k]] == %s) f = 1; if (!f) return %s;\n", q(w), q(l+" "+w))
+		}
+	}
+	b.WriteString("return 0;\n")
+	dir := gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "pvcheck.gml"), []byte(b.String()), 0o644)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "pvdraw.gml"), []byte(`// pvdraw(): 0 when every word Vortpluvo can drop falls whole in the field, at its right edge, typed or not, else the first that doesn't.
+var i, m, n;
+n = 0;
+for (i = 0; i < global.nw; i += 1) if (pv_ok(i)) {
+  n += 1;
+  global.pv_pn = 1; global.pv_p[0] = i; global.pv_n = 0; global.pv_buf = "";
+  pv_drop();
+  if (global.pv_n != 1) return global.w_word[i] + " dropped";
+  if (global.pv_x[0] + global.pv_ww[0] > global.px1) return global.w_word[i] + " past the field";
+  global.pv_x[0] = global.px1 - global.pv_ww[0];
+  global.pv_last = i; global.pv_fx = 8; global.pv_fxw = global.w_word[i]; global.pv_fxx = global.pv_x[0]; global.pv_fxy = global.pt; global.pv_fxww = global.pv_ww[0];
+  for (m = 0; m <= 2; m += 1) {
+    global.pv_st = 1; global.pv_buf = string_copy(global.w_word[i], 1, m);
+    draw_all(); if (global.ovf) return global.w_word[i] + " " + string(m) + " " + global.ovf_what;
+  }
+}
+for (m = 0; m <= 2; m += 1) { global.pv_st = m; draw_all(); if (global.ovf) return "state " + string(m) + " " + global.ovf_what; }
+if (n < 500) return "only " + string(n);
+return 0;
+`), 0o644)
+	keys := append(append([]string{}, start...), ":2")
+	run(dir, "rm_tall", "", keys, `global.scr == 14 && pvcheck() == 0`)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		run(dir, room, "", keys, `global.scr == 14 && pvdraw() == 0`)
+	}
+	// the bonus after a place with four or more such words: those words
+	by := map[string]*gamedata.WordEntry{}
+	for _, w := range ws {
+		if by[w.Word] == nil {
+			by[w.Word] = w
+		}
+	}
+	slug, want := "", 0
+	for _, p := range c.Places {
+		seen := map[string]bool{}
+		for _, e := range p.Ex {
+			if e.Kind == 'Q' && len(e.Answers) > 0 {
+				w := strings.TrimSpace(e.Answers[0])
+				if by[w] != nil && gamedata.RainOK(by[w]) {
+					seen[w] = true
+				}
+			}
+		}
+		if len(seen) >= 4 && slug == "" {
+			slug, want = p.Slug, len(seen)
+		}
+	}
+	if slug == "" {
+		t.Fatal("no place with four Vortpluvo words")
+	}
+	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Vortpluvo (before Konstrui, Memoro and Frazotrajno)
+	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("vortpluvo-bonuso-rm_tall")...)
+	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 14 && global.pv_place == 1 && global.pv_pn == %d && global.ovf == 0`, want))
+	if len(s.posts) != 0 {
+		t.Errorf("Vortpluvo posted %q", s.posts)
 	}
 }
 

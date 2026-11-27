@@ -10,6 +10,7 @@ typing();
 if (global.scr == 9) rc_step();
 if (global.scr == 12) mm_step();
 if (global.scr == 13) ft_step();
+if (global.scr == 14) pv_step();
 if (string(PARITY) != "1") { net_tick(); sync_tick(); }
 if (global.flash > 0) global.flash -= 1;
 if (global.vl_shake > 0) global.vl_shake -= 1;

@@ -8,7 +8,7 @@
 // state has a cue besides its colour: in its place, the accent fill (white
 // letter); elsewhere in the word, the note tint with a dot under it; not in
 // it, sunk with the muted letter (kurso-design's checked pairs, 7:1 and up).
-var sx, x0, x1, y, c, g, gw, gh, gx, gy, r, k, l, st, kw, kh, kg, kt, n, x, px0, py0, px1, py1, by, t, lv, h, a, pend;
+var sx, x0, x1, y, c, g, gw, gh, gx, gy, r, k, l, st, kt, n, x, px0, py0, px1, py1, by, t, lv, h, a, pend;
 x0 = global.m; x1 = global.W - global.m;
 lv = level_me();
 y = global.hh + 12;
@@ -29,25 +29,8 @@ for (r = 0; r < 6; r += 1) for (k = 0; k < n; k += 1) {
   sx = 0; if (r == global.vl_row && global.vl_shake > 0) sx = round(sin(global.vl_shake * 1.3) * global.vl_shake * 0.6); // no word: the row shakes
   vl_cell(gx + k * (c + g) + sx, gy + r * (c + g), c, l, st);
 }
-// the keyboard: a–h, ĥ–p, then Viŝi and r–z
-kh = 46; kg = 6;
-kt = global.H - 16 - 3 * kh - 2 * kg;
-kw = floor((x1 - x0 - 9 * kg) / 10); if (global.wide) kw = 52;
-a = (global.vl_state == 0);
-for (r = 0; r < 3; r += 1) {
-  n = 10; if (r == 2) n = 8;
-  x = (global.W - (n * kw + (n - 1) * kg)) / 2;
-  if (r == 2) {
-    x = (global.W - (n * kw + n * kg + floor(kw * 1.5))) / 2;
-    vl_keybox(x, kt + r * (kh + kg), floor(kw * 1.5), kh, "Viŝi", -1, 730 * a - (1 - a));
-    x += floor(kw * 1.5) + kg;
-  }
-  for (k = 0; k < n; k += 1) {
-    l = string_char_at(global.t_alpha, r * 10 + k + 1);
-    vl_keybox(x, kt + r * (kh + kg), kw, kh, string_upper(l), global.vk_s[r * 10 + k], (700 + r * 10 + k) * a - (1 - a));
-    x += kw + kg;
-  }
-}
+// the keyboard (a–h, ĥ–p, then Viŝi and r–z), its letters in their states
+kt = keys_screen(700 - 701 * (global.vl_state != 0), 1);
 // the panel
 px0 = x0; py0 = gy + gh + 12; px1 = x1; py1 = kt - 12;
 if (global.wide) { px0 = global.W / 2 + 10; py0 = gy; px1 = min(x1, px0 + 520); py1 = gy + gh; }
