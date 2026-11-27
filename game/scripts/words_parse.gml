@@ -1,13 +1,13 @@
 // words_parse(text): the bonus games' words (GET /ludo-api/vortoj, see
 // gamedata/words.go) into w_word, w_level, w_five, w_mean, w_def, w_pic, w_aff, w_blk, w_drv (a word for Konstrui alone), and
-// the day's word per level (d_level, d_word); 1 when it is a whole one.
-var l, n, nd;
+// the day's word per level (d_level, d_word), Frazotrajno's sentences (f_level, f_place, f_text); 1 when it is a whole one.
+var l, n, nd, nf;
 if (string_pos(chr(10) + "FINO", argument0) == 0) return 0;
 global.ptext = argument0; global.peof = 0;
 split_line(next_line());
 if (global.fld[0] != "VORTOJ") return 0;
 global.wd_day = global.fld[2];
-n = 0; nd = 0;
+n = 0; nd = 0; nf = 0;
 while (!global.peof) {
   l = next_line();
   if (l == "") continue;
@@ -18,6 +18,7 @@ while (!global.peof) {
     n += 1;
   }
   if (global.fld[0] == "T") { global.d_level[nd] = global.fld[1]; global.d_word[nd] = global.fld[2]; nd += 1; }
+  if (global.fld[0] == "F") { global.f_level[nf] = global.fld[1]; global.f_place[nf] = global.fld[2]; global.f_text[nf] = global.fld[3]; nf += 1; }
 }
-global.nw = n; global.nd = nd;
+global.nw = n; global.nd = nd; global.nf = nf;
 return 1;

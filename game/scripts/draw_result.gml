@@ -12,7 +12,7 @@ if (global.qtotal > 0) txtc(global.W / 2, y, string(global.qfirst) + " el " + st
 y += 44;
 // the bonus row: one row after its label, else the label above, else (a phone) two rows
 font(15, 1, 0); bx = global.m + string_width("Bonuso:") + 12;
-bwall = bw("Vortludo") + bw("Vetkuro") + bw("Konstrui") + bw("Memoro") + 24;
+bwall = bw("Vortludo") + bw("Vetkuro") + bw("Konstrui") + bw("Memoro") + bw("Frazotrajno") + 32;
 two = (global.m + bwall > global.W - global.m);
 n = 0;
 for (i = 0; i < global.nex; i += 1) if (global.x_kind[i] == 0) n += 1;
@@ -28,7 +28,7 @@ if (n > 0) {
     k += 1;
   }
 }
-// the bonus: the games with this place's words (the race, Konstrui, Memoro)
+// the bonus: the games with this place's words (the race, Konstrui, Memoro) and sentences (Frazotrajno)
 y = global.H - 128;
 if (two) {
   txt(global.m, y - 52 - 26, "Bonuso:", 15, 1, global.C_text);
@@ -44,6 +44,7 @@ if (two) {
   button(x, y, x + bw("Vetkuro"), y + 44, "Vetkuro", 744, 0); x += bw("Vetkuro") + 8;
 }
 button(x, y, x + bw("Konstrui"), y + 44, "Konstrui", 746, 0); x += bw("Konstrui") + 8;
-button(x, y, x + bw("Memoro"), y + 44, "Memoro", 748, 0);
+button(x, y, x + bw("Memoro"), y + 44, "Memoro", 748, 0); x += bw("Memoro") + 8;
+button(x, y, x + bw("Frazotrajno"), y + 44, "Frazotrajno", 851, 0);
 button(global.W - global.m - bw(global.t_continue_cta) - 24, global.H - 72, global.W - global.m, global.H - 20, global.t_continue_cta, 11, 1);
 global.def_act = 11;

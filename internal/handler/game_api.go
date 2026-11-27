@@ -121,7 +121,7 @@ func (a *GameAPI) Words(w http.ResponseWriter, r *http.Request) {
 		lang = "en"
 	}
 	day := time.Now().UTC().Format("2006-01-02")
-	if cached(w, r, c.Version+"-"+lang+"-"+day) {
+	if cached(w, r, c.Version+"-"+lang+"-"+day+"-"+gamedata.WordsFormat) {
 		return
 	}
 	gamedata.WriteWords(w, c, lang, day)

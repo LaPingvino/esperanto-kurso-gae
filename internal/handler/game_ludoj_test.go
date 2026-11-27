@@ -237,7 +237,7 @@ func TestPlayVetkuro(t *testing.T) {
 		}
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui and Memoro), Komenci
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui, Memoro and Frazotrajno), Komenci
 	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
 		`global.scr == 9 && global.rc_place == 1 && global.rp_n >= 4 && global.rc_state >= 1 && global.ovf == 0`)
 	// every word of the list Vetkuro takes fits a phone's gate
@@ -428,8 +428,8 @@ return 0;
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
 	playArgs(t, gameDir(t, c), append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys[:len(keys)-2]) + 10), "-keys", strings.Join(keys[:len(keys)-2], ",")}, shot("bonuso-rm_tall")...),
-		`global.scr == 3 && global.ovf == 0`) // the place done: four bonus games, on a phone too
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Konstrui (before Memoro)
+		`global.scr == 3 && global.ovf == 0`) // the place done: five bonus games, on a phone too
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Konstrui (before Memoro and Frazotrajno)
 	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("konstrui-bonuso-rm_tall")...)
 	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 11 && global.kb_place == 1 && global.kb_pn == %d && global.ovf == 0`, want))
 	if len(s.posts) != 0 {
@@ -489,7 +489,7 @@ func TestPlayMemoro(t *testing.T) {
 	}
 	for _, room := range []string{"rm_tall", "rm_wide"} {
 		dir := pinned()
-		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: four games
+		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: five games
 		run(dir, room, "memoro-"+room, cat(start, []string{":2"}), `global.scr == 12 && global.mm_n == 6 && global.mm_nc == 12 && global.mm_found == 0 && global.ovf == 0`)
 		keys := cat(start, down, press, down, press) // cards 0 and 1: a pair
 		run(dir, room, "", keys, `global.scr == 12 && global.mm_found == 1 && global.mm_tries == 1 && global.mm_st[0] == 2 && global.mm_st[1] == 2 && global.ovf == 0`)
@@ -562,11 +562,187 @@ return 0;
 		t.Fatal("no place with four Memoro words")
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Memoro
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Memoro (before Frazotrajno)
 	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("memoro-bonuso-rm_tall")...)
 	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 12 && global.mm_place == 1 && global.mm_pn == %d && global.ovf == 0`, want))
 	if len(s.posts) != 0 {
 		t.Errorf("Memoro posted %q", s.posts)
+	}
+}
+
+// TestPlayFrazotrajno: Frazotrajno from the levels screen, in both rooms,
+// on a round left in order for the test (the pool's first five sentences,
+// the depot in the text's order): a train coupled by the arrow keys and
+// Enter, judged right and gone on after a while; a wagon coupled and taken
+// back, a train out of order shown wrong, its right start kept and the
+// rest back in the depot, then put right and gone on at Enter; a wagon by
+// its number key; the round done in six tries, and Denove plays again. Then
+// the game's pool for every level is the site's (gamedata.TrainPool), every
+// sentence's train draws whole in every state, its depot never in the
+// text's order; and the bonus after a place plays that place's sentences.
+// Nothing posted.
+func TestPlayFrazotrajno(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	c := s.api.Course(t.Context())
+	ss := c.Sentences()
+	var a0 [][]string // the game's pool for an A0 learner, in its order
+	for _, x := range ss {
+		if x.Level == "A0" {
+			a0 = append(a0, strings.Fields(x.Text))
+		}
+	}
+	if len(a0) < 5 {
+		t.Fatalf("A0: %d sentences", len(a0))
+	}
+	if a0[1][1] == a0[1][2] {
+		t.Fatalf("the second sentence's words 1 and 2 alike: %q", a0[1])
+	}
+	pinned := func() string {
+		d := gameDir(t, c)
+		for file, subs := range map[string]map[string]string{
+			"ft_round.gml": {"i = global.ft_p[floor(random(global.ft_pn))];": "i = global.ft_p[tries mod global.ft_pn];"},
+			"ft_next.gml": {
+				"for (k = global.ft_nb - 1; k > 0; k -= 1) { j = floor(random(k + 1)); t = global.ft_t[k]; global.ft_t[k] = global.ft_t[j]; global.ft_t[j] = t; }\n": "",
+				"if (ft_built(0) == global.ft_s) { t = global.ft_t[0]; for (k = 0; k < global.ft_nb - 1; k += 1) global.ft_t[k] = global.ft_t[k + 1]; global.ft_t[global.ft_nb - 1] = t; }\n": "",
+			},
+		} {
+			f := filepath.Join(d, "game", "scripts", file)
+			b, _ := os.ReadFile(f)
+			src := string(b)
+			for old, new := range subs {
+				if !strings.Contains(src, old) {
+					t.Fatalf("%s: no %q", file, old)
+				}
+				src = strings.Replace(src, old, new, 1)
+			}
+			os.WriteFile(f, []byte(src), 0o644)
+		}
+		return d
+	}
+	start := []string{":30", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "enter:1", ":4"} // the Ludoj row's fifth: Frazotrajno
+	run := func(dir, room, shotName string, keys []string, expect string) {
+		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 2), "-keys", strings.Join(keys, ",")}, shot(shotName)...)
+		playArgs(t, dir, args, expect)
+	}
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		dir := pinned()
+		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: five games
+		keys := append([]string{}, start...)
+		cur := -1 // the keyboard's focus: the depot's slots come first
+		to := func(f int) {
+			if cur < 0 {
+				keys = append(keys, "down:1", ":1")
+				cur = 0
+			}
+			for ; cur < f; cur++ {
+				keys = append(keys, "down:1", ":1")
+			}
+			for ; cur > f; cur-- {
+				keys = append(keys, "up:1", ":1")
+			}
+		}
+		press := func(f int) { to(f); keys = append(keys, "enter:1", ":1") }
+		run(dir, room, "frazotrajno-"+room, append(keys, ":2"), `global.scr == 13 && level_me() == "A0" && global.ft_nr == 5 && global.ft_n == 0 && global.ovf == 0`)
+		n := len(a0[0])
+		for k := 0; k < n; k++ {
+			press(k)
+		}
+		run(dir, room, "frazotrajno-guste-"+room, keys, fmt.Sprintf(`global.ft_st == 2 && global.ft_ok == 1 && global.ft_tries == 1 && global.ft_n == %d && global.ovf == 0`, n))
+		keys = append(keys, ":50") // gone on
+		cur = -1
+		run(dir, room, "", keys, `global.ft_st == 0 && global.ft_i == 1 && global.ft_n == 0`)
+		n = len(a0[1])
+		press(1)
+		press(n) // the train's first wagon: back
+		run(dir, room, "", keys, `global.ft_st == 0 && global.ft_n == 0 && global.ft_used[1] == 0`)
+		press(0)
+		press(2)
+		press(1)
+		for k := 3; k < n; k++ {
+			press(k)
+		}
+		run(dir, room, "frazotrajno-ne-"+room, keys, fmt.Sprintf(`global.ft_st == 1 && global.ft_tries == 2 && global.ft_good == 1 && global.ft_n == %d && global.ovf == 0`, n))
+		keys = append(keys, ":50") // the right start kept
+		run(dir, room, "", keys, `global.ft_st == 0 && global.ft_n == 1 && global.ft_used[0] == 1 && global.ft_used[1] == 0 && global.ft_used[2] == 0`)
+		for k := 1; k < n; k++ {
+			press(k)
+		}
+		run(dir, room, "", keys, `global.ft_st == 2 && global.ft_ok == 2 && global.ft_tries == 3`)
+		keys = append(keys, "enter:1", ":1") // on at once
+		cur = -1
+		run(dir, room, "", keys, `global.ft_st == 0 && global.ft_i == 2 && global.ft_n == 0`)
+		keys = append(keys, "text=1:1", ":1") // the number key
+		run(dir, room, "", keys, `global.ft_n == 1 && global.ft_used[0] == 1`)
+		for i := 2; i < 5; i++ {
+			for k := 0; k < len(a0[i]); k++ {
+				if i == 2 && k == 0 {
+					continue
+				}
+				press(k)
+			}
+			keys = append(keys, ":50")
+			cur = -1
+		}
+		run(dir, room, "frazotrajno-finita-"+room, keys, `global.ft_st == 3 && global.ft_ok == 5 && global.ft_tries == 6 && global.ovf == 0`)
+		keys = append(keys, "enter:1", ":1") // Denove
+		run(dir, room, "", keys, `global.scr == 13 && global.ft_st == 0 && global.ft_i == 0 && global.ft_tries == 0 && global.ft_n == 0 && global.ft_nr == 5`)
+	}
+	// the pools, as the site makes them; every sentence's train drawn
+	var b strings.Builder
+	b.WriteString("// ftcheck(): 0 when Frazotrajno's pools are the site's, else what isn't.\nvar k, f;\nglobal.ft_place = 0;\n")
+	q := func(s string) string { return `"` + s + `"` }
+	for _, l := range gamedata.Levels {
+		p := gamedata.TrainPool(ss, l)
+		fmt.Fprintf(&b, "global.acclevel = %s; ft_pool(); if (global.ft_pn != %d) return %s;\n", q(l), len(p), q(l+" pool size"))
+		for _, x := range p {
+			fmt.Fprintf(&b, "f = 0; for (k = 0; k < global.ft_pn; k += 1) if (global.f_text[global.ft_p[k]] == %s) f = 1; if (!f) return %s;\n", q(x), q(l+" "+x))
+		}
+	}
+	b.WriteString("return 0;\n")
+	dir := gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "ftcheck.gml"), []byte(b.String()), 0o644)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "ftdraw.gml"), []byte(fmt.Sprintf(`// ftdraw(): 0 when every sentence's train draws whole in every state, its depot shuffled, else the first that doesn't.
+var i, k, m;
+if (global.nf != %d) return "sentences: " + string(global.nf);
+for (i = 0; i < global.nf; i += 1) {
+  global.ft_pn = 1; global.ft_p[0] = i; ft_round();
+  if (global.ft_nr != 1 || global.ft_s != global.f_text[i] || ft_built(0) == global.ft_s) return global.f_text[i] + " dealt";
+  draw_all(); if (global.ovf) return global.f_text[i] + " 0 " + global.ovf_what;
+  for (k = 0; k < global.ft_nb; k += 1) { global.ft_used[k] = 1; global.ft_bp[k] = k; }
+  global.ft_n = global.ft_nb;
+  for (m = 0; m <= 3; m += 1) {
+    global.ft_st = m; global.ft_good = 1; global.ft_wait = 20;
+    draw_all(); if (global.ovf) return global.f_text[i] + " " + string(m) + " " + global.ovf_what;
+  }
+}
+return 0;
+`, len(ss))), 0o644)
+	keys := append(append([]string{}, start...), ":2")
+	run(dir, "rm_tall", "", keys, `global.scr == 13 && ftcheck() == 0`)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		run(dir, room, "", keys, `global.scr == 13 && ftdraw() == 0`)
+	}
+	// the bonus after a place with two or more sentences: those
+	slug, want := "", 0
+	per := map[string]int{}
+	for _, x := range ss {
+		per[x.Place]++
+	}
+	for _, p := range c.Places {
+		if per[p.Slug] >= 2 && slug == "" {
+			slug, want = p.Slug, per[p.Slug]
+		}
+	}
+	if slug == "" {
+		t.Fatal("no place with two sentences")
+	}
+	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Frazotrajno
+	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("frazotrajno-bonuso-rm_tall")...)
+	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 13 && global.ft_place == 1 && global.ft_pn == %d && global.ovf == 0`, want))
+	if len(s.posts) != 0 {
+		t.Errorf("Frazotrajno posted %q", s.posts)
 	}
 }
 

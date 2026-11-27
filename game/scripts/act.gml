@@ -11,7 +11,7 @@ var a, s;
 a = argument0;
 if (a == 1) {
   global.focus = -1; global.les_want = -1;
-  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; global.mm_place = 0; exit; } // a bonus game: back where it came from
+  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; global.mm_place = 0; global.ft_place = 0; exit; } // a bonus game: back where it came from
   if (global.scr == 0 || global.ser < 0) { global.scr = 5; exit; }
   global.scr = 0; exit;
 }
@@ -46,6 +46,9 @@ if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit;
 // words again. Konstrui: 745 from the levels, 746 after a place; 760+k a
 // placed piece back, 780+t a piece of the bank onto the line. Memoro: 747
 // from the levels, 748 after a place, 749 a new board, 800+c a card.
+// Frazotrajno: 850 from the levels, 851 after a place, 852 a new round, 853
+// a judged train on at once, 860+k the train's wagon back, 880+t the
+// depot's wagon coupled.
 if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
 if (a == 730) { vl_key(""); exit; }
 if (a == 731) { vl_submit(); exit; }
@@ -61,6 +64,11 @@ if (a >= 780 && a < 800) { kb_place(a - 780); exit; }
 if (a == 747 || a == 748) { global.ret_scr = 5 - 2 * (a == 748); global.mm_place = (a == 748); words_open(4); exit; }
 if (a == 749) { mm_deal(); exit; }
 if (a >= 800 && a < 840) { mm_flip(a - 800); exit; }
+if (a == 850 || a == 851) { global.ret_scr = 5 - 2 * (a == 851); global.ft_place = (a == 851); words_open(5); exit; }
+if (a == 852) { ft_round(); exit; }
+if (a == 853) { if (global.ft_st == 1) ft_back(); else if (global.ft_st == 2) ft_go(); exit; }
+if (a >= 860 && a < 880) { ft_uncouple(a - 860); exit; }
+if (a >= 880 && a < 900) { ft_couple(a - 880); exit; }
 if (a == 26) { global.wd_fail = 0; words_open(global.game); exit; }
 if (a >= 20000) { // a series: its map, at the page of the place to go on with
   global.ser = a - 20000; global.mpage = 0; global.scr = 0; global.focus = -1;

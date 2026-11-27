@@ -20,6 +20,7 @@ import (
 //	VORTOJ <version> <day>
 //	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix> <blocks> <derived>
 //	T <level> <word>      the day's Vortludo word for a learner of that level
+//	F <level> <place> <sentence>   a sentence for Frazotrajno (trains.go)
 //	FINO
 //
 // five: 1 when the word is a Vortludo word (five letters, ĉ ĝ ĥ ĵ ŝ ŭ one
@@ -282,6 +283,10 @@ func PictureKey(word string) string {
 	return strings.TrimSuffix(f, f[strings.LastIndex(f, "."):])
 }
 
+// WordsFormat changes with the word list's lines (a browser's kept copy of
+// another format is no match for the ETag): 2 since the F lines.
+const WordsFormat = "2"
+
 // WriteWords writes the word list, meanings in lang, the day's words for day.
 func WriteWords(w io.Writer, c *Course, lang, day string) {
 	ws := c.Words()
@@ -293,6 +298,9 @@ func WriteWords(w io.Writer, c *Course, lang, day string) {
 		if d := Daily(Pool(ws, l), day, l); d != "" {
 			line(w, "T", l, d)
 		}
+	}
+	for _, f := range c.Sentences() {
+		line(w, "F", f.Level, f.Place, f.Text)
 	}
 	line(w, "FINO")
 }

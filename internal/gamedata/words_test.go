@@ -220,3 +220,41 @@ func TestMemoPool(t *testing.T) {
 		t.Logf("%s: %d words", l, len(p))
 	}
 }
+
+// TestTrainPool: Frazotrajno's sentences — every level's pool enough for a
+// round of five, of that level or below, each of three to seven words with
+// no comma and no kaj or aŭ (orders the text's alone can't judge), once.
+func TestTrainPool(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ss := Build(items).Sentences()
+	lv := map[string]int{}
+	for i, l := range Levels {
+		lv[l] = i
+	}
+	by := map[string]*Sentence{}
+	for _, s := range ss {
+		if by[s.Text] != nil {
+			t.Errorf("%q twice", s.Text)
+		}
+		by[s.Text] = s
+	}
+	for _, l := range Levels {
+		p := TrainPool(ss, l)
+		if len(p) < 10 {
+			t.Errorf("%s: a pool of %d", l, len(p))
+		}
+		for _, x := range p {
+			n := len(strings.Fields(x))
+			if lv[by[x].Level] > lv[l] || n < TrainMin || n > TrainMax || strings.ContainsAny(x, ",.") || strings.Contains(" "+strings.ToLower(x)+" ", " kaj ") {
+				t.Errorf("%s: %q (%s)", l, x, by[x].Level)
+			}
+		}
+		t.Logf("%s: %d sentences", l, len(p))
+	}
+	if TrainOK("Patro kaj frato venis") || TrainOK("Mi vidis, ke ŝi venis") || TrainOK("Jen avo") || !TrainOK("Jen mia avo") {
+		t.Error("TrainOK")
+	}
+}

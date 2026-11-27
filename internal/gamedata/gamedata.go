@@ -163,10 +163,23 @@ func matchCase(s, like string) string {
 	return string(rs)
 }
 
-// sentences are the lesson text's plain sentences of 3 to 7 words (no
-// quotes, dashes or digits), as word lists without the final stop.
+// sentences are the lesson text's plain sentences of 3 to 7 words, as
+// word lists without commas.
 func sentences(text string) [][]string {
 	var out [][]string
+	for _, s := range plainSentences(text) {
+		ws := strings.Fields(strings.ReplaceAll(s, ",", ""))
+		if len(ws) >= 3 && len(ws) <= 7 {
+			out = append(out, ws)
+		}
+	}
+	return out
+}
+
+// plainSentences are the text's sentences ending in a full stop with no
+// quotes, dashes, colons, brackets or digits, trimmed, without the stop.
+func plainSentences(text string) []string {
+	var out []string
 	start := 0
 	rs := []rune(text)
 	for i, r := range rs {
@@ -178,10 +191,7 @@ func sentences(text string) [][]string {
 		if r != '.' || strings.ContainsAny(s, "\"'„“”«»—–-:;()0123456789\n") {
 			continue
 		}
-		ws := strings.Fields(strings.ReplaceAll(s, ",", ""))
-		if len(ws) >= 3 && len(ws) <= 7 {
-			out = append(out, ws)
-		}
+		out = append(out, s)
 	}
 	return out
 }

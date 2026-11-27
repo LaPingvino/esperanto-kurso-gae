@@ -12,7 +12,8 @@ Datastore reads of its own; built again only when that cache reloads):
 - `GET /ludo-api/kurso` — the map: levels, series, places;
 - `GET /ludo-api/leciono/{slug}?lingvo=xx` — a place: its text and exercises, meanings in xx (else English).
 - `GET /ludo-api/vortoj?lingvo=xx` — the vocabulary words for the bonus games (`gamedata/words.go`): each word
-  with its level, meaning, masked Esperanto definition and picture, and the day's Vortludo word per level.
+  with its level, meaning, masked Esperanto definition and picture, and the day's Vortludo word per level;
+  and Frazotrajno's sentences, each with its level and place (`gamedata/trains.go`).
 
 Plain text lines of tab-separated fields (`gamedata/text.go`; GML has no JSON reader), each ending in `FINO`
 so a cut-off text is never taken for a whole one. Mounted outside AuthMiddleware: the same for everyone, no
@@ -111,6 +112,21 @@ answers (Vortludo only asks whether a guess is a word, below).
   learner's level and, to twelve, the levels below — never above; only those whose card fits a phone's
   (a definition of 66 letters at most, no word of it or the word itself over 12, `gamedata.MemoOK`).
   After a place, its own words when four or more can pair. Nothing goes to the site.
+- **Frazotrajno** (`ft_*.gml`): the sentence train. A sentence of the course's readings, its words as wagons in
+  the depot (shuffled, never in the text's order); press them behind the locomotive one by one (a tap, the
+  arrows and Enter, or a number key; the depot's slots stay pressable so the focus keeps its place), press a
+  coupled one to send it back. The last one coupled, the train is judged at once, no Kontroli: right (✓ on
+  every wagon, the sentence written out with its stop) and it goes on after 1.5 s or at a press; wrong, the
+  right start stays coupled with ✓, the wagons from the first one out of place show ✗ and go back after 1.5 s
+  or at the next press. Five sentences a round; done, its tries and Denove. **Judged by the text's order
+  only** (alike words may swap): Esperanto allows other orders, but which ones depends on stress and scope
+  (*ne*, *nur*, *ankaŭ*, a fronted object) that the game can't check safely, so it plays only sentences where
+  the text's order is plainly the one to find — the readings' plain sentences (`plainSentences`, as the
+  sentences to build in a place) of three to seven words, with no comma (a wagon would lose it) and no *kaj*
+  or *aŭ* (*patro kaj frato* is as right as *frato kaj patro*) (`gamedata.TrainOK`). The pool
+  (`gamedata.TrainPool`, `ft_pool.gml`): the learner's level's sentences and, to ten, the levels below — never
+  above; after a place, its own when it has two or more. The word list's format went to 2 with them
+  (`WordsFormat`, in the ETag), and a kept copy without them waits for the site's. Nothing goes to the site.
 
 
 ## How the course becomes a game
@@ -255,9 +271,9 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
   lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words;
-  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; Frazotrajno's round played by the keys in both rooms (a train right and gone on, a wagon taken back, a train out of order with its right start kept, a number key, the round done in six tries, Denove), its pools the site's, every sentence's train drawn whole in every state with its depot shuffled, the bonus after a place with its sentences; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
   `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
-- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's), a definition never giving its word.
+- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's, Frazotrajno's), a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
   once per content set, the items' places, a course built from items without series fields.
 - `internal/handler/game_test.go`: the merge rule, the progress format and handler.

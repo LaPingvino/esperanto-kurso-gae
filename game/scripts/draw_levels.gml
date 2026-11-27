@@ -15,10 +15,14 @@ if (global.lv_skip == 0) { // the bonus games, on the first page: the same words
   font(15, 1, 0); cl = string_width("Ludoj") + 24;
   rfill(x0, y, x0 + cl, y + 28, global.C_tint, global.C_tint); txt(x0 + 12, y + 5, "Ludoj", 15, 1, global.C_link);
   y += 38;
-  game_tile(x0, y, cw, 0);
-  game_tile(x0 + cw + 12, y, cw, 1);
-  if (cols > 2) { game_tile(x0 + 2 * (cw + 12), y, cw, 2); game_tile(x0 + 3 * (cw + 12), y, cw, 3); }
-  else { y += 64 + 12; game_tile(x0, y, cw, 2); game_tile(x0 + cw + 12, y, cw, 3); } // a phone: two rows of two
+  if (cols > 2) { // a wide screen: the five in a row
+    k = (x1 - x0 - 4 * 12) / 5;
+    for (s = 0; s < 5; s += 1) game_tile(x0 + s * (k + 12), y, k, s);
+  } else { // a phone: two rows of two, Frazotrajno across under them
+    game_tile(x0, y, cw, 0); game_tile(x0 + cw + 12, y, cw, 1);
+    y += 64 + 12; game_tile(x0, y, cw, 2); game_tile(x0 + cw + 12, y, cw, 3);
+    y += 64 + 12; game_tile(x0, y, x1 - x0, 4);
+  }
   y += 64 + 12;
 }
 inner = cw - 24 - 40;

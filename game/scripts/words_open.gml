@@ -1,4 +1,4 @@
-// words_open(game): a bonus game (1 Vortludo, 2 Vetkuro, 3 Konstrui, 4 Memoro) with the words in
+// words_open(game): a bonus game (1 Vortludo, 2 Vetkuro, 3 Konstrui, 4 Memoro, 5 Frazotrajno) with the words in
 // the meanings' language: the copy kept in the browser at once, and the
 // site asked for the current one once a session (the day's word changes
 // daily); with neither, a loading screen (10) until they come. The day's
@@ -6,7 +6,7 @@
 var t;
 global.game = argument0; global.focus = -1; global.wd_fail = 0;
 if (global.wd_lang != lang_cur()) {
-  global.nw = 0; global.nd = 0; global.wd_fresh = 0;
+  global.nw = 0; global.nd = 0; global.nf = 0; global.wd_fresh = 0;
   t = file_read_all("ludo-vortoj-" + lang_cur() + ".txt");
   if (words_parse(t)) global.wd_lang = lang_cur();
 }
