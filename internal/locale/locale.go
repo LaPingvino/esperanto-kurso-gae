@@ -43,6 +43,17 @@ func Supported(lang string) bool {
 	return ok
 }
 
+// draftKey is the key a locale sets, in its own file, to mark itself a draft:
+// its value is the line shown under the site header asking for
+// improvements ("locale.draft_link" is that line's link text). Finished
+// locales leave both keys out, and no fallback applies to them.
+const draftKey = "locale.draft"
+
+// IsDraft reports whether lang's translation marks itself a draft.
+func IsDraft(lang string) bool {
+	return translations[lang][draftKey] != ""
+}
+
 // T looks up key in the given lang. Falls back to "eo", then returns the key itself.
 func T(lang, key string) string {
 	if m, ok := translations[lang]; ok {

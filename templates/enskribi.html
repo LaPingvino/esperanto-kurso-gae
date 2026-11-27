@@ -90,7 +90,7 @@
   {{/* Standalone retention update for users who don't want to re-submit username */}}
   {{end}}
 
-  <h3>{{t .UILang "enskribi.contact_title"}}</h3>
+  <h3 id="kontakto">{{t .UILang "enskribi.contact_title"}}</h3>
   <form method="POST" action="/kontaktu">
     <textarea name="teksto" rows="4" placeholder="{{t .UILang "enskribi.contact_placeholder"}}" maxlength="2000" required></textarea>
     <button type="submit">{{t .UILang "enskribi.contact_btn"}}</button>

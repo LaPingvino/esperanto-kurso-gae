@@ -374,6 +374,7 @@ func templateFuncs() template.FuncMap {
 		"t": func(lang, key string) string {
 			return locale.T(lang, key)
 		},
+		"isDraft": locale.IsDraft,
 		"isRTL": func(lang string) bool {
 			return locale.IsRTL(lang)
 		},

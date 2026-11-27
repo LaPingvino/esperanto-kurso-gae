@@ -191,6 +191,8 @@ a.tag:hover { text-decoration: underline; }
   .who { margin-inline-start: var(--space-2); }
   .sh .wide-only { display: inline-grid; }
 }
+/* A locale that marks itself a draft asks for improvements under the header. */
+.draft-note { margin: 0; padding: var(--space-2) var(--gutter); background: var(--sunk); color: var(--ink-muted); font-size: var(--text-sm); }
 #admin-link { color: var(--surface); text-decoration: none; font-size: 0.5rem; }
 
 /* The profile menu (opened from the level chip) */

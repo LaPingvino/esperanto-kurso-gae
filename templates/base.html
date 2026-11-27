@@ -68,7 +68,7 @@
               <option value="nl">Nederlands</option><option value="pl">Polski</option><option value="pt">Português</option>
               <option value="ro">Română</option><option value="ru">Русский</option><option value="sv">Svenska</option>
               <option value="sw">Kiswahili</option><option value="tr">Türkçe</option><option value="uk">Українська</option>
-              <option value="ur">اردو</option><option value="vi">Tiếng Việt</option><option value="tok">Toki Pona</option>
+              <option value="ur">اردو</option><option value="vi">Tiếng Việt</option><option value="tet">Tetun</option><option value="tok">Toki Pona</option>
               <option value="zh">中文</option>
             </datalist>
           </form>
@@ -95,6 +95,7 @@
     </details>
   </div>
 </header>
+{{if isDraft .UILang}}<p class="draft-note">{{t .UILang "locale.draft"}} <a href="/enskribi#kontakto">{{t .UILang "locale.draft_link"}}</a></p>{{end}}
 {{end}}
 
 {{define "sitefooter"}}

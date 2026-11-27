@@ -156,7 +156,7 @@ func TestLocaleParity(t *testing.T) {
 		return m
 	}
 	eo := read("eo")
-	for _, code := range []string{"en", "de", "es", "fr", "it", "nl", "pt"} {
+	for _, code := range []string{"en", "de", "es", "fr", "it", "nl", "pt", "tet"} {
 		m := read(code)
 		var missing []string
 		for k := range eo {
