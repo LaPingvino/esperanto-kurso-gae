@@ -51,7 +51,9 @@ internal/handler/ripetoj.go.
   var state = R.clean(raw);
   var owner = raw && typeof raw.u === "string" ? raw.u : "";
   // Another account's state (a login on this device): the same person's
-  // answers, so it stays, merged with this account's trace below.
+  // answers, so it stays, merged with this account's trace below, which is
+  // fetched once whatever the counts.
+  var switched = !!(meta.owner && owner && owner !== meta.owner);
   if (meta.owner && owner !== meta.owner) owner = meta.owner;
 
   function store() {
@@ -169,17 +171,23 @@ internal/handler/ripetoj.go.
   });
 
   // ---- rebuilding from the server's trace
+  // The gap left after the last fetch (trace items with no card here: items
+  // gone from the course) is kept, so it alone never fetches again.
   function rebuild() {
-    if (!meta.owner || !meta.trace || Object.keys(state.c).length >= meta.trace) return Promise.resolve(0);
-    var tried = meta.owner + ":" + meta.trace;
-    if ((ss() && readJSON(ss(), TRIED)) === tried) return Promise.resolve(0);
-    writeJSON(ss(), TRIED, tried);
+    if (switched) store();
+    if (!meta.owner || !meta.trace) return Promise.resolve(0);
+    var gap = meta.trace - Object.keys(state.c).length;
+    var last = readJSON(ls(), TRIED);
+    var known = last && last.o === meta.owner ? last.gap : 0;
+    if (!switched && gap <= known) return Promise.resolve(0);
     return fetch("/ripetoj/spuro", { headers: headers(), credentials: "same-origin" }).then(function (r) {
       return r.ok ? r.json() : null;
     }).then(function (j) {
       if (!j || j.o !== meta.owner) return 0;
       var n = R.addMissing(F, state, j.e, Date.now());
-      if (n) store();
+      if (n || switched) store();
+      writeJSON(ls(), TRIED, { o: meta.owner, gap: Math.max(0, meta.trace - Object.keys(state.c).length) });
+      switched = false;
       return n;
     }).catch(function () { return 0; });
   }
@@ -201,6 +209,7 @@ internal/handler/ripetoj.go.
     state = R.clean(null);
     store();
     writeJSON(ss(), SESSION, null);
+    writeJSON(ls(), TRIED, null);
     return fetch("/ripetoj/forgesi", { method: "POST", headers: headers(), credentials: "same-origin" });
   }
 
