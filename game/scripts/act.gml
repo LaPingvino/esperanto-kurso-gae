@@ -50,12 +50,13 @@ if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit;
 // a judged train on at once, 860+k the train's wagon back, 880+t the
 // depot's wagon coupled. Vortpluvo: 940 from the levels, 941 after a
 // place, 942 Komenci or Denove, 900+k the screen's letter k, 930 Viŝi,
-// 931 the typed letters cleared.
+// 931 the typed letters cleared. Bonvorto: 950 from the levels (Vortludo's
+// board and keys, vl_bona).
 if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
 if (a == 730) { vl_key(""); exit; }
 if (a == 731) { vl_submit(); exit; }
 if (a >= 732 && a <= 734) { global.vl_hint = a - 731; exit; }
-if (a == 735) { vl_start(0); exit; }
+if (a == 735) { if (global.vl_bona) bv_start(); else vl_start(0); exit; }
 if (a == 736) { vl_start(1); exit; }
 if (a == 740 || a == 741) { global.ret_scr = 5; global.rc_place = 0; global.vl_daily = 1; words_open(a - 739); exit; }
 if (a == 743 || a == 744) { global.ret_scr = 3; global.rc_place = (a == 744); global.vl_daily = 0; words_open(a - 742); exit; }
@@ -72,6 +73,7 @@ if (a == 853) { if (global.ft_st == 1) ft_back(); else if (global.ft_st == 2) ft
 if (a >= 860 && a < 880) { ft_uncouple(a - 860); exit; }
 if (a >= 880 && a < 900) { ft_couple(a - 880); exit; }
 if (a == 940 || a == 941) { global.ret_scr = 5 - 2 * (a == 941); global.pv_place = (a == 941); words_open(6); exit; }
+if (a == 950) { global.ret_scr = 5; global.vl_daily = 0; words_open(7); exit; }
 if (a == 942) { pv_new(); global.pv_st = 1; exit; }
 if (a >= 900 && a < 928) { pv_key(string_char_at(global.t_alpha, a - 900 + 1)); exit; }
 if (a == 930) { pv_key(""); exit; }

@@ -49,6 +49,7 @@ global.course_tried = 0; global.acclang = ""; global.want_slug = "";
 // the bonus games (Vortludo 8, Vetkuro 9, their words loading 10, Konstrui 11, Memoro 12, Frazotrajno 13, Vortpluvo 14)
 global.rating = 1500; global.acclevel = ""; global.nw = 0; global.nd = 0; global.wd_req = -1; global.wd_asked = 0; global.wd_fresh = 0;
 global.wd_lang = ""; global.wd_fail = 0; global.wd_day = ""; global.game = 0; global.ret_scr = 5; global.vl_daily = 1;
+global.nbw = 0; global.bv_last = -1; global.vl_bona = 0; global.vl_neo = ""; global.vl_shape = ""; global.vl_div = "";
 global.vl_state = 0; global.vl_row = 0; global.vl_cur = ""; global.vl_n = 5; global.vl_aff = ""; global.vl_long = 0; global.vl_wait = 0; global.vl_req = -1; global.vl_ask = ""; global.vl_shake = 0; global.rc_state = 0; global.rc_best = 0; global.rc_place = 0;
 global.rc_pressed = 0; global.rc_scroll = 0;
 global.kb_place = 0; global.kb_pn = 0; global.kb_n = 0; global.kb_nt = 0; global.kb_nb = 0; global.kb_ok = 0; global.kb_tries = 0; global.kb_w = -1; global.kb_word = "";

@@ -966,3 +966,100 @@ func TestTypedHSystemPosts(t *testing.T) {
 	}
 	t.Logf("%s: %d typed answers posted, %q among them", slug, len(s.posts), want)
 }
+
+// TestPlayBonvorto: Bonvorto from the Ludoj row (its seventh), over the seed
+// and the Bona lingvo series, the pair pinned (hobio → ŝatokupo): the word to
+// replace and the shape (…·…·o) beside the board; a guess that is no word
+// shakes and costs no try, two misses (other pairs' built words, asked of
+// the site), the meaning taken as the hint, the word typed in the h-system —
+// found on the third row. Nova vorto: another pair. Then the game's pairs
+// are the site's (gamedata.Pairs), each drawn whole in every state in both
+// rooms. Nothing posted.
+func TestPlayBonvorto(t *testing.T) {
+	gameviber(t)
+	bl, err := gamedata.ReadSeed("../../content/builder/60-bona-lingvo.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := newStubSiteOf(t, append(seedSet(t), bl...))
+	c := s.api.Course(t.Context())
+	ps := c.Pairs()
+	word, at := "ŝatokupo", -1
+	for i, p := range ps {
+		if p.Built == word {
+			at = i
+		}
+	}
+	if at < 0 {
+		t.Fatalf("%s not among the pairs", word)
+	}
+	pinned := func() string {
+		d := gameDir(t, c)
+		f := filepath.Join(d, "game", "scripts", "bv_start.gml")
+		b, _ := os.ReadFile(f)
+		old := "i = floor(random(global.nbw));"
+		if !strings.Contains(string(b), old) {
+			t.Fatalf("bv_start: no %q", old)
+		}
+		os.WriteFile(f, []byte(strings.Replace(string(b), old, fmt.Sprintf("i = %d;", at), 1)), 0o644)
+		return d
+	}
+	start := []string{":30"}
+	for k := 0; k < 7; k++ {
+		start = append(start, "down:1", ":1")
+	}
+	start = append(start, "enter:1", ":4") // the Ludoj row's seventh: Bonvorto
+	run := func(dir, room, shotName string, keys []string, expect string) {
+		t.Helper()
+		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 5), "-keys", strings.Join(keys, ",")}, shot(shotName)...)
+		playArgs(t, dir, args, expect)
+	}
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		dir := pinned()
+		run(dir, room, "ludoj7-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: seven games
+		keys := append([]string{}, start...)
+		run(dir, room, "bonvorto-"+room, keys, fmt.Sprintf(`global.scr == 8 && global.vl_bona && !global.vl_daily && global.vl_word == "%s" && global.vl_neo == "hobio" && global.vl_shape == "…·…·o" && global.vl_n == 8 && global.vl_aff == "" && global.vl_row == 0 && global.ovf == 0`, word))
+		bad := append(append([]string{}, keys...), "text=bzzrktpl:1", ":1", "enter:1", ":3")
+		run(dir, room, "", bad, `global.vl_state == 0 && global.vl_row == 0 && global.vl_shake > 0 && global.vl_msg != "" && global.vl_wait == 0`)
+		for _, m := range []string{"vagonaro", "kuracilo", "infaneto"} {
+			keys = append(keys, "text="+xSpell(m)+":1", ":1", "enter:1", ":3")
+		}
+		keys = append(keys, "up:1", ":1", "up:1", ":1", "enter:1", ":2") // Signifo
+		run(dir, room, "bonvorto-helpo-"+room, keys, `global.vl_state == 0 && global.vl_row == 3 && global.vl_hint == 3 && global.vl_mean != "" && global.ovf == 0`)
+		keys = append(keys, "text="+hSpell(word)+":1", ":1", "enter:1", ":3")
+		run(dir, room, "bonvorto-ghuste-"+room, keys, `global.vl_state == 1 && global.vl_row == 4 && global.vl_div == "ŝat·okup·o" && global.ovf == 0`)
+		keys = append(keys, "enter:1", ":2") // Nova vorto
+		run(dir, room, "", keys, fmt.Sprintf(`global.scr == 8 && global.vl_bona && global.vl_state == 0 && global.vl_row == 0 && global.vl_word != "%s" && global.vl_neo != ""`, word))
+	}
+	// the pairs, as the site has them; each drawn whole
+	q := func(s string) string { return `"` + s + `"` }
+	var b strings.Builder
+	fmt.Fprintf(&b, "// bvcheck(): 0 when Bonvorto's pairs are the site's, else what isn't.\nif (global.nbw != %d) return \"count \" + string(global.nbw);\n", len(ps))
+	for i, p := range ps {
+		fmt.Fprintf(&b, "if (global.b_word[%d] != %s || global.b_neo[%d] != %s || global.b_shape[%d] != %s || global.b_div[%d] != %s || global.b_mean[%d] == \"\") return %s;\n",
+			i, q(p.Built), i, q(p.Neo), i, q(gamedata.Shape(p.Divided)), i, q(p.Divided), i, q(p.Built))
+	}
+	b.WriteString("return 0;\n")
+	dir := gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "bvcheck.gml"), []byte(b.String()), 0o644)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "bvdraw.gml"), []byte(`// bvdraw(): 0 when every pair's board draws whole — fresh, three misses with the meaning, found, lost — else the first that doesn't.
+var i, m, r, n;
+for (i = 0; i < global.nbw; i += 1) for (m = 0; m < 4; m += 1) {
+  global.vl_word = global.b_word[i]; global.vl_n = string_length(global.vl_word); global.vl_neo = global.b_neo[i];
+  global.vl_shape = global.b_shape[i]; global.vl_div = global.b_div[i]; global.vl_mean = global.b_mean[i];
+  vl_reset();
+  n = 0; if (m == 1) n = 3; if (m == 2) n = 4; if (m == 3) n = 6;
+  for (r = 0; r < n; r += 1) { global.vl_g[r] = global.vl_word; vl_mark(r); }
+  global.vl_row = n; global.vl_hint = 3 * (m == 1); global.vl_state = (m == 2) + 2 * (m == 3);
+  draw_all(); if (global.ovf) return global.vl_word + " " + string(m) + " " + global.ovf_what;
+}
+return 0;
+`), 0o644)
+	run(dir, "rm_tall", "", append(append([]string{}, start...), ":2"), `global.scr == 8 && bvcheck() == 0`)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		run(dir, room, "", append(append([]string{}, start...), ":2"), `global.scr == 8 && bvdraw() == 0`)
+	}
+	if len(s.posts) != 0 {
+		t.Errorf("Bonvorto posted %q", s.posts)
+	}
+}

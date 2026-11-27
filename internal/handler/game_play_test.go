@@ -52,8 +52,10 @@ func (s *stubSite) ListByUser(context.Context, string, int) ([]*model.Attempt, e
 	return append([]*model.Attempt(nil), s.attempts...), nil
 }
 
-func newStubSite(t *testing.T) *stubSite {
-	items := seedSet(t)
+func newStubSite(t *testing.T) *stubSite { return newStubSiteOf(t, seedSet(t)) }
+
+// newStubSiteOf is the stub site over these items.
+func newStubSiteOf(t *testing.T, items []*model.ContentItem) *stubSite {
 	s := &stubSite{items: map[string]*model.ContentItem{}, api: NewGameAPI(&seedSource{items: items})}
 	for _, it := range items {
 		s.items[it.Slug] = it

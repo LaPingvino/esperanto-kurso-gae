@@ -294,3 +294,65 @@ func TestRainPool(t *testing.T) {
 		t.Error("RainOK")
 	}
 }
+
+// TestBonaPairs: Bonvorto's rounds from the Bona lingvo series (with the
+// seed): every pair asking for a built word of six to nine letters, its
+// division the project's and spelling it, its shape hiding each root and
+// nothing else, a meaning for the hint; and the division table cmd/bonalingvo
+// made beside the series has every built word the series asks for.
+func TestBonaPairs(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	bl, err := ReadSeed("../../content/builder/60-bona-lingvo.json")
+	if err != nil {
+		t.Fatal(err)
+	}
+	c := Build(append(items, bl...))
+	if len(Build(items).Pairs()) != 0 {
+		t.Error("pairs without the series")
+	}
+	for _, it := range bl {
+		if strings.HasSuffix(it.Slug, "-al-konstruita") {
+			opts, _ := it.Content["options"].([]any)
+			ci, _ := it.Content["correct_index"].(float64)
+			if w := opts[int(ci)].(string); bonaDiv[w].Built != w {
+				t.Errorf("%s: %s not in bonalingvo.tsv", it.Slug, w)
+			}
+		}
+	}
+	ps := c.Pairs()
+	if len(ps) < 60 {
+		t.Errorf("%d pairs", len(ps))
+	}
+	for _, p := range ps {
+		if !BonaOK(p) || p.Neo == "" || p.Neo == p.Built {
+			t.Errorf("%+v", p)
+		}
+		sh, dv := strings.Split(Shape(p.Divided), "·"), strings.Split(p.Divided, "·")
+		roots := 0
+		for i := range sh {
+			if sh[i] == "…" {
+				roots++
+				if legvortoj.AffixKind(dv[i]) != "" && i > 0 {
+					t.Errorf("%s: the affix %s hidden", p.Built, dv[i])
+				}
+			} else if sh[i] != dv[i] {
+				t.Errorf("%s: %s shown as %s", p.Built, dv[i], sh[i])
+			}
+		}
+		if roots == 0 {
+			t.Errorf("%s: no root hidden", p.Built)
+		}
+		if bonaMeaning(p, "en") == "" {
+			t.Errorf("%s: no meaning", p.Built)
+		}
+	}
+	var b strings.Builder
+	WriteWords(&b, c, "en", "2026-11-27")
+	if n := strings.Count(b.String(), "\nB\t"); n != len(ps) {
+		t.Errorf("%d B lines for %d pairs", n, len(ps))
+	}
+	t.Logf("%d pairs, e.g. %s → %s (%s)", len(ps), ps[0].Neo, ps[0].Built, Shape(ps[0].Divided))
+}

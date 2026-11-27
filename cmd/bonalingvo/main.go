@@ -7,6 +7,12 @@
 //
 //	curl -sS -o bl.json https://labonalingvo.org/api/all-translations
 //	go run ./cmd/bonalingvo bl.json > content/builder/60-bona-lingvo.json
+//	go run ./cmd/bonalingvo bl.json -dividoj > internal/gamedata/bonalingvo.tsv
+//
+// -dividoj writes the kept pairs' words and the project's division of the
+// built one (neo, built, vagon·ar·o), for the bonus game Bonvorto: its clue
+// is the division with the roots hidden, which ReVo's splitter alone gets
+// wrong for some (profund·eg·o, kurac·at·o).
 //
 // A pair is kept only when (the drops are counted on stderr):
 //   - both sides are single plain words, the entry an ordinary word (no
@@ -306,6 +312,12 @@ func main() {
 		}
 	}
 	pairs = keep
+	if len(os.Args) > 2 && os.Args[2] == "-dividoj" {
+		for _, p := range pairs {
+			fmt.Printf("%s\t%s\t%s\n", p.Neo, p.Built, p.BuiltDiv)
+		}
+		return
+	}
 	items := makeItems(pairs, fwd, inv)
 	out, _ := json.MarshalIndent(items, "", " ")
 	os.Stdout.Write(append(out, '\n'))

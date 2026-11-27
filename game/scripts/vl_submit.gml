@@ -9,7 +9,7 @@ var i, w, q, k, c, j;
 if (global.vl_state != 0 || global.vl_wait > 0) exit;
 if (string_length(global.vl_cur) != global.vl_n) { global.vl_msg = "Necesas " + vl_count(global.vl_n) + "."; exit; }
 w = global.vl_cur;
-if (!global.site) { vl_try(w); exit; }
+if (!global.site || w == global.vl_word) { vl_try(w); exit; } // the word itself is always one
 for (i = 0; i < global.nw; i += 1) if (global.w_word[i] == w) { vl_try(w); exit; }
 // in the x-system: plain letters in the address
 q = "";

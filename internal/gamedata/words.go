@@ -21,6 +21,7 @@ import (
 //	W <word> <level> <five> <meaning in xx> <eo definition> <picture> <affix> <blocks> <derived>
 //	T <level> <word>      the day's Vortludo word for a learner of that level
 //	F <level> <place> <sentence>   a sentence for Frazotrajno (trains.go)
+//	B <neo> <built> <shape> <divided> <meaning>   a pair for Bonvorto (bona.go)
 //	FINO
 //
 // five: 1 when the word is a Vortludo word (five letters, ĉ ĝ ĥ ĵ ŝ ŭ one
@@ -284,8 +285,9 @@ func PictureKey(word string) string {
 }
 
 // WordsFormat changes with the word list's lines (a browser's kept copy of
-// another format is no match for the ETag): 2 since the F lines.
-const WordsFormat = "2"
+// another format is no match for the ETag): 2 since the F lines, 3 since
+// the B lines.
+const WordsFormat = "3"
 
 // WriteWords writes the word list, meanings in lang, the day's words for day.
 func WriteWords(w io.Writer, c *Course, lang, day string) {
@@ -301,6 +303,9 @@ func WriteWords(w io.Writer, c *Course, lang, day string) {
 	}
 	for _, f := range c.Sentences() {
 		line(w, "F", f.Level, f.Place, f.Text)
+	}
+	for _, p := range c.Pairs() {
+		line(w, "B", p.Neo, p.Built, Shape(p.Divided), p.Divided, bonaMeaning(p, lang))
 	}
 	line(w, "FINO")
 }

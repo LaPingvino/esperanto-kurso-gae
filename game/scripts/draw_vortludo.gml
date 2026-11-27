@@ -8,12 +8,15 @@
 // state has a cue besides its colour: in its place, the accent fill (white
 // letter); elsewhere in the word, the note tint with a dot under it; not in
 // it, sunk with the muted letter (kurso-design's checked pairs, 7:1 and up).
+// Bonvorto (vl_bona) on the same board: the word to replace beside it, and
+// the built word's shape (…·ar·o) in the affix's place; at the end, its pieces.
 var sx, x0, x1, y, c, g, gw, gh, gx, gy, r, k, l, st, kt, n, x, px0, py0, px1, py1, by, t, lv, h, a, pend;
 x0 = global.m; x1 = global.W - global.m;
 lv = level_me();
 y = global.hh + 12;
 t = "la vorto de la tago"; if (!global.vl_daily) t = "libera ludo";
-txt(x0, y, fit("Vortludo · " + t + " · " + lv, x1 - x0, 17, 1), 17, 1, global.C_text);
+t = "Vortludo · " + t + " · " + lv; if (global.vl_bona) t = "Bonvorto · el bazaj radikoj";
+txt(x0, y, fit(t, x1 - x0, 17, 1), 17, 1, global.C_text);
 y += 34;
 c = 52; g = 6; if (global.wide) c = 50;
 n = global.vl_n;
@@ -36,12 +39,13 @@ px0 = x0; py0 = gy + gh + 12; px1 = x1; py1 = kt - 12;
 if (global.wide) { px0 = global.W / 2 + 10; py0 = gy; px1 = min(x1, px0 + 520); py1 = gy + gh; }
 by = py1 - 44;
 y = py0;
+if (global.vl_bona) { // the word to replace, and (until the end) the shape of its built one
+  vl_chip(px0, y, "Anstataŭ", global.vl_neo, px1);
+  y += 42;
+  if (global.vl_state == 0) { vl_chip(px0, y, "Formo:", global.vl_shape, px1); y += 42; }
+}
 if (global.vl_aff != "") { // the clue: the affix alone, beside the board
-  t = "Afikso en la vorto:";
-  txt(px0, y + 5, t, 16, 0, global.C_muted);
-  font(16, 0, 0); x = px0 + string_width(t) + 10;
-  font(18, 1, 0); box(x, y, x + string_width(global.vl_aff) + 24, y + 32, global.C_panel, global.C_main, 2);
-  txt(x + 12, y + 4, global.vl_aff, 18, 1, global.C_main);
+  vl_chip(px0, y, "Afikso en la vorto:", global.vl_aff, px1);
   y += 42;
 }
 if (global.vl_state == 0) {
@@ -52,7 +56,8 @@ if (global.vl_state == 0) {
   if (global.vl_state == 1) { mark(px0 + 12, y + 12, 12, 1); txt(px0 + 32, y, "Ĝuste!", 20, 1, global.C_ok); }
   else { mark(px0 + 12, y + 12, 12, 0); txt(px0 + 32, y, "Ne tute.", 20, 1, global.C_bad); }
   y += 30;
-  txt(px0, y, fit(global.vl_word + " — " + global.vl_mean, px1 - px0, 17, 1), 17, 1, global.C_text);
+  t = global.vl_word; if (global.vl_bona) t = global.vl_div;
+  txt(px0, y, fit(t + " — " + global.vl_mean, px1 - px0, 17, 1), 17, 1, global.C_text);
   y += 30;
 }
 if (global.vl_hint == 1) {
@@ -82,6 +87,6 @@ if (global.vl_state == 0) {
   global.def_act = 731;
 } else {
   button(px1 - bw("Nova vorto"), by, px1, by + 44, "Nova vorto", 735, 1);
-  if (!global.vl_daily) { t = "La vorto de la tago"; if (px1 - px0 < bw(t) + bw("Nova vorto") + 8) t = "Hodiaŭa"; button(px0, by, px0 + bw(t), by + 44, t, 736, 0); }
+  if (!global.vl_daily && !global.vl_bona) { t = "La vorto de la tago"; if (px1 - px0 < bw(t) + bw("Nova vorto") + 8) t = "Hodiaŭa"; button(px0, by, px0 + bw(t), by + 44, t, 736, 0); }
   global.def_act = 735;
 }

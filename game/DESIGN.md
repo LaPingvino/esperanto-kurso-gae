@@ -143,6 +143,19 @@ answers (Vortludo only asks whether a guess is a word, below).
   words and, to twenty, the levels below — never above; the course's own (not derived), one word of two to
   twelve small letters (`gamedata.RainOK`). After a place, its own words when four or more can fall. From the
   word list's W lines: no line of its own. Nothing goes to the site.
+- **Bonvorto** (Vortludo's board, `vl_bona`; `bv_start.gml`): La Bona Lingvo's pairs (the *Bona lingvo* series,
+  `cmd/bonalingvo`): the word with a root of its own is given (*Anstataŭ* **hobio**), the word of the same meaning
+  built from basic roots is the one to find (*ŝatokupo*), six rows, typed in the x- and h-systems or on the screen's
+  keyboard, a guess asked of the site as in Vortludo (the word itself always taken). Its clue, beside the board in
+  the affix's place, is its **shape**: the project's own division with the roots hidden (*Formo:* …·…·o,
+  …·ar·o, mal·…·a), so a compound's linking o is never a guess; at the end the word shows in its pieces
+  (*ŝat·okup·o*) with its meaning, which is also the hint after three misses. The division is the project's
+  (`gamedata/bonalingvo.tsv`, from `cmd/bonalingvo -dividoj` beside the series), not ReVo's splitter, which gets
+  *profund·eg·o* or *kurac·at·o* wrong. The pairs are the course's Bona lingvo exercises asking for the built word
+  (`gamedata.Pairs`, `B` lines, format 3) whose word has six to nine letters (the long board): 65 of 101. Every
+  pair, whatever the learner's level (the series is C1–C2; the board with the shape is help enough); *Nova vorto*
+  another at random. In the Ludoj row only (the series' four columns: four and three wide, rows of two on a phone),
+  not the Bonuso: a place's words aren't its pairs. Nothing goes to the site.
 
 
 ## How the course becomes a game
@@ -287,9 +300,9 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
   lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words;
-  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; Frazotrajno's round played by the keys in both rooms (a train right and gone on, a wagon taken back, a train out of order with its right start kept, a number key, the round done in six tries, Denove), its pools the site's, every sentence's train drawn whole in every state with its depot shuffled, the bonus after a place with its sentences; Vortpluvo played in both rooms (a ŭ word typed in the h-system with a plain u and caught, one in the x-system, a hatted letter from the screen's keyboard, letters no word starts, three landed and the game done, Denove), its pools the site's, every word falling whole in the field typed or not, the bonus after a place with its words; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; Frazotrajno's round played by the keys in both rooms (a train right and gone on, a wagon taken back, a train out of order with its right start kept, a number key, the round done in six tries, Denove), its pools the site's, every sentence's train drawn whole in every state with its depot shuffled, the bonus after a place with its sentences; Vortpluvo played in both rooms (a ŭ word typed in the h-system with a plain u and caught, one in the x-system, a hatted letter from the screen's keyboard, letters no word starts, three landed and the game done, Denove), its pools the site's, every word falling whole in the field typed or not, the bonus after a place with its words; Bonvorto over the seed and the Bona lingvo series in both rooms (the word to replace and the shape beside the board, a no-word shaking, two misses asked of the site, the meaning as the hint, the word typed in the h-system, Nova vorto), its pairs the site's, every pair's board drawn whole fresh, helped, found and lost; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
   `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
-- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's, Frazotrajno's, Vortpluvo's), a definition never giving its word.
+- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's, Frazotrajno's, Vortpluvo's), Bonvorto's pairs (each word's shape, the division table beside the series), a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
   once per content set, the items' places, a course built from items without series fields.
 - `internal/handler/game_test.go`: the merge rule, the progress format and handler.
