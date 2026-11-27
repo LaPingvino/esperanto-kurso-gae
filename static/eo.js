@@ -113,9 +113,21 @@ async function registerPasskey() {
 
 // ---- WebAuthn Login ----
 
+// The quiet request started on page load (autofill); a button press cancels it
+// first, as the browser allows only one WebAuthn request at a time
+// ("A request is already pending").
+let pendingPasskey = null;
+
 async function loginPasskey(mediation) {
   const statusEl = document.getElementById('passkey-status');
   function status(msg) { if (statusEl) statusEl.textContent = msg; }
+
+  if (pendingPasskey) {
+    pendingPasskey.abort();
+    pendingPasskey = null;
+  }
+  const controller = new AbortController();
+  if (mediation === 'conditional' || mediation === 'silent') pendingPasskey = controller;
 
   try {
     if (!mediation) status('Komencas ensaluton…');
@@ -136,10 +148,12 @@ async function loginPasskey(mediation) {
       }));
     }
     if (mediation) options.mediation = mediation;
+    options.signal = controller.signal;
 
     // Step 2: call browser WebAuthn API.
     if (!mediation) status('Bonvolu sekvi la instrukciojn de via aparato…');
     const assertion = await navigator.credentials.get(options);
+    if (pendingPasskey === controller) pendingPasskey = null;
     if (!assertion) return; // user dismissed or no credential available
 
     // Step 3: send assertion to server.
