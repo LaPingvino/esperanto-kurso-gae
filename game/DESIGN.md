@@ -101,6 +101,16 @@ answers (Vortludo only asks whether a guess is a word, below).
   it each placed piece shows right or wrong (with its badge), and the dock gives the word in its pieces. The
   pool: the learner's level's words and, to ten, the levels below — never above (`gamedata.BuildPool`,
   `kb_pool.gml`); after a place, its own words when three or more have pieces. Nothing goes to the site.
+- **Memoro** (`mm_*.gml`): pairs face down, the classic memory game. Six words, each twice: the word, and its
+  picture, else its masked Esperanto definition — no translations, so the pair is Esperanto on both sides (and
+  no typing: the x- and h-systems don't come in). Two words asking alike never share a board. Twelve cards,
+  three across on a phone, six on a wide screen, the star on their backs; press two (a tap, or the arrows and
+  Enter: every card stays pressable so the focus keeps its place). A pair stays up with ✓; two that aren't
+  one show ✗ and turn back after 1.5 s or at the next press. The board done: its tries, and Denove. The
+  pool (`gamedata.MemoPool`, `mm_pool.gml`): the course's own words (not those derived for Konstrui) of the
+  learner's level and, to twelve, the levels below — never above; only those whose card fits a phone's
+  (a definition of 66 letters at most, no word of it or the word itself over 12, `gamedata.MemoOK`).
+  After a place, its own words when four or more can pair. Nothing goes to the site.
 
 
 ## How the course becomes a game
@@ -245,9 +255,9 @@ lives, a wrong answer is a plain *Ne tute.* with the right one.
   a guess that is no word shakes and costs no try, tranĉiloj is asked of the site and taken; Vetkuro driven to the
   right lane (the `auto` variant, steering through the keys' `rc_steer`) scores and keeps its lives, held in one
   lane it crashes and the counts add up (both rooms), and the bonus after a place races with its words;
-  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
+  Konstrui built right and wrong in both rooms, its pools the site's and every bank sound; Memoro's board played by the keys in both rooms (a pair, two that aren't and turn back, the board done in seven tries, Denove), its pools the site's, every word's cards fitting, the bonus after a place with its words; nothing posted. Every typed answer of the course, in the h- and x-systems, comes through the input as itself.
   `TestSyncWithSite` and `TestSyncOffline` type their answers in the h-system, and the site judges them right.
-- `internal/gamedata/words_test.go`: the word list, the pools of every level, a definition never giving its word.
+- `internal/gamedata/words_test.go`: the word list, the pools of every level (Vortludo's, Konstrui's, Memoro's), a definition never giving its word.
 - `internal/handler/game_api_test.go`: the API (text, ETag / 304, languages, no cookie, 404), the course built
   once per content set, the items' places, a course built from items without series fields.
 - `internal/handler/game_test.go`: the merge rule, the progress format and handler.

@@ -1,4 +1,4 @@
-// words_open(game): a bonus game (1 Vortludo, 2 Vetkuro, 3 Konstrui) with the words in
+// words_open(game): a bonus game (1 Vortludo, 2 Vetkuro, 3 Konstrui, 4 Memoro) with the words in
 // the meanings' language: the copy kept in the browser at once, and the
 // site asked for the current one once a session (the day's word changes
 // daily); with neither, a loading screen (10) until they come. The day's

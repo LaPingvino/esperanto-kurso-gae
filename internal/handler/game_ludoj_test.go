@@ -237,7 +237,7 @@ func TestPlayVetkuro(t *testing.T) {
 		}
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui), Komenci
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4", "enter:1", ":200") // Bonuso: Vetkuro (before Konstrui and Memoro), Komenci
 	playArgs(t, gameDir(t, c), []string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")},
 		`global.scr == 9 && global.rc_place == 1 && global.rp_n >= 4 && global.rc_state >= 1 && global.ovf == 0`)
 	// every word of the list Vetkuro takes fits a phone's gate
@@ -428,12 +428,145 @@ return 0;
 	}
 	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
 	playArgs(t, gameDir(t, c), append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys[:len(keys)-2]) + 10), "-keys", strings.Join(keys[:len(keys)-2], ",")}, shot("bonuso-rm_tall")...),
-		`global.scr == 3 && global.ovf == 0`) // the place done: three bonus games, on a phone too
-	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Konstrui
+		`global.scr == 3 && global.ovf == 0`) // the place done: four bonus games, on a phone too
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Konstrui (before Memoro)
 	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("konstrui-bonuso-rm_tall")...)
 	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 11 && global.kb_place == 1 && global.kb_pn == %d && global.ovf == 0`, want))
 	if len(s.posts) != 0 {
 		t.Errorf("Konstrui posted %q", s.posts)
+	}
+}
+
+// TestPlayMemoro: Memoro from the levels screen, in both rooms, on a board
+// left in order for the test (each word's card before its cue's): a pair
+// found by the arrow keys and Enter, two that aren't one shown wrong and
+// turned back after a while, the rest found — the board done in seven
+// tries, and Denove deals a new one. Then the game's pool for every level
+// is the site's (gamedata.MemoPool), every word's two cards draw whole (up,
+// wrong and found) with its picture, else its definition; and the bonus
+// after a place plays that place's words. Nothing posted.
+func TestPlayMemoro(t *testing.T) {
+	gameviber(t)
+	s := newStubSite(t)
+	c := s.api.Course(t.Context())
+	ws := c.Words()
+	by := map[string]*gamedata.WordEntry{}
+	for _, w := range ws {
+		if by[w.Word] == nil {
+			by[w.Word] = w
+		}
+	}
+	pinned := func() string {
+		d := gameDir(t, c)
+		f := filepath.Join(d, "game", "scripts", "mm_deal.gml")
+		b, _ := os.ReadFile(f)
+		src := string(b)
+		for old, new := range map[string]string{
+			"for (k = global.mm_nc - 1; k > 0; k -= 1) { j = floor(random(k + 1)); t = global.mm_cp[k]; global.mm_cp[k] = global.mm_cp[j]; global.mm_cp[j] = t; t = global.mm_ck[k]; global.mm_ck[k] = global.mm_ck[j]; global.mm_ck[j] = t; }": "",
+			"i = global.mm_p[floor(random(global.mm_pn))];": "i = global.mm_p[tries mod global.mm_pn];",
+		} {
+			if !strings.Contains(src, old) {
+				t.Fatalf("mm_deal: no %q", old)
+			}
+			src = strings.Replace(src, old, new, 1)
+		}
+		os.WriteFile(f, []byte(src), 0o644)
+		return d
+	}
+	start := []string{":30", "down:1", ":1", "down:1", ":1", "down:1", ":1", "down:1", ":1", "enter:1", ":4"} // the Ludoj row's fourth: Memoro
+	run := func(dir, room, shotName string, keys []string, expect string) {
+		args := append([]string{"play", "-base", s.srv.URL + "/ludo/", "-room", room, "-steps", fmt.Sprint(steps(keys) + 2), "-keys", strings.Join(keys, ",")}, shot(shotName)...)
+		playArgs(t, dir, args, expect)
+	}
+	press := []string{"enter:1", ":1"}
+	down := []string{"down:1", ":1"}
+	cat := func(parts ...[]string) []string {
+		var out []string
+		for _, p := range parts {
+			out = append(out, p...)
+		}
+		return out
+	}
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		dir := pinned()
+		run(dir, room, "ludoj-"+room, []string{":30"}, `global.scr == 5 && global.ovf == 0`) // the Ludoj row: four games
+		run(dir, room, "memoro-"+room, cat(start, []string{":2"}), `global.scr == 12 && global.mm_n == 6 && global.mm_nc == 12 && global.mm_found == 0 && global.ovf == 0`)
+		keys := cat(start, down, press, down, press) // cards 0 and 1: a pair
+		run(dir, room, "", keys, `global.scr == 12 && global.mm_found == 1 && global.mm_tries == 1 && global.mm_st[0] == 2 && global.mm_st[1] == 2 && global.ovf == 0`)
+		keys = cat(keys, down, press, down, down, press) // cards 2 and 4: none
+		run(dir, room, "memoro-ne-"+room, keys, `global.mm_found == 1 && global.mm_tries == 2 && global.mm_b == 4 && global.mm_st[2] == 1 && global.mm_st[4] == 1 && global.ovf == 0`)
+		keys = cat(keys, []string{":50"}) // turned back
+		run(dir, room, "", keys, `global.mm_a < 0 && global.mm_b < 0 && global.mm_st[2] == 0 && global.mm_st[4] == 0 && global.focus == 4`)
+		keys = cat(keys, []string{"up:1", ":1", "up:1", ":1"}, press, down, press) // cards 2 and 3
+		for k := 2; k < 6; k++ {
+			keys = cat(keys, down, press, down, press)
+		}
+		run(dir, room, "memoro-finita-"+room, keys, `global.mm_found == 6 && global.mm_tries == 7 && global.ovf == 0`)
+		keys = cat(keys, press) // Denove
+		run(dir, room, "", keys, `global.scr == 12 && global.mm_found == 0 && global.mm_tries == 0 && global.mm_st[0] == 0 && global.mm_n == 6`)
+	}
+	// the pools, as the site makes them; every word's cards drawn
+	var b strings.Builder
+	b.WriteString("// mmcheck(): 0 when Memoro's pools are the site's, else what isn't.\nvar k, f;\nglobal.mm_place = 0;\n")
+	q := func(s string) string { return `"` + s + `"` }
+	for _, l := range gamedata.Levels {
+		p := gamedata.MemoPool(ws, l)
+		fmt.Fprintf(&b, "global.acclevel = %s; mm_pool(); if (global.mm_pn != %d) return %s;\n", q(l), len(p), q(l+" pool size"))
+		for _, w := range p {
+			fmt.Fprintf(&b, "f = 0; for (k = 0; k < global.mm_pn; k += 1) if (global.w_word[global.mm_p[k]] == %s) f = 1; if (!f) return %s;\n", q(w), q(l+" "+w))
+		}
+	}
+	b.WriteString("return 0;\n")
+	dir := gameDir(t, c)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "mmcheck.gml"), []byte(b.String()), 0o644)
+	os.WriteFile(filepath.Join(dir, "game", "scripts", "mmdraw.gml"), []byte(`// mmdraw(): 0 when every Memoro word's cards draw whole and ask rightly, else the first that doesn't.
+var i, k, m, n;
+n = 0;
+for (i = 0; i < global.nw; i += 1) if (mm_ok(i)) {
+  n += 1;
+  global.mm_pn = 1; global.mm_p[0] = i; mm_deal();
+  if (global.mm_n != 1) return global.w_word[i] + " dealt";
+  if (global.w_pic[i] != "") { if (global.mm_pic[0] < 0) return global.w_word[i] + " picture"; }
+  else if (global.mm_q[0] != global.w_def[i]) return global.w_word[i] + " definition";
+  for (m = 1; m <= 3; m += 1) {
+    for (k = 0; k < 2; k += 1) global.mm_st[k] = 1 + (m == 3);
+    global.mm_b = -1; if (m == 2) global.mm_b = 1;
+    draw_all(); if (global.ovf) return global.w_word[i] + " " + string(m) + " " + global.ovf_what;
+  }
+}
+if (n < 100) return "only " + string(n);
+return 0;
+`), 0o644)
+	keys := cat(start, []string{":2"})
+	run(dir, "rm_tall", "", keys, `global.scr == 12 && mmcheck() == 0`)
+	for _, room := range []string{"rm_tall", "rm_wide"} {
+		run(dir, room, "", keys, `global.scr == 12 && mmdraw() == 0`)
+	}
+	// the bonus after a place with four or more such words: those words
+	slug, want := "", 0
+	for _, p := range c.Places {
+		seen := map[string]bool{}
+		for _, e := range p.Ex {
+			if e.Kind == 'Q' && len(e.Answers) > 0 {
+				w := strings.TrimSpace(e.Answers[0])
+				if by[w] != nil && gamedata.MemoOK(by[w]) {
+					seen[w] = true
+				}
+			}
+		}
+		if len(seen) >= 4 && slug == "" {
+			slug, want = p.Slug, len(seen)
+		}
+	}
+	if slug == "" {
+		t.Fatal("no place with four Memoro words")
+	}
+	keys = append([]string{":8"}, placeKeys(t, s.lesson(t, slug), func(int) bool { return false })...)
+	keys = append(keys[:len(keys)-2], "up:1", ":1", "up:1", ":1", "up:1", ":1", "enter:1", ":4") // Bonuso: Memoro
+	args := append([]string{"play", "-base", s.srv.URL + "/ludo/?leciono=" + slug, "-room", "rm_tall", "-steps", fmt.Sprint(steps(keys) + 10), "-keys", strings.Join(keys, ",")}, shot("memoro-bonuso-rm_tall")...)
+	playArgs(t, gameDir(t, c), args, fmt.Sprintf(`global.scr == 12 && global.mm_place == 1 && global.mm_pn == %d && global.ovf == 0`, want))
+	if len(s.posts) != 0 {
+		t.Errorf("Memoro posted %q", s.posts)
 	}
 }
 

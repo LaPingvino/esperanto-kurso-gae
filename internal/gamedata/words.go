@@ -172,6 +172,61 @@ func BuildPool(ws []*WordEntry, level string) []string {
 	return out
 }
 
+// MemoDefMax is the longest Esperanto definition (in letters) a Memoro
+// card shows, MemoWordMax the longest word in it or on the word's own card
+// (a card wraps at spaces only); a word past them sits out.
+const (
+	MemoDefMax  = 66
+	MemoWordMax = 12
+)
+
+// MemoOK: a word Memoro can pair — the course's own (not Derived), short
+// enough for a card, with its picture, else its masked Esperanto definition
+// short enough too; never a translation (mm_ok.gml).
+func MemoOK(w *WordEntry) bool {
+	if w.Derived || !memoShort(w.Word) {
+		return false
+	}
+	if PictureKey(w.Word) != "" {
+		return true
+	}
+	d := eoDef(w.Ex, w.Word)
+	return d != "" && len([]rune(d)) <= MemoDefMax && memoShort(d)
+}
+
+// memoShort: no word of s (between spaces) longer than MemoWordMax.
+func memoShort(s string) bool {
+	for _, f := range strings.Split(s, " ") {
+		if len([]rune(f)) > MemoWordMax {
+			return false
+		}
+	}
+	return true
+}
+
+// MemoPool is Memoro's words for a learner of level: those MemoOK of that
+// level and, while there are fewer than twelve, of the levels below —
+// never above (a word not yet taught); sorted. The game builds the same
+// (mm_pool.gml) and deals six pairs of it.
+func MemoPool(ws []*WordEntry, level string) []string {
+	li := 0
+	for i, l := range Levels {
+		if l == level {
+			li = i
+		}
+	}
+	var out []string
+	for i := li; i >= 0 && (i == li || len(out) < 12); i-- {
+		for _, w := range ws {
+			if w.Level == Levels[i] && MemoOK(w) {
+				out = append(out, w.Word)
+			}
+		}
+	}
+	sort.Strings(out)
+	return out
+}
+
 // Daily is the day's word of a pool (day: "2026-11-25"): the same for every
 // learner of a level, another the next day.
 func Daily(pool []string, day, level string) string {

@@ -2,8 +2,8 @@
 
 Every picture in `sprites/` comes from an openly licensed pack. All of them but `spr_bildo` are CC0 (public domain
 dedication): no attribution is required, so the game shows no credits line for them; they are credited here anyway.
-`spr_bildo` is the site's own word pictures (OpenMoji, CC BY-SA 4.0, as on the site's `/fontoj`): Vortludo and Vetkuro show
-"Bildo: OpenMoji, CC BY-SA 4.0" with every one they draw.
+`spr_bildo` is the site's own word pictures (OpenMoji, CC BY-SA 4.0, as on the site's `/fontoj`): Vortludo, Vetkuro and Konstrui show
+"Bildo: OpenMoji, CC BY-SA 4.0" with every one they draw (Memoro: "Bildoj: …" under a board with any).
 
 | Resource | What | From | Author | Licence |
 |---|---|---|---|---|

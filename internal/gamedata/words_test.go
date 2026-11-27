@@ -183,3 +183,40 @@ func poolStats(ws []*WordEntry) string {
 	}
 	return b.String()
 }
+
+// TestMemoPool: Memoro's words — every level's pool enough for a board of
+// six pairs, of that level or below, each with a picture or a definition
+// short enough for a card, never a word derived for Konstrui.
+func TestMemoPool(t *testing.T) {
+	items, err := ReadSeedDir("../../seed")
+	if err != nil {
+		t.Fatal(err)
+	}
+	ws := Build(items).Words()
+	lv := map[string]int{}
+	for i, l := range Levels {
+		lv[l] = i
+	}
+	by := map[string]*WordEntry{}
+	for _, w := range ws {
+		if by[w.Word] == nil {
+			by[w.Word] = w
+		}
+	}
+	for _, l := range Levels {
+		p := MemoPool(ws, l)
+		if len(p) < 12 {
+			t.Errorf("%s: a pool of %d", l, len(p))
+		}
+		for _, x := range p {
+			w := by[x]
+			if lv[w.Level] > lv[l] || w.Derived {
+				t.Errorf("%s: %s (%s, derived %v)", l, x, w.Level, w.Derived)
+			}
+			if PictureKey(x) == "" && (eoDef(w.Ex, x) == "" || len([]rune(eoDef(w.Ex, x))) > MemoDefMax) || !memoShort(x) {
+				t.Errorf("%s: %s neither picture nor a short definition", l, x)
+			}
+		}
+		t.Logf("%s: %d words", l, len(p))
+	}
+}

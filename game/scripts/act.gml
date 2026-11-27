@@ -11,7 +11,7 @@ var a, s;
 a = argument0;
 if (a == 1) {
   global.focus = -1; global.les_want = -1;
-  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; exit; } // a bonus game: back where it came from
+  if (global.scr >= 8) { global.scr = global.ret_scr; global.rc_place = 0; global.mm_place = 0; exit; } // a bonus game: back where it came from
   if (global.scr == 0 || global.ser < 0) { global.scr = 5; exit; }
   global.scr = 0; exit;
 }
@@ -44,7 +44,8 @@ if (a == 16) { global.mpage = max(0, global.mpage - 1); global.focus = -1; exit;
 // 736 the day's word; 740 / 741 Vortludo / Vetkuro from the levels, 743 /
 // 744 the same as the bonus after a place; 742 the race's start; 26 their
 // words again. Konstrui: 745 from the levels, 746 after a place; 760+k a
-// placed piece back, 780+t a piece of the bank onto the line.
+// placed piece back, 780+t a piece of the bank onto the line. Memoro: 747
+// from the levels, 748 after a place, 749 a new board, 800+c a card.
 if (a >= 700 && a < 730) { vl_key(string_char_at(global.t_alpha, a - 700 + 1)); exit; }
 if (a == 730) { vl_key(""); exit; }
 if (a == 731) { vl_submit(); exit; }
@@ -57,6 +58,9 @@ if (a == 742) { global.rc_lives = 3; global.rc_score = 0; global.rc_n = 0; globa
 if (a == 745 || a == 746) { global.ret_scr = 5 - 2 * (a == 746); global.kb_place = (a == 746); words_open(3); exit; }
 if (a >= 760 && a < 780) { kb_take(a - 760); exit; }
 if (a >= 780 && a < 800) { kb_place(a - 780); exit; }
+if (a == 747 || a == 748) { global.ret_scr = 5 - 2 * (a == 748); global.mm_place = (a == 748); words_open(4); exit; }
+if (a == 749) { mm_deal(); exit; }
+if (a >= 800 && a < 840) { mm_flip(a - 800); exit; }
 if (a == 26) { global.wd_fail = 0; words_open(global.game); exit; }
 if (a >= 20000) { // a series: its map, at the page of the place to go on with
   global.ser = a - 20000; global.mpage = 0; global.scr = 0; global.focus = -1;
